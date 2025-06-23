@@ -14,7 +14,7 @@ This repository contains the research on distance-based interpretation of neural
 * `gpc.pt` (4.2KB)
 
 ## Paper
-Full paper: [(https://zenodo.org/records/15722051)]
+Full paper: https://zenodo.org/records/15722051
 
 ## Core Principles
 1. **Intentional Overfitting**: Each number has a fixed position
@@ -37,6 +37,7 @@ BibTeX:
   doi          = {10.5281/zenodo.15722051},
   url          = {https://doi.org/10.5281/zenodo.15722051}
 }
+```
 
 ## Contact
 jinuk.cha.finance@gmail.com
