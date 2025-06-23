@@ -11,7 +11,6 @@ This repository contains the research on distance-based interpretation of neural
 * **Key Innovation**: All computations are performed as movements in geometric space
 
 ## Model
-The trained model is available in the `models/` directory:
 * `gpc.pt` (4.2KB)
 
 ## Paper
