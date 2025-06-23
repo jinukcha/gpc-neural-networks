@@ -32,3 +32,20 @@ Full paper: [Coming soon on Zenodo]
 ## Citation
 
 If you use this work, please cite:
+
+[Citation will be added after Zenodo publication]
+
+## Contact
+
+jinuk.cha.finance@gmail.com
+
+## License
+
+MIT License - see LICENSE file for details
+
+
+
+
+
+
+
