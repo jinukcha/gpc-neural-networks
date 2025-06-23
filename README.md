@@ -25,7 +25,19 @@ Full paper: [(https://zenodo.org/records/15722051)]
 
 ## Citation
 If you use this work, please cite:
-[Citation will be added after Zenodo publication]
+
+Jinuk Cha. (2025). Distance-Based Interpretation of Neural Networks: A Study of GPC with a 4.2KB Model. Zenodo. https://doi.org/10.5281/zenodo.15722051
+
+BibTeX:
+```bibtex
+@software{cha2025gpc,
+  author       = {Jinuk Cha},
+  title        = {Distance-Based Interpretation of Neural Networks: A Study of GPC with a 4.2KB Model},
+  year         = {2025},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.15722051},
+  url          = {https://doi.org/10.5281/zenodo.15722051}
+}
 
 ## Contact
 jinuk.cha.finance@gmail.com
