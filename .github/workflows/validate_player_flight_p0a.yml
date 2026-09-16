@@ -1,0 +1,81 @@
+name: Validate CK Player Flight P0A
+
+on:
+  push:
+    branches:
+      - tmp-player-flight-p0a-validate-20260916
+    paths:
+      - .github/workflows/validate_player_flight_p0a.yml
+      - .tmp_p0a/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout validation payload
+        uses: actions/checkout@v4
+
+      - name: Reconstruct focused Godot project
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p p0a
+          cat .tmp_p0a/chunk_*.txt > p0a_project.b64
+          base64 --decode p0a_project.b64 > p0a_project.zip
+          unzip -q p0a_project.zip -d p0a
+          test -s p0a/project.godot
+          test -s p0a/tests/run_player_flight_p0a.gd
+          find p0a -type f -printf '%P\n' | LC_ALL=C sort > p0a_file_list.txt
+
+      - name: Install Godot 4.7.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 5 --retry-all-errors \
+            -o godot.zip \
+            https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q godot.zip
+          chmod +x Godot_v4.7.2-stable_linux.x86_64
+          ./Godot_v4.7.2-stable_linux.x86_64 --version | tee godot_version.txt
+
+      - name: Import and run focused suite
+        shell: bash
+        run: |
+          set -uo pipefail
+          set +e
+          timeout 180 ./Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path p0a --editor --quit \
+            > p0a_import.log 2>&1
+          import_rc=$?
+          timeout 180 ./Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path p0a -s tests/run_player_flight_p0a.gd \
+            > p0a_test.log 2>&1
+          test_rc=$?
+          set -e
+          cat p0a_import.log
+          cat p0a_test.log
+          if [[ $import_rc -ne 0 || $test_rc -ne 0 ]]; then
+            echo "IMPORT_RC=$import_rc TEST_RC=$test_rc" >&2
+            exit 1
+          fi
+          grep -q 'failures=0' p0a_test.log
+          grep -q 'RESULT assertions=' p0a_test.log
+
+      - name: Upload validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ck-player-flight-p0a-validation
+          path: |
+            godot_version.txt
+            p0a_file_list.txt
+            p0a_import.log
+            p0a_test.log
+          if-no-files-found: warn
+          retention-days: 1
+          compression-level: 0
