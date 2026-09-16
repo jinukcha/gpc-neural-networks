@@ -25,7 +25,16 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p p0a
-          cat .tmp_p0a/chunk_*.txt > p0a_project.b64
+          cat \
+            .tmp_p0a/chunk_00.txt \
+            .tmp_p0a/chunk_01.txt \
+            .tmp_p0a/chunk_02.txt \
+            .tmp_p0a/chunk_03.txt \
+            .tmp_p0a/chunk_04a.txt \
+            .tmp_p0a/chunk_04b1.txt \
+            .tmp_p0a/chunk_04b2.txt \
+            .tmp_p0a/chunk_04b3.txt \
+            > p0a_project.b64
           base64 --decode p0a_project.b64 > p0a_project.zip
           unzip -q p0a_project.zip -d p0a
           test -s p0a/project.godot
