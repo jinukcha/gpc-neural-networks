@@ -1,0 +1,61 @@
+name: Export FreeSpace 2 Open Source Workspace
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/export_fs2_source_workspace.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout upstream FreeSpace 2 Open
+        uses: actions/checkout@v4
+        with:
+          repository: scp-fs2open/fs2open.github.com
+          ref: release_26_0_0
+          path: upstream
+          fetch-depth: 1
+          submodules: false
+
+      - name: Assemble source workspace
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$GITHUB_WORKSPACE/export_root/freespace2_open_release_26_0_0"
+          mkdir -p "$root"
+          cp -a upstream/code "$root/code"
+          cp -a upstream/freespace2 "$root/freespace2"
+          cp -a upstream/test "$root/test"
+          cp -a upstream/cmake "$root/cmake"
+          cp -a upstream/parsers "$root/parsers"
+          cp -a upstream/tools "$root/tools"
+          cp -a upstream/scripts "$root/scripts"
+          for file in About.md Authors.md Changelog.md Copying.md NEWS Readme.md Unlicense.md UpdatingDocumentation.md CMakeLists.txt cmake-variants.yaml .clang-format .clang-tidy .editorconfig .gitattributes .gitignore .gitmodules; do
+            [[ ! -e "upstream/$file" ]] || cp -a "upstream/$file" "$root/$file"
+          done
+          cat > "$root/UPSTREAM_EXPORT_INFO.txt" <<'EOF'
+Repository: scp-fs2open/fs2open.github.com
+Tag: release_26_0_0
+Purpose: Source-reference workspace for CK Godot library porting and analysis
+Contents: code, freespace2, test, cmake, parsers, tools, scripts, root build/license documents
+Submodules: not embedded
+EOF
+          tar -C "$GITHUB_WORKSPACE/export_root" -cJf "$GITHUB_WORKSPACE/freespace2_open_release_26_0_0_source_workspace.tar.xz" freespace2_open_release_26_0_0
+          find "$root" -type f -printf '%P\n' | LC_ALL=C sort > "$GITHUB_WORKSPACE/freespace2_open_release_26_0_0_file_list.txt"
+
+      - name: Upload source workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: freespace2-open-release-26-0-0-source-workspace
+          path: |
+            freespace2_open_release_26_0_0_source_workspace.tar.xz
+            freespace2_open_release_26_0_0_file_list.txt
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
