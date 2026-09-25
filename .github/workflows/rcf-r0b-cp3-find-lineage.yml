@@ -1,0 +1,63 @@
+name: RCF R0B CP3 find exact lineage
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp3-20260925]
+    paths: [.github/workflows/rcf-r0b-cp3-find-lineage.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  find:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp3-20260925
+          fetch-depth: 0
+      - name: Search all release asset digests
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p cp3_lineage
+          python - <<'PY'
+          import json, os, urllib.request
+          owner='jinukcha'; repo='gpc-neural-networks'
+          token=os.environ['GH_TOKEN']
+          headers={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+          def get(url):
+              r=urllib.request.Request(url,headers=headers)
+              with urllib.request.urlopen(r) as f:return json.load(f)
+          releases=[]
+          for page in range(1,20):
+              batch=get(f'https://api.github.com/repos/{owner}/{repo}/releases?per_page=100&page={page}')
+              if not batch: break
+              releases.extend(batch)
+          wanted={
+            'exact_b1':'sha256:99289c7bacaa2b79d7a8cc64bcc3820c6f76642c7c35db7077c324ca3cd3a94d',
+            'exact_b2':'sha256:2d6ef3a67a8197bcdf9dcf76a0214674b611d785bf7b6d58e6446e222ec0548a',
+            'exact_b2p':'sha256:685c27450e942811d805a260e925fdf84024fdfec7ee2c644671038bec830f65',
+            'exact_b2s':'sha256:4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d',
+          }
+          matches={k:[] for k in wanted}
+          all_assets=[]
+          for rel in releases:
+              for a in rel.get('assets',[]):
+                  row={'tag':rel['tag_name'],'name':a['name'],'size':a['size'],'digest':a.get('digest'),'url':a['browser_download_url']}
+                  all_assets.append(row)
+                  for key,digest in wanted.items():
+                      if a.get('digest')==digest: matches[key].append(row)
+          report={'release_count':len(releases),'asset_count':len(all_assets),'wanted':wanted,'matches':matches}
+          open('cp3_lineage/report.json','w').write(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          open('cp3_lineage/report.txt','w').write('\n'.join(f"{k}: {len(v)} {v}" for k,v in matches.items())+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp3_lineage
+          git commit -m 'Record exact B1/B2 release lineage search'
+          git push origin HEAD:automation/rcf-r0b-cp3-20260925
