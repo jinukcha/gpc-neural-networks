@@ -1,0 +1,33 @@
+name: RCF B2 optimize integration equality check
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths: [.github/workflows/rcf-b2-optimize-integrate.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('rcf_b2/rcf_b2_integrate.py')
+          s=p.read_text()
+          old='''    patch_payload = patch_tree / "W"\n    patch_check = {rel: entry_map(tree).get(rel) == entry_map(patch_payload).get(rel) for rel in final_delta["added"] + final_delta["modified"]}\n'''
+          new='''    patch_payload = patch_tree / "W"\n    final_entries = entry_map(tree)\n    patch_entries = entry_map(patch_payload)\n    patch_check = {rel: final_entries.get(rel) == patch_entries.get(rel) for rel in final_delta["added"] + final_delta["modified"]}\n'''
+          if old not in s:
+              raise SystemExit('expected equality block not found')
+          p.write_text(s.replace(old,new))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rcf_b2/rcf_b2_integrate.py
+          git commit -m 'Cache package equality entry maps during CP2 closeout'
+          git push origin HEAD:automation/rcf-r0b-cp2-20260925
