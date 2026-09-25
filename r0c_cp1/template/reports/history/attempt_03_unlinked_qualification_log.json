@@ -1,0 +1,33 @@
+{
+  "attempt": 3,
+  "evidence": {
+    "implementation_checkpoint_published_before_validation": true,
+    "job_id": 108238769464,
+    "qualification_exit_code": 1,
+    "receipts_artifact_id": 10886003765,
+    "runtime_passed": true,
+    "workflow_run_id": 36185817851
+  },
+  "failure_class": "QUALIFICATION_REPORT_DIRECTORY_UNLINKED_OPEN_LOG",
+  "failure_detail": "The child qualification runner removed the entire reports directory at startup while the parent held reports/qualification.log open. The child returned nonzero, but the opened log inode was unlinked and could not be read by path.",
+  "geometry_source_changed": false,
+  "implementation_checkpoint": {
+    "full": "C1_impl.zip",
+    "full_sha256": "c520f886be02d92ecb14183b1e994c7ecaaa7afa0866aeeb6ebd6bfb0c3bc6fc",
+    "patch": "C1_implP.zip",
+    "patch_sha256": "04710f78794b2518dc6a9da8d8c4855cf50e1472b1c88afacd5dcaac554440c4",
+    "source": "C1_implS.zip",
+    "source_sha256": "dcf395364015d7196e72add1e5ee8968e35248b0149ad3536abe7bbc47ab7be5"
+  },
+  "next_attempt": 4,
+  "qualification": "FAILED_DURING_NATIVE_TOWER_QUALIFICATION",
+  "repair": "Clear only outputs and failures. Preserve the reports directory and parent qualification log so the next failure, if any, is fully classifiable.",
+  "rollback_performed": false,
+  "runtime_changed": false,
+  "runtime_materialization": "PASS",
+  "pip_check": "PASS",
+  "schema": "royal-capital.fortification.r0c-cp1-failed-attempt/1",
+  "source_preservation": "PASS",
+  "status": "PRESERVED_FAILURE",
+  "unique_work_deleted": false
+}
