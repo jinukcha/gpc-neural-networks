@@ -15,7 +15,7 @@
     "max_penetration_m": 0.1,
     "max_retained_height_m": 0.0,
     "max_step_height_m": 1.5,
-    "min_embed_m": 1.0,
+    "min_embed_m": 0.75,
     "retaining_side": "NONE",
     "step_height_m": 0.75,
     "toe_extension_m": 0.0,

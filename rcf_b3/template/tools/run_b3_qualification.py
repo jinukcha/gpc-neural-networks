@@ -118,7 +118,7 @@ run_negative("step_delta_exceeded", "terrain_stepped", lambda f: f["foundation"]
 run_negative("foundation_depth_out_of_domain", "terrain_stepped", lambda f: f["foundation"].__setitem__("depth_m", 0.5))
 run_negative("unsupported_gap_exceeded", "retaining", lambda f: f["terrain"]["samples"][0].__setitem__("outside_elevation_m", -2.0))
 run_negative("terrain_penetration_exceeded", "retaining", lambda f: f["terrain"]["samples"][0].__setitem__("inside_elevation_m", 4.0))
-run_negative("retaining_height_exceeded", "retaining", lambda f: f["terrain"]["samples"][0].__setitem__("inside_elevation_m", 3.5))
+run_negative("retaining_height_exceeded", "retaining", lambda f: f["terrain"]["samples"][0].__setitem__("inside_elevation_m", 3.25))
 run_negative("retaining_side_missing", "retaining", lambda f: f["foundation"].__setitem__("retaining_side", "NONE"))
 run_negative("runtime_mismatch", "terrain_stepped", lambda f: f["runtime"].__setitem__("ocp_version", "0.0.0"))
 run_negative("segment_budget_exceeded", "terrain_stepped", lambda f: f["budget"].__setitem__("max_segments", 1))
