@@ -1,0 +1,333 @@
+{
+  "baseline": {
+    "file": "RCF_D0_full.zip",
+    "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+  },
+  "crc": {
+    "full": null,
+    "patch": null,
+    "source": null
+  },
+  "equality": {
+    "fixed_baseline_proof_carried": true,
+    "parent_patch_overlaid_with_delta_is_cumulative": true,
+    "parent_plus_source_equals_full": true
+  },
+  "full": {
+    "bytes": 259399957,
+    "entries": 1666,
+    "sha256": "665c12ee604eed24a3d962e60076ad9df70b118b189446fa8854d80e1d3c1612"
+  },
+  "functional_validation": {
+    "checks": [
+      {
+        "detail": null,
+        "name": "qualification",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "two_families",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "negative_gates",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "focused_validation",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "terrain_stepped_success",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "terrain_stepped_foundation",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "terrain_stepped_contact",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "terrain_stepped_gap",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "terrain_stepped_grade",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "retaining_success",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "retaining_foundation",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "retaining_contact",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "retaining_gap",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "retaining_grade",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "status_row",
+        "pass": true
+      },
+      {
+        "detail": [],
+        "name": "machine_parse",
+        "pass": true
+      },
+      {
+        "detail": [],
+        "name": "no_cache",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "runtime_retained",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "godot_not_claimed",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "cp4_deferred",
+        "pass": true
+      }
+    ],
+    "schema": "royal-capital.fortification.r0b-cp3-final-validation/1",
+    "status": "PASS",
+    "summary": {
+      "failed": 0,
+      "passed": 20
+    }
+  },
+  "negative_gates": {
+    "all_rejected": true,
+    "case_count": 15,
+    "cases": [
+      {
+        "accepted_target_unchanged": true,
+        "case": "grade_out_of_domain",
+        "code": "GRADE_OUT_OF_DOMAIN",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "duplicate_station",
+        "code": "TERRAIN_SAMPLE_ORDER_INVALID",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "step_height_out_of_domain",
+        "code": "STEP_OUT_OF_DOMAIN",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "step_delta_exceeded",
+        "code": "STEP_OUT_OF_DOMAIN",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "foundation_depth_out_of_domain",
+        "code": "FOUNDATION_DEPTH_OUT_OF_DOMAIN",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "unsupported_gap_exceeded",
+        "code": "UNSUPPORTED_GAP_EXCEEDED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "terrain_penetration_exceeded",
+        "code": "TERRAIN_PENETRATION_EXCEEDED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "retaining_height_exceeded",
+        "code": "RETAINING_HEIGHT_EXCEEDED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "retaining_side_missing",
+        "code": "INVALID_REQUEST",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "runtime_mismatch",
+        "code": "RUNTIME_MISMATCH",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "segment_budget_exceeded",
+        "code": "GEOMETRY_BUDGET_EXCEEDED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "component_budget_exceeded",
+        "code": "GEOMETRY_BUDGET_EXCEEDED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "invalid_plan_frame",
+        "code": "INVALID_FRAME",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "nonfinite_terrain",
+        "code": "INVALID_REQUEST",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "accepted_target_preservation",
+        "code": "PROVIDER_EXECUTION_FAILED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": true
+      }
+    ],
+    "no_partial_publication": true,
+    "schema": "royal-capital.fortification.r0b-cp3-negative-gates/1",
+    "status": "PASS"
+  },
+  "parent": {
+    "entries": 1485,
+    "file": "B2.zip",
+    "packaging_variant": "PUBLIC_RELEASE_ACCEPTED_LINEAGE",
+    "sha256": "51a37e5a79722ea4af4bd05004e73c6e50bb0049e625c4b7c6a5669a2c01646a"
+  },
+  "patch": {
+    "bytes": 254564356,
+    "changes": {
+      "added": 181,
+      "deleted": 0,
+      "modified": 3
+    },
+    "entries": 1513,
+    "sha256": "90145337f59777ad7496f9c52ff25c01d490a85f05bbc8b030a3a49e3ef7f704"
+  },
+  "registry": {
+    "extra": [],
+    "listed": 1665,
+    "mismatch": [],
+    "missing": [],
+    "pass": true,
+    "present": true
+  },
+  "retaining": {
+    "byte_identical": true,
+    "component_count": 5,
+    "contact_sample_count": 12,
+    "files_compared": 38,
+    "foundation_segment_count": 1,
+    "maximum_embed_depth_m": 3.75,
+    "maximum_gap_m": 0.0,
+    "maximum_grade": 0.00625,
+    "maximum_penetration_m": 0.0,
+    "maximum_retained_height_m": 2.6,
+    "minimum_embed_depth_m": 1.0,
+    "name": "retaining",
+    "reference_digest": "sha256:2c77e3bfc88981840fc36840e853d5412ba7de664b2978e0b89a225f534a1bbc",
+    "span_family": "RETAINING",
+    "status": "PASS",
+    "terrain_mutated": false,
+    "triangle_count": 60,
+    "vertex_count": 40,
+    "volume_m3": 2945.28
+  },
+  "schema": "royal-capital.fortification.r0b-cp3-package/1",
+  "source": {
+    "bytes": 337443,
+    "entries": 184,
+    "sha256": "98d233a8807c97e8e99b52ea2cd13a3be58eff47b6552b798856f02c53e32387"
+  },
+  "status": "PASS",
+  "terrain_stepped": {
+    "byte_identical": true,
+    "component_count": 20,
+    "contact_sample_count": 15,
+    "files_compared": 113,
+    "foundation_segment_count": 4,
+    "maximum_embed_depth_m": 1.9,
+    "maximum_gap_m": 0.0,
+    "maximum_grade": 0.091666666667,
+    "maximum_penetration_m": 0.0,
+    "maximum_retained_height_m": 0.3,
+    "minimum_embed_depth_m": 0.85,
+    "name": "terrain_stepped",
+    "reference_digest": "sha256:1cd79f63b68f3702f1dd1c6e9d90c75676cf9ac158f9cd2f4cd86ac83032ca1d",
+    "span_family": "TERRAIN_STEPPED",
+    "status": "PASS",
+    "terrain_mutated": false,
+    "triangle_count": 240,
+    "vertex_count": 160,
+    "volume_m3": 2369.28
+  }
+}

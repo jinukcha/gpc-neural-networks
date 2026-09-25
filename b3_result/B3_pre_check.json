@@ -1,0 +1,28 @@
+{
+  "changes": {
+    "added": 179,
+    "deleted": 0,
+    "modified": 3
+  },
+  "crc": {
+    "full": null,
+    "patch": null,
+    "source": null
+  },
+  "final_tree_validation": "NOT_STARTED",
+  "full_sha256": "1cadf0d019cd607a12c55606669a588a67835c265adf971a50c2c170785efdaa",
+  "functional_qualification": "PASS",
+  "patch_sha256": "faf0122f4fd1557ad1f6482de4e626c1f0b340973104dd223252644582064fbf",
+  "schema": "royal-capital.fortification.r0b-cp3-pre-checkpoint/1",
+  "source_equality": {
+    "different": [],
+    "equal": true,
+    "extra": [],
+    "files_left": 1664,
+    "files_right": 1664,
+    "missing": []
+  },
+  "source_preservation": "PASS",
+  "source_sha256": "ad4130b54032343793698da66c3868e64e44fc9be438ef74de0492e5b6da63ed",
+  "status": "PASS"
+}
