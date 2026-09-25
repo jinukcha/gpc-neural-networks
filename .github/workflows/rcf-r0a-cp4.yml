@@ -1,0 +1,280 @@
+name: RCF R0A CP4 exact replay and closeout
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp4-20260925]
+    paths:
+      - .github/workflows/rcf-r0a-cp4.yml
+      - rcf_cp4/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cp4:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out CP4 source
+        uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp4-20260925
+
+      - name: Set up exact CPython 3.13.5
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download and verify accepted CP3 inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inputs deliver work
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp3-20260925-r1
+          for f in A3.zip A3P.zip A3S.zip A3.json; do
+            curl -L --fail --retry 3 -o "inputs/$f" "$base/$f"
+          done
+          cat > inputs/SHA256SUMS.txt <<'EOF'
+          ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e  A3.zip
+          b958a30b41842ac367e7b770f9ea8fa068f444ea30e7e289a9a2d3fd4b56cfa4  A3P.zip
+          6f022d9d1eda1a9bfee4ee9935172f1d343bf57fe0b53b8e0ff61b276656339b  A3S.zip
+          a3fabe919f77e13d616d6f9a41ec1ad7ba5f54adc27b0491adc46b523fb5c975  A3.json
+          EOF
+          (cd inputs && sha256sum -c SHA256SUMS.txt)
+          unzip -t inputs/A3.zip >/dev/null
+          unzip -t inputs/A3P.zip >/dev/null
+          unzip -t inputs/A3S.zip >/dev/null
+
+      - name: Preserve CP4 source, cumulative patch and full checkpoint before replay
+        id: prepare
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 python rcf_cp4/rcf_cp4_build.py prepare \
+            --a3 inputs/A3.zip \
+            --a3p inputs/A3P.zip \
+            --a3s inputs/A3S.zip \
+            --a3-summary inputs/A3.json \
+            --template rcf_cp4/template \
+            --work work/cp4 \
+            --deliver deliver \
+            2>&1 | tee cp4-prepare.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > CP4_PREPARE_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Reopen pre-validation checkpoint archives
+        if: steps.prepare.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in deliver/A4_pre.zip deliver/A4_preP.zip deliver/A4_preS.zip; do
+            test -f "$f"
+            unzip -t "$f" >/dev/null
+          done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('deliver/A4_pre_check.json').read_text())
+          if report.get('status') != 'PASS':
+              raise SystemExit(report)
+          print(json.dumps(report, indent=2, sort_keys=True))
+          PY
+
+      - name: Publish preserved pre-validation checkpoint
+        if: steps.prepare.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp4-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --target "$GITHUB_SHA" \
+              --title 'RCF R0A CP4' \
+              --notes 'R0A closeout. Changed source, fixed-baseline cumulative patch and full checkpoint are preserved before fresh exact runtime replay.'
+          fi
+          gh release upload "$TAG" \
+            deliver/A4_pre.zip \
+            deliver/A4_preP.zip \
+            deliver/A4_preS.zip \
+            deliver/A4_pre_check.json \
+            cp4-prepare.log \
+            CP4_PREPARE_EXIT_CODE.txt \
+            --clobber
+
+      - name: Fresh exact runtime A/B replay
+        id: replay
+        if: steps.prepare.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set +e
+          (
+            set -euo pipefail
+            mkdir -p work/replay
+            wheelhouse="$PWD/work/cp4/tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse"
+            lock="$PWD/work/cp4/tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt"
+            replay_tool="$PWD/work/cp4/tree/RC_K0/child_designs/fortification/r0a_cp4/tools/run_exact_runtime_replay.py"
+            test "$(find "$wheelhouse" -maxdepth 1 -type f -name '*.whl' | wc -l)" -eq 58
+            for label in A B; do
+              runtime="$PWD/work/runtime_${label}"
+              python -m venv "$runtime"
+              "$runtime/bin/python" -m pip install \
+                --no-index \
+                --find-links "$wheelhouse" \
+                --require-hashes \
+                -r "$lock" \
+                2>&1 | tee "work/replay/install-${label}.log"
+              "$runtime/bin/python" -m pip check \
+                2>&1 | tee "work/replay/pip-check-${label}.log"
+              PYTHONDONTWRITEBYTECODE=1 "$runtime/bin/python" "$replay_tool" \
+                --tree "$PWD/work/cp4/tree" \
+                --output "$PWD/work/replay/${label}" \
+                --label "$label" \
+                2>&1 | tee "work/replay/replay-${label}.log"
+              "$runtime/bin/python" -m pip freeze --all \
+                > "work/replay/pip-freeze-${label}.txt"
+            done
+          ) 2>&1 | tee cp4-runtime-replay.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > CP4_REPLAY_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Finalize R0A tree and exact package equality
+        id: finalize
+        if: steps.replay.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 python rcf_cp4/rcf_cp4_build.py finalize \
+            --a3 inputs/A3.zip \
+            --a3p inputs/A3P.zip \
+            --a3s inputs/A3S.zip \
+            --a3-summary inputs/A3.json \
+            --template rcf_cp4/template \
+            --work work/cp4 \
+            --deliver deliver \
+            --replay work/replay \
+            2>&1 | tee cp4-finalize.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > CP4_FINALIZE_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Reopen final full, patch and source archives
+        if: steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in deliver/A4.zip deliver/A4P.zip deliver/A4S.zip; do
+            test -f "$f"
+            unzip -t "$f" >/dev/null
+          done
+          (cd deliver && sha256sum -c A4.sha256)
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path('deliver/A4.json').read_text())
+          equality=json.loads(Path('deliver/A4_package_equality.json').read_text())
+          assert result['status']=='PASS', result
+          assert result['stage_completion']=='R0A_COMPLETE', result
+          assert equality['status']=='PASS', equality
+          assert all(equality['checks'].values()), equality
+          print(json.dumps({
+              'status': result['status'],
+              'stage_completion': result['stage_completion'],
+              'next': result['next'],
+              'package_checks': equality['checks'],
+          }, indent=2, sort_keys=True))
+          PY
+
+      - name: Preserve replay and failure logs
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp4-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --target "$GITHUB_SHA" \
+              --title 'RCF R0A CP4' \
+              --notes 'R0A closeout attempt. Preserved source/checkpoint status and execution logs remain available even if replay or equality validation is incomplete.'
+          fi
+          files=(
+            cp4-prepare.log
+            cp4-runtime-replay.log
+            cp4-finalize.log
+            CP4_PREPARE_EXIT_CODE.txt
+            CP4_REPLAY_EXIT_CODE.txt
+            CP4_FINALIZE_EXIT_CODE.txt
+            work/replay/install-A.log
+            work/replay/install-B.log
+            work/replay/pip-check-A.log
+            work/replay/pip-check-B.log
+            work/replay/replay-A.log
+            work/replay/replay-B.log
+            work/replay/pip-freeze-A.txt
+            work/replay/pip-freeze-B.txt
+          )
+          existing=()
+          for file in "${files[@]}"; do
+            [[ -f "$file" ]] && existing+=("$file")
+          done
+          ((${#existing[@]})) && gh release upload "$TAG" "${existing[@]}" --clobber
+
+      - name: Upload final R0A closeout assets
+        if: steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp4-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            deliver/A4.zip \
+            deliver/A4P.zip \
+            deliver/A4S.zip \
+            deliver/A4.md \
+            deliver/A4.json \
+            deliver/A4.txt \
+            deliver/A4.sha256 \
+            deliver/A4_package_equality.json \
+            --clobber
+
+      - name: Upload concise receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0a-cp4-receipts
+          path: |
+            deliver/A4.md
+            deliver/A4.json
+            deliver/A4.txt
+            deliver/A4.sha256
+            deliver/A4_package_equality.json
+            deliver/A4_pre_check.json
+            cp4-prepare.log
+            cp4-runtime-replay.log
+            cp4-finalize.log
+            CP4_PREPARE_EXIT_CODE.txt
+            CP4_REPLAY_EXIT_CODE.txt
+            CP4_FINALIZE_EXIT_CODE.txt
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Enforce CP4 closeout result
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f CP4_PREPARE_EXIT_CODE.txt
+          test "$(cat CP4_PREPARE_EXIT_CODE.txt)" = '0'
+          test -f CP4_REPLAY_EXIT_CODE.txt
+          test "$(cat CP4_REPLAY_EXIT_CODE.txt)" = '0'
+          test -f CP4_FINALIZE_EXIT_CODE.txt
+          test "$(cat CP4_FINALIZE_EXIT_CODE.txt)" = '0'
