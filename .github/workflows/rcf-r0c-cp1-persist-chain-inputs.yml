@@ -1,0 +1,48 @@
+name: RCF persist accepted B4 delta chain
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-persist-chain-inputs.yml]
+permissions:
+  contents: write
+jobs:
+  persist:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+      - name: Fetch exact source deltas
+        shell: bash
+        env:
+          B1S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-89e0-8206-a35a-5c603bdbc28b/raw?se=2026-09-25T20%3A12%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=17973ee0-8ed7-5b3e-b4d0-2995158cadb4&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A35%3A44Z&ske=2026-09-26T19%3A35%3A44Z&sks=b&skv=2026-02-06&sig=tpgYkseDRK%2B%2BSteSEvYN8ziVzvHeJ/MiQbcu6fVmU08%3D"
+          B2S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-feac-8209-8da6-fe895e52b459/raw?se=2026-09-25T20%3A12%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=2601578a-87d8-59ac-be7c-b55d7117ec35&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A46%3A11Z&ske=2026-09-26T19%3A46%3A11Z&sks=b&skv=2026-02-06&sig=rcS3n/txfI80ImWXILNEnsdGk2lsTLE10i9b8pHvjpk%3D"
+          B3S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-2268-8206-b117-8a39d72aa530/raw?se=2026-09-25T20%3A12%3A47Z&sp=r&sv=2026-02-06&sr=b&scid=2484cc92-0634-53ed-8b13-d367d0be5de1&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A41%3A11Z&ske=2026-09-26T19%3A41%3A11Z&sks=b&skv=2026-02-06&sig=7ASz/SgECRkmLAi3tLuZEKkNaKS649N6KHfJlcW6CjA%3D"
+          B4S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-5858-8209-a872-f9ef4c930635/raw?se=2026-09-25T20%3A12%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=0299c774-42ce-5f53-8f99-d98e93564d88&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T18%3A40%3A15Z&ske=2026-09-26T18%3A40%3A15Z&sks=b&skv=2026-02-06&sig=ReajBW/GYJa/DD4QGSG%2B6EOoSxUbPOJcApQ1QZpK%2BOg%3D"
+        run: |
+          set -euo pipefail
+          mkdir -p chain
+          curl -LsSf --retry 3 -o chain/B1S.zip "$B1S_URL"
+          curl -LsSf --retry 3 -o chain/B2S.zip "$B2S_URL"
+          curl -LsSf --retry 3 -o chain/B3S.zip "$B3S_URL"
+          curl -LsSf --retry 3 -o chain/B4S.zip "$B4S_URL"
+          cat > chain/B4_CHAIN.sha256 <<'EOF'
+          17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b  B1S.zip
+          4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d  B2S.zip
+          ee3c3d7cb85b374830f530f2c8e2410f8b23f5a94fa9746e418b99b4de8a8c58  B3S.zip
+          a2f241fc0b3cb8fd391843ef04458b482b12e8e42da9ea63d00c3379cb2bb1ac  B4S.zip
+          EOF
+          sed -i 's/^          //' chain/B4_CHAIN.sha256
+          (cd chain && sha256sum -c B4_CHAIN.sha256)
+      - name: Publish stable release inputs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-b4-chain-inputs-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --title 'RCF accepted B4 delta chain' --notes 'Exact accepted B1S-B4S source deltas used to reconstruct B4 from A4. These are transport inputs, not a new project checkpoint.'
+          fi
+          gh release upload "$TAG" chain/B1S.zip chain/B2S.zip chain/B3S.zip chain/B4S.zip chain/B4_CHAIN.sha256 --clobber
