@@ -1,0 +1,90 @@
+name: RCF R0C CP1 preserve attempt 3 and retain child log
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-fix-attempt3-log.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Preserve attempt 3 and repair report-directory handling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          runner = Path('r0c_cp1/template/tools/run_qualification.py')
+          text = runner.read_text(encoding='utf-8')
+          old = '''for path in (outputs, failures, reports):
+    if path.exists():
+        shutil.rmtree(path)
+    path.mkdir(parents=True)
+'''
+          new = '''for path in (outputs, failures):
+    if path.exists():
+        shutil.rmtree(path)
+    path.mkdir(parents=True)
+reports.mkdir(parents=True, exist_ok=True)
+'''
+          if old not in text:
+              raise SystemExit('qualification output reset block not found')
+          runner.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          history = Path('r0c_cp1/template/reports/history')
+          history.mkdir(parents=True, exist_ok=True)
+          receipt = {
+              'schema': 'royal-capital.fortification.r0c-cp1-failed-attempt/1',
+              'attempt': 3,
+              'status': 'PRESERVED_FAILURE',
+              'source_preservation': 'PASS',
+              'implementation_checkpoint': {
+                  'full': 'C1_impl.zip',
+                  'full_sha256': 'c520f886be02d92ecb14183b1e994c7ecaaa7afa0866aeeb6ebd6bfb0c3bc6fc',
+                  'patch': 'C1_implP.zip',
+                  'patch_sha256': '04710f78794b2518dc6a9da8d8c4855cf50e1472b1c88afacd5dcaac554440c4',
+                  'source': 'C1_implS.zip',
+                  'source_sha256': 'dcf395364015d7196e72add1e5ee8968e35248b0149ad3536abe7bbc47ab7be5',
+              },
+              'runtime_materialization': 'PASS',
+              'pip_check': 'PASS',
+              'qualification': 'FAILED_DURING_NATIVE_TOWER_QUALIFICATION',
+              'failure_class': 'QUALIFICATION_REPORT_DIRECTORY_UNLINKED_OPEN_LOG',
+              'failure_detail': 'The child qualification runner removed the entire reports directory at startup while the parent held reports/qualification.log open. The child returned nonzero, but the opened log inode was unlinked and could not be read by path.',
+              'evidence': {
+                  'workflow_run_id': 36185817851,
+                  'job_id': 108238769464,
+                  'qualification_exit_code': 1,
+                  'receipts_artifact_id': 10886003765,
+                  'runtime_passed': True,
+                  'implementation_checkpoint_published_before_validation': True,
+              },
+              'repair': 'Clear only outputs and failures. Preserve the reports directory and parent qualification log so the next failure, if any, is fully classifiable.',
+              'geometry_source_changed': False,
+              'runtime_changed': False,
+              'rollback_performed': False,
+              'unique_work_deleted': False,
+              'next_attempt': 4,
+          }
+          (history / 'attempt_03_unlinked_qualification_log.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          readme = history / 'README.md'
+          existing = readme.read_text(encoding='utf-8') if readme.exists() else '# Preserved qualification failures\n'
+          existing += '\nAttempt 3 preserved source and exact runtime admission, but the child removed the parent-opened qualification log with the reports directory. Only report-directory lifecycle handling was changed; tower geometry and runtime pins were retained.\n'
+          readme.write_text(existing, encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add r0c_cp1/template/tools/run_qualification.py r0c_cp1/template/reports/history
+          git commit -m 'Preserve CP1 attempt 3 and retain child qualification log'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
