@@ -1,0 +1,40 @@
+name: RCF inspect A1 source
+
+on:
+  push:
+    branches:
+      - automation/rcf-cp0-delivery-20260925
+    paths:
+      - .github/workflows/rcf-inspect-a1-source.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect source
+        shell: bash
+        env:
+          A1S_URL: "https://sdmntprcentralus.oaiusercontent.com/files/00000000-7bd8-81f5-8620-3ba1cfadd1a1/raw?se=2026-09-25T06%3A14%3A10Z&sp=r&sv=2026-02-06&sr=b&scid=1491e445-80e9-5d33-8a23-8361e7ec1122&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T05%3A50%3A20Z&ske=2026-09-26T05%3A50%3A20Z&sks=b&skv=2026-02-06&sig=ktdgO2A4qQc44FK5uxm4rb%2BcB4czoD4dDag%2BeNzGs54%3D"
+        run: |
+          set -euo pipefail
+          curl --fail --location "$A1S_URL" -o A1S.zip
+          echo "56d573c5c82bd421a423f82d251e42553298eccb9bae35a7c95278c209ce8b9d  A1S.zip" | sha256sum -c -
+          unzip -q A1S.zip -d a1s
+          ROOT=a1s/RC_K0/child_designs/fortification/r0a_cp1
+          for p in \
+            "$ROOT/src/rcf_fortification_cad/contract.py" \
+            "$ROOT/src/rcf_fortification_cad/canonical.py" \
+            "$ROOT/src/rcf_fortification_cad/provider.py" \
+            "$ROOT/src/rcf_fortification_cad/cli.py" \
+            "$ROOT/src/rcf_fortification_cad/__init__.py" \
+            "$ROOT/tools/run_cp1_qualification.py" \
+            "$ROOT/tests/test_cp1_adapter.py" \
+            "$ROOT/schemas/cad_provider_adapter.schema.json"; do
+              echo "===== $p ====="
+              sed -n '1,1200p' "$p"
+            done
