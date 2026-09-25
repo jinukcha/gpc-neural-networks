@@ -20,7 +20,7 @@ qualified=[]
 for name,path in fixtures.items():
     fixture=json.loads(path.read_text()); aout=outputs/'runs'/name/'A'; bout=outputs/'runs'/name/'B'
     ra=producer.execute(fixture,aout,failures,failure_case=f'{name}_A'); rb=producer.execute(fixture,bout,failures,failure_case=f'{name}_B')
-    if ra.get('status')!='SUCCEEDED' or rb.get('status')!='SUCCEEDED': raise SystemExit(f'{name} positive failure')
+    if ra.get('status')!='SUCCEEDED' or rb.get('status')!='SUCCEEDED': raise SystemExit(f'{name} positive failure A={ra} B={rb}')
     fa,fb=fmap(aout),fmap(bout); result=json.loads((aout/'result.json').read_text()); align=json.loads((aout/'socket-alignment.json').read_text()); overlap=json.loads((aout/'bounded-overlap.json').read_text()); parts=json.loads((aout/'semantic-parts.json').read_text()); stored=json.loads((aout/'stored-copies.json').read_text())
     checks={'clean_replay':fa==fb,'component_count':result['component_count']==expected[name],'part_count':len(parts['parts'])==5,'socket_alignment':align['status']=='PASS','bounded_overlap':overlap['status']=='PASS','geometry_nonempty':result['vertex_count']>0 and result['triangle_count']>0 and result['volume_m3']>0,'stored_copies':len(stored['copies'])==2*expected[name]}
     if not all(checks.values()): raise SystemExit(f'{name} checks failed {checks}')
@@ -36,21 +36,21 @@ def reject(name,fixture,code):
     negative.append({'case':name,'expected':code,'observed':observed,'pass':ok})
     if not ok: raise SystemExit(f'negative failed {name}: {result}')
 m=json.loads(fixtures['miter'].read_text()); b=json.loads(fixtures['bevel'].read_text()); t=json.loads(fixtures['profile_transition'].read_text())
-x=copy.deepcopy(m); x['incoming_socket']['inside']=[0,0,-1]; x['incoming_socket']['outside']=[0,0,1]; reject('invalid_frame',x,'JoinFailure.INVALID_FRAME')
-x=copy.deepcopy(b); x['join_family']='MITER'; reject('miter_turn_too_large',x,'JoinFailure.TURN_OUT_OF_DOMAIN')
-x=copy.deepcopy(m); x['join_family']='BEVEL'; x['bevel_setback_m']=0.5; reject('bevel_turn_too_small',x,'JoinFailure.TURN_OUT_OF_DOMAIN')
-x=copy.deepcopy(t); x['outgoing_profile']=x['incoming_profile']; reject('transition_same_profile',x,'JoinFailure.PROFILE_TRANSITION_REQUIRED')
-x=copy.deepcopy(m); x['outgoing_socket']['position_m'][0]+=0.25; reject('socket_mismatch',x,'JoinFailure.SOCKET_GEOMETRY_MISMATCH')
-x=copy.deepcopy(m); x['budget']['max_components']=1; reject('component_budget',x,'JoinFailure.GEOMETRY_BUDGET_EXCEEDED')
-x=copy.deepcopy(m); x['runtime']['ocp_version']='0.0.0'; reject('runtime_mismatch',x,'JoinFailure.RUNTIME_MISMATCH')
-x=copy.deepcopy(m); x['join_family']='UNKNOWN'; reject('unknown_family',x,'JoinFailure.INVALID_REQUEST')
+x=copy.deepcopy(m); x['incoming_socket']['inside']=[0,0,-1]; x['incoming_socket']['outside']=[0,0,1]; reject('invalid_frame',x,'INVALID_FRAME')
+x=copy.deepcopy(b); x['join_family']='MITER'; reject('miter_turn_too_large',x,'TURN_OUT_OF_DOMAIN')
+x=copy.deepcopy(m); x['join_family']='BEVEL'; x['bevel_setback_m']=0.5; reject('bevel_turn_too_small',x,'TURN_OUT_OF_DOMAIN')
+x=copy.deepcopy(t); x['outgoing_profile']=x['incoming_profile']; reject('transition_same_profile',x,'PROFILE_TRANSITION_REQUIRED')
+x=copy.deepcopy(m); x['outgoing_socket']['position_m'][0]+=0.25; reject('socket_mismatch',x,'SOCKET_GEOMETRY_MISMATCH')
+x=copy.deepcopy(m); x['budget']['max_components']=1; reject('component_budget',x,'GEOMETRY_BUDGET_EXCEEDED')
+x=copy.deepcopy(m); x['runtime']['ocp_version']='0.0.0'; reject('runtime_mismatch',x,'RUNTIME_MISMATCH')
+x=copy.deepcopy(m); x['join_family']='UNKNOWN'; reject('unknown_family',x,'INVALID_REQUEST')
 accepted=outputs/'reference/miter'; before=fmap(accepted); x=copy.deepcopy(m); x['runtime']['ocp_version']='0.0.0'; result=producer.execute(x,accepted,failures,failure_case='accepted_target_preservation'); ok=result.get('status')=='REJECTED' and before==fmap(accepted) and result.get('accepted_target_unchanged') is True
 negative.append({'case':'accepted_target_preservation','expected':'unchanged','observed':result.get('accepted_target_unchanged'),'pass':ok})
 if not ok: raise SystemExit('accepted target changed')
 fake_spec=copy.deepcopy(m); fake_spec['max_overlap_m']=0.01; square=[[-1,-1],[1,-1],[1,1],[-1,1]]; fake=[{'component_id':'a','part_id':'wall_body','kind':'PLAN_EXTRUSION','polygon_xz':square,'y_min':0,'y_max':1},{'component_id':'b','part_id':'wall_body','kind':'PLAN_EXTRUSION','polygon_xz':square,'y_min':0,'y_max':1}]
 try: overlap_report(fake_spec,fake); overlap_ok=False; overlap_code='NONE'
-except JoinError as exc: overlap_ok=exc.code=='JoinFailure.OVERLAP_BUDGET_EXCEEDED'; overlap_code=exc.code
-negative.append({'case':'bounded_overlap_exceeded','expected':'JoinFailure.OVERLAP_BUDGET_EXCEEDED','observed':overlap_code,'pass':overlap_ok})
+except JoinError as exc: overlap_ok=exc.code=='OVERLAP_BUDGET_EXCEEDED'; overlap_code=exc.code
+negative.append({'case':'bounded_overlap_exceeded','expected':'OVERLAP_BUDGET_EXCEEDED','observed':overlap_code,'pass':overlap_ok})
 if not overlap_ok: raise SystemExit('overlap gate failed')
 neg={'schema':'royal-capital.fortification.r0b-cp2-negative-gates/1','status':'PASS','case_count':len(negative),'cases':negative,'all_pass':all(x['pass'] for x in negative)}
 (reports/'negative_gates.json').write_text(json.dumps(neg,indent=2,sort_keys=True)+'\n')
