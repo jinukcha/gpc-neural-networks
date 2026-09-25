@@ -1,0 +1,116 @@
+name: RCF R0A CP2 resume
+
+on:
+  push:
+    branches:
+      - automation/rcf-cp0-delivery-20260925
+    paths:
+      - .github/workflows/rcf-r0a-cp2-resume.yml
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  cp2-resume:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up exact CPython 3.13.5
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download exact 58-wheel CP0 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: rcf-cp0-cp313-linux-wheelhouse-58
+          path: inputs/wheel_artifact
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36093161115
+          github-token: ${{ github.token }}
+
+      - name: Download and verify immutable inputs
+        shell: bash
+        env:
+          RCK0_URL: "https://sdmntpreastus.oaiusercontent.com/files/00000000-b9a4-81f9-829d-1c09b34080d2/raw?se=2026-09-25T06%3A24%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=2e396f6f-4d0b-5101-b0fd-0b670f8f67b6&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T05%3A25%3A05Z&ske=2026-09-26T05%3A25%3A05Z&sks=b&skv=2026-02-06&sig=RcEqhvv5zYXqr6aA%2B7uuNQLDT6GRKkWCp6Avnfg2Pf8%3D"
+          D0P_URL: "https://sdmntprcentralus.oaiusercontent.com/files/00000000-4464-81f5-95dc-4e60e7a01a71/raw?se=2026-09-25T06%3A25%3A06Z&sp=r&sv=2026-02-06&sr=b&scid=83e744aa-9669-58ee-99ca-9d77d16977d3&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T01%3A04%3A30Z&ske=2026-09-26T01%3A04%3A30Z&sks=b&skv=2026-02-06&sig=o%2Bk88TV0j9e2LSdA7GRDf53bAGdJxfVWWWIwJkIhl2E%3D"
+          A1S_URL: "https://sdmntprcentralus.oaiusercontent.com/files/00000000-de08-81f5-b094-a0e1cb493b50/raw?se=2026-09-25T06%3A25%3A13Z&sp=r&sv=2026-02-06&sr=b&scid=5d6f3b60-5ca7-5f08-beff-36dfbb890cac&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T02%3A45%3A42Z&ske=2026-09-26T02%3A45%3A42Z&sks=b&skv=2026-02-06&sig=oLVpcp6gWmN2WYmsuWQlnzY/IEv4K9OkmHuEd/C4Apw%3D"
+        run: |
+          set -euo pipefail
+          mkdir -p inputs/files
+          curl --fail --location --retry 3 "$RCK0_URL" -o inputs/files/RC_K0.zip
+          curl --fail --location --retry 3 "$D0P_URL" -o inputs/files/RCF_D0_patch.zip
+          curl --fail --location --retry 3 "$A1S_URL" -o inputs/files/A1S.zip
+          echo "7f637daf8e6fd1e055cca31e4d287072cc96ae0bb4028121c5471d34905a38ac  inputs/files/RC_K0.zip" | sha256sum -c -
+          echo "15369b830e049937e0d980100197c617285687316bea96339b1ed5dc4cb7c47b  inputs/files/RCF_D0_patch.zip" | sha256sum -c -
+          echo "56d573c5c82bd421a423f82d251e42553298eccb9bae35a7c95278c209ce8b9d  inputs/files/A1S.zip" | sha256sum -c -
+
+      - name: Restore exact A1 stored copies, checkpoint, qualify and package CP2
+        id: build
+        shell: bash
+        run: |
+          set +e
+          python rcf_cp2/rcf_cp2_resume.py \
+            --inputs inputs/files \
+            --wheel-artifact inputs/wheel_artifact \
+            --work work/cp2-resume \
+            --packages deliver \
+            2>&1 | tee cp2-resume-build.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > CP2_RESUME_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve resume checkpoint and logs as release assets
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp2-20260925-r2
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --title "RCF R0A CP2 resume" --notes "Resume from preserved source-package reconstruction failure; CP1 stored copies are regenerated only through the accepted adapter and checked against the unchanged A1 registry."
+          fi
+          files=(deliver/A2_pre.zip deliver/A2_preP.zip deliver/A2_preS.zip deliver/A2_pre_check.json cp2-resume-build.log CP2_RESUME_EXIT_CODE.txt)
+          existing=()
+          for f in "${files[@]}"; do [[ -f "$f" ]] && existing+=("$f"); done
+          ((${#existing[@]})) && gh release upload "$TAG" "${existing[@]}" --clobber
+
+      - name: Upload final release assets
+        if: steps.build.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp2-20260925-r2
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            deliver/A2.zip deliver/A2P.zip deliver/A2S.zip \
+            deliver/A2.md deliver/A2.json deliver/A2.txt deliver/A2.sha256 \
+            --clobber
+
+      - name: Upload concise receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0a-cp2-resume-receipts
+          path: |
+            CP2_RESUME_EXIT_CODE.txt
+            cp2-resume-build.log
+            deliver/A2.md
+            deliver/A2.json
+            deliver/A2.txt
+            deliver/A2.sha256
+            deliver/A2_pre_check.json
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Enforce CP2 result
+        shell: bash
+        run: |
+          test "$(cat CP2_RESUME_EXIT_CODE.txt)" = "0"
