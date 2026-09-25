@@ -1,0 +1,196 @@
+name: RCF R0C CP1 tower families
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths:
+      - .github/workflows/rcf-r0c-cp1.yml
+      - r0c_cp1/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cp1:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download exact accepted inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inputs deliver work runtime_logs
+          a4=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          chain=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-b4-chain-inputs-20260925-r1
+          curl -L --fail --retry 3 -o inputs/A4.zip "$a4/A4.zip"
+          curl -L --fail --retry 3 -o inputs/A4P.zip "$a4/A4P.zip"
+          for f in B1S.zip B2S.zip B3S.zip B4S.zip; do curl -L --fail --retry 3 -o "inputs/$f" "$chain/$f"; done
+          cat > inputs/expected.sha256 <<'EOF'
+          8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751  A4.zip
+          bd4b32d7c35f413bae9aa9bf781bffdfe820d1a3c8f04d57c078a71d1425e335  A4P.zip
+          17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b  B1S.zip
+          4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d  B2S.zip
+          ee3c3d7cb85b374830f530f2c8e2410f8b23f5a94fa9746e418b99b4de8a8c58  B3S.zip
+          a2f241fc0b3cb8fd391843ef04458b482b12e8e42da9ea63d00c3379cb2bb1ac  B4S.zip
+          EOF
+          sed -i 's/^          //' inputs/expected.sha256
+          (cd inputs && sha256sum -c expected.sha256)
+
+      - name: Preserve implementation checkpoint before runtime validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python r0c_cp1/driver.py prepare \
+            --inputs inputs \
+            --work work/cp1 \
+            --deliver deliver \
+            --template r0c_cp1/template \
+            2>&1 | tee runtime_logs/prepare.log
+          for f in deliver/C1_impl.zip deliver/C1_implP.zip deliver/C1_implS.zip; do unzip -t "$f" >/dev/null; done
+
+      - name: Publish implementation checkpoint before long validation
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0c-cp1-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --title 'RCF R0C CP1' --notes 'Round, square and polygonal tower families. Implementation checkpoint is published before exact runtime qualification.'
+          fi
+          gh release upload "$TAG" \
+            deliver/C1_impl.zip deliver/C1_implP.zip deliver/C1_implS.zip \
+            deliver/C1_impl_check.json deliver/C1_impl_state.json \
+            runtime_logs/prepare.log --clobber
+
+      - name: Fresh exact offline runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv work/runtime
+          work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links work/cp1/tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r work/cp1/tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime_logs/runtime-materialization.log
+          work/runtime/bin/python -m pip check 2>&1 | tee runtime_logs/runtime-pip-check.log
+          work/runtime/bin/python -m pip freeze --all > runtime_logs/runtime-pip-freeze.txt
+
+      - name: Native tower-family qualification
+        id: qualify
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python r0c_cp1/driver.py qualify \
+            --tree work/cp1/tree \
+            --work work/cp1 \
+            --runtime-python "$PWD/work/runtime/bin/python" \
+            2>&1 | tee runtime_logs/qualification-driver.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > QUALIFICATION_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve qualified checkpoint before focused validation
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python r0c_cp1/driver.py prepackage \
+            --inputs inputs \
+            --work work/cp1 \
+            --deliver deliver \
+            2>&1 | tee runtime_logs/prepackage.log
+          for f in deliver/C1_pre.zip deliver/C1_preP.zip deliver/C1_preS.zip; do unzip -t "$f" >/dev/null; done
+
+      - name: Publish pre-validation checkpoint
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0c-cp1-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            deliver/C1_pre.zip deliver/C1_preP.zip deliver/C1_preS.zip \
+            deliver/C1_pre_check.json runtime_logs/prepackage.log --clobber
+
+      - name: Focused validation, finalization and final packaging
+        id: finalize
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python r0c_cp1/driver.py finalize \
+            --inputs inputs \
+            --work work/cp1 \
+            --deliver deliver \
+            --runtime-python "$PWD/work/runtime/bin/python" \
+            --runtime-log-dir runtime_logs \
+            2>&1 | tee runtime_logs/finalize.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > FINALIZE_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Reopen final archives
+        if: steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in deliver/C1.zip deliver/C1P.zip deliver/C1S.zip deliver/C1R.zip; do unzip -t "$f" >/dev/null; done
+          (cd deliver && sha256sum -c C1.sha256)
+
+      - name: Publish final checkpoint
+        if: steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0c-cp1-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            deliver/C1.zip deliver/C1P.zip deliver/C1S.zip deliver/C1R.zip \
+            deliver/C1.md deliver/C1.json deliver/C1.txt deliver/C1.sha256 \
+            deliver/C1_delivery.json deliver/C1_check.json \
+            runtime_logs/runtime-materialization.log runtime_logs/runtime-pip-check.log \
+            runtime_logs/runtime-pip-freeze.txt runtime_logs/qualification-driver.log \
+            runtime_logs/finalize.log --clobber
+
+      - name: Preserve concise receipts on every attempt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0c-cp1-receipts
+          path: |
+            QUALIFICATION_EXIT_CODE.txt
+            FINALIZE_EXIT_CODE.txt
+            runtime_logs/*.log
+            runtime_logs/runtime-pip-freeze.txt
+            deliver/C1_impl_check.json
+            deliver/C1_impl_state.json
+            deliver/C1_pre_check.json
+            deliver/C1.md
+            deliver/C1.json
+            deliver/C1.txt
+            deliver/C1.sha256
+            deliver/C1_delivery.json
+            deliver/C1R.zip
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Enforce result
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat QUALIFICATION_EXIT_CODE.txt)" = '0'
+          test "$(cat FINALIZE_EXIT_CODE.txt)" = '0'
