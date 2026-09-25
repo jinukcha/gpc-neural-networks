@@ -1,0 +1,32 @@
+name: RCF CP3 bounded source correction
+on:
+  push:
+    branches: [automation/rcf-r0a-cp3-20260925]
+    paths: [.github/workflows/rcf-cp3-fix-source.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp3-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('rcf_cp3/template/src/rcf_fortification_cp3/coverage.py')
+          s=p.read_text()
+          old='{"format": row["format"], "path": row["path"], "bytes": row["bytes"], "sha256": row["sha256"]}'
+          new='{"format": row["format"], "path": row["path"], "bytes": row["bytes"], "raw_sha256": row["raw_sha256"], "canonical_sha256": row["canonical_sha256"]}'
+          if old not in s: raise SystemExit('expected source text not found')
+          p.write_text(s.replace(old,new))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rcf_cp3/template/src/rcf_fortification_cp3/coverage.py
+          git commit -m 'Preserve raw and canonical stored-copy digests in CP3 coverage'
+          git push origin HEAD:automation/rcf-r0a-cp3-20260925
