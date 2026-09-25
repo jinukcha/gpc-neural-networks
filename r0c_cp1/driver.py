@@ -256,13 +256,19 @@ def qualify(args: argparse.Namespace) -> None:
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     qualification_log = reports / "qualification.log"
     with qualification_log.open("wb") as handle:
-        subprocess.run(
+        qualification_process = subprocess.run(
             [str(runtime_python), str(cp1 / "tools/run_qualification.py"), "--tree", str(tree), "--work", str(work / "qualification")],
-            check=True,
+            check=False,
             stdout=handle,
             stderr=subprocess.STDOUT,
             env=env,
         )
+    if qualification_process.returncode != 0:
+        qualification_text = qualification_log.read_text(encoding="utf-8", errors="replace")
+        print("=== CHILD QUALIFICATION LOG BEGIN ===", file=sys.stderr)
+        print(qualification_text, file=sys.stderr, end="" if qualification_text.endswith("\n") else "\n")
+        print("=== CHILD QUALIFICATION LOG END ===", file=sys.stderr)
+        raise RuntimeError(f"tower qualification failed with exit code {qualification_process.returncode}; see {qualification_log}")
 
     test_env = env.copy()
     test_env["RCF_TOWER_REFERENCE_ROOT"] = str(cp1 / "outputs/reference")
