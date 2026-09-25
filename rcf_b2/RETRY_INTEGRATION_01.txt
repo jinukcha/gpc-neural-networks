@@ -1,0 +1,1 @@
+Retry exact B1 integration after preserving run 1 and correcting repeated full-tree hashing in the package equality check.
