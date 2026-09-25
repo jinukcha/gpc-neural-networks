@@ -1,0 +1,78 @@
+{
+  "bounds_m": {
+    "max": [
+      8.0,
+      13.7,
+      3.7
+    ],
+    "min": [
+      0.0,
+      12.0,
+      -3.7
+    ]
+  },
+  "component_id": "wall_walk/profile_transition",
+  "kind": "SECTION_LOFT",
+  "part_id": "wall_walk",
+  "schema": "royal-capital.fortification.join-component-result/1",
+  "solid_count": 1,
+  "source_spec": {
+    "component_id": "wall_walk/profile_transition",
+    "end_section": {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "offset_max": 3.7,
+      "offset_min": -3.7,
+      "position_m": [
+        8.0,
+        0.0,
+        0.0
+      ],
+      "y_max": 13.7,
+      "y_min": 13.0
+    },
+    "kind": "SECTION_LOFT",
+    "part_id": "wall_walk",
+    "start_section": {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "offset_max": 3.2,
+      "offset_min": -3.2,
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "y_max": 12.6,
+      "y_min": 12.0
+    }
+  },
+  "status": "SUCCEEDED",
+  "stored_copies": [
+    {
+      "bytes": 17495,
+      "canonical_sha256": "sha256:77d7b241c5bada08dc28a95518514e9003e78e9f7843f59659227a131f1164fe",
+      "format": "STEP",
+      "path": "shape.step",
+      "raw_sha256": "sha256:9192c20f3adae75c2a922ce9ebe05fb663c2c4ae57a257403558212f98571e0a",
+      "reopen_volume_m3": 35.946666667
+    },
+    {
+      "bytes": 5249,
+      "canonical_sha256": "sha256:4417fe15f49c3b92501f284ba3dda5352476b7e39dfaf62d4dde9185ff132849",
+      "format": "BREP",
+      "path": "shape.brep",
+      "raw_sha256": "sha256:4417fe15f49c3b92501f284ba3dda5352476b7e39dfaf62d4dde9185ff132849",
+      "reopen_volume_m3": 35.946666667
+    }
+  ],
+  "triangle_count": 12,
+  "vertex_count": 8,
+  "volume_m3": 35.946666667
+}

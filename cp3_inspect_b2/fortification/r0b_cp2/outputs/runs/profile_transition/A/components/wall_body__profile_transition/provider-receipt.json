@@ -1,0 +1,78 @@
+{
+  "component_id": "wall_body/profile_transition",
+  "mesh_digest": "sha256:4aac23d54819d82422a1067a0d46f8055c8890067d50e0595cc1df42858de137",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.join-component-receipt/1",
+  "source_spec_digest": "sha256:f4ec06e379adfd1e4af9e71f20faa20ea0010197bb79bf7f1728e4a6c017ee9b",
+  "status": "PASS",
+  "stored_copy_canonical_digests": {
+    "BREP": "sha256:10b6fd4d16a3cff327471ed90f6bc2da70fdf852aa8859b136b3704a52a18e59",
+    "STEP": "sha256:dc3feb2c3b94a6ac7b6437705d74695f3281e55aa09288b35d94774f1f12ac4d"
+  },
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

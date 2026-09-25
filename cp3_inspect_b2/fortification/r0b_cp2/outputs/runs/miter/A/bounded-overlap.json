@@ -1,0 +1,45 @@
+{
+  "allowed_linear_overlap_m": 0.05,
+  "join_id": "fortification/caelmere/pilot/join-miter-12deg",
+  "observed_equivalent_linear_overlap_m": 0.0,
+  "pairs": [
+    {
+      "a": "foundation/incoming_miter",
+      "b": "foundation/outgoing_miter",
+      "part_id": "foundation",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_body/incoming_miter",
+      "b": "wall_body/outgoing_miter",
+      "part_id": "wall_body",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_walk/incoming_miter",
+      "b": "wall_walk/outgoing_miter",
+      "part_id": "wall_walk",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "inner_parapet/incoming_miter",
+      "b": "inner_parapet/outgoing_miter",
+      "part_id": "inner_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "outer_parapet/incoming_miter",
+      "b": "outer_parapet/outgoing_miter",
+      "part_id": "outer_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    }
+  ],
+  "policy": "PAIRWISE_CONVEX_PLAN_INTERSECTION",
+  "schema": "royal-capital.fortification.join-bounded-overlap/1",
+  "status": "PASS"
+}

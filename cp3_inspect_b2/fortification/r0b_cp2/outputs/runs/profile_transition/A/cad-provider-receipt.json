@@ -1,0 +1,97 @@
+{
+  "bounded_overlap": "PASS",
+  "capabilities": [
+    "fortification.join.miter@1",
+    "fortification.join.bevel@1",
+    "fortification.join.profile_transition@1",
+    "fortification.socket_alignment@1",
+    "fortification.bounded_overlap@1"
+  ],
+  "component_count": 5,
+  "fixture_digest": "sha256:0189d4c19e7ab86c07aa892ce760e2163886ee20d06357c2231de65a95cda7f8",
+  "join_family": "PROFILE_TRANSITION",
+  "output_digests": {
+    "bounded-overlap.json": "sha256:ec80df1c244b1a5b47bf97904cf61507d6024841a84c7480435c46c15015ac70",
+    "components.json": "sha256:7f32420dc8d0082072bc19ba249eac42fe04c3780c4ac6f8e904c7b2a3c93078",
+    "join-plan.json": "sha256:cff3b400c5b369809beb5519f5a7118547bad44e6d87a5ba6fa246f3b1f16a69",
+    "local-frames.json": "sha256:120ccb1c2049c18da888b795cb8f0b29a04f2652c9e22c1e6c03934007d8b83f",
+    "neutral-mesh.json": "sha256:b297983c8bfd1fb9ccd3cefc580dce129176443d0420c1c07929a33febb64f40",
+    "semantic-parts.json": "sha256:2417d87398da765367780a7af3b3d1bd62c85d393d0cfbd460fd5ef0eff53bcf",
+    "socket-alignment.json": "sha256:be33a34d2d25e6e1046236eb83cc326e817a810a0be79ab29dde027a37b35584",
+    "sockets.json": "sha256:730b8e9286182e8673d86215c6e94eab9c98c3d07e4e80f26bb7829eda0ff475",
+    "stored-copies.json": "sha256:aa80c07ab3aee260f658bdf684029c163fa9c4d38d488b6bad0603ec2a3b7518"
+  },
+  "producer_id": "royal-capital/fortification/join-producer",
+  "producer_revision": "r0b-cp2.1",
+  "producer_source_digest": "sha256:a9ea83405ff744a5be992705147965fbe1dae4cda9510c79daf44fdb5c36de40",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.join-provider-receipt/1",
+  "socket_alignment": "PASS",
+  "status": "PASS",
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

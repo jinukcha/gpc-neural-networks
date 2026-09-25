@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "qualification",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "three_join_families",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_gates",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_success",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_success",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "profile_transition_success",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "status_row",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_parse",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_cache",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "godot_not_claimed",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-cp2-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 10
+  }
+}

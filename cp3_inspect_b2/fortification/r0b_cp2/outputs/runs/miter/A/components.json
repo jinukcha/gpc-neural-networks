@@ -1,0 +1,456 @@
+{
+  "components": [
+    {
+      "bounds_m": {
+        "max": [
+          0.420416941,
+          0.0,
+          4.0
+        ],
+        "min": [
+          -2.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "component_id": "foundation/incoming_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "foundation",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1185,
+          "path": "components/foundation__incoming_miter/neutral-mesh.json",
+          "sha256": "sha256:95c98d4db1056e108eda78c53fde30f1b154444d386ab1fdd2adba2e1c29b37f"
+        },
+        "provider-receipt.json": {
+          "bytes": 1773,
+          "path": "components/foundation__incoming_miter/provider-receipt.json",
+          "sha256": "sha256:37a961d0a15bf135330900c92c432a9c8785e2a87c8ac71a184ad23767956110"
+        },
+        "result.json": {
+          "bytes": 1453,
+          "path": "components/foundation__incoming_miter/result.json",
+          "sha256": "sha256:07083d06bdc7c81221b87310937deefc848986a485bd37c99f041b4d64805cac"
+        },
+        "shape.brep": {
+          "bytes": 3934,
+          "path": "components/foundation__incoming_miter/shape.brep",
+          "sha256": "sha256:bb02ff3d9bf05bf0f055aa83a7965ed965754fde15c2caf39e097424d2d4c9ff"
+        },
+        "shape.step": {
+          "bytes": 16217,
+          "path": "components/foundation__incoming_miter/shape.step",
+          "sha256": "sha256:b563e6423b497c30f94635d3499ef2ff240d908254d2edb3456cf3944b462414"
+        }
+      },
+      "volume_m3": 32.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          2.787941965,
+          0.0,
+          4.328413786
+        ],
+        "min": [
+          -0.420416941,
+          -2.0,
+          -4.0
+        ]
+      },
+      "component_id": "foundation/outgoing_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "foundation",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1261,
+          "path": "components/foundation__outgoing_miter/neutral-mesh.json",
+          "sha256": "sha256:ec61e0b25e38a6d8c478c83380ae13812db68a8f3462d463a9b74159b389b294"
+        },
+        "provider-receipt.json": {
+          "bytes": 1773,
+          "path": "components/foundation__outgoing_miter/provider-receipt.json",
+          "sha256": "sha256:591fb70cd7384545c3b095a98870c7869c3d6fcabaeebcf03134db98b3f4493b"
+        },
+        "result.json": {
+          "bytes": 1523,
+          "path": "components/foundation__outgoing_miter/result.json",
+          "sha256": "sha256:6012909fd31fa91632aebcc75fcc153a48b1c8ed5a9a7ac30b7c6aca6dc4133b"
+        },
+        "shape.brep": {
+          "bytes": 4660,
+          "path": "components/foundation__outgoing_miter/shape.brep",
+          "sha256": "sha256:c2c84863c53acd787468568b951eb3139baab675181caeed3092c02f0d9791ec"
+        },
+        "shape.step": {
+          "bytes": 16878,
+          "path": "components/foundation__outgoing_miter/shape.step",
+          "sha256": "sha256:34ac135871dff6faf794d665cf03e3bb6e128ca65bd156e5f5c6cc1dc7950a88"
+        }
+      },
+      "volume_m3": 31.999999998
+    },
+    {
+      "bounds_m": {
+        "max": [
+          0.315312706,
+          12.0,
+          3.0
+        ],
+        "min": [
+          -2.0,
+          0.0,
+          -3.0
+        ]
+      },
+      "component_id": "wall_body/incoming_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "wall_body",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1185,
+          "path": "components/wall_body__incoming_miter/neutral-mesh.json",
+          "sha256": "sha256:2351804fd5c1f9ff92a214662941ee47b77c75aa541750a80346d2a53a50479c"
+        },
+        "provider-receipt.json": {
+          "bytes": 1772,
+          "path": "components/wall_body__incoming_miter/provider-receipt.json",
+          "sha256": "sha256:3be19012034c76a17bea7f4987935e62af9df62d1d53a13ea4addf8c503b6737"
+        },
+        "result.json": {
+          "bytes": 1452,
+          "path": "components/wall_body__incoming_miter/result.json",
+          "sha256": "sha256:41b4b46908eeb289dff74817f733861cee06bab8a0107667a4c82ab8bc46a671"
+        },
+        "shape.brep": {
+          "bytes": 3836,
+          "path": "components/wall_body__incoming_miter/shape.brep",
+          "sha256": "sha256:bbb7783d8b00ddead3aeb4b88e524d64e8bedce8911d7907747c4ed8278883db"
+        },
+        "shape.step": {
+          "bytes": 16166,
+          "path": "components/wall_body__incoming_miter/shape.step",
+          "sha256": "sha256:d7f451bbe911f0253bfb5e5b333333b5592fe5a2846c325710325aa00bf6e085"
+        }
+      },
+      "volume_m3": 144.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          2.580030274,
+          12.0,
+          3.350266185
+        ],
+        "min": [
+          -0.315312706,
+          0.0,
+          -3.0
+        ]
+      },
+      "component_id": "wall_body/outgoing_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "wall_body",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1261,
+          "path": "components/wall_body__outgoing_miter/neutral-mesh.json",
+          "sha256": "sha256:c3234cc042c12ffbb5614b7e4c39a285b3da8282f30af8c14c51d7ea0a5a6d7f"
+        },
+        "provider-receipt.json": {
+          "bytes": 1772,
+          "path": "components/wall_body__outgoing_miter/provider-receipt.json",
+          "sha256": "sha256:33b7ac9f7971ebb2ea5d06bf0a5abb9e4f6c3a78f3763c82b82eac1667102eb8"
+        },
+        "result.json": {
+          "bytes": 1522,
+          "path": "components/wall_body__outgoing_miter/result.json",
+          "sha256": "sha256:2bbda00ca3d5d3d5e4494bfb99732c55ebdd2c95cd16f0d67adaebba350ba6ed"
+        },
+        "shape.brep": {
+          "bytes": 4601,
+          "path": "components/wall_body__outgoing_miter/shape.brep",
+          "sha256": "sha256:7d5a34eb55032981145829fe88881a3aa45cedbdf34756fab4bfeaaf5ebe5759"
+        },
+        "shape.step": {
+          "bytes": 16812,
+          "path": "components/wall_body__outgoing_miter/shape.step",
+          "sha256": "sha256:31f9bf4fc8ab8795f5ae34b0ba46698c047930789c04a8942cc9de0bb7a4bea7"
+        }
+      },
+      "volume_m3": 143.999999993
+    },
+    {
+      "bounds_m": {
+        "max": [
+          0.336333553,
+          12.6,
+          3.2
+        ],
+        "min": [
+          -2.0,
+          12.0,
+          -3.2
+        ]
+      },
+      "component_id": "wall_walk/incoming_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "wall_walk",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1190,
+          "path": "components/wall_walk__incoming_miter/neutral-mesh.json",
+          "sha256": "sha256:6ea83ec5f8726d94a7fa9b66fe3ac1006ab8327ba0fc6261e57c1aad8cdb152d"
+        },
+        "provider-receipt.json": {
+          "bytes": 1772,
+          "path": "components/wall_walk__incoming_miter/provider-receipt.json",
+          "sha256": "sha256:04d0420487902d965be1e0ade18a5bbcdab8063f57cab6ce062a362f4a6710eb"
+        },
+        "result.json": {
+          "bytes": 1451,
+          "path": "components/wall_walk__incoming_miter/result.json",
+          "sha256": "sha256:91e03e84f736eb39f7b0ec24dee15e3a1377a81917dcc4dc452234ce1c499422"
+        },
+        "shape.brep": {
+          "bytes": 3972,
+          "path": "components/wall_walk__incoming_miter/shape.brep",
+          "sha256": "sha256:646a892a2f58e5458c7dfb4a471e6e55963af8677f017147516d99d8ce48c039"
+        },
+        "shape.step": {
+          "bytes": 16273,
+          "path": "components/wall_walk__incoming_miter/shape.step",
+          "sha256": "sha256:0c1fb96a4b3c6501865b97f8be3f0d4934336de62ab07475b3f0244f4eccbe5f"
+        }
+      },
+      "volume_m3": 7.68
+    },
+    {
+      "bounds_m": {
+        "max": [
+          2.621612612,
+          12.6,
+          3.545895705
+        ],
+        "min": [
+          -0.336333553,
+          12.0,
+          -3.2
+        ]
+      },
+      "component_id": "wall_walk/outgoing_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "wall_walk",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1264,
+          "path": "components/wall_walk__outgoing_miter/neutral-mesh.json",
+          "sha256": "sha256:9d9a65e8fa67ea59c9c042e80b7c6cb7cd8b995ebe76aac3b1faf4efcd80b5ca"
+        },
+        "provider-receipt.json": {
+          "bytes": 1772,
+          "path": "components/wall_walk__outgoing_miter/provider-receipt.json",
+          "sha256": "sha256:5432bf03654df39b60ed306b2b8a0539858169f98baeb75d7292dcf65d20d09f"
+        },
+        "result.json": {
+          "bytes": 1517,
+          "path": "components/wall_walk__outgoing_miter/result.json",
+          "sha256": "sha256:6162e9c0f977112d22bdcdce14dbe704c619a1d722e1a2ffe9ef315f037257bb"
+        },
+        "shape.brep": {
+          "bytes": 4700,
+          "path": "components/wall_walk__outgoing_miter/shape.brep",
+          "sha256": "sha256:66f6f0bbb4465ae2c2d5af61f52920bd69b9afab41c8afb53dfc6337c22da28f"
+        },
+        "shape.step": {
+          "bytes": 16903,
+          "path": "components/wall_walk__outgoing_miter/shape.step",
+          "sha256": "sha256:db3b21fad70bb53c68de3518e2d1ec0e8c05072d14e40ddf812edfb5dc7cc3e1"
+        }
+      },
+      "volume_m3": 7.679999999
+    },
+    {
+      "bounds_m": {
+        "max": [
+          -0.252250165,
+          14.4,
+          3.2
+        ],
+        "min": [
+          -2.0,
+          12.6,
+          2.4
+        ]
+      },
+      "component_id": "inner_parapet/incoming_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "inner_parapet",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1188,
+          "path": "components/inner_parapet__incoming_miter/neutral-mesh.json",
+          "sha256": "sha256:588d76158c9617dadaa48db0a160cb9e509a1051db5eb4cda50f2dc66864967a"
+        },
+        "provider-receipt.json": {
+          "bytes": 1776,
+          "path": "components/inner_parapet__incoming_miter/provider-receipt.json",
+          "sha256": "sha256:eb33283f39a416341f95ca0ebdc23e2a93be2f63596b3e9fd7145b1e16e25373"
+        },
+        "result.json": {
+          "bytes": 1487,
+          "path": "components/inner_parapet__incoming_miter/result.json",
+          "sha256": "sha256:2e0fac759063f60cc4b49e47a896c550a5f8134658e2d86543057f929a6062b5"
+        },
+        "shape.brep": {
+          "bytes": 3952,
+          "path": "components/inner_parapet__incoming_miter/shape.brep",
+          "sha256": "sha256:37f0e92c4afc618000765934589dc070c34cc4c3e4a005135bd0e6432b507283"
+        },
+        "shape.step": {
+          "bytes": 16288,
+          "path": "components/inner_parapet__incoming_miter/shape.step",
+          "sha256": "sha256:8fdf1c6ca3d693779eaa052cf8c33f90c7d9110b25e565522075db9737d631d7"
+        }
+      },
+      "volume_m3": 2.456219723
+    },
+    {
+      "bounds_m": {
+        "max": [
+          1.457307143,
+          14.4,
+          3.545895705
+        ],
+        "min": [
+          -0.336333553,
+          12.6,
+          2.4
+        ]
+      },
+      "component_id": "inner_parapet/outgoing_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "inner_parapet",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1261,
+          "path": "components/inner_parapet__outgoing_miter/neutral-mesh.json",
+          "sha256": "sha256:b2a1df8f4344284e605e150b22610d1e88dcec10e12b3fc096e8c0781a942eb6"
+        },
+        "provider-receipt.json": {
+          "bytes": 1776,
+          "path": "components/inner_parapet__outgoing_miter/provider-receipt.json",
+          "sha256": "sha256:686a19f27cbdec65aa088554ddea2b1da908a88643b71f896bd0c7aad9eae93d"
+        },
+        "result.json": {
+          "bytes": 1531,
+          "path": "components/inner_parapet__outgoing_miter/result.json",
+          "sha256": "sha256:0febdf340ef94f254f7638945f25c90c1a3efb01e6fd4668ace2a49a4576bc11"
+        },
+        "shape.brep": {
+          "bytes": 4704,
+          "path": "components/inner_parapet__outgoing_miter/shape.brep",
+          "sha256": "sha256:b0d75b225faf6e8332f22d740d5e394881f99fb9cb22282875311c95e3fce03b"
+        },
+        "shape.step": {
+          "bytes": 16908,
+          "path": "components/inner_parapet__outgoing_miter/shape.step",
+          "sha256": "sha256:3bac48ba2278c5b9a3231173ef4bd83c239c9a974f397163c6a8ed2a9cf59dfb"
+        }
+      },
+      "volume_m3": 2.456219724
+    },
+    {
+      "bounds_m": {
+        "max": [
+          0.336333553,
+          14.4,
+          -2.4
+        ],
+        "min": [
+          -2.0,
+          12.6,
+          -3.2
+        ]
+      },
+      "component_id": "outer_parapet/incoming_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "outer_parapet",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1193,
+          "path": "components/outer_parapet__incoming_miter/neutral-mesh.json",
+          "sha256": "sha256:2d8e11c3630253e69786658ebd087843c00cd6a119bef4b571f8748661827fee"
+        },
+        "provider-receipt.json": {
+          "bytes": 1776,
+          "path": "components/outer_parapet__incoming_miter/provider-receipt.json",
+          "sha256": "sha256:548a4f5759de2ab8795234876bbec28413ea7c37e5db9f01491c19236b48acb6"
+        },
+        "result.json": {
+          "bytes": 1490,
+          "path": "components/outer_parapet__incoming_miter/result.json",
+          "sha256": "sha256:95649ae62308f1abd5394ec87483c50c127230bdbc07d6d266ba9f40e51d9d98"
+        },
+        "shape.brep": {
+          "bytes": 3878,
+          "path": "components/outer_parapet__incoming_miter/shape.brep",
+          "sha256": "sha256:af4a26e695ee284aac69c0f8684ae8a33826d50501a8ebc955ec80eebb056ba8"
+        },
+        "shape.step": {
+          "bytes": 16267,
+          "path": "components/outer_parapet__incoming_miter/shape.step",
+          "sha256": "sha256:fc42302b1f7342c51813ef50939531c4605a1e4498cbeda40afeb4075d2f49f4"
+        }
+      },
+      "volume_m3": 3.303780277
+    },
+    {
+      "bounds_m": {
+        "max": [
+          2.621612612,
+          14.4,
+          -1.93173086
+        ],
+        "min": [
+          0.252250165,
+          12.6,
+          -3.2
+        ]
+      },
+      "component_id": "outer_parapet/outgoing_miter",
+      "kind": "PLAN_EXTRUSION",
+      "part_id": "outer_parapet",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1265,
+          "path": "components/outer_parapet__outgoing_miter/neutral-mesh.json",
+          "sha256": "sha256:ebbf391e81540920fc0479463407844720ce9c8728739b868d576ab41b3da57b"
+        },
+        "provider-receipt.json": {
+          "bytes": 1776,
+          "path": "components/outer_parapet__outgoing_miter/provider-receipt.json",
+          "sha256": "sha256:f96f645153ff0c07d6b33b72538a14df629c3a7e32b61061479ef66482446221"
+        },
+        "result.json": {
+          "bytes": 1533,
+          "path": "components/outer_parapet__outgoing_miter/result.json",
+          "sha256": "sha256:a88165bb9ac5d246af9aa274e43b9a9b115061629b43932c7b155f30ae723089"
+        },
+        "shape.brep": {
+          "bytes": 4658,
+          "path": "components/outer_parapet__outgoing_miter/shape.brep",
+          "sha256": "sha256:bc266f8f0d46851e72dc0bf9dfc20b90a9331b88acebb854e377cd84234eee41"
+        },
+        "shape.step": {
+          "bytes": 16916,
+          "path": "components/outer_parapet__outgoing_miter/shape.step",
+          "sha256": "sha256:49ba62df0d807f7ee7757796fb24a333e44a762156fb55c0ee98bd90607128c2"
+        }
+      },
+      "volume_m3": 3.303780277
+    }
+  ],
+  "join_id": "fortification/caelmere/pilot/join-miter-12deg",
+  "schema": "royal-capital.fortification.join-components/1"
+}

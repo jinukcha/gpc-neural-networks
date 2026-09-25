@@ -1,0 +1,231 @@
+{
+  "components": [
+    {
+      "bounds_m": {
+        "max": [
+          8.0,
+          0.0,
+          5.0
+        ],
+        "min": [
+          0.0,
+          -2.5,
+          -5.0
+        ]
+      },
+      "component_id": "foundation/profile_transition",
+      "kind": "SECTION_LOFT",
+      "part_id": "foundation",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1138,
+          "path": "components/foundation__profile_transition/neutral-mesh.json",
+          "sha256": "sha256:6d40b9984457227ba1fbb563094cf81c7ce27f5527ffd1ee4347a5ab821c6a10"
+        },
+        "provider-receipt.json": {
+          "bytes": 1777,
+          "path": "components/foundation__profile_transition/provider-receipt.json",
+          "sha256": "sha256:20875a6afa4e10cf1e6f0c9ada74d67b3c0f302a366ef06f85f68726e696fa03"
+        },
+        "result.json": {
+          "bytes": 1731,
+          "path": "components/foundation__profile_transition/result.json",
+          "sha256": "sha256:1ca9c1ae46268c37693f2082bac784051f042b529105d69b4b453208f745987e"
+        },
+        "shape.brep": {
+          "bytes": 5103,
+          "path": "components/foundation__profile_transition/shape.brep",
+          "sha256": "sha256:223b2d79238a7558cf861577b3a76024e23cc13150e7bc1f92d4fe47961bcf23"
+        },
+        "shape.step": {
+          "bytes": 17304,
+          "path": "components/foundation__profile_transition/shape.step",
+          "sha256": "sha256:c9ea83d3496ed3c4d50f00b11853383dee331571bc319d5ffded148bcaca1767"
+        }
+      },
+      "volume_m3": 162.666666667
+    },
+    {
+      "bounds_m": {
+        "max": [
+          8.0,
+          13.0,
+          3.5
+        ],
+        "min": [
+          0.0,
+          0.0,
+          -3.5
+        ]
+      },
+      "component_id": "wall_body/profile_transition",
+      "kind": "SECTION_LOFT",
+      "part_id": "wall_body",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1138,
+          "path": "components/wall_body__profile_transition/neutral-mesh.json",
+          "sha256": "sha256:4aac23d54819d82422a1067a0d46f8055c8890067d50e0595cc1df42858de137"
+        },
+        "provider-receipt.json": {
+          "bytes": 1776,
+          "path": "components/wall_body__profile_transition/provider-receipt.json",
+          "sha256": "sha256:500c35d802d330645d853ebbeeadcf1002f1a198ec22b276f4ff202c988b3cc7"
+        },
+        "result.json": {
+          "bytes": 1727,
+          "path": "components/wall_body__profile_transition/result.json",
+          "sha256": "sha256:f461d454437bb2440744a858d12b3dea941a2a8fae0230735cd6473e5080e199"
+        },
+        "shape.brep": {
+          "bytes": 5106,
+          "path": "components/wall_body__profile_transition/shape.brep",
+          "sha256": "sha256:10b6fd4d16a3cff327471ed90f6bc2da70fdf852aa8859b136b3704a52a18e59"
+        },
+        "shape.step": {
+          "bytes": 17280,
+          "path": "components/wall_body__profile_transition/shape.step",
+          "sha256": "sha256:28fae1cd3db111bce96562e248b7f2701e3a55526ca9060089822939fd492c42"
+        }
+      },
+      "volume_m3": 650.666666667
+    },
+    {
+      "bounds_m": {
+        "max": [
+          8.0,
+          13.7,
+          3.7
+        ],
+        "min": [
+          0.0,
+          12.0,
+          -3.7
+        ]
+      },
+      "component_id": "wall_walk/profile_transition",
+      "kind": "SECTION_LOFT",
+      "part_id": "wall_walk",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1143,
+          "path": "components/wall_walk__profile_transition/neutral-mesh.json",
+          "sha256": "sha256:0c6ce7a5008276e5556fa295393f72946cfb0cc2e8baba24507952a11706fa3b"
+        },
+        "provider-receipt.json": {
+          "bytes": 1776,
+          "path": "components/wall_walk__profile_transition/provider-receipt.json",
+          "sha256": "sha256:b0316ae4fd906fc2bf920bf1cc4149ff1fd7d42c7926d6ac1dbe8c8a8e39ca50"
+        },
+        "result.json": {
+          "bytes": 1727,
+          "path": "components/wall_walk__profile_transition/result.json",
+          "sha256": "sha256:5397fb365e3aff1c5d553186435c632ed0e0fa052162d826b1ccfa6bb3310520"
+        },
+        "shape.brep": {
+          "bytes": 5249,
+          "path": "components/wall_walk__profile_transition/shape.brep",
+          "sha256": "sha256:4417fe15f49c3b92501f284ba3dda5352476b7e39dfaf62d4dde9185ff132849"
+        },
+        "shape.step": {
+          "bytes": 17495,
+          "path": "components/wall_walk__profile_transition/shape.step",
+          "sha256": "sha256:9192c20f3adae75c2a922ce9ebe05fb663c2c4ae57a257403558212f98571e0a"
+        }
+      },
+      "volume_m3": 35.946666667
+    },
+    {
+      "bounds_m": {
+        "max": [
+          8.0,
+          15.7,
+          3.7
+        ],
+        "min": [
+          0.0,
+          12.6,
+          2.4
+        ]
+      },
+      "component_id": "inner_parapet/profile_transition",
+      "kind": "SECTION_LOFT",
+      "part_id": "inner_parapet",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1138,
+          "path": "components/inner_parapet__profile_transition/neutral-mesh.json",
+          "sha256": "sha256:3eb9df152c79589f838b0e3e003c1a30f936f4a27cb7b5235d45d549f2d744ba"
+        },
+        "provider-receipt.json": {
+          "bytes": 1780,
+          "path": "components/inner_parapet__profile_transition/provider-receipt.json",
+          "sha256": "sha256:4e717b17040d0f8c02fe4759c15adceec4e5268f91ffe18b4dac6d91f442edd4"
+        },
+        "result.json": {
+          "bytes": 1740,
+          "path": "components/inner_parapet__profile_transition/result.json",
+          "sha256": "sha256:6a9e8083bfece7457d968810595efdfc0d7359517fd539b2ecfa6f6c8e4d918f"
+        },
+        "shape.brep": {
+          "bytes": 5221,
+          "path": "components/inner_parapet__profile_transition/shape.brep",
+          "sha256": "sha256:82e77b19cf01d248207af5ef3687b562c2e1ed211fbc08da390cb4bc02a0e77d"
+        },
+        "shape.step": {
+          "bytes": 17441,
+          "path": "components/inner_parapet__profile_transition/shape.step",
+          "sha256": "sha256:22fceaff2f817ccf06e6d62c72d45fb812315de4e3d1ee1215e3c6acdc16fe54"
+        }
+      },
+      "volume_m3": 13.706666667
+    },
+    {
+      "bounds_m": {
+        "max": [
+          8.0,
+          15.7,
+          -2.4
+        ],
+        "min": [
+          0.0,
+          12.6,
+          -3.7
+        ]
+      },
+      "component_id": "outer_parapet/profile_transition",
+      "kind": "SECTION_LOFT",
+      "part_id": "outer_parapet",
+      "refs": {
+        "neutral-mesh.json": {
+          "bytes": 1148,
+          "path": "components/outer_parapet__profile_transition/neutral-mesh.json",
+          "sha256": "sha256:2beddbab1d4ee31ec9cfca0043306eb6d5d3d2fcd6d462139485867f1f76b849"
+        },
+        "provider-receipt.json": {
+          "bytes": 1780,
+          "path": "components/outer_parapet__profile_transition/provider-receipt.json",
+          "sha256": "sha256:848e6ed2b6c1094a2fd09f942674b62d9426e548752e6d2ff90568247317eace"
+        },
+        "result.json": {
+          "bytes": 1746,
+          "path": "components/outer_parapet__profile_transition/result.json",
+          "sha256": "sha256:daad5abc2799fa686a2241baf4e96051bf81e45d0eeabf2c5044a513845a03cc"
+        },
+        "shape.brep": {
+          "bytes": 5155,
+          "path": "components/outer_parapet__profile_transition/shape.brep",
+          "sha256": "sha256:f70a2158686f19cf80aff507e750e3537eb39a1d7001bc1c8fd77e31653c9d65"
+        },
+        "shape.step": {
+          "bytes": 17399,
+          "path": "components/outer_parapet__profile_transition/shape.step",
+          "sha256": "sha256:5426b0b0c231e2273c8cb816573ad59a9def19bed20afdec4581364715f18d32"
+        }
+      },
+      "volume_m3": 13.706666667
+    }
+  ],
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "schema": "royal-capital.fortification.join-components/1"
+}

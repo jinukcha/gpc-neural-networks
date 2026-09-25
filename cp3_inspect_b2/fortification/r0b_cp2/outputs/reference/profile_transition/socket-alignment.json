@@ -1,0 +1,34 @@
+{
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "max_axis_error": 0.0,
+  "max_position_error_m": 0.0,
+  "rows": [
+    {
+      "axis_errors": {
+        "inside": 0.0,
+        "outside": 0.0,
+        "tangent": 0.0,
+        "up": 0.0
+      },
+      "pass": true,
+      "position_error_m": 0.0,
+      "side": "incoming",
+      "socket_id": "span_in"
+    },
+    {
+      "axis_errors": {
+        "inside": 0.0,
+        "outside": 0.0,
+        "tangent": 0.0,
+        "up": 0.0
+      },
+      "pass": true,
+      "position_error_m": 0.0,
+      "side": "outgoing",
+      "socket_id": "span_out"
+    }
+  ],
+  "schema": "royal-capital.fortification.join-socket-alignment/1",
+  "status": "PASS",
+  "tolerance_m": 1e-06
+}

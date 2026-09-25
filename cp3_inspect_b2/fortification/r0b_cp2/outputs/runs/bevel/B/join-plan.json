@@ -1,0 +1,34 @@
+{
+  "anchor_m": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "assembly_mode": "BOUNDED_NON_UNIONED_COMPONENTS",
+  "bevel_setback_m": 1.2,
+  "component_order": [
+    "foundation/incoming_bevel",
+    "foundation/bevel_bridge",
+    "foundation/outgoing_bevel",
+    "wall_body/incoming_bevel",
+    "wall_body/bevel_bridge",
+    "wall_body/outgoing_bevel",
+    "wall_walk/incoming_bevel",
+    "wall_walk/bevel_bridge",
+    "wall_walk/outgoing_bevel",
+    "inner_parapet/incoming_bevel",
+    "inner_parapet/bevel_bridge",
+    "inner_parapet/outgoing_bevel",
+    "outer_parapet/incoming_bevel",
+    "outer_parapet/bevel_bridge",
+    "outer_parapet/outgoing_bevel"
+  ],
+  "incoming_profile": "STANDARD_R0B",
+  "join_depth_m": 3.0,
+  "join_family": "BEVEL",
+  "join_id": "fortification/caelmere/pilot/join-bevel-30deg",
+  "outgoing_profile": "STANDARD_R0B",
+  "schema": "royal-capital.fortification.join-plan/1",
+  "source_coverage_stage": "R0B_CP4",
+  "turn_angle_deg": 29.999999994
+}

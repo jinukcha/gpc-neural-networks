@@ -1,0 +1,115 @@
+{
+  "allowed_linear_overlap_m": 0.05,
+  "join_id": "fortification/caelmere/pilot/join-bevel-30deg",
+  "observed_equivalent_linear_overlap_m": 0.0,
+  "pairs": [
+    {
+      "a": "foundation/incoming_bevel",
+      "b": "foundation/bevel_bridge",
+      "part_id": "foundation",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "foundation/incoming_bevel",
+      "b": "foundation/outgoing_bevel",
+      "part_id": "foundation",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "foundation/bevel_bridge",
+      "b": "foundation/outgoing_bevel",
+      "part_id": "foundation",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_body/incoming_bevel",
+      "b": "wall_body/bevel_bridge",
+      "part_id": "wall_body",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_body/incoming_bevel",
+      "b": "wall_body/outgoing_bevel",
+      "part_id": "wall_body",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_body/bevel_bridge",
+      "b": "wall_body/outgoing_bevel",
+      "part_id": "wall_body",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_walk/incoming_bevel",
+      "b": "wall_walk/bevel_bridge",
+      "part_id": "wall_walk",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_walk/incoming_bevel",
+      "b": "wall_walk/outgoing_bevel",
+      "part_id": "wall_walk",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "wall_walk/bevel_bridge",
+      "b": "wall_walk/outgoing_bevel",
+      "part_id": "wall_walk",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "inner_parapet/incoming_bevel",
+      "b": "inner_parapet/bevel_bridge",
+      "part_id": "inner_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "inner_parapet/incoming_bevel",
+      "b": "inner_parapet/outgoing_bevel",
+      "part_id": "inner_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "inner_parapet/bevel_bridge",
+      "b": "inner_parapet/outgoing_bevel",
+      "part_id": "inner_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "outer_parapet/incoming_bevel",
+      "b": "outer_parapet/bevel_bridge",
+      "part_id": "outer_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "outer_parapet/incoming_bevel",
+      "b": "outer_parapet/outgoing_bevel",
+      "part_id": "outer_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    },
+    {
+      "a": "outer_parapet/bevel_bridge",
+      "b": "outer_parapet/outgoing_bevel",
+      "part_id": "outer_parapet",
+      "plan_overlap_m2": 0.0,
+      "volume_overlap_m3": 0.0
+    }
+  ],
+  "policy": "PAIRWISE_CONVEX_PLAN_INTERSECTION",
+  "schema": "royal-capital.fortification.join-bounded-overlap/1",
+  "status": "PASS"
+}

@@ -1,0 +1,29 @@
+{
+  "anchor_m": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "assembly_mode": "BOUNDED_NON_UNIONED_COMPONENTS",
+  "bevel_setback_m": 0.0,
+  "component_order": [
+    "foundation/incoming_miter",
+    "foundation/outgoing_miter",
+    "wall_body/incoming_miter",
+    "wall_body/outgoing_miter",
+    "wall_walk/incoming_miter",
+    "wall_walk/outgoing_miter",
+    "inner_parapet/incoming_miter",
+    "inner_parapet/outgoing_miter",
+    "outer_parapet/incoming_miter",
+    "outer_parapet/outgoing_miter"
+  ],
+  "incoming_profile": "STANDARD_R0B",
+  "join_depth_m": 2.0,
+  "join_family": "MITER",
+  "join_id": "fortification/caelmere/pilot/join-miter-12deg",
+  "outgoing_profile": "STANDARD_R0B",
+  "schema": "royal-capital.fortification.join-plan/1",
+  "source_coverage_stage": "R0B_CP4",
+  "turn_angle_deg": 12.000000007
+}

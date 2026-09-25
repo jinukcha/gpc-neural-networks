@@ -1,0 +1,306 @@
+{
+  "copies": [
+    {
+      "bytes": 15757,
+      "canonical_sha256": "sha256:57bcfee909f1732b179c24d009a4d7224d1032c8c2b2845a05da3f6484e3ec46",
+      "component_id": "foundation/incoming_bevel",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "components/foundation__incoming_bevel/shape.step",
+      "raw_sha256": "sha256:3a2c2971773279c97fea38b021d7a0bbfd427599f81a8c029b3c4e6139fb16a0",
+      "reopen_volume_m3": 28.8
+    },
+    {
+      "bytes": 3357,
+      "canonical_sha256": "sha256:f7e4a1142531fa4381d69fe9d03d9d017b407f6905da99a92241d121bb3b48fb",
+      "component_id": "foundation/incoming_bevel",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "components/foundation__incoming_bevel/shape.brep",
+      "raw_sha256": "sha256:f7e4a1142531fa4381d69fe9d03d9d017b407f6905da99a92241d121bb3b48fb",
+      "reopen_volume_m3": 28.8
+    },
+    {
+      "bytes": 16632,
+      "canonical_sha256": "sha256:ae7e968d469763b0a901a68a7e91345898fb0d4325ca6aa95e9fdd7173d84b1c",
+      "component_id": "foundation/bevel_bridge",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "components/foundation__bevel_bridge/shape.step",
+      "raw_sha256": "sha256:f16f44eb53990084360c651bf493c314360de814f175e9313d9ddb4b0f0d6e71",
+      "reopen_volume_m3": 35.827687751
+    },
+    {
+      "bytes": 4298,
+      "canonical_sha256": "sha256:fa875bd862b5ca3ab4b8b852133e07e0be1b36aaed302216869e63b7f35e724d",
+      "component_id": "foundation/bevel_bridge",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "components/foundation__bevel_bridge/shape.brep",
+      "raw_sha256": "sha256:fa875bd862b5ca3ab4b8b852133e07e0be1b36aaed302216869e63b7f35e724d",
+      "reopen_volume_m3": 35.827687751
+    },
+    {
+      "bytes": 16992,
+      "canonical_sha256": "sha256:7752af7ae4a54e36cc4781020f3c6a4c1b710923ac0b9cf74d6fd51576fa4ea7",
+      "component_id": "foundation/outgoing_bevel",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "components/foundation__outgoing_bevel/shape.step",
+      "raw_sha256": "sha256:927e8a596383894affc22d5e07eca212429b993b8be13ed6401bed89d9aba293",
+      "reopen_volume_m3": 28.799999997
+    },
+    {
+      "bytes": 4794,
+      "canonical_sha256": "sha256:ab923f4417d6cebae3611a2e70169bfa6a2556a3bcc91e3a1a62f43fba7fe353",
+      "component_id": "foundation/outgoing_bevel",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "components/foundation__outgoing_bevel/shape.brep",
+      "raw_sha256": "sha256:ab923f4417d6cebae3611a2e70169bfa6a2556a3bcc91e3a1a62f43fba7fe353",
+      "reopen_volume_m3": 28.799999997
+    },
+    {
+      "bytes": 15721,
+      "canonical_sha256": "sha256:a9b50fe0995a541a701794680ed91d5cdd7387a47a50c1cda0e9281c1112b893",
+      "component_id": "wall_body/incoming_bevel",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__incoming_bevel/shape.step",
+      "raw_sha256": "sha256:3ff39beaca513d72a0157272a6c27c7a453cfa032f4c7531c1b1dd2338151367",
+      "reopen_volume_m3": 129.6
+    },
+    {
+      "bytes": 3217,
+      "canonical_sha256": "sha256:502054087952d667c2c821bf9ede61642ec09e046c36d0bbb74847b817d9a94a",
+      "component_id": "wall_body/incoming_bevel",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__incoming_bevel/shape.brep",
+      "raw_sha256": "sha256:502054087952d667c2c821bf9ede61642ec09e046c36d0bbb74847b817d9a94a",
+      "reopen_volume_m3": 129.6
+    },
+    {
+      "bytes": 16612,
+      "canonical_sha256": "sha256:0ecec8053f8469fcdd6a515a4ced13cadec476e0e2b7d7b1adddb850c4799a13",
+      "component_id": "wall_body/bevel_bridge",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__bevel_bridge/shape.step",
+      "raw_sha256": "sha256:3565d074bf16a7e71467c30e95d05244c4a54b04cbaeb8343ab68ec85d7edca7",
+      "reopen_volume_m3": 161.224594876
+    },
+    {
+      "bytes": 4288,
+      "canonical_sha256": "sha256:eb19b936eff3fa1b8d91190d812bb457bed2168d156ddbf37b76a60ef51d27fc",
+      "component_id": "wall_body/bevel_bridge",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__bevel_bridge/shape.brep",
+      "raw_sha256": "sha256:eb19b936eff3fa1b8d91190d812bb457bed2168d156ddbf37b76a60ef51d27fc",
+      "reopen_volume_m3": 161.224594876
+    },
+    {
+      "bytes": 16977,
+      "canonical_sha256": "sha256:d8d0efcde1d5c4ae4f8fb5e93c8863032ef203c5932d9d49ed1ce5e7441558cf",
+      "component_id": "wall_body/outgoing_bevel",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__outgoing_bevel/shape.step",
+      "raw_sha256": "sha256:1b5aa1fe69543c01d9ecb8cc374e508c2cadfc03b6d92a616749390f0169f766",
+      "reopen_volume_m3": 129.600000008
+    },
+    {
+      "bytes": 4802,
+      "canonical_sha256": "sha256:9e7f413123b59d3e5a713a5e637cbfce16c57a4d2acd2d801f83a4510367024c",
+      "component_id": "wall_body/outgoing_bevel",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__outgoing_bevel/shape.brep",
+      "raw_sha256": "sha256:9e7f413123b59d3e5a713a5e637cbfce16c57a4d2acd2d801f83a4510367024c",
+      "reopen_volume_m3": 129.600000008
+    },
+    {
+      "bytes": 15837,
+      "canonical_sha256": "sha256:47ebad3c9a0538e737363c4bc460b9cb56a3fea72bcadb3ce824864a24e5a713",
+      "component_id": "wall_walk/incoming_bevel",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__incoming_bevel/shape.step",
+      "raw_sha256": "sha256:a7ea6ead00551b1d0072ff222317678a8f2a8d21d9abca272a25f9388e1d4fd6",
+      "reopen_volume_m3": 6.912
+    },
+    {
+      "bytes": 3361,
+      "canonical_sha256": "sha256:0a35c94f4a11c06b79531c18818a0e04069d12d1f143de66fb66e7d1c5257b50",
+      "component_id": "wall_walk/incoming_bevel",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__incoming_bevel/shape.brep",
+      "raw_sha256": "sha256:0a35c94f4a11c06b79531c18818a0e04069d12d1f143de66fb66e7d1c5257b50",
+      "reopen_volume_m3": 6.912
+    },
+    {
+      "bytes": 16705,
+      "canonical_sha256": "sha256:accb76099d1da1ca305ee593d822ce98173145fc403e68713eb525e1b29a2f82",
+      "component_id": "wall_walk/bevel_bridge",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__bevel_bridge/shape.step",
+      "raw_sha256": "sha256:07017576bbb06222f74f16936e25fd2d66f5e560cda6adaa67723d12ec1ce699",
+      "reopen_volume_m3": 8.59864506
+    },
+    {
+      "bytes": 4408,
+      "canonical_sha256": "sha256:6a749e2f27d6c561435c98af29de18af46fc5172dcf47582c6b92a7e5f02cfed",
+      "component_id": "wall_walk/bevel_bridge",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__bevel_bridge/shape.brep",
+      "raw_sha256": "sha256:6a749e2f27d6c561435c98af29de18af46fc5172dcf47582c6b92a7e5f02cfed",
+      "reopen_volume_m3": 8.59864506
+    },
+    {
+      "bytes": 17025,
+      "canonical_sha256": "sha256:8d20a6fdb870700e12c41e38945d4b51c14f4d48bcdf3cf7f7645023ce7b6d01",
+      "component_id": "wall_walk/outgoing_bevel",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__outgoing_bevel/shape.step",
+      "raw_sha256": "sha256:ed19c2898bf1c56f4fba6b4369e1a7e5ca4c7505554041ee9739573aa29eb5de",
+      "reopen_volume_m3": 6.911999999
+    },
+    {
+      "bytes": 4845,
+      "canonical_sha256": "sha256:74139f0e81f8cd6b4f1663c180da7d1d63c9ce264faec53f7cbf607db37c4efa",
+      "component_id": "wall_walk/outgoing_bevel",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__outgoing_bevel/shape.brep",
+      "raw_sha256": "sha256:74139f0e81f8cd6b4f1663c180da7d1d63c9ce264faec53f7cbf607db37c4efa",
+      "reopen_volume_m3": 6.911999999
+    },
+    {
+      "bytes": 15860,
+      "canonical_sha256": "sha256:dff75cedbf01765b1fed480cdc98339c96fe899ef3e1224938b0950e0b382af5",
+      "component_id": "inner_parapet/incoming_bevel",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__incoming_bevel/shape.step",
+      "raw_sha256": "sha256:9a0e8d790dfe60b7c080e8778d66da8f855061af2f16b03cec9d65e51962c27b",
+      "reopen_volume_m3": 2.592
+    },
+    {
+      "bytes": 3305,
+      "canonical_sha256": "sha256:a28ef6c2596a60bb35b00a0363691fd4925e10d97bee83e320a44a4b69aa8647",
+      "component_id": "inner_parapet/incoming_bevel",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__incoming_bevel/shape.brep",
+      "raw_sha256": "sha256:a28ef6c2596a60bb35b00a0363691fd4925e10d97bee83e320a44a4b69aa8647",
+      "reopen_volume_m3": 2.592
+    },
+    {
+      "bytes": 16684,
+      "canonical_sha256": "sha256:3208458e9661257e156139d8a4f0310ccd8fcf88ac974dc8fb24c8a3cef51eeb",
+      "component_id": "inner_parapet/bevel_bridge",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__bevel_bridge/shape.step",
+      "raw_sha256": "sha256:aa62955a937daaba6d310ec04448bc5e56e98df6e6e60d682e9da6315405c1cf",
+      "reopen_volume_m3": 1.208491898
+    },
+    {
+      "bytes": 4393,
+      "canonical_sha256": "sha256:f85184dfffd3a3c1b4aec4e9946c0fa7128d116d34940e62ea470b1c7e149d1a",
+      "component_id": "inner_parapet/bevel_bridge",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__bevel_bridge/shape.brep",
+      "raw_sha256": "sha256:f85184dfffd3a3c1b4aec4e9946c0fa7128d116d34940e62ea470b1c7e149d1a",
+      "reopen_volume_m3": 1.208491898
+    },
+    {
+      "bytes": 16914,
+      "canonical_sha256": "sha256:9a07cf0481f2334c7d6d81371910cf02fb9b74f073dc693de9fcb1af579bd87f",
+      "component_id": "inner_parapet/outgoing_bevel",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__outgoing_bevel/shape.step",
+      "raw_sha256": "sha256:3f5eac470dea4396bb0229910ea9f16418010ee211158ff06aff9f11451ba36e",
+      "reopen_volume_m3": 2.592
+    },
+    {
+      "bytes": 4828,
+      "canonical_sha256": "sha256:565a991e042a7f5b3d861ba3c2bcaccdceac25f63c5d4ac5e58527f56df83a48",
+      "component_id": "inner_parapet/outgoing_bevel",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__outgoing_bevel/shape.brep",
+      "raw_sha256": "sha256:565a991e042a7f5b3d861ba3c2bcaccdceac25f63c5d4ac5e58527f56df83a48",
+      "reopen_volume_m3": 2.592
+    },
+    {
+      "bytes": 15834,
+      "canonical_sha256": "sha256:881d2c0474114f92db7b725b58b9e0f3dda74336345c36f472e6eccc26184777",
+      "component_id": "outer_parapet/incoming_bevel",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__incoming_bevel/shape.step",
+      "raw_sha256": "sha256:f75c797d6750ca6520dd1f03bba135080ed5db107dff9199dfc4660bdda09ce4",
+      "reopen_volume_m3": 2.592
+    },
+    {
+      "bytes": 3268,
+      "canonical_sha256": "sha256:d2ddec23285ef577f373bc84639609f980682df4b2abf3bf83c5aad77e950f18",
+      "component_id": "outer_parapet/incoming_bevel",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__incoming_bevel/shape.brep",
+      "raw_sha256": "sha256:d2ddec23285ef577f373bc84639609f980682df4b2abf3bf83c5aad77e950f18",
+      "reopen_volume_m3": 2.592
+    },
+    {
+      "bytes": 16732,
+      "canonical_sha256": "sha256:20f0028f8aa6641bab48c7776ad6fe458bc7ef70ef80e220e6b035ed1618e0b5",
+      "component_id": "outer_parapet/bevel_bridge",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__bevel_bridge/shape.step",
+      "raw_sha256": "sha256:5a41c0f612f9c8019656677e576486c7d2e12e18fe7a91ffcff15f27252aa19e",
+      "reopen_volume_m3": 5.240491897
+    },
+    {
+      "bytes": 4309,
+      "canonical_sha256": "sha256:3ec0569c376e086ddc3583b5e8f00f88f2ad17a43551278c89a6cf8a4567bf15",
+      "component_id": "outer_parapet/bevel_bridge",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__bevel_bridge/shape.brep",
+      "raw_sha256": "sha256:3ec0569c376e086ddc3583b5e8f00f88f2ad17a43551278c89a6cf8a4567bf15",
+      "reopen_volume_m3": 5.240491897
+    },
+    {
+      "bytes": 16942,
+      "canonical_sha256": "sha256:f73eeefed5e5b4a1c56be41dd3a8fcaf1ab84afd76379fdfb4bb08a096ab6dd8",
+      "component_id": "outer_parapet/outgoing_bevel",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__outgoing_bevel/shape.step",
+      "raw_sha256": "sha256:ebfb660655803cfc8dec94424a6aee0d17554038e320db789ec3d00682b56365",
+      "reopen_volume_m3": 2.591999999
+    },
+    {
+      "bytes": 4721,
+      "canonical_sha256": "sha256:8d3c9734e10af04106fa50af16526eb1bd8029a3f878fe1128bae2fad844da8f",
+      "component_id": "outer_parapet/outgoing_bevel",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__outgoing_bevel/shape.brep",
+      "raw_sha256": "sha256:8d3c9734e10af04106fa50af16526eb1bd8029a3f878fe1128bae2fad844da8f",
+      "reopen_volume_m3": 2.591999999
+    }
+  ],
+  "join_id": "fortification/caelmere/pilot/join-bevel-30deg",
+  "schema": "royal-capital.fortification.join-stored-copies/1"
+}

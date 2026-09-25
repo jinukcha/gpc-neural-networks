@@ -1,0 +1,74 @@
+{
+  "artifacts": {
+    "cad-provider-receipt.json": {
+      "bytes": 4115,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:bb90576338a4c71ce002dd283061e06b331ce35b0d682565f5f73fec3baedb68"
+    },
+    "canonical-centerline.json": {
+      "bytes": 1560,
+      "path": "canonical-centerline.json",
+      "sha256": "sha256:2f0f28fd0121344bd7d05060dccc36559f177b6bae3868c404eed1e184911589"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 340,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:2326a11e949a087dfab9c50ab79653e348ac4241bcedfaddd233f21a30824adb"
+    },
+    "local-frames.json": {
+      "bytes": 1265,
+      "path": "local-frames.json",
+      "sha256": "sha256:695b2c60be7e1d9c7770003127bfb3fecda2a5741cd235a7fb4ea1ed8458f2ad"
+    },
+    "neutral-mesh.json": {
+      "bytes": 5558,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:4860acac80995d57352628d4062bbfd0de19c996b1e692a2abe536ccece8634d"
+    },
+    "path-span-plan.json": {
+      "bytes": 588,
+      "path": "path-span-plan.json",
+      "sha256": "sha256:5b195f277ceecd5467e591e1ddd093fb020ac6e15e3b899ba11d996241828769"
+    },
+    "semantic-parts.json": {
+      "bytes": 4314,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:5ddfd58b4b555cf1984f5ded8287cd109f8d3dbbfdb1fd4e8f1dbbe68fcfc099"
+    },
+    "sockets.json": {
+      "bytes": 5720,
+      "path": "sockets.json",
+      "sha256": "sha256:74fffff248a4e94f23e13f0709124984fac20047be3b7e91231c87f7bbaed1ec"
+    },
+    "stored-copies.json": {
+      "bytes": 4539,
+      "path": "stored-copies.json",
+      "sha256": "sha256:44ea73333faa6bddaf107b0b3f54a31139f41674ff820eafe4b723a5acd8df01"
+    }
+  },
+  "bounds_m": {
+    "max": [
+      24.0,
+      14.4,
+      4.0
+    ],
+    "min": [
+      0.0,
+      -2.0,
+      -4.0
+    ]
+  },
+  "centerline_length_m": 24.0,
+  "centerline_segment_count": 1,
+  "failure": null,
+  "part_count": 5,
+  "schema": "royal-capital.fortification.path-wall-span-result/1",
+  "socket_count": 10,
+  "solid_count": 5,
+  "span_family": "STRAIGHT_SPAN",
+  "span_id": "fortification/caelmere/r0b/straight-span-001",
+  "status": "SUCCEEDED",
+  "triangle_count": 60,
+  "vertex_count": 40,
+  "volume_m3": 2273.28
+}

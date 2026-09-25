@@ -1,0 +1,8 @@
+{
+  "schema": "royal-capital.fortification.packaging-attempt/1",
+  "status": "TIMEOUT_AFTER_ARCHIVE_CREATION_BEFORE_FINAL_REPORT",
+  "preserved": true,
+  "partial_archives": ["B1_pre.zip", "B1_preP.zip", "B1_preS.zip"],
+  "worktree_rolled_back": false,
+  "note": "The first packaging attempt completed archive creation and extracted comparison trees but timed out before writing its final report. The partial attempt is retained unchanged."
+}

@@ -1,0 +1,66 @@
+{
+  "bounds_m": {
+    "max": [
+      4.198076211,
+      14.4,
+      -0.57846097
+    ],
+    "min": [
+      2.239230484,
+      12.6,
+      -2.171281292
+    ]
+  },
+  "component_id": "outer_parapet/outgoing_bevel",
+  "kind": "PLAN_EXTRUSION",
+  "part_id": "outer_parapet",
+  "schema": "royal-capital.fortification.join-component-result/1",
+  "solid_count": 1,
+  "source_spec": {
+    "component_id": "outer_parapet/outgoing_bevel",
+    "kind": "PLAN_EXTRUSION",
+    "part_id": "outer_parapet",
+    "polygon_xz": [
+      [
+        4.198076211,
+        -1.271281293
+      ],
+      [
+        3.798076211,
+        -0.57846097
+      ],
+      [
+        2.239230484,
+        -1.478460969
+      ],
+      [
+        2.639230484,
+        -2.171281292
+      ]
+    ],
+    "y_max": 14.4,
+    "y_min": 12.6
+  },
+  "status": "SUCCEEDED",
+  "stored_copies": [
+    {
+      "bytes": 16942,
+      "canonical_sha256": "sha256:f73eeefed5e5b4a1c56be41dd3a8fcaf1ab84afd76379fdfb4bb08a096ab6dd8",
+      "format": "STEP",
+      "path": "shape.step",
+      "raw_sha256": "sha256:ebfb660655803cfc8dec94424a6aee0d17554038e320db789ec3d00682b56365",
+      "reopen_volume_m3": 2.591999999
+    },
+    {
+      "bytes": 4721,
+      "canonical_sha256": "sha256:8d3c9734e10af04106fa50af16526eb1bd8029a3f878fe1128bae2fad844da8f",
+      "format": "BREP",
+      "path": "shape.brep",
+      "raw_sha256": "sha256:8d3c9734e10af04106fa50af16526eb1bd8029a3f878fe1128bae2fad844da8f",
+      "reopen_volume_m3": 2.591999999
+    }
+  ],
+  "triangle_count": 12,
+  "vertex_count": 8,
+  "volume_m3": 2.591999999
+}

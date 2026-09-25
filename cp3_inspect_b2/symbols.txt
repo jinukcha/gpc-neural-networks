@@ -1,0 +1,265 @@
+=== SYMBOLS ===
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:10:CENTERLINE_SCHEMA = "royal-capital.fortification.canonical-centerline/1"
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:17:SOCKETS_SCHEMA = "royal-capital.fortification.path-wall-span-sockets/1"
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:21:PART_ORDER = ("foundation", "wall_body", "wall_walk", "inner_parapet", "outer_parapet")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:24:    "foundation_start", "foundation_end", "tower_start", "tower_end",
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:36:class PathContractError(ValueError):
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:40:def _f(value: Any, name: str) -> float:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:49:def _v3(value: Any, name: str) -> tuple[float, float, float]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:55:def _round(v: float, digits: int = 9) -> float:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:60:def _rv(v: Sequence[float], digits: int = 9) -> list[float]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:64:def add(a, b): return tuple(a[i] + b[i] for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:65:def sub(a, b): return tuple(a[i] - b[i] for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:66:def mul(a, s): return tuple(a[i] * s for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:67:def dot(a, b): return sum(a[i] * b[i] for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:68:def cross(a, b): return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:69:def length(v): return math.sqrt(dot(v, v))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:70:def normalize(v):
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:76:def canonical_json_bytes(value: Any) -> bytes:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:80:def sha256_ref(value: bytes) -> str:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:85:class PartSpec:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:104:    PartSpec("foundation", "FOUNDATION", -2.0, 0.0, -4.0, 4.0, "stone_foundation"),
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:112:def validate_fixture(value: Mapping[str, Any]) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:113:    required = {"schema", "span_id", "frame", "inside_side", "outside_side", "centerline", "sampling", "tolerances", "budget", "runtime"}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:151:    c = value["centerline"]
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:153:        raise PathContractError("centerline object required")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:157:        start, end = _v3(c["start_m"], "centerline.start_m"), _v3(c["end_m"], "centerline.end_m")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:158:        if abs(start[1] - end[1]) > t["linear_m"]: raise PathContractError("vertical/graded centerline deferred to R0B-CP3")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:165:        center = _v3(c["center_m"], "centerline.center_m")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:166:        radius = _f(c["radius_m"], "centerline.radius_m")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:167:        sweep = _f(c["sweep_angle_deg"], "centerline.sweep_angle_deg")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:168:        elevation = _f(c["elevation_m"], "centerline.elevation_m")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:169:        _f(c["start_angle_deg"], "centerline.start_angle_deg")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:171:        if radius <= 4.0 + t["linear_m"]: raise PathContractError("arc radius must exceed maximum profile offset")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:175:        raise PathContractError(f"unsupported centerline kind {kind!r}")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:179:def _frame(point, tangent, distance_m, u, digits):
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:186:    if abs(determinant - 1.0) > 1e-9: raise PathContractError("local frame determinant mismatch")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:195:def _arc_point(center, radius, angle, elevation):
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:199:def _arc_tangent(angle, sign):
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:203:def canonicalize_centerline(fixture: Mapping[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:205:    c, sampling = spec["centerline"], spec["sampling"]
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:241:    centerline = {
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:249:    centerline["canonical_digest"] = sha256_ref(canonical_json_bytes({k:v for k,v in centerline.items() if k != "canonical_digest"}))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:254:        "canonical_centerline_digest": centerline["canonical_digest"],
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:256:    return centerline, frames
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:259:def evaluate_frame(centerline: Mapping[str, Any], u: float) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:261:    samples = centerline["samples"]
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:262:    if centerline["kind"] == "LINE":
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:265:        result = dict(a); result["u"] = _round(u); result["distance_m"] = _round(u*centerline["length_m"]); result["origin_m"] = _rv(point)
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:271:    return _frame(point,tangent,u*centerline["length_m"],u,9)
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:274:def socket_plan(centerline: Mapping[str, Any]) -> list[dict[str, Any]]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:278:        ("foundation_start", "FOUNDATION_INTERFACE", 0.0, -1.0, 0.0, True), ("foundation_end", "FOUNDATION_INTERFACE", 1.0, -1.0, 0.0, True),
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:284:        f=evaluate_frame(centerline,u); p=f["origin_m"]; up=f["up"]; inside=f["inside"]
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:286:        out.append({"socket_id":sid,"role":role,"u":_round(u),"position_m":_rv(position),"frame":{"tangent":f["tangent"],"up":f["up"],"inside":f["inside"],"outside":f["outside"],"orientation_determinant":1.0},"required":required})
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:290:def theoretical_volume_m3(centerline: Mapping[str, Any], part: PartSpec) -> float:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:291:    length_m = float(centerline["length_m"])
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:292:    if centerline["kind"] == "LINE": return part.area_m2 * length_m
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:293:    radius = float(centerline["arc_radius_m"]); theta = math.radians(abs(float(centerline["arc_sweep_deg"])))
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/model.py:294:    turn_sign = 1.0 if float(centerline["arc_sweep_deg"]) > 0.0 else -1.0
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:14:from rcf_fortification_cad.canonical import canonicalize_mesh, normalized_step_sha256, pretty_json_bytes, project_to_provider, sha256_ref, unit_frame_contract
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:17:    COMBINED_MESH_SCHEMA, EXPECTED_RUNTIME, PART_ORDER, PART_SPECS, PARTS_SCHEMA, PLAN_SCHEMA,
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:19:    canonical_json_bytes, canonicalize_centerline, evaluate_frame, sha256_ref as model_sha256_ref,
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:20:    socket_plan, theoretical_volume_m3, validate_fixture,
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:24:def _digest(path: Path) -> str:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:28:def _ref(path: Path, base: Path) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:32:def _bounds(vertices: list[list[float]]) -> dict[str, list[float]]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:36:def _point_at(frame: Mapping[str, Any], y: float, z: float) -> tuple[float,float,float]:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:41:class PathWallSpanProducer:
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:65:        centerline,frames=canonicalize_centerline(spec)
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:82:            if not b3d.export_step(shape,buf,unit=b3d.Unit.MM,timestamp="1970-01-01T00:00:00"): raise RuntimeError("STEP export failed")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:83:            step=buf.getvalue(); (part_dir/"shape.step").write_bytes(step); reopen_step=b3d.import_step(part_dir/"shape.step")
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:84:            copies.append({"format":"STEP","path":"shape.step","bytes":len(step),"raw_sha256":"sha256:"+hashlib.sha256(step).hexdigest(),"canonical_sha256":"sha256:"+normalized_step_sha256(step),"reopen_volume_m3":round(float(reopen_step.volume)/1_000_000_000.0,9),"stored_numeric_unit":"MILLIMETER","project_unit":"METER"})
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:89:            volume=round(float(shape.volume)/1_000_000_000.0,9); expected=theoretical_volume_m3(centerline,part); rel=abs(volume-expected)/expected
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:93:            receipt={"schema":"royal-capital.fortification.path-span-part-receipt/1","status":"PASS","part_id":part.part_id,"centerline_digest":centerline["canonical_digest"],"geometry_route":"BOUNDED_SAMPLED_SECTION_LOFT_RULED","runtime":actual,"neutral_mesh_sha256":_digest(part_dir/"neutral-mesh.json"),"stored_copy_canonical_digests":{c["format"]:c["canonical_sha256"] for c in copies}}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:102:        mesh={"schema":COMBINED_MESH_SCHEMA,"units":"METER","frame":spec["frame"],"part_order":list(PART_ORDER),"vertices_m":combined_vertices,"triangles":combined_triangles,"bounds_m":_bounds(combined_vertices),"part_ranges":part_ranges}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:103:        sockets={"schema":SOCKETS_SCHEMA,"span_id":spec["span_id"],"sockets":socket_plan(centerline)}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:105:        tess={"schema":TESSELLATION_SCHEMA,"linear_deflection_m":float(spec["tolerances"]["tessellation_linear_m"]),"angular_deflection_rad":float(spec["tolerances"]["tessellation_angular_rad"]),"mesh_round_digits":int(spec["tolerances"]["mesh_round_digits"]),"geometry_route":"BOUNDED_SAMPLED_SECTION_LOFT_RULED","part_order":list(PART_ORDER)}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:106:        plan={"schema":PLAN_SCHEMA,"span_id":spec["span_id"],"span_family":"STRAIGHT_SPAN" if centerline["kind"]=="LINE" else "CURVED_SPAN","canonical_centerline_digest":centerline["canonical_digest"],"length_m":centerline["length_m"],"segment_count":centerline["segment_count"],"inside_side":spec["inside_side"],"outside_side":spec["outside_side"],"part_order":list(PART_ORDER),"assembly_mode":"BOUNDED_NON_UNIONED_PARTS","surface_coverage_stage":"R0B_CP4"}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:108:        docs={"canonical-centerline.json":centerline,"local-frames.json":frames,"path-span-plan.json":plan,"semantic-parts.json":parts,"sockets.json":sockets,"fixed-tessellation.json":tess,"neutral-mesh.json":mesh,"stored-copies.json":stored_doc}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:113:        receipt={"schema":RECEIPT_SCHEMA,"status":"PASS","producer_id":"royal-capital/fortification/path-wall-span","producer_revision":"r0b-cp1.1","producer_source_digest":sha256_ref(source_digest),"fixture_digest":model_sha256_ref(canonical_json_bytes(spec)),"canonical_centerline_digest":centerline["canonical_digest"],"runtime":actual,"unit_frame_contract":unit_frame_contract(),"geometry_route":"BOUNDED_SAMPLED_SECTION_LOFT_RULED","part_receipts":part_receipts,"output_digests":{n:r["sha256"] for n,r in refs.items()},"capabilities":["fortification.canonical_centerline@1","fortification.local_frame@1","fortification.straight_span@2","fortification.curved_span@1"],"surface_source_coverage":"DEFERRED_R0B_CP4"}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/producer.py:115:        result={"schema":RESULT_SCHEMA,"span_id":spec["span_id"],"status":"SUCCEEDED","failure":None,"span_family":plan["span_family"],"centerline_length_m":centerline["length_m"],"centerline_segment_count":centerline["segment_count"],"solid_count":len(PART_ORDER),"volume_m3":round(total_volume,9),"bounds_m":mesh["bounds_m"],"vertex_count":len(combined_vertices),"triangle_count":len(combined_triangles),"part_count":len(semantic_parts),"socket_count":len(sockets["sockets"]),"artifacts":{**refs,"cad-provider-receipt.json":receipt_ref}}
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/__init__.py:1:from .model import PathContractError, canonicalize_centerline, evaluate_frame, validate_fixture
+cp3_inspect_b2/fortification/r0b_cp1/src/rcf_fortification_path_span/__init__.py:4:__all__ = ["PathContractError", "PathWallSpanProducer", "canonicalize_centerline", "evaluate_frame", "validate_fixture"]
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:10:from rcf_fortification_path_span.model import PathContractError, canonicalize_centerline, socket_plan, validate_fixture
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:15:def load(name: str):
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:19:class ContractTests(unittest.TestCase):
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:21:        centerline, frames = canonicalize_centerline(load("straight_path_span.fixture.json"))
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:22:        self.assertEqual(centerline["kind"], "LINE")
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:23:        self.assertEqual(centerline["length_m"], 24.0)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:24:        self.assertEqual(centerline["segment_count"], 1)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:25:        self.assertEqual(centerline["bounds_m"], {"min": [0.0, 0.0, 0.0], "max": [24.0, 0.0, 0.0]})
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:31:        centerline, frames = canonicalize_centerline(load("curved_path_span.fixture.json"))
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:32:        self.assertEqual(centerline["kind"], "CIRCULAR_ARC")
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:33:        self.assertEqual(centerline["segment_count"], 6)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:34:        self.assertLessEqual(centerline["maximum_observed_chord_error_m"], 0.05)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:35:        self.assertAlmostEqual(centerline["length_m"], 48.0 * math.radians(30.0), places=8)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:36:        self.assertEqual(centerline["bounds_m"]["min"], [0.0, 0.0, 0.0])
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:37:        self.assertAlmostEqual(centerline["bounds_m"]["max"][0], 24.0, places=8)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:38:        self.assertAlmostEqual(centerline["bounds_m"]["max"][2], 6.430780618, places=8)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:42:        _, frames = canonicalize_centerline(load("curved_path_span.fixture.json"))
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:50:    def test_socket_stability(self):
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:51:        centerline, _ = canonicalize_centerline(load("curved_path_span.fixture.json"))
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:52:        sockets = socket_plan(centerline)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:53:        self.assertEqual(len(sockets), 10)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:54:        self.assertEqual(len({s["socket_id"] for s in sockets}), 10)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:55:        self.assertEqual(sockets[0]["socket_id"], "span_start")
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:56:        self.assertEqual(sockets[1]["socket_id"], "span_end")
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:61:        a, _ = canonicalize_centerline(fixture)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:62:        b, _ = canonicalize_centerline(reversed_fixture)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:67:        bad = copy.deepcopy(fixture); bad["centerline"]["end_m"] = [0.0, 0.0, 0.0]
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:69:        bad = copy.deepcopy(fixture); bad["centerline"]["end_m"] = [24.0, 1.0, 0.0]
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:72:        bad = copy.deepcopy(arc); bad["centerline"]["radius_m"] = 3.0
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:74:        bad = copy.deepcopy(arc); bad["centerline"]["sweep_angle_deg"] = 40.0
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:78:class OutputTests(unittest.TestCase):
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:89:            centerline = json.loads((self.root / family / "reference" / "canonical-centerline.json").read_text())
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:93:            self.assertEqual(result["socket_count"], 10)
+cp3_inspect_b2/fortification/r0b_cp1/tests/test_r0b_cp1.py:94:            self.assertEqual(centerline["canonical_digest"], frames["canonical_centerline_digest"])
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:17:from rcf_fortification_path_span.model import canonicalize_centerline, validate_fixture
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:24:def digest_files(root): return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:33:    centerline=json.loads((reference/'canonical-centerline.json').read_text()); frames=json.loads((reference/'local-frames.json').read_text()); result=json.loads((reference/'result.json').read_text())
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:34:    summary['families'][family]={"status":"PASS","files_compared":len(fa),"byte_identical":True,"centerline_digest":centerline['canonical_digest'],"centerline_length_m":centerline['length_m'],"segment_count":centerline['segment_count'],"sample_count":len(centerline['samples']),"frame_count":len(frames['frames']),"bounds_m":result['bounds_m'],"vertex_count":result['vertex_count'],"triangle_count":result['triangle_count'],"volume_m3":result['volume_m3']}
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:41:    ('zero_length',lambda f:f.update(centerline={"kind":"LINE","start_m":[0,0,0],"end_m":[0,0,0]})),
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:42:    ('vertical_grade',lambda f:f.update(centerline={"kind":"LINE","start_m":[0,0,0],"end_m":[24,1,0]})),
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:43:    ('tight_radius',lambda f:f['centerline'].__setitem__('radius_m',3.0)),
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:44:    ('sweep_out_of_domain',lambda f:f['centerline'].__setitem__('sweep_angle_deg',40.0)),
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:50:        # Run the complete project-owned centerline contract, not only static key/domain parsing.
+cp3_inspect_b2/fortification/r0b_cp1/tools/run_r0b_cp1_qualification.py:51:        canonicalize_centerline(value)
+cp3_inspect_b2/fortification/r0b_cp1/tools/validate_r0b_cp1.py:8:def ck(name,value,detail=None): checks.append({"name":name,"pass":bool(value),"detail":detail})
+cp3_inspect_b2/fortification/r0b_cp1/tools/validate_r0b_cp1.py:15:    root=cp/'outputs'/family/'reference'; result=json.loads((root/'result.json').read_text()); center=json.loads((root/'canonical-centerline.json').read_text()); frames=json.loads((root/'local-frames.json').read_text()); sockets=json.loads((root/'sockets.json').read_text()); parts=json.loads((root/'semantic-parts.json').read_text()); stored=json.loads((root/'stored-copies.json').read_text())
+cp3_inspect_b2/fortification/r0b_cp1/tools/validate_r0b_cp1.py:18:    ck(f'{family}_sockets',result['socket_count']==10 and len({x['socket_id'] for x in sockets['sockets']})==10)
+cp3_inspect_b2/fortification/r0b_cp1/tools/validate_r0b_cp1.py:20:    ck(f'{family}_digest',center['canonical_digest']==frames['canonical_centerline_digest'])
+cp3_inspect_b2/fortification/r0b_cp1/tools/validate_r0b_cp1.py:23:straight=json.loads((cp/'outputs/straight/reference/canonical-centerline.json').read_text()); curved=json.loads((cp/'outputs/curved/reference/canonical-centerline.json').read_text())
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:13:ALIGNMENT_SCHEMA = "royal-capital.fortification.join-socket-alignment/1"
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:22:PART_ORDER = ("foundation", "wall_body", "wall_walk", "inner_parapet", "outer_parapet")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:32:class JoinFamily(StrEnum):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:38:class JoinFailure(StrEnum):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:52:class JoinError(ValueError):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:60:class Band:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:71:class WallProfile:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:72:    profile_id: str
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:79:        Band("foundation", "FOUNDATION", -2.0, 0.0, -4.0, 4.0, "stone_foundation"),
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:89:        Band("foundation", "FOUNDATION", -2.5, 0.0, -5.0, 5.0, "stone_foundation_reinforced"),
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:96:PROFILES = {p.profile_id: p for p in (STANDARD, REINFORCED)}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:99:def canonical_bytes(value: Any) -> bytes:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:103:def pretty_bytes(value: Any) -> bytes:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:107:def sha256_ref(data: bytes) -> str:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:111:def _number(v: Any, name: str) -> float:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:120:def vec3(v: Any, name: str) -> tuple[float, float, float]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:126:def add(a, b): return tuple(a[i] + b[i] for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:127:def sub(a, b): return tuple(a[i] - b[i] for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:128:def mul(a, s): return tuple(a[i] * s for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:129:def dot(a, b): return sum(a[i] * b[i] for i in range(3))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:130:def cross(a, b): return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:131:def norm(a): return math.sqrt(dot(a, a))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:132:def normalize(a, name="vector"):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:136:def distance(a, b): return norm(sub(a, b))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:137:def rounded(v, digits=9): return [round(float(x), digits) for x in v]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:140:def frame_from_tangent(position, tangent) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:154:def validate_frame(value: Mapping[str, Any], name: str, tol: float) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:176:def signed_turn_deg(t0, t1) -> float:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:182:def validate_fixture(value: Mapping[str, Any]) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:183:    required = {"schema", "join_id", "join_family", "frame", "anchor_m", "incoming_socket", "outgoing_socket", "incoming_profile", "outgoing_profile", "join_depth_m", "bevel_setback_m", "max_overlap_m", "tolerances", "budget", "runtime"}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:203:    incoming = validate_frame(value["incoming_socket"], "incoming_socket", max(linear, angular))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:204:    outgoing = validate_frame(value["outgoing_socket"], "outgoing_socket", max(linear, angular))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:205:    in_profile = str(value["incoming_profile"]); out_profile = str(value["outgoing_profile"])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:206:    if in_profile not in PROFILES or out_profile not in PROFILES:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:207:        raise JoinError(JoinFailure.INVALID_REQUEST, "unknown wall profile")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:219:        if turn > 1e-6: raise JoinError(JoinFailure.TURN_OUT_OF_DOMAIN, "profile transition must be straight")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:220:        if in_profile == out_profile: raise JoinError(JoinFailure.PROFILE_TRANSITION_REQUIRED, "profile transition requires distinct profiles")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:226:            raise JoinError(JoinFailure.SOCKET_GEOMETRY_MISMATCH, "transition sockets do not match anchor/length")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:230:            raise JoinError(JoinFailure.SOCKET_GEOMETRY_MISMATCH, "join sockets do not meet anchor at join_depth")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:242:        "incoming_socket": incoming, "outgoing_socket": outgoing,
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:247:def profile(profile_id: str) -> WallProfile:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:248:    return PROFILES[profile_id]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:251:def band_map(profile_id: str) -> dict[str, Band]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/model.py:252:    return {b.part_id: b for b in profile(profile_id).bands}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:16:    PARTS_SCHEMA, PART_ORDER, PLAN_SCHEMA, RECEIPT_SCHEMA, RESULT_SCHEMA, STORED_SCHEMA,
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:18:    pretty_bytes, profile, rounded, sha256_ref as model_sha256_ref, validate_fixture,
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:22:def _digest(path: Path) -> str:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:26:def _ref(path: Path, base: Path) -> dict[str, Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:30:def _bounds(vertices: Sequence[Sequence[float]]) -> dict[str,list[float]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:34:def _tree_digest(root: Path) -> str:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:42:class FortificationJoinProducer:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:110:            refs={name:_ref(component_dir/name,output) for name in ("neutral-mesh.json","result.json","provider-receipt.json","shape.step","shape.brep")}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:114:            total_volume+=float(evidence["volume_m3"]); total_bytes+=sum((component_dir/name).stat().st_size for name in ("neutral-mesh.json","result.json","provider-receipt.json","shape.step","shape.brep"))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:121:            "incoming_profile":spec["incoming_profile"],"outgoing_profile":spec["outgoing_profile"],"join_depth_m":spec["join_depth_m"],"bevel_setback_m":spec["bevel_setback_m"],
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:124:        frames={"schema":FRAME_SCHEMA,"join_id":spec["join_id"],"incoming":spec["incoming_socket"],"outgoing":spec["outgoing_socket"],"anchor_m":spec["anchor_m"],"turn_angle_deg":spec["turn_angle_deg"]}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:125:        sockets=self._sockets(spec)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:126:        alignment=self._alignment(spec,components,sockets)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:128:        incoming_bands=band_map(spec["incoming_profile"]); outgoing_bands=band_map(spec["outgoing_profile"])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:129:        for part_id in PART_ORDER:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:135:        documents={"join-plan.json":plan,"local-frames.json":frames,"sockets.json":sockets,"socket-alignment.json":alignment,"bounded-overlap.json":overlap,"semantic-parts.json":part_doc,"neutral-mesh.json":mesh,"stored-copies.json":stored_doc,"components.json":component_doc}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:144:            "join_family":spec["join_family"],"component_count":len(components),"socket_alignment":"PASS","bounded_overlap":"PASS","output_digests":{k:v["sha256"] for k,v in refs.items()},
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:145:            "capabilities":["fortification.join.miter@1","fortification.join.bevel@1","fortification.join.profile_transition@1","fortification.socket_alignment@1","fortification.bounded_overlap@1"],
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:150:            "component_count":len(components),"part_count":5,"socket_count":len(sockets["sockets"]),"solid_count":len(components),"volume_m3":round(total_volume,9),
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:152:            "socket_alignment":"PASS","bounded_overlap":"PASS","artifacts":{**refs,"cad-provider-receipt.json":receipt_ref},
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:157:    def _sockets(self,spec: Mapping[str,Any]) -> dict[str,Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:158:        incoming=spec["incoming_socket"]; outgoing=spec["outgoing_socket"]; anchor=spec["anchor_m"]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:159:        def row(sid,role,frame,required=True): return {"socket_id":sid,"role":role,"position_m":frame["position_m"],"frame":{k:frame[k] for k in ("tangent","up","inside","outside")},"required":required}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:160:        sockets=[row("span_in","SPAN_JOIN_IN",incoming),row("span_out","SPAN_JOIN_OUT",outgoing),row("wall_walk_in","WALL_WALK_CONTINUATION",incoming),row("wall_walk_out","WALL_WALK_CONTINUATION",outgoing),row("foundation_in","FOUNDATION_INTERFACE",incoming),row("foundation_out","FOUNDATION_INTERFACE",outgoing),row("tower_anchor","TOWER_JOIN",{"position_m":anchor,"tangent":incoming["tangent"],"up":incoming["up"],"inside":incoming["inside"],"outside":incoming["outside"]},False),row("utility_inside","UTILITY_INSIDE",{"position_m":anchor,"tangent":incoming["tangent"],"up":incoming["up"],"inside":incoming["inside"],"outside":incoming["outside"]},False)]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:161:        return {"schema":"royal-capital.fortification.join-sockets/1","join_id":spec["join_id"],"sockets":sockets}
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:163:    def _alignment(self,spec: Mapping[str,Any],components: Sequence[Mapping[str,Any]],sockets: Mapping[str,Any]) -> dict[str,Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:165:        for side,expected,sid in (("incoming",spec["incoming_socket"],"span_in"),("outgoing",spec["outgoing_socket"],"span_out")):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:166:            actual=next(s for s in sockets["sockets"] if s["socket_id"]==sid)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:169:            rows.append({"side":side,"socket_id":sid,"position_error_m":round(position_error,12),"axis_errors":{k:round(v,12) for k,v in axis_errors.items()},"pass":position_error<=tol and max(axis_errors.values())<=tol})
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/producer.py:170:        if not all(r["pass"] for r in rows): raise JoinError(JoinFailure.SOCKET_GEOMETRY_MISMATCH,"socket alignment failed")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:9:from rcf_fortification_cad.canonical import canonicalize_mesh, normalized_step_sha256, project_to_provider
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:12:    JoinError, JoinFailure, JoinFamily, PART_ORDER, Band, WallProfile,
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:13:    add, band_map, cross, distance, dot, mul, normalize, profile, rounded, sub,
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:17:def p2(v: Sequence[float]) -> tuple[float, float]: return (float(v[0]), float(v[2]))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:18:def v3(v: Sequence[float], y: float = 0.0) -> tuple[float, float, float]: return (float(v[0]), float(y), float(v[1]))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:19:def add2(a,b): return (a[0]+b[0], a[1]+b[1])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:20:def sub2(a,b): return (a[0]-b[0], a[1]-b[1])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:21:def mul2(a,s): return (a[0]*s, a[1]*s)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:22:def dot2(a,b): return a[0]*b[0]+a[1]*b[1]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:23:def cross2(a,b): return a[0]*b[1]-a[1]*b[0]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:24:def norm2(a): return math.sqrt(dot2(a,a))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:25:def normalize2(a):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:31:def polygon_signed_area(poly: Sequence[tuple[float,float]]) -> float:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:35:def ensure_ccw(poly: Sequence[tuple[float,float]]) -> list[tuple[float,float]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:42:def line_intersection(p,d,q,e) -> tuple[float,float]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:49:def section_points(position: Sequence[float], inside: Sequence[float], offset_min: float, offset_max: float) -> tuple[tuple[float,float],tuple[float,float]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:54:def _inside_point(p,a,b,eps=1e-10): return cross2(sub2(b,a),sub2(p,a)) >= -eps
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:56:def _segment_line_intersection(p1,p2,a,b):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:61:def convex_intersection(subject: Sequence[tuple[float,float]], clip: Sequence[tuple[float,float]]) -> list[tuple[float,float]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:78:def intersection_area(a,b) -> float:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:83:def miter_components(spec: Mapping[str,Any], band: Band) -> list[dict[str,Any]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:84:    anchor=p2(spec["anchor_m"]); p0=p2(spec["incoming_socket"]["position_m"]); p1=p2(spec["outgoing_socket"]["position_m"])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:85:    t0=normalize2(p2(spec["incoming_socket"]["tangent"])); t1=normalize2(p2(spec["outgoing_socket"]["tangent"]))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:86:    n0=normalize2(p2(spec["incoming_socket"]["inside"])); n1=normalize2(p2(spec["outgoing_socket"]["inside"]))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:95:    start_min,start_max=section_points(spec["incoming_socket"]["position_m"],spec["incoming_socket"]["inside"],band.offset_min,band.offset_max)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:96:    end_min,end_max=section_points(spec["outgoing_socket"]["position_m"],spec["outgoing_socket"]["inside"],band.offset_min,band.offset_max)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:103:def bevel_components(spec: Mapping[str,Any], band: Band) -> list[dict[str,Any]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:104:    anchor=p2(spec["anchor_m"]); p0=p2(spec["incoming_socket"]["position_m"]); p1=p2(spec["outgoing_socket"]["position_m"])
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:105:    t0=normalize2(p2(spec["incoming_socket"]["tangent"])); t1=normalize2(p2(spec["outgoing_socket"]["tangent"]))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:106:    n0=normalize2(p2(spec["incoming_socket"]["inside"])); n1=normalize2(p2(spec["outgoing_socket"]["inside"]))
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:109:    start_min,start_max=section_points(spec["incoming_socket"]["position_m"],spec["incoming_socket"]["inside"],band.offset_min,band.offset_max)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:110:    end_min,end_max=section_points(spec["outgoing_socket"]["position_m"],spec["outgoing_socket"]["inside"],band.offset_min,band.offset_max)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:120:def transition_components(spec: Mapping[str,Any], start_band: Band, end_band: Band) -> list[dict[str,Any]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:122:        "component_id":f"{start_band.part_id}/profile_transition","part_id":start_band.part_id,"kind":"SECTION_LOFT",
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:123:        "start_section":{"position_m":spec["incoming_socket"]["position_m"],"inside":spec["incoming_socket"]["inside"],"y_min":start_band.y_min,"y_max":start_band.y_max,"offset_min":start_band.offset_min,"offset_max":start_band.offset_max},
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:124:        "end_section":{"position_m":spec["outgoing_socket"]["position_m"],"inside":spec["outgoing_socket"]["inside"],"y_min":end_band.y_min,"y_max":end_band.y_max,"offset_min":end_band.offset_min,"offset_max":end_band.offset_max},
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:128:def component_specs(spec: Mapping[str,Any]) -> list[dict[str,Any]]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:129:    incoming=band_map(spec["incoming_profile"]); outgoing=band_map(spec["outgoing_profile"]); out=[]
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:130:    for part_id in PART_ORDER:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:137:def section_wire(b3d, section: Mapping[str,Any]):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:145:def make_shape(component: Mapping[str,Any]):
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:156:def export_shape(shape, output: Path, tolerances: Mapping[str,Any], budget: Mapping[str,Any]) -> dict[str,Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:163:    step_buffer=BytesIO(); brep_buffer=BytesIO()
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:164:    if not b3d.export_step(shape,step_buffer,unit=b3d.Unit.MM,timestamp="1970-01-01T00:00:00"): raise JoinError(JoinFailure.STORED_COPY_FAILED,"STEP export failed")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:166:    step=step_buffer.getvalue(); brep=brep_buffer.getvalue(); (output/"shape.step").write_bytes(step); (output/"shape.brep").write_bytes(brep)
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:167:    reopened_step=b3d.import_step(output/"shape.step"); reopened_brep=b3d.import_brep(output/"shape.brep")
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:169:    if abs(float(reopened_step.volume)/1_000_000_000.0-volume)>1e-8 or abs(float(reopened_brep.volume)/1_000_000_000.0-volume)>1e-8:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:174:            {"format":"STEP","path":"shape.step","bytes":len(step),"raw_sha256":"sha256:"+hashlib.sha256(step).hexdigest(),"canonical_sha256":"sha256:"+normalized_step_sha256(step),"reopen_volume_m3":round(float(reopened_step.volume)/1_000_000_000.0,9)},
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:180:def overlap_report(spec: Mapping[str,Any], components: Sequence[Mapping[str,Any]]) -> dict[str,Any]:
+cp3_inspect_b2/fortification/r0b_cp2/src/rcf_fortification_joins/geometry.py:182:    by_part={part:[] for part in PART_ORDER}
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:16:fixtures={'miter':cp2/'fixtures/miter_12deg.fixture.json','bevel':cp2/'fixtures/bevel_30deg.fixture.json','profile_transition':cp2/'fixtures/profile_transition.fixture.json'}
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:17:expected={'miter':10,'bevel':15,'profile_transition':5}
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:18:def fmap(root): return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:24:    fa,fb=fmap(aout),fmap(bout); result=json.loads((aout/'result.json').read_text()); align=json.loads((aout/'socket-alignment.json').read_text()); overlap=json.loads((aout/'bounded-overlap.json').read_text()); parts=json.loads((aout/'semantic-parts.json').read_text()); stored=json.loads((aout/'stored-copies.json').read_text())
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:25:    checks={'clean_replay':fa==fb,'component_count':result['component_count']==expected[name],'part_count':len(parts['parts'])==5,'socket_alignment':align['status']=='PASS','bounded_overlap':overlap['status']=='PASS','geometry_nonempty':result['vertex_count']>0 and result['triangle_count']>0 and result['volume_m3']>0,'stored_copies':len(stored['copies'])==2*expected[name]}
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:33:def reject(name,fixture,code):
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:38:m=json.loads(fixtures['miter'].read_text()); b=json.loads(fixtures['bevel'].read_text()); t=json.loads(fixtures['profile_transition'].read_text())
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:39:x=copy.deepcopy(m); x['incoming_socket']['inside']=[0,0,-1]; x['incoming_socket']['outside']=[0,0,1]; reject('invalid_frame',x,'INVALID_FRAME')
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:42:x=copy.deepcopy(t); x['outgoing_profile']=x['incoming_profile']; reject('transition_same_profile',x,'PROFILE_TRANSITION_REQUIRED')
+cp3_inspect_b2/fortification/r0b_cp2/tools/run_b2_qualification.py:43:x=copy.deepcopy(m); x['outgoing_socket']['position_m'][0]+=0.25; reject('socket_mismatch',x,'SOCKET_GEOMETRY_MISMATCH')

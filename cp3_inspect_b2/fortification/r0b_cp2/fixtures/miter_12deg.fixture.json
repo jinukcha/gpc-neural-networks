@@ -1,0 +1,45 @@
+{
+  "anchor_m": [0.0, 0.0, 0.0],
+  "bevel_setback_m": 0.0,
+  "budget": {
+    "max_artifact_bytes": 50000000,
+    "max_components": 32,
+    "max_triangles": 20000,
+    "max_vertices": 10000
+  },
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "incoming_profile": "STANDARD_R0B",
+  "incoming_socket": {
+    "inside": [0.0, 0.0, 1.0],
+    "outside": [0.0, 0.0, -1.0],
+    "position_m": [-2.0, 0.0, 0.0],
+    "tangent": [1.0, 0.0, 0.0],
+    "up": [0.0, 1.0, 0.0]
+  },
+  "join_depth_m": 2.0,
+  "join_family": "MITER",
+  "join_id": "fortification/caelmere/pilot/join-miter-12deg",
+  "max_overlap_m": 0.05,
+  "outgoing_profile": "STANDARD_R0B",
+  "outgoing_socket": {
+    "inside": [-0.20791169081775931, 0.0, 0.9781476007338057],
+    "outside": [0.20791169081775931, 0.0, -0.9781476007338057],
+    "position_m": [1.9562952014676114, 0.0, 0.41582338163551863],
+    "tangent": [0.9781476007338057, 0.0, 0.20791169081775931],
+    "up": [0.0, 1.0, 0.0]
+  },
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.join-fixture/1",
+  "tolerances": {
+    "angular_rad": 1e-06,
+    "linear_m": 1e-06,
+    "mesh_round_digits": 9,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "TURN_OUT_OF_DOMAIN",
+    "message": "miter turn 29.99999999382462 outside [0.1,15]"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "schema": "royal-capital.fortification.join-failure/1",
+  "status": "REJECTED"
+}

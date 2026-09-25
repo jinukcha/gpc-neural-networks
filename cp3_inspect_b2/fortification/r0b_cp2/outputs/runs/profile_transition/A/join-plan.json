@@ -1,0 +1,24 @@
+{
+  "anchor_m": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "assembly_mode": "BOUNDED_NON_UNIONED_COMPONENTS",
+  "bevel_setback_m": 0.0,
+  "component_order": [
+    "foundation/profile_transition",
+    "wall_body/profile_transition",
+    "wall_walk/profile_transition",
+    "inner_parapet/profile_transition",
+    "outer_parapet/profile_transition"
+  ],
+  "incoming_profile": "STANDARD_R0B",
+  "join_depth_m": 8.0,
+  "join_family": "PROFILE_TRANSITION",
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "outgoing_profile": "REINFORCED_R0B",
+  "schema": "royal-capital.fortification.join-plan/1",
+  "source_coverage_stage": "R0B_CP4",
+  "turn_angle_deg": 0.0
+}

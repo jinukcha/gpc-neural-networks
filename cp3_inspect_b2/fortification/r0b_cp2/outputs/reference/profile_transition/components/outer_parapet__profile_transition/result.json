@@ -1,0 +1,78 @@
+{
+  "bounds_m": {
+    "max": [
+      8.0,
+      15.7,
+      -2.4
+    ],
+    "min": [
+      0.0,
+      12.6,
+      -3.7
+    ]
+  },
+  "component_id": "outer_parapet/profile_transition",
+  "kind": "SECTION_LOFT",
+  "part_id": "outer_parapet",
+  "schema": "royal-capital.fortification.join-component-result/1",
+  "solid_count": 1,
+  "source_spec": {
+    "component_id": "outer_parapet/profile_transition",
+    "end_section": {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "offset_max": -2.7,
+      "offset_min": -3.7,
+      "position_m": [
+        8.0,
+        0.0,
+        0.0
+      ],
+      "y_max": 15.7,
+      "y_min": 13.7
+    },
+    "kind": "SECTION_LOFT",
+    "part_id": "outer_parapet",
+    "start_section": {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "offset_max": -2.4,
+      "offset_min": -3.2,
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "y_max": 14.4,
+      "y_min": 12.6
+    }
+  },
+  "status": "SUCCEEDED",
+  "stored_copies": [
+    {
+      "bytes": 17399,
+      "canonical_sha256": "sha256:72bd7053bf52c09c3d587e66d52fe36a1ffb28a1c12c11452d87428bdd141ea1",
+      "format": "STEP",
+      "path": "shape.step",
+      "raw_sha256": "sha256:5426b0b0c231e2273c8cb816573ad59a9def19bed20afdec4581364715f18d32",
+      "reopen_volume_m3": 13.706666667
+    },
+    {
+      "bytes": 5155,
+      "canonical_sha256": "sha256:f70a2158686f19cf80aff507e750e3537eb39a1d7001bc1c8fd77e31653c9d65",
+      "format": "BREP",
+      "path": "shape.brep",
+      "raw_sha256": "sha256:f70a2158686f19cf80aff507e750e3537eb39a1d7001bc1c8fd77e31653c9d65",
+      "reopen_volume_m3": 13.706666667
+    }
+  ],
+  "triangle_count": 12,
+  "vertex_count": 8,
+  "volume_m3": 13.706666667
+}

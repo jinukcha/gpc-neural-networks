@@ -1,0 +1,78 @@
+{
+  "component_id": "outer_parapet/bevel_bridge",
+  "mesh_digest": "sha256:b7589a3c8ad6137c0123b1484c5d48c08911f84a58d2fde14c9ff35e5e596246",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.join-component-receipt/1",
+  "source_spec_digest": "sha256:2f325deb3805f7d0099a21921a6d9862ec4af2cd156853a93f693221189e956c",
+  "status": "PASS",
+  "stored_copy_canonical_digests": {
+    "BREP": "sha256:3ec0569c376e086ddc3583b5e8f00f88f2ad17a43551278c89a6cf8a4567bf15",
+    "STEP": "sha256:20f0028f8aa6641bab48c7776ad6fe458bc7ef70ef80e220e6b035ed1618e0b5"
+  },
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

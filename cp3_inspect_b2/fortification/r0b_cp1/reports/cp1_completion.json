@@ -1,0 +1,77 @@
+{
+  "auto_continuation": false,
+  "families": {
+    "curved": {
+      "bounds_m": {
+        "max": [
+          26.0,
+          14.4,
+          9.894882234
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "centerline_digest": "sha256:c40b4c69a1710f446ebe94494344624d121b9c8fcbcbdf3e3a2ce3c2d8e839be",
+      "centerline_length_m": 25.132741229,
+      "files_compared": 35,
+      "frame_count": 7,
+      "sample_count": 7,
+      "segment_count": 6,
+      "status": "PASS",
+      "triangle_count": 260,
+      "vertex_count": 140,
+      "volume_m3": 2377.552882447
+    },
+    "straight": {
+      "bounds_m": {
+        "max": [
+          24.0,
+          14.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "centerline_digest": "sha256:382c5c586b165872d88ff7fb621ba350c5cfe9da42ff982714dfbd77647d34b9",
+      "centerline_length_m": 24.0,
+      "files_compared": 35,
+      "frame_count": 2,
+      "sample_count": 2,
+      "segment_count": 1,
+      "status": "PASS",
+      "triangle_count": 60,
+      "vertex_count": 40,
+      "volume_m3": 2273.28
+    }
+  },
+  "fixed_baseline": {
+    "file": "RCF_D0_full.zip",
+    "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+  },
+  "focused_validation": {
+    "failed": 0,
+    "passed": 26
+  },
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "negative_count": 6,
+  "next": "R0B_CP2_BY_EXPLICIT_APPROVAL",
+  "parent": {
+    "file": "A4.zip",
+    "sha256": "8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751"
+  },
+  "runtime_admission": "REUSE_R0A_RUNTIME_PASS",
+  "schema": "royal-capital.fortification.r0b-cp1-completion/1",
+  "source_preservation": "PASS",
+  "stage_completion": "R0B_CP1_COMPLETE",
+  "status": "PASS",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0B-CP1"
+}

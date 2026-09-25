@@ -1,0 +1,66 @@
+{
+  "anchor_m": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "incoming": {
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "orientation_determinant": 1.0,
+    "outside": [
+      -0.0,
+      -0.0,
+      -1.0
+    ],
+    "position_m": [
+      -3.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "join_id": "fortification/caelmere/pilot/join-bevel-30deg",
+  "outgoing": {
+    "inside": [
+      -0.5,
+      0.0,
+      0.866025404
+    ],
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.5,
+      -0.0,
+      -0.866025404
+    ],
+    "position_m": [
+      2.598076211,
+      0.0,
+      1.5
+    ],
+    "tangent": [
+      0.866025404,
+      0.0,
+      0.5
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "schema": "royal-capital.fortification.join-local-frames/1",
+  "turn_angle_deg": 29.999999994
+}

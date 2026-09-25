@@ -1,0 +1,206 @@
+{
+  "copies": [
+    {
+      "bytes": 16217,
+      "canonical_sha256": "sha256:adce83ca3e8e50a8dfa559ea292b51e68ae1cd8f961a13489ab290795cfd8765",
+      "component_id": "foundation/incoming_miter",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "components/foundation__incoming_miter/shape.step",
+      "raw_sha256": "sha256:b563e6423b497c30f94635d3499ef2ff240d908254d2edb3456cf3944b462414",
+      "reopen_volume_m3": 32.0
+    },
+    {
+      "bytes": 3934,
+      "canonical_sha256": "sha256:bb02ff3d9bf05bf0f055aa83a7965ed965754fde15c2caf39e097424d2d4c9ff",
+      "component_id": "foundation/incoming_miter",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "components/foundation__incoming_miter/shape.brep",
+      "raw_sha256": "sha256:bb02ff3d9bf05bf0f055aa83a7965ed965754fde15c2caf39e097424d2d4c9ff",
+      "reopen_volume_m3": 32.0
+    },
+    {
+      "bytes": 16878,
+      "canonical_sha256": "sha256:d67df425d686ada14d4f7dc70726b743bb87f5f048cc0652eadeb76c5f8b6d5e",
+      "component_id": "foundation/outgoing_miter",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "components/foundation__outgoing_miter/shape.step",
+      "raw_sha256": "sha256:34ac135871dff6faf794d665cf03e3bb6e128ca65bd156e5f5c6cc1dc7950a88",
+      "reopen_volume_m3": 31.999999998
+    },
+    {
+      "bytes": 4660,
+      "canonical_sha256": "sha256:c2c84863c53acd787468568b951eb3139baab675181caeed3092c02f0d9791ec",
+      "component_id": "foundation/outgoing_miter",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "components/foundation__outgoing_miter/shape.brep",
+      "raw_sha256": "sha256:c2c84863c53acd787468568b951eb3139baab675181caeed3092c02f0d9791ec",
+      "reopen_volume_m3": 31.999999998
+    },
+    {
+      "bytes": 16166,
+      "canonical_sha256": "sha256:495d391d8a04ec7cacf52b84b19a2a1abb4d45aae2ae0cb0c3e202c1a794ce3e",
+      "component_id": "wall_body/incoming_miter",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__incoming_miter/shape.step",
+      "raw_sha256": "sha256:d7f451bbe911f0253bfb5e5b333333b5592fe5a2846c325710325aa00bf6e085",
+      "reopen_volume_m3": 144.0
+    },
+    {
+      "bytes": 3836,
+      "canonical_sha256": "sha256:bbb7783d8b00ddead3aeb4b88e524d64e8bedce8911d7907747c4ed8278883db",
+      "component_id": "wall_body/incoming_miter",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__incoming_miter/shape.brep",
+      "raw_sha256": "sha256:bbb7783d8b00ddead3aeb4b88e524d64e8bedce8911d7907747c4ed8278883db",
+      "reopen_volume_m3": 144.0
+    },
+    {
+      "bytes": 16812,
+      "canonical_sha256": "sha256:c00b7cf6769c9eacd65f7f1bc296f6328ab0061c85a11820155db6785444da17",
+      "component_id": "wall_body/outgoing_miter",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__outgoing_miter/shape.step",
+      "raw_sha256": "sha256:31f9bf4fc8ab8795f5ae34b0ba46698c047930789c04a8942cc9de0bb7a4bea7",
+      "reopen_volume_m3": 143.999999993
+    },
+    {
+      "bytes": 4601,
+      "canonical_sha256": "sha256:7d5a34eb55032981145829fe88881a3aa45cedbdf34756fab4bfeaaf5ebe5759",
+      "component_id": "wall_body/outgoing_miter",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__outgoing_miter/shape.brep",
+      "raw_sha256": "sha256:7d5a34eb55032981145829fe88881a3aa45cedbdf34756fab4bfeaaf5ebe5759",
+      "reopen_volume_m3": 143.999999993
+    },
+    {
+      "bytes": 16273,
+      "canonical_sha256": "sha256:59de9a005d8af44ccef3946b162e4a4ea3bb71e7568ba56bc322f0fab64df1b6",
+      "component_id": "wall_walk/incoming_miter",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__incoming_miter/shape.step",
+      "raw_sha256": "sha256:0c1fb96a4b3c6501865b97f8be3f0d4934336de62ab07475b3f0244f4eccbe5f",
+      "reopen_volume_m3": 7.68
+    },
+    {
+      "bytes": 3972,
+      "canonical_sha256": "sha256:646a892a2f58e5458c7dfb4a471e6e55963af8677f017147516d99d8ce48c039",
+      "component_id": "wall_walk/incoming_miter",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__incoming_miter/shape.brep",
+      "raw_sha256": "sha256:646a892a2f58e5458c7dfb4a471e6e55963af8677f017147516d99d8ce48c039",
+      "reopen_volume_m3": 7.68
+    },
+    {
+      "bytes": 16903,
+      "canonical_sha256": "sha256:acdc02dc504bdf20a19b94b8af46519289ed3e2a1d578d65887b1837d4308b5f",
+      "component_id": "wall_walk/outgoing_miter",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__outgoing_miter/shape.step",
+      "raw_sha256": "sha256:db3b21fad70bb53c68de3518e2d1ec0e8c05072d14e40ddf812edfb5dc7cc3e1",
+      "reopen_volume_m3": 7.679999999
+    },
+    {
+      "bytes": 4700,
+      "canonical_sha256": "sha256:66f6f0bbb4465ae2c2d5af61f52920bd69b9afab41c8afb53dfc6337c22da28f",
+      "component_id": "wall_walk/outgoing_miter",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__outgoing_miter/shape.brep",
+      "raw_sha256": "sha256:66f6f0bbb4465ae2c2d5af61f52920bd69b9afab41c8afb53dfc6337c22da28f",
+      "reopen_volume_m3": 7.679999999
+    },
+    {
+      "bytes": 16288,
+      "canonical_sha256": "sha256:100b546c238147ed2e6a200d0490d2a0c8c439303b27df18e6fe86810942a502",
+      "component_id": "inner_parapet/incoming_miter",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__incoming_miter/shape.step",
+      "raw_sha256": "sha256:8fdf1c6ca3d693779eaa052cf8c33f90c7d9110b25e565522075db9737d631d7",
+      "reopen_volume_m3": 2.456219723
+    },
+    {
+      "bytes": 3952,
+      "canonical_sha256": "sha256:37f0e92c4afc618000765934589dc070c34cc4c3e4a005135bd0e6432b507283",
+      "component_id": "inner_parapet/incoming_miter",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__incoming_miter/shape.brep",
+      "raw_sha256": "sha256:37f0e92c4afc618000765934589dc070c34cc4c3e4a005135bd0e6432b507283",
+      "reopen_volume_m3": 2.456219723
+    },
+    {
+      "bytes": 16908,
+      "canonical_sha256": "sha256:f997f723e9bb2c855c44030951c86bef40cb074cb0aa518fb5ab99d42f247489",
+      "component_id": "inner_parapet/outgoing_miter",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__outgoing_miter/shape.step",
+      "raw_sha256": "sha256:3bac48ba2278c5b9a3231173ef4bd83c239c9a974f397163c6a8ed2a9cf59dfb",
+      "reopen_volume_m3": 2.456219724
+    },
+    {
+      "bytes": 4704,
+      "canonical_sha256": "sha256:b0d75b225faf6e8332f22d740d5e394881f99fb9cb22282875311c95e3fce03b",
+      "component_id": "inner_parapet/outgoing_miter",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__outgoing_miter/shape.brep",
+      "raw_sha256": "sha256:b0d75b225faf6e8332f22d740d5e394881f99fb9cb22282875311c95e3fce03b",
+      "reopen_volume_m3": 2.456219724
+    },
+    {
+      "bytes": 16267,
+      "canonical_sha256": "sha256:f70b6317790d0bec18438303c29831be62eb71f13bb165471ea7949975e0c933",
+      "component_id": "outer_parapet/incoming_miter",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__incoming_miter/shape.step",
+      "raw_sha256": "sha256:fc42302b1f7342c51813ef50939531c4605a1e4498cbeda40afeb4075d2f49f4",
+      "reopen_volume_m3": 3.303780277
+    },
+    {
+      "bytes": 3878,
+      "canonical_sha256": "sha256:af4a26e695ee284aac69c0f8684ae8a33826d50501a8ebc955ec80eebb056ba8",
+      "component_id": "outer_parapet/incoming_miter",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__incoming_miter/shape.brep",
+      "raw_sha256": "sha256:af4a26e695ee284aac69c0f8684ae8a33826d50501a8ebc955ec80eebb056ba8",
+      "reopen_volume_m3": 3.303780277
+    },
+    {
+      "bytes": 16916,
+      "canonical_sha256": "sha256:27cdfabc956b2b7e94c5f7d615ef3c37c4ba472c35a1fcd672c1778fae59ef83",
+      "component_id": "outer_parapet/outgoing_miter",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__outgoing_miter/shape.step",
+      "raw_sha256": "sha256:49ba62df0d807f7ee7757796fb24a333e44a762156fb55c0ee98bd90607128c2",
+      "reopen_volume_m3": 3.303780277
+    },
+    {
+      "bytes": 4658,
+      "canonical_sha256": "sha256:bc266f8f0d46851e72dc0bf9dfc20b90a9331b88acebb854e377cd84234eee41",
+      "component_id": "outer_parapet/outgoing_miter",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__outgoing_miter/shape.brep",
+      "raw_sha256": "sha256:bc266f8f0d46851e72dc0bf9dfc20b90a9331b88acebb854e377cd84234eee41",
+      "reopen_volume_m3": 3.303780277
+    }
+  ],
+  "join_id": "fortification/caelmere/pilot/join-miter-12deg",
+  "schema": "royal-capital.fortification.join-stored-copies/1"
+}

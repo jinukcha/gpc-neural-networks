@@ -1,0 +1,13 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "TURN_OUT_OF_DOMAIN",
+    "message": "bevel turn/setback invalid turn=12.000000007042416 setback=0.5"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "schema": "royal-capital.fortification.join-failure/1",
+  "status": "REJECTED"
+}

@@ -1,0 +1,136 @@
+{
+  "canonical_centerline_digest": "sha256:382c5c586b165872d88ff7fb621ba350c5cfe9da42ff982714dfbd77647d34b9",
+  "capabilities": [
+    "fortification.canonical_centerline@1",
+    "fortification.local_frame@1",
+    "fortification.straight_span@2",
+    "fortification.curved_span@1"
+  ],
+  "fixture_digest": "sha256:a8a169c3153bd1d7fc13e2a4ef7973829df5a630fdb6aba1b592d2cced406b74",
+  "geometry_route": "BOUNDED_SAMPLED_SECTION_LOFT_RULED",
+  "output_digests": {
+    "canonical-centerline.json": "sha256:2f0f28fd0121344bd7d05060dccc36559f177b6bae3868c404eed1e184911589",
+    "fixed-tessellation.json": "sha256:2326a11e949a087dfab9c50ab79653e348ac4241bcedfaddd233f21a30824adb",
+    "local-frames.json": "sha256:695b2c60be7e1d9c7770003127bfb3fecda2a5741cd235a7fb4ea1ed8458f2ad",
+    "neutral-mesh.json": "sha256:4860acac80995d57352628d4062bbfd0de19c996b1e692a2abe536ccece8634d",
+    "path-span-plan.json": "sha256:5b195f277ceecd5467e591e1ddd093fb020ac6e15e3b899ba11d996241828769",
+    "semantic-parts.json": "sha256:5ddfd58b4b555cf1984f5ded8287cd109f8d3dbbfdb1fd4e8f1dbbe68fcfc099",
+    "sockets.json": "sha256:74fffff248a4e94f23e13f0709124984fac20047be3b7e91231c87f7bbaed1ec",
+    "stored-copies.json": "sha256:44ea73333faa6bddaf107b0b3f54a31139f41674ff820eafe4b723a5acd8df01"
+  },
+  "part_receipts": [
+    {
+      "part_id": "foundation",
+      "receipt": {
+        "bytes": 859,
+        "path": "parts/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:31cf05c8b3f7ad85d13093ce42913063e2d5d95ec85162265d44ac073a4728c9"
+      }
+    },
+    {
+      "part_id": "wall_body",
+      "receipt": {
+        "bytes": 858,
+        "path": "parts/wall_body/cad-provider-receipt.json",
+        "sha256": "sha256:ebb05e99f5f1a45cb498f504ad0593130050942ff4d86c73262366d2d04535ee"
+      }
+    },
+    {
+      "part_id": "wall_walk",
+      "receipt": {
+        "bytes": 858,
+        "path": "parts/wall_walk/cad-provider-receipt.json",
+        "sha256": "sha256:3b4cc50cbcf6e623f2e737f48977ab8729866462718b799c53f47a6b7c70d2c1"
+      }
+    },
+    {
+      "part_id": "inner_parapet",
+      "receipt": {
+        "bytes": 862,
+        "path": "parts/inner_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:8691d1142a8066daa3d4994fd939d2c78183ddea5c8c2293705a4a18a4621cf5"
+      }
+    },
+    {
+      "part_id": "outer_parapet",
+      "receipt": {
+        "bytes": 862,
+        "path": "parts/outer_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:722e4b82cbf32ba25d48f4f610758869d25f95c8f86cd2b05f70c8b17a668f38"
+      }
+    }
+  ],
+  "producer_id": "royal-capital/fortification/path-wall-span",
+  "producer_revision": "r0b-cp1.1",
+  "producer_source_digest": "sha256:014509b078b119f4247de54a25b689b3ff89791a71e2c6186f1ba3defbe6ce9c",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.path-wall-span-receipt/1",
+  "status": "PASS",
+  "surface_source_coverage": "DEFERRED_R0B_CP4",
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

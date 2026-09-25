@@ -1,0 +1,66 @@
+{
+  "bounds_m": {
+    "max": [
+      2.639230484,
+      12.6,
+      3.371281292
+    ],
+    "min": [
+      -1.2,
+      12.0,
+      -3.2
+    ]
+  },
+  "component_id": "wall_walk/bevel_bridge",
+  "kind": "PLAN_EXTRUSION",
+  "part_id": "wall_walk",
+  "schema": "royal-capital.fortification.join-component-result/1",
+  "solid_count": 1,
+  "source_spec": {
+    "component_id": "wall_walk/bevel_bridge",
+    "kind": "PLAN_EXTRUSION",
+    "part_id": "wall_walk",
+    "polygon_xz": [
+      [
+        2.639230484,
+        -2.171281292
+      ],
+      [
+        -0.560769515,
+        3.371281292
+      ],
+      [
+        -1.2,
+        3.2
+      ],
+      [
+        -1.2,
+        -3.2
+      ]
+    ],
+    "y_max": 12.6,
+    "y_min": 12.0
+  },
+  "status": "SUCCEEDED",
+  "stored_copies": [
+    {
+      "bytes": 16705,
+      "canonical_sha256": "sha256:accb76099d1da1ca305ee593d822ce98173145fc403e68713eb525e1b29a2f82",
+      "format": "STEP",
+      "path": "shape.step",
+      "raw_sha256": "sha256:07017576bbb06222f74f16936e25fd2d66f5e560cda6adaa67723d12ec1ce699",
+      "reopen_volume_m3": 8.59864506
+    },
+    {
+      "bytes": 4408,
+      "canonical_sha256": "sha256:6a749e2f27d6c561435c98af29de18af46fc5172dcf47582c6b92a7e5f02cfed",
+      "format": "BREP",
+      "path": "shape.brep",
+      "raw_sha256": "sha256:6a749e2f27d6c561435c98af29de18af46fc5172dcf47582c6b92a7e5f02cfed",
+      "reopen_volume_m3": 8.59864506
+    }
+  ],
+  "triangle_count": 12,
+  "vertex_count": 8,
+  "volume_m3": 8.59864506
+}

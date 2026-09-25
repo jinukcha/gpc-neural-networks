@@ -1,0 +1,262 @@
+{
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "schema": "royal-capital.fortification.join-sockets/1",
+  "sockets": [
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN_IN",
+      "socket_id": "span_in"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        8.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN_OUT",
+      "socket_id": "span_out"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_in"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        8.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_out"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_in"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        8.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_out"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "required": false,
+      "role": "TOWER_JOIN",
+      "socket_id": "tower_anchor"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "outside": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "utility_inside"
+    }
+  ]
+}

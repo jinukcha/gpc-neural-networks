@@ -1,0 +1,106 @@
+{
+  "copies": [
+    {
+      "bytes": 17304,
+      "canonical_sha256": "sha256:9fe33cd0734ca3142ad49ceda0f07c5efd7f0161e85a72b05011e973dca0c556",
+      "component_id": "foundation/profile_transition",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "components/foundation__profile_transition/shape.step",
+      "raw_sha256": "sha256:c9ea83d3496ed3c4d50f00b11853383dee331571bc319d5ffded148bcaca1767",
+      "reopen_volume_m3": 162.666666667
+    },
+    {
+      "bytes": 5103,
+      "canonical_sha256": "sha256:223b2d79238a7558cf861577b3a76024e23cc13150e7bc1f92d4fe47961bcf23",
+      "component_id": "foundation/profile_transition",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "components/foundation__profile_transition/shape.brep",
+      "raw_sha256": "sha256:223b2d79238a7558cf861577b3a76024e23cc13150e7bc1f92d4fe47961bcf23",
+      "reopen_volume_m3": 162.666666667
+    },
+    {
+      "bytes": 17280,
+      "canonical_sha256": "sha256:dc3feb2c3b94a6ac7b6437705d74695f3281e55aa09288b35d94774f1f12ac4d",
+      "component_id": "wall_body/profile_transition",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__profile_transition/shape.step",
+      "raw_sha256": "sha256:28fae1cd3db111bce96562e248b7f2701e3a55526ca9060089822939fd492c42",
+      "reopen_volume_m3": 650.666666667
+    },
+    {
+      "bytes": 5106,
+      "canonical_sha256": "sha256:10b6fd4d16a3cff327471ed90f6bc2da70fdf852aa8859b136b3704a52a18e59",
+      "component_id": "wall_body/profile_transition",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "components/wall_body__profile_transition/shape.brep",
+      "raw_sha256": "sha256:10b6fd4d16a3cff327471ed90f6bc2da70fdf852aa8859b136b3704a52a18e59",
+      "reopen_volume_m3": 650.666666667
+    },
+    {
+      "bytes": 17495,
+      "canonical_sha256": "sha256:77d7b241c5bada08dc28a95518514e9003e78e9f7843f59659227a131f1164fe",
+      "component_id": "wall_walk/profile_transition",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__profile_transition/shape.step",
+      "raw_sha256": "sha256:9192c20f3adae75c2a922ce9ebe05fb663c2c4ae57a257403558212f98571e0a",
+      "reopen_volume_m3": 35.946666667
+    },
+    {
+      "bytes": 5249,
+      "canonical_sha256": "sha256:4417fe15f49c3b92501f284ba3dda5352476b7e39dfaf62d4dde9185ff132849",
+      "component_id": "wall_walk/profile_transition",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "components/wall_walk__profile_transition/shape.brep",
+      "raw_sha256": "sha256:4417fe15f49c3b92501f284ba3dda5352476b7e39dfaf62d4dde9185ff132849",
+      "reopen_volume_m3": 35.946666667
+    },
+    {
+      "bytes": 17441,
+      "canonical_sha256": "sha256:f00091a8816edf318eadbcfbeb19dc056a73d94a25228f3f6810db4fa4741b91",
+      "component_id": "inner_parapet/profile_transition",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__profile_transition/shape.step",
+      "raw_sha256": "sha256:22fceaff2f817ccf06e6d62c72d45fb812315de4e3d1ee1215e3c6acdc16fe54",
+      "reopen_volume_m3": 13.706666667
+    },
+    {
+      "bytes": 5221,
+      "canonical_sha256": "sha256:82e77b19cf01d248207af5ef3687b562c2e1ed211fbc08da390cb4bc02a0e77d",
+      "component_id": "inner_parapet/profile_transition",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "components/inner_parapet__profile_transition/shape.brep",
+      "raw_sha256": "sha256:82e77b19cf01d248207af5ef3687b562c2e1ed211fbc08da390cb4bc02a0e77d",
+      "reopen_volume_m3": 13.706666667
+    },
+    {
+      "bytes": 17399,
+      "canonical_sha256": "sha256:72bd7053bf52c09c3d587e66d52fe36a1ffb28a1c12c11452d87428bdd141ea1",
+      "component_id": "outer_parapet/profile_transition",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__profile_transition/shape.step",
+      "raw_sha256": "sha256:5426b0b0c231e2273c8cb816573ad59a9def19bed20afdec4581364715f18d32",
+      "reopen_volume_m3": 13.706666667
+    },
+    {
+      "bytes": 5155,
+      "canonical_sha256": "sha256:f70a2158686f19cf80aff507e750e3537eb39a1d7001bc1c8fd77e31653c9d65",
+      "component_id": "outer_parapet/profile_transition",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "components/outer_parapet__profile_transition/shape.brep",
+      "raw_sha256": "sha256:f70a2158686f19cf80aff507e750e3537eb39a1d7001bc1c8fd77e31653c9d65",
+      "reopen_volume_m3": 13.706666667
+    }
+  ],
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "schema": "royal-capital.fortification.join-stored-copies/1"
+}

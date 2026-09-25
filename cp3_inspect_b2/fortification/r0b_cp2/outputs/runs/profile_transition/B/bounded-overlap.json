@@ -1,0 +1,9 @@
+{
+  "allowed_linear_overlap_m": 0.05,
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "observed_equivalent_linear_overlap_m": 0.0,
+  "pairs": [],
+  "policy": "PAIRWISE_CONVEX_PLAN_INTERSECTION",
+  "schema": "royal-capital.fortification.join-bounded-overlap/1",
+  "status": "PASS"
+}

@@ -1,0 +1,56 @@
+{
+  "join_id": "fortification/caelmere/pilot/join-profile-transition-001",
+  "parts": [
+    {
+      "component_ids": [
+        "foundation/profile_transition"
+      ],
+      "incoming_material_slot": "stone_foundation",
+      "outgoing_material_slot": "stone_foundation_reinforced",
+      "part_id": "foundation",
+      "semantic_role": "FOUNDATION",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "wall_body/profile_transition"
+      ],
+      "incoming_material_slot": "stone_wall",
+      "outgoing_material_slot": "stone_wall_reinforced",
+      "part_id": "wall_body",
+      "semantic_role": "WALL_BODY",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "wall_walk/profile_transition"
+      ],
+      "incoming_material_slot": "stone_walk",
+      "outgoing_material_slot": "stone_walk_reinforced",
+      "part_id": "wall_walk",
+      "semantic_role": "WALL_WALK",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "inner_parapet/profile_transition"
+      ],
+      "incoming_material_slot": "stone_parapet",
+      "outgoing_material_slot": "stone_parapet_reinforced",
+      "part_id": "inner_parapet",
+      "semantic_role": "INNER_PARAPET",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "outer_parapet/profile_transition"
+      ],
+      "incoming_material_slot": "stone_parapet",
+      "outgoing_material_slot": "stone_parapet_reinforced",
+      "part_id": "outer_parapet",
+      "semantic_role": "OUTER_PARAPET",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    }
+  ],
+  "schema": "royal-capital.fortification.join-semantic-parts/1"
+}

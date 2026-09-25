@@ -1,0 +1,19 @@
+{
+  "assembly_mode": "BOUNDED_NON_UNIONED_PARTS",
+  "canonical_centerline_digest": "sha256:c40b4c69a1710f446ebe94494344624d121b9c8fcbcbdf3e3a2ce3c2d8e839be",
+  "inside_side": "LEFT_OF_TRAVEL",
+  "length_m": 25.132741229,
+  "outside_side": "RIGHT_OF_TRAVEL",
+  "part_order": [
+    "foundation",
+    "wall_body",
+    "wall_walk",
+    "inner_parapet",
+    "outer_parapet"
+  ],
+  "schema": "royal-capital.fortification.path-wall-span-plan/1",
+  "segment_count": 6,
+  "span_family": "CURVED_SPAN",
+  "span_id": "fortification/caelmere/r0b/curved-span-001",
+  "surface_coverage_stage": "R0B_CP4"
+}

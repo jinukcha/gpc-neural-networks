@@ -1,0 +1,241 @@
+{
+  "arc_radius_m": 48.0,
+  "arc_sweep_deg": 30.0,
+  "bounds_m": {
+    "max": [
+      24.0,
+      0.0,
+      6.430780618
+    ],
+    "min": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "canonical_digest": "sha256:c40b4c69a1710f446ebe94494344624d121b9c8fcbcbdf3e3a2ce3c2d8e839be",
+  "curve_sample_tolerance_m": 0.05,
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "inside_side": "LEFT_OF_TRAVEL",
+  "kind": "CIRCULAR_ARC",
+  "length_m": 25.132741229,
+  "max_turn_deg": 5.0,
+  "maximum_observed_chord_error_m": 0.045685364,
+  "outside_side": "RIGHT_OF_TRAVEL",
+  "polyline_length_m": 25.124767122,
+  "samples": [
+    {
+      "distance_m": 0.0,
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "u": 0.0,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 4.188790205,
+      "inside": [
+        -0.087155743,
+        0.0,
+        0.996194698
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        4.183475652,
+        0.0,
+        0.182654492
+      ],
+      "outside": [
+        0.087155743,
+        0.0,
+        -0.996194698
+      ],
+      "tangent": [
+        0.996194698,
+        0.0,
+        0.087155743
+      ],
+      "u": 0.166666667,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 8.37758041,
+      "inside": [
+        -0.173648178,
+        0.0,
+        0.984807753
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        8.335112528,
+        0.0,
+        0.729227855
+      ],
+      "outside": [
+        0.173648178,
+        0.0,
+        -0.984807753
+      ],
+      "tangent": [
+        0.984807753,
+        0.0,
+        0.173648178
+      ],
+      "u": 0.333333333,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 12.566370614,
+      "inside": [
+        -0.258819045,
+        0.0,
+        0.965925826
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        12.423314165,
+        0.0,
+        1.635560338
+      ],
+      "outside": [
+        0.258819045,
+        0.0,
+        -0.965925826
+      ],
+      "tangent": [
+        0.965925826,
+        0.0,
+        0.258819045
+      ],
+      "u": 0.5,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 16.755160819,
+      "inside": [
+        -0.342020143,
+        0.0,
+        0.939692621
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        16.41696688,
+        0.0,
+        2.894754202
+      ],
+      "outside": [
+        0.342020143,
+        0.0,
+        -0.939692621
+      ],
+      "tangent": [
+        0.939692621,
+        0.0,
+        0.342020143
+      ],
+      "u": 0.666666667,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 20.943951024,
+      "inside": [
+        -0.422618262,
+        0.0,
+        0.906307787
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        20.285676564,
+        0.0,
+        4.497226222
+      ],
+      "outside": [
+        0.422618262,
+        0.0,
+        -0.906307787
+      ],
+      "tangent": [
+        0.906307787,
+        0.0,
+        0.422618262
+      ],
+      "u": 0.833333333,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 25.132741229,
+      "inside": [
+        -0.5,
+        0.0,
+        0.866025404
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        24.0,
+        0.0,
+        6.430780618
+      ],
+      "outside": [
+        0.5,
+        0.0,
+        -0.866025404
+      ],
+      "tangent": [
+        0.866025404,
+        0.0,
+        0.5
+      ],
+      "u": 1.0,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "schema": "royal-capital.fortification.canonical-centerline/1",
+  "segment_count": 6,
+  "span_id": "fortification/caelmere/r0b/curved-span-001"
+}

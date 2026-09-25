@@ -1,0 +1,66 @@
+{
+  "bounds_m": {
+    "max": [
+      2.580030274,
+      12.0,
+      3.350266185
+    ],
+    "min": [
+      -0.315312706,
+      0.0,
+      -3.0
+    ]
+  },
+  "component_id": "wall_body/outgoing_miter",
+  "kind": "PLAN_EXTRUSION",
+  "part_id": "wall_body",
+  "schema": "royal-capital.fortification.join-component-result/1",
+  "solid_count": 1,
+  "source_spec": {
+    "component_id": "wall_body/outgoing_miter",
+    "kind": "PLAN_EXTRUSION",
+    "part_id": "wall_body",
+    "polygon_xz": [
+      [
+        2.580030274,
+        -2.518619421
+      ],
+      [
+        1.332560128,
+        3.350266185
+      ],
+      [
+        -0.315312706,
+        3.0
+      ],
+      [
+        0.315312706,
+        -3.0
+      ]
+    ],
+    "y_max": 12.0,
+    "y_min": 0.0
+  },
+  "status": "SUCCEEDED",
+  "stored_copies": [
+    {
+      "bytes": 16812,
+      "canonical_sha256": "sha256:c00b7cf6769c9eacd65f7f1bc296f6328ab0061c85a11820155db6785444da17",
+      "format": "STEP",
+      "path": "shape.step",
+      "raw_sha256": "sha256:31f9bf4fc8ab8795f5ae34b0ba46698c047930789c04a8942cc9de0bb7a4bea7",
+      "reopen_volume_m3": 143.999999993
+    },
+    {
+      "bytes": 4601,
+      "canonical_sha256": "sha256:7d5a34eb55032981145829fe88881a3aa45cedbdf34756fab4bfeaaf5ebe5759",
+      "format": "BREP",
+      "path": "shape.brep",
+      "raw_sha256": "sha256:7d5a34eb55032981145829fe88881a3aa45cedbdf34756fab4bfeaaf5ebe5759",
+      "reopen_volume_m3": 143.999999993
+    }
+  ],
+  "triangle_count": 12,
+  "vertex_count": 8,
+  "volume_m3": 143.999999993
+}

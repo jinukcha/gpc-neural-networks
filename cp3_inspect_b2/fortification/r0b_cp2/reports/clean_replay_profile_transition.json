@@ -1,0 +1,8 @@
+{
+  "byte_identical": true,
+  "different": [],
+  "family": "PROFILE_TRANSITION",
+  "files_compared": 36,
+  "schema": "royal-capital.fortification.r0b-cp2-clean-replay/1",
+  "status": "PASS"
+}

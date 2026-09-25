@@ -1,0 +1,66 @@
+{
+  "join_id": "fortification/caelmere/pilot/join-bevel-30deg",
+  "parts": [
+    {
+      "component_ids": [
+        "foundation/incoming_bevel",
+        "foundation/bevel_bridge",
+        "foundation/outgoing_bevel"
+      ],
+      "incoming_material_slot": "stone_foundation",
+      "outgoing_material_slot": "stone_foundation",
+      "part_id": "foundation",
+      "semantic_role": "FOUNDATION",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "wall_body/incoming_bevel",
+        "wall_body/bevel_bridge",
+        "wall_body/outgoing_bevel"
+      ],
+      "incoming_material_slot": "stone_wall",
+      "outgoing_material_slot": "stone_wall",
+      "part_id": "wall_body",
+      "semantic_role": "WALL_BODY",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "wall_walk/incoming_bevel",
+        "wall_walk/bevel_bridge",
+        "wall_walk/outgoing_bevel"
+      ],
+      "incoming_material_slot": "stone_walk",
+      "outgoing_material_slot": "stone_walk",
+      "part_id": "wall_walk",
+      "semantic_role": "WALL_WALK",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "inner_parapet/incoming_bevel",
+        "inner_parapet/bevel_bridge",
+        "inner_parapet/outgoing_bevel"
+      ],
+      "incoming_material_slot": "stone_parapet",
+      "outgoing_material_slot": "stone_parapet",
+      "part_id": "inner_parapet",
+      "semantic_role": "INNER_PARAPET",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    },
+    {
+      "component_ids": [
+        "outer_parapet/incoming_bevel",
+        "outer_parapet/bevel_bridge",
+        "outer_parapet/outgoing_bevel"
+      ],
+      "incoming_material_slot": "stone_parapet",
+      "outgoing_material_slot": "stone_parapet",
+      "part_id": "outer_parapet",
+      "semantic_role": "OUTER_PARAPET",
+      "source_coverage": "DEFERRED_TO_R0B_CP4"
+    }
+  ],
+  "schema": "royal-capital.fortification.join-semantic-parts/1"
+}
