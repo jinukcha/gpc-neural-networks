@@ -156,7 +156,7 @@ def make_shape(component: Mapping[str,Any]):
 def export_shape(shape, output: Path, tolerances: Mapping[str,Any], budget: Mapping[str,Any]) -> dict[str,Any]:
     import build123d as b3d
     provider_vertices,provider_triangles=shape.tessellate(float(tolerances["tessellation_linear_m"])*1000.0,float(tolerances["tessellation_angular_rad"]))
-    mesh=canonicalize_mesh(provider_vertices,provider_triangles,round_digits=int(tolerances["mesh_round_digits"]))
+    mesh=canonicalize_mesh(provider_vertices,provider_triangles)
     if len(mesh["vertices_m"])>int(budget["max_vertices"]) or len(mesh["triangles"])>int(budget["max_triangles"]):
         raise JoinError(JoinFailure.GEOMETRY_BUDGET_EXCEEDED,"component tessellation exceeds budget")
     output.mkdir(parents=True,exist_ok=False)
