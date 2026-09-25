@@ -34,6 +34,38 @@ FIRST_FAILURE = {
     "preexisting_checkpoint_deleted": False,
 }
 
+SECOND_FAILURE = {
+    "schema": "royal-capital.fortification.cp2-preserved-failure/1",
+    "workflow_run": 36102444045,
+    "job": 107967639739,
+    "status": "PRESERVED_RECONSTRUCTION_FAILURE",
+    "failure_type": "SOURCE_REPLAY_CACHE_RESIDUE",
+    "message": "The deterministic CP1 stored-copy replay succeeded, but Python import caches were created inside the reconstructed source tree and correctly rejected as extra files by the unchanged A1 registry.",
+    "extra_paths": [
+        "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/__init__.cpython-313.pyc",
+        "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/canonical.cpython-313.pyc",
+        "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/contract.cpython-313.pyc",
+        "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/provider.cpython-313.pyc",
+    ],
+    "repair": "Remove only generated __pycache__/pyc/pyo residue after replay and before immutable registry verification; preserve regenerated STEP/BREP bytes and all failure logs.",
+    "source_rollback": False,
+    "preexisting_checkpoint_deleted": False,
+}
+
+
+def clean_generated_python_cache(root: Path) -> list[str]:
+    removed: list[str] = []
+    for path in sorted(root.rglob("*.pyc")) + sorted(root.rglob("*.pyo")):
+        if path.exists():
+            removed.append(path.relative_to(root).as_posix())
+            path.unlink()
+    caches = sorted((p for p in root.rglob("__pycache__") if p.is_dir()), key=lambda p: len(p.parts), reverse=True)
+    for cache in caches:
+        if cache.exists():
+            removed.append(cache.relative_to(root).as_posix() + "/")
+            shutil.rmtree(cache)
+    return removed
+
 
 def restore_a1_stored_copies(tree_root: Path, work: Path) -> dict[str, object]:
     cp0 = tree_root / "child_designs/fortification/r0a_cp0"
@@ -67,11 +99,13 @@ def restore_a1_stored_copies(tree_root: Path, work: Path) -> dict[str, object]:
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
             restored.append(target.relative_to(tree_root).as_posix())
+    removed_cache = clean_generated_python_cache(cp1)
     return {
         "schema": "royal-capital.fortification.a1-stored-copy-reconstruction/1",
         "status": "PASS",
         "method": "EXACT_CP1_ADAPTER_REPLAY",
         "restored": restored,
+        "removed_generated_cache": removed_cache,
         "original_registry_preserved": True,
     }
 
@@ -121,9 +155,10 @@ _original_cp2_files = core.cp2_files
 def cp2_files_with_history():
     files = _original_cp2_files()
     files["reports/history/reconstruction_attempt_01_failure.json"] = json.dumps(FIRST_FAILURE, indent=2, sort_keys=True) + "\n"
+    files["reports/history/reconstruction_attempt_02_failure.json"] = json.dumps(SECOND_FAILURE, indent=2, sort_keys=True) + "\n"
     files["reports/history/README.md"] = (
         "# Preserved CP2 recovery history\n\n"
-        "The first CP2 packaging run stopped before implementation because the compact A1 source package omitted four deterministic CP1 STEP/BREP evidence files that remained listed in the immutable A1 registry. No source, checkpoint or unique modification was deleted or rolled back. The resume regenerates only those bytes through the accepted CP1 adapter, and the unchanged A1 registry must pass before CP2 implementation begins.\n"
+        "Attempt 1 stopped before CP2 implementation because the compact A1 source package omitted four deterministic CP1 STEP/BREP evidence files still listed in the immutable A1 registry. Attempt 2 regenerated those files successfully but was stopped because Python import cache residue appeared in the source tree. No source, checkpoint or unique modification was deleted or rolled back. The final resume regenerates only the stored copies, removes only generated cache residue, and requires the unchanged A1 registry to pass before CP2 implementation begins.\n"
     )
     return files
 
