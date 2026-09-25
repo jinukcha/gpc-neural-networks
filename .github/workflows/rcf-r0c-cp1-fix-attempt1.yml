@@ -1,0 +1,84 @@
+name: RCF R0C CP1 bounded attempt 1 repair
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-fix-attempt1.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Apply bounded repair and preserve failure receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          driver = Path('r0c_cp1/driver.py')
+          text = driver.read_text(encoding='utf-8')
+          old = 'runtime_python = Path(args.runtime_python).resolve()'
+          count = text.count(old)
+          if count != 2:
+              raise SystemExit(f'expected two runtime_python resolve calls, found {count}')
+          text = text.replace(old, 'runtime_python = Path(args.runtime_python).absolute()')
+          driver.write_text(text, encoding='utf-8')
+
+          workflow = Path('.github/workflows/rcf-r0c-cp1.yml')
+          w = workflow.read_text(encoding='utf-8')
+          old_condition = "if: steps.finalize.outputs.exit_code == '0'"
+          count = w.count(old_condition)
+          if count != 2:
+              raise SystemExit(f'expected two final-only conditions, found {count}')
+          w = w.replace(old_condition, "if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'")
+          workflow.write_text(w, encoding='utf-8')
+
+          history = Path('r0c_cp1/template/reports/history')
+          history.mkdir(parents=True, exist_ok=True)
+          receipt = {
+              'schema': 'royal-capital.fortification.r0c-cp1-failed-attempt/1',
+              'attempt': 1,
+              'status': 'PRESERVED_FAILURE',
+              'source_preservation': 'PASS',
+              'implementation_checkpoint': {
+                  'full': 'C1_impl.zip',
+                  'full_sha256': '8406ba54690b55f192b1dc0a819403baaa35c07a2bfa009b388528a82e4b49a9',
+                  'patch': 'C1_implP.zip',
+                  'patch_sha256': '5804c3983b97ad3688d964e37f85087e774e36bb4c8fc7a4f034039576eca221',
+                  'source': 'C1_implS.zip',
+                  'source_sha256': 'ff9310826931c773c26ed0bf8e683ba3e8a8d686f417e3fa0bd409211cf9ea68',
+              },
+              'runtime_materialization': 'PASS',
+              'qualification': 'FAILED_BEFORE_TOWER_EXECUTION',
+              'failure_class': 'VENV_INTERPRETER_PATH_RESOLUTION',
+              'failure_detail': 'Path.resolve() followed work/runtime/bin/python to the hosted base CPython binary, so the child qualification process did not execute inside the admitted venv.',
+              'observed_child_interpreter': '/opt/hostedtoolcache/Python/3.13.5/x64/bin/python3.13',
+              'repair': 'Preserve the absolute venv entry path without resolving the symlink; do not change the admitted wheelhouse, fixtures, or tower geometry source.',
+              'rollback_performed': False,
+              'unique_work_deleted': False,
+              'next_attempt': 2,
+          }
+          (history / 'attempt_01_runtime_path_failure.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          (history / 'README.md').write_text(
+              '# Preserved qualification failures\n\n'
+              'Attempt 1 preserved the implementation full/patch/source checkpoint before validation. '
+              'The qualification child process followed the venv Python symlink to the hosted base interpreter. '
+              'Only interpreter path handling and workflow guards were corrected; implementation source and accepted checkpoints were not rolled back.\n',
+              encoding='utf-8',
+          )
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add r0c_cp1/driver.py r0c_cp1/template/reports/history .github/workflows/rcf-r0c-cp1.yml
+          git commit -m 'Repair R0C CP1 venv child interpreter and preserve attempt 1 failure'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
