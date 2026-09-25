@@ -118,7 +118,7 @@ def build_source_coverage(mesh: Mapping[str, Any], parts: Mapping[str, Any], sto
             grouped[role].append(triangle_index)
             assigned.setdefault(triangle_index, []).append(f"{part_id}:{role}")
         stored_refs = [
-            {"format": row["format"], "path": row["path"], "bytes": row["bytes"], "sha256": row["sha256"]}
+            {"format": row["format"], "path": row["path"], "bytes": row["bytes"], "raw_sha256": row["raw_sha256"], "canonical_sha256": row["canonical_sha256"]}
             for row in stored["copies"] if row.get("part_id") == part_id
         ]
         if {row["format"] for row in stored_refs} != {"STEP", "BREP"}:
