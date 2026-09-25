@@ -1,0 +1,8 @@
+status=PASS
+baseline_plus_patch_equals_full=true
+reconstructed_files=1418
+expected_files=1418
+missing=0
+extra=0
+different=0
+mode_different=0
