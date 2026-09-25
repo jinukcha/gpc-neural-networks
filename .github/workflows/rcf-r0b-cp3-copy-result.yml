@@ -1,0 +1,33 @@
+name: RCF R0B CP3 copy compact results
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp3-20260925]
+    paths: [.github/workflows/rcf-r0b-cp3-copy-result.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  copy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp3-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf b3_result
+          mkdir -p b3_result
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0b-cp3-20260925-r1
+          for f in B3.json B3.md B3.txt B3.sha256 B3_pre_check.json b3-build.log B3_EXIT_CODE.txt; do
+            curl -L --fail --retry 3 -o b3_result/$f $base/$f
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add b3_result
+          git commit -m 'Record compact accepted B3 result reports'
+          git push origin HEAD:automation/rcf-r0b-cp3-20260925
