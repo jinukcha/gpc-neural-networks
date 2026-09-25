@@ -1,0 +1,78 @@
+name: RCF R0C CP1 inspect B4 chain R3
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-inspect-chain-r3.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Reconstruct and validate exact B4 tree
+        shell: bash
+        env:
+          B1S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-3dbc-8206-b057-1bffa3b29ff7/raw?se=2026-09-25T20%3A08%3A14Z&sp=r&sv=2026-02-06&sr=b&scid=602b27fa-3e81-5356-8944-a92fa9d9938f&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A33%3A05Z&ske=2026-09-26T19%3A33%3A05Z&sks=b&skv=2026-02-06&sig=ROxmqtaDQtfZKL/QhnV9BrzYPIYjBph4C%2BVX5%2BVH54E%3D"
+          B2S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-ccf8-8209-9662-37ba9718d8cd/raw?se=2026-09-25T20%3A06%3A38Z&sp=r&sv=2026-02-06&sr=b&scid=d8931fe3-7514-5067-8008-574b3894407e&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A38%3A15Z&ske=2026-09-26T19%3A38%3A15Z&sks=b&skv=2026-02-06&sig=GLTTsdrjCiQprO%2BRrSajWx3e/s2fuAcC7Yg08uJqfIU%3D"
+          B3S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-fc58-8209-8243-e7e5492bf767/raw?se=2026-09-25T20%3A06%3A46Z&sp=r&sv=2026-02-06&sr=b&scid=781bea64-fd7c-5e19-929e-9211adc3cc22&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A43%3A08Z&ske=2026-09-26T19%3A43%3A08Z&sks=b&skv=2026-02-06&sig=qjkSk0jioCfsKuAR5vaJdAt7UJmLp8LKyMhDrXF2ogY%3D"
+          B4S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-e784-8206-be43-58cf82b23688/raw?se=2026-09-25T20%3A06%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=44f10bd1-3655-5f91-8985-170f236ed9e7&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A51%3A04Z&ske=2026-09-26T19%3A51%3A04Z&sks=b&skv=2026-02-06&sig=OVPhJi/IzPtcjGxGNRn37Hh/0kRlAIVU0pH%2BMjhHFe8%3D"
+        run: |
+          set -euo pipefail
+          rm -rf cp1_chain_inspect_r3 _chain_inputs_r3
+          mkdir -p cp1_chain_inspect_r3 _chain_inputs_r3
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          curl -LsSf --retry 3 -o _chain_inputs_r3/A4.zip "$base/A4.zip"
+          curl -LsSf --retry 3 -o _chain_inputs_r3/B1S.zip "$B1S_URL"
+          curl -LsSf --retry 3 -o _chain_inputs_r3/B2S.zip "$B2S_URL"
+          curl -LsSf --retry 3 -o _chain_inputs_r3/B3S.zip "$B3S_URL"
+          curl -LsSf --retry 3 -o _chain_inputs_r3/B4S.zip "$B4S_URL"
+          python - <<'PY'
+          from pathlib import Path
+          import collections, hashlib, json, os, stat, zipfile
+          src=Path('_chain_inputs_r3'); out=Path('cp1_chain_inspect_r3'); tree=out/'B4_tree'
+          with zipfile.ZipFile(src/'A4.zip') as z: z.extractall(tree)
+          report={'stages':[]}
+          for name in ['B1S.zip','B2S.zip','B3S.zip','B4S.zip']:
+              with zipfile.ZipFile(src/name) as z:
+                  names=z.namelist(); z.extractall(tree)
+              report['stages'].append({'name':name,'entries':len(names),'top':dict(collections.Counter(n.split('/')[0] for n in names)),'first':names[:12]})
+          actual={p.relative_to(tree).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in tree.rglob('*') if p.is_file() and p.relative_to(tree).as_posix()!='FILES.sha256'}
+          registry=tree/'FILES.sha256'
+          expected={}
+          for line in registry.read_text().splitlines():
+              if not line.strip(): continue
+              digest,path=line.split('  ',1); expected[path]=digest
+          report['tree_files_including_registry']=sum(1 for p in tree.rglob('*') if p.is_file())
+          report['registry_entries']=len(expected)
+          report['missing']=sorted(set(expected)-set(actual))
+          report['extra']=sorted(set(actual)-set(expected))
+          report['mismatched']=sorted(k for k in set(expected)&set(actual) if expected[k]!=actual[k])
+          report['registry_pass']=not report['missing'] and not report['extra'] and not report['mismatched']
+          h=hashlib.sha256()
+          for rel,digest in sorted(actual.items()): h.update(rel.encode()+b'\0'+bytes.fromhex(digest))
+          report['closed_world_tree_digest']='sha256:'+h.hexdigest()
+          report['expected_claimed_file_count']=1301
+          report['file_count_match']=report['tree_files_including_registry']==1301
+          (out/'report.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          if not report['registry_pass'] or not report['file_count_match']:
+              raise SystemExit(json.dumps({k:report[k] for k in ['tree_files_including_registry','registry_entries','missing','extra','mismatched']},indent=2))
+          PY
+      - name: Commit compact report
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp1_chain_inspect_r3/B4_tree
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp1_chain_inspect_r3
+          git commit -m 'Validate exact B4 tree against closed-world registry'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
