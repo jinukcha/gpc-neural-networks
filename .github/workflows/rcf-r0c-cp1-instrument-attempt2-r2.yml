@@ -1,0 +1,104 @@
+name: RCF R0C CP1 instrument attempt 2 failure R2
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-instrument-attempt2-r2.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Preserve attempt 2 and expose child qualification evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          driver = Path('r0c_cp1/driver.py')
+          text = driver.read_text(encoding='utf-8')
+          old = "\n".join([
+              '    with qualification_log.open("wb") as handle:',
+              '        subprocess.run(',
+              '            [str(runtime_python), str(cp1 / "tools/run_qualification.py"), "--tree", str(tree), "--work", str(work / "qualification")],',
+              '            check=True,',
+              '            stdout=handle,',
+              '            stderr=subprocess.STDOUT,',
+              '            env=env,',
+              '        )',
+              '',
+          ])
+          new = "\n".join([
+              '    with qualification_log.open("wb") as handle:',
+              '        qualification_process = subprocess.run(',
+              '            [str(runtime_python), str(cp1 / "tools/run_qualification.py"), "--tree", str(tree), "--work", str(work / "qualification")],',
+              '            check=False,',
+              '            stdout=handle,',
+              '            stderr=subprocess.STDOUT,',
+              '            env=env,',
+              '        )',
+              '    if qualification_process.returncode != 0:',
+              '        qualification_text = qualification_log.read_text(encoding="utf-8", errors="replace")',
+              '        print("=== CHILD QUALIFICATION LOG BEGIN ===", file=sys.stderr)',
+              '        print(qualification_text, file=sys.stderr, end="" if qualification_text.endswith("\\n") else "\\n")',
+              '        print("=== CHILD QUALIFICATION LOG END ===", file=sys.stderr)',
+              '        raise RuntimeError(f"tower qualification failed with exit code {qualification_process.returncode}; see {qualification_log}")',
+              '',
+          ])
+          if old not in text:
+              raise SystemExit('qualification subprocess block not found')
+          driver.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          history = Path('r0c_cp1/template/reports/history')
+          history.mkdir(parents=True, exist_ok=True)
+          receipt = {
+              'schema': 'royal-capital.fortification.r0c-cp1-failed-attempt/1',
+              'attempt': 2,
+              'status': 'PRESERVED_FAILURE',
+              'source_preservation': 'PASS',
+              'implementation_checkpoint': {
+                  'full': 'C1_impl.zip',
+                  'full_sha256': '66c220c7fed70e85724953039865a84874c482803138abac655124aa93b81aa5',
+                  'patch': 'C1_implP.zip',
+                  'patch_sha256': '28df98ea65afaf39e165d353483263d2c7f371a69a32d81cbcb49be32e448c1f',
+                  'source': 'C1_implS.zip',
+                  'source_sha256': '995a7a988c87d04798010c3dae7e3f84ba513d3709120037d6503fd295f765c5',
+              },
+              'runtime_materialization': 'PASS',
+              'pip_check': 'PASS',
+              'qualification': 'FAILED_DURING_NATIVE_TOWER_QUALIFICATION',
+              'failure_class': 'CHILD_QUALIFICATION_RETURNED_NONZERO_LOG_NOT_EXPORTED',
+              'evidence': {
+                  'workflow_run_id': 36185209353,
+                  'job_id': 108236795801,
+                  'qualification_exit_code': 1,
+                  'receipts_artifact_id': 10885454656,
+                  'outer_driver_log_preserved': True,
+                  'inner_qualification_log_was_not_in_attempt_artifact': True,
+              },
+              'repair': 'Preserve accepted runtime and checkpoints. Echo the child qualification log into the outer log on attempt 3 so the exact native failure can be classified and repaired.',
+              'rollback_performed': False,
+              'unique_work_deleted': False,
+              'next_attempt': 3,
+          }
+          (history / 'attempt_02_native_qualification_failure.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          readme = history / 'README.md'
+          existing = readme.read_text(encoding='utf-8') if readme.exists() else '# Preserved qualification failures\n'
+          existing += '\nAttempt 2 executed through the admitted venv and reached native tower qualification, but the child returned nonzero. The implementation checkpoint and runtime evidence remain preserved. Attempt 3 adds log propagation only.\n'
+          readme.write_text(existing, encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add r0c_cp1/driver.py r0c_cp1/template/reports/history
+          git commit -m 'Preserve CP1 attempt 2 and propagate child qualification evidence'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
