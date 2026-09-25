@@ -1,0 +1,93 @@
+name: RCF R0C CP1 inspect B4 chain
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-inspect-chain.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Download exact chain inputs
+        shell: bash
+        env:
+          B1S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-c5b4-8206-813e-d4fa172d7606/raw?se=2026-09-25T20%3A06%3A30Z&sp=r&sv=2026-02-06&sr=b&scid=6a47cc9d-ac6b-5737-8707-2d5c0dd6a8ad&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A38%3A27Z&ske=2026-09-26T19%3A38%3A27Z&sks=b&skv=2026-02-06&sig=l7bKZiZQHvaMn60PXwztciGkjlugM6CVMqNWI1NbeGA%3D"
+          B2S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-ccf8-8209-9662-37ba9718d8cd/raw?se=2026-09-25T20%3A06%3A38Z&sp=r&sv=2026-02-06&sr=b&scid=d8931fe3-7514-5067-8008-574b3894407e&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A38%3A15Z&ske=2026-09-26T19%3A38%3A15Z&sks=b&skv=2026-02-06&sig=GLTTsdrjCiQprO%2BRrSajWx3e/s2fuAcC7Yg08uJqfIU%3D"
+          B3S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-fc58-8209-8243-e7e5492bf767/raw?se=2026-09-25T20%3A06%3A46Z&sp=r&sv=2026-02-06&sr=b&scid=781bea64-fd7c-5e19-929e-9211adc3cc22&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A43%3A08Z&ske=2026-09-26T19%3A43%3A08Z&sks=b&skv=2026-02-06&sig=qjkSk0jioCfsKuAR5vaJdAt7UJmLp8LKyMhDrXF2ogY%3D"
+          B4S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-e784-8206-be43-58cf82b23688/raw?se=2026-09-25T20%3A06%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=44f10bd1-3655-5f91-8985-170f236ed9e7&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A51%3A04Z&ske=2026-09-26T19%3A51%3A04Z&sks=b&skv=2026-02-06&sig=OVPhJi/IzPtcjGxGNRn37Hh/0kRlAIVU0pH%2BMjhHFe8%3D"
+        run: |
+          set -euo pipefail
+          rm -rf cp1_chain_inspect _chain_inputs
+          mkdir -p cp1_chain_inspect _chain_inputs
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          curl -L --fail --retry 3 -o _chain_inputs/A4.zip "$base/A4.zip"
+          curl -L --fail --retry 3 -o _chain_inputs/A4P.zip "$base/A4P.zip"
+          curl -L --fail --retry 3 -o _chain_inputs/B1S.zip "$B1S_URL"
+          curl -L --fail --retry 3 -o _chain_inputs/B2S.zip "$B2S_URL"
+          curl -L --fail --retry 3 -o _chain_inputs/B3S.zip "$B3S_URL"
+          curl -L --fail --retry 3 -o _chain_inputs/B4S.zip "$B4S_URL"
+          cat > _chain_inputs/expected.sha256 <<'EOF'
+          8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751  _chain_inputs/A4.zip
+          bd4b32d7c35f413bae9aa9bf781bffdfe820d1a3c8f04d57c078a71d1425e335  _chain_inputs/A4P.zip
+          17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b  _chain_inputs/B1S.zip
+          4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d  _chain_inputs/B2S.zip
+          ee3c3d7cb85b374830f530f2c8e2410f8b23f5a94fa9746e418b99b4de8a8c58  _chain_inputs/B3S.zip
+          a2f241fc0b3cb8fd391843ef04458b482b12e8e42da9ea63d00c3379cb2bb1ac  _chain_inputs/B4S.zip
+          EOF
+          sed -i 's/^          //' _chain_inputs/expected.sha256
+          sha256sum -c _chain_inputs/expected.sha256
+          python - <<'PY'
+          from pathlib import Path
+          import collections, hashlib, json, stat, zipfile, shutil
+          root=Path('_chain_inputs')
+          report={}
+          for name in ['A4.zip','A4P.zip','B1S.zip','B2S.zip','B3S.zip','B4S.zip']:
+              p=root/name
+              with zipfile.ZipFile(p) as z:
+                  names=z.namelist()
+                  report[name]={
+                    'bytes':p.stat().st_size,
+                    'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),
+                    'entries':len(names),
+                    'top_components':dict(collections.Counter(x.split('/')[0] for x in names)),
+                    'first_entries':names[:30],
+                    'bad_crc':z.testzip(),
+                  }
+          Path('cp1_chain_inspect/archives.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          # Attempt exact source-delta overlay semantics.
+          tree=Path('cp1_chain_inspect/reconstructed')
+          with zipfile.ZipFile(root/'A4.zip') as z: z.extractall(tree)
+          stage=[]
+          for delta_name, expected_full in [
+              ('B1S.zip','99289c7bacaa2b79d7a8cc64bcc3820c6f76642c7c35db7077c324ca3cd3a94d'),
+              ('B2S.zip','2d6ef3a67a8197bcdf9dcf76a0214674b611d785bf7b6d58e6446e222ec0548a'),
+              ('B3S.zip','45a107c5c6ca99346df4fa687c335834d5c32c62881642de19c35bc18dcd19fa'),
+              ('B4S.zip','4f66c61f4f2280fbfdd81c0d3056f3f2b705dab4baece5c21a65b93e3bdfc641'),
+          ]:
+              with zipfile.ZipFile(root/delta_name) as z:
+                  z.extractall(tree)
+              stage.append({'delta':delta_name,'tree_files':sum(1 for p in tree.rglob('*') if p.is_file()),'expected_full_zip_sha256':expected_full})
+          Path('cp1_chain_inspect/stages.json').write_text(json.dumps(stage,indent=2)+'\n')
+          paths='\n'.join(sorted(p.relative_to(tree).as_posix() for p in tree.rglob('*') if p.is_file()))
+          Path('cp1_chain_inspect/reconstructed_paths.txt').write_text(paths+'\n')
+          PY
+      - name: Commit inspection
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp1_chain_inspect/reconstructed
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp1_chain_inspect
+          git commit -m 'Record exact B4 reconstruction-chain inspection'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
