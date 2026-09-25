@@ -1,0 +1,41 @@
+name: RCF CP3 inspect A2 patch layout
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp3-20260925]
+    paths: [.github/workflows/rcf-cp3-inspect-patch.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp3-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 -o A2P.zip https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp2-20260925-r4/A2P.zip
+          echo '73eec431ead5ec7bc62638ce19b53fee7c25359a575cf007ff8093d5b232df22  A2P.zip' | sha256sum -c -
+          python - <<'PY' > cp3_inspect/A2P_LAYOUT.txt
+          import zipfile, collections
+          z=zipfile.ZipFile('A2P.zip')
+          names=z.namelist()
+          print('count',len(names))
+          print('first100')
+          print('\n'.join(names[:100]))
+          print('top_components',collections.Counter(n.split('/')[0] for n in names))
+          for n in names:
+              if n.lower().endswith(('.json','.txt','.md','.csv','.patch')) and ('manifest' in n.lower() or 'delete' in n.lower() or n.endswith('.patch')):
+                  print('special',n)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp3_inspect/A2P_LAYOUT.txt
+          git commit -m 'Record A2 cumulative patch layout'
+          git push origin HEAD:automation/rcf-r0a-cp3-20260925
