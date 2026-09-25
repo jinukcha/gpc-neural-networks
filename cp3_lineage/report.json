@@ -1,0 +1,16 @@
+{
+  "asset_count": 96,
+  "matches": {
+    "exact_b1": [],
+    "exact_b2": [],
+    "exact_b2p": [],
+    "exact_b2s": []
+  },
+  "release_count": 8,
+  "wanted": {
+    "exact_b1": "sha256:99289c7bacaa2b79d7a8cc64bcc3820c6f76642c7c35db7077c324ca3cd3a94d",
+    "exact_b2": "sha256:2d6ef3a67a8197bcdf9dcf76a0214674b611d785bf7b6d58e6446e222ec0548a",
+    "exact_b2p": "sha256:685c27450e942811d805a260e925fdf84024fdfec7ee2c644671038bec830f65",
+    "exact_b2s": "sha256:4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d"
+  }
+}
