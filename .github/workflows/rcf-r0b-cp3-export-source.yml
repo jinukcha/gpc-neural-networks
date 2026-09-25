@@ -1,0 +1,31 @@
+name: RCF R0B CP3 export source delta
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp3-20260925]
+    paths: [.github/workflows/rcf-r0b-cp3-export-source.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify B3 source delta
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p export
+          curl -L --fail --retry 3 -o export/B3S.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0b-cp3-20260925-r1/B3S.zip
+          echo '98d233a8807c97e8e99b52ea2cd13a3be58eff47b6552b798856f02c53e32387  export/B3S.zip' | sha256sum -c -
+          unzip -t export/B3S.zip >/dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0b-cp3-b3s
+          path: export/B3S.zip
+          compression-level: 0
+          retention-days: 3
