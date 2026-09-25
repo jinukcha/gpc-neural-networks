@@ -301,7 +301,9 @@ def package(tree: Path, b1: Path, a4: Path, a4p: Path, deliver: Path, prefix: st
     reconstruct(b1, source_tree, rebuilt)
     source_eq = compare_trees(tree, rebuilt)
     patch_payload = patch_tree / "W"
-    patch_check = {rel: entry_map(tree).get(rel) == entry_map(patch_payload).get(rel) for rel in final_delta["added"] + final_delta["modified"]}
+    final_entries = entry_map(tree)
+    patch_entries = entry_map(patch_payload)
+    patch_check = {rel: final_entries.get(rel) == patch_entries.get(rel) for rel in final_delta["added"] + final_delta["modified"]}
     if not source_eq["equal"] or not all(patch_check.values()):
         raise RuntimeError(f"package equality failed source={source_eq} patch={patch_check}")
     return {
