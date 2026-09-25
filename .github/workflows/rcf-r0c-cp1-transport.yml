@@ -1,0 +1,83 @@
+name: RCF R0C CP1 transport accepted deliverables
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-transport.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transport:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+      - name: Download final accepted release files
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0c-cp1-20260925-r1
+        run: |
+          set -euo pipefail
+          mkdir -p transfer
+          gh release download "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --dir transfer \
+            --pattern 'C1.zip' \
+            --pattern 'C1P.zip' \
+            --pattern 'C1S.zip' \
+            --pattern 'C1R.zip' \
+            --pattern 'C1.sha256' \
+            --pattern 'C1.json' \
+            --pattern 'C1.md' \
+            --pattern 'C1.txt' \
+            --pattern 'C1_delivery.json' \
+            --pattern 'C1_check.json'
+      - name: Reopen and verify transported files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in transfer/C1.zip transfer/C1P.zip transfer/C1S.zip transfer/C1R.zip; do
+            unzip -t "$f" >/dev/null
+          done
+          grep -E '  (C1\.zip|C1P\.zip|C1S\.zip|C1R\.zip|C1\.md|C1\.json|C1\.txt|C1_delivery\.json)$' transfer/C1.sha256 > transfer/selected.sha256
+          (cd transfer && sha256sum -c selected.sha256)
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          root = Path('transfer')
+          rows = []
+          for path in sorted(root.iterdir()):
+              if not path.is_file() or path.name in {'transport_manifest.json'}:
+                  continue
+              item = {
+                  'name': path.name,
+                  'bytes': path.stat().st_size,
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+              }
+              if path.suffix == '.zip':
+                  with zipfile.ZipFile(path) as zf:
+                      item['zip_entries'] = len(zf.infolist())
+                      item['zip_bad_crc'] = zf.testzip()
+              rows.append(item)
+          manifest = {
+              'schema': 'royal-capital.fortification.r0c-cp1-transport/1',
+              'source_release': 'rcf-r0c-cp1-20260925-r1',
+              'status': 'PASS',
+              'files': rows,
+          }
+          (root / 'transport_manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+      - name: Upload accepted deliverables without recompression
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0c-cp1-final-transfer
+          path: transfer/*
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
