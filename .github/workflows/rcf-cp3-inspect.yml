@@ -1,0 +1,44 @@
+name: Inspect RCF A2 for CP3
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0a-cp3-20260925
+    paths:
+      - .github/workflows/rcf-cp3-inspect.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and inspect A2 source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 -o A2S.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp2-20260925-r4/A2S.zip
+          echo '7e7445828bb3c319c6635fd5b398f06a850a9e64e3639a1d6094eef61ed03f51  A2S.zip' | sha256sum -c -
+          mkdir a2s
+          unzip -q A2S.zip -d a2s
+          echo '=== FILE TREE ==='
+          find a2s -type f -printf '%P\n' | sort
+          echo '=== MATCHING PATHS ==='
+          find a2s -type f -printf '%P\n' | sort | grep -Ei 'fort|cp2|straight|provider|tess|socket|semantic|coverage|negative|partial|roadmap|design|status|test|valid|package|manifest' || true
+          echo '=== PYTHON DEFINITIONS ==='
+          grep -RInE '^(class|def) |CadProvider|Straight|WallSpan|semantic|socket|tessell|coverage|partial|stale|budget' a2s --include='*.py' | head -1200 || true
+          echo '=== RELEVANT FILE CONTENTS ==='
+          while IFS= read -r f; do
+            case "$f" in
+              *.py|*.json|*.md|*.csv|*.txt)
+                echo "----- BEGIN ${f} -----"
+                sed -n '1,800p' "a2s/$f"
+                echo "----- END ${f} -----"
+                ;;
+            esac
+          done < <(find a2s -type f -printf '%P\n' | sort | grep -Ei 'fortification|r0a.*cp2|cp2|straight_wall|wall_span|cad_provider|roadmap|design|status|test.*fort|valid.*fort|package.*fort|A2')
