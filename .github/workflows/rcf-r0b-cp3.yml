@@ -1,0 +1,120 @@
+name: RCF R0B CP3 terrain foundation interface
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp3-20260925]
+    paths:
+      - .github/workflows/rcf-r0b-cp3.yml
+      - rcf_b3/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cp3:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp3-20260925
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Download accepted public B2 lineage
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inputs runtime_source deliver
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0b-cp2-20260925-r1
+          curl -L --fail --retry 3 -o inputs/B2.zip $base/B2.zip
+          curl -L --fail --retry 3 -o inputs/B2P.zip $base/B2P.zip
+          echo '51a37e5a79722ea4af4bd05004e73c6e50bb0049e625c4b7c6a5669a2c01646a  inputs/B2.zip' | sha256sum -c -
+          echo 'ee15902f4370f3c23af1569b1492be23797db93f5e9c519ed2c833951b166747  inputs/B2P.zip' | sha256sum -c -
+          unzip -q inputs/B2.zip -d runtime_source
+          test "$(find runtime_source/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse -name '*.whl' | wc -l)" -eq 58
+      - name: Fresh exact runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv work/runtime
+          work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links runtime_source/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r runtime_source/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime-materialization.log
+          work/runtime/bin/python -m pip check | tee runtime-pip-check.log
+      - name: Qualify, preserve checkpoint, validate and package
+        id: build
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python rcf_b3/rcf_b3_integrate.py \
+            --parent inputs/B2.zip \
+            --parent-patch inputs/B2P.zip \
+            --template rcf_b3/template \
+            --runtime-python "$PWD/work/runtime/bin/python" \
+            --work work/b3 \
+            --deliver deliver \
+            2>&1 | tee b3-build.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > B3_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Reopen all generated archives
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          for archive in deliver/B3_pre.zip deliver/B3_preP.zip deliver/B3_preS.zip deliver/B3.zip deliver/B3P.zip deliver/B3S.zip; do
+            [[ -f "$archive" ]] || continue
+            unzip -t "$archive" >/dev/null
+          done
+      - name: Preserve pre-validation checkpoint and logs
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0b-cp3-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --title 'RCF R0B CP3' --notes 'Terrain-stepped and retaining spans, explicit foundation interface, contact/gap/grade evidence. Pre-validation source/full/cumulative patch is preserved before final tree validation.'
+          fi
+          files=(deliver/B3_pre.zip deliver/B3_preP.zip deliver/B3_preS.zip deliver/B3_pre_check.json b3-build.log runtime-materialization.log runtime-pip-check.log B3_EXIT_CODE.txt)
+          existing=(); for file in "${files[@]}"; do [[ -f "$file" ]] && existing+=("$file"); done
+          ((${#existing[@]})) && gh release upload "$TAG" "${existing[@]}" --clobber
+      - name: Upload final release assets
+        if: steps.build.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0b-cp3-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            deliver/B3.zip deliver/B3P.zip deliver/B3S.zip \
+            deliver/B3.md deliver/B3.json deliver/B3.txt deliver/B3.sha256 \
+            --clobber
+      - name: Upload concise receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0b-cp3-receipts
+          path: |
+            deliver/B3.md
+            deliver/B3.json
+            deliver/B3.txt
+            deliver/B3.sha256
+            deliver/B3_pre_check.json
+            b3-build.log
+            runtime-materialization.log
+            runtime-pip-check.log
+            B3_EXIT_CODE.txt
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Enforce CP3 result
+        shell: bash
+        run: test "$(cat B3_EXIT_CODE.txt)" = '0'
