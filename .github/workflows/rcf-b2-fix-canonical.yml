@@ -1,0 +1,32 @@
+name: RCF B2 fix canonical mesh call
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths: [.github/workflows/rcf-b2-fix-canonical.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('rcf_b2/template/src/rcf_fortification_joins/geometry.py')
+          s=p.read_text()
+          old='canonicalize_mesh(provider_vertices,provider_triangles,round_digits=int(tolerances["mesh_round_digits"]))'
+          new='canonicalize_mesh(provider_vertices,provider_triangles)'
+          if old not in s: raise SystemExit('target not found')
+          p.write_text(s.replace(old,new))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rcf_b2/template/src/rcf_fortification_joins/geometry.py
+          git commit -m 'Use accepted CP1 canonical mesh API'
+          git push origin HEAD:automation/rcf-r0b-cp2-20260925
