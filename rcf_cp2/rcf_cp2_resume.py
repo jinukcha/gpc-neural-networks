@@ -52,6 +52,20 @@ SECOND_FAILURE = {
     "preexisting_checkpoint_deleted": False,
 }
 
+THIRD_FAILURE = {
+    "schema": "royal-capital.fortification.cp2-preserved-failure/1",
+    "workflow_run": 36102716394,
+    "job": 107968487350,
+    "status": "PRESERVED_POST_VALIDATION_HYGIENE_FAILURE",
+    "failure_type": "POST_VALIDATION_PYTHON_CACHE_RESIDUE",
+    "message": "CP2 functional qualification and pre-validation checkpoint creation completed, but CP1/CP2 imports and unit tests generated __pycache__/pyc files inside the final source tree; the hygiene gate correctly rejected final packaging.",
+    "functional_validation": "PASS_BEFORE_HYGIENE_GATE",
+    "prevalidation_checkpoint": "PRESERVED_IN_RELEASE_R3",
+    "repair": "After successful CP2 validation, remove only generated Python cache residue before updating the final closed-world registry and running final hygiene/package verification.",
+    "source_rollback": False,
+    "preexisting_checkpoint_deleted": False,
+}
+
 
 def clean_generated_python_cache(root: Path) -> list[str]:
     removed: list[str] = []
@@ -156,12 +170,32 @@ def cp2_files_with_history():
     files = _original_cp2_files()
     files["reports/history/reconstruction_attempt_01_failure.json"] = json.dumps(FIRST_FAILURE, indent=2, sort_keys=True) + "\n"
     files["reports/history/reconstruction_attempt_02_failure.json"] = json.dumps(SECOND_FAILURE, indent=2, sort_keys=True) + "\n"
+    files["reports/history/post_validation_attempt_03_failure.json"] = json.dumps(THIRD_FAILURE, indent=2, sort_keys=True) + "\n"
     files["reports/history/README.md"] = (
         "# Preserved CP2 recovery history\n\n"
-        "Attempt 1 stopped before CP2 implementation because the compact A1 source package omitted four deterministic CP1 STEP/BREP evidence files still listed in the immutable A1 registry. Attempt 2 regenerated those files successfully but was stopped because Python import cache residue appeared in the source tree. No source, checkpoint or unique modification was deleted or rolled back. The final resume regenerates only the stored copies, removes only generated cache residue, and requires the unchanged A1 registry to pass before CP2 implementation begins.\n"
+        "Attempt 1 stopped before CP2 implementation because the compact A1 source package omitted four deterministic CP1 STEP/BREP evidence files still listed in the immutable A1 registry. Attempt 2 regenerated those files successfully but was stopped because Python import cache residue appeared before the A1 registry gate. Attempt 3 passed reconstruction, created the pre-validation source/full/patch checkpoint and completed CP2 functional validation, but final hygiene rejected generated CP1/CP2 Python caches. No source, checkpoint or unique modification was deleted or rolled back. The final resume removes only generated cache residue after validation and before final registry/hygiene/package verification.\n"
     )
     return files
 
+
+_original_run_validation = core.run_validation
+
+def run_validation_clean(tree_root: Path, work: Path):
+    result = _original_run_validation(tree_root, work)
+    removed = clean_generated_python_cache(tree_root)
+    evidence = {
+        "schema": "royal-capital.fortification.cp2-post-validation-cache-cleanup/1",
+        "status": "PASS",
+        "removed_generated_cache": removed,
+        "removed_count": len(removed),
+        "source_files_or_artifacts_removed": False,
+    }
+    report = tree_root / "child_designs/fortification/r0a_cp2/reports/post_validation_cache_cleanup.json"
+    core.write_json(report, evidence)
+    result["post_validation_cache_cleanup"] = evidence
+    return result
+
 core.reconstruct = reconstruct_fixed
 core.cp2_files = cp2_files_with_history
+core.run_validation = run_validation_clean
 raise SystemExit(core.main())
