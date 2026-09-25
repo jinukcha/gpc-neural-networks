@@ -1,0 +1,1 @@
+Attempt 3: preserve attempts 1-2, run through the admitted venv, and propagate the child qualification log on failure without altering the accepted runtime or prior checkpoints.
