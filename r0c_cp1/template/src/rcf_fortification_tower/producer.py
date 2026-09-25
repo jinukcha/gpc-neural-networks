@@ -21,6 +21,7 @@ from .model import (
     RECEIPT_SCHEMA,
     RESULT_SCHEMA,
     SOCKETS_SCHEMA,
+    SOCKET_ORDER,
     TESSELLATION_SCHEMA,
     TowerError,
     TowerFailureCode,
