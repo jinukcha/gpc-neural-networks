@@ -1,0 +1,59 @@
+name: RCF CP4 inspect accepted A3
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp4-20260925]
+    paths: [.github/workflows/rcf-cp4-inspect-a3.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp4-20260925
+          fetch-depth: 0
+      - name: Download and inspect accepted A3
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _a3 cp4_inspect/A3.zip cp4_inspect/a3_snapshot
+          mkdir -p _a3 cp4_inspect/a3_snapshot
+          curl -L --fail --retry 3 -o cp4_inspect/A3.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp3-20260925-r1/A3.zip
+          echo 'ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e  cp4_inspect/A3.zip' | sha256sum -c -
+          unzip -q cp4_inspect/A3.zip -d _a3
+          find _a3 -type f -printf '%P\n' | sort > cp4_inspect/a3_snapshot/FILES.txt
+          root=_a3/RC_K0/child_designs/fortification
+          mkdir -p cp4_inspect/a3_snapshot/fortification
+          cp -a "$root/README.md" cp4_inspect/a3_snapshot/fortification/README.md
+          cp -a "$root/data" cp4_inspect/a3_snapshot/fortification/data
+          cp -a "$root/docs" cp4_inspect/a3_snapshot/fortification/docs
+          cp -a "$root/r0a_cp3/README.md" cp4_inspect/a3_snapshot/fortification/CP3_README.md
+          cp -a "$root/r0a_cp3/docs" cp4_inspect/a3_snapshot/fortification/cp3_docs
+          cp -a "$root/r0a_cp3/reports/qualification.json" cp4_inspect/a3_snapshot/fortification/qualification.json
+          cp -a "$root/r0a_cp3/reports/cp3_validation.json" cp4_inspect/a3_snapshot/fortification/cp3_validation.json
+          cp -a "$root/r0a_cp3/reports/negative_gates.json" cp4_inspect/a3_snapshot/fortification/negative_gates.json
+          cp -a "$root/r0a_cp3/reports/clean_replay.json" cp4_inspect/a3_snapshot/fortification/clean_replay.json
+          cp -a _a3/RC_K0/README.md cp4_inspect/a3_snapshot/RC_K0_README.md
+          {
+            echo '=== ROADMAP/DESIGN PATHS ==='
+            find _a3 -type f -printf '%P\n' | sort | grep -Ei 'fortification|roadmap|design|status|closeout|r0a' | head -2000 || true
+            echo '=== CP4 REFERENCES ==='
+            grep -RInE 'R0A.?CP4|CP4|R0A closeout|R0A_CLOSEOUT|EXACT RUNTIME REPLAY|FULL/PATCH/SOURCE' _a3 --include='*.md' --include='*.csv' --include='*.json' --include='*.txt' | head -1000 || true
+          } > cp4_inspect/a3_snapshot/RELEVANT.txt
+          rm cp4_inspect/A3.zip
+      - name: Commit compact A3 inspection
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp4_inspect/a3_snapshot
+          git commit -m 'Record accepted A3 inputs for CP4 closeout'
+          git push origin HEAD:automation/rcf-r0a-cp4-20260925
