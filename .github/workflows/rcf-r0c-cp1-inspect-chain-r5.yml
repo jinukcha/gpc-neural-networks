@@ -1,0 +1,78 @@
+name: RCF R0C CP1 inspect B4 chain R5
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-inspect-chain-r5.yml]
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Reconstruct accepted B4 tree
+        shell: bash
+        env:
+          B1S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-89e0-8206-a35a-5c603bdbc28b/raw?se=2026-09-25T20%3A12%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=17973ee0-8ed7-5b3e-b4d0-2995158cadb4&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A35%3A44Z&ske=2026-09-26T19%3A35%3A44Z&sks=b&skv=2026-02-06&sig=tpgYkseDRK%2B%2BSteSEvYN8ziVzvHeJ/MiQbcu6fVmU08%3D"
+          B2S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-feac-8209-8da6-fe895e52b459/raw?se=2026-09-25T20%3A12%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=2601578a-87d8-59ac-be7c-b55d7117ec35&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A46%3A11Z&ske=2026-09-26T19%3A46%3A11Z&sks=b&skv=2026-02-06&sig=rcS3n/txfI80ImWXILNEnsdGk2lsTLE10i9b8pHvjpk%3D"
+          B3S_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-2268-8206-b117-8a39d72aa530/raw?se=2026-09-25T20%3A12%3A47Z&sp=r&sv=2026-02-06&sr=b&scid=2484cc92-0634-53ed-8b13-d367d0be5de1&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A41%3A11Z&ske=2026-09-26T19%3A41%3A11Z&sks=b&skv=2026-02-06&sig=7ASz/SgECRkmLAi3tLuZEKkNaKS649N6KHfJlcW6CjA%3D"
+          B4S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-5858-8209-a872-f9ef4c930635/raw?se=2026-09-25T20%3A12%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=0299c774-42ce-5f53-8f99-d98e93564d88&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T18%3A40%3A15Z&ske=2026-09-26T18%3A40%3A15Z&sks=b&skv=2026-02-06&sig=ReajBW/GYJa/DD4QGSG%2B6EOoSxUbPOJcApQ1QZpK%2BOg%3D"
+        run: |
+          set -euo pipefail
+          rm -rf cp1_chain_inspect_r5 _chain_inputs_r5
+          mkdir -p cp1_chain_inspect_r5 _chain_inputs_r5
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          curl -LsSf --retry 3 -o _chain_inputs_r5/A4.zip "$base/A4.zip"
+          curl -LsSf --retry 3 -o _chain_inputs_r5/B1S.zip "$B1S_URL"
+          curl -LsSf --retry 3 -o _chain_inputs_r5/B2S.zip "$B2S_URL"
+          curl -LsSf --retry 3 -o _chain_inputs_r5/B3S.zip "$B3S_URL"
+          curl -LsSf --retry 3 -o _chain_inputs_r5/B4S.zip "$B4S_URL"
+          echo '8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751  _chain_inputs_r5/A4.zip' | sha256sum -c -
+          echo '17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b  _chain_inputs_r5/B1S.zip' | sha256sum -c -
+          echo '4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d  _chain_inputs_r5/B2S.zip' | sha256sum -c -
+          echo 'ee3c3d7cb85b374830f530f2c8e2410f8b23f5a94fa9746e418b99b4de8a8c58  _chain_inputs_r5/B3S.zip' | sha256sum -c -
+          echo 'a2f241fc0b3cb8fd391843ef04458b482b12e8e42da9ea63d00c3379cb2bb1ac  _chain_inputs_r5/B4S.zip' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,shutil,stat,zipfile
+          src=Path('_chain_inputs_r5'); out=Path('cp1_chain_inspect_r5'); tree=out/'B4_tree'
+          with zipfile.ZipFile(src/'A4.zip') as z:z.extractall(tree)
+          stages=[]
+          for name in ['B1S.zip','B2S.zip','B3S.zip','B4S.zip']:
+            with zipfile.ZipFile(src/name) as z:
+              names=z.namelist(); deleted=[x for x in z.read('D.txt').decode().splitlines() if x.strip()] if 'D.txt' in names else []
+              payload=[i for i in z.infolist() if not i.is_dir() and i.filename not in {'D.txt','SOURCE_DELTA.json'}]
+              for i in payload:
+                p=tree/i.filename;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(z.read(i));m=(i.external_attr>>16)&0xffff
+                if m:os.chmod(p,stat.S_IMODE(m))
+              for rel in deleted:
+                p=tree/rel
+                if p.is_file() or p.is_symlink():p.unlink()
+                elif p.is_dir():shutil.rmtree(p)
+            stages.append({'name':name,'archive_entries':len(names),'payload_entries':len(payload),'deleted':deleted})
+          actual={p.relative_to(tree).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in tree.rglob('*') if p.is_file() and p.name!='FILES.sha256'}
+          expected={}
+          for line in (tree/'FILES.sha256').read_text().splitlines():
+            if line.strip():d,p=line.split('  ',1);expected[p]=d
+          report={'stages':stages,'files_including_registry':sum(1 for p in tree.rglob('*') if p.is_file()),'registry_entries':len(expected),'missing':sorted(set(expected)-set(actual)),'extra':sorted(set(actual)-set(expected)),'mismatched':sorted(k for k in set(expected)&set(actual) if expected[k]!=actual[k])}
+          report['pass']=not report['missing'] and not report['extra'] and not report['mismatched'] and report['files_including_registry']==1301
+          h=hashlib.sha256()
+          for rel,d in sorted(actual.items()):h.update(rel.encode()+b'\0'+bytes.fromhex(d))
+          report['closed_world_digest']='sha256:'+h.hexdigest()
+          (out/'report.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          if not report['pass']:raise SystemExit(json.dumps(report,indent=2))
+          PY
+      - name: Commit report
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp1_chain_inspect_r5/B4_tree
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp1_chain_inspect_r5
+          git commit -m 'Confirm accepted B4 tree for R0C CP1'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
