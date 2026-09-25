@@ -1,0 +1,131 @@
+name: RCF R0A CP2 split exact delivery
+
+on:
+  push:
+    branches:
+      - automation/rcf-cp0-wheelhouse-20260925
+      - automation/rcf-cp0-delivery-20260925
+    paths:
+      - .github/workflows/rcf-r0a-cp2-transfer-split.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  split-transfer:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download exact release assets
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp2-20260925-r4
+        run: |
+          set -euo pipefail
+          rm -rf delivery groups
+          mkdir -p delivery groups/{final-full,final-patch,pre-full,pre-patch}
+          gh release download "$TAG" \
+            --repo jinukcha/gpc-neural-networks \
+            --pattern 'A2*' \
+            --pattern 'cp2-resume-build.log' \
+            --pattern 'CP2_RESUME_EXIT_CODE.txt' \
+            --dir delivery
+          cd delivery
+          sha256sum -c A2.sha256
+          test "$(cat CP2_RESUME_EXIT_CODE.txt)" = "0"
+
+      - name: Reopen and verify all six exact package ZIPs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, stat, zipfile
+          root = Path('delivery')
+          expected = {
+              'A2.zip': ('2f9133b8d566ec7fe8aabecf377f632c797eb56c94fb3cd8ae7bf085e0c015cf', 257479717, 485),
+              'A2P.zip': ('73eec431ead5ec7bc62638ce19b53fee7c25359a575cf007ff8093d5b232df22', 252640352, 331),
+              'A2S.zip': ('7e7445828bb3c319c6635fd5b398f06a850a9e64e3639a1d6094eef61ed03f51', 364798, 272),
+              'A2_pre.zip': ('7219c38605c214b4f1fed58045661473bd54c43d82f8caad13b9ab58d4752596', 257424851, 445),
+              'A2_preP.zip': ('07fd654757042b65933169e17c34b498a8c207f81cc28758f4d65d2f0029c3b3', 252585060, 291),
+              'A2_preS.zip': ('723cf4ab79d27f5f65f3d673249da7b96ea2a08692b22fce23b3e83d8081561a', 309932, 232),
+          }
+          report = {'schema':'royal-capital.fortification.cp2-split-transfer/1','status':'PASS','archives':{}}
+          for name, (digest, size, entries) in expected.items():
+              path = root/name
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              if actual != digest: raise SystemExit(f'{name}: SHA mismatch')
+              if path.stat().st_size != size: raise SystemExit(f'{name}: size mismatch')
+              with zipfile.ZipFile(path) as zf:
+                  names = zf.namelist()
+                  if len(names) != entries: raise SystemExit(f'{name}: entry mismatch')
+                  if len(names) != len(set(names)): raise SystemExit(f'{name}: duplicate entries')
+                  for info in zf.infolist():
+                      normalized = info.filename.replace('\\','/')
+                      if normalized.startswith('/') or '..' in Path(normalized).parts: raise SystemExit(f'{name}: unsafe path')
+                      if ((info.external_attr >> 16) & 0o170000) == stat.S_IFLNK: raise SystemExit(f'{name}: symlink')
+                  bad = zf.testzip()
+                  if bad is not None: raise SystemExit(f'{name}: CRC failure {bad}')
+              report['archives'][name]={'sha256':digest,'bytes':size,'entries':entries,'crc':'PASS'}
+          package=json.loads((root/'A2.json').read_text())
+          if package['status']!='PASS' or package['stage_completion']!='R0A_CP2_COMPLETE': raise SystemExit('CP2 completion receipt invalid')
+          if package['packages']['baseline_plus_patch_equals_full'] is not True: raise SystemExit('baseline+patch mismatch')
+          Path('delivery/SPLIT_TRANSFER_VERIFY.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Assemble exact transport groups
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp delivery/A2.zip delivery/A2S.zip delivery/A2.md delivery/A2.json delivery/A2.txt delivery/A2.sha256 delivery/SPLIT_TRANSFER_VERIFY.json groups/final-full/
+          cp delivery/A2P.zip delivery/A2.sha256 delivery/SPLIT_TRANSFER_VERIFY.json groups/final-patch/
+          cp delivery/A2_pre.zip delivery/A2_preS.zip delivery/A2_pre_check.json delivery/cp2-resume-build.log delivery/CP2_RESUME_EXIT_CODE.txt delivery/A2.sha256 delivery/SPLIT_TRANSFER_VERIFY.json groups/pre-full/
+          cp delivery/A2_preP.zip delivery/A2_pre_check.json delivery/A2.sha256 delivery/SPLIT_TRANSFER_VERIFY.json groups/pre-patch/
+          cat > groups/final-full/README.txt <<'EOF'
+          Transport wrapper. A2.zip and A2S.zip inside are exact accepted release bytes. See A2.sha256.
+          EOF
+          cat > groups/final-patch/README.txt <<'EOF'
+          Transport wrapper. A2P.zip inside is the exact cumulative patch against RCF_D0_full.zip. See A2.sha256.
+          EOF
+          cat > groups/pre-full/README.txt <<'EOF'
+          Transport wrapper. A2_pre.zip and A2_preS.zip are the exact pre-validation checkpoint bytes preserved before long validation.
+          EOF
+          cat > groups/pre-patch/README.txt <<'EOF'
+          Transport wrapper. A2_preP.zip is the exact pre-validation cumulative patch against RCF_D0_full.zip.
+          EOF
+
+      - name: Upload final full and source wrapper
+        uses: actions/upload-artifact@v4
+        with:
+          name: A2-final-full-source
+          path: groups/final-full
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload final cumulative patch wrapper
+        uses: actions/upload-artifact@v4
+        with:
+          name: A2-final-patch
+          path: groups/final-patch
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload pre-validation full and source wrapper
+        uses: actions/upload-artifact@v4
+        with:
+          name: A2-pre-full-source
+          path: groups/pre-full
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload pre-validation cumulative patch wrapper
+        uses: actions/upload-artifact@v4
+        with:
+          name: A2-pre-patch
+          path: groups/pre-patch
+          compression-level: 0
+          retention-days: 7
