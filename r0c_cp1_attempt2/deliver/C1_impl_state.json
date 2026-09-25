@@ -1,0 +1,151 @@
+{
+  "cache_removed": [],
+  "checkpoint": {
+    "cumulative_patch": {
+      "accepted_ancestor_cumulative_patch": "A4P.zip",
+      "accepted_ancestor_cumulative_patch_sha256": "bd4b32d7c35f413bae9aa9bf781bffdfe820d1a3c8f04d57c078a71d1425e335",
+      "accepted_ancestor_full": "A4.zip",
+      "accepted_ancestor_sha256": "8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751",
+      "accepted_parent_claimed_sha256": "4f66c61f4f2280fbfdd81c0d3056f3f2b705dab4baece5c21a65b93e3bdfc641",
+      "accepted_parent_full": "B4.zip",
+      "baseline_file": "RCF_D0_full.zip",
+      "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+      "chain_deltas": {
+        "B1S.zip": "17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b",
+        "B2S.zip": "4a9c7251ba0bb1e67eb73fb83bb9d96866424960ef6e141bd9ec5b1ccb53662d",
+        "B3S.zip": "ee3c3d7cb85b374830f530f2c8e2410f8b23f5a94fa9746e418b99b4de8a8c58",
+        "B4S.zip": "a2f241fc0b3cb8fd391843ef04458b482b12e8e42da9ea63d00c3379cb2bb1ac"
+      },
+      "current_delta": "C1_implS.zip",
+      "deleted_count": 0,
+      "proof": "RCF_D0+A4P=A4 accepted; A4+B1S+B2S+B3S+B4S=B4 closed-world registry; B4+current delta=current; cumulative W overlay therefore reconstructs current from fixed baseline",
+      "schema": "royal-capital.cumulative-patch/1",
+      "stage": "R0C_CP1_IMPLEMENTATION_PRESERVED"
+    },
+    "full": {
+      "bytes": 258947851,
+      "entries": 1315,
+      "name": "C1_impl.zip",
+      "sha256": "66c220c7fed70e85724953039865a84874c482803138abac655124aa93b81aa5"
+    },
+    "patch": {
+      "bytes": 254111812,
+      "entries": 1163,
+      "name": "C1_implP.zip",
+      "sha256": "28df98ea65afaf39e165d353483263d2c7f371a69a32d81cbcb49be32e448c1f"
+    },
+    "schema": "royal-capital.fortification.package-checkpoint/1",
+    "source": {
+      "bytes": 75542,
+      "entries": 20,
+      "name": "C1_implS.zip",
+      "sha256": "995a7a988c87d04798010c3dae7e3f84ba513d3709120037d6503fd295f765c5"
+    },
+    "source_delta": {
+      "added": 14,
+      "deleted": 0,
+      "modified": 4,
+      "parent": "B4.zip",
+      "paths": {
+        "added": [
+          "RC_K0/child_designs/fortification/r0c_cp1/README.md",
+          "RC_K0/child_designs/fortification/r0c_cp1/docs/CP1_REPORT.md",
+          "RC_K0/child_designs/fortification/r0c_cp1/fixtures/tower_polygonal.fixture.json",
+          "RC_K0/child_designs/fortification/r0c_cp1/fixtures/tower_round.fixture.json",
+          "RC_K0/child_designs/fortification/r0c_cp1/fixtures/tower_square.fixture.json",
+          "RC_K0/child_designs/fortification/r0c_cp1/provenance/CHANGESET.json",
+          "RC_K0/child_designs/fortification/r0c_cp1/reports/history/README.md",
+          "RC_K0/child_designs/fortification/r0c_cp1/reports/history/attempt_01_runtime_path_failure.json",
+          "RC_K0/child_designs/fortification/r0c_cp1/src/rcf_fortification_tower/__init__.py",
+          "RC_K0/child_designs/fortification/r0c_cp1/src/rcf_fortification_tower/model.py",
+          "RC_K0/child_designs/fortification/r0c_cp1/src/rcf_fortification_tower/producer.py",
+          "RC_K0/child_designs/fortification/r0c_cp1/tests/test_tower_families.py",
+          "RC_K0/child_designs/fortification/r0c_cp1/tools/run_qualification.py",
+          "RC_K0/child_designs/fortification/r0c_cp1/tools/validate_cp1.py"
+        ],
+        "deleted": [],
+        "modified": [
+          "FILES.sha256",
+          "RC_K0/child_designs/fortification/README.md",
+          "RC_K0/child_designs/fortification/data/CP_STATUS.csv",
+          "RC_K0/child_designs/fortification/docs/00_STATUS.md"
+        ]
+      },
+      "payload_entries": 18,
+      "raw_wheels_included": false,
+      "schema": "royal-capital.source-delta/1",
+      "stage": "R0C_CP1_IMPLEMENTATION_PRESERVED"
+    },
+    "stage": "R0C_CP1_IMPLEMENTATION_PRESERVED",
+    "status": "PASS",
+    "verification": {
+      "full_reopen": {
+        "bad_crc": null,
+        "different": [],
+        "expected_files": 1315,
+        "extra": [],
+        "missing": [],
+        "observed_files": 1315,
+        "status": "PASS"
+      },
+      "parent_plus_source": {
+        "different": [],
+        "expected_files": 1315,
+        "extra": [],
+        "missing": [],
+        "observed_files": 1315,
+        "status": "PASS"
+      },
+      "patch_current_delta": {
+        "current_delta_files": 18,
+        "current_delta_payload_mismatch": [],
+        "missing_deletions": [],
+        "status": "PASS"
+      },
+      "status": "PASS"
+    }
+  },
+  "functional_qualification": "NOT_RUN",
+  "parent_validation": {
+    "accepted_parent_claimed_zip_sha256": "4f66c61f4f2280fbfdd81c0d3056f3f2b705dab4baece5c21a65b93e3bdfc641",
+    "expected_file_count": 1301,
+    "extra": [],
+    "file_count_match": true,
+    "mismatched": [],
+    "missing": [],
+    "reconstruction_basis": "A4_ACCEPTED_FULL_PLUS_B1S_B2S_B3S_B4S_EXACT_DELTAS",
+    "registry_entries": 1300,
+    "stages": [
+      {
+        "archive": "B1S.zip",
+        "archive_entries": 182,
+        "deleted": [],
+        "payload_entries": 182
+      },
+      {
+        "archive": "B2S.zip",
+        "archive_entries": 153,
+        "deleted": [],
+        "payload_entries": 152
+      },
+      {
+        "archive": "B3S.zip",
+        "archive_entries": 195,
+        "deleted": [],
+        "payload_entries": 193
+      },
+      {
+        "archive": "B4S.zip",
+        "archive_entries": 64,
+        "deleted": [],
+        "payload_entries": 63
+      }
+    ],
+    "status": "PASS",
+    "tree_files_including_registry": 1301
+  },
+  "schema": "royal-capital.fortification.r0c-cp1-prepare/1",
+  "source_preservation": "PASS",
+  "stage_completion": "OPEN",
+  "status": "PASS"
+}
