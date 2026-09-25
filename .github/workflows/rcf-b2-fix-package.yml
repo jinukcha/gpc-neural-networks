@@ -1,0 +1,32 @@
+name: RCF B2 fix candidate packaging
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths: [.github/workflows/rcf-b2-fix-package.yml]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/rcf-r0b-cp2-qualify.yml')
+          s=p.read_text()
+          old="for p in sorted(x for x in root.rglob('*') if x.is_file() and '__pycache__' not in x.parts and p.suffix not in {'.pyc','.pyo'}):"
+          new="for p in sorted(x for x in root.rglob('*') if x.is_file() and '__pycache__' not in x.parts and x.suffix not in {'.pyc','.pyo'}):"
+          if old not in s: raise SystemExit('target text not found')
+          p.write_text(s.replace(old,new))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/rcf-r0b-cp2-qualify.yml
+          git commit -m 'Fix CP2 candidate ZIP hygiene filter'
+          git push origin HEAD:automation/rcf-r0b-cp2-20260925
