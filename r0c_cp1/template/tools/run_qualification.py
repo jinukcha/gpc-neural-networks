@@ -41,10 +41,11 @@ def pretty(value: Any) -> str:
 outputs = cp1_tower / "outputs"
 failures = cp1_tower / "failures"
 reports = cp1_tower / "reports"
-for path in (outputs, failures, reports):
+for path in (outputs, failures):
     if path.exists():
         shutil.rmtree(path)
     path.mkdir(parents=True)
+reports.mkdir(parents=True, exist_ok=True)
 
 producer = TowerFamilyProducer(cp0)
 fixtures: dict[str, dict[str, Any]] = {}
