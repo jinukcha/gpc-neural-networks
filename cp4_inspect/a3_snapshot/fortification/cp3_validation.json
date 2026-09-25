@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "qualification",
+      "pass": true
+    },
+    {
+      "detail": {
+        "covered_triangle_count": 60,
+        "gap_count": 0,
+        "gaps": [],
+        "mesh_triangle_count": 60,
+        "overlap_count": 0,
+        "overlaps": [],
+        "surface_count": 30,
+        "unique_triangle_count": 60
+      },
+      "name": "coverage_triangle_complete",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_surfaces",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_no_gap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_no_overlap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_exclusive",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "surface_source_refs",
+      "pass": true
+    },
+    {
+      "detail": 12,
+      "name": "negative_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_rejected",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_no_publish",
+      "pass": true
+    },
+    {
+      "detail": {
+        "byte_identical": true,
+        "different": [],
+        "files_compared": 36,
+        "schema": "royal-capital.fortification.cp3-clean-replay/1",
+        "status": "PASS"
+      },
+      "name": "clean_replay",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "failure_receipts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "wheels_retained",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_cache",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_parse",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.cp3-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 15
+  }
+}

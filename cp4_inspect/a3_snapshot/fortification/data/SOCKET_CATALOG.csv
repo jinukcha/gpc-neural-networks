@@ -1,0 +1,16 @@
+socket_role,source_component,requirement,consumer,payload
+SPAN_START,wall,required,wall join/tower/gate,full frame + profile
+SPAN_END,wall,required,wall join/tower/gate,full frame + profile
+TOWER_WALL_LEFT,tower,required,wall span,full frame
+TOWER_WALL_RIGHT,tower,required,wall span,full frame
+GATE_ROAD_PORTAL,gate,required,NETWORK road,clear envelope
+GATE_LEAF_HINGE,gate,optional,RUNTIME door,axis + limits
+PORTCULLIS_GUIDE,gate,optional,RUNTIME gate,axis + travel
+DRAWBRIDGE_HINGE,gate,optional,NETWORK/RUNTIME bridge,axis + load envelope
+WALL_WALK_IN,all,required_if_playable,WORLD-FIELD/RUNTIME,nav clearance
+WALL_WALK_OUT,all,required_if_playable,WORLD-FIELD/RUNTIME,nav clearance
+INTERIOR_PROGRAM,tower/gatehouse,optional,WORLD-FIELD,bounds + entry portal
+ROOF,tower/gatehouse,optional,ARCHITECTURE,perimeter + pitch domain
+WARD_PYLON,all,optional,UTILITY,support + service
+DRAINAGE,wall/gate,optional,UTILITY,flow direction
+DECORATION,all,optional,ART,support only
