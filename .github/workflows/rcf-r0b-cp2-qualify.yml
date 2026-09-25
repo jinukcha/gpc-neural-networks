@@ -1,0 +1,151 @@
+name: RCF R0B CP2 join qualification
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths:
+      - .github/workflows/rcf-r0b-cp2-qualify.yml
+      - rcf_b2/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qualify:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Download exact R0A closure as qualification harness
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inputs work/tree deliver
+          curl -L --fail --retry 3 -o inputs/A4.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1/A4.zip
+          echo '8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751  inputs/A4.zip' | sha256sum -c -
+          unzip -q inputs/A4.zip -d work/tree
+          fort=work/tree/RC_K0/child_designs/fortification
+          test -d "$fort/r0a_cp0/runtime/wheelhouse"
+          test "$(find "$fort/r0a_cp0/runtime/wheelhouse" -name '*.whl' | wc -l)" -eq 58
+          rm -rf "$fort/r0b_cp2"
+          cp -a rcf_b2/template "$fort/r0b_cp2"
+      - name: Preserve source checkpoint before CAD qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          root=Path('work/tree/RC_K0/child_designs/fortification/r0b_cp2')
+          out=Path('deliver/B2C_preS.zip')
+          with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
+              for p in sorted(x for x in root.rglob('*') if x.is_file()):
+                  z.write(p,p.relative_to(root).as_posix())
+          with zipfile.ZipFile(out) as z: assert z.testzip() is None
+          status={
+              'schema':'royal-capital.fortification.r0b-cp2-source-checkpoint/1',
+              'status':'PASS','qualification':'NOT_STARTED',
+              'required_parent':'B1.zip','qualification_harness':'A4.zip',
+              'stage_completion':'OPEN_PARENT_B1_INTEGRATION_REQUIRED',
+              'bytes':out.stat().st_size,'entries':len(zipfile.ZipFile(out).namelist()),
+              'sha256':hashlib.sha256(out.read_bytes()).hexdigest(),
+          }
+          Path('deliver/B2C_pre_check.json').write_text(json.dumps(status,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(status,indent=2))
+          PY
+      - name: Fresh exact offline runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv work/runtime
+          work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links work/tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r work/tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime-materialization.log
+          work/runtime/bin/python -m pip check | tee runtime-pip-check.log
+      - name: Run join qualification
+        id: qualify
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python \
+            work/tree/RC_K0/child_designs/fortification/r0b_cp2/tools/run_b2_qualification.py \
+            --tree work/tree --work work/qualification \
+            2>&1 | tee b2-qualification.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > B2_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Package preserved candidate source and evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          root=Path('work/tree/RC_K0/child_designs/fortification/r0b_cp2')
+          out=Path('deliver/B2C.zip')
+          if root.exists():
+              with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
+                  for p in sorted(x for x in root.rglob('*') if x.is_file() and '__pycache__' not in x.parts and p.suffix not in {'.pyc','.pyo'}):
+                      z.write(p,p.relative_to(root).as_posix())
+              with zipfile.ZipFile(out) as z: assert z.testzip() is None
+          files={}
+          for p in sorted(Path('deliver').glob('*')):
+              if p.is_file(): files[p.name]={'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+          status={
+              'schema':'royal-capital.fortification.r0b-cp2-candidate-delivery/1',
+              'functional_exit_code':int(Path('B2_EXIT_CODE.txt').read_text().strip()),
+              'source_preservation':'PASS',
+              'functional_qualification':'PASS' if Path('B2_EXIT_CODE.txt').read_text().strip()=='0' else 'FAIL_PRESERVED',
+              'required_parent':'B1.zip','qualification_harness':'A4.zip',
+              'parent_integration':'NOT_RUN_B1_BYTES_UNAVAILABLE_TO_REMOTE_RUNNER',
+              'stage_completion':'HOLD_PARENT_INTEGRATION',
+              'files':files,
+          }
+          Path('deliver/B2C.json').write_text(json.dumps(status,indent=2,sort_keys=True)+'\n')
+          Path('deliver/B2C.txt').write_text('\n'.join([f"SOURCE_PRESERVATION={status['source_preservation']}",f"FUNCTIONAL_QUALIFICATION={status['functional_qualification']}",f"PARENT_INTEGRATION={status['parent_integration']}",f"STAGE_COMPLETION={status['stage_completion']}"])+'\n')
+          PY
+          for f in deliver/*.zip; do unzip -t "$f" >/dev/null; done
+      - name: Preserve pre-checkpoint and logs in release
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0b-cp2-candidate-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --prerelease \
+              --title 'RCF R0B CP2 candidate qualification' \
+              --notes 'Candidate source and exact-runtime functional qualification. Exact B1 parent integration is a separate required gate and is not claimed by this candidate release.'
+          fi
+          files=(deliver/B2C_preS.zip deliver/B2C_pre_check.json deliver/B2C.zip deliver/B2C.json deliver/B2C.txt b2-qualification.log runtime-materialization.log runtime-pip-check.log B2_EXIT_CODE.txt)
+          existing=(); for f in "${files[@]}"; do [[ -f "$f" ]] && existing+=("$f"); done
+          ((${#existing[@]})) && gh release upload "$TAG" "${existing[@]}" --clobber
+      - name: Upload concise receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0b-cp2-candidate-receipts
+          path: |
+            deliver/B2C.json
+            deliver/B2C.txt
+            deliver/B2C_pre_check.json
+            b2-qualification.log
+            B2_EXIT_CODE.txt
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Enforce functional qualification only
+        shell: bash
+        run: test "$(cat B2_EXIT_CODE.txt)" = '0'
