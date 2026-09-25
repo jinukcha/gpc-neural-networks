@@ -118,8 +118,21 @@ jobs:
           set -euo pipefail
           cat > rcf_cp0_work/run_probe.py <<'PY_PROBE'
           from pathlib import Path
-          import hashlib, importlib.metadata, json, sys
+          import hashlib, importlib.metadata, json, re, sys
           import build123d as b3d
+
+          def normalized_step_sha256(path: Path) -> str:
+              text = path.read_text(encoding='ascii')
+              normalized, count = re.subn(
+                  r"FILE_NAME\(\s*'[^']*'\s*,\s*'[^']*'",
+                  "FILE_NAME('<NORMALIZED_NAME>','1970-01-01T00:00:00'",
+                  text,
+                  count=1,
+              )
+              if count != 1:
+                  raise RuntimeError('STEP FILE_NAME header not found exactly once')
+              normalized = normalized.replace('\r\n', '\n')
+              return hashlib.sha256(normalized.encode('ascii')).hexdigest()
 
           out = Path(sys.argv[1])
           out.mkdir(parents=True, exist_ok=False)
@@ -158,11 +171,15 @@ jobs:
               'volume': round(ex.part.volume, 9),
               'vertex_count': len(vertices),
               'triangle_count': len(triangles),
-              'step_sha256': hashlib.sha256(step.read_bytes()).hexdigest(),
+              'step_normalized_sha256': normalized_step_sha256(step),
               'brep_sha256': hashlib.sha256(brep.read_bytes()).hexdigest(),
           }
+          evidence = {
+              'step_raw_sha256': hashlib.sha256(step.read_bytes()).hexdigest(),
+              'brep_raw_sha256': hashlib.sha256(brep.read_bytes()).hexdigest(),
+          }
           (out / 'canonical.json').write_text(json.dumps(canonical, sort_keys=True, separators=(',', ':')) + '\n', encoding='utf-8')
-          result = {'status': 'PASS' if all(checks.values()) else 'FAIL', 'checks': checks, 'canonical': canonical}
+          result = {'status': 'PASS' if all(checks.values()) else 'FAIL', 'checks': checks, 'canonical': canonical, 'raw_evidence': evidence}
           (out / 'capability-probe.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
           print(json.dumps(result, indent=2, sort_keys=True))
           if result['status'] != 'PASS':
@@ -195,6 +212,7 @@ jobs:
           b = (root / 'B/canonical.json').read_bytes()
           result = {
               'schema': 'royal-capital.fortification.remote-cold-ab/1',
+              'comparison_policy': 'SEMANTIC_CANONICAL_WITH_STEP_FILE_NAME_AND_TIMESTAMP_NORMALIZED',
               'status': 'PASS' if a == b else 'FAIL',
               'byte_identical_canonical': a == b,
               'a_sha256': hashlib.sha256(a).hexdigest(),
