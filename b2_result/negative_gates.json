@@ -1,0 +1,68 @@
+{
+  "all_pass": true,
+  "case_count": 10,
+  "cases": [
+    {
+      "case": "invalid_frame",
+      "expected": "INVALID_FRAME",
+      "observed": "INVALID_FRAME",
+      "pass": true
+    },
+    {
+      "case": "miter_turn_too_large",
+      "expected": "TURN_OUT_OF_DOMAIN",
+      "observed": "TURN_OUT_OF_DOMAIN",
+      "pass": true
+    },
+    {
+      "case": "bevel_turn_too_small",
+      "expected": "TURN_OUT_OF_DOMAIN",
+      "observed": "TURN_OUT_OF_DOMAIN",
+      "pass": true
+    },
+    {
+      "case": "transition_same_profile",
+      "expected": "PROFILE_TRANSITION_REQUIRED",
+      "observed": "PROFILE_TRANSITION_REQUIRED",
+      "pass": true
+    },
+    {
+      "case": "socket_mismatch",
+      "expected": "SOCKET_GEOMETRY_MISMATCH",
+      "observed": "SOCKET_GEOMETRY_MISMATCH",
+      "pass": true
+    },
+    {
+      "case": "component_budget",
+      "expected": "GEOMETRY_BUDGET_EXCEEDED",
+      "observed": "GEOMETRY_BUDGET_EXCEEDED",
+      "pass": true
+    },
+    {
+      "case": "runtime_mismatch",
+      "expected": "RUNTIME_MISMATCH",
+      "observed": "RUNTIME_MISMATCH",
+      "pass": true
+    },
+    {
+      "case": "unknown_family",
+      "expected": "INVALID_REQUEST",
+      "observed": "INVALID_REQUEST",
+      "pass": true
+    },
+    {
+      "case": "accepted_target_preservation",
+      "expected": "unchanged",
+      "observed": true,
+      "pass": true
+    },
+    {
+      "case": "bounded_overlap_exceeded",
+      "expected": "OVERLAP_BUDGET_EXCEEDED",
+      "observed": "OVERLAP_BUDGET_EXCEEDED",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-cp2-negative-gates/1",
+  "status": "PASS"
+}

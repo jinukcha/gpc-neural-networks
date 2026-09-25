@@ -1,0 +1,81 @@
+{
+  "artifacts": {
+    "bounded-overlap.json": {
+      "bytes": 1237,
+      "path": "bounded-overlap.json",
+      "sha256": "sha256:770e50782023e8c1a4c5cbe04ff063fbddfd642fc861fb3a67dcaaf9fe7a8ca2"
+    },
+    "cad-provider-receipt.json": {
+      "bytes": 2869,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:ec4881d7b23d884b552263d565352be6a190411aeb8102462bb424462a5455fb"
+    },
+    "components.json": {
+      "bytes": 15512,
+      "path": "components.json",
+      "sha256": "sha256:faee08cb859829c24e94c8b147d9962fe1ef6d3bb8d800b21633bcf3e437f393"
+    },
+    "join-plan.json": {
+      "bytes": 808,
+      "path": "join-plan.json",
+      "sha256": "sha256:7c6cc2f7607d89e881c9fb66e1219fc8c82286bb33b85d9be01ceb4c41283edd"
+    },
+    "local-frames.json": {
+      "bytes": 946,
+      "path": "local-frames.json",
+      "sha256": "sha256:776ea7c41eeb4408c126773bd824c8581e7ce0d536dd919598c937e55833312b"
+    },
+    "neutral-mesh.json": {
+      "bytes": 11761,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:d7a3f523ae2cba9972bb16d4b8c821c923c3f2c0a86a5583cee629cd41ad47e1"
+    },
+    "semantic-parts.json": {
+      "bytes": 1822,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:dbc64ea2751aa717377e2da2d0859ece268085d64a819870f026c92fd427e26c"
+    },
+    "socket-alignment.json": {
+      "bytes": 729,
+      "path": "socket-alignment.json",
+      "sha256": "sha256:0587bf98014d0b142bb1d55e75a8239535515fb86044ca0d3e03a3363b876fc5"
+    },
+    "sockets.json": {
+      "bytes": 4341,
+      "path": "sockets.json",
+      "sha256": "sha256:018781c3614b7558d0c3397bd7069226a2f83b7cdfed54aed034bbdbf3490b3d"
+    },
+    "stored-copies.json": {
+      "bytes": 8971,
+      "path": "stored-copies.json",
+      "sha256": "sha256:c666cfe1cc4a507e5c0146762a1914be0b2706ebd8116d0c9965432d278c9d5e"
+    }
+  },
+  "bounded_overlap": "PASS",
+  "bounds_m": {
+    "max": [
+      2.787941965,
+      14.4,
+      4.328413786
+    ],
+    "min": [
+      -2.0,
+      -2.0,
+      -4.0
+    ]
+  },
+  "component_count": 10,
+  "failure": null,
+  "join_family": "MITER",
+  "join_id": "fortification/caelmere/pilot/join-miter-12deg",
+  "part_count": 5,
+  "schema": "royal-capital.fortification.join-result/1",
+  "socket_alignment": "PASS",
+  "socket_count": 8,
+  "solid_count": 10,
+  "status": "SUCCEEDED",
+  "triangle_count": 120,
+  "turn_angle_deg": 12.000000007,
+  "vertex_count": 80,
+  "volume_m3": 378.879999991
+}

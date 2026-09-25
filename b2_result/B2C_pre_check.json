@@ -1,0 +1,11 @@
+{
+  "bytes": 16962,
+  "entries": 8,
+  "qualification": "NOT_STARTED",
+  "qualification_harness": "A4.zip",
+  "required_parent": "B1.zip",
+  "schema": "royal-capital.fortification.r0b-cp2-source-checkpoint/1",
+  "sha256": "f0cd20644c9a516d4930ceada63bf8dcb96a761db5dfcd92ed30b26d39da4d7d",
+  "stage_completion": "OPEN_PARENT_B1_INTEGRATION_REQUIRED",
+  "status": "PASS"
+}

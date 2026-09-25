@@ -1,0 +1,24 @@
+{
+  "files": {
+    "B2C.zip": {
+      "bytes": 818727,
+      "sha256": "45f2eff99e4eba8ebde74bbff5f99f52593b559883e33c6bb80e6a0d29eae98a"
+    },
+    "B2C_preS.zip": {
+      "bytes": 16962,
+      "sha256": "f0cd20644c9a516d4930ceada63bf8dcb96a761db5dfcd92ed30b26d39da4d7d"
+    },
+    "B2C_pre_check.json": {
+      "bytes": 371,
+      "sha256": "88db77d653ce4b423dc4650c0c026b276b7d4ba846034c74de09b1bbf4678265"
+    }
+  },
+  "functional_exit_code": 0,
+  "functional_qualification": "PASS",
+  "parent_integration": "NOT_RUN_B1_BYTES_UNAVAILABLE_TO_REMOTE_RUNNER",
+  "qualification_harness": "A4.zip",
+  "required_parent": "B1.zip",
+  "schema": "royal-capital.fortification.r0b-cp2-candidate-delivery/1",
+  "source_preservation": "PASS",
+  "stage_completion": "HOLD_PARENT_INTEGRATION"
+}
