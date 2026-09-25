@@ -1,0 +1,36 @@
+name: RCF CP4 export accepted A3
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp4-20260925]
+    paths: [.github/workflows/rcf-cp4-export-a3.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp4-20260925
+      - name: Download and verify A3
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p export
+          curl -L --fail --retry 3 -o export/A3.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp3-20260925-r1/A3.zip
+          echo 'ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e  export/A3.zip' | sha256sum -c -
+          unzip -t export/A3.zip >/dev/null
+          printf '%s  %s\n' ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e A3.zip > export/A3.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0a-cp4-a3-input
+          path: export
+          compression-level: 0
+          retention-days: 3
+          if-no-files-found: error
