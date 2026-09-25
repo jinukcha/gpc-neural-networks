@@ -36,9 +36,9 @@ jobs:
       - name: Download and verify immutable inputs
         shell: bash
         env:
-          RCK0_URL: "https://sdmntprwestus.oaiusercontent.com/files/00000000-ed38-8230-8301-fa5eaa4cc1ac/raw?se=2026-09-25T06%3A28%3A40Z&sp=r&sv=2026-02-06&sr=b&scid=e415a573-a080-50e8-83de-6be9bf358f11&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T05%3A02%3A43Z&ske=2026-09-26T05%3A02%3A43Z&sks=b&skv=2026-02-06&sig=1RHNYW4IqsuSlagSUHItjKXKNUYRXWZRiCfpFdR%2BSTU%3D"
-          D0P_URL: "https://sdmntprcentralus.oaiusercontent.com/files/00000000-004c-81f5-a46f-5445da44b6fd/raw?se=2026-09-25T06%3A28%3A53Z&sp=r&sv=2026-02-06&sr=b&scid=aa0d8a6a-d38f-5f2b-af89-16bd254b575a&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T05%3A35%3A34Z&ske=2026-09-26T05%3A35%3A34Z&sks=b&skv=2026-02-06&sig=QnjXdVCRJqDeXD0d49stPH7y8vFQG%2BFFOz/zcVTd7f8%3D"
-          A1S_URL: "https://sdmntprcentralus.oaiusercontent.com/files/00000000-f8bc-81f5-b847-1984bb05dfe7/raw?se=2026-09-25T06%3A29%3A02Z&sp=r&sv=2026-02-06&sr=b&scid=7a28f962-5791-55bc-801b-87f980ca9449&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T22%3A05%3A37Z&ske=2026-09-25T22%3A05%3A37Z&sks=b&skv=2026-02-06&sig=cNOwArr8IsKNCOR5/%2B/PHKI4PGf%2BS8YPl%2BGeqlMf/T8%3D"
+          RCK0_URL: "https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-bd28-8211-82d3-935be5058325/raw?se=2026-09-25T06%3A33%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=83756ea1-c961-5b25-b159-2e2052a85dd9&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T23%3A45%3A46Z&ske=2026-09-25T23%3A45%3A46Z&sks=b&skv=2026-02-06&sig=yU8ul7wuq9t2pUdPuqepvlYf/O6UG3nceR3Bt80F5Hc%3D"
+          D0P_URL: "https://sdmntprwestus.oaiusercontent.com/files/00000000-2d14-8230-9aa5-072a9a526af4/raw?se=2026-09-25T06%3A33%3A39Z&sp=r&sv=2026-02-06&sr=b&scid=7f7ee76f-49c1-500c-9604-29d37a01a352&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T05%3A25%3A24Z&ske=2026-09-26T05%3A25%3A24Z&sks=b&skv=2026-02-06&sig=FWoe/g5En7T%2Bhz60GvrGLkgKcfY%2Bis6qsVvtsa%2BmXyM%3D"
+          A1S_URL: "https://sdmntprcentralus.oaiusercontent.com/files/00000000-0860-81f5-bf91-807f25f18f77/raw?se=2026-09-25T06%3A33%3A50Z&sp=r&sv=2026-02-06&sr=b&scid=360cce72-267b-553f-b799-65fce4364629&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T02%3A20%3A35Z&ske=2026-09-26T02%3A20%3A35Z&sks=b&skv=2026-02-06&sig=VWebH/7EqoRX6so9UdYUMnWBuTZsZxt8mgi4s3ePX7U%3D"
         run: |
           set -euo pipefail
           mkdir -p inputs/files
@@ -49,7 +49,7 @@ jobs:
           echo "15369b830e049937e0d980100197c617285687316bea96339b1ed5dc4cb7c47b  inputs/files/RCF_D0_patch.zip" | sha256sum -c -
           echo "56d573c5c82bd421a423f82d251e42553298eccb9bae35a7c95278c209ce8b9d  inputs/files/A1S.zip" | sha256sum -c -
 
-      - name: Restore exact A1 stored copies, clean generated cache, checkpoint, qualify and package CP2
+      - name: Restore A1 evidence, checkpoint, qualify, clean generated caches and package CP2
         id: build
         shell: bash
         run: |
@@ -70,11 +70,11 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: rcf-r0a-cp2-20260925-r3
+          TAG: rcf-r0a-cp2-20260925-r4
         run: |
           set -euo pipefail
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" --target "$GITHUB_SHA" --title "RCF R0A CP2 resume R3" --notes "Resume after preserving both A1 source-diet stored-copy omission and generated cache-residue failures. Regenerate only deterministic CP1 stored copies, clean generated caches, require unchanged A1 registry, then implement and qualify CP2."
+            gh release create "$TAG" --target "$GITHUB_SHA" --title "RCF R0A CP2 resume R4" --notes "Resume after preserving three bounded failures. Regenerate only deterministic CP1 stored copies, remove generated Python caches before immutable registry checks and after CP2 validation, then verify cumulative packaging."
           fi
           files=(deliver/A2_pre.zip deliver/A2_preP.zip deliver/A2_preS.zip deliver/A2_pre_check.json cp2-resume-build.log CP2_RESUME_EXIT_CODE.txt)
           existing=()
@@ -86,7 +86,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: rcf-r0a-cp2-20260925-r3
+          TAG: rcf-r0a-cp2-20260925-r4
         run: |
           set -euo pipefail
           gh release upload "$TAG" \
@@ -98,7 +98,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: rcf-r0a-cp2-resume-r3-receipts
+          name: rcf-r0a-cp2-resume-r4-receipts
           path: |
             CP2_RESUME_EXIT_CODE.txt
             cp2-resume-build.log
