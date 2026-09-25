@@ -1,0 +1,63 @@
+name: RCF CP3 compact A2 source report
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0a-cp3-20260925
+    paths:
+      - .github/workflows/rcf-cp3-report.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp3-20260925
+          fetch-depth: 0
+      - name: Download and inspect A2 source bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _a2s cp3_inspect A2S.zip
+          curl -L --fail --retry 3 -o A2S.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp2-20260925-r4/A2S.zip
+          echo '7e7445828bb3c319c6635fd5b398f06a850a9e64e3639a1d6094eef61ed03f51  A2S.zip' | sha256sum -c -
+          mkdir -p _a2s cp3_inspect
+          unzip -q A2S.zip -d _a2s
+          find _a2s -type f -printf '%P\n' | sort > cp3_inspect/path-list.txt
+          {
+            echo '=== MATCHING PATHS ==='
+            grep -Ei 'fortification|r0a.*cp2|cp2|straight_wall|wall_span|cad_provider|roadmap|design|status|test|valid|package|A2' cp3_inspect/path-list.txt || true
+            echo
+            echo '=== PYTHON DEFINITIONS / SYMBOLS ==='
+            grep -RInE '^(class|def) |CadProvider|Straight|WallSpan|semantic|socket|tessell|coverage|partial|stale|budget|atomic|publish' _a2s --include='*.py' | head -2000 || true
+          } > cp3_inspect/grep.txt
+          : > cp3_inspect/relevant.txt
+          while IFS= read -r f; do
+            case "$f" in
+              *.py|*.json|*.md|*.csv|*.txt)
+                if printf '%s\n' "$f" | grep -Eiq 'fortification|r0a.*cp2|cp2|straight_wall|wall_span|cad_provider|roadmap|design|status|test.*fort|valid.*fort|package.*fort|A2'; then
+                  printf '\n----- BEGIN %s -----\n' "$f" >> cp3_inspect/relevant.txt
+                  sed -n '1,1200p' "_a2s/$f" >> cp3_inspect/relevant.txt
+                  printf '\n----- END %s -----\n' "$f" >> cp3_inspect/relevant.txt
+                fi
+                ;;
+            esac
+          done < cp3_inspect/path-list.txt
+          sha256sum A2S.zip > cp3_inspect/A2S.sha256
+          wc -c cp3_inspect/*
+      - name: Commit compact report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp3_inspect
+          git commit -m 'Record compact A2 source inspection for CP3'
+          git push origin HEAD:automation/rcf-r0a-cp3-20260925
