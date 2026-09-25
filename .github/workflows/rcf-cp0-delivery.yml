@@ -1,0 +1,248 @@
+name: RCF CP0 exact 58-wheel delivery
+
+on:
+  push:
+    branches:
+      - automation/rcf-cp0-delivery-20260925
+    paths:
+      - .github/workflows/rcf-cp0-delivery.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-delivery:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out transport branch
+        uses: actions/checkout@v4
+
+      - name: Set up CPython 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Resolve exact 58-wheel closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf rcf_cp0_delivery rcf_cp0_work
+          mkdir -p rcf_cp0_delivery/{wheelhouse,logs,provenance,probe} rcf_cp0_work
+          python -m pip install --upgrade pip build wheel packaging
+
+          git clone --filter=blob:none https://github.com/gumyr/build123d.git rcf_cp0_work/build123d-src
+          git -C rcf_cp0_work/build123d-src checkout --detach e22d34dae17111e5b9fdb361317e055d0daae466
+          test "$(git -C rcf_cp0_work/build123d-src rev-parse HEAD)" = "e22d34dae17111e5b9fdb361317e055d0daae466"
+          git -C rcf_cp0_work/build123d-src status --porcelain > rcf_cp0_delivery/provenance/build123d-git-status.txt
+          git -C rcf_cp0_work/build123d-src rev-parse HEAD > rcf_cp0_delivery/provenance/build123d-commit.txt
+          export SOURCE_DATE_EPOCH="$(git -C rcf_cp0_work/build123d-src show -s --format=%ct HEAD)"
+
+          python -m pip wheel \
+            --only-binary=:all: \
+            --constraint rcf_cp0/constraints.txt \
+            --wheel-dir rcf_cp0_delivery/wheelhouse \
+            ./rcf_cp0_work/build123d-src \
+            2>&1 | tee rcf_cp0_delivery/logs/pip-wheel.log
+
+          python - <<'PY_WHEEL'
+          from pathlib import Path
+          from email.parser import Parser
+          import hashlib, json, platform, zipfile
+
+          root = Path('rcf_cp0_delivery')
+          wh = root / 'wheelhouse'
+          expected = sorted(x.strip() for x in Path('rcf_cp0/expected-filenames.txt').read_text().splitlines() if x.strip())
+          observed = sorted(p.name for p in wh.glob('*.whl'))
+          if observed != expected:
+              missing = sorted(set(expected) - set(observed))
+              extra = sorted(set(observed) - set(expected))
+              raise SystemExit(f'exact filename set mismatch missing={missing} extra={extra}')
+
+          rows = []
+          by_key = {}
+          for p in sorted(wh.glob('*.whl')):
+              with zipfile.ZipFile(p) as z:
+                  metadata_names = [n for n in z.namelist() if n.endswith('.dist-info/METADATA')]
+                  if len(metadata_names) != 1:
+                      raise SystemExit(f'unexpected METADATA count for {p.name}: {metadata_names}')
+                  msg = Parser().parsestr(z.read(metadata_names[0]).decode('utf-8'))
+              name = msg['Name']
+              version = msg['Version']
+              digest = hashlib.sha256(p.read_bytes()).hexdigest()
+              key = name.lower().replace('_', '-').replace('.', '-')
+              if key in by_key:
+                  raise SystemExit(f'duplicate distribution: {name}')
+              row = {'name': name, 'version': version, 'file': p.name, 'sha256': digest, 'bytes': p.stat().st_size}
+              by_key[key] = row
+              rows.append(row)
+
+          if len(rows) != 58:
+              raise SystemExit(f'wheel_count={len(rows)} expected=58')
+          ocp = by_key.get('cadquery-ocp-novtk')
+          if not ocp or ocp['version'] != '8.0.1.0.0':
+              raise SystemExit(f'bad OCP row: {ocp}')
+          if ocp['sha256'] != '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f':
+              raise SystemExit(f"bad OCP hash: {ocp['sha256']}")
+          build123d = by_key.get('build123d')
+          if not build123d or build123d['version'] != '0.13.1.dev12+ge22d34dae':
+              raise SystemExit(f'bad build123d row: {build123d}')
+
+          rows.sort(key=lambda r: r['name'].lower())
+          (root / 'requirements-lock.txt').write_text(
+              '\n'.join(f"{r['name']}=={r['version']} --hash=sha256:{r['sha256']}" for r in rows) + '\n',
+              encoding='utf-8',
+          )
+          (root / 'SHA256SUMS.txt').write_text(
+              '\n'.join(f"{r['sha256']}  wheelhouse/{r['file']}" for r in rows) + '\n',
+              encoding='utf-8',
+          )
+          manifest = {
+              'schema': 'royal-capital.fortification.cp0-wheelhouse/1',
+              'python_requested': '3.13',
+              'python_observed': platform.python_version(),
+              'platform': 'linux-x86_64-manylinux_2_28',
+              'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466',
+              'ocp_expected_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f',
+              'wheel_count': len(rows),
+              'wheels': rows,
+          }
+          (root / 'WHEELHOUSE.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps({'wheel_count': len(rows), 'build123d': build123d, 'ocp': ocp}, indent=2))
+          PY_WHEEL
+
+      - name: Independent cold A/B self-admission
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > rcf_cp0_work/run_probe.py <<'PY_PROBE'
+          from pathlib import Path
+          import hashlib, importlib.metadata, json, sys
+          import build123d as b3d
+
+          out = Path(sys.argv[1])
+          out.mkdir(parents=True, exist_ok=False)
+          checks = {'import': True}
+          with b3d.BuildPart() as ex:
+              with b3d.BuildSketch():
+                  b3d.Rectangle(10, 6)
+              b3d.extrude(amount=4)
+          checks['extrude'] = ex.part.volume > 0
+          path = b3d.Line((0, 0, 0), (0, 0, 12))
+          profile = b3d.Circle(1).face()
+          checks['sweep'] = b3d.sweep(profile, path).volume > 0
+          with b3d.BuildPart() as lofted:
+              with b3d.BuildSketch(b3d.Plane.XY):
+                  b3d.Circle(2)
+              with b3d.BuildSketch(b3d.Plane.XY.offset(8)):
+                  b3d.Circle(4)
+              b3d.loft()
+          checks['loft'] = lofted.part.volume > 0
+          box = b3d.Box(8, 8, 8)
+          cutter = b3d.Cylinder(2, 12).translate((4, 4, -2))
+          checks['boolean_union'] = (box + cutter).volume > box.volume
+          cut = box - cutter
+          checks['boolean_cut'] = 0 < cut.volume < box.volume
+          vertices, triangles = ex.part.tessellate(0.1)
+          checks['tessellate'] = bool(vertices) and bool(triangles)
+          step = out / 'probe.step'
+          brep = out / 'probe.brep'
+          b3d.export_step(ex.part, step)
+          b3d.export_brep(ex.part, brep)
+          checks['step_export_reopen'] = abs(b3d.import_step(step).volume - ex.part.volume) < 1e-7
+          checks['brep_export_reopen'] = abs(b3d.import_brep(brep).volume - ex.part.volume) < 1e-7
+          canonical = {
+              'build123d_version': importlib.metadata.version('build123d'),
+              'ocp_version': importlib.metadata.version('cadquery-ocp-novtk'),
+              'volume': round(ex.part.volume, 9),
+              'vertex_count': len(vertices),
+              'triangle_count': len(triangles),
+              'step_sha256': hashlib.sha256(step.read_bytes()).hexdigest(),
+              'brep_sha256': hashlib.sha256(brep.read_bytes()).hexdigest(),
+          }
+          (out / 'canonical.json').write_text(json.dumps(canonical, sort_keys=True, separators=(',', ':')) + '\n', encoding='utf-8')
+          result = {'status': 'PASS' if all(checks.values()) else 'FAIL', 'checks': checks, 'canonical': canonical}
+          (out / 'capability-probe.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(result, indent=2, sort_keys=True))
+          if result['status'] != 'PASS':
+              raise SystemExit(1)
+          PY_PROBE
+
+          for label in A B; do
+            python -m venv "rcf_cp0_work/runtime_${label}"
+            "rcf_cp0_work/runtime_${label}/bin/python" -m pip install \
+              --no-index \
+              --find-links rcf_cp0_delivery/wheelhouse \
+              --require-hashes \
+              -r rcf_cp0_delivery/requirements-lock.txt \
+              2>&1 | tee "rcf_cp0_delivery/logs/offline-install-${label}.log"
+            "rcf_cp0_work/runtime_${label}/bin/python" -m pip check \
+              2>&1 | tee "rcf_cp0_delivery/logs/pip-check-${label}.log"
+            "rcf_cp0_work/runtime_${label}/bin/python" rcf_cp0_work/run_probe.py \
+              "rcf_cp0_delivery/probe/${label}" \
+              2>&1 | tee "rcf_cp0_delivery/logs/capability-${label}.log"
+            "rcf_cp0_work/runtime_${label}/bin/python" -m pip freeze --all \
+              > "rcf_cp0_delivery/provenance/pip-freeze-${label}.txt"
+          done
+
+          python - <<'PY_COMPARE'
+          from pathlib import Path
+          import hashlib, json
+
+          root = Path('rcf_cp0_delivery/probe')
+          a = (root / 'A/canonical.json').read_bytes()
+          b = (root / 'B/canonical.json').read_bytes()
+          result = {
+              'schema': 'royal-capital.fortification.remote-cold-ab/1',
+              'status': 'PASS' if a == b else 'FAIL',
+              'byte_identical_canonical': a == b,
+              'a_sha256': hashlib.sha256(a).hexdigest(),
+              'b_sha256': hashlib.sha256(b).hexdigest(),
+          }
+          Path('rcf_cp0_delivery/COLD_AB.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(result, indent=2))
+          if result['status'] != 'PASS':
+              raise SystemExit(1)
+          PY_COMPARE
+
+      - name: Finalize delivery manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf rcf_cp0_work/runtime_A rcf_cp0_work/runtime_B rcf_cp0_work/build123d-src
+          find rcf_cp0_delivery -type d -name __pycache__ -prune -exec rm -rf {} +
+          find rcf_cp0_delivery -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - <<'PY_DELIVERY'
+          from pathlib import Path
+          import hashlib, json, platform
+
+          root = Path('rcf_cp0_delivery')
+          files = []
+          for path in sorted(p for p in root.rglob('*') if p.is_file() and p.name != 'DELIVERY.json'):
+              files.append({
+                  'path': path.relative_to(root).as_posix(),
+                  'bytes': path.stat().st_size,
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+              })
+          delivery = {
+              'schema': 'royal-capital.fortification.cp0-wheelhouse-delivery/1',
+              'status': 'BUILT_SELF_ADMITTED_COLD_AB_PASS',
+              'python_observed': platform.python_version(),
+              'wheel_count': 58,
+              'files': files,
+          }
+          (root / 'DELIVERY.json').write_text(json.dumps(delivery, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY_DELIVERY
+          du -sh rcf_cp0_delivery
+          test "$(find rcf_cp0_delivery/wheelhouse -type f -name '*.whl' | wc -l)" -eq 58
+
+      - name: Upload exact wheelhouse delivery
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-cp0-cp313-linux-wheelhouse-58
+          path: rcf_cp0_delivery
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
