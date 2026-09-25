@@ -1,0 +1,47 @@
+name: RCF R0C CP1 inspect attempt 2 failure
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-inspect-attempt2.yml]
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: rcf-r0c-cp1-receipts
+          path: _attempt2
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36185209353
+          github-token: ${{ github.token }}
+      - name: Commit qualification logs and attempt receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf r0c_cp1_attempt2
+          mkdir -p r0c_cp1_attempt2
+          find _attempt2 -type f -printf '%P\n' | sort > r0c_cp1_attempt2/FILES.txt
+          while IFS= read -r f; do
+            case "$f" in
+              *.log|*.txt|*.json)
+                mkdir -p "r0c_cp1_attempt2/$(dirname "$f")"
+                cp "_attempt2/$f" "r0c_cp1_attempt2/$f"
+                ;;
+            esac
+          done < r0c_cp1_attempt2/FILES.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add r0c_cp1_attempt2
+          git commit -m 'Preserve R0C CP1 attempt 2 qualification failure evidence'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
