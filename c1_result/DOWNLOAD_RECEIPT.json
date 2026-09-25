@@ -1,0 +1,38 @@
+{
+  "C1.json": {
+    "bytes": 115686,
+    "sha256": "74f65158ab33af99fd52b4713eb3aa5dc1902ebdc0d3c5b43c5d2b831e009d97"
+  },
+  "C1.md": {
+    "bytes": 646,
+    "sha256": "e1a03dfe348dfb9f902a05c3f797d86723f674f859364ae42320c5d19c4e9655"
+  },
+  "C1.sha256": {
+    "bytes": 1320,
+    "sha256": "77d809cac01670c6e756424ce327bc839b8d96f297d1987a981580a6d9f3c6b2"
+  },
+  "C1.txt": {
+    "bytes": 134,
+    "sha256": "28f8570abf5c5b2b0b83bc948f3c4aba340c89b7aa56981235c8f2cdd0e9d473"
+  },
+  "C1_check.json": {
+    "bytes": 14854,
+    "sha256": "929ba99e49c7f5db6eb88d091589c84de91455b85892d1572cc9b148858fb45e"
+  },
+  "C1_delivery.json": {
+    "bytes": 14854,
+    "sha256": "929ba99e49c7f5db6eb88d091589c84de91455b85892d1572cc9b148858fb45e"
+  },
+  "C1_impl_check.json": {
+    "bytes": 4634,
+    "sha256": "5b945a37ca8776a63486d9b099d51c38c5757410fb219877c07318b242c7e62f"
+  },
+  "C1_impl_state.json": {
+    "bytes": 6065,
+    "sha256": "e410b6e615b06b093cf6599f9be4e1144288acc227499406d74a0bbea8d6d6c7"
+  },
+  "C1_pre_check.json": {
+    "bytes": 14580,
+    "sha256": "843cc8e112120c5ba7256155b580e159fb6614ffc6dd95ba04c8470433e62569"
+  }
+}
