@@ -1,0 +1,112 @@
+{
+  "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+  "functional_validation": {
+    "checks": [
+      {
+        "detail": null,
+        "name": "qualification",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "three_join_families",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "negative_gates",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "miter_success",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "bevel_success",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "profile_transition_success",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "status_row",
+        "pass": true
+      },
+      {
+        "detail": [],
+        "name": "machine_parse",
+        "pass": true
+      },
+      {
+        "detail": [],
+        "name": "no_cache",
+        "pass": true
+      },
+      {
+        "detail": null,
+        "name": "godot_not_claimed",
+        "pass": true
+      }
+    ],
+    "schema": "royal-capital.fortification.r0b-cp2-validation/1",
+    "status": "PASS",
+    "summary": {
+      "failed": 0,
+      "passed": 10
+    }
+  },
+  "next": "R0B_CP3_EXPLICIT_APPROVAL_REQUIRED",
+  "packages": {
+    "b1_delta": {
+      "added": 178,
+      "deleted": 0,
+      "modified": 4
+    },
+    "cumulative_patch_delta_match": true,
+    "final_delta": {
+      "added": 574,
+      "deleted": 0,
+      "modified": 3
+    },
+    "full": {
+      "bytes": 259116076,
+      "entries": 1485,
+      "sha256": "51a37e5a79722ea4af4bd05004e73c6e50bb0049e625c4b7c6a5669a2c01646a"
+    },
+    "patch": {
+      "bytes": 254279703,
+      "entries": 1332,
+      "sha256": "ee15902f4370f3c23af1569b1492be23797db93f5e9c519ed2c833951b166747"
+    },
+    "source": {
+      "bytes": 921454,
+      "entries": 577,
+      "sha256": "bf9471397685b15e97eb94eba40fb61aae7d758fc5ca93f153f8cff2d24ed56c"
+    },
+    "source_equality": {
+      "different": [],
+      "equal": true,
+      "extra": [],
+      "files_a": 1485,
+      "files_b": 1485,
+      "missing": []
+    }
+  },
+  "parent_b1_reconstructed_from": {
+    "a4_sha256": "8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751",
+    "b1s_sha256": "17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b",
+    "delta": {
+      "added": 178,
+      "deleted": 0,
+      "modified": 4
+    }
+  },
+  "schema": "royal-capital.fortification.r0b-cp2-package/1",
+  "stage_completion": "R0B_CP2_COMPLETE",
+  "status": "PASS"
+}

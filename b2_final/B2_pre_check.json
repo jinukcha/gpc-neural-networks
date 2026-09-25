@@ -1,0 +1,55 @@
+{
+  "a4_plus_b1s": {
+    "added": 178,
+    "deleted": 0,
+    "modified": 4
+  },
+  "b1_registry": {
+    "extra": [],
+    "listed": 910,
+    "mismatch": [],
+    "missing": [],
+    "present": true
+  },
+  "functional_qualification": "NOT_RUN",
+  "packages": {
+    "b1_delta": {
+      "added": 178,
+      "deleted": 0,
+      "modified": 4
+    },
+    "cumulative_patch_delta_match": true,
+    "final_delta": {
+      "added": 9,
+      "deleted": 0,
+      "modified": 3
+    },
+    "full": {
+      "bytes": 258247197,
+      "entries": 920,
+      "sha256": "9b13c946f15a0bfbc0257cf7ed3835aeb05ce45ccd5500cb91ad5681d17aef70"
+    },
+    "patch": {
+      "bytes": 253408566,
+      "entries": 767,
+      "sha256": "de0d8e48fc53e92a3b464376305678daf2bf98aa4a60779a7850ec53562b1e7c"
+    },
+    "source": {
+      "bytes": 52575,
+      "entries": 12,
+      "sha256": "15f570328475873aaac6a1441cc8c2a8adde6a4d4656ce760c41b8b5b614ee83"
+    },
+    "source_equality": {
+      "different": [],
+      "equal": true,
+      "extra": [],
+      "files_a": 920,
+      "files_b": 920,
+      "missing": []
+    }
+  },
+  "schema": "royal-capital.fortification.r0b-cp2-pre-check/1",
+  "source_preservation": "PASS",
+  "stage_completion": "OPEN",
+  "status": "PASS"
+}
