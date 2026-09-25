@@ -1,0 +1,91 @@
+name: RCF R0C CP1 repair attempt 4
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-fix-attempt4.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Preserve attempt 4 and import the declared socket order
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          producer = Path('r0c_cp1/template/src/rcf_fortification_tower/producer.py')
+          text = producer.read_text(encoding='utf-8')
+          old = '    SOCKETS_SCHEMA,\n    TESSELLATION_SCHEMA,'
+          new = '    SOCKETS_SCHEMA,\n    SOCKET_ORDER,\n    TESSELLATION_SCHEMA,'
+          if old not in text:
+              raise SystemExit('expected producer import block not found')
+          if '    SOCKET_ORDER,\n    TESSELLATION_SCHEMA,' in text:
+              raise SystemExit('SOCKET_ORDER already imported')
+          producer.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          history = Path('r0c_cp1/template/reports/history')
+          history.mkdir(parents=True, exist_ok=True)
+          receipt = {
+              'schema': 'royal-capital.fortification.r0c-cp1-failed-attempt/1',
+              'attempt': 4,
+              'status': 'PRESERVED_FAILURE',
+              'source_preservation': 'PASS',
+              'implementation_checkpoint': {
+                  'full': 'C1_impl.zip',
+                  'full_sha256': 'a45f543b618e860aeecd368bc1da80d0286de2cc484941f9d77988eacd83b921',
+                  'patch': 'C1_implP.zip',
+                  'patch_sha256': '94fd0fb0960705e1437364fdba56d4b5d2057222da7a798362518938c9740d5b',
+                  'source': 'C1_implS.zip',
+                  'source_sha256': 'f6dba9fec72bf7b38b116aa0a401257db1a36f42361c19f8fa361a7c03156c06',
+                  'full_entries': 1316,
+              },
+              'runtime_materialization': 'PASS',
+              'pip_check': 'PASS',
+              'qualification': 'FAILED_BEFORE_POSITIVE_ROUND_PUBLICATION',
+              'failure_class': 'MISSING_DECLARED_SOCKET_ORDER_IMPORT',
+              'failure_detail': "TowerFamilyProducer created the sockets document with SOCKET_ORDER but producer.py did not import SOCKET_ORDER from model.py, causing NameError and fail-closed publication.",
+              'typed_failure': {
+                  'code': 'PUBLISH_ABORTED',
+                  'message': "NameError: name 'SOCKET_ORDER' is not defined",
+                  'partial_output_published': False,
+                  'preserved_failed_work': True,
+              },
+              'evidence': {
+                  'workflow_run_id': 36186127686,
+                  'job_id': 108239783358,
+                  'qualification_exit_code': 1,
+                  'receipts_artifact_id': 10886261090,
+                  'child_log_propagated': True,
+                  'runtime_passed': True,
+                  'implementation_checkpoint_published_before_validation': True,
+              },
+              'repair': 'Import the already-declared SOCKET_ORDER constant from the project-owned tower model. Do not change fixtures, geometry formulas, accepted runtime, or prior checkpoints.',
+              'geometry_contract_changed': False,
+              'runtime_changed': False,
+              'rollback_performed': False,
+              'unique_work_deleted': False,
+              'next_attempt': 5,
+          }
+          (history / 'attempt_04_missing_socket_order_import.json').write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          readme = history / 'README.md'
+          existing = readme.read_text(encoding='utf-8') if readme.exists() else '# Preserved qualification failures\n'
+          existing += '\nAttempt 4 reached the positive ROUND tower after exact runtime admission, but publication failed closed because producer.py had not imported the model-owned SOCKET_ORDER constant. The implementation checkpoint and failed staging were preserved. Attempt 5 adds only the missing import.\n'
+          readme.write_text(existing, encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add r0c_cp1/template/src/rcf_fortification_tower/producer.py r0c_cp1/template/reports/history
+          git commit -m 'Preserve CP1 attempt 4 and import model-owned socket order'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
