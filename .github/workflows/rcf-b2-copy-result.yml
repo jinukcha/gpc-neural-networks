@@ -1,0 +1,39 @@
+name: RCF B2 copy compact candidate reports
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths: [.github/workflows/rcf-b2-copy-result.yml]
+permissions:
+  contents: write
+jobs:
+  copy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf b2_result _b2 B2C.zip
+          mkdir -p b2_result _b2
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0b-cp2-candidate-20260925-r1
+          curl -L --fail --retry 3 -o B2C.zip $base/B2C.zip
+          unzip -q B2C.zip -d _b2
+          cp _b2/reports/qualification.json b2_result/
+          cp _b2/reports/negative_gates.json b2_result/
+          cp _b2/reports/clean_replay_miter.json b2_result/
+          cp _b2/reports/clean_replay_bevel.json b2_result/
+          cp _b2/reports/clean_replay_profile_transition.json b2_result/
+          cp _b2/outputs/reference/miter/result.json b2_result/miter-result.json
+          cp _b2/outputs/reference/bevel/result.json b2_result/bevel-result.json
+          cp _b2/outputs/reference/profile_transition/result.json b2_result/profile-transition-result.json
+          curl -L --fail --retry 3 -o b2_result/B2C.json $base/B2C.json
+          curl -L --fail --retry 3 -o b2_result/B2C.txt $base/B2C.txt
+          curl -L --fail --retry 3 -o b2_result/B2C_pre_check.json $base/B2C_pre_check.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add b2_result
+          git commit -m 'Record compact R0B CP2 candidate qualification reports'
+          git push origin HEAD:automation/rcf-r0b-cp2-20260925
