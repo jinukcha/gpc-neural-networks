@@ -1,0 +1,1 @@
+Attempt 2: reuse the preserved implementation checkpoint source, execute child qualification through the admitted venv entry path, and keep attempt 1 evidence.
