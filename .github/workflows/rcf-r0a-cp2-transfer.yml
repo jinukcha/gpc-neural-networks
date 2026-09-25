@@ -1,0 +1,126 @@
+name: RCF R0A CP2 exact delivery transfer
+
+on:
+  push:
+    branches:
+      - automation/rcf-cp0-delivery-20260925
+    paths:
+      - .github/workflows/rcf-r0a-cp2-transfer.yml
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  transfer:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download exact release assets
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp2-20260925-r4
+        run: |
+          set -euo pipefail
+          rm -rf delivery
+          mkdir -p delivery
+          gh release download "$TAG" \
+            --repo jinukcha/gpc-neural-networks \
+            --pattern 'A2*' \
+            --pattern 'cp2-resume-build.log' \
+            --pattern 'CP2_RESUME_EXIT_CODE.txt' \
+            --dir delivery
+          test -f delivery/A2.zip
+          test -f delivery/A2P.zip
+          test -f delivery/A2S.zip
+          test -f delivery/A2_pre.zip
+          test -f delivery/A2_preP.zip
+          test -f delivery/A2_preS.zip
+          test -f delivery/A2.md
+          test -f delivery/A2.json
+          test -f delivery/A2.txt
+          test -f delivery/A2.sha256
+          test -f delivery/A2_pre_check.json
+          test -f delivery/cp2-resume-build.log
+          test -f delivery/CP2_RESUME_EXIT_CODE.txt
+          test "$(cat delivery/CP2_RESUME_EXIT_CODE.txt)" = "0"
+
+      - name: Verify exact identities and package integrity
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd delivery
+          sha256sum -c A2.sha256
+          echo '2f9133b8d566ec7fe8aabecf377f632c797eb56c94fb3cd8ae7bf085e0c015cf  A2.zip' | sha256sum -c -
+          echo '73eec431ead5ec7bc62638ce19b53fee7c25359a575cf007ff8093d5b232df22  A2P.zip' | sha256sum -c -
+          echo '7e7445828bb3c319c6635fd5b398f06a850a9e64e3639a1d6094eef61ed03f51  A2S.zip' | sha256sum -c -
+          echo '7219c38605c214b4f1fed58045661473bd54c43d82f8caad13b9ab58d4752596  A2_pre.zip' | sha256sum -c -
+          echo '07fd654757042b65933169e17c34b498a8c207f81cc28758f4d65d2f0029c3b3  A2_preP.zip' | sha256sum -c -
+          echo '723cf4ab79d27f5f65f3d673249da7b96ea2a08692b22fce23b3e83d8081561a  A2_preS.zip' | sha256sum -c -
+          python - <<'PY'
+          from pathlib import Path
+          import json, stat, zipfile
+
+          expected = {
+              'A2.zip': (257479717, 485),
+              'A2P.zip': (252640352, 331),
+              'A2S.zip': (364798, 272),
+              'A2_pre.zip': (257424851, 445),
+              'A2_preP.zip': (252585060, 291),
+              'A2_preS.zip': (309932, 232),
+          }
+          report = {'schema': 'royal-capital.fortification.cp2-transfer-verification/1', 'status': 'PASS', 'archives': {}}
+          for name, (expected_bytes, expected_entries) in expected.items():
+              path = Path(name)
+              if path.stat().st_size != expected_bytes:
+                  raise SystemExit(f'{name}: size mismatch {path.stat().st_size} != {expected_bytes}')
+              with zipfile.ZipFile(path) as zf:
+                  names = zf.namelist()
+                  if len(names) != expected_entries:
+                      raise SystemExit(f'{name}: entries mismatch {len(names)} != {expected_entries}')
+                  if len(names) != len(set(names)):
+                      raise SystemExit(f'{name}: duplicate entries')
+                  for info in zf.infolist():
+                      normalized = info.filename.replace('\\', '/')
+                      parts = Path(normalized).parts
+                      if normalized.startswith('/') or '..' in parts:
+                          raise SystemExit(f'{name}: unsafe path {normalized}')
+                      if ((info.external_attr >> 16) & 0o170000) == stat.S_IFLNK:
+                          raise SystemExit(f'{name}: symlink entry {normalized}')
+                  bad = zf.testzip()
+                  if bad is not None:
+                      raise SystemExit(f'{name}: CRC failure at {bad}')
+              report['archives'][name] = {'bytes': expected_bytes, 'entries': expected_entries, 'crc': 'PASS', 'duplicates': 0, 'unsafe_paths': 0, 'symlinks': 0}
+          package = json.loads(Path('A2.json').read_text(encoding='utf-8'))
+          if package.get('status') != 'PASS' or package.get('stage_completion') != 'R0A_CP2_COMPLETE':
+              raise SystemExit('A2.json does not record accepted CP2 completion')
+          if package.get('packages', {}).get('baseline_plus_patch_equals_full') is not True:
+              raise SystemExit('baseline + patch equality is not PASS')
+          report['cp2_status'] = package['stage_completion']
+          report['source_preservation'] = package['source_preservation']
+          report['functional_qualification'] = package['functional_qualification']
+          report['baseline_plus_patch_equals_full'] = True
+          Path('TRANSFER_VERIFY.json').write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+          cat > DELIVERY_README.txt <<'EOF'
+          RCF R0A CP2 exact delivery wrapper
+
+          The files A2.zip, A2P.zip, A2S.zip, A2_pre.zip, A2_preP.zip and A2_preS.zip are the exact release bytes generated and reopened by the successful CP2 workflow. This outer GitHub Actions artifact is transport-only and does not replace the identities recorded in A2.sha256.
+
+          A2.zip   2f9133b8d566ec7fe8aabecf377f632c797eb56c94fb3cd8ae7bf085e0c015cf
+          A2P.zip  73eec431ead5ec7bc62638ce19b53fee7c25359a575cf007ff8093d5b232df22
+          A2S.zip  7e7445828bb3c319c6635fd5b398f06a850a9e64e3639a1d6094eef61ed03f51
+          EOF
+
+      - name: Upload verified exact delivery wrapper
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0a-cp2-complete-delivery
+          path: delivery
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
