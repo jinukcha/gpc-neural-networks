@@ -143,7 +143,7 @@ jobs:
           exit 0
 
       - name: Reopen final archives
-        if: steps.finalize.outputs.exit_code == '0'
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
         shell: bash
         run: |
           set -euo pipefail
@@ -151,7 +151,7 @@ jobs:
           (cd deliver && sha256sum -c C1.sha256)
 
       - name: Publish final checkpoint
-        if: steps.finalize.outputs.exit_code == '0'
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
