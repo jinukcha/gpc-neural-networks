@@ -1,0 +1,129 @@
+{
+  "build123d_loaded_on_public_import": false,
+  "exposed_symbols": [],
+  "public_symbols": [
+    {
+      "kind": "constant",
+      "name": "ADAPTER_ID",
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "constant",
+      "name": "ADAPTER_REVISION",
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "constant",
+      "name": "PROJECT_FRAME_ID",
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "Build123dProviderAdapter",
+      "type_modules": [],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "CadProviderRequest",
+      "type_modules": [
+        "builtins",
+        "rcf_fortification_cad.contract"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "CadProviderResult",
+      "type_modules": [
+        "builtins",
+        "rcf_fortification_cad.contract",
+        "types",
+        "typing"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "CadStatus",
+      "type_modules": [],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "ContractError",
+      "type_modules": [],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "GeometryBudget",
+      "type_modules": [
+        "builtins"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "OutputRequest",
+      "type_modules": [
+        "builtins"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "PlaneFrame",
+      "type_modules": [
+        "rcf_fortification_cad.contract"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "ProfileExtrusion",
+      "type_modules": [
+        "builtins",
+        "rcf_fortification_cad.contract"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "RuntimeExpectation",
+      "type_modules": [
+        "builtins"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "ToleranceContract",
+      "type_modules": [
+        "builtins"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "Vec3",
+      "type_modules": [
+        "builtins"
+      ],
+      "upstream_type_exposed": false
+    },
+    {
+      "kind": "callable",
+      "name": "request_from_dict",
+      "type_modules": [
+        "builtins",
+        "rcf_fortification_cad.contract",
+        "typing"
+      ],
+      "upstream_type_exposed": false
+    }
+  ],
+  "public_upstream_types_exposed": false,
+  "schema": "royal-capital.fortification.cp1-provider-api-audit/1",
+  "status": "PASS"
+}

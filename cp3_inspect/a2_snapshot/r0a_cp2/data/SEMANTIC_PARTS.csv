@@ -1,0 +1,6 @@
+part_order,part_id,semantic_role,material_slot,coverage_stage
+0,foundation,FOUNDATION,stone_foundation,R0A-CP3
+1,wall_body,WALL_BODY,stone_wall,R0A-CP3
+2,wall_walk,WALL_WALK,stone_walk,R0A-CP3
+3,inner_parapet,INNER_PARAPET,stone_parapet,R0A-CP3
+4,outer_parapet,OUTER_PARAPET,stone_parapet,R0A-CP3

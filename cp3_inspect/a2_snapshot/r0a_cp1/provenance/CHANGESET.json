@@ -1,0 +1,23 @@
+{
+  "accepted_fixture_outputs": [
+    "reports/A",
+    "reports/B"
+  ],
+  "baseline": "RCF_D0_full.zip",
+  "failed_attempts_preserved": 4,
+  "functional_qualification": "PASS",
+  "global_install": false,
+  "next": "R0A-CP2",
+  "resume_checkpoint": "A0C.zip",
+  "runtime_payload_reused": "r0a_cp0/runtime",
+  "schema": "royal-capital.fortification.cp1-changeset/1",
+  "scope": [
+    "neutral adapter contract",
+    "unit/frame/tolerance contract",
+    "typed status normalization",
+    "CADProviderReceipt",
+    "stored-copy export"
+  ],
+  "stage": "R0A-CP1",
+  "stage_completion": "R0A_CP1_COMPLETE"
+}

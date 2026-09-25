@@ -1,0 +1,10 @@
+provider_status,failure_code,policy,publishes_geometry
+SUCCEEDED,,success,true
+REJECTED,INVALID_ADAPTER_REQUEST,fail_closed,false
+REJECTED,UNIT_CONTRACT_MISMATCH,fail_closed,false
+REJECTED,FRAME_CONTRACT_MISMATCH,fail_closed,false
+REJECTED,TOLERANCE_OUT_OF_DOMAIN,fail_closed,false
+REJECTED,GEOMETRY_BUDGET_EXCEEDED,fail_closed,false
+REJECTED,CAD_RUNTIME_VERSION_MISMATCH,fail_closed,false
+FAILED,PROVIDER_EXECUTION_FAILED,fail_closed,false
+REJECTED,STORED_COPY_EXPORT_FAILED,fail_closed,false

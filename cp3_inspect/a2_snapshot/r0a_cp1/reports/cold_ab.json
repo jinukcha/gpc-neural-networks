@@ -1,0 +1,31 @@
+{
+  "comparisons": {
+    "cad-provider-receipt.json": {
+      "a_sha256": "789dd35a631236ee34ccf2cef6acd07947ef248b9aec62e91dfc50a7f4e9aca3",
+      "b_sha256": "789dd35a631236ee34ccf2cef6acd07947ef248b9aec62e91dfc50a7f4e9aca3",
+      "byte_identical": true
+    },
+    "neutral-mesh.json": {
+      "a_sha256": "12ebebfbc2b233b845f7a3a7fdb0e4e602e1b28acb1de8a4e551f0f9c8566b7a",
+      "b_sha256": "12ebebfbc2b233b845f7a3a7fdb0e4e602e1b28acb1de8a4e551f0f9c8566b7a",
+      "byte_identical": true
+    },
+    "result.json": {
+      "a_sha256": "f4599e340c7fb6b76bc2e26f7d90c994841563c73ce723f25627c4c0b1a29c8a",
+      "b_sha256": "f4599e340c7fb6b76bc2e26f7d90c994841563c73ce723f25627c4c0b1a29c8a",
+      "byte_identical": true
+    },
+    "shape.brep": {
+      "a_sha256": "963320b392d5d4ef381eb35a1ff5d77c958185a53090c6a1b564d01e13618a1b",
+      "b_sha256": "963320b392d5d4ef381eb35a1ff5d77c958185a53090c6a1b564d01e13618a1b",
+      "byte_identical": true
+    },
+    "shape.step": {
+      "a_sha256": "8920a6d5a9fca6d12caf9067c7dc081020305de6e0449d0db541fe71fdfec52f",
+      "b_sha256": "8920a6d5a9fca6d12caf9067c7dc081020305de6e0449d0db541fe71fdfec52f",
+      "byte_identical": true
+    }
+  },
+  "schema": "royal-capital.fortification.cp1-cold-ab/1",
+  "status": "PASS"
+}

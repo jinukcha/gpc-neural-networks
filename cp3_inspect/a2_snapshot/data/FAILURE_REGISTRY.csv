@@ -1,0 +1,26 @@
+status,phase,policy,meaning
+SOURCE_REFERENCE_MISSING,intake,fail_closed,exact source/license missing
+CAD_RUNTIME_UNAVAILABLE,runtime,fail_closed,build123d/OCP unavailable
+CAD_RUNTIME_VERSION_MISMATCH,runtime,fail_closed,lock mismatch
+ARTIFACT_TRANSPORT_UNAVAILABLE,intake,fail_closed,remote runtime delivery bytes unavailable
+STALE_INPUT_REFERENCE,input,fail_closed,digest mismatch
+INVALID_RING_WINDING,input,fail_closed,inside/outside unresolved
+CENTERLINE_SELF_INTERSECTION,input,fail_closed,self intersection
+ZERO_LENGTH_SPAN,segmentation,fail_closed,degenerate span
+GRADE_OUT_OF_DOMAIN,geometry,fail_closed,grade unsupported
+CURVATURE_OUT_OF_DOMAIN,geometry,fail_closed,sweep curvature unsupported
+GATE_CLEARANCE_UNSATISFIED,geometry,fail_closed,portal/road clearance
+TOWER_OVERLAP,assembly,fail_closed,module overlap
+BOOLEAN_FAILED,geometry,fail_closed,required CSG
+SEMANTIC_COVERAGE_INCOMPLETE,provenance,fail_closed,unmapped surfaces/triangles
+SOCKET_GEOMETRY_MISMATCH,contract,fail_closed,socket vs geometry
+WALL_WALK_DISCONNECTED,traversal,fail_closed,required continuity
+GEOMETRY_BUDGET_EXCEEDED,budget,fail_closed,bounded resources
+NONDETERMINISTIC_RESULT,replay,fail_closed,canonical mismatch
+OPTIONAL_ORNAMENT_DROPPED,optional,fail_open,required assembly remains usable
+INVALID_ADAPTER_REQUEST,adapter,fail_closed,neutral request schema/value invalid
+UNIT_CONTRACT_MISMATCH,adapter,fail_closed,request unit differs from meter contract
+FRAME_CONTRACT_MISMATCH,adapter,fail_closed,request frame or basis invalid
+TOLERANCE_OUT_OF_DOMAIN,adapter,fail_closed,explicit tolerance outside admitted domain
+PROVIDER_EXECUTION_FAILED,adapter,fail_closed,provider exception normalized
+STORED_COPY_EXPORT_FAILED,adapter,fail_closed,STEP/BREP export or reopen failed

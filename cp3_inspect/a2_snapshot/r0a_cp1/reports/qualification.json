@@ -1,0 +1,62 @@
+{
+  "global_install": false,
+  "negative_fixtures": [
+    {
+      "actual_code": "UNIT_CONTRACT_MISMATCH",
+      "expected_code": "UNIT_CONTRACT_MISMATCH",
+      "files": [
+        "result.json"
+      ],
+      "fixture": "invalid_units.request.json",
+      "pass": true,
+      "status": "REJECTED"
+    },
+    {
+      "actual_code": "FRAME_CONTRACT_MISMATCH",
+      "expected_code": "FRAME_CONTRACT_MISMATCH",
+      "files": [
+        "result.json"
+      ],
+      "fixture": "invalid_frame.request.json",
+      "pass": true,
+      "status": "REJECTED"
+    },
+    {
+      "actual_code": "TOLERANCE_OUT_OF_DOMAIN",
+      "expected_code": "TOLERANCE_OUT_OF_DOMAIN",
+      "files": [
+        "result.json"
+      ],
+      "fixture": "invalid_tolerance.request.json",
+      "pass": true,
+      "status": "REJECTED"
+    },
+    {
+      "actual_code": "CAD_RUNTIME_VERSION_MISMATCH",
+      "expected_code": "CAD_RUNTIME_VERSION_MISMATCH",
+      "files": [
+        "result.json"
+      ],
+      "fixture": "runtime_mismatch.request.json",
+      "pass": true,
+      "status": "REJECTED"
+    },
+    {
+      "actual_code": "GEOMETRY_BUDGET_EXCEEDED",
+      "expected_code": "GEOMETRY_BUDGET_EXCEEDED",
+      "files": [
+        "result.json"
+      ],
+      "fixture": "budget_exceeded.request.json",
+      "pass": true,
+      "status": "REJECTED"
+    }
+  ],
+  "schema": "royal-capital.fortification.cp1-qualification/1",
+  "status": "PASS",
+  "successful_fixture": {
+    "cold_ab": "PASS",
+    "request": "profile_extrusion.request.json",
+    "volume_m3": 48.0
+  }
+}

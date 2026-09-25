@@ -1,0 +1,11 @@
+socket_order,socket_id,role,required
+0,span_start,SPAN_JOIN,true
+1,span_end,SPAN_JOIN,true
+2,wall_walk_start,WALL_WALK_CONTINUATION,true
+3,wall_walk_end,WALL_WALK_CONTINUATION,true
+4,foundation_start,FOUNDATION_INTERFACE,true
+5,foundation_end,FOUNDATION_INTERFACE,true
+6,tower_start,TOWER_JOIN,true
+7,tower_end,TOWER_JOIN,true
+8,utility_inside_01,UTILITY_INSIDE,false
+9,utility_inside_02,UTILITY_INSIDE,false

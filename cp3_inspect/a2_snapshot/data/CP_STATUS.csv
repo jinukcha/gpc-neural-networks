@@ -1,0 +1,4 @@
+stage,checkpoint,source_preservation,remote_self_admission,local_runtime_admission,functional_qualification,stage_completion,next,blocking_reason
+R0A,CP0,PASS,PASS,PASS_X2,PASS,R0A_CP0_COMPLETE,START_R0A_CP1,NONE
+R0A,CP1,PASS,NOT_APPLICABLE,REUSE_CP0_FRESH_PASS,PASS,R0A_CP1_COMPLETE,START_R0A_CP2,NONE
+R0A,CP2,PASS,NOT_APPLICABLE,REUSE_CP0_FRESH_PASS_X2,PASS,R0A_CP2_COMPLETE,START_R0A_CP3,NONE

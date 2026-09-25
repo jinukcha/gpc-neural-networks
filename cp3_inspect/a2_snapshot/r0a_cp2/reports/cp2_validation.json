@@ -1,0 +1,370 @@
+{
+  "canonical_output_sha256": "17c79df87f0dacfba93b10f305908d5288d550020956f15a64564c16fb8ab5c3",
+  "checks": [
+    {
+      "detail": [],
+      "name": "root_required_A",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "root_required_B",
+      "pass": true
+    },
+    {
+      "detail": "SUCCEEDED",
+      "name": "status",
+      "pass": true
+    },
+    {
+      "detail": 5,
+      "name": "solid_count",
+      "pass": true
+    },
+    {
+      "detail": 2273.28,
+      "name": "volume",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          14.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "name": "bounds",
+      "pass": true
+    },
+    {
+      "detail": [
+        40,
+        60
+      ],
+      "name": "mesh_counts",
+      "pass": true
+    },
+    {
+      "detail": [
+        "foundation",
+        "wall_body",
+        "wall_walk",
+        "inner_parapet",
+        "outer_parapet"
+      ],
+      "name": "part_order",
+      "pass": true
+    },
+    {
+      "detail": [
+        {
+          "part_id": "foundation",
+          "triangle_count": 12,
+          "triangle_offset": 0,
+          "vertex_count": 8,
+          "vertex_offset": 0
+        },
+        {
+          "part_id": "wall_body",
+          "triangle_count": 12,
+          "triangle_offset": 12,
+          "vertex_count": 8,
+          "vertex_offset": 8
+        },
+        {
+          "part_id": "wall_walk",
+          "triangle_count": 12,
+          "triangle_offset": 24,
+          "vertex_count": 8,
+          "vertex_offset": 16
+        },
+        {
+          "part_id": "inner_parapet",
+          "triangle_count": 12,
+          "triangle_offset": 36,
+          "vertex_count": 8,
+          "vertex_offset": 24
+        },
+        {
+          "part_id": "outer_parapet",
+          "triangle_count": 12,
+          "triangle_offset": 48,
+          "vertex_count": 8,
+          "vertex_offset": 32
+        }
+      ],
+      "name": "part_ranges",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "indices_valid",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "finite_vertices",
+      "pass": true
+    },
+    {
+      "detail": [
+        "foundation",
+        "wall_body",
+        "wall_walk",
+        "inner_parapet",
+        "outer_parapet"
+      ],
+      "name": "semantic_parts",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          0.0,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "name": "foundation_bounds",
+      "pass": true
+    },
+    {
+      "detail": 384.0,
+      "name": "foundation_volume",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "foundation_coverage_deferred",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          12.0,
+          3.0
+        ],
+        "min": [
+          0.0,
+          0.0,
+          -3.0
+        ]
+      },
+      "name": "wall_body_bounds",
+      "pass": true
+    },
+    {
+      "detail": 1728.0,
+      "name": "wall_body_volume",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "wall_body_coverage_deferred",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          12.6,
+          3.2
+        ],
+        "min": [
+          0.0,
+          12.0,
+          -3.2
+        ]
+      },
+      "name": "wall_walk_bounds",
+      "pass": true
+    },
+    {
+      "detail": 92.16,
+      "name": "wall_walk_volume",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "wall_walk_coverage_deferred",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          14.4,
+          3.2
+        ],
+        "min": [
+          0.0,
+          12.6,
+          2.4
+        ]
+      },
+      "name": "inner_parapet_bounds",
+      "pass": true
+    },
+    {
+      "detail": 34.56,
+      "name": "inner_parapet_volume",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "inner_parapet_coverage_deferred",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          14.4,
+          -2.4
+        ],
+        "min": [
+          0.0,
+          12.6,
+          -3.2
+        ]
+      },
+      "name": "outer_parapet_bounds",
+      "pass": true
+    },
+    {
+      "detail": 34.56,
+      "name": "outer_parapet_volume",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_parapet_coverage_deferred",
+      "pass": true
+    },
+    {
+      "detail": [
+        "span_start",
+        "span_end",
+        "wall_walk_start",
+        "wall_walk_end",
+        "foundation_start",
+        "foundation_end",
+        "tower_start",
+        "tower_end",
+        "utility_inside_01",
+        "utility_inside_02"
+      ],
+      "name": "socket_order",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "socket_unique",
+      "pass": true
+    },
+    {
+      "detail": {
+        "angular_deflection_rad": 0.1,
+        "linear_deflection_m": 0.05,
+        "mesh_round_digits": 9,
+        "part_order": [
+          "foundation",
+          "wall_body",
+          "wall_walk",
+          "inner_parapet",
+          "outer_parapet"
+        ],
+        "schema": "royal-capital.fortification.fixed-tessellation/1",
+        "triangle_policy": "CYCLIC_MIN_PRESERVE_WINDING_THEN_SORT",
+        "vertex_policy": "PER_PART_LEXICOGRAPHIC_UNIQUE"
+      },
+      "name": "tess_linear",
+      "pass": true
+    },
+    {
+      "detail": {
+        "angular_deflection_rad": 0.1,
+        "linear_deflection_m": 0.05,
+        "mesh_round_digits": 9,
+        "part_order": [
+          "foundation",
+          "wall_body",
+          "wall_walk",
+          "inner_parapet",
+          "outer_parapet"
+        ],
+        "schema": "royal-capital.fortification.fixed-tessellation/1",
+        "triangle_policy": "CYCLIC_MIN_PRESERVE_WINDING_THEN_SORT",
+        "vertex_policy": "PER_PART_LEXICOGRAPHIC_UNIQUE"
+      },
+      "name": "tess_angular",
+      "pass": true
+    },
+    {
+      "detail": {
+        "angular_deflection_rad": 0.1,
+        "linear_deflection_m": 0.05,
+        "mesh_round_digits": 9,
+        "part_order": [
+          "foundation",
+          "wall_body",
+          "wall_walk",
+          "inner_parapet",
+          "outer_parapet"
+        ],
+        "schema": "royal-capital.fortification.fixed-tessellation/1",
+        "triangle_policy": "CYCLIC_MIN_PRESERVE_WINDING_THEN_SORT",
+        "vertex_policy": "PER_PART_LEXICOGRAPHIC_UNIQUE"
+      },
+      "name": "mesh_round",
+      "pass": true
+    },
+    {
+      "detail": 10,
+      "name": "stored_copy_count",
+      "pass": true
+    },
+    {
+      "detail": 5,
+      "name": "part_receipts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "cp3_not_claimed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "extra": [],
+        "missing": []
+      },
+      "name": "file_set_equal",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "clean_replay_byte_identical",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.cp2-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "files_compared": 33,
+    "passed": 37
+  }
+}

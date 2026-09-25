@@ -1,0 +1,72 @@
+{
+  "failure": {
+    "code": "PROVIDER_EXECUTION_FAILED",
+    "message": "ValueError: Either amount or until must be provided"
+  },
+  "mesh": null,
+  "provider_receipt_ref": null,
+  "request_id": "cad-request/cp1-profile-extrusion@1",
+  "schema": "royal-capital.fortification.cad-provider-result/1",
+  "shape": null,
+  "status": "FAILED",
+  "stored_copies": [],
+  "unit_frame_contract": {
+    "determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_to_project_matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "scale": 1.0,
+    "units": "METER"
+  }
+}

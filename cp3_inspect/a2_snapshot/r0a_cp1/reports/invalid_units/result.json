@@ -1,0 +1,74 @@
+{
+  "failure": {
+    "code": "UNIT_CONTRACT_MISMATCH",
+    "message": "units must be METER"
+  },
+  "mesh": null,
+  "provider_receipt_ref": null,
+  "request_id": "cad-request/cp1-invalid_units@1",
+  "schema": "royal-capital.fortification.cad-provider-result/1",
+  "shape": null,
+  "status": "REJECTED",
+  "stored_copies": [],
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

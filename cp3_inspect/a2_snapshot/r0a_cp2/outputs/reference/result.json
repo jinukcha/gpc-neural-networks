@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "cad-provider-receipt.json": {
+      "bytes": 4492,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:b1efba44ac2e59f47aed7d127178b450663d52e26302fb48a08cc0eac9ea97b0"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 387,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:a26e0c0f2cba72922e555e11c8e3cdb6add9d0ca60027e0525f5dddc33ab6d6b"
+    },
+    "neutral-mesh.json": {
+      "bytes": 5553,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:49259769341da455f1bd99b2bd1da1577d4fc7394719a63c95b72af1c74fed94"
+    },
+    "semantic-parts.json": {
+      "bytes": 4115,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:91fb500f67e8e82735c4741ec912a6ff8362422b1143728bc6036502654d8c80"
+    },
+    "sockets.json": {
+      "bytes": 4395,
+      "path": "sockets.json",
+      "sha256": "sha256:4523c77f17867440642439f6202ffee4b5cea21c75c423d6536e9390be155140"
+    },
+    "stored-copies.json": {
+      "bytes": 4536,
+      "path": "stored-copies.json",
+      "sha256": "sha256:e78652d30666705252e7fb5991fe0a1d7c7e6f8b9ac187e69af77783bae5e8e5"
+    },
+    "wall-span-plan.json": {
+      "bytes": 572,
+      "path": "wall-span-plan.json",
+      "sha256": "sha256:5a6d9237c498960fc10877d9a405ccc5e2866bc9d051941d2cea22771b1e8714"
+    }
+  },
+  "bounds_m": {
+    "max": [
+      24.0,
+      14.4,
+      4.0
+    ],
+    "min": [
+      0.0,
+      -2.0,
+      -4.0
+    ]
+  },
+  "failure": null,
+  "part_count": 5,
+  "schema": "royal-capital.fortification.wall-span-result/1",
+  "socket_count": 10,
+  "solid_count": 5,
+  "span_id": "fortification/caelmere/pilot/straight-span-001",
+  "status": "SUCCEEDED",
+  "triangle_count": 60,
+  "vertex_count": 40,
+  "volume_m3": 2273.28
+}

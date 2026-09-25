@@ -1,0 +1,8 @@
+{
+  "a_result_sha256": "17c79df87f0dacfba93b10f305908d5288d550020956f15a64564c16fb8ab5c3",
+  "b_result_sha256": "17c79df87f0dacfba93b10f305908d5288d550020956f15a64564c16fb8ab5c3",
+  "byte_identical": true,
+  "files_compared": 33,
+  "schema": "royal-capital.fortification.cp2-clean-replay/1",
+  "status": "PASS"
+}

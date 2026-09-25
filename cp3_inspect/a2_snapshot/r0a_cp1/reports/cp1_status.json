@@ -1,0 +1,18 @@
+{
+  "cold_ab": "PASS",
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "neutral_contract": "PASS",
+  "product_wall_geometry": "NOT_STARTED",
+  "provider_receipt": "PASS",
+  "public_upstream_types_exposed": false,
+  "r0a_cp2_start_allowed": true,
+  "runtime_reuse": "CP0_ADMITTED_FRESH_MATERIALIZATION_PASS",
+  "schema": "royal-capital.fortification.cp1-status/1",
+  "source_preservation": "PASS",
+  "stage_completion": "R0A_CP1_COMPLETE",
+  "stored_copy_export": "PASS",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0A-CP1",
+  "typed_status_normalization": "PASS",
+  "unit_frame_tolerance_contract": "PASS"
+}

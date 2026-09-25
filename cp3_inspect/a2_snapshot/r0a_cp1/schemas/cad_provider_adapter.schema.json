@@ -1,0 +1,283 @@
+{
+  "$defs": {
+    "Receipt": {
+      "properties": {
+        "schema": {
+          "const": "royal-capital.fortification.cad-provider-receipt/1"
+        },
+        "status": {
+          "const": "PASS"
+        }
+      },
+      "required": [
+        "schema",
+        "status",
+        "provider_id",
+        "adapter_id",
+        "adapter_revision",
+        "adapter_source_digest",
+        "runtime",
+        "contract",
+        "request_digest",
+        "result_core_digest",
+        "mesh_digest",
+        "stored_copy_canonical_digests",
+        "capabilities"
+      ],
+      "type": "object"
+    },
+    "Request": {
+      "additionalProperties": false,
+      "properties": {
+        "budget": {
+          "additionalProperties": false,
+          "properties": {
+            "max_artifact_bytes": {
+              "maximum": 1000000000,
+              "minimum": 1024,
+              "type": "integer"
+            },
+            "max_profile_points": {
+              "maximum": 4096,
+              "minimum": 3,
+              "type": "integer"
+            },
+            "max_triangles": {
+              "maximum": 5000000,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "max_vertices": {
+              "maximum": 5000000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "max_profile_points",
+            "max_vertices",
+            "max_triangles",
+            "max_artifact_bytes"
+          ],
+          "type": "object"
+        },
+        "frame": {
+          "const": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD"
+        },
+        "operation": {
+          "additionalProperties": false,
+          "properties": {
+            "distance_m": {
+              "type": "number"
+            },
+            "kind": {
+              "const": "PROFILE_EXTRUSION"
+            },
+            "outer_loop_m": {
+              "items": {
+                "items": false,
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "type": "array"
+              },
+              "minItems": 3,
+              "type": "array"
+            },
+            "plane": {
+              "additionalProperties": false,
+              "properties": {
+                "origin_m": {
+                  "$ref": "#/$defs/Vec3"
+                },
+                "x_axis": {
+                  "$ref": "#/$defs/Vec3"
+                },
+                "y_axis": {
+                  "$ref": "#/$defs/Vec3"
+                }
+              },
+              "required": [
+                "origin_m",
+                "x_axis",
+                "y_axis"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "kind",
+            "plane",
+            "outer_loop_m",
+            "distance_m"
+          ],
+          "type": "object"
+        },
+        "outputs": {
+          "additionalProperties": false,
+          "properties": {
+            "indexed_mesh": {
+              "const": true
+            },
+            "stored_copies": {
+              "items": {
+                "enum": [
+                  "STEP",
+                  "BREP"
+                ]
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "indexed_mesh",
+            "stored_copies"
+          ],
+          "type": "object"
+        },
+        "request_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "runtime": {
+          "$ref": "#/$defs/Runtime"
+        },
+        "schema": {
+          "const": "royal-capital.fortification.cad-provider-request/1"
+        },
+        "tolerances": {
+          "additionalProperties": false,
+          "properties": {
+            "angular_rad": {
+              "maximum": 0.001,
+              "minimum": 1e-09,
+              "type": "number"
+            },
+            "linear_m": {
+              "maximum": 0.001,
+              "minimum": 1e-09,
+              "type": "number"
+            },
+            "tessellation_angular_rad": {
+              "maximum": 0.3,
+              "minimum": 0.01,
+              "type": "number"
+            },
+            "tessellation_linear_m": {
+              "maximum": 0.1,
+              "minimum": 0.001,
+              "type": "number"
+            }
+          },
+          "required": [
+            "linear_m",
+            "angular_rad",
+            "tessellation_linear_m",
+            "tessellation_angular_rad"
+          ],
+          "type": "object"
+        },
+        "units": {
+          "const": "METER"
+        }
+      },
+      "required": [
+        "schema",
+        "request_id",
+        "units",
+        "frame",
+        "runtime",
+        "tolerances",
+        "budget",
+        "operation",
+        "outputs"
+      ],
+      "type": "object"
+    },
+    "Result": {
+      "properties": {
+        "schema": {
+          "const": "royal-capital.fortification.cad-provider-result/1"
+        },
+        "status": {
+          "enum": [
+            "SUCCEEDED",
+            "REJECTED",
+            "FAILED"
+          ]
+        }
+      },
+      "required": [
+        "schema",
+        "request_id",
+        "status",
+        "failure",
+        "unit_frame_contract",
+        "shape",
+        "mesh",
+        "stored_copies",
+        "provider_receipt_ref"
+      ],
+      "type": "object"
+    },
+    "Runtime": {
+      "additionalProperties": false,
+      "properties": {
+        "build123d_source_commit": {
+          "const": "e22d34dae17111e5b9fdb361317e055d0daae466"
+        },
+        "build123d_version": {
+          "const": "0.13.1.dev12+ge22d34dae"
+        },
+        "ocp_version": {
+          "const": "8.0.1.0.0"
+        },
+        "ocp_wheel_sha256": {
+          "const": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+        }
+      },
+      "required": [
+        "build123d_version",
+        "ocp_version",
+        "build123d_source_commit",
+        "ocp_wheel_sha256"
+      ],
+      "type": "object"
+    },
+    "Vec3": {
+      "items": false,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "$id": "royal-capital.fortification.cad-provider-adapter/1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Request"
+    },
+    {
+      "$ref": "#/$defs/Result"
+    },
+    {
+      "$ref": "#/$defs/Receipt"
+    }
+  ],
+  "title": "Royal Capital Fortification neutral CAD provider contracts"
+}

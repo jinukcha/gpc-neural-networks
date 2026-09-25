@@ -1,0 +1,19 @@
+{
+  "removed_count": 11,
+  "removed_generated_cache": [
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/__init__.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/canonical.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/contract.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/provider.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp2/src/rcf_fortification_wall_span/__pycache__/__init__.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp2/src/rcf_fortification_wall_span/__pycache__/model.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp2/src/rcf_fortification_wall_span/__pycache__/producer.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp2/tests/__pycache__/test_cp2_wall_span.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/",
+    "child_designs/fortification/r0a_cp2/src/rcf_fortification_wall_span/__pycache__/",
+    "child_designs/fortification/r0a_cp2/tests/__pycache__/"
+  ],
+  "schema": "royal-capital.fortification.cp2-post-validation-cache-cleanup/1",
+  "source_files_or_artifacts_removed": false,
+  "status": "PASS"
+}

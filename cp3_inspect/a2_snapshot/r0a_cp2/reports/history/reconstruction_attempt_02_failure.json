@@ -1,0 +1,17 @@
+{
+  "extra_paths": [
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/__init__.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/canonical.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/contract.cpython-313.pyc",
+    "child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/provider.cpython-313.pyc"
+  ],
+  "failure_type": "SOURCE_REPLAY_CACHE_RESIDUE",
+  "job": 107967639739,
+  "message": "The deterministic CP1 stored-copy replay succeeded, but Python import caches were created inside the reconstructed source tree and correctly rejected as extra files by the unchanged A1 registry.",
+  "preexisting_checkpoint_deleted": false,
+  "repair": "Remove only generated __pycache__/pyc/pyo residue after replay and before immutable registry verification; preserve regenerated STEP/BREP bytes and all failure logs.",
+  "schema": "royal-capital.fortification.cp2-preserved-failure/1",
+  "source_rollback": false,
+  "status": "PRESERVED_RECONSTRUCTION_FAILURE",
+  "workflow_run": 36102444045
+}
