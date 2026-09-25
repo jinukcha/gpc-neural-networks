@@ -1,0 +1,39 @@
+name: RCF R0B CP3 bounded fixture correction
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp3-20260925]
+    paths: [.github/workflows/rcf-r0b-cp3-correct-fixtures.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  correct:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp3-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          fixture=Path('rcf_b3/template/fixtures/terrain_stepped.fixture.json')
+          text=fixture.read_text()
+          old='"min_embed_m": 1.0'
+          if old not in text: raise SystemExit('expected min embed text missing')
+          fixture.write_text(text.replace(old,'"min_embed_m": 0.75',1))
+          runner=Path('rcf_b3/template/tools/run_b3_qualification.py')
+          text=runner.read_text()
+          old='__setitem__("inside_elevation_m", 3.5)'
+          if old not in text: raise SystemExit('expected retaining mutation missing')
+          runner.write_text(text.replace(old,'__setitem__("inside_elevation_m", 3.25)',1))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rcf_b3/template/fixtures/terrain_stepped.fixture.json rcf_b3/template/tools/run_b3_qualification.py
+          git commit -m 'Correct stepped embed bound and retaining-height negative gate'
+          git push origin HEAD:automation/rcf-r0b-cp3-20260925
