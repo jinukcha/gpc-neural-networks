@@ -1,0 +1,29 @@
+name: RCF B2 copy accepted final reports
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths: [.github/workflows/rcf-b2-copy-final.yml]
+permissions:
+  contents: write
+jobs:
+  copy:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+          fetch-depth: 0
+      - shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf b2_final
+          mkdir -p b2_final
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0b-cp2-20260925-r1
+          for f in B2.json B2.md B2.txt B2.sha256 B2_pre_check.json; do
+            curl -L --fail --retry 3 -o b2_final/$f $base/$f
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add b2_final
+          git commit -m 'Record compact accepted R0B CP2 reports'
+          git push origin HEAD:automation/rcf-r0b-cp2-20260925
