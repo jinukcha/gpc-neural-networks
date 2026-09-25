@@ -1,0 +1,62 @@
+{
+  "package_equality": {
+    "accepted_parent": {
+      "full_sha256": "ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e",
+      "patch_sha256": "b958a30b41842ac367e7b770f9ea8fa068f444ea30e7e289a9a2d3fd4b56cfa4",
+      "source_sha256": "6f022d9d1eda1a9bfee4ee9935172f1d343bf57fe0b53b8e0ff61b276656339b",
+      "transitive_patch_proof": "PASS"
+    },
+    "checks": {
+      "cumulative_patch_payload_matches_full": true,
+      "full_zip_reopen_exact": true,
+      "parent_baseline_proof_carried": true,
+      "parent_plus_source_equals_full": true,
+      "patch_delta_equals_source_delta": true,
+      "source_entry_set_exact": true
+    },
+    "delta": {
+      "added": 5,
+      "deleted": 0,
+      "manifest_sha256": "840354ece841ce063a7c3d36c0458464747f5c494c5ad9e576d458b01a7adc95",
+      "modified": 1,
+      "paths": [
+        "FILES.sha256",
+        "RC_K0/child_designs/fortification/r0a_cp4/README.md",
+        "RC_K0/child_designs/fortification/r0a_cp4/docs/CP4_IMPLEMENTATION.md",
+        "RC_K0/child_designs/fortification/r0a_cp4/provenance/CHANGESET.json",
+        "RC_K0/child_designs/fortification/r0a_cp4/reports/source_preservation.json",
+        "RC_K0/child_designs/fortification/r0a_cp4/tools/run_exact_runtime_replay.py"
+      ]
+    },
+    "fixed_baseline": {
+      "file": "RCF_D0_full.zip",
+      "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+    },
+    "full": {
+      "bytes": 257836320,
+      "entries": 717,
+      "file": "A4_pre.zip",
+      "sha256": "b8551cc75e2c2f3e28caab06d46de67afe2e83a6ade3a77d1d3fbd78913d21e8"
+    },
+    "patch": {
+      "bytes": 252995052,
+      "cumulative_payload_entries": 561,
+      "entries": 563,
+      "file": "A4_preP.zip",
+      "sha256": "93c84a22ba925421e1ce291af28eebc8c55978ba4735c1cca5929a71a94eca5d"
+    },
+    "schema": "royal-capital.fortification.cp4-package-equality/1",
+    "source": {
+      "bytes": 31821,
+      "entries": 6,
+      "file": "A4_preS.zip",
+      "sha256": "cc69c869ff07844984fc214270e8d1e7a148f212f3665d5ea4764f4161bc6c68"
+    },
+    "status": "PASS"
+  },
+  "runtime_replay": "NOT_STARTED",
+  "schema": "royal-capital.fortification.cp4-prevalidation-checkpoint/1",
+  "source_preservation": "PASS",
+  "stage_completion": "OPEN",
+  "status": "PASS"
+}

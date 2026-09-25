@@ -1,0 +1,75 @@
+{
+  "accepted_parent": {
+    "full_sha256": "ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e",
+    "patch_sha256": "b958a30b41842ac367e7b770f9ea8fa068f444ea30e7e289a9a2d3fd4b56cfa4",
+    "source_sha256": "6f022d9d1eda1a9bfee4ee9935172f1d343bf57fe0b53b8e0ff61b276656339b",
+    "transitive_patch_proof": "PASS"
+  },
+  "checks": {
+    "cumulative_patch_payload_matches_full": true,
+    "full_zip_reopen_exact": true,
+    "parent_baseline_proof_carried": true,
+    "parent_plus_source_equals_full": true,
+    "patch_delta_equals_source_delta": true,
+    "source_entry_set_exact": true
+  },
+  "delta": {
+    "added": 21,
+    "deleted": 0,
+    "manifest_sha256": "5cd4cbcf42df34ff3c67c837d02523c71fd9120197fa94220edabe8c0835c882",
+    "modified": 5,
+    "paths": [
+      "FILES.sha256",
+      "RC_K0/child_designs/fortification/README.md",
+      "RC_K0/child_designs/fortification/data/CP_STATUS.csv",
+      "RC_K0/child_designs/fortification/docs/00_STATUS.md",
+      "RC_K0/child_designs/fortification/docs/06_ROADMAP.md",
+      "RC_K0/child_designs/fortification/r0a_cp4/README.md",
+      "RC_K0/child_designs/fortification/r0a_cp4/docs/CP4_CLOSEOUT.md",
+      "RC_K0/child_designs/fortification/r0a_cp4/docs/CP4_IMPLEMENTATION.md",
+      "RC_K0/child_designs/fortification/r0a_cp4/provenance/CHANGESET.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/cp4_validation.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/exact_runtime_replay.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/r0a_closeout.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/capability-A-canonical.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/capability-A.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/capability-B-canonical.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/capability-B.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/install-A.log",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/install-B.log",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/pip-check-A.log",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/pip-check-B.log",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/pip-freeze-A.txt",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/pip-freeze-B.txt",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/runtime-A.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/runtime/runtime-B.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/reports/source_preservation.json",
+      "RC_K0/child_designs/fortification/r0a_cp4/tools/run_exact_runtime_replay.py"
+    ]
+  },
+  "fixed_baseline": {
+    "file": "RCF_D0_full.zip",
+    "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+  },
+  "full": {
+    "bytes": 257849472,
+    "entries": 733,
+    "file": "A4.zip",
+    "sha256": "8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751"
+  },
+  "patch": {
+    "bytes": 253010278,
+    "cumulative_payload_entries": 578,
+    "entries": 580,
+    "file": "A4P.zip",
+    "sha256": "bd4b32d7c35f413bae9aa9bf781bffdfe820d1a3c8f04d57c078a71d1425e335"
+  },
+  "schema": "royal-capital.fortification.cp4-package-equality/1",
+  "source": {
+    "bytes": 48719,
+    "entries": 26,
+    "file": "A4S.zip",
+    "sha256": "feb17e77df51e6ad0c5acc38ea19b7c25b7b54639be8bacbaef50e4501134a66"
+  },
+  "status": "PASS"
+}
