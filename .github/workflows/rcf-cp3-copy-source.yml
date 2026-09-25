@@ -1,0 +1,54 @@
+name: RCF CP3 copy focused A2 source
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0a-cp3-20260925
+    paths:
+      - .github/workflows/rcf-cp3-copy-source.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  copy:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp3-20260925
+          fetch-depth: 0
+      - name: Download and copy focused A2 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _a2s A2S.zip cp3_inspect/a2_snapshot
+          curl -L --fail --retry 3 -o A2S.zip \
+            https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp2-20260925-r4/A2S.zip
+          echo '7e7445828bb3c319c6635fd5b398f06a850a9e64e3639a1d6094eef61ed03f51  A2S.zip' | sha256sum -c -
+          mkdir -p _a2s cp3_inspect/a2_snapshot
+          unzip -q A2S.zip -d _a2s
+          root='_a2s/RC_K0/child_designs/fortification'
+          test -d "$root/r0a_cp1"
+          test -d "$root/r0a_cp2"
+          cp -a "$root/r0a_cp1" cp3_inspect/a2_snapshot/
+          cp -a "$root/r0a_cp2" cp3_inspect/a2_snapshot/
+          mkdir -p cp3_inspect/a2_snapshot/data cp3_inspect/a2_snapshot/docs
+          cp -a "$root/data/." cp3_inspect/a2_snapshot/data/
+          cp -a "$root/docs/." cp3_inspect/a2_snapshot/docs/
+          cp -a "$root/README.md" cp3_inspect/a2_snapshot/README.md
+          find cp3_inspect/a2_snapshot -type d -name __pycache__ -prune -exec rm -rf {} +
+          find cp3_inspect/a2_snapshot -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          find cp3_inspect/a2_snapshot -type f -printf '%P\n' | sort > cp3_inspect/a2_snapshot/FILES.txt
+          du -sh cp3_inspect/a2_snapshot
+      - name: Commit focused source copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp3_inspect/a2_snapshot
+          git commit -m 'Copy focused A2 CP1-CP2 source for CP3 implementation'
+          git push origin HEAD:automation/rcf-r0a-cp3-20260925
