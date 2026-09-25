@@ -1,0 +1,58 @@
+name: RCF inspect inputs
+
+on:
+  push:
+    branches:
+      - automation/rcf-cp0-delivery-20260925
+    paths:
+      - .github/workflows/rcf-inspect-inputs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download exact inputs
+        shell: bash
+        env:
+          RCK0_URL: "https://sdmntpreastus.oaiusercontent.com/files/00000000-bbc0-81f9-95d7-e66294441d98/raw?se=2026-09-25T06%3A09%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=80d35a68-4848-5a20-8960-b043a106b762&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T01%3A33%3A47Z&ske=2026-09-26T01%3A33%3A47Z&sks=b&skv=2026-02-06&sig=tKQrULAp3Gffcv9tScOUO3srsuKctfuVq%2ByoWjnW%2BJM%3D"
+          A1S_URL: "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-4a5c-822f-acbc-62cd4e7149bb/raw?se=2026-09-25T06%3A09%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=d6d689ca-cc9a-5405-8ac8-eb6d620bd9d3&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T01%3A04%3A25Z&ske=2026-09-26T01%3A04%3A25Z&sks=b&skv=2026-02-06&sig=uTmpWYEkg4HG5P5iB2yC/Tdd3RRtYMPDyyfacDEYwUo%3D"
+        run: |
+          set -euo pipefail
+          mkdir -p inspect
+          curl --fail --location --retry 3 "$RCK0_URL" -o inspect/RC_K0.zip
+          curl --fail --location --retry 3 "$A1S_URL" -o inspect/A1S.zip
+          echo "7f637daf8e6fd1e055cca31e4d287072cc96ae0bb4028121c5471d34905a38ac  inspect/RC_K0.zip" | sha256sum -c -
+          echo "56d573c5c82bd421a423f82d251e42553298eccb9bae35a7c95278c209ce8b9d  inspect/A1S.zip" | sha256sum -c -
+      - name: Build manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, zipfile
+          root=Path('inspect')
+          out={}
+          for name in ['RC_K0.zip','A1S.zip']:
+              p=root/name
+              with zipfile.ZipFile(p) as z:
+                  rows=[]
+                  for info in z.infolist():
+                      if info.is_dir(): continue
+                      data=z.read(info.filename)
+                      rows.append({'path':info.filename,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'mode':(info.external_attr>>16)&0o7777})
+                  out[name]={'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'entries':len(rows),'files':rows}
+          (root/'INPUT_MANIFESTS.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+          for name in ['RC_K0.zip','A1S.zip']:
+              print(name, out[name]['entries'])
+              for row in out[name]['files'][:300]: print(row['path'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-input-manifests
+          path: inspect/INPUT_MANIFESTS.json
+          retention-days: 7
