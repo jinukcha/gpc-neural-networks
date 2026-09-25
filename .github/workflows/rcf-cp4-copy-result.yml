@@ -1,0 +1,46 @@
+name: RCF CP4 copy compact results
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp4-20260925]
+    paths: [.github/workflows/rcf-cp4-copy-result.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  copy:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp4-20260925
+          fetch-depth: 0
+      - name: Download compact accepted reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp4_result
+          mkdir -p cp4_result
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          for f in A4.json A4.md A4.txt A4.sha256 A4_package_equality.json A4_pre_check.json; do
+            curl -L --fail --retry 3 -o "cp4_result/$f" "$base/$f"
+          done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path('cp4_result/A4.json').read_text())
+          equality=json.loads(Path('cp4_result/A4_package_equality.json').read_text())
+          pre=json.loads(Path('cp4_result/A4_pre_check.json').read_text())
+          assert result['status']=='PASS'
+          assert result['stage_completion']=='R0A_COMPLETE'
+          assert equality['status']=='PASS' and all(equality['checks'].values())
+          assert pre['status']=='PASS'
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp4_result
+          git commit -m 'Record accepted R0A CP4 closeout reports'
+          git push origin HEAD:automation/rcf-r0a-cp4-20260925
