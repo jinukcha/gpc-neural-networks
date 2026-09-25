@@ -1,0 +1,206 @@
+name: RCF R0C CP1 fixed-baseline patch replay
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp1-20260925]
+    paths: [.github/workflows/rcf-r0c-cp1-baseline-replay.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp1-20260925
+          fetch-depth: 0
+      - name: Download fixed baseline, final cumulative patch and final full checkpoint
+        shell: bash
+        env:
+          BASELINE_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-afd0-8206-9682-7fa15d60a1af/raw?se=2026-09-25T21%3A44%3A27Z&sp=r&sv=2026-02-06&sr=b&scid=4a336a2b-7e52-589e-a5d1-87e24deafcaf&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A49%3A02Z&ske=2026-09-26T19%3A49%3A02Z&sks=b&skv=2026-02-06&sig=dH/JnP9y0ooX%2BtHRTvcrNYi/sRHviDjSe6XL1SOqUAk%3D"
+          TAG: rcf-r0c-cp1-20260925-r1
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p replay_inputs replay_result
+          curl -L --fail --retry 3 -o replay_inputs/RCF_D0_full.zip "$BASELINE_URL"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --dir replay_inputs --pattern 'C1P.zip' --pattern 'C1.zip'
+          echo '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2  replay_inputs/RCF_D0_full.zip' | sha256sum -c -
+          echo 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4  replay_inputs/C1P.zip' | sha256sum -c -
+          echo '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878  replay_inputs/C1.zip' | sha256sum -c -
+          unzip -t replay_inputs/RCF_D0_full.zip >/dev/null
+          unzip -t replay_inputs/C1P.zip >/dev/null
+          unzip -t replay_inputs/C1.zip >/dev/null
+      - name: Apply cumulative patch and compare complete trees
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, os, shutil, stat, zipfile
+
+          root = Path('.')
+          inputs = root / 'replay_inputs'
+          work = root / 'replay_work'
+          result_dir = root / 'replay_result'
+          baseline_tree = work / 'baseline_plus_patch'
+          patch_tree = work / 'patch'
+          full_tree = work / 'full'
+          shutil.rmtree(work, ignore_errors=True)
+          baseline_tree.mkdir(parents=True)
+          patch_tree.mkdir(parents=True)
+          full_tree.mkdir(parents=True)
+
+          def safe_extract(archive: Path, destination: Path):
+              with zipfile.ZipFile(archive) as zf:
+                  for info in zf.infolist():
+                      parts = Path(info.filename).parts
+                      if info.filename.startswith('/') or '..' in parts:
+                          raise RuntimeError(f'unsafe archive member: {info.filename}')
+                      zf.extract(info, destination)
+                      if not info.is_dir():
+                          mode = (info.external_attr >> 16) & 0xFFFF
+                          if mode:
+                              os.chmod(destination / info.filename, stat.S_IMODE(mode))
+
+          safe_extract(inputs / 'RCF_D0_full.zip', baseline_tree)
+          safe_extract(inputs / 'C1P.zip', patch_tree)
+          safe_extract(inputs / 'C1.zip', full_tree)
+
+          deleted = []
+          dfile = patch_tree / 'D.txt'
+          if dfile.is_file():
+              deleted = [line.strip() for line in dfile.read_text(encoding='utf-8').splitlines() if line.strip()]
+          for rel in deleted:
+              target = baseline_tree / rel
+              if target.is_symlink() or target.is_file():
+                  target.unlink()
+              elif target.is_dir():
+                  shutil.rmtree(target)
+
+          write_root = patch_tree / 'W'
+          if not write_root.is_dir():
+              raise RuntimeError('C1P.zip is missing W/ overlay')
+          overlay_files = 0
+          for source in sorted(write_root.rglob('*')):
+              rel = source.relative_to(write_root)
+              target = baseline_tree / rel
+              if source.is_dir():
+                  target.mkdir(parents=True, exist_ok=True)
+                  continue
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(source, target)
+              overlay_files += 1
+
+          def inventory(tree: Path):
+              rows = {}
+              for path in sorted(p for p in tree.rglob('*') if p.is_file()):
+                  rel = path.relative_to(tree).as_posix()
+                  h = hashlib.sha256()
+                  with path.open('rb') as handle:
+                      for chunk in iter(lambda: handle.read(1024 * 1024), b''):
+                          h.update(chunk)
+                  rows[rel] = {
+                      'sha256': h.hexdigest(),
+                      'bytes': path.stat().st_size,
+                      'mode': stat.S_IMODE(path.stat().st_mode),
+                  }
+              return rows
+
+          reconstructed = inventory(baseline_tree)
+          expected = inventory(full_tree)
+          missing = sorted(set(expected) - set(reconstructed))
+          extra = sorted(set(reconstructed) - set(expected))
+          different = sorted(
+              rel for rel in set(expected) & set(reconstructed)
+              if expected[rel]['sha256'] != reconstructed[rel]['sha256']
+              or expected[rel]['bytes'] != reconstructed[rel]['bytes']
+          )
+          mode_different = sorted(
+              rel for rel in set(expected) & set(reconstructed)
+              if expected[rel]['mode'] != reconstructed[rel]['mode']
+          )
+
+          digest = hashlib.sha256()
+          for rel, row in sorted(reconstructed.items()):
+              digest.update(rel.encode('utf-8') + b'\0' + bytes.fromhex(row['sha256']))
+          reconstructed_digest = 'sha256:' + digest.hexdigest()
+          digest = hashlib.sha256()
+          for rel, row in sorted(expected.items()):
+              digest.update(rel.encode('utf-8') + b'\0' + bytes.fromhex(row['sha256']))
+          expected_digest = 'sha256:' + digest.hexdigest()
+
+          report = {
+              'schema': 'royal-capital.fortification.r0c-cp1-baseline-patch-replay/1',
+              'status': 'PASS' if not missing and not extra and not different and not mode_different else 'FAIL',
+              'fixed_baseline': {
+                  'name': 'RCF_D0_full.zip',
+                  'sha256': '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2',
+                  'files': len(inventory(work / 'baseline_plus_patch')),
+              },
+              'cumulative_patch': {
+                  'name': 'C1P.zip',
+                  'sha256': 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4',
+                  'overlay_files': overlay_files,
+                  'deleted_paths': len(deleted),
+              },
+              'expected_full': {
+                  'name': 'C1.zip',
+                  'sha256': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
+                  'files': len(expected),
+                  'closed_world_digest': expected_digest,
+              },
+              'reconstructed': {
+                  'files': len(reconstructed),
+                  'closed_world_digest': reconstructed_digest,
+              },
+              'comparison': {
+                  'missing': missing,
+                  'extra': extra,
+                  'different': different,
+                  'mode_different': mode_different,
+              },
+              'baseline_plus_patch_equals_full': not missing and not extra and not different and not mode_different,
+          }
+          result_dir.mkdir(parents=True, exist_ok=True)
+          (result_dir / 'C1_baseline_patch_replay.json').write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          (result_dir / 'C1_baseline_patch_replay.txt').write_text(
+              '\n'.join([
+                  f"status={report['status']}",
+                  f"baseline_plus_patch_equals_full={str(report['baseline_plus_patch_equals_full']).lower()}",
+                  f"reconstructed_files={len(reconstructed)}",
+                  f"expected_files={len(expected)}",
+                  f"missing={len(missing)}",
+                  f"extra={len(extra)}",
+                  f"different={len(different)}",
+                  f"mode_different={len(mode_different)}",
+              ]) + '\n', encoding='utf-8')
+          print(json.dumps(report, indent=2, sort_keys=True))
+          if report['status'] != 'PASS':
+              raise SystemExit(1)
+          PY
+      - name: Publish replay receipt
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0c-cp1-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" replay_result/C1_baseline_patch_replay.json replay_result/C1_baseline_patch_replay.txt --clobber
+          mkdir -p r0c_cp1/replay
+          cp replay_result/C1_baseline_patch_replay.json r0c_cp1/replay/
+          cp replay_result/C1_baseline_patch_replay.txt r0c_cp1/replay/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add r0c_cp1/replay
+          git commit -m 'Record direct fixed-baseline replay for R0C CP1'
+          git push origin HEAD:automation/rcf-r0c-cp1-20260925
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0c-cp1-baseline-replay
+          path: replay_result/*
+          retention-days: 7
