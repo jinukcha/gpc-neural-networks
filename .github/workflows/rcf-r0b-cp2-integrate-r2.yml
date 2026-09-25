@@ -1,0 +1,120 @@
+name: RCF R0B CP2 exact B1 integration R2
+
+on:
+  push:
+    branches: [automation/rcf-r0b-cp2-20260925]
+    paths: [.github/workflows/rcf-r0b-cp2-integrate-r2.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0b-cp2-20260925
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Download immutable A4/A4P and exact B1 source delta
+        shell: bash
+        env:
+          B1S_URL: "https://sdmntprjapaneast.oaiusercontent.com/files/00000000-7910-8209-9c86-e6a3b3fb73d9/raw?se=2026-09-25T11%3A31%3A12Z&sp=r&sv=2026-02-06&sr=b&scid=9e2f029d-f779-5cbc-9ea4-07b90c21b27c&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T09%3A11%3A02Z&ske=2026-09-26T09%3A11%3A02Z&sks=b&skv=2026-02-06&sig=rBk%2BDN5pQ40A3W9uGOsAOQWV5Ll4o%2BGGhnvv4H%2BEJ9I%3D"
+        run: |
+          set -euo pipefail
+          mkdir -p inputs deliver work
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          curl -L --fail --retry 3 -o inputs/A4.zip $base/A4.zip
+          curl -L --fail --retry 3 -o inputs/A4P.zip $base/A4P.zip
+          curl -L --fail --retry 3 -o inputs/B1S.zip "$B1S_URL"
+          echo '8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751  inputs/A4.zip' | sha256sum -c -
+          echo 'bd4b32d7c35f413bae9aa9bf781bffdfe820d1a3c8f04d57c078a71d1425e335  inputs/A4P.zip' | sha256sum -c -
+          echo '17991d4cf4f273c2927bf585900310940f8c091ba724cbe8ac2882ab4f9e708b  inputs/B1S.zip' | sha256sum -c -
+      - name: Build and reopen exact pre-validation checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          python rcf_b2/rcf_b2_integrate.py prepare \
+            --a4 inputs/A4.zip --a4p inputs/A4P.zip --b1s inputs/B1S.zip \
+            --template rcf_b2/template --work work/b2 --deliver deliver \
+            2>&1 | tee b2-prepare-r2.log
+          unzip -t deliver/B2_pre.zip >/dev/null
+          unzip -t deliver/B2_preP.zip >/dev/null
+          unzip -t deliver/B2_preS.zip >/dev/null
+      - name: Publish pre-validation checkpoint before qualification
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0b-cp2-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" deliver/B2_pre.zip deliver/B2_preP.zip deliver/B2_preS.zip deliver/B2_pre_check.json b2-prepare-r2.log --clobber
+      - name: Fresh exact offline runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv work/runtime
+          fort=work/b2/tree/RC_K0/child_designs/fortification
+          work/runtime/bin/python -m pip install \
+            --no-index --find-links "$fort/r0a_cp0/runtime/wheelhouse" \
+            --require-hashes -r "$fort/r0a_cp0/runtime/requirements-lock.txt" \
+            2>&1 | tee runtime-materialization-r2.log
+          work/runtime/bin/python -m pip check | tee runtime-pip-check-r2.log
+      - name: Run exact-parent CP2 qualification
+        id: qualify
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python \
+            work/b2/tree/RC_K0/child_designs/fortification/r0b_cp2/tools/run_b2_qualification.py \
+            --tree work/b2/tree --work work/b2/qualification \
+            2>&1 | tee b2-qualification-r2.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > B2_EXIT_CODE_R2.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Finalize full, cumulative patch and source equality
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python rcf_b2/rcf_b2_integrate.py finalize \
+            --a4 inputs/A4.zip --a4p inputs/A4P.zip --b1s inputs/B1S.zip \
+            --template rcf_b2/template --work work/b2 --deliver deliver \
+            2>&1 | tee b2-finalize-r2.log
+          for f in deliver/B2.zip deliver/B2P.zip deliver/B2S.zip; do unzip -t "$f" >/dev/null; done
+      - name: Preserve final results and failure logs
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0b-cp2-20260925-r1
+        run: |
+          set -euo pipefail
+          files=(deliver/B2.zip deliver/B2P.zip deliver/B2S.zip deliver/B2.md deliver/B2.json deliver/B2.txt deliver/B2.sha256 deliver/B2_pre.zip deliver/B2_preP.zip deliver/B2_preS.zip deliver/B2_pre_check.json b2-prepare-r2.log b2-qualification-r2.log b2-finalize-r2.log runtime-materialization-r2.log runtime-pip-check-r2.log B2_EXIT_CODE_R2.txt)
+          existing=(); for f in "${files[@]}"; do [[ -f "$f" ]] && existing+=("$f"); done
+          ((${#existing[@]})) && gh release upload "$TAG" "${existing[@]}" --clobber
+      - name: Upload concise receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0b-cp2-r2-receipts
+          path: |
+            deliver/B2.md
+            deliver/B2.json
+            deliver/B2.txt
+            deliver/B2.sha256
+            deliver/B2_pre_check.json
+            b2-prepare-r2.log
+            b2-qualification-r2.log
+            b2-finalize-r2.log
+            B2_EXIT_CODE_R2.txt
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Enforce CP2 acceptance
+        shell: bash
+        run: test "$(cat B2_EXIT_CODE_R2.txt)" = '0' && test -f deliver/B2.zip && test -f deliver/B2P.zip && test -f deliver/B2S.zip
