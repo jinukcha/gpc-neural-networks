@@ -1,0 +1,23 @@
+{
+  "attempt": 1,
+  "failure_class": "VENV_INTERPRETER_PATH_RESOLUTION",
+  "failure_detail": "Path.resolve() followed work/runtime/bin/python to the hosted base CPython binary, so the child qualification process did not execute inside the admitted venv.",
+  "implementation_checkpoint": {
+    "full": "C1_impl.zip",
+    "full_sha256": "8406ba54690b55f192b1dc0a819403baaa35c07a2bfa009b388528a82e4b49a9",
+    "patch": "C1_implP.zip",
+    "patch_sha256": "5804c3983b97ad3688d964e37f85087e774e36bb4c8fc7a4f034039576eca221",
+    "source": "C1_implS.zip",
+    "source_sha256": "ff9310826931c773c26ed0bf8e683ba3e8a8d686f417e3fa0bd409211cf9ea68"
+  },
+  "next_attempt": 2,
+  "observed_child_interpreter": "/opt/hostedtoolcache/Python/3.13.5/x64/bin/python3.13",
+  "qualification": "FAILED_BEFORE_TOWER_EXECUTION",
+  "repair": "Preserve the absolute venv entry path without resolving the symlink; wheelhouse, fixtures and tower geometry source remain unchanged.",
+  "rollback_performed": false,
+  "runtime_materialization": "PASS",
+  "schema": "royal-capital.fortification.r0c-cp1-failed-attempt/1",
+  "source_preservation": "PASS",
+  "status": "PRESERVED_FAILURE",
+  "unique_work_deleted": false
+}

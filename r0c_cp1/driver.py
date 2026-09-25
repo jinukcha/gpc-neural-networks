@@ -247,7 +247,7 @@ def prepare(args: argparse.Namespace) -> None:
 def qualify(args: argparse.Namespace) -> None:
     tree = Path(args.tree).resolve()
     work = Path(args.work).resolve()
-    runtime_python = Path(args.runtime_python).resolve()
+    runtime_python = Path(args.runtime_python).absolute()
     fort = tree / "RC_K0/child_designs/fortification"
     cp1 = fort / "r0c_cp1"
     reports = cp1 / "reports"
@@ -370,7 +370,7 @@ def finalize(args: argparse.Namespace) -> None:
     tree = work / "tree"
     parent = work / "parent_b4"
     deliver = Path(args.deliver).resolve()
-    runtime_python = Path(args.runtime_python).resolve()
+    runtime_python = Path(args.runtime_python).absolute()
     fort = tree / "RC_K0/child_designs/fortification"
     cp1 = fort / "r0c_cp1"
     reports = cp1 / "reports"
