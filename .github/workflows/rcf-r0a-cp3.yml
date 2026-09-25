@@ -1,0 +1,112 @@
+name: RCF R0A CP3 source coverage and gates
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp3-20260925]
+    paths:
+      - .github/workflows/rcf-r0a-cp3.yml
+      - rcf_cp3/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cp3:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0a-cp3-20260925
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Download verified CP2 inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p inputs runtime_source deliver
+          curl -L --fail --retry 3 -o inputs/A2.zip https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp2-20260925-r4/A2.zip
+          curl -L --fail --retry 3 -o inputs/A2P.zip https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp2-20260925-r4/A2P.zip
+          echo '2f9133b8d566ec7fe8aabecf377f632c797eb56c94fb3cd8ae7bf085e0c015cf  inputs/A2.zip' | sha256sum -c -
+          echo '73eec431ead5ec7bc62638ce19b53fee7c25359a575cf007ff8093d5b232df22  inputs/A2P.zip' | sha256sum -c -
+          unzip -q inputs/A2.zip -d runtime_source
+          test "$(find runtime_source/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse -name '*.whl' | wc -l)" -eq 58
+      - name: Fresh exact runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv work/runtime
+          work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links runtime_source/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r runtime_source/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime-materialization.log
+          work/runtime/bin/python -m pip check | tee runtime-pip-check.log
+      - name: Build, checkpoint, qualify and package CP3
+        id: build
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 work/runtime/bin/python rcf_cp3/rcf_cp3_build.py \
+            --a2 inputs/A2.zip --a2p inputs/A2P.zip \
+            --template rcf_cp3/template \
+            --runtime-python "$PWD/work/runtime/bin/python" \
+            --work work/cp3 --deliver deliver \
+            2>&1 | tee cp3-build.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > CP3_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Reopen generated archives
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in deliver/A3_pre.zip deliver/A3_preP.zip deliver/A3_preS.zip deliver/A3.zip deliver/A3P.zip deliver/A3S.zip; do
+            [[ -f "$f" ]] || continue
+            unzip -t "$f" >/dev/null
+          done
+      - name: Preserve pre-validation checkpoint and logs
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp3-20260925-r1
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --target "$GITHUB_SHA" --title 'RCF R0A CP3' --notes 'Source coverage, negative gates and no-partial-output enforcement. Pre-validation checkpoint is preserved before focused validation.'
+          fi
+          files=(deliver/A3_pre.zip deliver/A3_preP.zip deliver/A3_preS.zip deliver/A3_pre_check.json cp3-build.log runtime-materialization.log runtime-pip-check.log CP3_EXIT_CODE.txt)
+          existing=(); for f in "${files[@]}"; do [[ -f "$f" ]] && existing+=("$f"); done
+          ((${#existing[@]})) && gh release upload "$TAG" "${existing[@]}" --clobber
+      - name: Upload final release assets
+        if: steps.build.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: rcf-r0a-cp3-20260925-r1
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" deliver/A3.zip deliver/A3P.zip deliver/A3S.zip deliver/A3.md deliver/A3.json deliver/A3.txt deliver/A3.sha256 --clobber
+      - name: Upload concise receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0a-cp3-receipts
+          path: |
+            deliver/A3.md
+            deliver/A3.json
+            deliver/A3.txt
+            deliver/A3.sha256
+            deliver/A3_pre_check.json
+            cp3-build.log
+            CP3_EXIT_CODE.txt
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Enforce CP3 result
+        shell: bash
+        run: test "$(cat CP3_EXIT_CODE.txt)" = '0'
