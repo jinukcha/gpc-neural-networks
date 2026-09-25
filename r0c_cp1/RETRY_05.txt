@@ -1,0 +1,1 @@
+Attempt 5: reuse the preserved implementation source and exact admitted runtime, with only the model-owned SOCKET_ORDER import repaired. Attempts 1-4 remain preserved.
