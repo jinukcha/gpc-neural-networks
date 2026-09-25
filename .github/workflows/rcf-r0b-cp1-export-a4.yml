@@ -1,0 +1,39 @@
+name: RCF R0B CP1 export accepted A4
+
+on:
+  push:
+    branches: [automation/rcf-r0a-cp4-20260925]
+    paths: [.github/workflows/rcf-r0b-cp1-export-a4.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify accepted A4
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p export
+          base=https://github.com/jinukcha/gpc-neural-networks/releases/download/rcf-r0a-cp4-20260925-r1
+          curl -L --fail --retry 3 -o export/A4.zip "$base/A4.zip"
+          curl -L --fail --retry 3 -o export/A4P.zip "$base/A4P.zip"
+          curl -L --fail --retry 3 -o export/A4S.zip "$base/A4S.zip"
+          echo '8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751  export/A4.zip' | sha256sum -c -
+          echo 'bd4b32d7c35f413bae9aa9bf781bffdfe820d1a3c8f04d57c078a71d1425e335  export/A4P.zip' | sha256sum -c -
+          echo 'feb17e77df51e6ad0c5acc38ea19b7c25b7b54639be8bacbaef50e4501134a66  export/A4S.zip' | sha256sum -c -
+          unzip -t export/A4.zip >/dev/null
+          unzip -t export/A4P.zip >/dev/null
+          unzip -t export/A4S.zip >/dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0b-cp1-a4-inputs
+          path: export
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 3
