@@ -1,0 +1,266 @@
+{
+  "schema": "royal-capital.fortification.tower-join-contract/1",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2",
+  "checkpoint": "CP2-A_FREEZE_PUBLICATION",
+  "authority": {
+    "accepted_parent": {
+      "name": "C1.zip",
+      "sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878"
+    },
+    "fixed_cumulative_patch_baseline": {
+      "name": "RCF_D0_full.zip",
+      "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+    },
+    "roadmap": {
+      "path": "RC_K0/child_designs/fortification/data/ROADMAP.csv",
+      "stage": "R0C",
+      "checkpoint": "CP2",
+      "title": "tower joins",
+      "output": "TowerJoinPlan",
+      "focused_validation": "tangent/wall-walk",
+      "non_goals": [
+        "gates"
+      ],
+      "gate": "R0C_CP2_PASS",
+      "next": "R0C-CP3"
+    }
+  },
+  "identity": {
+    "tower_pattern": "fortification/tower/<instance>/<stable-key>",
+    "span_pattern": "fortification/span/<instance>/<stable-key>",
+    "socket_pattern": "fortification/socket/<module>/<role>",
+    "join_pattern": "fortification/join/<instance>/<stable-key>",
+    "forbidden_authorities": [
+      "input_array_order",
+      "provider_shape_index",
+      "occt_face_id",
+      "scene_node_name"
+    ]
+  },
+  "request": {
+    "required_fields": [
+      "request_id",
+      "join_id",
+      "join_kind",
+      "tower_ref",
+      "span_refs",
+      "runtime_identity_ref",
+      "unit_frame_tolerance_contract_ref",
+      "artifact_budget_ref",
+      "fixture_revision"
+    ],
+    "join_kind_domain": [
+      "CORNER",
+      "TANGENT",
+      "WALL_PENETRATING"
+    ],
+    "tower_ref": {
+      "required_fields": [
+        "tower_id",
+        "family",
+        "revision",
+        "result_digest",
+        "step_digest",
+        "brep_digest",
+        "completion_receipt_ref",
+        "attachment_socket_refs"
+      ],
+      "family_domain": [
+        "ROUND",
+        "SQUARE",
+        "POLYGONAL"
+      ],
+      "attachment_socket_role_domain": [
+        "TOWER_WALL_LEFT",
+        "TOWER_WALL_RIGHT",
+        "WALL_WALK_IN",
+        "WALL_WALK_OUT"
+      ]
+    },
+    "span_refs": {
+      "cardinality_by_join_kind": {
+        "CORNER": {
+          "min": 2,
+          "max": 2
+        },
+        "TANGENT": {
+          "min": 1,
+          "max": 1
+        },
+        "WALL_PENETRATING": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      "required_fields": [
+        "span_id",
+        "role",
+        "revision",
+        "result_digest",
+        "step_digest",
+        "brep_digest",
+        "completion_receipt_ref",
+        "socket_ref"
+      ],
+      "role_domain": [
+        "INCOMING",
+        "OUTGOING",
+        "TANGENT",
+        "THROUGH"
+      ],
+      "socket_role_domain": [
+        "SPAN_START",
+        "SPAN_END",
+        "WALL_WALK_IN",
+        "WALL_WALK_OUT"
+      ]
+    },
+    "socket_frame": {
+      "required_fields": [
+        "socket_id",
+        "role",
+        "origin_m",
+        "orthonormal_basis",
+        "units_frame_domain",
+        "clearance_bounds",
+        "required"
+      ],
+      "basis_axes": [
+        "tangent",
+        "up",
+        "inside"
+      ]
+    },
+    "inherited_contracts": {
+      "linear_tolerance": "accepted R0A unit/frame/tolerance contract and selected product profile",
+      "angular_tolerance": "accepted R0A unit/frame/tolerance contract and selected product profile",
+      "model_linear_tolerance": "accepted CAD adapter reopen contract",
+      "model_angular_tolerance": "accepted CAD adapter frame-orthonormal contract",
+      "overlap_gap_projection_limits": "fixture-owned bounded budget refs",
+      "rule": "CP2 must not widen inherited tolerances to convert a mismatch into PASS"
+    }
+  },
+  "result": {
+    "type": "TowerJoinPlan",
+    "status_domain": [
+      "PASS",
+      "REJECTED",
+      "FAILED"
+    ],
+    "required_fields": [
+      "request_id",
+      "join_id",
+      "status",
+      "failure_code",
+      "source_tower_ref",
+      "source_span_refs",
+      "bounded_join_module_ref",
+      "canonical_transforms",
+      "semantic_parts",
+      "evidence",
+      "partial_output_published"
+    ],
+    "semantic_parts": [
+      "JOIN_BODY",
+      "WALL_WALK_TRANSITION",
+      "FOUNDATION_TRANSITION"
+    ],
+    "allowed_realization": [
+      "BOUNDED_JOIN_MODULE",
+      "BOUNDED_TRANSITION_PIECE",
+      "PROJECT_OWNED_NON_DESTRUCTIVE_ASSEMBLY_REFERENCE"
+    ],
+    "partial_output_published": false
+  },
+  "evidence": {
+    "required_fields": [
+      "source_tower_id",
+      "source_tower_digest",
+      "source_span_ids",
+      "source_span_digests",
+      "incoming_socket_id",
+      "outgoing_socket_id",
+      "socket_position_error_m",
+      "tangent_error",
+      "up_axis_error",
+      "inside_frame_error",
+      "wall_body_continuity",
+      "wall_walk_continuity",
+      "foundation_interface_continuity",
+      "overlap_extent_m",
+      "overlap_ratio",
+      "unsupported_gap_m",
+      "outside_projection_m",
+      "inside_projection_m",
+      "clearance_result",
+      "generated_join_bounds_m",
+      "tower_digest_before",
+      "tower_digest_after",
+      "span_digests_before",
+      "span_digests_after",
+      "accepted_sources_unchanged",
+      "fixed_tessellation_receipt_ref",
+      "step_reopen_receipt_ref",
+      "brep_reopen_receipt_ref",
+      "clean_replay_receipt_ref"
+    ],
+    "continuity_status_domain": [
+      "PASS",
+      "FAIL",
+      "NOT_APPLICABLE"
+    ],
+    "clearance_status_domain": [
+      "PASS",
+      "FAIL"
+    ]
+  },
+  "failure_codes": [
+    "UNKNOWN_TOWER_FAMILY",
+    "SOURCE_TOWER_DIGEST_MISMATCH",
+    "SOURCE_SPAN_DIGEST_MISMATCH",
+    "MISSING_REQUIRED_SOCKET",
+    "SOCKET_POSITION_MISMATCH",
+    "SOCKET_TANGENT_MISMATCH",
+    "SOCKET_UP_AXIS_MISMATCH",
+    "INSIDE_OUTSIDE_FRAME_INVERSION",
+    "FOUNDATION_ELEVATION_MISMATCH",
+    "WALL_WALK_ELEVATION_MISMATCH",
+    "OVERLAP_BUDGET_EXCEEDED",
+    "UNSUPPORTED_GAP_EXCEEDED",
+    "PROJECTION_CLEARANCE_DOMAIN_EXCEEDED",
+    "STALE_FIXTURE_OR_SOURCE_RECEIPT",
+    "RUNTIME_IDENTITY_MISMATCH",
+    "JOIN_ARTIFACT_BUDGET_EXCEEDED",
+    "ACCEPTED_SOURCE_GEOMETRY_MUTATION",
+    "PARTIAL_OUTPUT_PUBLICATION_ATTEMPT"
+  ],
+  "fail_closed_receipt": {
+    "required_fields": [
+      "typed_failure_code",
+      "failure_result_ref",
+      "failed_staging_path",
+      "accepted_output_digest_before",
+      "accepted_output_digest_after",
+      "source_geometry_unchanged",
+      "partial_output_published"
+    ],
+    "partial_output_published": false
+  },
+  "immutability": {
+    "accepted_tower_geometry": "immutable source reference",
+    "accepted_span_geometry": "immutable source reference",
+    "required_before_after_digest_equality": true,
+    "forbidden_operations": [
+      "overwrite accepted tower STEP/BREP",
+      "overwrite accepted span STEP/BREP",
+      "deform accepted source geometry to align sockets",
+      "unbounded tower-wall Boolean union"
+    ]
+  },
+  "checkpoint_status": {
+    "specification_freeze": "FROZEN",
+    "functional_geometry_qualification": "NOT_STARTED_PRODUCT",
+    "r0c_cp2_gate": "NOT_CLAIMED",
+    "godot_product": "NOT_STARTED"
+  }
+}
