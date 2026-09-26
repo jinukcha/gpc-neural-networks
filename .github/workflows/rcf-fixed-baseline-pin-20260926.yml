@@ -1,0 +1,38 @@
+name: Pin exact RCF D0 baseline
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp2d-closeout-20260926
+    paths:
+      - .github/workflows/rcf-fixed-baseline-pin-20260926.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  TAG: rcf-fixed-baseline-20260926-r1
+  BASELINE_URL: 'https://sdmntprjapaneast.oaiusercontent.com/files/00000000-5e44-8209-9071-3141f01a0510/raw?se=2026-09-26T09%3A22%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=a226d238-a981-5a05-850b-0c7fc6368eb2&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T00%3A45%3A28Z&ske=2026-09-27T00%3A45%3A28Z&sks=b&skv=2026-02-06&sig=JiYlwn1nhPslwvgAr/Ou5bwGSfz1DhVkGR9b8RNCRQ0%3D'
+
+jobs:
+  pin:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download, verify, reopen, and publish exact baseline
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 --retry-delay 1 "$BASELINE_URL" --output RCF_D0_full.zip
+          echo '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2  RCF_D0_full.zip' | sha256sum -c -
+          unzip -t RCF_D0_full.zip >/dev/null
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" --target automation/rcf-r0c-cp2d-closeout-20260926 \
+              --title 'RCF fixed D0 baseline' \
+              --notes 'Exact immutable RCF_D0_full.zip used only for cumulative patch replay.' \
+              --repo "$GITHUB_REPOSITORY"
+          fi
+          gh release upload "$TAG" RCF_D0_full.zip --clobber --repo "$GITHUB_REPOSITORY"
