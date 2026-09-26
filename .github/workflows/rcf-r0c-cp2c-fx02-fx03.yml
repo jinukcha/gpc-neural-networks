@@ -1,0 +1,365 @@
+name: RCF R0C CP2-C FX02 FX03
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp2c-fx02-fx03-20260926]
+    paths: [.github/workflows/rcf-r0c-cp2c-fx02-fx03.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  cp2c:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    env:
+      BRANCH: automation/rcf-r0c-cp2c-fx02-fx03-20260926
+      TAG: rcf-r0c-cp2c-fx02-fx03-20260926-r1
+      C1_TAG: rcf-r0c-cp1-20260925-r1
+      C2B_TAG: rcf-r0c-cp2b-fx01-20260926-r1
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2c-fx02-fx03-20260926
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download and verify accepted C1 and C2B inputs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf cp2c_inputs cp2c_work cp2c_output runtime_logs
+          mkdir -p cp2c_inputs cp2c_work cp2c_output runtime_logs
+          gh release download "$C1_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern 'C1.zip' --pattern 'C1P.zip' --pattern 'C1.sha256' \
+            --dir cp2c_inputs
+          gh release download "$C2B_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern 'C2B.zip' --pattern 'C2BP.zip' --pattern 'C2B_check.json' --pattern 'C2B.sha256' \
+            --dir cp2c_inputs
+          echo '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878  cp2c_inputs/C1.zip' | sha256sum -c -
+          echo 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4  cp2c_inputs/C1P.zip' | sha256sum -c -
+          echo '9bc60a867b53c519b7729f1b8b9181fbb2e0f1edc5ea5853f288e8eab93001d4  cp2c_inputs/C2B.zip' | sha256sum -c -
+          echo 'd38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7  cp2c_inputs/C2BP.zip' | sha256sum -c -
+          echo 'd9433238011d34a80fdd02b362d53f1d4454e720c45d5602c9b980601ee5eeee  cp2c_inputs/C2B_check.json' | sha256sum -c -
+          unzip -t cp2c_inputs/C1.zip >/dev/null
+          unzip -t cp2c_inputs/C1P.zip >/dev/null
+          unzip -t cp2c_inputs/C2B.zip >/dev/null
+          unzip -t cp2c_inputs/C2BP.zip >/dev/null
+
+      - name: Parse focused CP2-C sources without creating caches
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files = [
+              Path('cp2c_tools/driver.py'),
+              Path('cp2c_fx02_source/RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py'),
+              Path('cp2c_fx02_source/RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx23.py'),
+              Path('cp2c_fx02_source/RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx23.py'),
+          ]
+          for path in files:
+              compile(path.read_text(encoding='utf-8'), str(path), 'exec')
+          for path in (
+              Path('cp2c_fx02_source/RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX02.fixture.json'),
+              Path('cp2c_fx03_source/RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX03.fixture.json'),
+          ):
+              json.loads(path.read_text(encoding='utf-8'))
+          print('focused source parse: PASS')
+          PY
+
+      - name: Preserve FX02 source patch and full checkpoint before qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2c_tools/driver.py prepare-fx02 \
+            --inputs cp2c_inputs \
+            --source-root cp2c_fx02_source \
+            --work cp2c_work \
+            --output cp2c_output \
+            2>&1 | tee runtime_logs/prepare-fx02.log
+          for f in C2C_FX02_pre.zip C2C_FX02_preP.zip C2C_FX02_preS.zip; do unzip -t "cp2c_output/$f" >/dev/null; done
+
+      - name: Publish FX02 pre-qualification checkpoint
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --target "$BRANCH" \
+              --title 'RCF R0C CP2-C FX02 FX03' \
+              --notes 'CP2-C staged delivery. FX02 checkpoint is published before exact-runtime qualification.' \
+              --repo "$GITHUB_REPOSITORY"
+          fi
+          gh release upload "$TAG" \
+            cp2c_output/C2C_FX02_pre.zip \
+            cp2c_output/C2C_FX02_preP.zip \
+            cp2c_output/C2C_FX02_preS.zip \
+            cp2c_output/C2C_FX02_pre_check.json \
+            runtime_logs/prepare-fx02.log \
+            --clobber --repo "$GITHUB_REPOSITORY"
+
+      - name: Fresh exact offline runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv cp2c_work/runtime
+          cp2c_work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links cp2c_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r cp2c_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime_logs/runtime-materialization.log
+          cp2c_work/runtime/bin/python -m pip check 2>&1 | tee runtime_logs/runtime-pip-check.log
+          cp2c_work/runtime/bin/python -m pip freeze --all > runtime_logs/runtime-pip-freeze.txt
+
+      - name: Qualify FX02 SQUARE corner join
+        id: fx02
+        shell: bash
+        run: |
+          set +e
+          cp2c_work/runtime/bin/python \
+            cp2c_work/current/RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx23.py \
+            --tree cp2c_work/current \
+            --work cp2c_work/qualification \
+            --fixture-id R0C_CP2_FX02 \
+            2>&1 | tee runtime_logs/qualification-fx02.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > FX02_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve FX02 failure without rollback
+        if: steps.fx02.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2C_FX02_FAILURE_${{ github.run_id }}
+          path: |
+            cp2c_output/C2C_FX02_pre*
+            cp2c_fx02_source/**
+            cp2c_work/qualification/failures/**
+            runtime_logs/**
+            FX02_EXIT_CODE.txt
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
+
+      - name: Enforce FX02 qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat FX02_EXIT_CODE.txt)" = '0'
+
+      - name: Preserve FX03 source patch and full checkpoint before qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2c_tools/driver.py prepare-fx03 \
+            --inputs cp2c_inputs \
+            --source-root cp2c_fx03_source \
+            --work cp2c_work \
+            --output cp2c_output \
+            2>&1 | tee runtime_logs/prepare-fx03.log
+          for f in C2C_FX03_pre.zip C2C_FX03_preP.zip C2C_FX03_preS.zip; do unzip -t "cp2c_output/$f" >/dev/null; done
+
+      - name: Publish FX03 pre-qualification checkpoint
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            cp2c_output/C2C_FX03_pre.zip \
+            cp2c_output/C2C_FX03_preP.zip \
+            cp2c_output/C2C_FX03_preS.zip \
+            cp2c_output/C2C_FX03_pre_check.json \
+            runtime_logs/prepare-fx03.log \
+            --clobber --repo "$GITHUB_REPOSITORY"
+
+      - name: Qualify FX03 polygonal wall-penetrating join
+        id: fx03
+        shell: bash
+        run: |
+          set +e
+          cp2c_work/runtime/bin/python \
+            cp2c_work/current/RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx23.py \
+            --tree cp2c_work/current \
+            --work cp2c_work/qualification \
+            --fixture-id R0C_CP2_FX03 \
+            2>&1 | tee runtime_logs/qualification-fx03.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > FX03_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve FX03 failure without rollback
+        if: steps.fx03.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2C_FX03_FAILURE_${{ github.run_id }}
+          path: |
+            cp2c_output/C2C_FX02_pre*
+            cp2c_output/C2C_FX03_pre*
+            cp2c_fx02_source/**
+            cp2c_fx03_source/**
+            cp2c_work/qualification/failures/**
+            runtime_logs/**
+            FX02_EXIT_CODE.txt
+            FX03_EXIT_CODE.txt
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
+
+      - name: Enforce FX03 qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat FX03_EXIT_CODE.txt)" = '0'
+
+      - name: Finalize CP2-C family matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2c_tools/driver.py finalize \
+            --inputs cp2c_inputs \
+            --work cp2c_work \
+            --output cp2c_output \
+            --runtime-logs runtime_logs \
+            2>&1 | tee runtime_logs/finalize.log
+
+      - name: Independently reopen final and preserved archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in \
+            C2C.zip C2CP.zip C2CS.zip C2CR.zip \
+            C2C_FX02_pre.zip C2C_FX02_preP.zip C2C_FX02_preS.zip \
+            C2C_FX03_pre.zip C2C_FX03_preP.zip C2C_FX03_preS.zip; do
+            unzip -t "cp2c_output/$f" >/dev/null
+          done
+          (cd cp2c_output && sha256sum -c C2C.sha256)
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          check = json.loads(Path('cp2c_output/C2C_check.json').read_text(encoding='utf-8'))
+          assert check['source_preservation'] == 'PASS'
+          assert check['functional_qualification'] == 'PASS_FX02_FX03'
+          assert check['stage_completion'] == 'CP2_C_COMPLETE_CLOSED'
+          assert check['r0c_cp2'] == 'OPEN'
+          assert check['godot_product'] == 'NOT_STARTED'
+          assert check['validation']['status'] == 'PASS'
+          assert check['validation']['C1_plus_source_equals_full']['status'] == 'PASS'
+          assert check['validation']['C2B_plus_current_delta_equals_full']['status'] == 'PASS'
+          assert check['validation']['patch_current_delta_equals_source_payload']['status'] == 'PASS'
+          assert check['validation']['fixed_baseline_plus_cumulative_patch_equals_full']['status'] == 'PASS_COMPOSITIONAL_WITH_ACCEPTED_C2B_REPLAY'
+          print('independent CP2-C reopen: PASS')
+          PY
+
+      - name: Commit compact accepted CP2-C result set
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp2c_result
+          mkdir -p cp2c_result
+          cp cp2c_output/C2CS.zip cp2c_result/
+          cp cp2c_output/C2CR.zip cp2c_result/
+          cp cp2c_output/C2C_check.json cp2c_result/
+          cp cp2c_output/C2C_delivery.json cp2c_result/
+          cp cp2c_output/C2C_report.md cp2c_result/
+          cp cp2c_output/C2C.sha256 cp2c_result/
+          cp cp2c_output/C2C_FX02_pre_check.json cp2c_result/
+          cp cp2c_output/C2C_FX03_pre_check.json cp2c_result/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2c_result
+          git commit -m 'Publish accepted R0C CP2-C family matrix receipts'
+          git push origin HEAD:$BRANCH
+
+      - name: Publish final release assets
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          files=(
+            cp2c_output/C2C.zip
+            cp2c_output/C2CP.zip
+            cp2c_output/C2CS.zip
+            cp2c_output/C2CR.zip
+            cp2c_output/C2C_check.json
+            cp2c_output/C2C_delivery.json
+            cp2c_output/C2C_report.md
+            cp2c_output/C2C.sha256
+            cp2c_output/C2C_FX02_pre.zip
+            cp2c_output/C2C_FX02_preP.zip
+            cp2c_output/C2C_FX02_preS.zip
+            cp2c_output/C2C_FX02_pre_check.json
+            cp2c_output/C2C_FX03_pre.zip
+            cp2c_output/C2C_FX03_preP.zip
+            cp2c_output/C2C_FX03_preS.zip
+            cp2c_output/C2C_FX03_pre_check.json
+            runtime_logs/prepare-fx02.log
+            runtime_logs/qualification-fx02.log
+            runtime_logs/prepare-fx03.log
+            runtime_logs/qualification-fx03.log
+            runtime_logs/finalize.log
+            runtime_logs/runtime-materialization.log
+            runtime_logs/runtime-pip-check.log
+            runtime_logs/runtime-pip-freeze.txt
+          )
+          gh release upload "$TAG" "${files[@]}" --clobber --repo "$GITHUB_REPOSITORY"
+          gh release edit "$TAG" \
+            --title 'RCF R0C CP2-C required family matrix' \
+            --notes-file cp2c_output/C2C_report.md \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Upload final delivery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2C_DELIVERY
+          path: |
+            cp2c_output/C2C.zip
+            cp2c_output/C2CP.zip
+            cp2c_output/C2CS.zip
+            cp2c_output/C2CR.zip
+            cp2c_output/C2C_check.json
+            cp2c_output/C2C_delivery.json
+            cp2c_output/C2C_report.md
+            cp2c_output/C2C.sha256
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload FX02 preserved checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2C_FX02_CHECKPOINT
+          path: |
+            cp2c_output/C2C_FX02_pre.zip
+            cp2c_output/C2C_FX02_preP.zip
+            cp2c_output/C2C_FX02_preS.zip
+            cp2c_output/C2C_FX02_pre_check.json
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload FX03 preserved checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2C_FX03_CHECKPOINT
+          path: |
+            cp2c_output/C2C_FX03_pre.zip
+            cp2c_output/C2C_FX03_preP.zip
+            cp2c_output/C2C_FX03_preS.zip
+            cp2c_output/C2C_FX03_pre_check.json
+          compression-level: 0
+          retention-days: 7
