@@ -20,62 +20,69 @@ jobs:
           ref: automation/rcf-r0c-cp2a-freeze-20260926
           fetch-depth: 0
 
-      - name: Download exact accepted transfer and find replay receipt
+      - name: Download and inspect accepted fixed-baseline replay artifact
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           rm -rf baseline_receipt_work cp2a_baseline_receipt
-          mkdir -p baseline_receipt_work/transport baseline_receipt_work/c1 baseline_receipt_work/c1r cp2a_baseline_receipt
+          mkdir -p baseline_receipt_work/extracted cp2a_baseline_receipt
           curl -L --fail --retry 3 \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            -o baseline_receipt_work/C1_transfer.zip \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10887764464/zip"
-          echo 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53  baseline_receipt_work/C1_transfer.zip' | sha256sum -c -
-          unzip -q baseline_receipt_work/C1_transfer.zip -d baseline_receipt_work/transport
-          unzip -q baseline_receipt_work/transport/C1.zip -d baseline_receipt_work/c1
-          unzip -q baseline_receipt_work/transport/C1R.zip -d baseline_receipt_work/c1r
-          {
-            find baseline_receipt_work/transport baseline_receipt_work/c1 baseline_receipt_work/c1r -type f \
-              \( -iname '*baseline*patch*replay*' -o -iname '*patch*replay*' -o -iname '*baseline*equality*' \) -print
-          } | sort | tee cp2a_baseline_receipt/CANDIDATES.txt
-          test -s cp2a_baseline_receipt/CANDIDATES.txt
+            -o baseline_receipt_work/accepted_replay_artifact.zip \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10888433130/zip"
+          echo '17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb  baseline_receipt_work/accepted_replay_artifact.zip' | sha256sum -c -
+          unzip -t baseline_receipt_work/accepted_replay_artifact.zip
+          unzip -q baseline_receipt_work/accepted_replay_artifact.zip -d baseline_receipt_work/extracted
+          find baseline_receipt_work/extracted -type f -printf '%P\n' | sort | tee cp2a_baseline_receipt/CONTENTS.txt
+          test -s cp2a_baseline_receipt/CONTENTS.txt
+          cp -a baseline_receipt_work/extracted/. cp2a_baseline_receipt/
           python - <<'PY'
           from pathlib import Path
-          import hashlib, json, shutil
+          import hashlib, json
 
-          candidates = [Path(x) for x in Path('cp2a_baseline_receipt/CANDIDATES.txt').read_text().splitlines() if x.strip()]
+          root = Path('cp2a_baseline_receipt')
           records = []
-          for idx, src in enumerate(candidates):
-              name = f'{idx:02d}_{src.name}'
-              dst = Path('cp2a_baseline_receipt') / name
-              shutil.copy2(src, dst)
+          parsed = []
+          for src in sorted(p for p in root.rglob('*') if p.is_file() and p.name not in {'CONTENTS.txt', 'INSPECTION.json'}):
               record = {
-                  'source_path': src.as_posix(),
-                  'copied_name': name,
+                  'path': src.relative_to(root).as_posix(),
                   'bytes': src.stat().st_size,
                   'sha256': hashlib.sha256(src.read_bytes()).hexdigest(),
               }
               if src.suffix.lower() == '.json':
-                  try:
-                      record['json'] = json.loads(src.read_text(encoding='utf-8'))
-                  except Exception as exc:
-                      record['json_parse_error'] = repr(exc)
+                  data = json.loads(src.read_text(encoding='utf-8'))
+                  record['json'] = data
+                  parsed.append(data)
               records.append(record)
+
+          expected = {
+              'baseline_sha256': '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2',
+              'patch_sha256': 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4',
+              'target_sha256': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
+          }
+          serialized = json.dumps(parsed, sort_keys=True)
+          for key, value in expected.items():
+              if value not in serialized:
+                  raise SystemExit(f'accepted replay receipt does not contain {key}={value}')
+          pass_tokens = ('PASS', 'true')
+          if not any(token in serialized for token in pass_tokens):
+              raise SystemExit('accepted replay receipt contains no PASS/true result')
+
           result = {
               'schema': 'royal-capital.fortification.r0c-cp2.cp2a-baseline-receipt-inspection/1',
-              'status': 'FOUND',
-              'authority': {
-                  'C1.zip': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
-                  'C1P.zip': 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4',
-                  'RCF_D0_full.zip': '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2',
-              },
+              'status': 'PASS',
+              'accepted_workflow_run_id': 36192768002,
+              'accepted_artifact_id': 10888433130,
+              'accepted_artifact_sha256': '17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb',
+              'authority': expected,
               'records': records,
+              'failed_predecessor_preserved': 36212994542,
           }
-          Path('cp2a_baseline_receipt/INSPECTION.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          (root / 'INSPECTION.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
           print(json.dumps(result, indent=2, sort_keys=True))
           PY
 
