@@ -1,0 +1,138 @@
+name: RCF R0C CP2-B FX01 inspect
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp2b-fx01-20260926]
+    paths: [.github/workflows/rcf-r0c-cp2b-inspect.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      BRANCH: automation/rcf-r0c-cp2b-fx01-20260926
+      CP2A_TAG: rcf-r0c-cp2a-20260926-r1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2b-fx01-20260926
+          fetch-depth: 0
+
+      - name: Download and verify accepted CP2-A checkpoint
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf cp2b_inspect_work cp2b_inspection
+          mkdir -p cp2b_inspect_work/download cp2b_inspect_work/tree cp2b_inspection
+          gh release download "$CP2A_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern 'C2A.zip' --pattern 'C2A.sha256' \
+            --dir cp2b_inspect_work/download
+          (cd cp2b_inspect_work/download && sha256sum -c C2A.sha256 --ignore-missing)
+          unzip -t cp2b_inspect_work/download/C2A.zip >/dev/null
+          unzip -q cp2b_inspect_work/download/C2A.zip -d cp2b_inspect_work/tree
+
+      - name: Build bounded source inspection snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, json, shutil
+          from pathlib import Path
+
+          tree = Path('cp2b_inspect_work/tree')
+          out = Path('cp2b_inspection')
+          out.mkdir(parents=True, exist_ok=True)
+
+          def sha256(path: Path) -> str:
+              h = hashlib.sha256()
+              with path.open('rb') as f:
+                  for chunk in iter(lambda: f.read(1024 * 1024), b''):
+                      h.update(chunk)
+              return h.hexdigest()
+
+          all_files = [p for p in tree.rglob('*') if p.is_file()]
+          inventory = []
+          for p in sorted(all_files):
+              rel = p.relative_to(tree).as_posix()
+              inventory.append({'path': rel, 'bytes': p.stat().st_size, 'sha256': sha256(p)})
+          (out / 'TREE_INVENTORY.json').write_text(json.dumps(inventory, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+
+          text_suffixes = {'.py', '.json', '.csv', '.md', '.txt', '.toml', '.yaml', '.yml'}
+          selected = []
+          keywords = (
+              'RC_K0/child_designs/fortification/',
+              'package_tools.py',
+              'runtime_identity',
+              'wheelhouse',
+          )
+          for p in all_files:
+              rel = p.relative_to(tree).as_posix()
+              low = rel.lower()
+              if p.suffix.lower() not in text_suffixes:
+                  continue
+              if p.stat().st_size > 1_000_000:
+                  continue
+              if not any(k.lower() in low for k in keywords):
+                  continue
+              if not any(token in low for token in (
+                  '/src/', '/tests/', '/data/', '/docs/', '/contracts/', '/reports/',
+                  '/r0b', '/r0c_cp1', '/r0c_cp2', 'package_tools.py', 'readme', 'roadmap',
+                  'cp_status', 'runtime', 'fixture', 'receipt', 'socket', 'tower', 'span', 'join'
+              )):
+                  continue
+              dest = out / 'snapshot' / rel
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(p, dest)
+              selected.append({'path': rel, 'bytes': p.stat().st_size, 'sha256': sha256(p)})
+
+          focus = []
+          for row in inventory:
+              low = row['path'].lower()
+              if any(token in low for token in (
+                  'straight_span', 'r0b', 'r0c_cp1', 'round', 'tower', 'socket',
+                  'fixed_tessellation', 'stored_copy', 'provider', 'package_tools',
+                  'fixture', 'completion', 'qualification', 'clean_replay'
+              )):
+                  focus.append(row)
+          report = {
+              'schema': 'royal-capital.fortification.r0c-cp2b-inspection/1',
+              'accepted_parent': 'C2A.zip',
+              'tree_file_count': len(inventory),
+              'selected_text_file_count': len(selected),
+              'selected': sorted(selected, key=lambda x: x['path']),
+              'focus_inventory': focus,
+          }
+          (out / 'INSPECTION.json').write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          (out / 'README.md').write_text(
+              '# R0C-CP2-B FX01 source inspection\n\n'
+              'Accepted `C2A.zip` was reopened and a bounded text-only snapshot was selected. '
+              'No product source was modified in this inspection checkpoint.\n',
+              encoding='utf-8',
+          )
+          print(json.dumps({'tree_files': len(inventory), 'selected': len(selected)}, sort_keys=True))
+          PY
+
+      - name: Commit inspection snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2b_inspection
+          git commit -m 'Inspect accepted C2A sources for R0C CP2-B FX01'
+          git push origin HEAD:$BRANCH
+
+      - name: Upload inspection snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: RCF_R0C_CP2B_FX01_INSPECTION
+          path: cp2b_inspection
+          compression-level: 0
+          retention-days: 7
