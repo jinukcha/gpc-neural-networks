@@ -1,0 +1,5 @@
+fixture_id,host_family,host_kind,topology,required_contract,implementation_checkpoint,source_binding_status,functional_status,notes
+R0C_CP3_FX01,STRAIGHT_SPAN,WALL_PARAPET_EDGE,LINEAR_OPEN,"pitch;phase;symmetric_endpoint_residual;stable_instance_ids",CP3-B,SOURCE_BINDING_PENDING_CP3_B,NOT_STARTED,"first pilot; accepted straight-span outer parapet or wall-walk edge"
+R0C_CP3_FX02,ROUND_TOWER,TOWER_CROWN_PERIMETER,CLOSED_ROUND,"32_side_contract;closed_phase_closure;bounded_instance_count",CP3-C,SOURCE_BINDING_PENDING_IMPLEMENTATION,NOT_STARTED,"inherits accepted project-owned 32-sided round approximation"
+R0C_CP3_FX03,SQUARE_TOWER,TOWER_CROWN_PERIMETER,CLOSED_POLYGON,"four_corner_phase_preservation;corner_merlon_policy",CP3-C,SOURCE_BINDING_PENDING_IMPLEMENTATION,NOT_STARTED,"four-segment closed perimeter"
+R0C_CP3_FX04,POLYGONAL_TOWER,TOWER_CROWN_PERIMETER,CLOSED_POLYGON,"segment_corner_phase_preservation;closed_loop_residual",CP3-C,SOURCE_BINDING_PENDING_IMPLEMENTATION,NOT_STARTED,"finite representative polygonal perimeter"
