@@ -1,0 +1,160 @@
+name: RCF R0C CP2-A delivery reopen
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp2a-freeze-20260926]
+    paths: [.github/workflows/rcf-r0c-cp2a-delivery-reopen.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  reopen:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2a-freeze-20260926
+          fetch-depth: 0
+
+      - name: Download published delivery artifacts
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf delivery_reopen_work cp2a_delivery_reopen
+          mkdir -p delivery_reopen_work/transfer delivery_reopen_work/small cp2a_delivery_reopen
+          curl -L --fail --retry 3 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -o delivery_reopen_work/C2A_transfer.zip \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10895838820/zip"
+          curl -L --fail --retry 3 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -o delivery_reopen_work/C2A_small.zip \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10896003728/zip"
+          test "$(stat -c %s delivery_reopen_work/C2A_transfer.zip)" = "513618241"
+          test "$(stat -c %s delivery_reopen_work/C2A_small.zip)" = "101023"
+          echo '2ae1cadcace9203eff603fc395d5d1561f4e34378adf66f958303e388ba94405  delivery_reopen_work/C2A_transfer.zip' | sha256sum -c -
+          echo '167ab46029f7c724ed302e9f8bfd4b72874e2a9da24ca8cd9838d94b02620fea  delivery_reopen_work/C2A_small.zip' | sha256sum -c -
+          unzip -t delivery_reopen_work/C2A_transfer.zip >/dev/null
+          unzip -t delivery_reopen_work/C2A_small.zip >/dev/null
+          unzip -q delivery_reopen_work/C2A_transfer.zip -d delivery_reopen_work/transfer
+          unzip -q delivery_reopen_work/C2A_small.zip -d delivery_reopen_work/small
+
+      - name: Verify transfer manifest, nested ZIPs and compact equality
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in C2A.zip C2AP.zip C2AS.zip C2AR.zip; do
+            unzip -t "delivery_reopen_work/transfer/$f" >/dev/null
+          done
+          for f in C2AS.zip C2AR.zip; do
+            unzip -t "delivery_reopen_work/small/$f" >/dev/null
+          done
+          (cd delivery_reopen_work/transfer && sha256sum -c C2A.sha256)
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+
+          root = Path('delivery_reopen_work')
+          transfer = root / 'transfer'
+          small = root / 'small'
+          manifest = json.loads((transfer / 'transport_manifest.json').read_text(encoding='utf-8'))
+          assert manifest['status'] == 'CP2_A_COMPLETE_CLOSED'
+          checks = {}
+          for name, expected in sorted(manifest['files'].items()):
+              path = transfer / name
+              assert path.is_file(), name
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual == expected['sha256'], (name, actual, expected['sha256'])
+              assert path.stat().st_size == expected['bytes'], (name, path.stat().st_size, expected['bytes'])
+              checks[name] = {'bytes': path.stat().st_size, 'sha256': actual}
+
+          for name in [
+              'C2AS.zip', 'C2AR.zip', 'C2A_check.json', 'C2A_delivery.json',
+              'C2A_report.md', 'C2A.sha256', 'C2A_release.json', 'C2A_pre_check.json'
+          ]:
+              assert (small / name).read_bytes() == (transfer / name).read_bytes(), name
+
+          check = json.loads((transfer / 'C2A_check.json').read_text(encoding='utf-8'))
+          assert check['source_preservation'] == 'PASS'
+          assert check['stage_completion'] == 'CP2_A_COMPLETE_CLOSED'
+          assert check['r0c_cp2'] == 'OPEN'
+          assert check['functional_qualification'] == 'NOT_STARTED_PRODUCT'
+          assert check['godot_product'] == 'NOT_STARTED'
+          assert check['validation']['status'] == 'PASS'
+
+          result = {
+              'schema': 'royal-capital.fortification.r0c-cp2.cp2a-delivery-reopen/1',
+              'status': 'PASS',
+              'workflow_run_id': 36213384631,
+              'transfer_artifact': {
+                  'artifact_id': 10895838820,
+                  'bytes': 513618241,
+                  'sha256': '2ae1cadcace9203eff603fc395d5d1561f4e34378adf66f958303e388ba94405',
+                  'zip_crc': 'PASS',
+              },
+              'compact_artifact': {
+                  'artifact_id': 10896003728,
+                  'bytes': 101023,
+                  'sha256': '167ab46029f7c724ed302e9f8bfd4b72874e2a9da24ca8cd9838d94b02620fea',
+                  'zip_crc': 'PASS',
+              },
+              'nested_zip_reopen': {
+                  'C2A.zip': 'PASS',
+                  'C2AP.zip': 'PASS',
+                  'C2AS.zip': 'PASS',
+                  'C2AR.zip': 'PASS',
+              },
+              'transfer_manifest': 'PASS',
+              'compact_equals_transfer_for_shared_files': 'PASS',
+              'checkpoint_status_readback': {
+                  'source_preservation': check['source_preservation'],
+                  'stage_completion': check['stage_completion'],
+                  'r0c_cp2': check['r0c_cp2'],
+                  'functional_qualification': check['functional_qualification'],
+                  'godot_product': check['godot_product'],
+              },
+              'files': checks,
+          }
+          Path('cp2a_delivery_reopen/DELIVERY_REOPEN.json').write_text(
+              json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+          )
+          Path('cp2a_delivery_reopen/DELIVERY_REOPEN.md').write_text(
+              '# R0C-CP2 CP2-A delivery reopen\n\n'
+              '```text\n'
+              'transfer outer SHA / size / CRC   PASS\n'
+              'compact outer SHA / size / CRC    PASS\n'
+              'transfer manifest                 PASS\n'
+              'C2A / C2AP / C2AS / C2AR reopen PASS\n'
+              'compact shared-file equality      PASS\n'
+              'stage                             CP2_A_COMPLETE / CLOSED\n'
+              'R0C-CP2                           OPEN\n'
+              '```\n', encoding='utf-8'
+          )
+          print(json.dumps(result, indent=2, sort_keys=True))
+          PY
+
+      - name: Commit delivery reopen receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2a_delivery_reopen
+          git commit -m 'Record R0C CP2-A delivery reopen receipt'
+          git push origin HEAD:automation/rcf-r0c-cp2a-freeze-20260926
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: C2A_DELIVERY_REOPEN
+          path: cp2a_delivery_reopen
+          retention-days: 7
