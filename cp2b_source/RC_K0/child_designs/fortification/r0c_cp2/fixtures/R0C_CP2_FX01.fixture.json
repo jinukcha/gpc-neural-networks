@@ -14,11 +14,11 @@
     },
     "sockets": {
       "path": "sockets.json",
-      "sha256": "6a6a32b4bfb730c35c9c794ff9c05cd90b800990a16361981f8f371f358adf9f"
+      "sha256": "6a6a32c092219eea2dee1224b28eacfb53dc11af757cc905f9a698e52c75e0f3"
     },
     "stored_copies": {
       "path": "stored-copies.json",
-      "sha256": "0b516fee94651e69e7c59fe4d9c1daabb9cb6255fe99d2d42fc14178d963a1b5"
+      "sha256": "0b516263c559fe6f8494e53b08120ad4d50e1c4d092f2aaf1b4153623cbf84a1"
     },
     "fixed_tessellation": {
       "path": "fixed-tessellation.json",
