@@ -10,7 +10,7 @@
     "reference_root": "RC_K0/child_designs/fortification/r0c_cp1/outputs/reference/round",
     "result": {
       "path": "result.json",
-      "sha256": "5551a310bb97bbc60dc08deafa5512364d7303ce8eef9dfa39065e4e8949b1dc"
+      "sha256": "5551a20fa6fdd6f9ef99c8f4f7a5493d0820fe475ef7a176545470f6f6886240"
     },
     "sockets": {
       "path": "sockets.json",
