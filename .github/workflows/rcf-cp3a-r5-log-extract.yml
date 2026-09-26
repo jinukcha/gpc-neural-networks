@@ -1,0 +1,49 @@
+name: RCF CP3-A preserved CP2-D diagnostic extract
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp3a-freeze-20260926
+    paths:
+      - .github/workflows/rcf-cp3a-r5-log-extract.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp3a-freeze-20260926
+          fetch-depth: 0
+      - name: Download preserved R5 logs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf cp3a_diagnostics/_artifact cp3a_diagnostics/extracted
+          mkdir -p cp3a_diagnostics/_artifact cp3a_diagnostics/extracted
+          gh run download 36233165492 --repo "$GITHUB_REPOSITORY" --name C2_CP2D_R5_LOGS_36233165492 --dir cp3a_diagnostics/_artifact
+          find cp3a_diagnostics/_artifact -maxdepth 5 -type f -printf '%P\n' | sort > cp3a_diagnostics/extracted/ARTIFACT_FILES.txt
+          find cp3a_diagnostics/_artifact -type f -name 'qualification-r5.log' -exec cp {} cp3a_diagnostics/extracted/qualification-r5.log \;
+          test -s cp3a_diagnostics/extracted/qualification-r5.log
+          python - <<'PY'
+          from pathlib import Path
+          log = Path('cp3a_diagnostics/extracted/qualification-r5.log').read_text(encoding='utf-8', errors='replace')
+          needles = ('differs outside path fields', 'producer', 'digest', 'RuntimeError', 'Traceback')
+          rows = [line for line in log.splitlines() if any(n.casefold() in line.casefold() for n in needles)]
+          Path('cp3a_diagnostics/extracted/qualification-r5-focus.txt').write_text('\n'.join(rows) + '\n', encoding='utf-8')
+          PY
+      - name: Commit compact diagnostic
+        run: |
+          set -euo pipefail
+          rm -rf cp3a_diagnostics/_artifact
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp3a_diagnostics/extracted
+          git commit -m 'Preserve CP2-D R5 qualification diagnostic'
+          git push origin HEAD:automation/rcf-r0c-cp3a-freeze-20260926
