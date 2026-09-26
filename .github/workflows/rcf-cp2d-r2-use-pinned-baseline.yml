@@ -1,0 +1,42 @@
+name: Switch CP2-D R2 to pinned baseline
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp2d-closeout-20260926
+    paths:
+      - .github/workflows/rcf-cp2d-r2-use-pinned-baseline.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2d-closeout-20260926
+          fetch-depth: 0
+      - name: Replace expiring URL with immutable release asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/rcf-r0c-cp2d-closeout-r2.yml')
+          text = path.read_text(encoding='utf-8')
+          old = '''          curl --fail --location --retry 4 --retry-delay 2 "$BASELINE_URL" \\
+            --output cp2d_inputs/RCF_D0_full.zip'''
+          new = '''          gh release download rcf-fixed-baseline-20260926-r1 \\
+            --repo "$GITHUB_REPOSITORY" --dir cp2d_inputs \\
+            --pattern RCF_D0_full.zip'''
+          if old not in text:
+              raise SystemExit('expected expiring baseline download block was not found')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/rcf-r0c-cp2d-closeout-r2.yml
+          git commit -m 'Use pinned RCF D0 baseline for CP2-D R2'
+          git push origin HEAD:automation/rcf-r0c-cp2d-closeout-20260926
