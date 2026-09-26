@@ -1,0 +1,106 @@
+{
+  "authority": {
+    "C1.zip": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+    "C1P.zip": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+    "C1R.zip": "a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937",
+    "C1S.zip": "be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114",
+    "zip_crc": "PASS"
+  },
+  "c1_tree": {
+    "closed_world": "PASS",
+    "extra": [],
+    "extracted_files_including_registry": 1418,
+    "mismatched": [],
+    "missing": [],
+    "registry_entries": 1417,
+    "zip_entries": 1418,
+    "zip_file_entries": 1418
+  },
+  "cp2_authority_hits": [
+    {
+      "line": 20,
+      "path": "RC_K0/child_designs/fortification/docs/00_STATUS.md",
+      "text": "next                         ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2"
+    },
+    {
+      "line": 21,
+      "path": "RC_K0/child_designs/fortification/docs/00_STATUS.md",
+      "text": "R0C-CP2 start                EXPLICIT APPROVAL REQUIRED"
+    },
+    {
+      "line": 83,
+      "path": "RC_K0/child_designs/fortification/docs/06_ROADMAP.md",
+      "text": "corner/tangent/wall-penetrating tower joins"
+    },
+    {
+      "line": 11,
+      "path": "RC_K0/child_designs/fortification/data/CP_STATUS.csv",
+      "text": "R0C,CP1,PASS,NOT_APPLICABLE,REUSE_R0A_CP0_EXACT_RUNTIME,PASS,R0C_CP1_COMPLETE,START_R0C_CP2,NONE"
+    },
+    {
+      "line": 11,
+      "path": "RC_K0/child_designs/fortification/data/ROADMAP.csv",
+      "text": "R0C,CP1,tower families,TowerGeometry,bounds/attachment,gates,R0C_CP1_PASS,R0C-CP2"
+    },
+    {
+      "line": 12,
+      "path": "RC_K0/child_designs/fortification/data/ROADMAP.csv",
+      "text": "R0C,CP2,tower joins,TowerJoinPlan,tangent/wall-walk,gates,R0C_CP2_PASS,R0C-CP3"
+    },
+    {
+      "line": 36,
+      "path": "RC_K0/child_designs/fortification/README.md",
+      "text": "Round, square and polygonal tower families, bounds/attachment evidence and foundation sockets are accepted. R0C-CP2 requires explicit approval."
+    }
+  ],
+  "failed_attempts_preserved": [
+    "actions-run-36211770604",
+    "actions-run-36211879157",
+    "actions-run-36212007672"
+  ],
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-authority-inspection/1",
+  "snapshot_files": [
+    "RC_K0/child_designs/fortification/docs/00_STATUS.md",
+    "RC_K0/child_designs/fortification/docs/01_DESIGN.md",
+    "RC_K0/child_designs/fortification/docs/02_CONTRACTS.md",
+    "RC_K0/child_designs/fortification/docs/03_GEOMETRY_STRATEGY.md",
+    "RC_K0/child_designs/fortification/docs/04_PROVIDER_BOUNDARY.md",
+    "RC_K0/child_designs/fortification/docs/05_VALIDATION.md",
+    "RC_K0/child_designs/fortification/docs/06_ROADMAP.md",
+    "RC_K0/child_designs/fortification/docs/07_OSS_REVIEW.md",
+    "RC_K0/child_designs/fortification/docs/08_WORK_ORDER.md",
+    "RC_K0/child_designs/fortification/data/COMPONENT_CATALOG.csv",
+    "RC_K0/child_designs/fortification/data/CP_STATUS.csv",
+    "RC_K0/child_designs/fortification/data/FAILURE_REGISTRY.csv",
+    "RC_K0/child_designs/fortification/data/OSS_SOURCE_USAGE.csv",
+    "RC_K0/child_designs/fortification/data/OUTPUT_CONTRACTS.csv",
+    "RC_K0/child_designs/fortification/data/PARAMETER_DOMAINS.csv",
+    "RC_K0/child_designs/fortification/data/ROADMAP.csv",
+    "RC_K0/child_designs/fortification/data/SEMANTIC_SURFACES.csv",
+    "RC_K0/child_designs/fortification/data/SOCKET_CATALOG.csv",
+    "RC_K0/child_designs/fortification/README.md"
+  ],
+  "status": "PASS",
+  "transport": {
+    "bytes": 514002792,
+    "crc": "PASS",
+    "manifest_delivery_check": [
+      "delivered_required=PASS",
+      "manifest_required_count=8",
+      "check_sidecar_byte_equal_delivery=true",
+      "transport_manifest_present=true",
+      "historical_manifest_entries_not_in_transport=9",
+      "historical_missing=C1_impl.zip",
+      "historical_missing=C1_implP.zip",
+      "historical_missing=C1_implS.zip",
+      "historical_missing=C1_impl_check.json",
+      "historical_missing=C1_impl_state.json",
+      "historical_missing=C1_pre.zip",
+      "historical_missing=C1_preP.zip",
+      "historical_missing=C1_preS.zip",
+      "historical_missing=C1_pre_check.json"
+    ],
+    "name": "C1_transfer.zip",
+    "sha256": "b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53"
+  }
+}

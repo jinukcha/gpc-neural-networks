@@ -1,0 +1,21 @@
+role,applies_to,consumer
+FOUNDATION_CONTACT,foundation,collision/support
+EXTERIOR_MASONRY,wall/tower/gate,material/weather
+INTERIOR_MASONRY,wall/tower/gate,material/interior
+WALL_WALK,wall,nav/collision
+PARAPET_INNER,wall,collision
+PARAPET_OUTER,wall,collision
+MERLON,battlement,material/collision tiered
+CRENEL,battlement,clear opening
+GATE_PORTAL,gate,road/nav clearance
+GATE_DOOR_MOUNT,gate,dynamic door socket
+PORTCULLIS_RAIL,gate,dynamic state socket
+DRAWBRIDGE_HINGE,gate,dynamic bridge socket
+TOWER_INTERIOR_SOCKET,tower,BuildingProgram binding
+ROOF_SOCKET,tower/gatehouse,ARCHITECTURE binding
+STAIR_RAMP_SOCKET,wall/tower,traversal binding
+UTILITY_SOCKET,all,UTILITY binding
+DRAINAGE_SOCKET,wall/gate,UTILITY binding
+COLLISION_HINT,all,RUNTIME derivation
+NAVIGATION_HINT,walk/portal,RUNTIME derivation
+DECORATION_SOCKET,all,optional ART/decoration
