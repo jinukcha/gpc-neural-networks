@@ -1,0 +1,291 @@
+name: RCF R0C CP3-A freeze publication R3
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp3a-freeze-20260926
+    paths:
+      - .github/workflows/rcf-r0c-cp3a-freeze-r3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  BRANCH: automation/rcf-r0c-cp3a-freeze-20260926
+  TAG: rcf-r0c-cp3a-freeze-20260926-r1
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download and reopen accepted authorities
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p cp3a_inputs runtime_logs cp2d_output cp3a_output
+          gh release download rcf-r0c-cp2c-fx02-fx03-20260926-r1 --repo "$GITHUB_REPOSITORY" --dir cp3a_inputs \
+            --pattern C2C.zip --pattern C2CP.zip --pattern C2CS.zip --pattern C2C_check.json
+          gh release download rcf-r0c-cp1-20260925-r1 --repo "$GITHUB_REPOSITORY" --dir cp3a_inputs \
+            --pattern C1.zip --pattern C1P.zip
+          gh release download rcf-fixed-baseline-20260926-r1 --repo "$GITHUB_REPOSITORY" --dir cp3a_inputs \
+            --pattern RCF_D0_full.zip
+          cat > cp3a_inputs/EXPECTED.sha256 <<'EOF'
+          6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2  RCF_D0_full.zip
+          91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878  C1.zip
+          dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4  C1P.zip
+          f9c40a68a37f71d8a3e24288f66559481c212ededca6842d3ef555c6f275369f  C2C.zip
+          ed81630e5a655e32235820f112b7cad1c8c3ddece532ac0bfc1963802cafffee  C2CP.zip
+          fa6b1cbde6faa069637e8a1be02636c161480a8f34dab2734bfbbf9d79279616  C2CS.zip
+          80f83e2b3dcf987fdfce60e81ed8415b9021e1f645f22dc970574df775bec755  C2C_check.json
+          EOF
+          (cd cp3a_inputs && sha256sum -c EXPECTED.sha256)
+          for f in RCF_D0_full.zip C1.zip C1P.zip C2C.zip C2CP.zip C2CS.zip; do unzip -t "cp3a_inputs/$f" >/dev/null; done
+
+      - name: Compose R7 source with receipt-order repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp2d_combined_source
+          cp -a cp2d_source cp2d_combined_source
+          cp -a cp2d_source_r3/. cp2d_combined_source/
+          cp -a cp2d_source_r4/. cp2d_combined_source/
+          cp -a cp2d_source_r6/. cp2d_combined_source/
+          cp -a cp2d_source_r7/. cp2d_combined_source/
+          python - <<'PY'
+          from pathlib import Path
+          driver = Path('cp3a_tools/driver.py')
+          driver.write_text(driver.read_text(encoding='utf-8').replace(': false,', ': False,'), encoding='utf-8')
+          runner = Path('cp2d_combined_source/RC_K0/child_designs/fortification/r0c_cp2/tools/run_cp2d_closeout_r7.py')
+          text = runner.read_text(encoding='utf-8')
+          text = text.replace('    remove_if_present(cp2 / "docs/CP2D_CLOSEOUT.md")\n', '')
+          runner.write_text(text, encoding='utf-8')
+          for path in (
+              Path('cp2d_bootstrap.py'), Path('cp2d_tools/driver.py'),
+              Path('cp3a_tools/driver.py'), Path('cp3a_tools/repack_c2_after_receipts.py'), runner,
+          ):
+              compile(path.read_text(encoding='utf-8'), str(path), 'exec')
+          PY
+
+      - name: Preserve R7 prequalification checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2d_bootstrap.py prepare --inputs cp3a_inputs --source-root cp2d_combined_source \
+            --work cp2d_work --output cp2d_output 2>&1 | tee runtime_logs/c2-r7-r3-prepare.log
+          for f in C2_pre.zip C2_preP.zip C2_preS.zip; do unzip -t "cp2d_output/$f" >/dev/null; done
+
+      - name: Upload durable R7 R3 precheckpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2_R7_R3_PRECHECKPOINT
+          path: |
+            cp2d_output/C2_pre.zip
+            cp2d_output/C2_preP.zip
+            cp2d_output/C2_preS.zip
+            cp2d_output/C2_pre_check.json
+            runtime_logs/c2-r7-r3-prepare.log
+          compression-level: 0
+          retention-days: 7
+
+      - name: Materialize exact offline runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv cp2d_work/runtime
+          cp2d_work/runtime/bin/python -m pip install --no-index \
+            --find-links cp2d_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes -r cp2d_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime_logs/runtime-materialization-r3.log
+          cp2d_work/runtime/bin/python -m pip check | tee runtime_logs/runtime-pip-check-r3.log
+
+      - name: Run R7 qualification
+        id: qualify
+        shell: bash
+        run: |
+          set +e
+          cp2d_work/runtime/bin/python \
+            cp2d_work/current/RC_K0/child_designs/fortification/r0c_cp2/tools/run_cp2d_closeout_r7.py \
+            --tree cp2d_work/current --work cp2d_work/qualification \
+            2>&1 | tee runtime_logs/c2-r7-r3-qualification.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > C2_RECONSTRUCT_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Build receipts then rebuild source authority
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2d_bootstrap.py finalize --inputs cp3a_inputs --work cp2d_work --output cp2d_output \
+            --runtime-logs runtime_logs 2>&1 | tee runtime_logs/c2-r7-r3-finalize.log
+          python cp3a_tools/repack_c2_after_receipts.py cp2d_work cp2d_output cp3a_inputs \
+            2>&1 | tee runtime_logs/c2-r7-r3-repack.log
+
+      - name: Compare reconstructed source with accepted C2
+        id: exact
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set +e
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from cp3a_tools import driver
+          expected = {
+              'C2.zip': '686b9857cc37d0dff2c0c26bc3630d8c94a53c878a92001d4f0e3aa4200e69b2',
+              'C2P.zip': '51bf174668ac5b9c4373f5147fbba3db5189026a96e3432055af761831873c0a',
+              'C2S.zip': '3627c59740e1d5bc15ba5a254994aa8a849a1542bdc9f45c0e42a9e91c166527',
+          }
+          observed = {name: driver.sha256(Path('cp2d_output') / name) for name in expected}
+          tree = driver.tree_digest(Path('cp2d_work/current'))
+          files = len(driver.inventory(Path('cp2d_work/current')))
+          status = observed == expected and tree == driver.C2_TREE_DIGEST and files == driver.C2_FILES
+          value = {
+              'schema': 'royal-capital.fortification.c2-r7-r3-reconstruction-check/1',
+              'status': 'PASS_EXACT_ACCEPTED_C2_SOURCE' if status else 'NOT_EXACT_ACCEPTED_C2_SOURCE',
+              'expected_artifacts': expected,
+              'observed_artifacts': observed,
+              'expected_tree_digest': driver.C2_TREE_DIGEST,
+              'observed_tree_digest': tree,
+              'expected_files': driver.C2_FILES,
+              'observed_files': files,
+              'C2R_sha256_advisory': driver.sha256(Path('cp2d_output/C2R.zip')),
+          }
+          Path('C2_RECONSTRUCTION_CHECK_R3.json').write_text(json.dumps(value, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(value, indent=2, sort_keys=True))
+          raise SystemExit(0 if status else 4)
+          PY
+          code=$?
+          echo "$code" > C2_EXACT_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve reconstruction mismatch
+        if: steps.qualify.outputs.exit_code != '0' || steps.exact.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2_R7_R3_DIAGNOSTICS_${{ github.run_id }}
+          path: |
+            cp2d_output/C2S.zip
+            cp2d_output/C2R.zip
+            cp2d_output/C2_check.json
+            cp2d_output/C2_POST_RECEIPT_REPACK.json
+            cp2d_work/current/FILES.sha256
+            cp2d_work/current/RC_K0/child_designs/fortification/r0c_cp2/reports/**
+            runtime_logs/**
+            C2_*_EXIT_CODE.txt
+            C2_RECONSTRUCTION_CHECK_R3.json
+          compression-level: 0
+          retention-days: 7
+
+      - name: Enforce exact C2 authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat C2_RECONSTRUCT_EXIT_CODE.txt)" = '0'
+          test "$(cat C2_EXACT_EXIT_CODE.txt)" = '0'
+
+      - name: Publish CP3-A checkpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp3a_tools/driver.py --baseline-zip cp3a_inputs/RCF_D0_full.zip \
+            --c2-tree cp2d_work/current --source-root cp3a_source \
+            --work cp3a_work --output cp3a_output 2>&1 | tee runtime_logs/cp3a-r3-publication.log
+          for f in C3A_pre.zip C3A_preP.zip C3A_preS.zip C3A.zip C3AP.zip C3AS.zip C3AR.zip; do unzip -t "cp3a_output/$f" >/dev/null; done
+          (cd cp3a_output && sha256sum -c C3A.sha256)
+
+      - name: Publish release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --target "$BRANCH" \
+              --title 'RCF R0C CP3-A freeze publication' \
+              --notes 'Accepted C2 exact source; CP3 scope, contract and finite fixture matrix frozen; both replay paths PASS.'
+          gh release upload "$TAG" cp3a_output/* --clobber --repo "$GITHUB_REPOSITORY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: C3A_FULL
+          path: cp3a_output/C3A.zip
+          compression-level: 0
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: C3A_PATCH
+          path: cp3a_output/C3AP.zip
+          compression-level: 0
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: C3A_SOURCE
+          path: cp3a_output/C3AS.zip
+          compression-level: 0
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: C3A_RECEIPTS
+          path: cp3a_output/C3AR.zip
+          compression-level: 0
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: C3A_SIDECARS
+          path: |
+            cp3a_output/C3A_check.json
+            cp3a_output/C3A_delivery.json
+            cp3a_output/C3A_report.md
+            cp3a_output/C3A.sha256
+            cp3a_output/C3A_pre_check.json
+          compression-level: 0
+          retention-days: 7
+
+      - name: Commit compact accepted receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp3a_result
+          mkdir -p cp3a_result/accepted
+          cp cp3a_output/C3A_check.json cp3a_result/accepted/
+          cp cp3a_output/C3A_delivery.json cp3a_result/accepted/
+          cp cp3a_output/C3A_report.md cp3a_result/accepted/
+          cp cp3a_output/C3A.sha256 cp3a_result/accepted/
+          cp cp3a_output/C3A_pre_check.json cp3a_result/accepted/
+          cp C2_RECONSTRUCTION_CHECK_R3.json cp3a_result/accepted/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp3a_tools cp3a_result cp3a_source
+          git commit -m 'Publish accepted R0C CP3-A freeze receipts'
+          git push origin HEAD:"$BRANCH"
+
+      - name: Preserve R3 failure logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: C3A_R3_FAILURE_LOGS_${{ github.run_id }}
+          path: |
+            cp3a_output/**
+            runtime_logs/**
+            C2_*_EXIT_CODE.txt
+            C2_RECONSTRUCTION_CHECK_R3.json
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
