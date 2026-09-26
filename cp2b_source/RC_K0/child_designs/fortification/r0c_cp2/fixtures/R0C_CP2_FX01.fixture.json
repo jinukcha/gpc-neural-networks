@@ -1,0 +1,154 @@
+{
+  "schema": "royal-capital.fortification.tower-join-fixture/1",
+  "fixture_id": "R0C_CP2_FX01",
+  "request_id": "fortification/caelmere/r0c-cp2/fx01-round-tangent-straight@1",
+  "join_kind": "TANGENT",
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "tower": {
+    "family": "ROUND",
+    "source_object_id": "fortification/caelmere/pilot/tower-round-001",
+    "reference_root": "RC_K0/child_designs/fortification/r0c_cp1/outputs/reference/round",
+    "result": {
+      "path": "result.json",
+      "sha256": "5551a310bb97bbc60dc08deafa5512364d7303ce8eef9dfa39065e4e8949b1dc"
+    },
+    "sockets": {
+      "path": "sockets.json",
+      "sha256": "6a6a32b4bfb730c35c9c794ff9c05cd90b800990a16361981f8f371f358adf9f"
+    },
+    "stored_copies": {
+      "path": "stored-copies.json",
+      "sha256": "0b516fee94651e69e7c59fe4d9c1daabb9cb6255fe99d2d42fc14178d963a1b5"
+    },
+    "fixed_tessellation": {
+      "path": "fixed-tessellation.json",
+      "sha256": "4811f9c05b54021a3046ea31c59133b61118c509a17ebee11b2658308a6a818b"
+    },
+    "bounds_attachment": {
+      "path": "bounds-attachment.json",
+      "sha256": "9247c36a6ba9200b826b3541e5ada7bb265c2eaff19e563e4cf6d851117430b3"
+    },
+    "body_step": {
+      "path": "parts/tower_body/shape.step",
+      "sha256": "5d507baeea673d4f747ce9eceb715d1160cac08633824337da0638656167ec77"
+    },
+    "body_brep": {
+      "path": "parts/tower_body/shape.brep",
+      "sha256": "dae1599f01e2ce092953d4037dd8573b98c6c49d4d0fe4d2cb29dccf5cf10d1d"
+    },
+    "completion_receipt": {
+      "path": "RC_K0/child_designs/fortification/r0c_cp1/reports/completion_receipt.json",
+      "sha256": "b8530ab32fa3772e3e49b0016ab7cde91fbbea42e3cd7b699db5e7df0d488b93"
+    },
+    "socket_ids": {
+      "body": "span_out",
+      "wall_walk": "wall_walk_out",
+      "foundation": "foundation_out"
+    },
+    "side_count": 32,
+    "approximation": "PROJECT_OWNED_REGULAR_POLYGON_32"
+  },
+  "span": {
+    "family": "STRAIGHT_SPAN",
+    "source_object_id": "fortification/caelmere/r0b/straight-span-001",
+    "role": "OUTGOING",
+    "reference_root": "RC_K0/child_designs/fortification/r0b_cp1/outputs/straight/reference",
+    "result": {
+      "path": "result.json",
+      "sha256": "5d7a6ddf47aa4ec4f3109792db8ec232fc923bc0ed9cabe4a0bebf528f088a0f"
+    },
+    "sockets": {
+      "path": "sockets.json",
+      "sha256": "74fffff248a4e94f23e13f0709124984fac20047be3b7e91231c87f7bbaed1ec"
+    },
+    "stored_copies": {
+      "path": "stored-copies.json",
+      "sha256": "44ea73333faa6bddaf107b0b3f54a31139f41674ff820eafe4b723a5acd8df01"
+    },
+    "fixed_tessellation": {
+      "path": "fixed-tessellation.json",
+      "sha256": "2326a11e949a087dfab9c50ab79653e348ac4241bcedfaddd233f21a30824adb"
+    },
+    "semantic_parts": {
+      "path": "semantic-parts.json",
+      "sha256": "5ddfd58b4b555cf1984f5ded8287cd109f8d3dbbfdb1fd4e8f1dbbe68fcfc099"
+    },
+    "body_step": {
+      "path": "parts/wall_body/shape.step",
+      "sha256": "ed0d2dddaa946d1a59c458ccc8a4062174363f010e1310c9c0ae0d45b9c83935"
+    },
+    "body_brep": {
+      "path": "parts/wall_body/shape.brep",
+      "sha256": "2f9a87500ecdf5b65eca71b756c05d421cab6d4c859c8f6ab3f1a3299b74b374"
+    },
+    "completion_receipt": {
+      "path": "RC_K0/child_designs/fortification/r0b_cp4/reports/cp4_completion.json",
+      "sha256": "ef5183fd3c80d9b57b7793e56b1df1300e1b86b562d7545628038ee0d6126564"
+    },
+    "socket_ids": {
+      "body": "span_start",
+      "wall_walk": "wall_walk_start",
+      "foundation": "foundation_start"
+    }
+  },
+  "realization": {
+    "mode": "BOUNDED_TRANSITION_PIECE",
+    "interface_half_overlap_m": 0.25,
+    "parts": [
+      {
+        "part_id": "join_body",
+        "semantic_role": "WALL_BODY_TRANSITION",
+        "material_slot": "stone_wall",
+        "y_min_m": 0.0,
+        "y_max_m": 12.0,
+        "z_min_m": -3.0,
+        "z_max_m": 3.0
+      },
+      {
+        "part_id": "wall_walk_transition",
+        "semantic_role": "WALL_WALK_TRANSITION",
+        "material_slot": "stone_walk",
+        "y_min_m": 12.0,
+        "y_max_m": 12.6,
+        "z_min_m": -3.2,
+        "z_max_m": 3.2
+      },
+      {
+        "part_id": "foundation_transition",
+        "semantic_role": "FOUNDATION_TRANSITION",
+        "material_slot": "stone_foundation",
+        "y_min_m": -2.0,
+        "y_max_m": 0.0,
+        "z_min_m": -4.0,
+        "z_max_m": 4.0
+      }
+    ]
+  },
+  "tolerances": {
+    "linear_m": 0.000001,
+    "angular_rad": 0.000001,
+    "tessellation_linear_m": 0.05,
+    "tessellation_angular_rad": 0.1,
+    "mesh_round_digits": 9
+  },
+  "budgets": {
+    "max_profile_points": 16,
+    "max_vertices": 500000,
+    "max_triangles": 500000,
+    "max_artifact_bytes": 100000000,
+    "max_parts": 3,
+    "max_socket_position_error_m": 0.000001,
+    "max_frame_error": 0.000001,
+    "required_foundation_transition_m": 0.5,
+    "max_foundation_transition_residual_m": 0.000001,
+    "max_unsupported_gap_m": 0.0,
+    "max_outside_projection_m": 0.0,
+    "max_inside_projection_m": 0.0
+  },
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  }
+}
