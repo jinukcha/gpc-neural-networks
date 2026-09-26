@@ -1,0 +1,79 @@
+{
+  "accepted_fixed_baseline_replay": {
+    "accepted_artifact_id": 10888433130,
+    "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+    "accepted_workflow_run_id": 36192768002,
+    "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+    "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+    "comparison": {
+      "different": [],
+      "extra": [],
+      "missing": [],
+      "mode_different": []
+    },
+    "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+    "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+    "files": 1418,
+    "receipt": "C1_baseline_patch_replay.json",
+    "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+    "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+  },
+  "artifacts": {
+    "full": {
+      "bad_crc": null,
+      "bytes": 259175926,
+      "duplicates": [],
+      "entries": 1421,
+      "file_entries": 1421,
+      "name": "C2A_pre.zip",
+      "sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "patch": {
+      "bad_crc": null,
+      "bytes": 254340052,
+      "duplicates": [],
+      "entries": 1269,
+      "file_entries": 1269,
+      "name": "C2A_preP.zip",
+      "sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "source": {
+      "bad_crc": null,
+      "bytes": 62959,
+      "duplicates": [],
+      "entries": 6,
+      "file_entries": 6,
+      "name": "C2A_preS.zip",
+      "sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    }
+  },
+  "authority": {
+    "C1.zip": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+    "C1P.zip": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+    "C1R.zip": "a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937",
+    "C1S.zip": "be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114"
+  },
+  "fixed_baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-pre-checkpoint/1",
+  "source_diff": {
+    "added": [
+      "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+      "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+      "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md"
+    ],
+    "deleted": [],
+    "modified": [
+      "FILES.sha256"
+    ]
+  },
+  "status": "PRESERVED_BEFORE_FOCUSED_VALIDATION"
+}

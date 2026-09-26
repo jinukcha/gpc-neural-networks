@@ -1,0 +1,75 @@
+{
+  "artifacts": {
+    "C2A.zip": {
+      "bad_crc": null,
+      "bytes": 259175926,
+      "duplicates": [],
+      "entries": 1421,
+      "file_entries": 1421,
+      "name": "C2A.zip",
+      "sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2AP.zip": {
+      "bad_crc": null,
+      "bytes": 254340052,
+      "duplicates": [],
+      "entries": 1269,
+      "file_entries": 1269,
+      "name": "C2AP.zip",
+      "sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2AS.zip": {
+      "bad_crc": null,
+      "bytes": 62959,
+      "duplicates": [],
+      "entries": 6,
+      "file_entries": 6,
+      "name": "C2AS.zip",
+      "sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    }
+  },
+  "equality": {
+    "C1_plus_C2AS_equals_C2A": "PASS_DIRECT",
+    "C2AP_current_delta_equals_C2AS_payload": "PASS_DIRECT",
+    "RCF_D0_full_plus_C2AP_equals_C2A": "PASS_COMPOSITIONAL_WITH_ACCEPTED_DIRECT_REPLAY"
+  },
+  "failed_attempts_preserved": [
+    {
+      "preserved_reason": "historical C1.sha256 listed implementation/pre checkpoints not carried by the accepted transport container",
+      "run_id": 36211770604
+    },
+    {
+      "preserved_reason": "C1_check.json is a byte-equal delivery sidecar but is not independently listed by historical C1.sha256",
+      "run_id": 36211879157
+    },
+    {
+      "preserved_reason": "obsolete extracted-file count 1417 was used instead of the accepted 1418-entry C1 authority",
+      "run_id": 36212007672
+    },
+    {
+      "preserved_reason": "fixed-baseline conversation transport URL expired with HTTP 403 before checkpoint generation",
+      "run_id": 36212512613
+    },
+    {
+      "preserved_reason": "accepted fixed-baseline replay receipt was searched inside C1 transport although it is a separate accepted Actions artifact",
+      "run_id": 36212994542
+    }
+  ],
+  "functional_qualification": "NOT_STARTED_PRODUCT",
+  "godot_product": "NOT_STARTED",
+  "official_subtitle": "TOWER JOINS",
+  "r0c_cp2": "OPEN",
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-delivery/2",
+  "source_preservation": "PASS",
+  "status": "CP2_A_COMPLETE_CLOSED",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2"
+}

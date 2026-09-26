@@ -1,0 +1,455 @@
+{
+  "artifacts": {
+    "C2A.zip": {
+      "bad_crc": null,
+      "bytes": 259175926,
+      "duplicates": [],
+      "entries": 1421,
+      "file_entries": 1421,
+      "name": "C2A.zip",
+      "sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2AP.zip": {
+      "bad_crc": null,
+      "bytes": 254340052,
+      "duplicates": [],
+      "entries": 1269,
+      "file_entries": 1269,
+      "name": "C2AP.zip",
+      "sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2AS.zip": {
+      "bad_crc": null,
+      "bytes": 62959,
+      "duplicates": [],
+      "entries": 6,
+      "file_entries": 6,
+      "name": "C2AS.zip",
+      "sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    }
+  },
+  "authority": {
+    "accepted_direct_replay": {
+      "accepted_artifact_id": 10888433130,
+      "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+      "accepted_workflow_run_id": 36192768002,
+      "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+      "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+      "comparison": {
+        "different": [],
+        "extra": [],
+        "missing": [],
+        "mode_different": []
+      },
+      "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+      "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+      "files": 1418,
+      "receipt": "C1_baseline_patch_replay.json",
+      "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+      "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+    },
+    "fixed_baseline": {
+      "name": "RCF_D0_full.zip",
+      "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+    },
+    "inner": {
+      "C1.zip": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+      "C1P.zip": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+      "C1R.zip": "a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937",
+      "C1S.zip": "be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114"
+    },
+    "transport": {
+      "bytes": 514002792,
+      "sha256": "b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53"
+    }
+  },
+  "checkpoint": "CP2-A_FREEZE_PUBLICATION_CHECKPOINT",
+  "cumulative_patch": {
+    "accepted_parent_cumulative_patch": "C1P.zip",
+    "accepted_parent_cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+    "accepted_parent_full": "C1.zip",
+    "accepted_parent_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+    "baseline_file": "RCF_D0_full.zip",
+    "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+    "current_delta": "C2A_preS.zip",
+    "deleted_count": 0,
+    "proof": "RCF_D0_full+C1P=C1; C1+current source delta=CP2-A full; overlaying the same current delta on C1P reconstructs CP2-A full from the fixed baseline",
+    "schema": "royal-capital.cumulative-patch/1",
+    "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-A_FREEZE_PUBLICATION"
+  },
+  "exact_authority_admission": "PASS",
+  "failed_attempts_preserved": [
+    {
+      "preserved_reason": "historical C1.sha256 listed implementation/pre checkpoints not carried by the accepted transport container",
+      "run_id": 36211770604
+    },
+    {
+      "preserved_reason": "C1_check.json is a byte-equal delivery sidecar but is not independently listed by historical C1.sha256",
+      "run_id": 36211879157
+    },
+    {
+      "preserved_reason": "obsolete extracted-file count 1417 was used instead of the accepted 1418-entry C1 authority",
+      "run_id": 36212007672
+    },
+    {
+      "preserved_reason": "fixed-baseline conversation transport URL expired with HTTP 403 before checkpoint generation",
+      "run_id": 36212512613
+    },
+    {
+      "preserved_reason": "accepted fixed-baseline replay receipt was searched inside C1 transport although it is a separate accepted Actions artifact",
+      "run_id": 36212994542
+    }
+  ],
+  "functional_qualification": "NOT_STARTED_PRODUCT",
+  "godot_product": "NOT_STARTED",
+  "official_subtitle": "TOWER JOINS",
+  "pre_checkpoint": {
+    "accepted_fixed_baseline_replay": {
+      "accepted_artifact_id": 10888433130,
+      "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+      "accepted_workflow_run_id": 36192768002,
+      "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+      "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+      "comparison": {
+        "different": [],
+        "extra": [],
+        "missing": [],
+        "mode_different": []
+      },
+      "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+      "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+      "files": 1418,
+      "receipt": "C1_baseline_patch_replay.json",
+      "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+      "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+    },
+    "artifacts": {
+      "full": {
+        "bad_crc": null,
+        "bytes": 259175926,
+        "duplicates": [],
+        "entries": 1421,
+        "file_entries": 1421,
+        "name": "C2A_pre.zip",
+        "sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      },
+      "patch": {
+        "bad_crc": null,
+        "bytes": 254340052,
+        "duplicates": [],
+        "entries": 1269,
+        "file_entries": 1269,
+        "name": "C2A_preP.zip",
+        "sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      },
+      "source": {
+        "bad_crc": null,
+        "bytes": 62959,
+        "duplicates": [],
+        "entries": 6,
+        "file_entries": 6,
+        "name": "C2A_preS.zip",
+        "sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      }
+    },
+    "authority": {
+      "C1.zip": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+      "C1P.zip": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+      "C1R.zip": "a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937",
+      "C1S.zip": "be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114"
+    },
+    "fixed_baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+    "schema": "royal-capital.fortification.r0c-cp2.cp2a-pre-checkpoint/1",
+    "source_diff": {
+      "added": [
+        "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+        "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md"
+      ],
+      "deleted": [],
+      "modified": [
+        "FILES.sha256"
+      ]
+    },
+    "status": "PRESERVED_BEFORE_FOCUSED_VALIDATION"
+  },
+  "pre_final_byte_equality": {
+    "full": true,
+    "patch": true,
+    "source": true
+  },
+  "r0c_cp2": "OPEN",
+  "roadmap_progress": {
+    "accepted_checkpoints": "10/25",
+    "next_exact_checkpoint": "R0C-CP2 CP2-B",
+    "r0c": "1/4"
+  },
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-freeze-publication-check/2",
+  "source_changes": {
+    "added": [
+      "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+      "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+      "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md"
+    ],
+    "deleted": [],
+    "modified": [
+      "FILES.sha256"
+    ]
+  },
+  "source_delta": {
+    "added": 3,
+    "deleted": 0,
+    "modified": 1,
+    "parent": "C1.zip",
+    "paths": {
+      "added": [
+        "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+        "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md"
+      ],
+      "deleted": [],
+      "modified": [
+        "FILES.sha256"
+      ]
+    },
+    "payload_entries": 4,
+    "raw_wheels_included": false,
+    "schema": "royal-capital.source-delta/1",
+    "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-A_FREEZE_PUBLICATION"
+  },
+  "source_preservation": "PASS",
+  "specification_freeze": "PASS",
+  "stage_completion": "CP2_A_COMPLETE_CLOSED",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2",
+  "validation": {
+    "C1_plus_source_equals_full": {
+      "different": [],
+      "expected_files": 1421,
+      "extra": [],
+      "missing": [],
+      "observed_files": 1421,
+      "status": "PASS"
+    },
+    "accepted_fixed_baseline_replay": {
+      "accepted_artifact_id": 10888433130,
+      "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+      "accepted_workflow_run_id": 36192768002,
+      "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+      "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+      "comparison": {
+        "different": [],
+        "extra": [],
+        "missing": [],
+        "mode_different": []
+      },
+      "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+      "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+      "files": 1418,
+      "receipt": "C1_baseline_patch_replay.json",
+      "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+      "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+    },
+    "authority_inner_zips": {
+      "C1.zip": {
+        "bad_crc": null,
+        "bytes": 259169525,
+        "duplicates": [],
+        "entries": 1418,
+        "file_entries": 1418,
+        "name": "C1.zip",
+        "sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      },
+      "C1P.zip": {
+        "bad_crc": null,
+        "bytes": 254333875,
+        "duplicates": [],
+        "entries": 1266,
+        "file_entries": 1266,
+        "name": "C1P.zip",
+        "sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      },
+      "C1R.zip": {
+        "bad_crc": null,
+        "bytes": 50771,
+        "duplicates": [],
+        "entries": 25,
+        "file_entries": 25,
+        "name": "C1R.zip",
+        "sha256": "a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      },
+      "C1S.zip": {
+        "bad_crc": null,
+        "bytes": 297202,
+        "duplicates": [],
+        "entries": 123,
+        "file_entries": 123,
+        "name": "C1S.zip",
+        "sha256": "be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114",
+        "status": "PASS",
+        "symlinks": [],
+        "unsafe": []
+      }
+    },
+    "authority_transfer": {
+      "bad_crc": null,
+      "bytes": 514002792,
+      "duplicates": [],
+      "entries": 12,
+      "file_entries": 12,
+      "name": "C1_transfer.zip",
+      "sha256": "b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "current_registry": {
+      "extra": [],
+      "mismatched": [],
+      "missing": [],
+      "registry_entries": 1420,
+      "status": "PASS",
+      "tree_files_including_registry": 1421
+    },
+    "fixed_baseline_plus_cumulative_patch_equals_full": {
+      "conclusion": "RCF_D0_full.zip + C2AP.zip = C2A.zip",
+      "direct_fixed_baseline_replay_this_run": "NOT_REPEATED_ACCEPTED_DIRECT_REPLAY_RECEIPT_REOPENED",
+      "premises": {
+        "C1_plus_C2AS_equals_C2A": {
+          "different": [],
+          "expected_files": 1421,
+          "extra": [],
+          "missing": [],
+          "observed_files": 1421,
+          "status": "PASS"
+        },
+        "C2AP_constructed_from_exact_C1P_plus_exact_C2AS": {
+          "C1P_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+          "C2AP_sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+          "C2AS_sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+          "status": "PASS"
+        },
+        "C2AP_current_delta_equals_C2AS_payload": {
+          "current_delta_files": 4,
+          "current_delta_payload_mismatch": [],
+          "missing_deletions": [],
+          "status": "PASS"
+        },
+        "fixed_baseline_plus_C1P_equals_C1": {
+          "accepted_artifact_id": 10888433130,
+          "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+          "accepted_workflow_run_id": 36192768002,
+          "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+          "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+          "comparison": {
+            "different": [],
+            "extra": [],
+            "missing": [],
+            "mode_different": []
+          },
+          "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+          "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+          "files": 1418,
+          "receipt": "C1_baseline_patch_replay.json",
+          "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+          "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+        }
+      },
+      "reason": "The immutable fixed baseline transport URL expired; the accepted direct replay receipt was freshly reopened and exact current composition was freshly verified.",
+      "status": "PASS_COMPOSITIONAL_WITH_ACCEPTED_DIRECT_REPLAY"
+    },
+    "fixture_matrix": {
+      "required_fixture_ids": [
+        "R0C_CP2_FX01",
+        "R0C_CP2_FX02",
+        "R0C_CP2_FX03"
+      ],
+      "required_rows": 3,
+      "rows": 6,
+      "status": "PASS"
+    },
+    "freeze_files": {
+      "contract_json": "PASS",
+      "fixture_csv": "PASS",
+      "required_fixtures": 3,
+      "roadmap_row": {
+        "checkpoint": "CP2",
+        "focused_validation": "tangent/wall-walk",
+        "gate": "R0C_CP2_PASS",
+        "next": "R0C-CP3",
+        "non_goals": "gates",
+        "outputs": "TowerJoinPlan",
+        "stage": "R0C",
+        "title": "tower joins"
+      },
+      "scope_markdown": "PASS",
+      "status": "PASS"
+    },
+    "full_reopen": {
+      "bad_crc": null,
+      "different": [],
+      "expected_files": 1421,
+      "extra": [],
+      "missing": [],
+      "observed_files": 1421,
+      "status": "PASS"
+    },
+    "parent_registry": {
+      "extra": [],
+      "mismatched": [],
+      "missing": [],
+      "registry_entries": 1417,
+      "status": "PASS",
+      "tree_files_including_registry": 1418
+    },
+    "patch_current_delta_equals_source_payload": {
+      "current_delta_files": 4,
+      "current_delta_payload_mismatch": [],
+      "missing_deletions": [],
+      "status": "PASS"
+    },
+    "source_diff": {
+      "added": [
+        "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+        "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md"
+      ],
+      "deleted": [],
+      "modified": [
+        "FILES.sha256"
+      ]
+    },
+    "status": "PASS",
+    "wheelhouse": {
+      "count": 58,
+      "status": "PASS",
+      "unchanged": true
+    }
+  }
+}

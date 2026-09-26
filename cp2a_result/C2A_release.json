@@ -1,0 +1,59 @@
+{
+  "core_artifacts": {
+    "C2A.zip": {
+      "bad_crc": null,
+      "bytes": 259175926,
+      "duplicates": [],
+      "entries": 1421,
+      "file_entries": 1421,
+      "name": "C2A.zip",
+      "sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2AP.zip": {
+      "bad_crc": null,
+      "bytes": 254340052,
+      "duplicates": [],
+      "entries": 1269,
+      "file_entries": 1269,
+      "name": "C2AP.zip",
+      "sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2AS.zip": {
+      "bad_crc": null,
+      "bytes": 62959,
+      "duplicates": [],
+      "entries": 6,
+      "file_entries": 6,
+      "name": "C2AS.zip",
+      "sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    }
+  },
+  "functional_qualification": "NOT_STARTED_PRODUCT",
+  "godot_product": "NOT_STARTED",
+  "next": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2 CP2-B",
+  "r0c_cp2": "OPEN",
+  "receipts": {
+    "bad_crc": null,
+    "bytes": 10795,
+    "duplicates": [],
+    "entries": 9,
+    "file_entries": 9,
+    "name": "C2AR.zip",
+    "sha256": "e0c695ae4a88aa767d6562621097e4c16a3703aa7153523c984ca4d585995be3",
+    "status": "PASS",
+    "symlinks": [],
+    "unsafe": []
+  },
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-release/2",
+  "source_preservation": "PASS",
+  "status": "CP2_A_COMPLETE_CLOSED"
+}
