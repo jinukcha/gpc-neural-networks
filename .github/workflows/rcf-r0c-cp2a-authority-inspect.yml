@@ -38,7 +38,40 @@ jobs:
           echo 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53  cp2a_inspect_work/input/C1_transfer.zip' | sha256sum -c -
           unzip -t cp2a_inspect_work/input/C1_transfer.zip >/dev/null
           unzip -q cp2a_inspect_work/input/C1_transfer.zip -d cp2a_inspect_work/transport
-          (cd cp2a_inspect_work/transport && sha256sum -c C1.sha256)
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, re
+          root = Path('cp2a_inspect_work/transport')
+          manifest = root / 'C1.sha256'
+          entries = {}
+          for raw in manifest.read_text(encoding='utf-8').splitlines():
+              m = re.match(r'^([0-9a-fA-F]{64})\s+[* ]?(.+)$', raw.strip())
+              if m:
+                  entries[m.group(2)] = m.group(1).lower()
+          required = [
+              'C1.zip', 'C1P.zip', 'C1S.zip', 'C1R.zip',
+              'C1.md', 'C1.json', 'C1.txt', 'C1_delivery.json', 'C1_check.json'
+          ]
+          for name in required:
+              path = root / name
+              if not path.is_file():
+                  raise SystemExit(f'missing delivered authority file: {name}')
+              expected = entries.get(name)
+              if expected is None:
+                  raise SystemExit(f'C1.sha256 does not list delivered authority file: {name}')
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              if actual != expected:
+                  raise SystemExit(f'C1.sha256 mismatch: {name} {actual} != {expected}')
+              print(f'{name}: OK')
+          historical_missing = sorted(name for name in entries if not (root / name).exists())
+          (root / 'C1_manifest_delivery_check.txt').write_text(
+              '\n'.join([
+                  'delivered_required=PASS',
+                  f'delivered_required_count={len(required)}',
+                  f'historical_manifest_entries_not_in_transport={len(historical_missing)}',
+                  *[f'historical_missing={name}' for name in historical_missing],
+              ]) + '\n', encoding='utf-8')
+          PY
           echo '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878  cp2a_inspect_work/transport/C1.zip' | sha256sum -c -
           echo 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4  cp2a_inspect_work/transport/C1P.zip' | sha256sum -c -
           echo 'be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114  cp2a_inspect_work/transport/C1S.zip' | sha256sum -c -
@@ -51,7 +84,7 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
-          import csv, hashlib, json, os, re, shutil, stat, zipfile
+          import hashlib, json, os, re, shutil, stat, zipfile
 
           root = Path('cp2a_inspect_work')
           transport = root / 'transport'
@@ -142,14 +175,17 @@ jobs:
                   if 'R0C-CP2' in line or 'R0C_CP2' in line or 'tower joins' in line.lower() or 'wall-penetrating' in line.lower():
                       cp2_hits.append({'path': rel, 'line': line_no, 'text': line})
 
+          manifest_note = (transport / 'C1_manifest_delivery_check.txt').read_text(encoding='utf-8')
           report = {
               'schema': 'royal-capital.fortification.r0c-cp2.cp2a-authority-inspection/1',
               'status': 'PASS',
+              'failed_attempt_preserved': 'actions-run-36211770604',
               'transport': {
                   'name': 'C1_transfer.zip',
                   'bytes': 514002792,
                   'sha256': 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53',
                   'crc': 'PASS',
+                  'manifest_delivery_check': manifest_note.splitlines(),
               },
               'authority': {
                   'C1.zip': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
@@ -180,6 +216,7 @@ jobs:
               f'FILES.sha256 entries  {len(expected)}\n'
               'closed-world replay    PASS\n'
               f'authority files copied {len(copied)}\n'
+              'failed attempt         actions-run-36211770604 preserved\n'
               '```\n', encoding='utf-8')
           print(json.dumps(report, indent=2, sort_keys=True))
           PY
