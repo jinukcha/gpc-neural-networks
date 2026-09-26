@@ -1,0 +1,164 @@
+{
+  "schema": "royal-capital.fortification.battlement-rhythm/1",
+  "authority": {
+    "accepted_parent": "C2.zip",
+    "accepted_parent_sha256": "686b9857cc37d0dff2c0c26bc3630d8c94a53c878a92001d4f0e3aa4200e69b2",
+    "accepted_parent_tree_digest": "sha256:389f7c0865ece121f370296936f02b04efa06a4c5d9bf25fe32c0a01325edcb7"
+  },
+  "request": {
+    "required": [
+      "request_id",
+      "host",
+      "module_definitions",
+      "rhythm",
+      "identity",
+      "limits"
+    ],
+    "host": {
+      "host_kind": [
+        "WALL_PARAPET_EDGE",
+        "TOWER_CROWN_PERIMETER"
+      ],
+      "topology": [
+        "LINEAR_OPEN",
+        "CLOSED_ROUND",
+        "CLOSED_POLYGON"
+      ],
+      "required_fields": [
+        "source_object_id",
+        "source_object_digest",
+        "source_step_digest",
+        "source_brep_digest",
+        "source_edge_or_socket_id",
+        "canonical_frame"
+      ],
+      "canonical_frame": [
+        "tangent",
+        "up",
+        "inside"
+      ]
+    },
+    "module_definitions": {
+      "required_fields": [
+        "merlon_definition_ref",
+        "crenel_definition_ref",
+        "definition_revision",
+        "definition_digest"
+      ],
+      "shared_definition_geometry": true,
+      "crenel_may_be_declared_void": true
+    },
+    "rhythm": {
+      "required_fields": [
+        "pitch_m",
+        "merlon_width_m",
+        "crenel_width_m",
+        "module_height_m",
+        "module_depth_m",
+        "phase_offset_m",
+        "start_policy",
+        "end_policy",
+        "corner_policy"
+      ],
+      "start_policy": [
+        "CENTERED",
+        "MERLON_ANCHORED",
+        "CRENEL_ANCHORED"
+      ],
+      "end_policy": [
+        "SYMMETRIC_RESIDUAL",
+        "BOUNDED_END_MODULE",
+        "CLOSED_PHASE_CLOSURE"
+      ],
+      "corner_policy": [
+        "NOT_APPLICABLE",
+        "CORNER_MERLON",
+        "CORNER_CLEAR",
+        "SEGMENT_PHASE_PRESERVE"
+      ]
+    },
+    "identity": {
+      "required_fields": [
+        "definition_id",
+        "instance_namespace"
+      ],
+      "input_array_order_is_identity": false,
+      "stable_project_owned_instance_ids": true
+    },
+    "limits": {
+      "required_fields": [
+        "maximum_instance_count",
+        "minimum_clear_spacing_m",
+        "maximum_phase_residual_m",
+        "artifact_budget_ref",
+        "runtime_identity_ref",
+        "unit_frame_tolerance_ref"
+      ],
+      "finite_instance_count_required": true
+    }
+  },
+  "result": {
+    "status": [
+      "PASS",
+      "REJECTED",
+      "FAILED"
+    ],
+    "required_sections": [
+      "battlement_rhythm_plan",
+      "module_instance_plan",
+      "evidence"
+    ],
+    "battlement_rhythm_plan": [
+      "host_ref",
+      "host_topology",
+      "resolved_pitch_m",
+      "resolved_phase_offset_m",
+      "resolved_start_position_m",
+      "resolved_end_position_m",
+      "closed_loop_residual_m",
+      "merlon_count",
+      "crenel_count"
+    ],
+    "module_instance_plan": {
+      "definitions": [
+        "MERLON",
+        "CRENEL"
+      ],
+      "instance_fields": [
+        "stable_instance_id",
+        "definition_ref",
+        "transform",
+        "host_parameter",
+        "segment_or_corner_ref"
+      ],
+      "duplicated_definition_geometry": false
+    },
+    "evidence": [
+      "source_digest_before",
+      "source_digest_after",
+      "accepted_source_unchanged",
+      "finite_instance_count",
+      "unique_instance_ids",
+      "minimum_spacing_m",
+      "maximum_overlap_m",
+      "endpoint_residual_m",
+      "closed_phase_residual_m",
+      "corner_policy_satisfied",
+      "deterministic_replay_receipt_ref",
+      "fixed_tessellation_receipt_ref",
+      "stored_copy_reopen_receipt_ref"
+    ],
+    "partial_output_published": false
+  },
+  "forbidden": [
+    "GIANT_BREP_BOOLEAN_FUSION",
+    "PER_INSTANCE_DEFINITION_GEOMETRY_DUPLICATION",
+    "ACCEPTED_HOST_STEP_BREP_OVERWRITE",
+    "ACCEPTED_HOST_GEOMETRY_MUTATION_FOR_RHYTHM_ALIGNMENT",
+    "INPUT_ARRAY_ORDER_AS_DURABLE_IDENTITY",
+    "UNBOUNDED_INSTANCE_EXPANSION",
+    "TOLERANCE_WIDENING_TO_HIDE_RHYTHM_ERROR",
+    "PARTIAL_ACCEPTED_OUTPUT_AFTER_REQUIRED_FAILURE"
+  ],
+  "cp3a_functional_geometry_qualification": "NOT_STARTED"
+}
