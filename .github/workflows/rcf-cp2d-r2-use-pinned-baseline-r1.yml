@@ -1,0 +1,40 @@
+name: Repair CP2-D R2 pinned baseline
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp2d-closeout-20260926
+    paths:
+      - .github/workflows/rcf-cp2d-r2-use-pinned-baseline-r1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2d-closeout-20260926
+          fetch-depth: 0
+      - name: Replace expiring download block by boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/rcf-r0c-cp2d-closeout-r2.yml')
+          text = path.read_text(encoding='utf-8')
+          start = text.index('          curl --fail --location --retry 4 --retry-delay 2')
+          end = text.index("\n          cat > cp2d_inputs/EXPECTED.sha256", start)
+          replacement = '''          gh release download rcf-fixed-baseline-20260926-r1 \\
+            --repo "$GITHUB_REPOSITORY" --dir cp2d_inputs \\
+            --pattern RCF_D0_full.zip'''
+          path.write_text(text[:start] + replacement + text[end:], encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/rcf-r0c-cp2d-closeout-r2.yml
+          git commit -m 'Use durable fixed baseline release in CP2-D R2'
+          git push origin HEAD:automation/rcf-r0c-cp2d-closeout-20260926
