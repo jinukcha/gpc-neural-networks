@@ -17,14 +17,13 @@ jobs:
     env:
       TAG: rcf-r0c-cp2a-20260926-r1
       BRANCH: automation/rcf-r0c-cp2a-freeze-20260926
-      BASELINE_URL: "https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-afd0-8206-9682-7fa15d60a1af/raw?se=2026-09-25T21%3A44%3A27Z&sp=r&sv=2026-02-06&sr=b&scid=4a336a2b-7e52-589e-a5d1-87e24deafcaf&skoid=0b778285-7b0b-4cdc-ac3b-fb93e8c3686f&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T19%3A49%3A02Z&ske=2026-09-26T19%3A49%3A02Z&sks=b&skv=2026-02-06&sig=dH/JnP9y0ooX%2BtHRTvcrNYi/sRHviDjSe6XL1SOqUAk%3D"
     steps:
       - uses: actions/checkout@v4
         with:
           ref: automation/rcf-r0c-cp2a-freeze-20260926
           fetch-depth: 0
 
-      - name: Download exact authority and fixed baseline
+      - name: Download exact accepted C1 authority
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -38,17 +37,18 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             -o cp2a_inputs/C1_transfer.zip \
             "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10887764464/zip"
-          curl -L --fail --retry 3 -o cp2a_inputs/RCF_D0_full.zip "$BASELINE_URL"
           echo 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53  cp2a_inputs/C1_transfer.zip' | sha256sum -c -
-          echo '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2  cp2a_inputs/RCF_D0_full.zip' | sha256sum -c -
           unzip -t cp2a_inputs/C1_transfer.zip >/dev/null
-          unzip -t cp2a_inputs/RCF_D0_full.zip >/dev/null
+          echo 'eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac  cp2a_baseline_receipt/C1_baseline_patch_replay.json' | sha256sum -c -
 
-      - name: Compile packager and parse frozen sources
+      - name: Compile focused packager and parse frozen sources
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile cp2a_tools/build_cp2a.py r0c_cp1/package_tools.py
+          python -m py_compile \
+            cp2a_tools/build_cp2a.py \
+            cp2a_tools/build_cp2a_composed.py \
+            r0c_cp1/package_tools.py
           python - <<'PY'
           import csv, json
           from pathlib import Path
@@ -66,9 +66,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python cp2a_tools/build_cp2a.py \
+          python cp2a_tools/build_cp2a_composed.py \
             --transport cp2a_inputs/C1_transfer.zip \
-            --baseline cp2a_inputs/RCF_D0_full.zip \
+            --accepted-replay cp2a_baseline_receipt/C1_baseline_patch_replay.json \
             --source-root cp2a_freeze_source \
             --work cp2a_work \
             --output cp2a_output \
@@ -94,11 +94,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for f in C2A.zip C2AP.zip C2AS.zip C2AR.zip C2A_SMALL.zip; do
+          for f in C2A.zip C2AP.zip C2AS.zip C2AR.zip C2A_SMALL.zip C2A_transfer.zip; do
             unzip -t "cp2a_output/$f" >/dev/null
           done
           (cd cp2a_output && sha256sum -c C2A.sha256)
           (cd cp2a_output && sha256sum -c C2A_SMALL.sha256)
+          (cd cp2a_output && sha256sum -c C2A_transfer.sha256)
           python - <<'PY'
           import json
           from pathlib import Path
@@ -106,8 +107,9 @@ jobs:
           assert check['stage_completion'] == 'CP2_A_COMPLETE_CLOSED'
           assert check['r0c_cp2'] == 'OPEN'
           assert check['validation']['status'] == 'PASS'
-          assert check['validation']['baseline_plus_c2ap_equals_full']['status'] == 'PASS'
-          assert check['validation']['c1_plus_source_equals_full']['status'] == 'PASS'
+          assert check['validation']['fixed_baseline_plus_cumulative_patch_equals_full']['status'] == 'PASS_COMPOSITIONAL_WITH_ACCEPTED_DIRECT_REPLAY'
+          assert check['validation']['C1_plus_source_equals_full']['status'] == 'PASS'
+          assert check['validation']['patch_current_delta_equals_source_payload']['status'] == 'PASS'
           print('independent finalized reopen: PASS')
           PY
 
@@ -127,6 +129,7 @@ jobs:
           cp cp2a_output/C2A_release.json cp2a_result/
           cp cp2a_output/C2A_SMALL.zip cp2a_result/
           cp cp2a_output/C2A_SMALL.sha256 cp2a_result/
+          cp cp2a_output/C2A_transfer.sha256 cp2a_result/
           cp cp2a_output/C2A_pre_check.json cp2a_result/
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -153,6 +156,7 @@ jobs:
             cp2a_output/C2A_release.json
             cp2a_output/C2A_SMALL.zip
             cp2a_output/C2A_SMALL.sha256
+            cp2a_output/C2A_transfer.sha256
             cp2a_output/C2A_pre_check.json
           )
           if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
@@ -166,11 +170,20 @@ jobs:
               --repo "$GITHUB_REPOSITORY"
           fi
 
-      - name: Upload compact delivery
+      - name: Upload compact delivery container
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: C2A_SMALL
           path: cp2a_work/small_delivery/*
-          compression-level: 9
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload exact transfer container
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2A_TRANSFER
+          path: cp2a_work/transfer/*
+          compression-level: 0
           retention-days: 7
