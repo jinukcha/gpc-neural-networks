@@ -30,11 +30,11 @@
     },
     "body_step": {
       "path": "parts/tower_body/shape.step",
-      "sha256": "5d50ac15ad9d4298409d5ecd7ff809e77d72ea42e9e1b10ea798ca143dd64027"
+      "sha256": "5d50ac15a545389baecc565f65de8777d7d13ffbe55ec7d849be6b1f0e92998a"
     },
     "body_brep": {
       "path": "parts/tower_body/shape.brep",
-      "sha256": "dae1e13e756b98e7155108334d64f12b8b9328f24977077654f60ab606531edd"
+      "sha256": "dae1e13e10356b9d2b9c3f313cb80e79b216f487147d7a89293f1768434c04a6"
     },
     "completion_receipt": {
       "path": "RC_K0/child_designs/fortification/r0c_cp1/reports/completion_receipt.json",
@@ -75,11 +75,11 @@
     },
     "body_step": {
       "path": "parts/wall_body/shape.step",
-      "sha256": "ed0d24b8ae633abb51f1377e41770e6a81c6c27006396326742202747c3bbc5f"
+      "sha256": "ed0d2ddd56758a9a98c43b2bc2506371f1bb5112739ae8919ab01e616c0b6305"
     },
     "body_brep": {
       "path": "parts/wall_body/shape.brep",
-      "sha256": "2f9a86f5b34b1393213f3938525a9af7f32aa5c4ea4fa9450add81b9a78da04d"
+      "sha256": "2f9a8750799ee65a471842a1ecc9071aff8254a1f28edfed9af710c4e17e91de"
     },
     "completion_receipt": {
       "path": "RC_K0/child_designs/fortification/r0b_cp4/reports/cp4_completion.json",
