@@ -1,0 +1,98 @@
+name: Diagnose CP2-D FX01 source binding
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp2d-closeout-20260926
+    paths:
+      - .github/workflows/rcf-cp2d-fx01-binding-diagnostic.yml
+
+permissions:
+  contents: read
+
+env:
+  BRANCH: automation/rcf-r0c-cp2d-closeout-20260926
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+      - name: Download and reopen accepted C2C
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p diagnostic_input diagnostic_tree diagnostic_output
+          gh release download rcf-r0c-cp2c-fx02-fx03-20260926-r1 \
+            --repo "$GITHUB_REPOSITORY" --dir diagnostic_input --pattern C2C.zip
+          echo 'f9c40a68a37f71d8a3e24288f66559481c212ededca6842d3ef555c6f275369f  diagnostic_input/C2C.zip' | sha256sum -c -
+          unzip -q diagnostic_input/C2C.zip -d diagnostic_tree
+      - name: Materialize exact runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv diagnostic_runtime
+          diagnostic_runtime/bin/python -m pip install \
+            --no-index \
+            --find-links diagnostic_tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r diagnostic_tree/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt >/dev/null
+          diagnostic_runtime/bin/python -m pip check
+      - name: Rebuild FX01 and compare binding fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          diagnostic_runtime/bin/python - <<'PY'
+          from pathlib import Path
+          import json, sys
+          tree = Path('diagnostic_tree').resolve()
+          cp1 = tree / 'RC_K0/child_designs/fortification/r0a_cp1'
+          cp2 = tree / 'RC_K0/child_designs/fortification/r0c_cp2'
+          sys.path[:0] = [str(cp1 / 'src'), str(cp2 / 'src')]
+          from rcf_fortification_tower_join import Fx01TowerJoinProducer
+          fixture = json.loads((cp2 / 'fixtures/R0C_CP2_FX01.fixture.json').read_text(encoding='utf-8'))
+          observed = Path('diagnostic_output/observed').resolve()
+          failures = Path('diagnostic_output/failures').resolve()
+          result = Fx01TowerJoinProducer(tree).execute(fixture, observed, failures, failure_case='diagnostic')
+          assert result['status'] == 'SUCCEEDED'
+          accepted_path = cp2 / 'outputs/fx01/reference/source-bindings.json'
+          observed_path = observed / 'source-bindings.json'
+          accepted = json.loads(accepted_path.read_text(encoding='utf-8'))
+          actual = json.loads(observed_path.read_text(encoding='utf-8'))
+          def diff(a, b, path='$'):
+              rows=[]
+              if type(a) is not type(b):
+                  return [{'path':path,'accepted':a,'observed':b,'kind':'type'}]
+              if isinstance(a, dict):
+                  for key in sorted(set(a)|set(b)):
+                      if key not in a: rows.append({'path':f'{path}.{key}','kind':'extra','observed':b[key]})
+                      elif key not in b: rows.append({'path':f'{path}.{key}','kind':'missing','accepted':a[key]})
+                      else: rows.extend(diff(a[key],b[key],f'{path}.{key}'))
+              elif isinstance(a, list):
+                  if len(a)!=len(b): rows.append({'path':path,'kind':'length','accepted':len(a),'observed':len(b)})
+                  for i,(x,y) in enumerate(zip(a,b)): rows.extend(diff(x,y,f'{path}[{i}]'))
+              elif a != b:
+                  rows.append({'path':path,'kind':'value','accepted':a,'observed':b})
+              return rows
+          report = {
+              'schema':'royal-capital.fortification.r0c-cp2.fx01-binding-diagnostic/1',
+              'status':'DIFFERENT' if accepted != actual else 'IDENTICAL',
+              'differences':diff(accepted, actual),
+              'accepted':accepted,
+              'observed':actual,
+          }
+          Path('diagnostic_output/FX01_BINDING_DIAGNOSTIC.json').write_text(json.dumps(report,indent=2,sort_keys=True,ensure_ascii=False)+'\n',encoding='utf-8')
+          print(json.dumps(report,indent=2,sort_keys=True,ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FX01_BINDING_DIAGNOSTIC
+          path: diagnostic_output/FX01_BINDING_DIAGNOSTIC.json
+          if-no-files-found: error
