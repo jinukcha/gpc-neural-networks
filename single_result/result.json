@@ -1,0 +1,70 @@
+{
+  "project": "ROYAL-CAPITAL-FORTIFICATION-CAD",
+  "work": "R0C-CP3 single integrated source consolidation",
+  "source_publication": "COMPLETE",
+  "cp3_scope_contract_fixture_files": "INTEGRATED",
+  "cp3_functional_qualification": "NOT_STARTED",
+  "r0c_cp3": "OPEN",
+  "godot_product": "NOT_STARTED",
+  "next_task": "CP3-B — R0C_CP3_FX01 LINEAR BATTLEMENT PILOT",
+  "actual_source_intake": {
+    "selected_source": "cp2d_output/C2_pre.zip",
+    "source_zip_bytes": 259404868,
+    "source_zip_sha256": "c2818914e35381ac7c1b7cb1be1484d10ecf33a12a125b1525810173726f76b8"
+  },
+  "accepted_C2_byte_identity": "NOT_CLAIMED_OR_REQUIRED_FOR_CONTINUATION",
+  "protected_current_source_files": 377,
+  "protected_current_source_unchanged": true,
+  "runtime_smoke": {
+    "status": "PASS",
+    "operation": "build123d Box + STEP/BREP reopen",
+    "volumes": [
+      23.999999999999996,
+      23.999999999999996,
+      23.999999999999996
+    ],
+    "offline_install": "PASS",
+    "pip_check": "No broken requirements found.",
+    "python": "3.13.5"
+  },
+  "packager_manifest_refresh_test": "PASS",
+  "delivery_policy": {
+    "integrated_files": 1,
+    "patch_required": false,
+    "baseline_replay_required": false,
+    "prevalidation_zip_required": false,
+    "library_publication_is_start_gate": false
+  },
+  "size": {
+    "input_uncompressed_bytes": 271720048,
+    "removed_files": 192,
+    "removed_uncompressed_bytes": 1958590,
+    "runtime_wheel_count": 58,
+    "runtime_wheel_bytes": 255883458,
+    "runtime_wheels_removed": 0,
+    "output_files": 1378,
+    "output_uncompressed_bytes": 269750454
+  },
+  "amended_active_docs": [
+    "RC_K0/docs/06_ROADMAP.md",
+    "RC_K0/child_designs/fortification/r0c_cp3/README.md",
+    "RC_K0/child_designs/fortification/docs/06_ROADMAP.md",
+    "RC_K0/child_designs/fortification/r0c_cp3/docs/CP3_SCOPE_FREEZE.md"
+  ],
+  "removed_by_reason": {
+    "disposable log/cache": 670787,
+    "historical generated geometry": 1125159,
+    "historical generated mesh": 162644
+  },
+  "validation_scope": "contract/matrix parse; current source preservation; one packaging edit-refresh regression; one offline CAD STEP/BREP smoke; no CP2 requalification",
+  "delivery": {
+    "filename": "RCF.zip",
+    "artifact_id": 10907951979,
+    "bytes": 259244350,
+    "sha256": "4bfe361a6885eecc38eddd44dcc79b011cc1debe7ab606ef012e9e511f246181",
+    "files": 1378,
+    "zip_crc": "PASS",
+    "transport_inventory": "PASS",
+    "nested_delivery_zips": 0
+  }
+}
