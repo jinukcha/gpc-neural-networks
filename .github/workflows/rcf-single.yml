@@ -1,0 +1,88 @@
+name: RCF current source single bundle
+on:
+  push:
+    branches: [automation/rcf-cp3-single-20260926]
+    paths: ['.github/workflows/rcf-single.yml', 'rcf_single.py', 'rcf_cp3_pilot.py']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: rcf-single-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Read latest available working source, not historical reconstruction
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/rcf" single_result
+          gh api /repos/$GITHUB_REPOSITORY/actions/artifacts/10907856074/zip > "$RUNNER_TEMP/rcf/input.zip"
+          python3 - <<'PY'
+          import os, json, zipfile, hashlib, shutil, collections
+          from pathlib import Path, PurePosixPath
+          temp=Path(os.environ['RUNNER_TEMP'])/'rcf'
+          with zipfile.ZipFile(temp/'input.zip') as outer:
+              names=outer.namelist()
+              candidates=[n for n in names if PurePosixPath(n).name in ('C3A.zip','C3A_pre.zip','C2.zip','C2_pre.zip')]
+              order={'C3A.zip':0,'C3A_pre.zip':1,'C2.zip':2,'C2_pre.zip':3}
+              selected=min(candidates,key=lambda n:order[PurePosixPath(n).name])
+              with outer.open(selected) as source, (temp/'current.zip').open('wb') as dest: shutil.copyfileobj(source,dest)
+              outer_small={n:outer.read(n).decode('utf-8','replace') for n in names if (n.endswith('.log') or n.endswith('CHECK.json')) and outer.getinfo(n).file_size<18000}
+          tree=temp/'tree';tree.mkdir()
+          with zipfile.ZipFile(temp/'current.zip') as z:
+              for info in z.infolist():
+                  p=PurePosixPath(info.filename)
+                  if p.is_absolute() or '..' in p.parts or '\\' in info.filename: raise ValueError('unsafe ZIP path')
+                  if ((info.external_attr >> 16) & 0o170000)==0o120000: raise ValueError('symlink ZIP member')
+              z.extractall(tree)
+          files=[p for p in tree.rglob('*') if p.is_file()]
+          groups=collections.Counter()
+          for p in files: groups['/'.join(p.relative_to(tree).parts[:5])]+=p.stat().st_size
+          relevant=[p for p in files if p.suffix.lower() in ('.step','.stp','.brep','.whl','.zip','.7z','.gz','.tar') or any(t in p.name.lower() for t in ('roadmap','requirement','fixture','wall','socket','tower','progress','module'))]
+          content={}
+          for p in files:
+              rel=p.relative_to(tree).as_posix(); lo=rel.lower()
+              wanted=('requirements-lock' in lo or 'roadmap' in p.name.lower() or 'r0c_cp2/contracts/' in lo or 'r0c_cp2/data/' in lo or 'r0c_cp1/data/' in lo)
+              if wanted and p.suffix in ('.txt','.json','.csv','.md') and p.stat().st_size<45000: content[rel]=p.read_text(errors='replace')
+          report={'selected_source':selected,'source_zip_bytes':(temp/'current.zip').stat().st_size,'source_zip_sha256':hashlib.sha256((temp/'current.zip').read_bytes()).hexdigest(),'files':len(files),'uncompressed_bytes':sum(p.stat().st_size for p in files),'largest':[{'path':p.relative_to(tree).as_posix(),'bytes':p.stat().st_size} for p in sorted(files,key=lambda p:p.stat().st_size,reverse=True)[:70]],'groups':groups.most_common(45),'relevant_files':[{'path':p.relative_to(tree).as_posix(),'bytes':p.stat().st_size} for p in relevant],'texts':content,'latest_small_logs':outer_small}
+          Path('single_result/inventory.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
+          print(json.dumps({k:v for k,v in report.items() if k in ('selected_source','source_zip_bytes','source_zip_sha256','files','uncompressed_bytes','largest')},indent=2))
+          PY
+      - name: Build one integrated result when implementation is present
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -f rcf_single.py; then
+            python3 rcf_single.py --tree "$RUNNER_TEMP/rcf/tree" --output "$RUNNER_TEMP/rcf/delivery"
+          fi
+      - name: Retain compact result in working branch
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f single_result
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record current-source inventory or single-bundle result [skip ci]'
+            git push origin HEAD:automation/rcf-cp3-single-20260926
+          fi
+      - name: Deliver only the integrated directory as one downloadable archive
+        if: hashFiles('rcf_single.py') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: RCF
+          path: ${{ runner.temp }}/rcf/delivery/
+          if-no-files-found: error
+          include-hidden-files: true
+          compression-level: 9
+          retention-days: 30
