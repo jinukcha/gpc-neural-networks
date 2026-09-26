@@ -1,0 +1,21 @@
+{
+  "schema": "royal-capital.fortification.r0c-cp3.cp3a-source-receipt/1",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP3",
+  "checkpoint": "CP3-A-R1",
+  "status": "PRESERVED_BEFORE_VALIDATION",
+  "accepted_parent": {
+    "name": "C2.zip",
+    "sha256": "686b9857cc37d0dff2c0c26bc3630d8c94a53c878a92001d4f0e3aa4200e69b2",
+    "tree_digest": "sha256:389f7c0865ece121f370296936f02b04efa06a4c5d9bf25fe32c0a01325edcb7",
+    "files": 1618
+  },
+  "scope_freeze": "PRESENT_PENDING_PARSE",
+  "contract_freeze": "PRESENT_PENDING_PARSE",
+  "fixture_matrix_freeze": "PRESENT_PENDING_PARSE",
+  "source_preservation": "PASS",
+  "functional_qualification": "NOT_STARTED_CP3_GEOMETRY",
+  "stage_completion": "OPEN_PENDING_PREVALIDATION_REPLAY",
+  "partial_output_published": false,
+  "accepted_parent_mutated": false,
+  "godot_product": "NOT_STARTED"
+}
