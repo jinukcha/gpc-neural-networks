@@ -1,0 +1,935 @@
+{
+  "artifacts": {
+    "C2C_FX02_pre.zip": {
+      "bad_crc": null,
+      "bytes": 259247250,
+      "duplicates": [],
+      "entries": 1460,
+      "file_entries": 1460,
+      "name": "C2C_FX02_pre.zip",
+      "sha256": "3d26efa910743480a5f53a36b8de0d6dff3a7ff7247a55976e258aca663873bc",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2C_FX02_preP.zip": {
+      "bad_crc": null,
+      "bytes": 254440735,
+      "duplicates": [],
+      "entries": 1311,
+      "file_entries": 1311,
+      "name": "C2C_FX02_preP.zip",
+      "sha256": "fe570face3fdb76a1c074d06999028b9cea0190cb8ead52d5947ca3e766e2d36",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2C_FX02_preS.zip": {
+      "bad_crc": null,
+      "bytes": 134304,
+      "duplicates": [],
+      "entries": 45,
+      "file_entries": 45,
+      "name": "C2C_FX02_preS.zip",
+      "sha256": "d423f70ed566d589860e07714223c60092bc558ba4c3b9f32f77c6173ea66558",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    }
+  },
+  "authority": {
+    "C2B_check": {
+      "artifacts": {
+        "C2B.zip": {
+          "bad_crc": null,
+          "bytes": 259260533,
+          "duplicates": [],
+          "entries": 1459,
+          "file_entries": 1459,
+          "name": "C2B.zip",
+          "sha256": "9bc60a867b53c519b7729f1b8b9181fbb2e0f1edc5ea5853f288e8eab93001d4",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        },
+        "C2BP.zip": {
+          "bad_crc": null,
+          "bytes": 254424809,
+          "duplicates": [],
+          "entries": 1307,
+          "file_entries": 1307,
+          "name": "C2BP.zip",
+          "sha256": "d38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        },
+        "C2BR.zip": {
+          "bad_crc": null,
+          "bytes": 8795,
+          "duplicates": [],
+          "entries": 13,
+          "file_entries": 13,
+          "name": "C2BR.zip",
+          "sha256": "c1066a0e15f3a1514cd1e4c80492c414b4c696fa87b82ad7fea9ce5a9b471e54",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        },
+        "C2BS.zip": {
+          "bad_crc": null,
+          "bytes": 147561,
+          "duplicates": [],
+          "entries": 44,
+          "file_entries": 44,
+          "name": "C2BS.zip",
+          "sha256": "cea6b30e0451489fc857f083d243779ec570c85849d465b1b7ec4f2fd91e3f23",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        }
+      },
+      "checkpoint": "CP2-B_R0C_CP2_FX01",
+      "clean_replay": {
+        "byte_identical": true,
+        "different": [],
+        "extra_in_b": [],
+        "files_compared": 27,
+        "fixture_id": "R0C_CP2_FX01",
+        "missing_in_b": [],
+        "run_a_tree_digest": "sha256:63a6928100680d41f9c103e1e2cdc94e2da58a1a447cc31f3127014a8d194714",
+        "run_b_tree_digest": "sha256:63a6928100680d41f9c103e1e2cdc94e2da58a1a447cc31f3127014a8d194714",
+        "schema": "royal-capital.fortification.r0c-cp2.fx01-clean-replay/1",
+        "status": "PASS"
+      },
+      "cumulative_patch": {
+        "accepted_parent_cumulative_patch": "C2AP.zip",
+        "accepted_parent_cumulative_patch_sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+        "accepted_parent_full": "C2A.zip",
+        "accepted_parent_sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e",
+        "baseline_file": "RCF_D0_full.zip",
+        "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+        "current_delta": "C2B_current_delta.zip",
+        "deleted_count": 0,
+        "proof": "accepted fixed-baseline replay reaches the accepted parent; the exact current delta reaches the CP2-B checkpoint; overlaying the same delta on the accepted parent cumulative patch reconstructs the CP2-B checkpoint",
+        "schema": "royal-capital.cumulative-patch/1",
+        "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-B_R0C_CP2_FX01"
+      },
+      "current_delta": {
+        "added": 38,
+        "deleted": 0,
+        "modified": 2,
+        "parent": "C2A.zip",
+        "paths": {
+          "added": [
+            "RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX01.fixture.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/continuity-evidence.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/fixed-tessellation.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/overlap-gap-projection.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/shape.brep",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/shape.step",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/shape.brep",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/shape.step",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/shape.brep",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/shape.step",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/semantic-parts.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/socket-frame-evidence.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/source-bindings.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/source-immutability.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/stored-copies.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/tower-join-plan.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_clean_replay.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_completion.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_qualification.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_IMPLEMENTATION_SOURCE_CHECKPOINT.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/__init__.cpython-313.pyc",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/fx01.cpython-313.pyc",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx01.py",
+            "RC_K0/child_designs/fortification/r0c_cp2/tools/__pycache__/run_fx01.cpython-313.pyc",
+            "RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx01.py"
+          ],
+          "deleted": [],
+          "modified": [
+            "FILES.sha256",
+            "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv"
+          ]
+        },
+        "payload_entries": 40,
+        "raw_wheels_included": false,
+        "schema": "royal-capital.source-delta/1",
+        "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-B_R0C_CP2_FX01_CURRENT_DELTA"
+      },
+      "exact_runtime": "PASS_REUSED_CPYTHON_3_13_5_BUILD123D_E22D34DAE_OCP_8_0_1_0_0",
+      "fixture_matrix": {
+        "FX01": {
+          "authority_note": "CP2-B accepted ROUND×TANGENT×STRAIGHT_SPAN representative fixture; evidence=RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_qualification.json",
+          "exact_source_binding": "BOUND_EXACT_ACCEPTED_IDS_DIGESTS_AND_SOCKETS",
+          "fixture_id": "R0C_CP2_FX01",
+          "focused_validation": "tangent|wall-walk",
+          "join_kind": "TANGENT",
+          "required_at_r0c_cp2": "true",
+          "required_continuity": "wall_body|wall_walk|foundation",
+          "span_count": "1",
+          "span_family": "STRAIGHT_SPAN",
+          "span_roles": "TANGENT",
+          "span_socket_roles": "SPAN_START|SPAN_END",
+          "status": "PASS_CP2_B",
+          "tower_family": "ROUND",
+          "tower_socket_roles": "TOWER_WALL_LEFT|TOWER_WALL_RIGHT"
+        },
+        "remaining": [
+          {
+            "authority_note": "CP2-A project-owned representative pairing within accepted roadmap join scope",
+            "exact_source_binding": "BIND_AT_CP2_B",
+            "fixture_id": "R0C_CP2_FX02",
+            "focused_validation": "tangent|wall-walk",
+            "join_kind": "CORNER",
+            "required_at_r0c_cp2": "true",
+            "required_continuity": "wall_body|wall_walk|foundation",
+            "span_count": "2",
+            "span_family": "STRAIGHT_SPAN",
+            "span_roles": "INCOMING|OUTGOING",
+            "span_socket_roles": "SPAN_START|SPAN_END",
+            "status": "FROZEN_PENDING_IMPLEMENTATION",
+            "tower_family": "SQUARE",
+            "tower_socket_roles": "TOWER_WALL_LEFT|TOWER_WALL_RIGHT"
+          },
+          {
+            "authority_note": "CP2-A project-owned representative pairing within accepted roadmap join scope",
+            "exact_source_binding": "BIND_AT_CP2_B",
+            "fixture_id": "R0C_CP2_FX03",
+            "focused_validation": "tangent|wall-walk",
+            "join_kind": "WALL_PENETRATING",
+            "required_at_r0c_cp2": "true",
+            "required_continuity": "wall_body|wall_walk|foundation",
+            "span_count": "1",
+            "span_family": "STRAIGHT_SPAN",
+            "span_roles": "THROUGH",
+            "span_socket_roles": "SPAN_START|SPAN_END",
+            "status": "FROZEN_PENDING_IMPLEMENTATION",
+            "tower_family": "POLYGONAL",
+            "tower_socket_roles": "TOWER_WALL_LEFT|TOWER_WALL_RIGHT"
+          }
+        ],
+        "rows": 6,
+        "status": "PASS"
+      },
+      "functional_qualification": "PASS_FX01",
+      "godot_product": "NOT_STARTED",
+      "official_subtitle": "TOWER JOINS",
+      "qualification": {
+        "binding": {
+          "span_socket_id": "span_start",
+          "span_translation_m": [
+            7.45359421,
+            0.0,
+            0.0
+          ],
+          "tower_socket_id": "span_out"
+        },
+        "bounds_m": {
+          "max": [
+            7.70359421,
+            12.6,
+            4.0
+          ],
+          "min": [
+            7.20359421,
+            -2.0,
+            -4.0
+          ]
+        },
+        "checkpoint": "CP2-B_R0C_CP2_FX01",
+        "clean_replay": {
+          "byte_identical": true,
+          "different": [],
+          "extra_in_b": [],
+          "files_compared": 27,
+          "fixture_id": "R0C_CP2_FX01",
+          "missing_in_b": [],
+          "run_a_tree_digest": "sha256:63a6928100680d41f9c103e1e2cdc94e2da58a1a447cc31f3127014a8d194714",
+          "run_b_tree_digest": "sha256:63a6928100680d41f9c103e1e2cdc94e2da58a1a447cc31f3127014a8d194714",
+          "schema": "royal-capital.fortification.r0c-cp2.fx01-clean-replay/1",
+          "status": "PASS"
+        },
+        "evidence": {
+          "accepted_sources_unchanged": true,
+          "foundation_source_offset_m": 0.5,
+          "foundation_transition_residual_m": 0.0,
+          "inside_frame_error": 0.0,
+          "inside_projection_m": 0.0,
+          "outside_projection_m": 0.0,
+          "part_count": 3,
+          "partial_output_published": false,
+          "socket_position_error_m": 0.0,
+          "stored_copies_reopened": true,
+          "stored_copy_count": 6,
+          "tangent_error": 0.0,
+          "unsupported_gap_m": 0.0,
+          "up_axis_error": 0.0,
+          "volume_m3": 45.92,
+          "wall_walk_position_error_m": 0.0
+        },
+        "fixture_id": "R0C_CP2_FX01",
+        "functional_qualification": "PASS_FX01",
+        "godot_product": "NOT_STARTED",
+        "implemented": {
+          "join_kind": "TANGENT",
+          "realization": "BOUNDED_TRANSITION_PIECE",
+          "source_geometry_mutated": false,
+          "span_family": "STRAIGHT_SPAN",
+          "tower_family": "ROUND"
+        },
+        "negative_gates": "DEFERRED_TO_CP2_D",
+        "official_subtitle": "TOWER JOINS",
+        "r0c_cp2": "OPEN",
+        "reference_tree_digest": "sha256:63a6928100680d41f9c103e1e2cdc94e2da58a1a447cc31f3127014a8d194714",
+        "remaining_required_fixtures": [
+          "R0C_CP2_FX02",
+          "R0C_CP2_FX03"
+        ],
+        "schema": "royal-capital.fortification.r0c-cp2.fx01-qualification/1",
+        "source_preservation": "PASS",
+        "stage_completion": "CP2_B_COMPLETE_CLOSED",
+        "status": "PASS",
+        "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2",
+        "triangle_count": 36,
+        "vertex_count": 24
+      },
+      "r0c_cp2": "OPEN",
+      "registries": {
+        "C1": {
+          "extra": [],
+          "mismatched": [],
+          "missing": [],
+          "registry_entries": 1417,
+          "status": "PASS",
+          "tree_files_including_registry": 1418
+        },
+        "C2A": {
+          "extra": [],
+          "mismatched": [],
+          "missing": [],
+          "registry_entries": 1420,
+          "status": "PASS",
+          "tree_files_including_registry": 1421
+        },
+        "C2B": {
+          "extra": [],
+          "mismatched": [],
+          "missing": [],
+          "registry_entries": 1458,
+          "status": "PASS",
+          "tree_files_including_registry": 1459
+        }
+      },
+      "result": {
+        "accepted_sources_unchanged": true,
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 4380,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:86c29bbaa5315372a182c3df12cff203e0b3776b02374c9d1673102caae00565"
+          },
+          "continuity-evidence.json": {
+            "bytes": 487,
+            "path": "continuity-evidence.json",
+            "sha256": "sha256:617515d265def6208bbb8a7b4e8356154f37f29cf52da19fcd3b8f4e4600ddf5"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 410,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:c9b8fae61652f3f4f6602e93268ead82a3101982c7f8e3a655878b67fbb67cd3"
+          },
+          "neutral-mesh.json": {
+            "bytes": 3591,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:f3ca1c7b2c3e28b9d1091bece22ae391d74644d079dd6522437da8853752a34f"
+          },
+          "overlap-gap-projection.json": {
+            "bytes": 565,
+            "path": "overlap-gap-projection.json",
+            "sha256": "sha256:6a7498913c6237e709eb0e2dca06b3ce989a0468b03439cb23303d52978e6766"
+          },
+          "semantic-parts.json": {
+            "bytes": 2569,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:bb966e5e4a6c9ed1eed619ced3f4d7dc38f9989b05f48077cf9c35140740b37c"
+          },
+          "socket-frame-evidence.json": {
+            "bytes": 543,
+            "path": "socket-frame-evidence.json",
+            "sha256": "sha256:d0e41f677b88966cceb3145413d12ccbd8ba8fcb875711b219aa9b1e0148aa75"
+          },
+          "source-bindings.json": {
+            "bytes": 5863,
+            "path": "source-bindings.json",
+            "sha256": "sha256:8d43eaebef71106a6789e46b4eade8bd9f51eb931ce7e89dfdd31dfc20a1401a"
+          },
+          "source-immutability.json": {
+            "bytes": 545,
+            "path": "source-immutability.json",
+            "sha256": "sha256:a39387d693b9efef5a3cd8d9c4d28ecd6a942e4023655e5b971d5eab4a1ea5c6"
+          },
+          "stored-copies.json": {
+            "bytes": 3181,
+            "path": "stored-copies.json",
+            "sha256": "sha256:3034a2b01f5214e5162c6a87277927336a160bece07f13283dc00ef74f2e79ef"
+          },
+          "tower-join-plan.json": {
+            "bytes": 984,
+            "path": "tower-join-plan.json",
+            "sha256": "sha256:b84da5b26933c9ac2af155778cb7559a27ca43d5b9cd69269bbca316e3bb5ce9"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            7.70359421,
+            12.6,
+            4.0
+          ],
+          "min": [
+            7.20359421,
+            -2.0,
+            -4.0
+          ]
+        },
+        "failure": null,
+        "fixture_id": "R0C_CP2_FX01",
+        "foundation_source_offset_m": 0.5,
+        "foundation_transition_residual_m": 0.0,
+        "inside_frame_error": 0.0,
+        "inside_projection_m": 0.0,
+        "join_kind": "TANGENT",
+        "outside_projection_m": 0.0,
+        "part_count": 3,
+        "partial_output_published": false,
+        "request_id": "fortification/caelmere/r0c-cp2/fx01-round-tangent-straight@1",
+        "schema": "royal-capital.fortification.tower-join-result/1",
+        "socket_position_error_m": 0.0,
+        "status": "SUCCEEDED",
+        "stored_copies_reopened": true,
+        "stored_copy_count": 6,
+        "tangent_error": 0.0,
+        "triangle_count": 36,
+        "unsupported_gap_m": 0.0,
+        "up_axis_error": 0.0,
+        "vertex_count": 24,
+        "volume_m3": 45.92,
+        "wall_walk_position_error_m": 0.0
+      },
+      "roadmap_progress": {
+        "accepted_checkpoints": "10/25",
+        "next_exact_checkpoint": "R0C-CP2 CP2-C",
+        "r0c": "1/4",
+        "subcheckpoint": "CP2-B_COMPLETE_CLOSED"
+      },
+      "schema": "royal-capital.fortification.r0c-cp2.cp2b-fx01-check/1",
+      "source_delta": {
+        "added": 41,
+        "deleted": 0,
+        "modified": 1,
+        "parent": "C1.zip",
+        "paths": {
+          "added": [
+            "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+            "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md",
+            "RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX01.fixture.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/continuity-evidence.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/fixed-tessellation.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/overlap-gap-projection.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/shape.brep",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/shape.step",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/shape.brep",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/shape.step",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/cad-provider-receipt.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/neutral-mesh.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/shape.brep",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/shape.step",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/result.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/semantic-parts.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/socket-frame-evidence.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/source-bindings.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/source-immutability.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/stored-copies.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/tower-join-plan.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_clean_replay.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_completion.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_qualification.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_IMPLEMENTATION_SOURCE_CHECKPOINT.json",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/__init__.cpython-313.pyc",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/fx01.cpython-313.pyc",
+            "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx01.py",
+            "RC_K0/child_designs/fortification/r0c_cp2/tools/__pycache__/run_fx01.cpython-313.pyc",
+            "RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx01.py"
+          ],
+          "deleted": [],
+          "modified": [
+            "FILES.sha256"
+          ]
+        },
+        "payload_entries": 42,
+        "raw_wheels_included": false,
+        "schema": "royal-capital.source-delta/1",
+        "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-B_R0C_CP2_FX01"
+      },
+      "source_preservation": "PASS",
+      "stage_completion": "CP2_B_COMPLETE_CLOSED",
+      "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2",
+      "validation": {
+        "C1_plus_source_equals_full": {
+          "different": [],
+          "expected_files": 1459,
+          "extra": [],
+          "missing": [],
+          "observed_files": 1459,
+          "status": "PASS"
+        },
+        "C2A_plus_current_delta_equals_full": {
+          "different": [],
+          "expected_files": 1459,
+          "extra": [],
+          "missing": [],
+          "observed_files": 1459,
+          "status": "PASS"
+        },
+        "fixed_baseline_plus_cumulative_patch_equals_full": {
+          "conclusion": "RCF_D0_full.zip + C2BP.zip = C2B.zip",
+          "direct_fixed_baseline_replay_this_run": "NOT_REPEATED_ACCEPTED_CP2A_REPLAY_REOPENED",
+          "premises": {
+            "C2A_plus_current_delta_equals_C2B": {
+              "different": [],
+              "expected_files": 1459,
+              "extra": [],
+              "missing": [],
+              "observed_files": 1459,
+              "status": "PASS"
+            },
+            "C2BP_constructed_from_exact_C2AP_plus_current_delta": {
+              "C2AP_sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+              "C2BP_sha256": "d38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7",
+              "current_delta_sha256": "816d107fad9f76976273019e81d0c1b193f94579ca74681d93ecc35c6b053e96",
+              "status": "PASS"
+            },
+            "RCF_D0_plus_C2AP_equals_C2A": {
+              "conclusion": "RCF_D0_full.zip + C2AP.zip = C2A.zip",
+              "direct_fixed_baseline_replay_this_run": "NOT_REPEATED_ACCEPTED_DIRECT_REPLAY_RECEIPT_REOPENED",
+              "premises": {
+                "C1_plus_C2AS_equals_C2A": {
+                  "different": [],
+                  "expected_files": 1421,
+                  "extra": [],
+                  "missing": [],
+                  "observed_files": 1421,
+                  "status": "PASS"
+                },
+                "C2AP_constructed_from_exact_C1P_plus_exact_C2AS": {
+                  "C1P_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+                  "C2AP_sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+                  "C2AS_sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+                  "status": "PASS"
+                },
+                "C2AP_current_delta_equals_C2AS_payload": {
+                  "current_delta_files": 4,
+                  "current_delta_payload_mismatch": [],
+                  "missing_deletions": [],
+                  "status": "PASS"
+                },
+                "fixed_baseline_plus_C1P_equals_C1": {
+                  "accepted_artifact_id": 10888433130,
+                  "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+                  "accepted_workflow_run_id": 36192768002,
+                  "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+                  "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+                  "comparison": {
+                    "different": [],
+                    "extra": [],
+                    "missing": [],
+                    "mode_different": []
+                  },
+                  "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+                  "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+                  "files": 1418,
+                  "receipt": "C1_baseline_patch_replay.json",
+                  "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+                  "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+                }
+              },
+              "reason": "The immutable fixed baseline transport URL expired; the accepted direct replay receipt was freshly reopened and exact current composition was freshly verified.",
+              "status": "PASS_COMPOSITIONAL_WITH_ACCEPTED_DIRECT_REPLAY"
+            }
+          },
+          "status": "PASS_COMPOSITIONAL_WITH_ACCEPTED_CP2A_REPLAY"
+        },
+        "full_reopen": {
+          "bad_crc": null,
+          "different": [],
+          "expected_files": 1459,
+          "extra": [],
+          "missing": [],
+          "observed_files": 1459,
+          "status": "PASS"
+        },
+        "patch_current_delta_equals_source_payload": {
+          "current_delta_files": 42,
+          "current_delta_payload_mismatch": [],
+          "missing_deletions": [],
+          "status": "PASS"
+        },
+        "status": "PASS"
+      }
+    },
+    "files": {
+      "C1.zip": {
+        "bytes": 259169525,
+        "sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+        "zip": {
+          "bad_crc": null,
+          "bytes": 259169525,
+          "duplicates": [],
+          "entries": 1418,
+          "file_entries": 1418,
+          "name": "C1.zip",
+          "sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        }
+      },
+      "C1P.zip": {
+        "bytes": 254333875,
+        "sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+        "zip": {
+          "bad_crc": null,
+          "bytes": 254333875,
+          "duplicates": [],
+          "entries": 1266,
+          "file_entries": 1266,
+          "name": "C1P.zip",
+          "sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        }
+      },
+      "C2B.zip": {
+        "bytes": 259260533,
+        "sha256": "9bc60a867b53c519b7729f1b8b9181fbb2e0f1edc5ea5853f288e8eab93001d4",
+        "zip": {
+          "bad_crc": null,
+          "bytes": 259260533,
+          "duplicates": [],
+          "entries": 1459,
+          "file_entries": 1459,
+          "name": "C2B.zip",
+          "sha256": "9bc60a867b53c519b7729f1b8b9181fbb2e0f1edc5ea5853f288e8eab93001d4",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        }
+      },
+      "C2BP.zip": {
+        "bytes": 254424809,
+        "sha256": "d38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7",
+        "zip": {
+          "bad_crc": null,
+          "bytes": 254424809,
+          "duplicates": [],
+          "entries": 1307,
+          "file_entries": 1307,
+          "name": "C2BP.zip",
+          "sha256": "d38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7",
+          "status": "PASS",
+          "symlinks": [],
+          "unsafe": []
+        }
+      },
+      "C2B_check.json": {
+        "bytes": 25134,
+        "sha256": "d9433238011d34a80fdd02b362d53f1d4454e720c45d5602c9b980601ee5eeee",
+        "zip": null
+      }
+    }
+  },
+  "checkpoint": "CP2-C_FX02",
+  "cumulative_patch": {
+    "accepted_parent_cumulative_patch": "C2BP.zip",
+    "accepted_parent_cumulative_patch_sha256": "d38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7",
+    "accepted_parent_full": "C2B.zip",
+    "accepted_parent_sha256": "9bc60a867b53c519b7729f1b8b9181fbb2e0f1edc5ea5853f288e8eab93001d4",
+    "baseline_file": "RCF_D0_full.zip",
+    "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+    "current_delta": "C2C_FX02_current_delta.zip",
+    "deleted_count": 3,
+    "proof": "accepted fixed-baseline replay reaches the accepted parent; the exact current delta reaches the CP2-B checkpoint; overlaying the same delta on the accepted parent cumulative patch reconstructs the CP2-B checkpoint",
+    "schema": "royal-capital.cumulative-patch/1",
+    "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-C_REQUIRED_FAMILY_MATRIX_FX02_PREQUALIFICATION"
+  },
+  "current_delta": {
+    "added": 4,
+    "deleted": 3,
+    "modified": 2,
+    "parent": "C2B.zip",
+    "paths": {
+      "added": [
+        "RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX02.fixture.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2C_FX02_SOURCE_CHECKPOINT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx23.py",
+        "RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx23.py"
+      ],
+      "deleted": [
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/__init__.cpython-313.pyc",
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/fx01.cpython-313.pyc",
+        "RC_K0/child_designs/fortification/r0c_cp2/tools/__pycache__/run_fx01.cpython-313.pyc"
+      ],
+      "modified": [
+        "FILES.sha256",
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py"
+      ]
+    },
+    "payload_entries": 6,
+    "raw_wheels_included": false,
+    "schema": "royal-capital.source-delta/1",
+    "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-C_REQUIRED_FAMILY_MATRIX_FX02_PREQUALIFICATION_CURRENT_DELTA"
+  },
+  "equality": {
+    "C1_plus_source": {
+      "different": [],
+      "expected_files": 1460,
+      "extra": [],
+      "missing": [],
+      "observed_files": 1460,
+      "status": "PASS"
+    },
+    "C2B_plus_current_delta": {
+      "different": [],
+      "expected_files": 1460,
+      "extra": [],
+      "missing": [],
+      "observed_files": 1460,
+      "status": "PASS"
+    },
+    "fixed_baseline_plus_cumulative_patch": {
+      "accepted_parent_proof": {
+        "conclusion": "RCF_D0_full.zip + C2BP.zip = C2B.zip",
+        "direct_fixed_baseline_replay_this_run": "NOT_REPEATED_ACCEPTED_CP2A_REPLAY_REOPENED",
+        "premises": {
+          "C2A_plus_current_delta_equals_C2B": {
+            "different": [],
+            "expected_files": 1459,
+            "extra": [],
+            "missing": [],
+            "observed_files": 1459,
+            "status": "PASS"
+          },
+          "C2BP_constructed_from_exact_C2AP_plus_current_delta": {
+            "C2AP_sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+            "C2BP_sha256": "d38288dfb406dc37f17283fed108db6d4b47db0d75d7aadec73fecba390d46b7",
+            "current_delta_sha256": "816d107fad9f76976273019e81d0c1b193f94579ca74681d93ecc35c6b053e96",
+            "status": "PASS"
+          },
+          "RCF_D0_plus_C2AP_equals_C2A": {
+            "conclusion": "RCF_D0_full.zip + C2AP.zip = C2A.zip",
+            "direct_fixed_baseline_replay_this_run": "NOT_REPEATED_ACCEPTED_DIRECT_REPLAY_RECEIPT_REOPENED",
+            "premises": {
+              "C1_plus_C2AS_equals_C2A": {
+                "different": [],
+                "expected_files": 1421,
+                "extra": [],
+                "missing": [],
+                "observed_files": 1421,
+                "status": "PASS"
+              },
+              "C2AP_constructed_from_exact_C1P_plus_exact_C2AS": {
+                "C1P_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+                "C2AP_sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94",
+                "C2AS_sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65",
+                "status": "PASS"
+              },
+              "C2AP_current_delta_equals_C2AS_payload": {
+                "current_delta_files": 4,
+                "current_delta_payload_mismatch": [],
+                "missing_deletions": [],
+                "status": "PASS"
+              },
+              "fixed_baseline_plus_C1P_equals_C1": {
+                "accepted_artifact_id": 10888433130,
+                "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+                "accepted_workflow_run_id": 36192768002,
+                "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+                "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+                "comparison": {
+                  "different": [],
+                  "extra": [],
+                  "missing": [],
+                  "mode_different": []
+                },
+                "cumulative_patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+                "expected_full_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878",
+                "files": 1418,
+                "receipt": "C1_baseline_patch_replay.json",
+                "receipt_sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac",
+                "status": "PASS_ACCEPTED_DIRECT_REPLAY"
+              }
+            },
+            "reason": "The immutable fixed baseline transport URL expired; the accepted direct replay receipt was freshly reopened and exact current composition was freshly verified.",
+            "status": "PASS_COMPOSITIONAL_WITH_ACCEPTED_DIRECT_REPLAY"
+          }
+        },
+        "status": "PASS_COMPOSITIONAL_WITH_ACCEPTED_CP2A_REPLAY"
+      },
+      "conclusion": "RCF_D0_full.zip + C2C_FX02_preP.zip = C2C_FX02_pre.zip",
+      "current_parent_replay": {
+        "different": [],
+        "expected_files": 1460,
+        "extra": [],
+        "missing": [],
+        "observed_files": 1460,
+        "status": "PASS"
+      },
+      "direct_fixed_baseline_replay_this_run": "NOT_REPEATED_ACCEPTED_PARENT_CHAIN_REOPENED",
+      "status": "PASS_COMPOSITIONAL_WITH_ACCEPTED_C2B_REPLAY"
+    },
+    "full_reopen": {
+      "bad_crc": null,
+      "different": [],
+      "expected_files": 1460,
+      "extra": [],
+      "missing": [],
+      "observed_files": 1460,
+      "status": "PASS"
+    },
+    "patch_current_delta_equals_source_payload": {
+      "current_delta_files": 43,
+      "current_delta_payload_mismatch": [],
+      "missing_deletions": [],
+      "status": "PASS"
+    }
+  },
+  "functional_qualification": "NOT_RUN",
+  "godot_product": "NOT_STARTED",
+  "registries": {
+    "C1": {
+      "extra": [],
+      "mismatched": [],
+      "missing": [],
+      "registry_entries": 1417,
+      "status": "PASS",
+      "tree_files_including_registry": 1418
+    },
+    "C2B": {
+      "extra": [],
+      "mismatched": [],
+      "missing": [],
+      "registry_entries": 1458,
+      "status": "PASS",
+      "tree_files_including_registry": 1459
+    },
+    "implementation": {
+      "extra": [],
+      "mismatched": [],
+      "missing": [],
+      "registry_entries": 1459,
+      "status": "PASS",
+      "tree_files_including_registry": 1460
+    }
+  },
+  "removed_disposable_caches": [
+    "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/__init__.cpython-313.pyc",
+    "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__pycache__/fx01.cpython-313.pyc",
+    "RC_K0/child_designs/fortification/r0c_cp2/tools/__pycache__/run_fx01.cpython-313.pyc"
+  ],
+  "schema": "royal-capital.fortification.r0c-cp2.cp2c-pre-checkpoint/1",
+  "source_delta": {
+    "added": 42,
+    "deleted": 0,
+    "modified": 1,
+    "parent": "C1.zip",
+    "paths": {
+      "added": [
+        "RC_K0/child_designs/fortification/r0c_cp2/contracts/TOWER_JOIN_CONTRACT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/data/CP2_FIXTURE_MATRIX.csv",
+        "RC_K0/child_designs/fortification/r0c_cp2/docs/CP2_SCOPE_FREEZE.md",
+        "RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX01.fixture.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX02.fixture.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/cad-provider-receipt.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/continuity-evidence.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/fixed-tessellation.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/neutral-mesh.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/overlap-gap-projection.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/cad-provider-receipt.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/neutral-mesh.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/result.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/shape.brep",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/foundation_transition/shape.step",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/cad-provider-receipt.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/neutral-mesh.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/result.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/shape.brep",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/join_body/shape.step",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/cad-provider-receipt.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/neutral-mesh.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/result.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/shape.brep",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/parts/wall_walk_transition/shape.step",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/result.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/semantic-parts.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/socket-frame-evidence.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/source-bindings.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/source-immutability.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/stored-copies.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/outputs/fx01/reference/tower-join-plan.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_clean_replay.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_completion.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_FX01_qualification.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2B_IMPLEMENTATION_SOURCE_CHECKPOINT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/reports/CP2C_FX02_SOURCE_CHECKPOINT.json",
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py",
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx01.py",
+        "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx23.py",
+        "RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx01.py",
+        "RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx23.py"
+      ],
+      "deleted": [],
+      "modified": [
+        "FILES.sha256"
+      ]
+    },
+    "payload_entries": 43,
+    "raw_wheels_included": false,
+    "schema": "royal-capital.source-delta/1",
+    "stage": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2_CP2-C_REQUIRED_FAMILY_MATRIX_FX02_PREQUALIFICATION"
+  },
+  "source_overlay_paths": [
+    "RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX02.fixture.json",
+    "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py",
+    "RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx23.py",
+    "RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx23.py"
+  ],
+  "stage_completion": "OPEN",
+  "status": "PRESERVED_BEFORE_EXACT_RUNTIME_QUALIFICATION"
+}

@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "C2C.zip": {
+      "bad_crc": null,
+      "bytes": 259388330,
+      "duplicates": [],
+      "entries": 1554,
+      "file_entries": 1554,
+      "name": "C2C.zip",
+      "sha256": "f9c40a68a37f71d8a3e24288f66559481c212ededca6842d3ef555c6f275369f",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2CP.zip": {
+      "bad_crc": null,
+      "bytes": 254582177,
+      "duplicates": [],
+      "entries": 1405,
+      "file_entries": 1405,
+      "name": "C2CP.zip",
+      "sha256": "ed81630e5a655e32235820f112b7cad1c8c3ddece532ac0bfc1963802cafffee",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2CR.zip": {
+      "bad_crc": null,
+      "bytes": 29243,
+      "duplicates": [],
+      "entries": 22,
+      "file_entries": 22,
+      "name": "C2CR.zip",
+      "sha256": "3e4e7fe80ae76c288d213ebedda9ecb3d71f9f3bee2305261da05ee913edb085",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    },
+    "C2CS.zip": {
+      "bad_crc": null,
+      "bytes": 275374,
+      "duplicates": [],
+      "entries": 139,
+      "file_entries": 139,
+      "name": "C2CS.zip",
+      "sha256": "fa6b1cbde6faa069637e8a1be02636c161480a8f34dab2734bfbbf9d79279616",
+      "status": "PASS",
+      "symlinks": [],
+      "unsafe": []
+    }
+  },
+  "checkpoint": "CP2-C_REQUIRED_FAMILY_MATRIX",
+  "next": "R0C-CP2 CP2-D",
+  "schema": "royal-capital.fortification.r0c-cp2.cp2c-delivery/1",
+  "sidecars": {
+    "C2C_check.json": {
+      "bytes": 73130,
+      "sha256": "80f83e2b3dcf987fdfce60e81ed8415b9021e1f645f22dc970574df775bec755"
+    },
+    "C2C_report.md": {
+      "bytes": 1157,
+      "sha256": "6fe22958fe19954b7eb88d61eac2b8ec1793f9767b5bed66c4878ba51b99aead"
+    }
+  },
+  "status": "PASS",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2"
+}
