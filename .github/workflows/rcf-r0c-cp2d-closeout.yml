@@ -1,0 +1,309 @@
+name: RCF R0C CP2-D closeout
+
+on:
+  push:
+    branches:
+      - automation/rcf-r0c-cp2d-closeout-20260926
+    paths:
+      - .github/workflows/rcf-r0c-cp2d-closeout.yml
+      - cp2d_tools/**
+      - cp2d_source/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  BRANCH: automation/rcf-r0c-cp2d-closeout-20260926
+  TAG: rcf-r0c-cp2d-closeout-20260926-r1
+  BASELINE_URL: 'https://sdmntprjapaneast.oaiusercontent.com/files/00000000-8e54-8209-87cf-87deb0852379/raw?se=2026-09-26T09%3A13%3A45Z&sp=r&sv=2026-02-06&sr=b&scid=04ae6b2b-1bf9-5e3c-a0f3-a94fa150b399&skoid=bb372dd6-3b2a-4af2-b355-c26497ba23cd&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-25T21%3A30%3A55Z&ske=2026-09-26T21%3A30%3A55Z&sks=b&skv=2026-02-06&sig=JSw3qJY8yzJzhp96A07ShMZfbW1F6EyU0flCurpizg8%3D'
+
+jobs:
+  closeout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout accepted CP2-D branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+          fetch-depth: 0
+
+      - name: Set up exact CPython
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download accepted authorities and fixed baseline
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p cp2d_inputs runtime_logs cp2d_output
+          gh release download rcf-r0c-cp2c-fx02-fx03-20260926-r1 \
+            --repo "$GITHUB_REPOSITORY" \
+            --dir cp2d_inputs \
+            --pattern C2C.zip \
+            --pattern C2CP.zip \
+            --pattern C2CS.zip \
+            --pattern C2C_check.json
+          gh release download rcf-r0c-cp1-20260925-r1 \
+            --repo "$GITHUB_REPOSITORY" \
+            --dir cp2d_inputs \
+            --pattern C1.zip \
+            --pattern C1P.zip
+          curl --fail --location --retry 4 --retry-delay 2 \
+            "$BASELINE_URL" \
+            --output cp2d_inputs/RCF_D0_full.zip
+          cat > cp2d_inputs/EXPECTED.sha256 <<'EOF'
+          6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2  RCF_D0_full.zip
+          91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878  C1.zip
+          dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4  C1P.zip
+          f9c40a68a37f71d8a3e24288f66559481c212ededca6842d3ef555c6f275369f  C2C.zip
+          ed81630e5a655e32235820f112b7cad1c8c3ddece532ac0bfc1963802cafffee  C2CP.zip
+          fa6b1cbde6faa069637e8a1be02636c161480a8f34dab2734bfbbf9d79279616  C2CS.zip
+          80f83e2b3dcf987fdfce60e81ed8415b9021e1f645f22dc970574df775bec755  C2C_check.json
+          EOF
+          (cd cp2d_inputs && sha256sum -c EXPECTED.sha256) | tee runtime_logs/input-sha256.log
+          for f in RCF_D0_full.zip C1.zip C1P.zip C2C.zip C2CP.zip C2CS.zip; do
+            unzip -t "cp2d_inputs/$f" >/dev/null
+          done
+          echo 'authority ZIP reopen: PASS' | tee runtime_logs/input-reopen.log
+
+      - name: Focused source parse
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+              Path('cp2d_tools/driver.py'),
+              Path('cp2d_source/RC_K0/child_designs/fortification/r0c_cp2/tools/run_cp2d_closeout.py'),
+          ]
+          for path in files:
+              compile(path.read_text(encoding='utf-8'), str(path), 'exec')
+          print('focused CP2-D source parse: PASS')
+          PY
+
+      - name: Preserve source patch and full checkpoint before qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2d_tools/driver.py prepare \
+            --inputs cp2d_inputs \
+            --source-root cp2d_source \
+            --work cp2d_work \
+            --output cp2d_output \
+            2>&1 | tee runtime_logs/prepare.log
+          for f in C2_pre.zip C2_preP.zip C2_preS.zip; do
+            unzip -t "cp2d_output/$f" >/dev/null
+          done
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          value = json.loads(Path('cp2d_output/C2_pre_check.json').read_text(encoding='utf-8'))
+          assert value['status'] == 'PRESERVED_AND_REOPENED_BEFORE_LONG_VALIDATION'
+          assert value['validation']['status'] == 'PASS'
+          assert value['validation']['fixed_baseline_plus_cumulative_patch_equals_full']['status'] == 'PASS'
+          assert value['validation']['C1_plus_source_equals_full']['status'] == 'PASS'
+          print('prevalidation checkpoint: PASS')
+          PY
+
+      - name: Publish pre-qualification checkpoint before long validation
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --target "$BRANCH" \
+              --title 'RCF R0C CP2-D closeout' \
+              --notes 'Pre-qualification checkpoint is published before 18 negative gates and final clean replay.' \
+              --repo "$GITHUB_REPOSITORY"
+          fi
+          gh release upload "$TAG" \
+            cp2d_output/C2_pre.zip \
+            cp2d_output/C2_preP.zip \
+            cp2d_output/C2_preS.zip \
+            cp2d_output/C2_pre_check.json \
+            runtime_logs/prepare.log \
+            --clobber --repo "$GITHUB_REPOSITORY"
+
+      - name: Upload durable pre-qualification checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2_PRECHECKPOINT
+          path: |
+            cp2d_output/C2_pre.zip
+            cp2d_output/C2_preP.zip
+            cp2d_output/C2_preS.zip
+            cp2d_output/C2_pre_check.json
+            runtime_logs/prepare.log
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
+      - name: Fresh exact offline runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv cp2d_work/runtime
+          cp2d_work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links cp2d_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r cp2d_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee runtime_logs/runtime-materialization.log
+          cp2d_work/runtime/bin/python -m pip check 2>&1 | tee runtime_logs/runtime-pip-check.log
+          cp2d_work/runtime/bin/python -m pip freeze --all > runtime_logs/runtime-pip-freeze.txt
+
+      - name: Run 18 negative gates and final clean replay
+        id: qualify
+        shell: bash
+        run: |
+          set +e
+          cp2d_work/runtime/bin/python \
+            cp2d_work/current/RC_K0/child_designs/fortification/r0c_cp2/tools/run_cp2d_closeout.py \
+            --tree cp2d_work/current \
+            --work cp2d_work/qualification \
+            2>&1 | tee runtime_logs/qualification.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > CP2D_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve qualification failure without rollback
+        if: steps.qualify.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2_CP2D_FAILURE_${{ github.run_id }}
+          path: |
+            cp2d_output/C2_pre*
+            cp2d_source/**
+            cp2d_work/current/RC_K0/child_designs/fortification/r0c_cp2/reports/negative_gates/**
+            cp2d_work/current/RC_K0/child_designs/fortification/r0c_cp2/reports/CP2D*.json
+            runtime_logs/**
+            CP2D_EXIT_CODE.txt
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
+
+      - name: Enforce CP2-D qualification
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat CP2D_EXIT_CODE.txt)" = '0'
+
+      - name: Finalize C2 full patch source and receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python cp2d_tools/driver.py finalize \
+            --inputs cp2d_inputs \
+            --work cp2d_work \
+            --output cp2d_output \
+            --runtime-logs runtime_logs \
+            2>&1 | tee runtime_logs/finalize.log
+
+      - name: Independently reopen final and preserved archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in C2.zip C2P.zip C2S.zip C2R.zip C2_pre.zip C2_preP.zip C2_preS.zip; do
+            unzip -t "cp2d_output/$f" >/dev/null
+          done
+          (cd cp2d_output && sha256sum -c C2.sha256)
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          check = json.loads(Path('cp2d_output/C2_check.json').read_text(encoding='utf-8'))
+          assert check['source_preservation'] == 'PASS'
+          assert check['functional_qualification'] == 'PASS_18_NEGATIVE_GATES_AND_FINAL_CLEAN_REPLAY'
+          assert check['stage_completion'] == 'R0C_CP2_COMPLETE_CLOSED'
+          assert check['r0c_cp2'] == 'COMPLETE_CLOSED'
+          assert check['godot_product'] == 'NOT_STARTED'
+          assert check['negative_gates']['passed'] == 18
+          assert check['final_clean_replay']['fixtures_passed'] == 3
+          assert check['validation']['status'] == 'PASS'
+          assert check['validation']['fixed_baseline_plus_cumulative_patch_equals_full']['status'] == 'PASS'
+          assert check['validation']['C1_plus_source_equals_full']['status'] == 'PASS'
+          assert check['validation']['patch_current_delta_equals_source_payload']['status'] == 'PASS'
+          assert check['roadmap_progress']['r0c_after'] == '2/4'
+          assert check['roadmap_progress']['accepted_checkpoints_after'] == '11/25'
+          print('independent R0C-CP2 closeout reopen: PASS')
+          PY
+
+      - name: Commit compact accepted CP2-D result set
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp2d_result
+          mkdir -p cp2d_result
+          cp cp2d_output/C2S.zip cp2d_result/
+          cp cp2d_output/C2R.zip cp2d_result/
+          cp cp2d_output/C2_check.json cp2d_result/
+          cp cp2d_output/C2_delivery.json cp2d_result/
+          cp cp2d_output/C2_report.md cp2d_result/
+          cp cp2d_output/C2.sha256 cp2d_result/
+          cp cp2d_output/C2_pre_check.json cp2d_result/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2d_result
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish accepted R0C CP2 closeout receipts'
+            git push origin "HEAD:$BRANCH"
+          fi
+
+      - name: Publish accepted final C2 assets
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release upload "$TAG" \
+            cp2d_output/C2.zip \
+            cp2d_output/C2P.zip \
+            cp2d_output/C2S.zip \
+            cp2d_output/C2R.zip \
+            cp2d_output/C2_check.json \
+            cp2d_output/C2_report.md \
+            cp2d_output/C2_delivery.json \
+            cp2d_output/C2.sha256 \
+            runtime_logs/qualification.log \
+            runtime_logs/finalize.log \
+            --clobber --repo "$GITHUB_REPOSITORY"
+
+      - name: Upload final delivery artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2_DELIVERY
+          path: |
+            cp2d_output/C2.zip
+            cp2d_output/C2P.zip
+            cp2d_output/C2S.zip
+            cp2d_output/C2R.zip
+            cp2d_output/C2_check.json
+            cp2d_output/C2_report.md
+            cp2d_output/C2_delivery.json
+            cp2d_output/C2.sha256
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
+      - name: Preserve logs on any failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2_CP2D_RUN_LOGS_${{ github.run_id }}
+          path: |
+            cp2d_output/C2_pre*
+            cp2d_source/**
+            runtime_logs/**
+            CP2D_EXIT_CODE.txt
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
