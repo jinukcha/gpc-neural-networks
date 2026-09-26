@@ -1,0 +1,65 @@
+{
+  "artifacts": {
+    "C2.zip": {
+      "bytes": 259487144,
+      "sha256": "686b9857cc37d0dff2c0c26bc3630d8c94a53c878a92001d4f0e3aa4200e69b2"
+    },
+    "C2P.zip": {
+      "bytes": 254651940,
+      "sha256": "51bf174668ac5b9c4373f5147fbba3db5189026a96e3432055af761831873c0a"
+    },
+    "C2R.zip": {
+      "bytes": 103764,
+      "sha256": "79362bbc8a0d1f19970602318fb48cddc59b90e5761c0c14dda43a7519772722"
+    },
+    "C2S.zip": {
+      "bytes": 377063,
+      "sha256": "3627c59740e1d5bc15ba5a254994aa8a849a1542bdc9f45c0e42a9e91c166527"
+    }
+  },
+  "checkpoint": "CP2-D-R1",
+  "closed_world": {
+    "baseline_replay": "PASS",
+    "c1_replay": "PASS",
+    "full": "PASS"
+  },
+  "direct_replay": {
+    "C1_plus_C2S_equals_C2": "PASS",
+    "C2P_current_payload_equals_C2S_payload": "PASS",
+    "C2_full_reopen": "PASS",
+    "RCF_D0_plus_C2P_equals_C2": "PASS"
+  },
+  "exact_runtime": "PASS",
+  "failed_attempts_preserved": true,
+  "final_clean_replay": {
+    "accepted_reference_semantic_compatible": true,
+    "all_a_b_byte_identical": true,
+    "fixtures": 3,
+    "raw_reference_exact_byte_equal": false,
+    "status": "PASS"
+  },
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "negative_gates": {
+    "count": 18,
+    "partial_output_published": false,
+    "passed": 18,
+    "status": "PASS"
+  },
+  "official_subtitle": "TOWER JOINS",
+  "progress": {
+    "accepted_cp": "11/25",
+    "auto_continuation": false,
+    "next": "R0C-CP3",
+    "r0c": "2/4"
+  },
+  "schema": "royal-capital.fortification.r0c-cp2.delivery/1",
+  "source_preservation": "PASS",
+  "stage_completion": "R0C_CP2_COMPLETE_CLOSED",
+  "status": "PASS",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2",
+  "tree": {
+    "digest": "sha256:389f7c0865ece121f370296936f02b04efa06a4c5d9bf25fe32c0a01325edcb7",
+    "files": 1618
+  }
+}
