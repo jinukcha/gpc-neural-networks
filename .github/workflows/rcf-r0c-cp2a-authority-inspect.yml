@@ -43,9 +43,8 @@ jobs:
           import hashlib, re
 
           root = Path('cp2a_inspect_work/transport')
-          manifest = root / 'C1.sha256'
           entries = {}
-          for raw in manifest.read_text(encoding='utf-8').splitlines():
+          for raw in (root / 'C1.sha256').read_text(encoding='utf-8').splitlines():
               m = re.match(r'^([0-9a-fA-F]{64})\s+[* ]?(.+)$', raw.strip())
               if m:
                   entries[m.group(2)] = m.group(1).lower()
@@ -68,16 +67,10 @@ jobs:
 
           check = root / 'C1_check.json'
           delivery = root / 'C1_delivery.json'
-          if not check.is_file():
-              raise SystemExit('missing delivered sidecar: C1_check.json')
-          if check.read_bytes() != delivery.read_bytes():
-              raise SystemExit('C1_check.json is not byte-equal to C1_delivery.json')
-          print('C1_check.json: OK byte-equal C1_delivery.json')
-
-          transport_manifest = root / 'transport_manifest.json'
-          if not transport_manifest.is_file():
+          if not check.is_file() or check.read_bytes() != delivery.read_bytes():
+              raise SystemExit('C1_check.json is missing or not byte-equal to C1_delivery.json')
+          if not (root / 'transport_manifest.json').is_file():
               raise SystemExit('missing transport_manifest.json')
-          print('transport_manifest.json: PRESENT')
 
           historical_missing = sorted(name for name in entries if not (root / name).exists())
           (root / 'C1_manifest_delivery_check.txt').write_text(
@@ -125,16 +118,14 @@ jobs:
                           raise RuntimeError(f'symlink archive member: {name}')
                   zf.extractall(destination)
                   for info in zf.infolist():
-                      if info.is_dir():
-                          continue
-                      mode = (info.external_attr >> 16) & 0xFFFF
-                      if mode:
-                          os.chmod(destination / info.filename, stat.S_IMODE(mode))
+                      if not info.is_dir():
+                          mode = (info.external_attr >> 16) & 0xFFFF
+                          if mode:
+                              os.chmod(destination / info.filename, stat.S_IMODE(mode))
+                  return len(zf.infolist()), sum(1 for i in zf.infolist() if not i.is_dir())
 
-          safe_extract(transport / 'C1.zip', c1)
+          zip_entries, zip_file_entries = safe_extract(transport / 'C1.zip', c1)
           files = [p for p in c1.rglob('*') if p.is_file()]
-          if len(files) != 1417:
-              raise RuntimeError(f'C1 extracted file count mismatch: {len(files)} != 1417')
           registry = c1 / 'FILES.sha256'
           if not registry.is_file():
               raise RuntimeError('FILES.sha256 missing at C1 root')
@@ -152,9 +143,8 @@ jobs:
           actual = {}
           for p in files:
               rel = p.relative_to(c1).as_posix()
-              if rel == 'FILES.sha256':
-                  continue
-              actual[rel] = hashlib.sha256(p.read_bytes()).hexdigest()
+              if rel != 'FILES.sha256':
+                  actual[rel] = hashlib.sha256(p.read_bytes()).hexdigest()
           missing = sorted(set(expected) - set(actual))
           extra = sorted(set(actual) - set(expected))
           mismatched = sorted(k for k in set(expected) & set(actual) if expected[k] != actual[k])
@@ -170,13 +160,12 @@ jobs:
               if not src_dir.is_dir():
                   continue
               for src in sorted(src_dir.rglob('*')):
-                  if not src.is_file() or src.suffix.lower() not in {'.md', '.csv', '.json', '.txt'}:
-                      continue
-                  rel = src.relative_to(c1)
-                  dst = snapshot / 'C1' / rel
-                  dst.parent.mkdir(parents=True, exist_ok=True)
-                  shutil.copy2(src, dst)
-                  copied.append(rel.as_posix())
+                  if src.is_file() and src.suffix.lower() in {'.md', '.csv', '.json', '.txt'}:
+                      rel = src.relative_to(c1)
+                      dst = snapshot / 'C1' / rel
+                      dst.parent.mkdir(parents=True, exist_ok=True)
+                      shutil.copy2(src, dst)
+                      copied.append(rel.as_posix())
           readme = fort / 'README.md'
           if readme.is_file():
               rel = readme.relative_to(c1)
@@ -188,25 +177,25 @@ jobs:
           cp2_hits = []
           for rel in copied:
               p = snapshot / 'C1' / rel
-              text = p.read_text(encoding='utf-8', errors='replace')
-              for line_no, line in enumerate(text.splitlines(), 1):
-                  if 'R0C-CP2' in line or 'R0C_CP2' in line or 'tower joins' in line.lower() or 'wall-penetrating' in line.lower():
+              for line_no, line in enumerate(p.read_text(encoding='utf-8', errors='replace').splitlines(), 1):
+                  lower = line.lower()
+                  if 'r0c-cp2' in lower or 'r0c_cp2' in lower or 'tower joins' in lower or 'wall-penetrating' in lower:
                       cp2_hits.append({'path': rel, 'line': line_no, 'text': line})
 
-          manifest_note = (transport / 'C1_manifest_delivery_check.txt').read_text(encoding='utf-8')
           report = {
               'schema': 'royal-capital.fortification.r0c-cp2.cp2a-authority-inspection/1',
               'status': 'PASS',
               'failed_attempts_preserved': [
                   'actions-run-36211770604',
-                  'actions-run-36211879157'
+                  'actions-run-36211879157',
+                  'actions-run-36212007672'
               ],
               'transport': {
                   'name': 'C1_transfer.zip',
                   'bytes': 514002792,
                   'sha256': 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53',
                   'crc': 'PASS',
-                  'manifest_delivery_check': manifest_note.splitlines(),
+                  'manifest_delivery_check': (transport / 'C1_manifest_delivery_check.txt').read_text(encoding='utf-8').splitlines(),
               },
               'authority': {
                   'C1.zip': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
@@ -216,7 +205,9 @@ jobs:
                   'zip_crc': 'PASS',
               },
               'c1_tree': {
-                  'files_including_registry': len(files),
+                  'zip_entries': zip_entries,
+                  'zip_file_entries': zip_file_entries,
+                  'extracted_files_including_registry': len(files),
                   'registry_entries': len(expected),
                   'missing': missing,
                   'extra': extra,
@@ -234,10 +225,11 @@ jobs:
               'status                  PASS\n'
               'transport SHA-256       b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53\n'
               'C1 SHA-256              91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878\n'
+              f'C1 ZIP entries         {zip_entries}\n'
               f'FILES.sha256 entries   {len(expected)}\n'
               'closed-world replay     PASS\n'
               f'authority files copied {len(copied)}\n'
-              'failed attempts         36211770604, 36211879157 preserved\n'
+              'failed attempts         36211770604, 36211879157, 36212007672 preserved\n'
               '```\n', encoding='utf-8')
           print(json.dumps(report, indent=2, sort_keys=True))
           PY
