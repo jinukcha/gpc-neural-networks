@@ -1,0 +1,74 @@
+{
+  "checkpoint_status_readback": {
+    "functional_qualification": "NOT_STARTED_PRODUCT",
+    "godot_product": "NOT_STARTED",
+    "r0c_cp2": "OPEN",
+    "source_preservation": "PASS",
+    "stage_completion": "CP2_A_COMPLETE_CLOSED"
+  },
+  "compact_artifact": {
+    "artifact_id": 10896003728,
+    "bytes": 101023,
+    "sha256": "167ab46029f7c724ed302e9f8bfd4b72874e2a9da24ca8cd9838d94b02620fea",
+    "zip_crc": "PASS"
+  },
+  "compact_equals_transfer_for_shared_files": "PASS",
+  "files": {
+    "C2A.sha256": {
+      "bytes": 554,
+      "sha256": "53d35947cfe6b70fbf6603005883229b4add02eac528d2057bde514594a851ef"
+    },
+    "C2A.zip": {
+      "bytes": 259175926,
+      "sha256": "0f369e88861705df0dc7edd0a1e3505bcaf70878a57b5c7431ad5a4349f3d66e"
+    },
+    "C2AP.zip": {
+      "bytes": 254340052,
+      "sha256": "db69f0d4b5000bba046704d60d8e6f01eac2e1ed0e42be639951f360e35dad94"
+    },
+    "C2AR.zip": {
+      "bytes": 10795,
+      "sha256": "e0c695ae4a88aa767d6562621097e4c16a3703aa7153523c984ca4d585995be3"
+    },
+    "C2AS.zip": {
+      "bytes": 62959,
+      "sha256": "4e3e86ed834e17013c1187ed88c85afbdc5605bd1b90eeb775808c817318ce65"
+    },
+    "C2A_check.json": {
+      "bytes": 16294,
+      "sha256": "030e094f4c63eed7cf443c271e5e1698b71d7e85228ab798a0d8644f3dd5ac52"
+    },
+    "C2A_delivery.json": {
+      "bytes": 2443,
+      "sha256": "6ebe7db2f7c519568c446bacf925b24f7c5281df01474be49edbccb3f13c41e0"
+    },
+    "C2A_pre_check.json": {
+      "bytes": 2844,
+      "sha256": "e542e7474977077a0cf6638ec8101dc2b8ebe9446653d26f01ef1187aa144d22"
+    },
+    "C2A_release.json": {
+      "bytes": 1582,
+      "sha256": "769a43d1cbda85ac1c73cdc992d61ac63c465a67cc8a6399ffc84c1dcebff3f9"
+    },
+    "C2A_report.md": {
+      "bytes": 2009,
+      "sha256": "be4ae5a0d4b2c2343e9f6418c114b02e6955971b0675e0c8546c8c134063d8aa"
+    }
+  },
+  "nested_zip_reopen": {
+    "C2A.zip": "PASS",
+    "C2AP.zip": "PASS",
+    "C2AR.zip": "PASS",
+    "C2AS.zip": "PASS"
+  },
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-delivery-reopen/1",
+  "status": "PASS",
+  "transfer_artifact": {
+    "artifact_id": 10895838820,
+    "bytes": 513618241,
+    "sha256": "2ae1cadcace9203eff603fc395d5d1561f4e34378adf66f958303e388ba94405",
+    "zip_crc": "PASS"
+  },
+  "transfer_manifest": "PASS",
+  "workflow_run_id": 36213384631
+}
