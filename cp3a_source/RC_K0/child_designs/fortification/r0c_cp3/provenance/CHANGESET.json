@@ -1,0 +1,29 @@
+{
+  "schema": "royal-capital.fortification.r0c-cp3.changeset/1",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP3",
+  "checkpoint": "CP3-A-R1",
+  "official_scope": "battlement rhythm, merlon/crenel/module instancing",
+  "accepted_parent": {
+    "name": "C2.zip",
+    "sha256": "686b9857cc37d0dff2c0c26bc3630d8c94a53c878a92001d4f0e3aa4200e69b2",
+    "tree_digest": "sha256:389f7c0865ece121f370296936f02b04efa06a4c5d9bf25fe32c0a01325edcb7",
+    "files": 1618
+  },
+  "fixed_patch_baseline": {
+    "name": "RCF_D0_full.zip",
+    "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+  },
+  "changes": [
+    "freeze CP3 exact scope",
+    "add battlement rhythm request-result contract",
+    "add finite four-row module-instancing fixture matrix",
+    "add CP3-A source receipt"
+  ],
+  "accepted_parent_geometry_mutated": false,
+  "new_external_oss": [],
+  "new_framework": false,
+  "new_state_machine": false,
+  "new_validation_layer": false,
+  "raw_runtime_wheels_duplicated_in_source_delta": false,
+  "godot_product": "NOT_STARTED"
+}
