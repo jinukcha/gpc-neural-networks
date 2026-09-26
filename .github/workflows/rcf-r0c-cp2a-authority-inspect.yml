@@ -1,0 +1,201 @@
+name: RCF R0C CP2-A authority inspection
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp2a-freeze-20260926]
+    paths: [.github/workflows/rcf-r0c-cp2a-authority-inspect.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2a-freeze-20260926
+          fetch-depth: 0
+
+      - name: Download and reopen exact accepted transfer
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf cp2a_inspect_work cp2a_authority_snapshot
+          mkdir -p cp2a_inspect_work/input cp2a_inspect_work/transport cp2a_inspect_work/c1 cp2a_authority_snapshot
+          curl -L --fail --retry 3 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -o cp2a_inspect_work/input/C1_transfer.zip \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10887764464/zip"
+          test "$(stat -c %s cp2a_inspect_work/input/C1_transfer.zip)" = "514002792"
+          echo 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53  cp2a_inspect_work/input/C1_transfer.zip' | sha256sum -c -
+          unzip -t cp2a_inspect_work/input/C1_transfer.zip >/dev/null
+          unzip -q cp2a_inspect_work/input/C1_transfer.zip -d cp2a_inspect_work/transport
+          (cd cp2a_inspect_work/transport && sha256sum -c C1.sha256)
+          echo '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878  cp2a_inspect_work/transport/C1.zip' | sha256sum -c -
+          echo 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4  cp2a_inspect_work/transport/C1P.zip' | sha256sum -c -
+          echo 'be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114  cp2a_inspect_work/transport/C1S.zip' | sha256sum -c -
+          echo 'a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937  cp2a_inspect_work/transport/C1R.zip' | sha256sum -c -
+          for f in C1.zip C1P.zip C1S.zip C1R.zip; do unzip -t "cp2a_inspect_work/transport/$f" >/dev/null; done
+
+      - name: Safe extract, closed-world replay and authority snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import csv, hashlib, json, os, re, shutil, stat, zipfile
+
+          root = Path('cp2a_inspect_work')
+          transport = root / 'transport'
+          c1 = root / 'c1'
+          snapshot = Path('cp2a_authority_snapshot')
+
+          def safe_extract(archive: Path, destination: Path):
+              with zipfile.ZipFile(archive) as zf:
+                  names = set()
+                  for info in zf.infolist():
+                      name = info.filename
+                      parts = Path(name).parts
+                      if name.startswith('/') or '..' in parts:
+                          raise RuntimeError(f'unsafe archive member: {name}')
+                      if name in names:
+                          raise RuntimeError(f'duplicate archive member: {name}')
+                      names.add(name)
+                      mode = (info.external_attr >> 16) & 0xFFFF
+                      if stat.S_ISLNK(mode):
+                          raise RuntimeError(f'symlink archive member: {name}')
+                  zf.extractall(destination)
+                  for info in zf.infolist():
+                      if info.is_dir():
+                          continue
+                      mode = (info.external_attr >> 16) & 0xFFFF
+                      if mode:
+                          os.chmod(destination / info.filename, stat.S_IMODE(mode))
+
+          safe_extract(transport / 'C1.zip', c1)
+          files = [p for p in c1.rglob('*') if p.is_file()]
+          if len(files) != 1417:
+              raise RuntimeError(f'C1 extracted file count mismatch: {len(files)} != 1417')
+          registry = c1 / 'FILES.sha256'
+          if not registry.is_file():
+              raise RuntimeError('FILES.sha256 missing at C1 root')
+
+          expected = {}
+          for raw in registry.read_text(encoding='utf-8').splitlines():
+              line = raw.strip()
+              if not line:
+                  continue
+              match = re.match(r'^([0-9a-fA-F]{64})\s+[* ]?(.+)$', line)
+              if not match:
+                  raise RuntimeError(f'invalid FILES.sha256 line: {raw!r}')
+              expected[match.group(2)] = match.group(1).lower()
+
+          actual = {}
+          for p in files:
+              rel = p.relative_to(c1).as_posix()
+              if rel == 'FILES.sha256':
+                  continue
+              actual[rel] = hashlib.sha256(p.read_bytes()).hexdigest()
+          missing = sorted(set(expected) - set(actual))
+          extra = sorted(set(actual) - set(expected))
+          mismatched = sorted(k for k in set(expected) & set(actual) if expected[k] != actual[k])
+          if missing or extra or mismatched:
+              raise RuntimeError(f'closed-world mismatch missing={missing} extra={extra} mismatched={mismatched}')
+
+          fort = c1 / 'RC_K0' / 'child_designs' / 'fortification'
+          if not fort.is_dir():
+              raise RuntimeError(f'fortification root missing: {fort}')
+          copied = []
+          for rel_dir in ('docs', 'data'):
+              src_dir = fort / rel_dir
+              if not src_dir.is_dir():
+                  continue
+              for src in sorted(src_dir.rglob('*')):
+                  if not src.is_file() or src.suffix.lower() not in {'.md', '.csv', '.json', '.txt'}:
+                      continue
+                  rel = src.relative_to(c1)
+                  dst = snapshot / 'C1' / rel
+                  dst.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(src, dst)
+                  copied.append(rel.as_posix())
+          readme = fort / 'README.md'
+          if readme.is_file():
+              rel = readme.relative_to(c1)
+              dst = snapshot / 'C1' / rel
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(readme, dst)
+              copied.append(rel.as_posix())
+
+          cp2_hits = []
+          for rel in copied:
+              p = snapshot / 'C1' / rel
+              text = p.read_text(encoding='utf-8', errors='replace')
+              for line_no, line in enumerate(text.splitlines(), 1):
+                  if 'R0C-CP2' in line or 'R0C_CP2' in line or 'tower joins' in line.lower() or 'wall-penetrating' in line.lower():
+                      cp2_hits.append({'path': rel, 'line': line_no, 'text': line})
+
+          report = {
+              'schema': 'royal-capital.fortification.r0c-cp2.cp2a-authority-inspection/1',
+              'status': 'PASS',
+              'transport': {
+                  'name': 'C1_transfer.zip',
+                  'bytes': 514002792,
+                  'sha256': 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53',
+                  'crc': 'PASS',
+              },
+              'authority': {
+                  'C1.zip': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
+                  'C1P.zip': 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4',
+                  'C1S.zip': 'be7c76b3d936b78d844a3fa3afef7282bdb0ea05c2fe1689db3990d753548114',
+                  'C1R.zip': 'a1ae24769d97c6fafdf37650170268b66645ad435f2df5bead0004fe2f10b937',
+                  'zip_crc': 'PASS',
+              },
+              'c1_tree': {
+                  'files_including_registry': len(files),
+                  'registry_entries': len(expected),
+                  'missing': missing,
+                  'extra': extra,
+                  'mismatched': mismatched,
+                  'closed_world': 'PASS',
+              },
+              'snapshot_files': copied,
+              'cp2_authority_hits': cp2_hits,
+          }
+          snapshot.mkdir(parents=True, exist_ok=True)
+          (snapshot / 'AUTHORITY_INSPECTION.json').write_text(json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          (snapshot / 'AUTHORITY_INSPECTION.md').write_text(
+              '# R0C-CP2 CP2-A authority inspection\n\n'
+              '```text\n'
+              'status                 PASS\n'
+              'transport SHA-256      b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53\n'
+              'C1 SHA-256             91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878\n'
+              f'FILES.sha256 entries  {len(expected)}\n'
+              'closed-world replay    PASS\n'
+              f'authority files copied {len(copied)}\n'
+              '```\n', encoding='utf-8')
+          print(json.dumps(report, indent=2, sort_keys=True))
+          PY
+
+      - name: Commit authority snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2a_authority_snapshot
+          git commit -m 'Record exact C1 authority snapshot for R0C CP2-A'
+          git push origin HEAD:automation/rcf-r0c-cp2a-freeze-20260926
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0c-cp2a-authority-inspection
+          path: cp2a_authority_snapshot
+          retention-days: 7
