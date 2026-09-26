@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+    module.require(not non_path_differences, f"{rel} differs outside path fields: {non_path_differences}")
+    raise RuntimeError(message)
+RuntimeError: cad-provider-receipt.json differs outside path fields: [{'path': '$.output_digests.source-bindings.json', 'kind': 'value', 'accepted': 'sha256:8d43eaebef71106a6789e46b4eade8bd9f51eb931ce7e89dfdd31dfc20a1401a', 'observed': 'sha256:412c61316dd7d396a1e1975642bd0ca98e295e4ac00cbdb37726c04d340f4906'}, {'path': '$.producer_source_digest', 'kind': 'value', 'accepted': 'sha256:eab844b906682f0600fbd5c847731b50981753f8e25c9f9811b83fb5c54d49f6', 'observed': 'sha256:4a11f5096ab68abe9052a32093e3e5fcd199295334962465e26fa0e31dba11a6'}]

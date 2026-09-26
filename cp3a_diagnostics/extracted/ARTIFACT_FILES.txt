@@ -1,0 +1,12 @@
+CP2D_R5_EXIT_CODE.txt
+cp2d_output/C2_pre.zip
+cp2d_output/C2_preP.zip
+cp2d_output/C2_preS.zip
+cp2d_output/C2_pre_check.json
+runtime_logs/input-reopen.log
+runtime_logs/input-sha256.log
+runtime_logs/prepare-r5.log
+runtime_logs/qualification-r5.log
+runtime_logs/runtime-materialization.log
+runtime_logs/runtime-pip-check.log
+runtime_logs/runtime-pip-freeze.txt
