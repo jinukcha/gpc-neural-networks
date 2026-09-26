@@ -41,6 +41,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import hashlib, re
+
           root = Path('cp2a_inspect_work/transport')
           manifest = root / 'C1.sha256'
           entries = {}
@@ -48,11 +49,12 @@ jobs:
               m = re.match(r'^([0-9a-fA-F]{64})\s+[* ]?(.+)$', raw.strip())
               if m:
                   entries[m.group(2)] = m.group(1).lower()
-          required = [
+
+          manifest_required = [
               'C1.zip', 'C1P.zip', 'C1S.zip', 'C1R.zip',
-              'C1.md', 'C1.json', 'C1.txt', 'C1_delivery.json', 'C1_check.json'
+              'C1.md', 'C1.json', 'C1.txt', 'C1_delivery.json'
           ]
-          for name in required:
+          for name in manifest_required:
               path = root / name
               if not path.is_file():
                   raise SystemExit(f'missing delivered authority file: {name}')
@@ -63,11 +65,27 @@ jobs:
               if actual != expected:
                   raise SystemExit(f'C1.sha256 mismatch: {name} {actual} != {expected}')
               print(f'{name}: OK')
+
+          check = root / 'C1_check.json'
+          delivery = root / 'C1_delivery.json'
+          if not check.is_file():
+              raise SystemExit('missing delivered sidecar: C1_check.json')
+          if check.read_bytes() != delivery.read_bytes():
+              raise SystemExit('C1_check.json is not byte-equal to C1_delivery.json')
+          print('C1_check.json: OK byte-equal C1_delivery.json')
+
+          transport_manifest = root / 'transport_manifest.json'
+          if not transport_manifest.is_file():
+              raise SystemExit('missing transport_manifest.json')
+          print('transport_manifest.json: PRESENT')
+
           historical_missing = sorted(name for name in entries if not (root / name).exists())
           (root / 'C1_manifest_delivery_check.txt').write_text(
               '\n'.join([
                   'delivered_required=PASS',
-                  f'delivered_required_count={len(required)}',
+                  f'manifest_required_count={len(manifest_required)}',
+                  'check_sidecar_byte_equal_delivery=true',
+                  'transport_manifest_present=true',
                   f'historical_manifest_entries_not_in_transport={len(historical_missing)}',
                   *[f'historical_missing={name}' for name in historical_missing],
               ]) + '\n', encoding='utf-8')
@@ -179,7 +197,10 @@ jobs:
           report = {
               'schema': 'royal-capital.fortification.r0c-cp2.cp2a-authority-inspection/1',
               'status': 'PASS',
-              'failed_attempt_preserved': 'actions-run-36211770604',
+              'failed_attempts_preserved': [
+                  'actions-run-36211770604',
+                  'actions-run-36211879157'
+              ],
               'transport': {
                   'name': 'C1_transfer.zip',
                   'bytes': 514002792,
@@ -210,13 +231,13 @@ jobs:
           (snapshot / 'AUTHORITY_INSPECTION.md').write_text(
               '# R0C-CP2 CP2-A authority inspection\n\n'
               '```text\n'
-              'status                 PASS\n'
-              'transport SHA-256      b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53\n'
-              'C1 SHA-256             91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878\n'
-              f'FILES.sha256 entries  {len(expected)}\n'
-              'closed-world replay    PASS\n'
+              'status                  PASS\n'
+              'transport SHA-256       b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53\n'
+              'C1 SHA-256              91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878\n'
+              f'FILES.sha256 entries   {len(expected)}\n'
+              'closed-world replay     PASS\n'
               f'authority files copied {len(copied)}\n'
-              'failed attempt         actions-run-36211770604 preserved\n'
+              'failed attempts         36211770604, 36211879157 preserved\n'
               '```\n', encoding='utf-8')
           print(json.dumps(report, indent=2, sort_keys=True))
           PY
