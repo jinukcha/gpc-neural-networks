@@ -1,0 +1,68 @@
+{
+  "canonical": {
+    "byte_identical": true,
+    "canonical": {
+      "brep_sha256": "e42b6afce98ebb9c854b3670c5d6d44237c0411d7b49a944e6168d6b0985cce8",
+      "build123d_version": "0.13.1.dev12+ge22d34dae",
+      "ocp_version": "8.0.1.0.0",
+      "step_normalized_sha256": "5bf3cefd4f8555d61c55cfe7a8e520e1ed979367eb74d4d700bc535a713453b8",
+      "triangle_count": 12,
+      "vertex_count": 24,
+      "volume": 240.0
+    },
+    "comparison_policy": "Semantic canonical equality; STEP FILE_NAME path/timestamp normalized. Raw STEP hashes retained as evidence and are not canonical identity.",
+    "raw_brep_byte_identical": true,
+    "raw_step_byte_identical": false
+  },
+  "global_environment": {
+    "after_package_count": 507,
+    "after_sha256": "5b952fa55f6bce60dc3a957a71dc95009e71c517fdc50de7a1485f8cf656977d",
+    "before_package_count": 507,
+    "before_sha256": "5b952fa55f6bce60dc3a957a71dc95009e71c517fdc50de7a1485f8cf656977d",
+    "global_install": false,
+    "unchanged": true
+  },
+  "interrupted_attempt": {
+    "original_log": "/mnt/data/rcf_a0_resume/work/RC_K0/child_designs/fortification/r0a_cp0/reports/resume3/runtime_admission_B_timeout.log",
+    "original_receipt_created": false,
+    "partial_bytes": 30786676,
+    "partial_file_count": 859,
+    "partial_runtime_exists": true,
+    "partial_runtime_path": "/mnt/data/rcf_a0_resume/local_validation/failed_runtime_B_timeout",
+    "policy": "Do not delete or reuse a partially materialized destination; continue in a fresh destination.",
+    "retry_destination": "/mnt/data/rcf_a0_resume/local_validation/runtime_B_retry1",
+    "schema": "royal-capital.fortification.local-runtime-timeout/1",
+    "source_preservation": "PASS",
+    "status": "PRESERVED_PARTIAL_TIMEOUT"
+  },
+  "runtime_A": {
+    "canonical_sha256": "e28815485ffc3ca0ad51b52daf43badc5e9a0f92e47951490968e8190cbdaaab",
+    "capability_status": "PASS",
+    "checks_passed": 9,
+    "checks_total": 9,
+    "destination": "/mnt/data/rcf_a0_resume/local_validation/runtime_A",
+    "install_returncode": 0,
+    "pip_check_returncode": 0,
+    "raw_evidence": {
+      "brep_raw_sha256": "e42b6afce98ebb9c854b3670c5d6d44237c0411d7b49a944e6168d6b0985cce8",
+      "step_raw_sha256": "f41ddad4652223c86bbf23c556ff933b795c2a38708fcf0b383f0be1f6f32076"
+    },
+    "receipt_status": "ADMITTED"
+  },
+  "runtime_B": {
+    "canonical_sha256": "e28815485ffc3ca0ad51b52daf43badc5e9a0f92e47951490968e8190cbdaaab",
+    "capability_status": "PASS",
+    "checks_passed": 9,
+    "checks_total": 9,
+    "destination": "/mnt/data/rcf_a0_resume/local_validation/runtime_B_retry1",
+    "install_returncode": 0,
+    "pip_check_returncode": 0,
+    "raw_evidence": {
+      "brep_raw_sha256": "e42b6afce98ebb9c854b3670c5d6d44237c0411d7b49a944e6168d6b0985cce8",
+      "step_raw_sha256": "933a4c1ce5dfe914d4a351c1f2662d70a3da021533c9f375818e61a3b5fd34c4"
+    },
+    "receipt_status": "ADMITTED"
+  },
+  "schema": "royal-capital.fortification.local-cold-ab/1",
+  "status": "PASS"
+}

@@ -1,0 +1,311 @@
+{
+  "parts": [
+    {
+      "bounds_m": {
+        "max": [
+          30.0,
+          2.0,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "material_slot": "stone_foundation",
+      "part_id": "foundation",
+      "semantic_role": "FOUNDATION",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "unit_count": 3,
+      "unit_refs": [
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_00/foundation/cad-provider-receipt.json",
+            "sha256": "sha256:d9a25c29fed09f045eb9100a9e7836032017cbd4210a7c7f318f3e05bc75050c"
+          },
+          "provider_result_ref": {
+            "bytes": 2538,
+            "path": "units/terrace_00/foundation/result.json",
+            "sha256": "sha256:7d307ccc3af23c565e5945c3143e917aa36bffff2e296f5b590c036c1baf9551"
+          },
+          "unit_id": "unit/terrace_00/foundation"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_01/foundation/cad-provider-receipt.json",
+            "sha256": "sha256:eb964ba286ee2c9743273ef1f2cdbefd3ba12d357cb172925a3928067fe0d73c"
+          },
+          "provider_result_ref": {
+            "bytes": 2539,
+            "path": "units/terrace_01/foundation/result.json",
+            "sha256": "sha256:a0ea2348a0d15a9becb63bd8193dbd346e32c1befe0892601e4cf253f227caa0"
+          },
+          "unit_id": "unit/terrace_01/foundation"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_02/foundation/cad-provider-receipt.json",
+            "sha256": "sha256:5c089994dd765fce379d8cf4ebab595259c45461e390efed2fc4d209a726762c"
+          },
+          "provider_result_ref": {
+            "bytes": 2538,
+            "path": "units/terrace_02/foundation/result.json",
+            "sha256": "sha256:d11fdc32b2c5fb6dca46c13777239618f3adf9e8a58801c7b8bdf9db7522e9a2"
+          },
+          "unit_id": "unit/terrace_02/foundation"
+        }
+      ],
+      "volume_m3": 480.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          30.0,
+          14.0,
+          3.0
+        ],
+        "min": [
+          0.0,
+          0.0,
+          -3.0
+        ]
+      },
+      "material_slot": "stone_wall",
+      "part_id": "wall_body",
+      "semantic_role": "WALL_BODY",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "unit_count": 3,
+      "unit_refs": [
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_00/wall_body/cad-provider-receipt.json",
+            "sha256": "sha256:9d12f01f857d28ad72eb0ed3945585cae01367ba556fb6d0a596f531f1555880"
+          },
+          "provider_result_ref": {
+            "bytes": 2537,
+            "path": "units/terrace_00/wall_body/result.json",
+            "sha256": "sha256:ddb6ab9eda519bb2e776d6bf693e35d125152f02e65f74c86457445e9ee33699"
+          },
+          "unit_id": "unit/terrace_00/wall_body"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_01/wall_body/cad-provider-receipt.json",
+            "sha256": "sha256:b92f2711ad724766cae779f8f068f22c792a1e52141146321231e23816de0432"
+          },
+          "provider_result_ref": {
+            "bytes": 2538,
+            "path": "units/terrace_01/wall_body/result.json",
+            "sha256": "sha256:4d99fb66fda0d815e6513fc8ed9fd46da4a528a7e6034dbe2a4211cf5c1926f9"
+          },
+          "unit_id": "unit/terrace_01/wall_body"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_02/wall_body/cad-provider-receipt.json",
+            "sha256": "sha256:15a6a724684c097555a20b29a747d7fd1eaf8eb42d24c0b46c0798fb1055d3cd"
+          },
+          "provider_result_ref": {
+            "bytes": 2538,
+            "path": "units/terrace_02/wall_body/result.json",
+            "sha256": "sha256:67bf96ccb317fddce744d87527193126679f3f9e72afcfdbf9ed70fc9357321e"
+          },
+          "unit_id": "unit/terrace_02/wall_body"
+        }
+      ],
+      "volume_m3": 2160.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          30.0,
+          14.6,
+          3.2
+        ],
+        "min": [
+          0.0,
+          12.0,
+          -3.2
+        ]
+      },
+      "material_slot": "stone_walk",
+      "part_id": "wall_walk",
+      "semantic_role": "WALL_WALK",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "unit_count": 3,
+      "unit_refs": [
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_00/wall_walk/cad-provider-receipt.json",
+            "sha256": "sha256:e945a5c24e22e90898046b2e8c6f610f234477b994ef89a0afcce8003bcd46dd"
+          },
+          "provider_result_ref": {
+            "bytes": 2535,
+            "path": "units/terrace_00/wall_walk/result.json",
+            "sha256": "sha256:5d40c508dfde34f7c085578983eb3dd50fc3dce07d9fda128c704629e0df8f9f"
+          },
+          "unit_id": "unit/terrace_00/wall_walk"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_01/wall_walk/cad-provider-receipt.json",
+            "sha256": "sha256:76d440b2d32358c6cdcc8a729e0e6820155d7cf4fb476d6a2f19641560cc697d"
+          },
+          "provider_result_ref": {
+            "bytes": 2536,
+            "path": "units/terrace_01/wall_walk/result.json",
+            "sha256": "sha256:666aae79c26e579ff0b875d75087375e58b2c3f2a1b1341de1f2f89024218e85"
+          },
+          "unit_id": "unit/terrace_01/wall_walk"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_02/wall_walk/cad-provider-receipt.json",
+            "sha256": "sha256:1051a3124b2a6408842bc0285c5c392b181819b917c4112f08657ff1557b6d9d"
+          },
+          "provider_result_ref": {
+            "bytes": 2536,
+            "path": "units/terrace_02/wall_walk/result.json",
+            "sha256": "sha256:6fc4075db5f364c22da0617ff2a0f7ec049ec3c41df9c46c472d6618c67981a3"
+          },
+          "unit_id": "unit/terrace_02/wall_walk"
+        }
+      ],
+      "volume_m3": 115.2
+    },
+    {
+      "bounds_m": {
+        "max": [
+          30.0,
+          16.4,
+          3.2
+        ],
+        "min": [
+          0.0,
+          12.6,
+          2.4
+        ]
+      },
+      "material_slot": "stone_parapet",
+      "part_id": "inner_parapet",
+      "semantic_role": "INNER_PARAPET",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "unit_count": 3,
+      "unit_refs": [
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_00/inner_parapet/cad-provider-receipt.json",
+            "sha256": "sha256:3d3b18f2a7f75db4738e1ea677ec30a0614ed2752cd73b53de0807b30b2de9ed"
+          },
+          "provider_result_ref": {
+            "bytes": 2538,
+            "path": "units/terrace_00/inner_parapet/result.json",
+            "sha256": "sha256:a904ea1d564476c06d1bcbbc49ab255b9f088d755cd912020412f700611e6e98"
+          },
+          "unit_id": "unit/terrace_00/inner_parapet"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_01/inner_parapet/cad-provider-receipt.json",
+            "sha256": "sha256:07fea481e5ede7f2e87a635bd21310328bfc593cc112e2a7589bb90f9da83cca"
+          },
+          "provider_result_ref": {
+            "bytes": 2539,
+            "path": "units/terrace_01/inner_parapet/result.json",
+            "sha256": "sha256:a0fe995ab95130d4bf079707f7a93722e17ac051302dc975ba6a53b535090040"
+          },
+          "unit_id": "unit/terrace_01/inner_parapet"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_02/inner_parapet/cad-provider-receipt.json",
+            "sha256": "sha256:99cd27b2b1b934dba36bf57b51bdfcf3c5dcb902e70fa9b73ef4fed025c3e167"
+          },
+          "provider_result_ref": {
+            "bytes": 2539,
+            "path": "units/terrace_02/inner_parapet/result.json",
+            "sha256": "sha256:218c57b1b78779bb7a215ed22c7a246705f50286707a66e631cb80ad4dfee883"
+          },
+          "unit_id": "unit/terrace_02/inner_parapet"
+        }
+      ],
+      "volume_m3": 43.2
+    },
+    {
+      "bounds_m": {
+        "max": [
+          30.0,
+          16.4,
+          -2.4
+        ],
+        "min": [
+          0.0,
+          12.6,
+          -3.2
+        ]
+      },
+      "material_slot": "stone_parapet",
+      "part_id": "outer_parapet",
+      "semantic_role": "OUTER_PARAPET",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "unit_count": 3,
+      "unit_refs": [
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_00/outer_parapet/cad-provider-receipt.json",
+            "sha256": "sha256:5773d0c3fd98d734faf97f803cef2c5f1acf8765573af5c16b21c60eae5746c1"
+          },
+          "provider_result_ref": {
+            "bytes": 2540,
+            "path": "units/terrace_00/outer_parapet/result.json",
+            "sha256": "sha256:74257476253ace676b2378e02ae565775e8eb1b26f10ccac2bb95a147cb638d4"
+          },
+          "unit_id": "unit/terrace_00/outer_parapet"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_01/outer_parapet/cad-provider-receipt.json",
+            "sha256": "sha256:51e1a3aceb78ef0aa324ec9a245237bc4f60bc6efe89382f3c442de510a696b0"
+          },
+          "provider_result_ref": {
+            "bytes": 2541,
+            "path": "units/terrace_01/outer_parapet/result.json",
+            "sha256": "sha256:29c6bf40e4941bf9077fea4c0197b6df045d6b0a540854d1c7f3c296d3866728"
+          },
+          "unit_id": "unit/terrace_01/outer_parapet"
+        },
+        {
+          "provider_receipt_ref": {
+            "bytes": 2847,
+            "path": "units/terrace_02/outer_parapet/cad-provider-receipt.json",
+            "sha256": "sha256:52b64e117b5e5b18eb2dfc046cce0ae19854f31d7e5e1ca68c97776ef57ba2fa"
+          },
+          "provider_result_ref": {
+            "bytes": 2541,
+            "path": "units/terrace_02/outer_parapet/result.json",
+            "sha256": "sha256:a600517d3faf96ac75ebc3b9f7f0f467ae8b64b4f1c85eed9039387aa0d5a8d5"
+          },
+          "unit_id": "unit/terrace_02/outer_parapet"
+        }
+      ],
+      "volume_m3": 43.2
+    }
+  ],
+  "schema": "royal-capital.fortification.terrain-span-semantic-parts/1",
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001"
+}

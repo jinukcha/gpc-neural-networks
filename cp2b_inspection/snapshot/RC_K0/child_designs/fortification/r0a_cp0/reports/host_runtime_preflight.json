@@ -1,0 +1,59 @@
+{
+  "exact_runtime_compatible": false,
+  "exact_source_import": {
+    "returncode": 1,
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import build123d; print(build123d.__version__)\n    ^^^^^^^^^^^^^^^^\n  File \"/mnt/data/rcf_full_source_probe/gumyr-build123d-e22d34d/src/build123d/__init__.py\", line 3, in <module>\n    from build123d.build_common import *\n  File \"/mnt/data/rcf_full_source_probe/gumyr-build123d-e22d34d/src/build123d/build_common.py\", line 87, in <module>\n    from build123d.topology import (\n    ...<14 lines>...\n    )\n  File \"/mnt/data/rcf_full_source_probe/gumyr-build123d-e22d34d/src/build123d/topology/__init__.py\", line 32, in <module>\n    from .history import ShapeHistory\n  File \"/mnt/data/rcf_full_source_probe/gumyr-build123d-e22d34d/src/build123d/topology/history.py\", line 51, in <module>\n    from OCP.collections import (\n    ...<4 lines>...\n    )\nModuleNotFoundError: No module named 'OCP.collections'",
+    "stdout": ""
+  },
+  "global_environment_unchanged": true,
+  "module_checks": {
+    "OCP": {
+      "error": null,
+      "imported": true
+    },
+    "OCP.collections": {
+      "error": "ModuleNotFoundError: No module named 'OCP.collections'",
+      "imported": false
+    },
+    "build123d": {
+      "error": "ModuleNotFoundError: No module named 'build123d'",
+      "imported": false
+    }
+  },
+  "packages": {
+    "anytree": "2.13.0",
+    "bd_materials": null,
+    "build123d": null,
+    "cadquery": "2.8.0",
+    "cadquery-ocp": "7.9.3.1.1",
+    "cadquery-ocp-novtk": null,
+    "ezdxf": "1.4.4",
+    "fonttools": "4.63.0",
+    "ipython": "9.14.0",
+    "lib3mf": null,
+    "numpy": "2.3.5",
+    "ocp_gordon": null,
+    "ocpsvg": null,
+    "requests": "2.32.5",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.0",
+    "svgpathtools": null,
+    "sympy": "1.14.0",
+    "threejs-materials": null,
+    "trianglesolver": null,
+    "typing_extensions": "4.16.0",
+    "webcolors": "25.10.0"
+  },
+  "pip_list_after_sha256": "2e22c35579aacfb8bb2c380fd991aeb0116f12de3e7f707034285f9e4140854e",
+  "pip_list_before_sha256": "2e22c35579aacfb8bb2c380fd991aeb0116f12de3e7f707034285f9e4140854e",
+  "python": {
+    "cache_tag": "cpython-313",
+    "executable": "/opt/pyvenv/bin/python3",
+    "executable_sha256": "17b78e0a93175e86f9ac03141924fd7a7f0c0c52e66b34bfa0de20ffef989df1",
+    "platform": "linux-x86_64",
+    "soabi": "cpython-313-x86_64-linux-gnu",
+    "version": "3.13.5"
+  },
+  "schema": "royal-capital.fortification.host-preflight/1",
+  "status": "BOOTSTRAP_REJECTED_VERSION_MISMATCH"
+}

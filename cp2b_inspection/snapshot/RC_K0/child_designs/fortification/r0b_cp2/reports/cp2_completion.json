@@ -1,0 +1,130 @@
+{
+  "deferred": {
+    "collision_navigation": "R0E",
+    "join_source_coverage": "R0B_CP4",
+    "terrain_interface": "R0B_CP3"
+  },
+  "families": {
+    "bevel": {
+      "bounded_overlap_status": "PASS",
+      "bounds_m": {
+        "max": [
+          34.66025404,
+          14.4,
+          8.464101616
+        ],
+        "min": [
+          14.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "family": "BEVEL",
+      "files_compared": 36,
+      "reference_digest": "9b60baeb48131a678fff183ccba2ad470d138c3b7b18aa25eba9149f4d619f71",
+      "section_count": 4,
+      "socket_alignment_count": 6,
+      "socket_alignment_status": "PASS",
+      "socket_count": 6,
+      "solid_count": 5,
+      "status": "PASS",
+      "triangle_count": 140,
+      "turn_angle_deg": 29.999999994,
+      "vertex_count": 80,
+      "volume_m3": 1830.949631601
+    },
+    "miter": {
+      "bounded_overlap_status": "PASS",
+      "bounds_m": {
+        "max": [
+          32.573054736,
+          14.4,
+          5.328416436
+        ],
+        "min": [
+          16.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "family": "MITER",
+      "files_compared": 36,
+      "reference_digest": "62c3d1f5a9102ddc480b5127ae1bbdf45e453e53e9f0cb4eb53e916355be66bb",
+      "section_count": 3,
+      "socket_alignment_count": 6,
+      "socket_alignment_status": "PASS",
+      "socket_count": 6,
+      "solid_count": 5,
+      "status": "PASS",
+      "triangle_count": 100,
+      "turn_angle_deg": 10.000000019,
+      "vertex_count": 60,
+      "volume_m3": 1515.52
+    },
+    "transition": {
+      "bounded_overlap_status": "PASS",
+      "bounds_m": {
+        "max": [
+          30.0,
+          14.4,
+          5.0
+        ],
+        "min": [
+          18.0,
+          -2.0,
+          -5.0
+        ]
+      },
+      "byte_identical": true,
+      "family": "PROFILE_TRANSITION",
+      "files_compared": 36,
+      "reference_digest": "44de558fbecba99fac6bafd94a680b4045342aaff28ff40ad9a66d86164649b4",
+      "section_count": 3,
+      "socket_alignment_count": 6,
+      "socket_alignment_status": "PASS",
+      "socket_count": 6,
+      "solid_count": 5,
+      "status": "PASS",
+      "triangle_count": 100,
+      "turn_angle_deg": 0.0,
+      "vertex_count": 60,
+      "volume_m3": 1251.36
+    }
+  },
+  "focused_validation": "PASS",
+  "focused_validation_summary": {
+    "failed": 0,
+    "passed": 47
+  },
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "negative_gate_count": 9,
+  "next": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0B-CP3",
+  "next_requires_explicit_approval": true,
+  "pre_validation_checkpoint": {
+    "full": {
+      "bytes": 258480576,
+      "file": "B2_qpre.zip",
+      "sha256": "f19f9cf6e07a5f309b6300fcdcc39bb6bc9dfe65280977e298783e7380ac8f03"
+    },
+    "package_equality": "PASS",
+    "patch": {
+      "bytes": 253642534,
+      "file": "B2_qpreP.zip",
+      "sha256": "46b4c3e37e6d81dc207d6cf16295c4b6bb5e20bcad59bfe713955a0989fdaa65"
+    },
+    "source": {
+      "bytes": 281548,
+      "file": "B2_qpreS.zip",
+      "sha256": "b8120f609d3ca3062ff623b5525ea866424828f04bcfe1b0f4d6a96d04482f75"
+    }
+  },
+  "runtime_reuse": "PASS",
+  "schema": "royal-capital.fortification.r0b-cp2-completion/1",
+  "source_preservation": "PASS",
+  "source_spans_unchanged": true,
+  "status": "R0B_CP2_COMPLETE",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0B-CP2"
+}

@@ -1,0 +1,228 @@
+{
+  "join_id": "fortification/caelmere/r0b/bevel-join-001",
+  "schema": "royal-capital.fortification.wall-join-sockets/1",
+  "sockets": [
+    {
+      "endpoint": "end",
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "incoming_span",
+      "source_endpoint": "END",
+      "source_socket_id": "span_end",
+      "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming"
+    },
+    {
+      "endpoint": "end",
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "incoming_wall_walk",
+      "source_endpoint": "END",
+      "source_socket_id": "wall_walk_end",
+      "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming"
+    },
+    {
+      "endpoint": "end",
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "incoming_foundation",
+      "source_endpoint": "END",
+      "source_socket_id": "foundation_end",
+      "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming"
+    },
+    {
+      "endpoint": "start",
+      "frame": {
+        "inside": [
+          -0.5,
+          0.0,
+          0.866025404
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.5,
+          0.0,
+          -0.866025404
+        ],
+        "tangent": [
+          0.866025404,
+          0.0,
+          0.5
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "outgoing_span",
+      "source_endpoint": "START",
+      "source_socket_id": "span_start",
+      "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing"
+    },
+    {
+      "endpoint": "start",
+      "frame": {
+        "inside": [
+          -0.5,
+          0.0,
+          0.866025404
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.5,
+          0.0,
+          -0.866025404
+        ],
+        "tangent": [
+          0.866025404,
+          0.0,
+          0.5
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "outgoing_wall_walk",
+      "source_endpoint": "START",
+      "source_socket_id": "wall_walk_start",
+      "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing"
+    },
+    {
+      "endpoint": "start",
+      "frame": {
+        "inside": [
+          -0.5,
+          0.0,
+          0.866025404
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.5,
+          0.0,
+          -0.866025404
+        ],
+        "tangent": [
+          0.866025404,
+          0.0,
+          0.5
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "outgoing_foundation",
+      "source_endpoint": "START",
+      "source_socket_id": "foundation_start",
+      "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "artifacts": {
+    "cad-provider-receipt.json": {
+      "bytes": 3609,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:4c2522084ba6b47080587ac70cd41bb1df01da88e1206a840c7d89b43c6dc624"
+    },
+    "canonical-terrain-profile.json": {
+      "bytes": 1395,
+      "path": "canonical-terrain-profile.json",
+      "sha256": "sha256:59df92c46c9e7ea45aa8ec4b28979df74332b47b270a3dca838f1c24fb45dad2"
+    },
+    "construction-units.json": {
+      "bytes": 17537,
+      "path": "construction-units.json",
+      "sha256": "sha256:a6d00509a179613bee2d062a29db44d5385342c07698aa90c68170d2282fae7f"
+    },
+    "contact-evidence.json": {
+      "bytes": 4385,
+      "path": "contact-evidence.json",
+      "sha256": "sha256:8928daaa71d46f17af98c0b842c9233a24e07183478d70b922147a1a9766e9c6"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 890,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:437f8b53e6def5c6c19d6f916abee2fc26ea2ea890b8d6bdd9c868187337982b"
+    },
+    "foundation-interface.json": {
+      "bytes": 3252,
+      "path": "foundation-interface.json",
+      "sha256": "sha256:194ce3e9a69fd1b16da5e0201697e13dca47469059e91dff55fe2c86009ef6fa"
+    },
+    "grade-evidence.json": {
+      "bytes": 835,
+      "path": "grade-evidence.json",
+      "sha256": "sha256:87214a149146d397e3c39b1f009f22311d822e398467f6d66243a1b2e57668e6"
+    },
+    "interface-sockets.json": {
+      "bytes": 7824,
+      "path": "interface-sockets.json",
+      "sha256": "sha256:3a7fc42d1c21c1b662e35c7281bde0a67630062981ee4ca761ab1b94971173a6"
+    },
+    "neutral-mesh.json": {
+      "bytes": 17773,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c"
+    },
+    "semantic-parts.json": {
+      "bytes": 10619,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:f6c15ebee22556dfc544579c2e7cb76b2b9895c3e4b3c3ba1f8b0f1c68c8f2ac"
+    },
+    "stored-copies.json": {
+      "bytes": 16065,
+      "path": "stored-copies.json",
+      "sha256": "sha256:8debac166b44a726f2f5dd821b4c821e4dd916b0b66afdbf617cf8485ba2a313"
+    },
+    "terrain-span-plan.json": {
+      "bytes": 1274,
+      "path": "terrain-span-plan.json",
+      "sha256": "sha256:d764dec7e42ec539ec0a55438ed0f09f38a4b0e118941ca818c3f105999c25a7"
+    }
+  },
+  "bounds_m": {
+    "max": [
+      30.0,
+      16.4,
+      4.0
+    ],
+    "min": [
+      0.0,
+      -2.0,
+      -4.0
+    ]
+  },
+  "contact_evidence_status": "PASS",
+  "failure": null,
+  "family": "TERRAIN_STEPPED",
+  "foundation_interface_status": "PASS",
+  "geometry_route": "BOUNDED_TERRACE_SEGMENT_PROFILE_EXTRUSIONS",
+  "grade_evidence_status": "PASS",
+  "maximum_embedment_depth_m": 2.0,
+  "maximum_gap_m": 0.0,
+  "maximum_step_height_m": 1.0,
+  "overall_centerline_grade": 0.066666666667,
+  "part_count": 5,
+  "retained_height_m": 0.0,
+  "schema": "royal-capital.fortification.terrain-span-result/1",
+  "segment_count": 3,
+  "socket_count": 14,
+  "solid_count": 15,
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+  "status": "SUCCEEDED",
+  "terrain_mutation": false,
+  "triangle_count": 180,
+  "unit_count": 15,
+  "vertex_count": 120,
+  "volume_m3": 2841.6
+}

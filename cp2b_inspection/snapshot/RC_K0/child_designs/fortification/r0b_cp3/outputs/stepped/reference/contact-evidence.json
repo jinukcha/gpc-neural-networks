@@ -1,0 +1,151 @@
+{
+  "family": "TERRAIN_STEPPED",
+  "samples": [
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_00",
+      "sample_id": "contact/terrace_00/0.000000",
+      "station_m": 0.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_00",
+      "sample_id": "contact/terrace_00/2.500000",
+      "station_m": 2.5,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_00",
+      "sample_id": "contact/terrace_00/5.000000",
+      "station_m": 5.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_00",
+      "sample_id": "contact/terrace_00/7.500000",
+      "station_m": 7.5,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_00",
+      "sample_id": "contact/terrace_00/10.000000",
+      "station_m": 10.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 1.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_01",
+      "sample_id": "contact/terrace_01/10.000000",
+      "station_m": 10.0,
+      "terrain_elevation_m": 1.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 1.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_01",
+      "sample_id": "contact/terrace_01/12.500000",
+      "station_m": 12.5,
+      "terrain_elevation_m": 1.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 1.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_01",
+      "sample_id": "contact/terrace_01/15.000000",
+      "station_m": 15.0,
+      "terrain_elevation_m": 1.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 1.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_01",
+      "sample_id": "contact/terrace_01/17.500000",
+      "station_m": 17.5,
+      "terrain_elevation_m": 1.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 1.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_01",
+      "sample_id": "contact/terrace_01/20.000000",
+      "station_m": 20.0,
+      "terrain_elevation_m": 1.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_02",
+      "sample_id": "contact/terrace_02/20.000000",
+      "station_m": 20.0,
+      "terrain_elevation_m": 2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_02",
+      "sample_id": "contact/terrace_02/22.500000",
+      "station_m": 22.5,
+      "terrain_elevation_m": 2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_02",
+      "sample_id": "contact/terrace_02/25.000000",
+      "station_m": 25.0,
+      "terrain_elevation_m": 2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_02",
+      "sample_id": "contact/terrace_02/27.500000",
+      "station_m": 27.5,
+      "terrain_elevation_m": 2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/terrace_02",
+      "sample_id": "contact/terrace_02/30.000000",
+      "station_m": 30.0,
+      "terrain_elevation_m": 2.0
+    }
+  ],
+  "sampling_spacing_m": 2.5,
+  "schema": "royal-capital.fortification.contact-gap-evidence/1",
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+  "summary": {
+    "contact_count": 15,
+    "contact_ratio": 1.0,
+    "maximum_allowed_gap_m": 0.02,
+    "maximum_gap_m": 0.0,
+    "sample_count": 15,
+    "status": "PASS"
+  }
+}

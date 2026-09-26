@@ -1,0 +1,10 @@
+{
+  "schema": "royal-capital.fortification.local-frame-contract/1",
+  "basis_order": ["tangent", "up", "inside"],
+  "up": [0.0, 1.0, 0.0],
+  "inside_formula": "normalize(cross(tangent, up))",
+  "outside_formula": "-inside",
+  "orientation_determinant": 1.0,
+  "inside_side": "LEFT_OF_TRAVEL",
+  "outside_side": "RIGHT_OF_TRAVEL"
+}

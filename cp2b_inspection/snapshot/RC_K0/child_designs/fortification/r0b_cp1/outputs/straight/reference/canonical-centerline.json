@@ -1,0 +1,91 @@
+{
+  "arc_radius_m": null,
+  "arc_sweep_deg": 0.0,
+  "bounds_m": {
+    "max": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "min": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "canonical_digest": "sha256:382c5c586b165872d88ff7fb621ba350c5cfe9da42ff982714dfbd77647d34b9",
+  "curve_sample_tolerance_m": 0.05,
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "inside_side": "LEFT_OF_TRAVEL",
+  "kind": "LINE",
+  "length_m": 24.0,
+  "max_turn_deg": 5.0,
+  "maximum_observed_chord_error_m": 0.0,
+  "outside_side": "RIGHT_OF_TRAVEL",
+  "polyline_length_m": 24.0,
+  "samples": [
+    {
+      "distance_m": 0.0,
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "u": 0.0,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 24.0,
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        24.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "u": 1.0,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "schema": "royal-capital.fortification.canonical-centerline/1",
+  "segment_count": 1,
+  "span_id": "fortification/caelmere/r0b/straight-span-001"
+}

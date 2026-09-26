@@ -1,0 +1,37 @@
+{
+  "bevel_setback_m": 0.0,
+  "family": "MITER",
+  "incoming": {
+    "interval_m": [
+      -8.0,
+      0.0
+    ],
+    "max_m": 10.0,
+    "overlap_m": 8.0,
+    "ratio": 0.333333333333,
+    "source_span_length_m": 24.0,
+    "status": "PASS"
+  },
+  "join_id": "fortification/caelmere/r0b/miter-join-001",
+  "observed_section_count": 3,
+  "outgoing": {
+    "interval_m": [
+      0.0,
+      8.0
+    ],
+    "max_m": 10.0,
+    "overlap_m": 8.0,
+    "ratio": 0.333333333333,
+    "source_span_length_m": 24.0,
+    "status": "PASS"
+  },
+  "policy": "CENTERLINE_SECTION_INTERVAL_WITH_CONSERVATIVE_PROFILE_ENVELOPE",
+  "required_section_count": 3,
+  "schema": "royal-capital.fortification.bounded-overlap/1",
+  "section_ids": [
+    "incoming_overlap",
+    "miter_apex",
+    "outgoing_overlap"
+  ],
+  "status": "PASS"
+}

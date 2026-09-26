@@ -1,0 +1,27 @@
+{
+  "extracted_runtime_bundled": false,
+  "global_environment_unchanged": true,
+  "global_install": false,
+  "local_cold_ab": "PASS",
+  "local_cold_ab_ref": "reports/resume3/local_cold_ab.json",
+  "promotion_allowed": true,
+  "runtime_A": {
+    "capability_ref": "reports/resume3/capability_A.json",
+    "install_returncode": 0,
+    "pip_check_returncode": 0,
+    "receipt_ref": "reports/resume3/runtime_admission_A.json",
+    "status": "ADMITTED"
+  },
+  "runtime_B": {
+    "capability_ref": "reports/resume3/capability_B.json",
+    "install_returncode": 0,
+    "pip_check_returncode": 0,
+    "receipt_ref": "reports/resume3/runtime_admission_B.json",
+    "retry_reason": "FIRST_B_DESTINATION_PRESERVED_AFTER_TOOL_TIMEOUT",
+    "status": "ADMITTED"
+  },
+  "schema": "royal-capital.fortification.runtime-admission/4",
+  "status": "ADMITTED",
+  "wheel_count": 58,
+  "wheelhouse_intake": "PASS"
+}

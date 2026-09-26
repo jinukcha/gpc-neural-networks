@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "DIMENSION_OUT_OF_DOMAIN",
+    "message": "dimensions outside domain width=29.0 height=16.0 foundation=3.0"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:998be3038190af87a8c7a5e54796b874e0f851dc5ba7ceb37e9623dcfb32487f",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

@@ -1,0 +1,259 @@
+{
+  "family": "RETAINING",
+  "samples": [
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/0.000000",
+      "station_m": 0.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/3.000000",
+      "station_m": 3.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/6.000000",
+      "station_m": 6.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/9.000000",
+      "station_m": 9.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/12.000000",
+      "station_m": 12.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/15.000000",
+      "station_m": 15.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/18.000000",
+      "station_m": 18.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/21.000000",
+      "station_m": 21.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": -2.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "sample_id": "contact/base-bearing/24.000000",
+      "station_m": 24.0,
+      "terrain_elevation_m": -2.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/0.000000",
+      "station_m": 0.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/3.000000",
+      "station_m": 3.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/6.000000",
+      "station_m": 6.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/9.000000",
+      "station_m": 9.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/12.000000",
+      "station_m": 12.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/15.000000",
+      "station_m": 15.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/18.000000",
+      "station_m": 18.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/21.000000",
+      "station_m": 21.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 0.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "sample_id": "contact/outside-toe/24.000000",
+      "station_m": 24.0,
+      "terrain_elevation_m": 0.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/0.000000",
+      "station_m": 0.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/3.000000",
+      "station_m": 3.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/6.000000",
+      "station_m": 6.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/9.000000",
+      "station_m": 9.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/12.000000",
+      "station_m": 12.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/15.000000",
+      "station_m": 15.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/18.000000",
+      "station_m": 18.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/21.000000",
+      "station_m": 21.0,
+      "terrain_elevation_m": 3.0
+    },
+    {
+      "contact": true,
+      "foundation_contact_elevation_m": 3.0,
+      "gap_m": 0.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "sample_id": "contact/inside-heel/24.000000",
+      "station_m": 24.0,
+      "terrain_elevation_m": 3.0
+    }
+  ],
+  "sampling_spacing_m": 3.0,
+  "schema": "royal-capital.fortification.contact-gap-evidence/1",
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "summary": {
+    "contact_count": 27,
+    "contact_ratio": 1.0,
+    "maximum_allowed_gap_m": 0.02,
+    "maximum_gap_m": 0.0,
+    "sample_count": 27,
+    "status": "PASS"
+  }
+}

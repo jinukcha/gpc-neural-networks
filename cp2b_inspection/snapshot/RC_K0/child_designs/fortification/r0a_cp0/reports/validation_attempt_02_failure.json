@@ -1,0 +1,9 @@
+{
+  "schema": "royal-capital.fortification.validation-failure/1",
+  "attempt": 2,
+  "status": "FAILED_VALIDATOR_SYMBOL_LOCATION",
+  "failure": "source API checker looked for sweep in operations_part.py; exact source defines it in operations_generic.py",
+  "source_rollback": false,
+  "checkpoint_preserved": "RCF_A0_CP0_PRE_full.zip",
+  "repair": "check the exact source module that owns sweep"
+}

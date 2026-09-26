@@ -1,0 +1,139 @@
+{
+  "accepted_reference_digest": "sha256:bc84d3aef882ea78e38c843017afbe2016d37ee298dd2e81fca378dff346a833",
+  "clean_replay": {
+    "byte_identical": true,
+    "different": [],
+    "files_compared": 36,
+    "schema": "royal-capital.fortification.cp3-clean-replay/1",
+    "status": "PASS"
+  },
+  "coverage": {
+    "covered_triangle_count": 60,
+    "gap_count": 0,
+    "gaps": [],
+    "mesh_triangle_count": 60,
+    "overlap_count": 0,
+    "overlaps": [],
+    "surface_count": 30,
+    "unique_triangle_count": 60
+  },
+  "negative_gates": {
+    "accepted_output_digest": "sha256:bc84d3aef882ea78e38c843017afbe2016d37ee298dd2e81fca378dff346a833",
+    "all_rejected": true,
+    "case_count": 12,
+    "cases": [
+      {
+        "accepted_target_unchanged": true,
+        "case": "invalid_nonfinite",
+        "code": "INVALID_REQUEST",
+        "failure_dir": "failures/invalid_nonfinite",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "nonpositive_length",
+        "code": "INVALID_REQUEST",
+        "failure_dir": "failures/nonpositive_length",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "invalid_units",
+        "code": "INVALID_REQUEST",
+        "failure_dir": "failures/invalid_units",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "invalid_tolerance",
+        "code": "INVALID_REQUEST",
+        "failure_dir": "failures/invalid_tolerance",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "stale_input",
+        "code": "STALE_INPUT",
+        "failure_dir": "failures/stale_input",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "runtime_mismatch",
+        "code": "RUNTIME_MISMATCH",
+        "failure_dir": "failures/runtime_mismatch",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "geometry_budget",
+        "code": "GEOMETRY_BUDGET_EXCEEDED",
+        "failure_dir": "failures/geometry_budget",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "output_byte_budget",
+        "code": "GEOMETRY_BUDGET_EXCEEDED",
+        "failure_dir": "failures/output_byte_budget",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "required_part_failure",
+        "code": "REQUIRED_PART_FAILED",
+        "failure_dir": "failures/required_part_failure",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "coverage_gap",
+        "code": "SOURCE_COVERAGE_FAILED",
+        "failure_dir": "failures/coverage_gap",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "coverage_overlap",
+        "code": "SOURCE_COVERAGE_FAILED",
+        "failure_dir": "failures/coverage_overlap",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": false
+      },
+      {
+        "accepted_target_unchanged": true,
+        "case": "accepted_target_preservation",
+        "code": "REQUIRED_PART_FAILED",
+        "partial_output_published": false,
+        "status": "REJECTED",
+        "target_exists": true
+      }
+    ],
+    "no_negative_target_published": true,
+    "schema": "royal-capital.fortification.cp3-negative-gates/1",
+    "status": "PASS"
+  },
+  "schema": "royal-capital.fortification.cp3-qualification/1",
+  "status": "PASS"
+}

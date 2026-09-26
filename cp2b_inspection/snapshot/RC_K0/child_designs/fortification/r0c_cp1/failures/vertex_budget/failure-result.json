@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "GEOMETRY_BUDGET_EXCEEDED",
+    "message": "foundation: {'code': 'GEOMETRY_BUDGET_EXCEEDED', 'message': 'mesh 8 vertices/12 triangles exceeds budget'}"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:5f11f9a8a5cc3105304608bb848d6f33a744d0ff6776aed7f9e3375af61995c8",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

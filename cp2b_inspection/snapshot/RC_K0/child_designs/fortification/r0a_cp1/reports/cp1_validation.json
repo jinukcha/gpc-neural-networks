@@ -1,0 +1,164 @@
+{
+  "checks": [
+    {
+      "name": "required:README.md",
+      "pass": true
+    },
+    {
+      "name": "required:schemas/cad_provider_adapter.schema.json",
+      "pass": true
+    },
+    {
+      "name": "required:fixtures/profile_extrusion.request.json",
+      "pass": true
+    },
+    {
+      "name": "required:src/rcf_fortification_cad/__init__.py",
+      "pass": true
+    },
+    {
+      "name": "required:src/rcf_fortification_cad/contract.py",
+      "pass": true
+    },
+    {
+      "name": "required:src/rcf_fortification_cad/canonical.py",
+      "pass": true
+    },
+    {
+      "name": "required:src/rcf_fortification_cad/provider.py",
+      "pass": true
+    },
+    {
+      "name": "required:src/rcf_fortification_cad/cli.py",
+      "pass": true
+    },
+    {
+      "name": "required:tools/run_cp1_qualification.py",
+      "pass": true
+    },
+    {
+      "name": "required:tools/validate_cp1.py",
+      "pass": true
+    },
+    {
+      "name": "required:tests/test_cp1_adapter.py",
+      "pass": true
+    },
+    {
+      "name": "required:reports/qualification.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/cold_ab.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/unittest.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/cli_smoke.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/cp1_status.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/provider_api_audit.json",
+      "pass": true
+    },
+    {
+      "name": "required:docs/CP1_REPORT.md",
+      "pass": true
+    },
+    {
+      "name": "required:provenance/CHANGESET.json",
+      "pass": true
+    },
+    {
+      "name": "CP0 prerequisite",
+      "pass": true
+    },
+    {
+      "name": "qualification pass",
+      "pass": true
+    },
+    {
+      "name": "cold A/B byte exact",
+      "pass": true
+    },
+    {
+      "name": "unittest pass",
+      "pass": true
+    },
+    {
+      "name": "CLI smoke pass",
+      "pass": true
+    },
+    {
+      "name": "public API neutral",
+      "pass": true
+    },
+    {
+      "name": "result success",
+      "pass": true
+    },
+    {
+      "name": "mesh neutral frame",
+      "pass": true
+    },
+    {
+      "name": "receipt exact runtime",
+      "pass": true
+    },
+    {
+      "name": "receipt contract",
+      "pass": true
+    },
+    {
+      "name": "stored copy reopen",
+      "pass": true
+    },
+    {
+      "name": "schema oneOf",
+      "pass": true
+    },
+    {
+      "name": "CP1 closed",
+      "pass": true
+    },
+    {
+      "detail": [
+        "__future__",
+        "dataclasses",
+        "io",
+        "importlib.metadata",
+        "json",
+        "os",
+        "pathlib",
+        "platform",
+        "shutil",
+        "sys",
+        "typing",
+        "canonical",
+        "contract"
+      ],
+      "name": "no module-level build123d import",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "tree hygiene",
+      "pass": true
+    }
+  ],
+  "functional_qualification": "PASS",
+  "passed": 34,
+  "r0a_cp2_start_allowed": true,
+  "schema": "royal-capital.fortification.cp1-validation/1",
+  "source_preservation": "PASS",
+  "stage_completion": "R0A_CP1_COMPLETE",
+  "status": "PASS_R0A_CP1_COMPLETE",
+  "total": 34
+}

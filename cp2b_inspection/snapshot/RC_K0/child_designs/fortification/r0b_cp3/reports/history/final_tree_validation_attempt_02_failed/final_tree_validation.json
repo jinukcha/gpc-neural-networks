@@ -1,0 +1,1164 @@
+{
+  "checks": [
+    {
+      "detail": "PASS",
+      "name": "qualification_pass",
+      "pass": true
+    },
+    {
+      "detail": {
+        "failed": 0,
+        "passed": 56
+      },
+      "name": "focused_validation_56_of_56",
+      "pass": true
+    },
+    {
+      "detail": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "name": "unit_tests_pass",
+      "pass": true
+    },
+    {
+      "detail": {
+        "build123d_version": "0.13.1.dev12+ge22d34dae",
+        "global_install": false,
+        "ocp_version": "8.0.1.0.0",
+        "pip_check": "PASS",
+        "python_cache_tag": "cpython-313",
+        "python_implementation": "CPython",
+        "python_version": "3.13.5",
+        "requirements_lock_sha256": "sha256:59b8802bc325c94b4d4e94060e4ed9490ce738fff6ecb8726f86eadb779744bf",
+        "runtime_location": "EXTERNAL_FRESH_VENV_NOT_BUNDLED",
+        "schema": "royal-capital.fortification.r0b-cp3-runtime-reuse/1",
+        "status": "PASS",
+        "wheel_count": 58,
+        "wheelhouse_manifest_sha256": "sha256:f6e9908f02cbd6b689ff0448a32ca460e374afcbeb6c66d34129ec74f07c51cd"
+      },
+      "name": "runtime_reuse_pass",
+      "pass": true
+    },
+    {
+      "detail": {
+        "build123d_version": "0.13.1.dev12+ge22d34dae",
+        "global_install": false,
+        "ocp_version": "8.0.1.0.0",
+        "pip_check": "PASS",
+        "python_cache_tag": "cpython-313",
+        "python_implementation": "CPython",
+        "python_version": "3.13.5",
+        "requirements_lock_sha256": "sha256:59b8802bc325c94b4d4e94060e4ed9490ce738fff6ecb8726f86eadb779744bf",
+        "runtime_location": "EXTERNAL_FRESH_VENV_NOT_BUNDLED",
+        "schema": "royal-capital.fortification.r0b-cp3-runtime-reuse/1",
+        "status": "PASS",
+        "wheel_count": 58,
+        "wheelhouse_manifest_sha256": "sha256:f6e9908f02cbd6b689ff0448a32ca460e374afcbeb6c66d34129ec74f07c51cd"
+      },
+      "name": "runtime_versions_exact",
+      "pass": true
+    },
+    {
+      "detail": 58,
+      "name": "runtime_wheel_count_58",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "global_install_false",
+      "pass": true
+    },
+    {
+      "detail": 58,
+      "name": "bundled_wheel_count_58",
+      "pass": true
+    },
+    {
+      "detail": {
+        "('R0A', 'CP0')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP0",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "PASS_X2",
+          "next": "START_R0A_CP1",
+          "remote_self_admission": "PASS",
+          "source_preservation": "PASS",
+          "stage": "R0A",
+          "stage_completion": "R0A_CP0_COMPLETE"
+        },
+        "('R0A', 'CP1')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP1",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "REUSE_CP0_FRESH_PASS",
+          "next": "START_R0A_CP2",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0A",
+          "stage_completion": "R0A_CP1_COMPLETE"
+        },
+        "('R0A', 'CP2')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP2",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "REUSE_CP0_FRESH_PASS_X2",
+          "next": "START_R0A_CP3",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0A",
+          "stage_completion": "R0A_CP2_COMPLETE"
+        },
+        "('R0A', 'CP3')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP3",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "REUSE_CP0_FRESH_PASS_X2",
+          "next": "START_R0A_CP4",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0A",
+          "stage_completion": "R0A_CP3_COMPLETE"
+        },
+        "('R0A', 'CP4')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP4",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "PASS_X2",
+          "next": "START_R0B_CP1_BY_EXPLICIT_APPROVAL",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0A",
+          "stage_completion": "R0A_COMPLETE"
+        }
+      },
+      "name": "r0a_cp0_cp4_complete",
+      "pass": true
+    },
+    {
+      "detail": {
+        "('R0B', 'CP1')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP1",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "REUSE_R0A_RUNTIME_PASS",
+          "next": "START_R0B_CP2_BY_EXPLICIT_APPROVAL",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0B",
+          "stage_completion": "R0B_CP1_COMPLETE"
+        },
+        "('R0B', 'CP2')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP2",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "REUSE_R0A_RUNTIME_PASS",
+          "next": "START_R0B_CP3_BY_EXPLICIT_APPROVAL",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0B",
+          "stage_completion": "R0B_CP2_COMPLETE"
+        },
+        "('R0B', 'CP3')": {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP3",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "REUSE_R0A_RUNTIME_PASS",
+          "next": "START_R0B_CP4_BY_EXPLICIT_APPROVAL",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0B",
+          "stage_completion": "R0B_CP3_COMPLETE"
+        }
+      },
+      "name": "r0b_cp1_cp3_complete",
+      "pass": true
+    },
+    {
+      "detail": {
+        "blocking_reason": "NONE",
+        "checkpoint": "CP3",
+        "functional_qualification": "PASS",
+        "local_runtime_admission": "REUSE_R0A_RUNTIME_PASS",
+        "next": "START_R0B_CP4_BY_EXPLICIT_APPROVAL",
+        "remote_self_admission": "NOT_APPLICABLE",
+        "source_preservation": "PASS",
+        "stage": "R0B",
+        "stage_completion": "R0B_CP3_COMPLETE"
+      },
+      "name": "cp3_next_explicit_r0b_cp4",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "status_declares_cp3_closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "readmes_synced",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "cp3_report_synced",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "godot_not_claimed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "surface_coverage_deferred",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 3609,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:4c2522084ba6b47080587ac70cd41bb1df01da88e1206a840c7d89b43c6dc624"
+          },
+          "canonical-terrain-profile.json": {
+            "bytes": 1395,
+            "path": "canonical-terrain-profile.json",
+            "sha256": "sha256:59df92c46c9e7ea45aa8ec4b28979df74332b47b270a3dca838f1c24fb45dad2"
+          },
+          "construction-units.json": {
+            "bytes": 17537,
+            "path": "construction-units.json",
+            "sha256": "sha256:a6d00509a179613bee2d062a29db44d5385342c07698aa90c68170d2282fae7f"
+          },
+          "contact-evidence.json": {
+            "bytes": 4385,
+            "path": "contact-evidence.json",
+            "sha256": "sha256:8928daaa71d46f17af98c0b842c9233a24e07183478d70b922147a1a9766e9c6"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 890,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:437f8b53e6def5c6c19d6f916abee2fc26ea2ea890b8d6bdd9c868187337982b"
+          },
+          "foundation-interface.json": {
+            "bytes": 3252,
+            "path": "foundation-interface.json",
+            "sha256": "sha256:194ce3e9a69fd1b16da5e0201697e13dca47469059e91dff55fe2c86009ef6fa"
+          },
+          "grade-evidence.json": {
+            "bytes": 835,
+            "path": "grade-evidence.json",
+            "sha256": "sha256:87214a149146d397e3c39b1f009f22311d822e398467f6d66243a1b2e57668e6"
+          },
+          "interface-sockets.json": {
+            "bytes": 7824,
+            "path": "interface-sockets.json",
+            "sha256": "sha256:3a7fc42d1c21c1b662e35c7281bde0a67630062981ee4ca761ab1b94971173a6"
+          },
+          "neutral-mesh.json": {
+            "bytes": 17773,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c"
+          },
+          "semantic-parts.json": {
+            "bytes": 10619,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:f6c15ebee22556dfc544579c2e7cb76b2b9895c3e4b3c3ba1f8b0f1c68c8f2ac"
+          },
+          "stored-copies.json": {
+            "bytes": 16065,
+            "path": "stored-copies.json",
+            "sha256": "sha256:8debac166b44a726f2f5dd821b4c821e4dd916b0b66afdbf617cf8485ba2a313"
+          },
+          "terrain-span-plan.json": {
+            "bytes": 1274,
+            "path": "terrain-span-plan.json",
+            "sha256": "sha256:d764dec7e42ec539ec0a55438ed0f09f38a4b0e118941ca818c3f105999c25a7"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            30.0,
+            16.4,
+            4.0
+          ],
+          "min": [
+            0.0,
+            -2.0,
+            -4.0
+          ]
+        },
+        "contact_evidence_status": "PASS",
+        "failure": null,
+        "family": "TERRAIN_STEPPED",
+        "foundation_interface_status": "PASS",
+        "geometry_route": "BOUNDED_TERRACE_SEGMENT_PROFILE_EXTRUSIONS",
+        "grade_evidence_status": "PASS",
+        "maximum_embedment_depth_m": 2.0,
+        "maximum_gap_m": 0.0,
+        "maximum_step_height_m": 1.0,
+        "overall_centerline_grade": 0.066666666667,
+        "part_count": 5,
+        "retained_height_m": 0.0,
+        "schema": "royal-capital.fortification.terrain-span-result/1",
+        "segment_count": 3,
+        "socket_count": 14,
+        "solid_count": 15,
+        "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+        "status": "SUCCEEDED",
+        "terrain_mutation": false,
+        "triangle_count": 180,
+        "unit_count": 15,
+        "vertex_count": 120,
+        "volume_m3": 2841.6
+      },
+      "name": "stepped_success",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 3604,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:878e7f876585d43a55e44911e2e5314a6ab34e2c19aeddfbee84d0afcbefa9f1"
+          },
+          "canonical-terrain-profile.json": {
+            "bytes": 1096,
+            "path": "canonical-terrain-profile.json",
+            "sha256": "sha256:44f85dd13532e4964a8cd4bed63fd30c0d2e5b41bd3391396459c962d2f9c74c"
+          },
+          "construction-units.json": {
+            "bytes": 6003,
+            "path": "construction-units.json",
+            "sha256": "sha256:863460086015aad81057481c2e5ba192a151282bf46ad19043ae35f65224c102"
+          },
+          "contact-evidence.json": {
+            "bytes": 7651,
+            "path": "contact-evidence.json",
+            "sha256": "sha256:1a8c222f66dba194f6e9e93da7954809cb026888c66ddc3f84072d9fcd1297ec"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 533,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:315fc67728fc017c4ccb3e1e29a43ad32458b81949f61d1f6b040c9340b03a19"
+          },
+          "foundation-interface.json": {
+            "bytes": 2686,
+            "path": "foundation-interface.json",
+            "sha256": "sha256:30a4349c51d077e369066b1106a9f73a8a021ae0969689174b1adf942dfb022d"
+          },
+          "grade-evidence.json": {
+            "bytes": 467,
+            "path": "grade-evidence.json",
+            "sha256": "sha256:97f0ed54a181410638bd15e1b63f6a6bfccb094584e7b8fbc6ffe4eb0373d5e6"
+          },
+          "interface-sockets.json": {
+            "bytes": 4477,
+            "path": "interface-sockets.json",
+            "sha256": "sha256:6bdb91e52e0863fa969d662d71dbca19615aef6f1db1f650b68308243f5aee2c"
+          },
+          "neutral-mesh.json": {
+            "bytes": 6679,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:63cee46cde71f45880a9e9b49be42693b79a376afd4bd10d7b61ecb0cc6803fc"
+          },
+          "semantic-parts.json": {
+            "bytes": 5067,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:3e58327c9bbebf7f6ea0a66537c76c2f00f02e882d35a6d4c349ea6279864874"
+          },
+          "stored-copies.json": {
+            "bytes": 5493,
+            "path": "stored-copies.json",
+            "sha256": "sha256:e2975b52d743668eb33f18f99cf4a0528f51b3ea0e16f5d4abee3172b67a6ef3"
+          },
+          "terrain-span-plan.json": {
+            "bytes": 1260,
+            "path": "terrain-span-plan.json",
+            "sha256": "sha256:c17bbe88fd545bcc0aff74a55471449f7cf32b69d1abcb81767c202dc697a904"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            24.0,
+            17.4,
+            4.0
+          ],
+          "min": [
+            0.0,
+            -2.0,
+            -5.0
+          ]
+        },
+        "contact_evidence_status": "PASS",
+        "failure": null,
+        "family": "RETAINING",
+        "foundation_interface_status": "PASS",
+        "geometry_route": "ASYMMETRIC_RETAINING_PROFILE_EXTRUSION",
+        "grade_evidence_status": "PASS",
+        "maximum_embedment_depth_m": 5.0,
+        "maximum_gap_m": 0.0,
+        "maximum_step_height_m": 0.0,
+        "overall_centerline_grade": 0.0,
+        "part_count": 5,
+        "retained_height_m": 3.0,
+        "schema": "royal-capital.fortification.terrain-span-result/1",
+        "segment_count": 1,
+        "socket_count": 8,
+        "solid_count": 5,
+        "span_id": "fortification/caelmere/r0b/retaining-001",
+        "status": "SUCCEEDED",
+        "terrain_mutation": false,
+        "triangle_count": 68,
+        "unit_count": 5,
+        "vertex_count": 44,
+        "volume_m3": 2897.28
+      },
+      "name": "retaining_success",
+      "pass": true
+    },
+    {
+      "detail": [
+        false,
+        false
+      ],
+      "name": "terrain_not_mutated",
+      "pass": true
+    },
+    {
+      "detail": [
+        null,
+        null
+      ],
+      "name": "foundation_interfaces_pass",
+      "pass": false
+    },
+    {
+      "detail": {
+        "retaining": {
+          "family": "RETAINING",
+          "samples": [
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/0.000000",
+              "station_m": 0.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/3.000000",
+              "station_m": 3.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/6.000000",
+              "station_m": 6.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/9.000000",
+              "station_m": 9.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/12.000000",
+              "station_m": 12.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/15.000000",
+              "station_m": 15.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/18.000000",
+              "station_m": 18.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/21.000000",
+              "station_m": 21.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": -2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/base-bearing",
+              "sample_id": "contact/base-bearing/24.000000",
+              "station_m": 24.0,
+              "terrain_elevation_m": -2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/0.000000",
+              "station_m": 0.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/3.000000",
+              "station_m": 3.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/6.000000",
+              "station_m": 6.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/9.000000",
+              "station_m": 9.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/12.000000",
+              "station_m": 12.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/15.000000",
+              "station_m": 15.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/18.000000",
+              "station_m": 18.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/21.000000",
+              "station_m": 21.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/outside-toe",
+              "sample_id": "contact/outside-toe/24.000000",
+              "station_m": 24.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/0.000000",
+              "station_m": 0.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/3.000000",
+              "station_m": 3.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/6.000000",
+              "station_m": 6.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/9.000000",
+              "station_m": 9.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/12.000000",
+              "station_m": 12.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/15.000000",
+              "station_m": 15.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/18.000000",
+              "station_m": 18.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/21.000000",
+              "station_m": 21.0,
+              "terrain_elevation_m": 3.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 3.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/inside-heel",
+              "sample_id": "contact/inside-heel/24.000000",
+              "station_m": 24.0,
+              "terrain_elevation_m": 3.0
+            }
+          ],
+          "sampling_spacing_m": 3.0,
+          "schema": "royal-capital.fortification.contact-gap-evidence/1",
+          "span_id": "fortification/caelmere/r0b/retaining-001",
+          "summary": {
+            "contact_count": 27,
+            "contact_ratio": 1.0,
+            "maximum_allowed_gap_m": 0.02,
+            "maximum_gap_m": 0.0,
+            "sample_count": 27,
+            "status": "PASS"
+          }
+        },
+        "stepped": {
+          "family": "TERRAIN_STEPPED",
+          "samples": [
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_00",
+              "sample_id": "contact/terrace_00/0.000000",
+              "station_m": 0.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_00",
+              "sample_id": "contact/terrace_00/2.500000",
+              "station_m": 2.5,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_00",
+              "sample_id": "contact/terrace_00/5.000000",
+              "station_m": 5.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_00",
+              "sample_id": "contact/terrace_00/7.500000",
+              "station_m": 7.5,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 0.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_00",
+              "sample_id": "contact/terrace_00/10.000000",
+              "station_m": 10.0,
+              "terrain_elevation_m": 0.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 1.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_01",
+              "sample_id": "contact/terrace_01/10.000000",
+              "station_m": 10.0,
+              "terrain_elevation_m": 1.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 1.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_01",
+              "sample_id": "contact/terrace_01/12.500000",
+              "station_m": 12.5,
+              "terrain_elevation_m": 1.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 1.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_01",
+              "sample_id": "contact/terrace_01/15.000000",
+              "station_m": 15.0,
+              "terrain_elevation_m": 1.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 1.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_01",
+              "sample_id": "contact/terrace_01/17.500000",
+              "station_m": 17.5,
+              "terrain_elevation_m": 1.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 1.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_01",
+              "sample_id": "contact/terrace_01/20.000000",
+              "station_m": 20.0,
+              "terrain_elevation_m": 1.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_02",
+              "sample_id": "contact/terrace_02/20.000000",
+              "station_m": 20.0,
+              "terrain_elevation_m": 2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_02",
+              "sample_id": "contact/terrace_02/22.500000",
+              "station_m": 22.5,
+              "terrain_elevation_m": 2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_02",
+              "sample_id": "contact/terrace_02/25.000000",
+              "station_m": 25.0,
+              "terrain_elevation_m": 2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_02",
+              "sample_id": "contact/terrace_02/27.500000",
+              "station_m": 27.5,
+              "terrain_elevation_m": 2.0
+            },
+            {
+              "contact": true,
+              "foundation_contact_elevation_m": 2.0,
+              "gap_m": 0.0,
+              "interface_id": "foundation-interface/terrace_02",
+              "sample_id": "contact/terrace_02/30.000000",
+              "station_m": 30.0,
+              "terrain_elevation_m": 2.0
+            }
+          ],
+          "sampling_spacing_m": 2.5,
+          "schema": "royal-capital.fortification.contact-gap-evidence/1",
+          "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+          "summary": {
+            "contact_count": 15,
+            "contact_ratio": 1.0,
+            "maximum_allowed_gap_m": 0.02,
+            "maximum_gap_m": 0.0,
+            "sample_count": 15,
+            "status": "PASS"
+          }
+        }
+      },
+      "name": "contact_evidence_pass",
+      "pass": false
+    },
+    {
+      "detail": {
+        "retaining": {
+          "axis_length_m": 24.0,
+          "equivalent_cross_slope_ratio": 0.333333333333,
+          "family": "RETAINING",
+          "maximum_allowed_centerline_grade": 0.12,
+          "maximum_allowed_step_height_m": 2.5,
+          "maximum_platform_grade": 0.0,
+          "maximum_step_height_m": 0.0,
+          "overall_centerline_grade": 0.0,
+          "retained_height_m": 3.0,
+          "schema": "royal-capital.fortification.grade-evidence/1",
+          "span_id": "fortification/caelmere/r0b/retaining-001",
+          "status": "PASS",
+          "steps": []
+        },
+        "stepped": {
+          "axis_length_m": 30.0,
+          "equivalent_cross_slope_ratio": 0.0,
+          "family": "TERRAIN_STEPPED",
+          "maximum_allowed_centerline_grade": 0.12,
+          "maximum_allowed_step_height_m": 2.5,
+          "maximum_platform_grade": 0.0,
+          "maximum_step_height_m": 1.0,
+          "overall_centerline_grade": 0.066666666667,
+          "retained_height_m": 0.0,
+          "schema": "royal-capital.fortification.grade-evidence/1",
+          "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+          "status": "PASS",
+          "steps": [
+            {
+              "absolute_step_height_m": 1.0,
+              "signed_step_height_m": 1.0,
+              "station_m": 10.0,
+              "transition_id": "grade-step/00",
+              "within_limit": true
+            },
+            {
+              "absolute_step_height_m": 1.0,
+              "signed_step_height_m": 1.0,
+              "station_m": 20.0,
+              "transition_id": "grade-step/01",
+              "within_limit": true
+            }
+          ]
+        }
+      },
+      "name": "grade_evidence_pass",
+      "pass": true
+    },
+    {
+      "detail": [
+        30,
+        10
+      ],
+      "name": "stored_copy_counts",
+      "pass": true
+    },
+    {
+      "detail": {
+        "retaining": [
+          "cad-provider-receipt.json",
+          "canonical-terrain-profile.json",
+          "construction-units.json",
+          "contact-evidence.json",
+          "fixed-tessellation.json",
+          "foundation-interface.json",
+          "grade-evidence.json",
+          "interface-sockets.json",
+          "neutral-mesh.json",
+          "result.json",
+          "semantic-parts.json",
+          "stored-copies.json",
+          "terrain-span-plan.json"
+        ],
+        "stepped": [
+          "cad-provider-receipt.json",
+          "canonical-terrain-profile.json",
+          "construction-units.json",
+          "contact-evidence.json",
+          "fixed-tessellation.json",
+          "foundation-interface.json",
+          "grade-evidence.json",
+          "interface-sockets.json",
+          "neutral-mesh.json",
+          "result.json",
+          "semantic-parts.json",
+          "stored-copies.json",
+          "terrain-span-plan.json"
+        ]
+      },
+      "name": "reference_file_sets",
+      "pass": true
+    },
+    {
+      "detail": [
+        {
+          "case": "overall_grade_exceeded",
+          "code": "GRADE_OUT_OF_DOMAIN",
+          "message": "overall grade 0.13333333333333333 exceeds contract",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "step_height_exceeded",
+          "code": "GRADE_OUT_OF_DOMAIN",
+          "message": "step height 3.0 exceeds contract",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "foundation_gap_exceeded",
+          "code": "FOUNDATION_GAP_OUT_OF_DOMAIN",
+          "message": "terrain contact datum offset 0.05 exceeds max gap 0.02",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "terrace_coverage_gap",
+          "code": "INVALID_TERRAIN_PROFILE",
+          "message": "terrace coverage gap/overlap at 11.0, expected 10.0",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "embedment_out_of_domain",
+          "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+          "message": "foundation embedment outside [1,8] or exceeds maximum",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "retaining_upper_embedment_exceeded",
+          "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+          "message": "inside embedment exceeds maximum",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "stale_terrain_digest",
+          "code": "STALE_INPUT_REFERENCE",
+          "message": "terrain profile digest mismatch expected=sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67 observed=sha256:2522bf68f35f9b8cb98b38ee2755311ca104d15818ad7456089a3eb8f7ec51e7",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "runtime_mismatch",
+          "code": "CAD_RUNTIME_VERSION_MISMATCH",
+          "message": "runtime mismatch: {'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "unit_budget_exceeded",
+          "code": "GEOMETRY_BUDGET_EXCEEDED",
+          "message": "required units 15 exceed budget",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "retaining_height_exceeded",
+          "code": "RETAINING_HEIGHT_OUT_OF_DOMAIN",
+          "message": "retained height 7.0 outside [0.25,6]",
+          "status": "PASS_EXPECTED_REJECTION"
+        }
+      ],
+      "name": "negative_gates_10",
+      "pass": true
+    },
+    {
+      "detail": {
+        "auto_continuation": false,
+        "checkpoint": "R0B-CP3",
+        "fixed_initial_baseline": "RCF_D0_full.zip",
+        "new_external_sources": [],
+        "next": "R0B_CP4_BY_EXPLICIT_APPROVAL",
+        "parent_checkpoint": "B2.zip",
+        "qualification": {
+          "final_tree_validation": {
+            "failed": 0,
+            "passed": 34
+          },
+          "focused_validation": {
+            "failed": 0,
+            "passed": 56
+          },
+          "negative_gate_count": 10,
+          "new_external_sources": false,
+          "retaining_reference_digest": "sha256:d8a106d210b2e140a1630b401ffa05aabd26c450ed9f22d7f6a8d5874e55b397",
+          "stepped_reference_digest": "sha256:0f25763ecf2fe1a3e6b36c8b39f11d06810b4e3c3e302d982868346d516fc166"
+        },
+        "reused_sources": [
+          "build123d exact runtime and selected source",
+          "R0A project-owned provider adapter",
+          "R0B-CP1 standard wall profile and frame convention"
+        ],
+        "schema": "royal-capital.fortification.changeset/1",
+        "scope": [
+          "terrain-stepped wall spans",
+          "retaining wall spans",
+          "foundation interface",
+          "contact/gap evidence",
+          "grade evidence"
+        ],
+        "stage_completion": "R0B_CP3_COMPLETE",
+        "validation_history": [
+          {
+            "attempt": 1,
+            "expected": 32,
+            "observed": 34,
+            "source_or_product_rollback": false,
+            "status": "FAILED_VALIDATOR_COUNT_EXPECTATION"
+          }
+        ]
+      },
+      "name": "changeset_baselines",
+      "pass": true
+    },
+    {
+      "detail": {
+        "auto_continuation": false,
+        "checkpoint": "R0B-CP3",
+        "fixed_initial_baseline": "RCF_D0_full.zip",
+        "new_external_sources": [],
+        "next": "R0B_CP4_BY_EXPLICIT_APPROVAL",
+        "parent_checkpoint": "B2.zip",
+        "qualification": {
+          "final_tree_validation": {
+            "failed": 0,
+            "passed": 34
+          },
+          "focused_validation": {
+            "failed": 0,
+            "passed": 56
+          },
+          "negative_gate_count": 10,
+          "new_external_sources": false,
+          "retaining_reference_digest": "sha256:d8a106d210b2e140a1630b401ffa05aabd26c450ed9f22d7f6a8d5874e55b397",
+          "stepped_reference_digest": "sha256:0f25763ecf2fe1a3e6b36c8b39f11d06810b4e3c3e302d982868346d516fc166"
+        },
+        "reused_sources": [
+          "build123d exact runtime and selected source",
+          "R0A project-owned provider adapter",
+          "R0B-CP1 standard wall profile and frame convention"
+        ],
+        "schema": "royal-capital.fortification.changeset/1",
+        "scope": [
+          "terrain-stepped wall spans",
+          "retaining wall spans",
+          "foundation interface",
+          "contact/gap evidence",
+          "grade evidence"
+        ],
+        "stage_completion": "R0B_CP3_COMPLETE",
+        "validation_history": [
+          {
+            "attempt": 1,
+            "expected": 32,
+            "observed": 34,
+            "source_or_product_rollback": false,
+            "status": "FAILED_VALIDATOR_COUNT_EXPECTATION"
+          }
+        ]
+      },
+      "name": "no_new_external_sources",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "required_source_contracts_present",
+      "pass": true
+    },
+    {
+      "detail": [
+        "building_tools-LICENSE.txt",
+        "cadquery-LICENSE.txt",
+        "build123d-LICENSE.txt"
+      ],
+      "name": "licenses_retained",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_generated_cache",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_nested_checkpoint_zip",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_symlinks",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_json_csv_parse",
+      "pass": true
+    },
+    {
+      "detail": "EXTERNAL_FRESH_VENV_NOT_BUNDLED",
+      "name": "external_runtime_not_bundled",
+      "pass": true
+    }
+  ],
+  "godot_product": "NOT_STARTED",
+  "next": "FIX_R0B_CP3",
+  "schema": "royal-capital.fortification.r0b-cp3-closeout-validation/1",
+  "stage_completion": "HOLD_R0B_CP3_OPEN",
+  "status": "FAIL",
+  "summary": {
+    "failed": 2,
+    "passed": 32,
+    "total": 34
+  }
+}

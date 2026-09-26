@@ -1,0 +1,12 @@
+{
+  "build123d_version": "0.13.1.dev12+ge22d34dae",
+  "cache_tag": "cpython-313",
+  "global_install": false,
+  "new_external_oss": [],
+  "ocp_version": "8.0.1.0.0",
+  "python_implementation": "CPython",
+  "python_version": "3.13.5",
+  "schema": "royal-capital.fortification.r0c-cp1-runtime-reuse/1",
+  "status": "PASS",
+  "wheel_count": 58
+}

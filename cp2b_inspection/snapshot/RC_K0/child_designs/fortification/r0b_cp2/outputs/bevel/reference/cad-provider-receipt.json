@@ -1,0 +1,141 @@
+{
+  "bounded_overlap_digest": "sha256:e1977f4a863abb1f3373b35f0ca5b33e87c954355ee3dc76e9360c3b3e76acdd",
+  "capabilities": [
+    "fortification.miter_join@1",
+    "fortification.bevel_join@1",
+    "fortification.profile_transition_join@1",
+    "fortification.socket_alignment@1",
+    "fortification.bounded_overlap@1"
+  ],
+  "family": "BEVEL",
+  "fixture_digest": "sha256:264e2d8eb9a6c9912136f08c4f877136288e7660eb9d48ddaa9c33c4e383e1af",
+  "geometry_route": "BOUNDED_BEVEL_SECTION_LOFT",
+  "output_digests": {
+    "bounded-overlap.json": "sha256:e1977f4a863abb1f3373b35f0ca5b33e87c954355ee3dc76e9360c3b3e76acdd",
+    "fixed-tessellation.json": "sha256:3deac49f4211dc4ad718af9065437a227e5a21ac269ec72d0dd55956bb338405",
+    "join-plan.json": "sha256:ffc081c5c817d8406e1079302b081a83811c60dc701fbfba8f49bc62160ac365",
+    "join-sockets.json": "sha256:d65147dff527f72b69fc2d6fd1262aa2654e096f33b46869b13604679617e847",
+    "neutral-mesh.json": "sha256:d9e66b885a63a45f1fee86c8dfc5132da911559c95ba3e38288a3f94fb22474b",
+    "section-plan.json": "sha256:20c01818ff3db1e7635178ed41d704383622bf0b38a69f413c3eb907ff6e71d2",
+    "semantic-parts.json": "sha256:20de0760ad7771268ec466314c4309b106e4189ce9886bb8afa3344f8ac59519",
+    "socket-alignment.json": "sha256:1ba6eda803fdc053922772574ca16fd7a097a8de003094eb6c43e5b3c6d31047",
+    "stored-copies.json": "sha256:8f37372e6831daf964a4c9858e18019bcdadac868ea19e432923bdcfc6268e79"
+  },
+  "part_receipts": [
+    {
+      "part_id": "foundation",
+      "receipt": {
+        "bytes": 1050,
+        "path": "parts/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:32824de8819bb787abcd2de9d5f5d0637b562d6e56224ec373dc1750fc335c62"
+      }
+    },
+    {
+      "part_id": "wall_body",
+      "receipt": {
+        "bytes": 1049,
+        "path": "parts/wall_body/cad-provider-receipt.json",
+        "sha256": "sha256:7cd78eb4a5bcf199a3f371637303ebd87ec8bd7d7f51924714954aff5831148f"
+      }
+    },
+    {
+      "part_id": "wall_walk",
+      "receipt": {
+        "bytes": 1049,
+        "path": "parts/wall_walk/cad-provider-receipt.json",
+        "sha256": "sha256:e2652698d178b733dc6af6d4a8e12a90ec93b6c7ee3a4479949bb76be3210180"
+      }
+    },
+    {
+      "part_id": "inner_parapet",
+      "receipt": {
+        "bytes": 1053,
+        "path": "parts/inner_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:6f795e8225f7c1e43d4d0927d7118b2f8ac4ac9057ed12e901a03671b22c051a"
+      }
+    },
+    {
+      "part_id": "outer_parapet",
+      "receipt": {
+        "bytes": 1053,
+        "path": "parts/outer_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:43c876a8d1f52707cd6c48a3222b2eb576591cb23f9444dc93921c5dde578c30"
+      }
+    }
+  ],
+  "producer_id": "royal-capital/fortification/wall-join",
+  "producer_revision": "r0b-cp2.1",
+  "producer_source_digest": "sha256:c3e5f87df9c82e4f952d2e94036159026417aed18e9707272b6d766337852b90",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.wall-join-receipt/1",
+  "socket_alignment_digest": "sha256:1ba6eda803fdc053922772574ca16fd7a097a8de003094eb6c43e5b3c6d31047",
+  "status": "PASS",
+  "surface_source_coverage": "DEFERRED_R0B_CP4",
+  "turn_angle_deg": 29.999999994,
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

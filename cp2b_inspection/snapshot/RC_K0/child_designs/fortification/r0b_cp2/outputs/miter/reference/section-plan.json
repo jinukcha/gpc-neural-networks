@@ -1,0 +1,97 @@
+{
+  "family": "MITER",
+  "join_id": "fortification/caelmere/r0b/miter-join-001",
+  "schema": "royal-capital.fortification.wall-join-sections/1",
+  "sections": [
+    {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        16.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "profile_id": "profile/caelmere/standard@1",
+      "section_id": "incoming_overlap",
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "inside": [
+        -0.087155743,
+        0.0,
+        0.996194698
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        24.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.087155743,
+        0.0,
+        -0.996194698
+      ],
+      "profile_id": "profile/caelmere/standard@1/miter-expanded",
+      "section_id": "miter_apex",
+      "tangent": [
+        0.996194698,
+        0.0,
+        0.087155743
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "inside": [
+        -0.173648178,
+        0.0,
+        0.984807753
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        31.878462024,
+        0.0,
+        1.389185424
+      ],
+      "outside": [
+        0.173648178,
+        0.0,
+        -0.984807753
+      ],
+      "profile_id": "profile/caelmere/standard@1",
+      "section_id": "outgoing_overlap",
+      "tangent": [
+        0.984807753,
+        0.0,
+        0.173648178
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ]
+}

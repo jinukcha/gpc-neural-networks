@@ -1,0 +1,272 @@
+{
+  "checks": [
+    {
+      "name": "required:config/PYTHON_ABI.json",
+      "pass": true
+    },
+    {
+      "name": "required:config/SOURCE_ARCHIVES.json",
+      "pass": true
+    },
+    {
+      "name": "required:config/OCP_WHEEL_RECEIPT.json",
+      "pass": true
+    },
+    {
+      "name": "required:config/REQUIRED_CAPABILITIES.json",
+      "pass": true
+    },
+    {
+      "name": "required:runtime/requirements-lock.txt",
+      "pass": true
+    },
+    {
+      "name": "required:runtime/WHEELHOUSE.json",
+      "pass": true
+    },
+    {
+      "name": "required:runtime/SHA256SUMS.txt",
+      "pass": true
+    },
+    {
+      "name": "required:runtime/DELIVERY.json",
+      "pass": true
+    },
+    {
+      "name": "required:runtime/WHEEL_LOCK_STATUS.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/source_fence.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/source_api_surface.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/host_runtime_preflight.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/runtime_admission.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/capability_preflight.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/cp0_status.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/resume3/received_wheelhouse.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/resume3/runtime_admission_A.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/resume3/runtime_admission_B.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/resume3/capability_A.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/resume3/capability_B.json",
+      "pass": true
+    },
+    {
+      "name": "required:reports/resume3/local_cold_ab.json",
+      "pass": true
+    },
+    {
+      "name": "required:remote/GITHUB_ACTIONS_RECEIPT.json",
+      "pass": true
+    },
+    {
+      "name": "required:remote/REMOTE_DELIVERY_RECEIPT.json",
+      "pass": true
+    },
+    {
+      "name": "required:remote/REMOTE_CAPABILITY_PROBE.json",
+      "pass": true
+    },
+    {
+      "name": "required:remote/TRANSPORT_BLOCKER.json",
+      "pass": true
+    },
+    {
+      "name": "required:remote/RUN_HISTORY.json",
+      "pass": true
+    },
+    {
+      "name": "required:provenance/EXTERNAL_ARTIFACTS.csv",
+      "pass": true
+    },
+    {
+      "name": "required:provenance/CHANGESET.json",
+      "pass": true
+    },
+    {
+      "name": "required:docs/CP0_CLOSEOUT.md",
+      "pass": true
+    },
+    {
+      "name": "source fence",
+      "pass": true
+    },
+    {
+      "name": "source API surface",
+      "pass": true
+    },
+    {
+      "name": "bootstrap mismatch kept explicit",
+      "pass": true
+    },
+    {
+      "name": "wheel intake checker",
+      "pass": true
+    },
+    {
+      "name": "wheel manifest identity",
+      "pass": true
+    },
+    {
+      "name": "wheel files exactly 58",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "all wheel bytes match manifest",
+      "pass": true
+    },
+    {
+      "name": "exact OCP raw bytes",
+      "pass": true
+    },
+    {
+      "name": "exact source-derived build123d wheel",
+      "pass": true
+    },
+    {
+      "name": "delivery manifest complete",
+      "pass": true
+    },
+    {
+      "name": "transport blocker resolved",
+      "pass": true
+    },
+    {
+      "name": "remote cold A/B",
+      "pass": true
+    },
+    {
+      "name": "remote workflow success",
+      "pass": true
+    },
+    {
+      "name": "local runtime A admitted",
+      "pass": true
+    },
+    {
+      "name": "local runtime A install pass",
+      "pass": true
+    },
+    {
+      "name": "local runtime A pip check pass",
+      "pass": true
+    },
+    {
+      "name": "local runtime B admitted",
+      "pass": true
+    },
+    {
+      "name": "local runtime B install pass",
+      "pass": true
+    },
+    {
+      "name": "local runtime B pip check pass",
+      "pass": true
+    },
+    {
+      "name": "local capability A 9/9",
+      "pass": true
+    },
+    {
+      "name": "local capability A exact versions",
+      "pass": true
+    },
+    {
+      "name": "local capability B 9/9",
+      "pass": true
+    },
+    {
+      "name": "local capability B exact versions",
+      "pass": true
+    },
+    {
+      "name": "local cold A/B pass",
+      "pass": true
+    },
+    {
+      "name": "raw BREP byte identity",
+      "pass": true
+    },
+    {
+      "name": "raw STEP metadata difference explicit",
+      "pass": true
+    },
+    {
+      "name": "global environment unchanged",
+      "pass": true
+    },
+    {
+      "name": "partial timeout preserved",
+      "pass": true
+    },
+    {
+      "name": "runtime admission promoted",
+      "pass": true
+    },
+    {
+      "name": "capability preflight promoted",
+      "pass": true
+    },
+    {
+      "name": "wheel lock admitted",
+      "pass": true
+    },
+    {
+      "name": "OCP receipt admitted",
+      "pass": true
+    },
+    {
+      "name": "required capabilities executed",
+      "pass": true
+    },
+    {
+      "name": "CP0 closed and CP1 allowed",
+      "pass": true
+    },
+    {
+      "detail": [
+        "reports/resume3/runtime_B_timeout.json"
+      ],
+      "name": "product tree excludes extracted runtimes and caches",
+      "pass": false
+    }
+  ],
+  "functional_qualification": "FAIL",
+  "passed": 63,
+  "r0a_cp1_start_allowed": false,
+  "schema": "royal-capital.fortification.cp0-final-validation/2",
+  "source_preservation": "PASS",
+  "stage_completion": "HOLD",
+  "status": "FAIL",
+  "total": 64
+}

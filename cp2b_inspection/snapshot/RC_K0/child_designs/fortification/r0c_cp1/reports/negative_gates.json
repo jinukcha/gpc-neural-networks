@@ -1,0 +1,139 @@
+{
+  "case_count": 13,
+  "cases": [
+    {
+      "actual_code": "FAMILY_UNSUPPORTED",
+      "case": "unsupported_family",
+      "expected_code": "FAMILY_UNSUPPORTED",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "DIMENSION_OUT_OF_DOMAIN",
+      "case": "width_below_domain",
+      "expected_code": "DIMENSION_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "DIMENSION_OUT_OF_DOMAIN",
+      "case": "width_above_domain",
+      "expected_code": "DIMENSION_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "DIMENSION_OUT_OF_DOMAIN",
+      "case": "height_above_domain",
+      "expected_code": "DIMENSION_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "DIMENSION_OUT_OF_DOMAIN",
+      "case": "foundation_depth_above_domain",
+      "expected_code": "DIMENSION_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "SIDE_COUNT_OUT_OF_DOMAIN",
+      "case": "round_side_count",
+      "expected_code": "SIDE_COUNT_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "SIDE_COUNT_OUT_OF_DOMAIN",
+      "case": "square_side_count",
+      "expected_code": "SIDE_COUNT_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "SIDE_COUNT_OUT_OF_DOMAIN",
+      "case": "polygon_side_count",
+      "expected_code": "SIDE_COUNT_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "BODY_PROJECTION_OUT_OF_DOMAIN",
+      "case": "body_projection_exceeded",
+      "expected_code": "BODY_PROJECTION_OUT_OF_DOMAIN",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "ATTACHMENT_INTERSECTION_MISSING",
+      "case": "wall_attachment_missing",
+      "expected_code": "ATTACHMENT_INTERSECTION_MISSING",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "RUNTIME_MISMATCH",
+      "case": "runtime_mismatch",
+      "expected_code": "RUNTIME_MISMATCH",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "GEOMETRY_BUDGET_EXCEEDED",
+      "case": "vertex_budget",
+      "expected_code": "GEOMETRY_BUDGET_EXCEEDED",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    },
+    {
+      "actual_code": "GEOMETRY_BUDGET_EXCEEDED",
+      "case": "part_budget",
+      "expected_code": "GEOMETRY_BUDGET_EXCEEDED",
+      "failure_receipt_exists": true,
+      "partial_output_published": false,
+      "pass": true,
+      "status": "REJECTED",
+      "target_exists": false
+    }
+  ],
+  "partial_output_published": false,
+  "passed": 13,
+  "schema": "royal-capital.fortification.tower-negative-gates/1",
+  "status": "PASS"
+}

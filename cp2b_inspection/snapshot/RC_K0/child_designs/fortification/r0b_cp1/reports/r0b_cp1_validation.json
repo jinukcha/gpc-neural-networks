@@ -1,0 +1,394 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "families": {
+          "curved": {
+            "bounds_m": {
+              "max": [
+                26.0,
+                14.4,
+                9.894882234
+              ],
+              "min": [
+                0.0,
+                -2.0,
+                -4.0
+              ]
+            },
+            "byte_identical": true,
+            "centerline_digest": "sha256:c40b4c69a1710f446ebe94494344624d121b9c8fcbcbdf3e3a2ce3c2d8e839be",
+            "centerline_length_m": 25.132741229,
+            "files_compared": 35,
+            "frame_count": 7,
+            "sample_count": 7,
+            "segment_count": 6,
+            "status": "PASS",
+            "triangle_count": 260,
+            "vertex_count": 140,
+            "volume_m3": 2377.552882447
+          },
+          "straight": {
+            "bounds_m": {
+              "max": [
+                24.0,
+                14.4,
+                4.0
+              ],
+              "min": [
+                0.0,
+                -2.0,
+                -4.0
+              ]
+            },
+            "byte_identical": true,
+            "centerline_digest": "sha256:382c5c586b165872d88ff7fb621ba350c5cfe9da42ff982714dfbd77647d34b9",
+            "centerline_length_m": 24.0,
+            "files_compared": 35,
+            "frame_count": 2,
+            "sample_count": 2,
+            "segment_count": 1,
+            "status": "PASS",
+            "triangle_count": 60,
+            "vertex_count": 40,
+            "volume_m3": 2273.28
+          }
+        },
+        "negative": [
+          {
+            "case": "zero_length",
+            "error": "PathContractError",
+            "message": "zero-length span",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "vertical_grade",
+            "error": "PathContractError",
+            "message": "vertical/graded centerline deferred to R0B-CP3",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "tight_radius",
+            "error": "PathContractError",
+            "message": "arc radius must exceed maximum profile offset",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "sweep_out_of_domain",
+            "error": "PathContractError",
+            "message": "arc sweep outside (0,35]",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "section_budget",
+            "error": "PathContractError",
+            "message": "required sections exceed geometry budget",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "runtime_mismatch",
+            "error": "PathContractError",
+            "message": "runtime mismatch: {'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+            "status": "PASS_EXPECTED_REJECTION"
+          }
+        ],
+        "negative_count": 6,
+        "schema": "royal-capital.fortification.r0b-cp1-qualification/1",
+        "status": "PASS"
+      },
+      "name": "qualification",
+      "pass": true
+    },
+    {
+      "detail": [
+        "curved",
+        "straight"
+      ],
+      "name": "families",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "clean_replay",
+      "pass": true
+    },
+    {
+      "detail": 6,
+      "name": "negative_gates",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 4115,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:bb90576338a4c71ce002dd283061e06b331ce35b0d682565f5f73fec3baedb68"
+          },
+          "canonical-centerline.json": {
+            "bytes": 1560,
+            "path": "canonical-centerline.json",
+            "sha256": "sha256:2f0f28fd0121344bd7d05060dccc36559f177b6bae3868c404eed1e184911589"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 340,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:2326a11e949a087dfab9c50ab79653e348ac4241bcedfaddd233f21a30824adb"
+          },
+          "local-frames.json": {
+            "bytes": 1265,
+            "path": "local-frames.json",
+            "sha256": "sha256:695b2c60be7e1d9c7770003127bfb3fecda2a5741cd235a7fb4ea1ed8458f2ad"
+          },
+          "neutral-mesh.json": {
+            "bytes": 5558,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:4860acac80995d57352628d4062bbfd0de19c996b1e692a2abe536ccece8634d"
+          },
+          "path-span-plan.json": {
+            "bytes": 588,
+            "path": "path-span-plan.json",
+            "sha256": "sha256:5b195f277ceecd5467e591e1ddd093fb020ac6e15e3b899ba11d996241828769"
+          },
+          "semantic-parts.json": {
+            "bytes": 4314,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:5ddfd58b4b555cf1984f5ded8287cd109f8d3dbbfdb1fd4e8f1dbbe68fcfc099"
+          },
+          "sockets.json": {
+            "bytes": 5720,
+            "path": "sockets.json",
+            "sha256": "sha256:74fffff248a4e94f23e13f0709124984fac20047be3b7e91231c87f7bbaed1ec"
+          },
+          "stored-copies.json": {
+            "bytes": 4539,
+            "path": "stored-copies.json",
+            "sha256": "sha256:44ea73333faa6bddaf107b0b3f54a31139f41674ff820eafe4b723a5acd8df01"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            24.0,
+            14.4,
+            4.0
+          ],
+          "min": [
+            0.0,
+            -2.0,
+            -4.0
+          ]
+        },
+        "centerline_length_m": 24.0,
+        "centerline_segment_count": 1,
+        "failure": null,
+        "part_count": 5,
+        "schema": "royal-capital.fortification.path-wall-span-result/1",
+        "socket_count": 10,
+        "solid_count": 5,
+        "span_family": "STRAIGHT_SPAN",
+        "span_id": "fortification/caelmere/r0b/straight-span-001",
+        "status": "SUCCEEDED",
+        "triangle_count": 60,
+        "vertex_count": 40,
+        "volume_m3": 2273.28
+      },
+      "name": "straight_status",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "straight_parts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "straight_sockets",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "straight_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "straight_digest",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "straight_frames",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "straight_geometry",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 4115,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:88a791c859f26845c2385fe74479e7895461e5b09e24f17a28146d571e0d2517"
+          },
+          "canonical-centerline.json": {
+            "bytes": 4126,
+            "path": "canonical-centerline.json",
+            "sha256": "sha256:a1be50c56cbd4ec52a8c8f82b578441881e39766e610d354947f2f53ee00bb44"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 340,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:2326a11e949a087dfab9c50ab79653e348ac4241bcedfaddd233f21a30824adb"
+          },
+          "local-frames.json": {
+            "bytes": 3790,
+            "path": "local-frames.json",
+            "sha256": "sha256:511e95dfa979a30972737662d3a34c4acc9cee900953237bfb848b766797c027"
+          },
+          "neutral-mesh.json": {
+            "bytes": 20583,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:21781d0c24aec04f31e4f76b55a2411218b87ff3f21dd6b92c1f25dd4f89f28f"
+          },
+          "path-span-plan.json": {
+            "bytes": 592,
+            "path": "path-span-plan.json",
+            "sha256": "sha256:500c12f2c94ac57a560534a32c59b0fe6becfe18f411b83c588ec1cb7221aec1"
+          },
+          "semantic-parts.json": {
+            "bytes": 4422,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:d82fa11af216cf576071868256ce3ed8ab2d3bf33c73841eb36b2a65c2a26465"
+          },
+          "sockets.json": {
+            "bytes": 5977,
+            "path": "sockets.json",
+            "sha256": "sha256:03d44bfc51556391b1169862936250be36529b1600d99c2bbb59a600c78ccd06"
+          },
+          "stored-copies.json": {
+            "bytes": 4613,
+            "path": "stored-copies.json",
+            "sha256": "sha256:6ddb1b6f5cfd02728f440d6ea5bc1087f1d7261e6f1edd1725b18d207f7d9dbc"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            26.0,
+            14.4,
+            9.894882234
+          ],
+          "min": [
+            0.0,
+            -2.0,
+            -4.0
+          ]
+        },
+        "centerline_length_m": 25.132741229,
+        "centerline_segment_count": 6,
+        "failure": null,
+        "part_count": 5,
+        "schema": "royal-capital.fortification.path-wall-span-result/1",
+        "socket_count": 10,
+        "solid_count": 5,
+        "span_family": "CURVED_SPAN",
+        "span_id": "fortification/caelmere/r0b/curved-span-001",
+        "status": "SUCCEEDED",
+        "triangle_count": 260,
+        "vertex_count": 140,
+        "volume_m3": 2377.552882447
+      },
+      "name": "curved_status",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "curved_parts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "curved_sockets",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "curved_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "curved_digest",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "curved_frames",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "curved_geometry",
+      "pass": true
+    },
+    {
+      "detail": 24.0,
+      "name": "straight_length",
+      "pass": true
+    },
+    {
+      "detail": 1,
+      "name": "straight_segments",
+      "pass": true
+    },
+    {
+      "detail": 25.132741229,
+      "name": "curved_length",
+      "pass": true
+    },
+    {
+      "detail": 6,
+      "name": "curved_segments",
+      "pass": true
+    },
+    {
+      "detail": 0.045685364,
+      "name": "curved_chord_error",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          24.0,
+          0.0,
+          6.430780618
+        ],
+        "min": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "name": "curved_bounds",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "parent_r0a_complete",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_cache",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-cp1-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 26
+  }
+}

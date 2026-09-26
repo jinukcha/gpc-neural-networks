@@ -1,0 +1,19 @@
+contract,owner,purpose,format,requirement
+FortificationDefinition,KERNEL/PAP catalog,input authority,JSON,required
+FortificationInstance,KERNEL,placement/parameters,JSON,required
+FortificationProgram,FORT producer request,finite execution,JSON,required
+WallRingPlan,FORT producer,semantic ring assembly,JSON,required
+WallSpanPlan,FORT producer,bounded span,JSON,required
+TowerPlan,FORT producer,tower modules,JSON,conditional
+GateComplexPlan,FORT producer,gate assembly,JSON,conditional
+FortificationGeometryPlan,FORT producer,neutral indexed geometry,JSON+buffers,required
+SemanticSurfacePlan,FORT producer,surface meaning,JSON,required
+FortificationSocketPlan,FORT producer,typed interfaces,JSON,required
+SourceCoverageMap,FORT producer/P0BB,provenance,JSON/CSV,required
+CADProviderReceipt,adapter,source/runtime/tolerance,JSON,required
+STEP_BREP_COPY,adapter,authoring evidence,STEP/BREP,optional
+FortificationAssemblyPlan,FORT producer,module refs/transforms,JSON,required
+QualificationEvidence,validator,focused results,JSON,required
+FoundationInterfacePlan,FORT producer,terrain/contact interface,JSON,required
+ContactGapEvidence,FORT validator,fixed contact samples and gap envelope,JSON,required
+GradeEvidence,FORT validator,longitudinal/step/cross-slope evidence,JSON,required

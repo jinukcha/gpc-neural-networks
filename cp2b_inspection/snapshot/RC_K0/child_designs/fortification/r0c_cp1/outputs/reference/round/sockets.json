@@ -1,0 +1,299 @@
+{
+  "family": "ROUND",
+  "schema": "royal-capital.fortification.tower-sockets/1",
+  "socket_order": [
+    "span_in",
+    "span_out",
+    "wall_walk_in",
+    "wall_walk_out",
+    "foundation_in",
+    "foundation_out",
+    "foundation_center",
+    "foundation_outside",
+    "foundation_inside",
+    "roof_socket"
+  ],
+  "sockets": [
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        -7.45359421,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_ATTACHMENT",
+      "socket_id": "span_in"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        7.45359421,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_ATTACHMENT",
+      "socket_id": "span_out"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        -7.45359421,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_ATTACHMENT",
+      "socket_id": "wall_walk_in"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        7.45359421,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_ATTACHMENT",
+      "socket_id": "wall_walk_out"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        -7.45359421,
+        -1.5,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_ATTACHMENT",
+      "socket_id": "foundation_in"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        7.45359421,
+        -1.5,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_ATTACHMENT",
+      "socket_id": "foundation_out"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        -3.0,
+        -4.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_BEARING",
+      "socket_id": "foundation_center"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        -3.0,
+        -13.5
+      ],
+      "required": true,
+      "role": "FOUNDATION_OUTSIDE",
+      "socket_id": "foundation_outside"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        -3.0,
+        5.5
+      ],
+      "required": true,
+      "role": "FOUNDATION_INSIDE",
+      "socket_id": "foundation_inside"
+    },
+    {
+      "frame": {
+        "determinant": 1.0,
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        16.6,
+        -4.0
+      ],
+      "required": false,
+      "role": "ROOF_ATTACHMENT",
+      "socket_id": "roof_socket"
+    }
+  ],
+  "tower_id": "fortification/caelmere/pilot/tower-round-001"
+}

@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "file": "src/build123d/operations_part.py",
+      "pass": true,
+      "symbol": "extrude"
+    },
+    {
+      "file": "src/build123d/operations_part.py",
+      "pass": true,
+      "symbol": "loft"
+    },
+    {
+      "file": "src/build123d/operations_generic.py",
+      "pass": true,
+      "symbol": "sweep"
+    },
+    {
+      "file": "src/build123d/exporters3d.py",
+      "pass": true,
+      "symbol": "export_brep"
+    },
+    {
+      "file": "src/build123d/exporters3d.py",
+      "pass": true,
+      "symbol": "export_step"
+    },
+    {
+      "file": "src/build123d/topology/shape_core.py",
+      "pass": true,
+      "token": "tessellate"
+    },
+    {
+      "file": "src/build123d/topology/history.py",
+      "pass": true,
+      "token": "OCP.collections"
+    }
+  ],
+  "schema": "royal-capital.fortification.source-api-surface/1",
+  "status": "PASS"
+}

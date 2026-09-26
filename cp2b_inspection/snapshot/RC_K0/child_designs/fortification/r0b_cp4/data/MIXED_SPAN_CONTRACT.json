@@ -1,0 +1,16 @@
+{
+  "schema": "royal-capital.fortification.mixed-span-contract/1",
+  "module_kinds": ["PATH_SPAN", "JOIN", "TERRAIN_SPAN"],
+  "required_chain": [
+    "STRAIGHT_SPAN",
+    "MITER",
+    "CURVED_SPAN",
+    "BEVEL",
+    "TERRAIN_STEPPED",
+    "RETAINING",
+    "PROFILE_TRANSITION"
+  ],
+  "assembly_mode": "EXACT_MODULE_REFERENCES_WITH_RIGID_TRANSFORMS_NO_GLOBAL_BOOLEAN",
+  "required_source_refs": ["result", "neutral_mesh", "provider_receipt", "stored_copies", "sockets"],
+  "terrain_mutation": false
+}

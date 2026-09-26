@@ -1,0 +1,79 @@
+{
+  "artifact": {
+    "api_reported_digest": "sha256:4e156f6a5c0e584b919192224ae12c08dcddbfbceeb76ae523502496092cbc73",
+    "artifact_bytes": 256024992,
+    "artifact_id": 10846492061,
+    "artifact_name": "rcf-cp0-cp313-linux-wheelhouse-58",
+    "artifact_sha256": "4e156f6a5c0e584b919192224ae12c08dcddbfbceeb76ae523502496092cbc73",
+    "branch": "automation/rcf-cp0-delivery-20260925",
+    "delivery_status": "BUILT_SELF_ADMITTED_COLD_AB_PASS",
+    "job_id": 107939668353,
+    "local_intake_status": "PASS",
+    "python_observed": "3.13.5",
+    "remote_cold_ab": "PASS",
+    "repository": "jinukcha/gpc-neural-networks",
+    "run_id": 36093161115,
+    "schema": "royal-capital.fortification.remote-delivery-receipt/1",
+    "wheel_count": 58,
+    "workflow_commit": "592688d650f0a6c234e57f43cd6107aea447517b",
+    "zip_crc": "PASS"
+  },
+  "branch": "automation/rcf-cp0-delivery-20260925",
+  "build123d": {
+    "bytes": 399922,
+    "file": "build123d-0.13.1.dev12+ge22d34dae-py3-none-any.whl",
+    "name": "build123d",
+    "sha256": "de673760055a1ad3d78fbd1f9c586012ffca46e297d2bb436af59223908cb700",
+    "version": "0.13.1.dev12+ge22d34dae"
+  },
+  "conclusion": "success",
+  "job_id": 107939668353,
+  "ocp": {
+    "bytes": 66755109,
+    "file": "cadquery_ocp_novtk-8.0.1.0.0-cp313-cp313-manylinux_2_28_x86_64.whl",
+    "name": "cadquery-ocp-novtk",
+    "sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f",
+    "version": "8.0.1.0.0"
+  },
+  "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+  "python": "3.13.5",
+  "repository": "jinukcha/gpc-neural-networks",
+  "resolved_wheels": 58,
+  "run_id": 36093161115,
+  "schema": "royal-capital.fortification.github-actions-receipt/2",
+  "steps": [
+    {
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "conclusion": "success",
+      "number": 3
+    },
+    {
+      "conclusion": "success",
+      "number": 4
+    },
+    {
+      "conclusion": "success",
+      "number": 5
+    },
+    {
+      "conclusion": "success",
+      "number": 6
+    },
+    {
+      "conclusion": "success",
+      "number": 7
+    },
+    {
+      "conclusion": "success",
+      "number": 13
+    },
+    {
+      "conclusion": "success",
+      "number": 14
+    }
+  ],
+  "workflow_commit": "592688d650f0a6c234e57f43cd6107aea447517b"
+}

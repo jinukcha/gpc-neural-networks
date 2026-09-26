@@ -1,0 +1,21 @@
+{
+  "families": [
+    "ROUND",
+    "SQUARE",
+    "POLYGONAL"
+  ],
+  "focused_validation": {
+    "failed": 0,
+    "passed": 52,
+    "total": 52
+  },
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "negative_gates": 13,
+  "next": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP2",
+  "next_requires_explicit_approval": true,
+  "schema": "royal-capital.fortification.r0c-cp1-completion/1",
+  "source_preservation": "PASS",
+  "stage_completion": "COMPLETE",
+  "status": "R0C_CP1_COMPLETE"
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "royal-capital.fortification.r0b-cp2-focused-validation-failure/1",
+  "status": "PRESERVED",
+  "failed_check": "miter_turn",
+  "expected_deg": 10.0,
+  "observed_deg": 10.000000019,
+  "difference_deg": 0.000000019,
+  "old_comparison_tolerance_deg": 0.00000001,
+  "classification": "VALIDATOR_NUMERIC_TOLERANCE_TOO_STRICT",
+  "geometry_or_source_regenerated": false,
+  "accepted_outputs_deleted": false
+}

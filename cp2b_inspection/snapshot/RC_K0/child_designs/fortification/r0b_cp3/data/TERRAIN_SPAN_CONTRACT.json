@@ -1,0 +1,26 @@
+{
+  "schema": "royal-capital.fortification.terrain-span-contract/1",
+  "families": {
+    "TERRAIN_STEPPED": {
+      "terrain_kind": "STEPPED_TERRACES",
+      "geometry_route": "BOUNDED_TERRACE_SEGMENT_PROFILE_EXTRUSIONS",
+      "terrain_mutation": false,
+      "wall_walk_transition": "EXPLICIT_STAIR_RAMP_SOCKET_ONLY"
+    },
+    "RETAINING": {
+      "terrain_kind": "RETAINING_CROSS_SLOPE",
+      "geometry_route": "ASYMMETRIC_RETAINING_PROFILE_EXTRUSION",
+      "terrain_mutation": false,
+      "upper_wall_reference": "INSIDE_TERRAIN_ELEVATION"
+    }
+  },
+  "part_order": [
+    "foundation",
+    "wall_body",
+    "wall_walk",
+    "inner_parapet",
+    "outer_parapet"
+  ],
+  "assembly_mode": "BOUNDED_NON_UNIONED_TERRAIN_UNITS",
+  "provider_face_identity_authoritative": false
+}

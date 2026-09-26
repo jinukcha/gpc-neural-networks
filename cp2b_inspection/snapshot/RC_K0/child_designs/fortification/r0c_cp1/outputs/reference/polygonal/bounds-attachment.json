@@ -1,0 +1,65 @@
+{
+  "attachment_intersection_count": 2,
+  "attachment_width_m": 14.686291502,
+  "attachment_x_m": [
+    -7.343145751,
+    7.343145751
+  ],
+  "body_bounds_m": {
+    "max": [
+      9.0,
+      16.0,
+      5.0
+    ],
+    "min": [
+      -9.0,
+      0.0,
+      -13.0
+    ]
+  },
+  "body_outside_projection_m": 10.0,
+  "bounds_status": "PASS",
+  "crown_bounds_m": {
+    "max": [
+      9.5,
+      16.6,
+      5.5
+    ],
+    "min": [
+      -9.5,
+      16.0,
+      -13.5
+    ]
+  },
+  "family": "POLYGONAL",
+  "foundation_bounds_m": {
+    "max": [
+      10.0,
+      0.0,
+      6.0
+    ],
+    "min": [
+      -10.0,
+      -3.0,
+      -14.0
+    ]
+  },
+  "foundation_outside_projection_m": 11.0,
+  "maximum_body_projection_m": 10.0,
+  "overall_bounds_m": {
+    "max": [
+      10.0,
+      16.6,
+      6.0
+    ],
+    "min": [
+      -10.0,
+      -3.0,
+      -14.0
+    ]
+  },
+  "schema": "royal-capital.fortification.tower-bounds-attachment/1",
+  "tower_id": "fortification/caelmere/pilot/tower-polygonal-001",
+  "wall_centerline_z_m": 0.0,
+  "wall_outside_face_z_m": -3.0
+}

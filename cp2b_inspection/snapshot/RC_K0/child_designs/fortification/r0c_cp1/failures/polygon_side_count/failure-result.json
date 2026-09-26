@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "SIDE_COUNT_OUT_OF_DOMAIN",
+    "message": "POLYGONAL side_count must be in [6,12]"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:6cfa793021d4b69f7c3c466635743ac5f84b49f087e0890ce09f9d9d4c47a414",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

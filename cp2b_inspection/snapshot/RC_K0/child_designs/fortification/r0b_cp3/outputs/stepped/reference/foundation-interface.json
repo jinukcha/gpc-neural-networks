@@ -1,0 +1,129 @@
+{
+  "axis_contract": {
+    "end_m": [
+      30.0,
+      0.0,
+      0.0
+    ],
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "length_m": 30.0,
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "family": "TERRAIN_STEPPED",
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "interfaces": [
+    {
+      "contact_area_m2": 80.0,
+      "contact_width_m": 8.0,
+      "embedment_depth_m": 2.0,
+      "foundation_base_elevation_m": -2.0,
+      "foundation_top_elevation_m": 0.0,
+      "interface_id": "foundation-interface/terrace_00",
+      "kind": "TERRACE_EMBEDDED_STRIP",
+      "segment_id": "terrace_00",
+      "station_interval_m": [
+        0.0,
+        10.0
+      ],
+      "terrain_elevation_m": 0.0,
+      "terrain_mutation": false,
+      "unsupported_gap_m": 0.0
+    },
+    {
+      "contact_area_m2": 80.0,
+      "contact_width_m": 8.0,
+      "embedment_depth_m": 2.0,
+      "foundation_base_elevation_m": -1.0,
+      "foundation_top_elevation_m": 1.0,
+      "interface_id": "foundation-interface/terrace_01",
+      "kind": "TERRACE_EMBEDDED_STRIP",
+      "segment_id": "terrace_01",
+      "station_interval_m": [
+        10.0,
+        20.0
+      ],
+      "terrain_elevation_m": 1.0,
+      "terrain_mutation": false,
+      "unsupported_gap_m": 0.0
+    },
+    {
+      "contact_area_m2": 80.0,
+      "contact_width_m": 8.0,
+      "embedment_depth_m": 2.0,
+      "foundation_base_elevation_m": 0.0,
+      "foundation_top_elevation_m": 2.0,
+      "interface_id": "foundation-interface/terrace_02",
+      "kind": "TERRACE_EMBEDDED_STRIP",
+      "segment_id": "terrace_02",
+      "station_interval_m": [
+        20.0,
+        30.0
+      ],
+      "terrain_elevation_m": 2.0,
+      "terrain_mutation": false,
+      "unsupported_gap_m": 0.0
+    }
+  ],
+  "schema": "royal-capital.fortification.foundation-interface/1",
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+  "summary": {
+    "interface_count": 3,
+    "maximum_embedment_depth_m": 2.0,
+    "maximum_unsupported_gap_m": 0.0,
+    "retained_height_m": 0.0,
+    "status": "PASS",
+    "terrain_mutation": false,
+    "total_contact_area_m2": 240.0,
+    "transition_count": 2
+  },
+  "terrain_profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+  "terrain_source": {
+    "profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+    "revision": "r1",
+    "source_id": "terrain/caelmere/west-ridge/terraces-001"
+  },
+  "transitions": [
+    {
+      "absolute_step_height_m": 1.0,
+      "lower_segment_id": "terrace_00",
+      "signed_step_height_m": 1.0,
+      "station_m": 10.0,
+      "transition_id": "foundation-step/00",
+      "upper_segment_id": "terrace_01",
+      "wall_walk_transition_required": true
+    },
+    {
+      "absolute_step_height_m": 1.0,
+      "lower_segment_id": "terrace_01",
+      "signed_step_height_m": 1.0,
+      "station_m": 20.0,
+      "transition_id": "foundation-step/01",
+      "upper_segment_id": "terrace_02",
+      "wall_walk_transition_required": true
+    }
+  ]
+}

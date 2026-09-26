@@ -1,0 +1,110 @@
+{
+  "axis_contract": {
+    "end_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "length_m": 24.0,
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "family": "RETAINING",
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "interfaces": [
+    {
+      "contact_area_m2": 216.0,
+      "contact_width_m": 9.0,
+      "embedment_depth_m": 0.0,
+      "foundation_base_elevation_m": -2.0,
+      "foundation_top_elevation_m": -2.0,
+      "interface_id": "foundation-interface/base-bearing",
+      "kind": "BASE_BEARING_STRIP",
+      "segment_id": "retaining_00",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": -2.0,
+      "terrain_mutation": false,
+      "unsupported_gap_m": 0.0
+    },
+    {
+      "contact_area_m2": 24.0,
+      "contact_width_m": 1.0,
+      "embedment_depth_m": 2.0,
+      "foundation_base_elevation_m": -2.0,
+      "foundation_top_elevation_m": 0.0,
+      "interface_id": "foundation-interface/outside-toe",
+      "kind": "OUTSIDE_TERRAIN_SEAM",
+      "segment_id": "retaining_00",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 0.0,
+      "terrain_mutation": false,
+      "unsupported_gap_m": 0.0
+    },
+    {
+      "contact_area_m2": 24.0,
+      "contact_width_m": 1.0,
+      "embedment_depth_m": 5.0,
+      "foundation_base_elevation_m": -2.0,
+      "foundation_top_elevation_m": 3.0,
+      "interface_id": "foundation-interface/inside-heel",
+      "kind": "INSIDE_TERRAIN_SEAM",
+      "segment_id": "retaining_00",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 3.0,
+      "terrain_mutation": false,
+      "unsupported_gap_m": 0.0
+    }
+  ],
+  "schema": "royal-capital.fortification.foundation-interface/1",
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "summary": {
+    "interface_count": 3,
+    "maximum_embedment_depth_m": 5.0,
+    "maximum_unsupported_gap_m": 0.0,
+    "retained_height_m": 3.0,
+    "status": "PASS",
+    "terrain_mutation": false,
+    "total_contact_area_m2": 264.0,
+    "transition_count": 0
+  },
+  "terrain_profile_digest": "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+  "terrain_source": {
+    "profile_digest": "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+    "revision": "r1",
+    "source_id": "terrain/caelmere/east-terrace/retaining-001"
+  },
+  "transitions": []
+}

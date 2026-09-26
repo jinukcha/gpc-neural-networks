@@ -1,0 +1,55 @@
+{
+  "bearing_area_m2": 282.842712475,
+  "bearing_elevation_m": -3.0,
+  "bearing_polygon_xz_m": [
+    [
+      10.0,
+      -4.0
+    ],
+    [
+      7.071067811865,
+      -11.071067811865
+    ],
+    [
+      0.0,
+      -14.0
+    ],
+    [
+      -7.071067811865,
+      -11.071067811865
+    ],
+    [
+      -10.0,
+      -4.0
+    ],
+    [
+      -7.071067811865,
+      3.071067811865
+    ],
+    [
+      -0.0,
+      6.0
+    ],
+    [
+      7.071067811865,
+      3.071067811865
+    ]
+  ],
+  "contact_area_m2": 282.842712475,
+  "contact_ratio": 1.0,
+  "embedment_depth_m": 3.0,
+  "family": "POLYGONAL",
+  "foundation_socket_ids": [
+    "foundation_in",
+    "foundation_out",
+    "foundation_center",
+    "foundation_outside",
+    "foundation_inside"
+  ],
+  "maximum_gap_m": 0.0,
+  "schema": "royal-capital.fortification.tower-foundation-interface/1",
+  "status": "PASS",
+  "support_class": "FLAT_REFERENCE_FOUNDATION",
+  "terrain_mutation": false,
+  "tower_id": "fortification/caelmere/pilot/tower-polygonal-001"
+}

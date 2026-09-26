@@ -1,0 +1,50 @@
+{
+  "$id": "royal-capital.fortification.straight-wall-span/1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "budget": {
+      "type": "object"
+    },
+    "frame": {
+      "const": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD"
+    },
+    "inside_side": {
+      "const": "POSITIVE_Z"
+    },
+    "length_m": {
+      "exclusiveMinimum": 0,
+      "maximum": 200,
+      "type": "number"
+    },
+    "outside_side": {
+      "const": "NEGATIVE_Z"
+    },
+    "runtime": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "royal-capital.fortification.straight-wall-span/1"
+    },
+    "span_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "tolerances": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "span_id",
+    "length_m",
+    "frame",
+    "inside_side",
+    "outside_side",
+    "tolerances",
+    "budget",
+    "runtime"
+  ],
+  "title": "Straight fortification wall span pilot",
+  "type": "object"
+}

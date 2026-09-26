@@ -1,0 +1,38 @@
+{
+  "bevel_setback_m": 5.0,
+  "family": "BEVEL",
+  "incoming": {
+    "interval_m": [
+      -10.0,
+      0.0
+    ],
+    "max_m": 10.0,
+    "overlap_m": 10.0,
+    "ratio": 0.416666666667,
+    "source_span_length_m": 24.0,
+    "status": "PASS"
+  },
+  "join_id": "fortification/caelmere/r0b/bevel-join-001",
+  "observed_section_count": 4,
+  "outgoing": {
+    "interval_m": [
+      0.0,
+      10.0
+    ],
+    "max_m": 10.0,
+    "overlap_m": 10.0,
+    "ratio": 0.416666666667,
+    "source_span_length_m": 24.0,
+    "status": "PASS"
+  },
+  "policy": "CENTERLINE_SECTION_INTERVAL_WITH_CONSERVATIVE_PROFILE_ENVELOPE",
+  "required_section_count": 4,
+  "schema": "royal-capital.fortification.bounded-overlap/1",
+  "section_ids": [
+    "incoming_overlap",
+    "incoming_bevel_cut",
+    "outgoing_bevel_cut",
+    "outgoing_overlap"
+  ],
+  "status": "PASS"
+}

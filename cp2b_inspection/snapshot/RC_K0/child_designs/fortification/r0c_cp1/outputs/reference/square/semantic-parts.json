@@ -1,0 +1,97 @@
+{
+  "family": "SQUARE",
+  "parts": [
+    {
+      "bounds_m": {
+        "max": [
+          9.0,
+          0.0,
+          5.0
+        ],
+        "min": [
+          -9.0,
+          -3.0,
+          -13.0
+        ]
+      },
+      "material_slot": "stone_foundation",
+      "part_id": "foundation",
+      "profile_point_count": 4,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "parts/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:458f40a9992bc532cc695e798f38ef8088c0604597c8d4f2f693729569d96454"
+      },
+      "provider_result_ref": {
+        "bytes": 2527,
+        "path": "parts/foundation/result.json",
+        "sha256": "sha256:1e5d9d7c65a9329beacba2618436be2d1cfd42fcb1f7066c2cacabf2e542d17d"
+      },
+      "semantic_role": "FOUNDATION",
+      "surface_coverage": "DEFERRED_TO_R0C_CP4",
+      "volume_m3": 972.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          8.0,
+          16.0,
+          4.0
+        ],
+        "min": [
+          -8.0,
+          0.0,
+          -12.0
+        ]
+      },
+      "material_slot": "stone_tower",
+      "part_id": "tower_body",
+      "profile_point_count": 4,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "parts/tower_body/cad-provider-receipt.json",
+        "sha256": "sha256:300469d12c6df0be569e1b6410b8f386e1d2933f3daae357729e3dde2c1b4caf"
+      },
+      "provider_result_ref": {
+        "bytes": 2530,
+        "path": "parts/tower_body/result.json",
+        "sha256": "sha256:d82b993670e8e60f9ac52ad3b33f4c8c2ec8d89e142bed943303224d3e8d4b64"
+      },
+      "semantic_role": "TOWER_BODY",
+      "surface_coverage": "DEFERRED_TO_R0C_CP4",
+      "volume_m3": 4096.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          8.5,
+          16.6,
+          4.5
+        ],
+        "min": [
+          -8.5,
+          16.0,
+          -12.5
+        ]
+      },
+      "material_slot": "stone_crown",
+      "part_id": "tower_crown",
+      "profile_point_count": 4,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "parts/tower_crown/cad-provider-receipt.json",
+        "sha256": "sha256:4e81dbe608b082dab36d372fa12ee81c392a1ef6f7f5024c52f0793442cf7851"
+      },
+      "provider_result_ref": {
+        "bytes": 2529,
+        "path": "parts/tower_crown/result.json",
+        "sha256": "sha256:7788b72b9c5099d58ce84e8746187f69e893818e36e9477b0731bd96cdd8c15c"
+      },
+      "semantic_role": "TOWER_CROWN_PLATFORM",
+      "surface_coverage": "DEFERRED_TO_R0C_CP4",
+      "volume_m3": 173.4
+    }
+  ],
+  "schema": "royal-capital.fortification.tower-semantic-parts/1",
+  "tower_id": "fortification/caelmere/pilot/tower-square-001"
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "royal-capital.fortification.validation-failure/1",
+  "attempt": 1,
+  "status": "FAILED_VALIDATOR_SCOPE",
+  "failure": "source archive member resolver used ambiguous suffix matching for nested README.md",
+  "source_rollback": false,
+  "checkpoint_preserved": "RCF_A0_CP0_PRE_full.zip",
+  "repair": "compare archive member path after the single repository-root prefix"
+}

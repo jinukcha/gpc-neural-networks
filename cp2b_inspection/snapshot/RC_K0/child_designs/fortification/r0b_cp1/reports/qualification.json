@@ -1,0 +1,95 @@
+{
+  "families": {
+    "curved": {
+      "bounds_m": {
+        "max": [
+          26.0,
+          14.4,
+          9.894882234
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "centerline_digest": "sha256:c40b4c69a1710f446ebe94494344624d121b9c8fcbcbdf3e3a2ce3c2d8e839be",
+      "centerline_length_m": 25.132741229,
+      "files_compared": 35,
+      "frame_count": 7,
+      "sample_count": 7,
+      "segment_count": 6,
+      "status": "PASS",
+      "triangle_count": 260,
+      "vertex_count": 140,
+      "volume_m3": 2377.552882447
+    },
+    "straight": {
+      "bounds_m": {
+        "max": [
+          24.0,
+          14.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "centerline_digest": "sha256:382c5c586b165872d88ff7fb621ba350c5cfe9da42ff982714dfbd77647d34b9",
+      "centerline_length_m": 24.0,
+      "files_compared": 35,
+      "frame_count": 2,
+      "sample_count": 2,
+      "segment_count": 1,
+      "status": "PASS",
+      "triangle_count": 60,
+      "vertex_count": 40,
+      "volume_m3": 2273.28
+    }
+  },
+  "negative": [
+    {
+      "case": "zero_length",
+      "error": "PathContractError",
+      "message": "zero-length span",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "vertical_grade",
+      "error": "PathContractError",
+      "message": "vertical/graded centerline deferred to R0B-CP3",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "tight_radius",
+      "error": "PathContractError",
+      "message": "arc radius must exceed maximum profile offset",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "sweep_out_of_domain",
+      "error": "PathContractError",
+      "message": "arc sweep outside (0,35]",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "section_budget",
+      "error": "PathContractError",
+      "message": "required sections exceed geometry budget",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "runtime_mismatch",
+      "error": "PathContractError",
+      "message": "runtime mismatch: {'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+      "status": "PASS_EXPECTED_REJECTION"
+    }
+  ],
+  "negative_count": 6,
+  "schema": "royal-capital.fortification.r0b-cp1-qualification/1",
+  "status": "PASS"
+}

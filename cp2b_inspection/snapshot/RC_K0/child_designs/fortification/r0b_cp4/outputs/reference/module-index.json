@@ -1,0 +1,647 @@
+{
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "module_count": 7,
+  "module_order": [
+    "span/straight",
+    "join/miter",
+    "span/curved",
+    "join/bevel",
+    "span/stepped",
+    "span/retaining",
+    "join/transition"
+  ],
+  "modules": [
+    {
+      "coverage_surface_count": 30,
+      "family": "STRAIGHT_SPAN",
+      "input_socket": "span_start",
+      "module_id": "span/straight",
+      "module_kind": "PATH_SPAN",
+      "module_range": {
+        "family": "STRAIGHT_SPAN",
+        "module_id": "span/straight",
+        "module_kind": "PATH_SPAN",
+        "triangle_count": 60,
+        "triangle_offset": 0,
+        "vertex_count": 40,
+        "vertex_offset": 0
+      },
+      "output_socket": "span_end",
+      "source_bounds_m": {
+        "max": [
+          24.0,
+          14.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 5558,
+          "path": "r0b_cp1/outputs/straight/reference/neutral-mesh.json",
+          "sha256": "sha256:4860acac80995d57352628d4062bbfd0de19c996b1e692a2abe536ccece8634d"
+        },
+        "provider_receipt": {
+          "bytes": 4115,
+          "path": "r0b_cp1/outputs/straight/reference/cad-provider-receipt.json",
+          "sha256": "sha256:bb90576338a4c71ce002dd283061e06b331ce35b0d682565f5f73fec3baedb68"
+        },
+        "result": {
+          "bytes": 2215,
+          "path": "r0b_cp1/outputs/straight/reference/result.json",
+          "sha256": "sha256:5d7a6ddf47aa4ec4f3109792db8ec232fc923bc0ed9cabe4a0bebf528f088a0f"
+        },
+        "sockets": {
+          "bytes": 5720,
+          "path": "r0b_cp1/outputs/straight/reference/sockets.json",
+          "sha256": "sha256:74fffff248a4e94f23e13f0709124984fac20047be3b7e91231c87f7bbaed1ec"
+        },
+        "source_dir": "r0b_cp1/outputs/straight/reference",
+        "stored_copies": {
+          "bytes": 4539,
+          "path": "r0b_cp1/outputs/straight/reference/stored-copies.json",
+          "sha256": "sha256:44ea73333faa6bddaf107b0b3f54a31139f41674ff820eafe4b723a5acd8df01"
+        }
+      },
+      "source_solid_count": 5,
+      "source_triangle_count": 60,
+      "source_vertex_count": 40,
+      "source_volume_m3": 2273.28,
+      "station": {
+        "end_m": 24.0,
+        "start_m": 0.0
+      },
+      "transform": {
+        "heading_deg": 0.0,
+        "module_id": "span/straight",
+        "source": "ROOT_TRANSFORM",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "transformed_socket_count": 10,
+      "world_bounds_m": {
+        "max": [
+          24.0,
+          14.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      }
+    },
+    {
+      "coverage_surface_count": 30,
+      "family": "MITER",
+      "input_socket": "incoming_span",
+      "module_id": "join/miter",
+      "module_kind": "JOIN",
+      "module_range": {
+        "family": "MITER",
+        "module_id": "join/miter",
+        "module_kind": "JOIN",
+        "triangle_count": 100,
+        "triangle_offset": 60,
+        "vertex_count": 60,
+        "vertex_offset": 40
+      },
+      "output_socket": "outgoing_span",
+      "source_bounds_m": {
+        "max": [
+          32.573054736,
+          14.4,
+          5.328416436
+        ],
+        "min": [
+          16.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 8694,
+          "path": "r0b_cp2/outputs/miter/reference/neutral-mesh.json",
+          "sha256": "sha256:ae8be5380035d76e75320eee9db83a6129871601c0090f6250cb2abf3dc59b2a"
+        },
+        "provider_receipt": {
+          "bytes": 4398,
+          "path": "r0b_cp2/outputs/miter/reference/cad-provider-receipt.json",
+          "sha256": "sha256:59a485c9f0d95efb4a734986838de387fb0568a9d157ec405b445838acad226b"
+        },
+        "result": {
+          "bytes": 2484,
+          "path": "r0b_cp2/outputs/miter/reference/result.json",
+          "sha256": "sha256:f4c166aad1df2245d0803419e729a1358e21f4431249d4ac263a9e799736b352"
+        },
+        "sockets": {
+          "bytes": 4682,
+          "path": "r0b_cp2/outputs/miter/reference/join-sockets.json",
+          "sha256": "sha256:0686138f2ee47d5ca870b8f4456f5a99978d835b456ed848f48cee3ddada2655"
+        },
+        "source_dir": "r0b_cp2/outputs/miter/reference",
+        "stored_copies": {
+          "bytes": 4564,
+          "path": "r0b_cp2/outputs/miter/reference/stored-copies.json",
+          "sha256": "sha256:d0243a9b918c60a61e35375213ffd3e89c194ca01870a3163af6d802fb476a5c"
+        }
+      },
+      "source_solid_count": 5,
+      "source_triangle_count": 100,
+      "source_vertex_count": 60,
+      "source_volume_m3": 1515.52,
+      "station": {
+        "anchor_m": 24.0
+      },
+      "transform": {
+        "aligned_from_module": "span/straight",
+        "aligned_from_socket": "span_end",
+        "aligned_to_socket": "incoming_span",
+        "heading_deg": 0.0,
+        "module_id": "join/miter",
+        "source": "SOCKET_ALIGNMENT",
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "transformed_socket_count": 6,
+      "world_bounds_m": {
+        "max": [
+          32.573054736,
+          14.4,
+          5.328416436
+        ],
+        "min": [
+          16.0,
+          -2.0,
+          -4.0
+        ]
+      }
+    },
+    {
+      "coverage_surface_count": 30,
+      "family": "CURVED_SPAN",
+      "input_socket": "span_start",
+      "module_id": "span/curved",
+      "module_kind": "PATH_SPAN",
+      "module_range": {
+        "family": "CURVED_SPAN",
+        "module_id": "span/curved",
+        "module_kind": "PATH_SPAN",
+        "triangle_count": 260,
+        "triangle_offset": 160,
+        "vertex_count": 140,
+        "vertex_offset": 100
+      },
+      "output_socket": "span_end",
+      "source_bounds_m": {
+        "max": [
+          26.0,
+          14.4,
+          9.894882234
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 20583,
+          "path": "r0b_cp1/outputs/curved/reference/neutral-mesh.json",
+          "sha256": "sha256:21781d0c24aec04f31e4f76b55a2411218b87ff3f21dd6b92c1f25dd4f89f28f"
+        },
+        "provider_receipt": {
+          "bytes": 4115,
+          "path": "r0b_cp1/outputs/curved/reference/cad-provider-receipt.json",
+          "sha256": "sha256:88a791c859f26845c2385fe74479e7895461e5b09e24f17a28146d571e0d2517"
+        },
+        "result": {
+          "bytes": 2237,
+          "path": "r0b_cp1/outputs/curved/reference/result.json",
+          "sha256": "sha256:5b1081352a342346ae4871832076e5bef452f6c0f6fc556ae52ab0c80b2bde8d"
+        },
+        "sockets": {
+          "bytes": 5977,
+          "path": "r0b_cp1/outputs/curved/reference/sockets.json",
+          "sha256": "sha256:03d44bfc51556391b1169862936250be36529b1600d99c2bbb59a600c78ccd06"
+        },
+        "source_dir": "r0b_cp1/outputs/curved/reference",
+        "stored_copies": {
+          "bytes": 4613,
+          "path": "r0b_cp1/outputs/curved/reference/stored-copies.json",
+          "sha256": "sha256:6ddb1b6f5cfd02728f440d6ea5bc1087f1d7261e6f1edd1725b18d207f7d9dbc"
+        }
+      },
+      "source_solid_count": 5,
+      "source_triangle_count": 260,
+      "source_vertex_count": 140,
+      "source_volume_m3": 2377.552882447,
+      "station": {
+        "end_m": 49.132741229,
+        "start_m": 24.0
+      },
+      "transform": {
+        "aligned_from_module": "join/miter",
+        "aligned_from_socket": "outgoing_span",
+        "aligned_to_socket": "span_start",
+        "heading_deg": 10.000000019,
+        "module_id": "span/curved",
+        "source": "SOCKET_ALIGNMENT",
+        "translation_m": [
+          24.0,
+          0.0,
+          0.0
+        ]
+      },
+      "transformed_socket_count": 10,
+      "world_bounds_m": {
+        "max": [
+          49.089843173,
+          14.4,
+          13.564816654
+        ],
+        "min": [
+          23.305407288,
+          -2.0,
+          -3.939231012
+        ]
+      }
+    },
+    {
+      "coverage_surface_count": 30,
+      "family": "BEVEL",
+      "input_socket": "incoming_span",
+      "module_id": "join/bevel",
+      "module_kind": "JOIN",
+      "module_range": {
+        "family": "BEVEL",
+        "module_id": "join/bevel",
+        "module_kind": "JOIN",
+        "triangle_count": 140,
+        "triangle_offset": 420,
+        "vertex_count": 80,
+        "vertex_offset": 240
+      },
+      "output_socket": "outgoing_span",
+      "source_bounds_m": {
+        "max": [
+          34.66025404,
+          14.4,
+          8.464101616
+        ],
+        "min": [
+          14.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 11419,
+          "path": "r0b_cp2/outputs/bevel/reference/neutral-mesh.json",
+          "sha256": "sha256:d9e66b885a63a45f1fee86c8dfc5132da911559c95ba3e38288a3f94fb22474b"
+        },
+        "provider_receipt": {
+          "bytes": 4398,
+          "path": "r0b_cp2/outputs/bevel/reference/cad-provider-receipt.json",
+          "sha256": "sha256:bb27eeeef7400cf6b06ce4e26caf6792b673492c2bd2a0c96e295e5500d42d20"
+        },
+        "result": {
+          "bytes": 2491,
+          "path": "r0b_cp2/outputs/bevel/reference/result.json",
+          "sha256": "sha256:9be1b595e64c2f5f8e64eb7c65bfd458736289dba887ca9354231515a600c0ca"
+        },
+        "sockets": {
+          "bytes": 4610,
+          "path": "r0b_cp2/outputs/bevel/reference/join-sockets.json",
+          "sha256": "sha256:d65147dff527f72b69fc2d6fd1262aa2654e096f33b46869b13604679617e847"
+        },
+        "source_dir": "r0b_cp2/outputs/bevel/reference",
+        "stored_copies": {
+          "bytes": 4610,
+          "path": "r0b_cp2/outputs/bevel/reference/stored-copies.json",
+          "sha256": "sha256:8f37372e6831daf964a4c9858e18019bcdadac868ea19e432923bdcfc6268e79"
+        }
+      },
+      "source_solid_count": 5,
+      "source_triangle_count": 140,
+      "source_vertex_count": 80,
+      "source_volume_m3": 1830.949631601,
+      "station": {
+        "anchor_m": 49.132741229
+      },
+      "transform": {
+        "aligned_from_module": "span/curved",
+        "aligned_from_socket": "span_end",
+        "aligned_to_socket": "incoming_span",
+        "heading_deg": 40.000000018,
+        "module_id": "join/bevel",
+        "source": "SOCKET_ALIGNMENT",
+        "translation_m": [
+          28.133626104,
+          0.0,
+          -4.926263756
+        ]
+      },
+      "transformed_socket_count": 6,
+      "world_bounds_m": {
+        "max": [
+          53.69766465,
+          14.4,
+          21.265645665
+        ],
+        "min": [
+          36.287097865,
+          -2.0,
+          1.008585011
+        ]
+      }
+    },
+    {
+      "coverage_surface_count": 90,
+      "family": "TERRAIN_STEPPED",
+      "input_socket": "span_start",
+      "module_id": "span/stepped",
+      "module_kind": "TERRAIN_SPAN",
+      "module_range": {
+        "family": "TERRAIN_STEPPED",
+        "module_id": "span/stepped",
+        "module_kind": "TERRAIN_SPAN",
+        "triangle_count": 180,
+        "triangle_offset": 560,
+        "vertex_count": 120,
+        "vertex_offset": 320
+      },
+      "output_socket": "span_end",
+      "source_bounds_m": {
+        "max": [
+          30.0,
+          16.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 17773,
+          "path": "r0b_cp3/outputs/stepped/reference/neutral-mesh.json",
+          "sha256": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c"
+        },
+        "provider_receipt": {
+          "bytes": 3609,
+          "path": "r0b_cp3/outputs/stepped/reference/cad-provider-receipt.json",
+          "sha256": "sha256:4c2522084ba6b47080587ac70cd41bb1df01da88e1206a840c7d89b43c6dc624"
+        },
+        "result": {
+          "bytes": 3186,
+          "path": "r0b_cp3/outputs/stepped/reference/result.json",
+          "sha256": "sha256:d0c019f50412d913761c16b825d2baf5ebab62f5bb43575e3b5d7374b1a9d738"
+        },
+        "sockets": {
+          "bytes": 7824,
+          "path": "r0b_cp3/outputs/stepped/reference/interface-sockets.json",
+          "sha256": "sha256:3a7fc42d1c21c1b662e35c7281bde0a67630062981ee4ca761ab1b94971173a6"
+        },
+        "source_dir": "r0b_cp3/outputs/stepped/reference",
+        "stored_copies": {
+          "bytes": 16065,
+          "path": "r0b_cp3/outputs/stepped/reference/stored-copies.json",
+          "sha256": "sha256:8debac166b44a726f2f5dd821b4c821e4dd916b0b66afdbf617cf8485ba2a313"
+        }
+      },
+      "source_solid_count": 15,
+      "source_triangle_count": 180,
+      "source_vertex_count": 120,
+      "source_volume_m3": 2841.6,
+      "station": {
+        "end_m": 79.132741229,
+        "start_m": 49.132741229
+      },
+      "transform": {
+        "aligned_from_module": "join/bevel",
+        "aligned_from_socket": "outgoing_span",
+        "aligned_to_socket": "span_start",
+        "heading_deg": 70.000000022,
+        "module_id": "span/stepped",
+        "source": "SOCKET_ALIGNMENT",
+        "translation_m": [
+          46.518692734,
+          0.0,
+          10.500638882
+        ]
+      },
+      "transformed_socket_count": 14,
+      "world_bounds_m": {
+        "max": [
+          60.538067507,
+          16.4,
+          40.059498081
+        ],
+        "min": [
+          42.75992225,
+          -2.0,
+          9.13255831
+        ]
+      }
+    },
+    {
+      "coverage_surface_count": 30,
+      "family": "RETAINING",
+      "input_socket": "span_start",
+      "module_id": "span/retaining",
+      "module_kind": "TERRAIN_SPAN",
+      "module_range": {
+        "family": "RETAINING",
+        "module_id": "span/retaining",
+        "module_kind": "TERRAIN_SPAN",
+        "triangle_count": 68,
+        "triangle_offset": 740,
+        "vertex_count": 44,
+        "vertex_offset": 440
+      },
+      "output_socket": "span_end",
+      "source_bounds_m": {
+        "max": [
+          24.0,
+          17.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -5.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 6679,
+          "path": "r0b_cp3/outputs/retaining/reference/neutral-mesh.json",
+          "sha256": "sha256:63cee46cde71f45880a9e9b49be42693b79a376afd4bd10d7b61ecb0cc6803fc"
+        },
+        "provider_receipt": {
+          "bytes": 3604,
+          "path": "r0b_cp3/outputs/retaining/reference/cad-provider-receipt.json",
+          "sha256": "sha256:878e7f876585d43a55e44911e2e5314a6ab34e2c19aeddfbee84d0afcbefa9f1"
+        },
+        "result": {
+          "bytes": 3151,
+          "path": "r0b_cp3/outputs/retaining/reference/result.json",
+          "sha256": "sha256:97a66b2799cfedbe2677599609824589854fe494730eb44ca2d89d680132e630"
+        },
+        "sockets": {
+          "bytes": 4477,
+          "path": "r0b_cp3/outputs/retaining/reference/interface-sockets.json",
+          "sha256": "sha256:6bdb91e52e0863fa969d662d71dbca19615aef6f1db1f650b68308243f5aee2c"
+        },
+        "source_dir": "r0b_cp3/outputs/retaining/reference",
+        "stored_copies": {
+          "bytes": 5493,
+          "path": "r0b_cp3/outputs/retaining/reference/stored-copies.json",
+          "sha256": "sha256:e2975b52d743668eb33f18f99cf4a0528f51b3ea0e16f5d4abee3172b67a6ef3"
+        }
+      },
+      "source_solid_count": 5,
+      "source_triangle_count": 68,
+      "source_vertex_count": 44,
+      "source_volume_m3": 2897.28,
+      "station": {
+        "end_m": 103.132741229,
+        "start_m": 79.132741229
+      },
+      "transform": {
+        "aligned_from_module": "span/stepped",
+        "aligned_from_socket": "span_end",
+        "aligned_to_socket": "span_start",
+        "heading_deg": 70.000000022,
+        "module_id": "span/retaining",
+        "source": "SOCKET_ALIGNMENT",
+        "translation_m": [
+          56.779297023,
+          -1.0,
+          38.69141751
+        ]
+      },
+      "transformed_socket_count": 8,
+      "world_bounds_m": {
+        "max": [
+          69.686243559,
+          16.4,
+          62.612120984
+        ],
+        "min": [
+          53.020526539,
+          -3.0,
+          36.981316795
+        ]
+      }
+    },
+    {
+      "coverage_surface_count": 30,
+      "family": "PROFILE_TRANSITION",
+      "input_socket": "incoming_span",
+      "module_id": "join/transition",
+      "module_kind": "JOIN",
+      "module_range": {
+        "family": "PROFILE_TRANSITION",
+        "module_id": "join/transition",
+        "module_kind": "JOIN",
+        "triangle_count": 100,
+        "triangle_offset": 808,
+        "vertex_count": 60,
+        "vertex_offset": 484
+      },
+      "output_socket": "outgoing_span",
+      "source_bounds_m": {
+        "max": [
+          30.0,
+          14.4,
+          5.0
+        ],
+        "min": [
+          18.0,
+          -2.0,
+          -5.0
+        ]
+      },
+      "source_refs": {
+        "neutral_mesh": {
+          "bytes": 8200,
+          "path": "r0b_cp2/outputs/transition/reference/neutral-mesh.json",
+          "sha256": "sha256:b884890ce44f3fcef7d9ab75f75b522044d3c7c4f7c0dda8d2b0ec0f3ebf868f"
+        },
+        "provider_receipt": {
+          "bytes": 4407,
+          "path": "r0b_cp2/outputs/transition/reference/cad-provider-receipt.json",
+          "sha256": "sha256:4375a7261c72f18639784e59c70571065d02ecf815886da5077e289dd5d18953"
+        },
+        "result": {
+          "bytes": 2485,
+          "path": "r0b_cp2/outputs/transition/reference/result.json",
+          "sha256": "sha256:eb63d968a736f6cfb4da9c4f0cd266809aab861679598d08867ed544e5068a2a"
+        },
+        "sockets": {
+          "bytes": 4626,
+          "path": "r0b_cp2/outputs/transition/reference/join-sockets.json",
+          "sha256": "sha256:5c2db54983c4ce3faf7b92e3838b2d61d9a66062be9c0de781b30395e6e63b73"
+        },
+        "source_dir": "r0b_cp2/outputs/transition/reference",
+        "stored_copies": {
+          "bytes": 4540,
+          "path": "r0b_cp2/outputs/transition/reference/stored-copies.json",
+          "sha256": "sha256:53d2d07c3199dfdf66268d7e1142d164792b9a0fa05767a990d723a1be01ea73"
+        }
+      },
+      "source_solid_count": 5,
+      "source_triangle_count": 100,
+      "source_vertex_count": 60,
+      "source_volume_m3": 1251.36,
+      "station": {
+        "anchor_m": 103.132741229
+      },
+      "transform": {
+        "aligned_from_module": "span/retaining",
+        "aligned_from_socket": "span_end",
+        "aligned_to_socket": "incoming_span",
+        "heading_deg": 70.000000022,
+        "module_id": "join/transition",
+        "source": "SOCKET_ALIGNMENT",
+        "translation_m": [
+          56.779297023,
+          2.0,
+          38.69141751
+        ]
+      },
+      "transformed_socket_count": 6,
+      "world_bounds_m": {
+        "max": [
+          71.738364417,
+          16.4,
+          68.592296852
+        ],
+        "min": [
+          59.176889113,
+          0.0,
+          54.237804115
+        ]
+      }
+    }
+  ],
+  "schema": "royal-capital.fortification.mixed-span-module-index/1"
+}

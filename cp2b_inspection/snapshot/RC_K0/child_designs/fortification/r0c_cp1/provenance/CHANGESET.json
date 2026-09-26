@@ -1,0 +1,27 @@
+{
+  "existing_runtime_reused": true,
+  "fixed_baseline": "RCF_D0_full.zip",
+  "fixed_baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+  "new_external_oss": [],
+  "non_goals": [
+    "TOWER_JOINS",
+    "BATTLEMENTS",
+    "INTERIORS",
+    "ROOF_REALIZATION",
+    "COLLISION",
+    "NAVIGATION",
+    "GODOT_IMPORT",
+    "FINAL_SURFACE_COVERAGE"
+  ],
+  "parent": "B4.zip",
+  "parent_claimed_sha256": "4f66c61f4f2280fbfdd81c0d3056f3f2b705dab4baece5c21a65b93e3bdfc641",
+  "schema": "royal-capital.fortification.r0c-cp1-changeset/1",
+  "scope": [
+    "ROUND_TOWER",
+    "SQUARE_TOWER",
+    "POLYGONAL_TOWER",
+    "BOUNDS_ATTACHMENT",
+    "FOUNDATION_SOCKETS"
+  ],
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0C-CP1"
+}

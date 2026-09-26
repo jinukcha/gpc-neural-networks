@@ -1,0 +1,8 @@
+{
+  "deleted": false,
+  "materialization_log": "reports/runtime-materialization-attempt-01-timeout.log",
+  "path": "/mnt/data/rcf_r0b_cp4_work/runtime_cp4_timeout_20260925191312",
+  "reused": false,
+  "schema": "royal-capital.fortification.runtime-timeout/1",
+  "status": "PRESERVED_PARTIAL_RUNTIME"
+}

@@ -1,0 +1,395 @@
+{
+  "budget": {
+    "max_artifact_bytes": 100000000,
+    "max_sections": 8,
+    "max_triangles": 500000,
+    "max_vertices": 500000
+  },
+  "family": "BEVEL",
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "incoming": {
+    "anchor_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "endpoint": "END",
+    "frame": {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    "sockets": {
+      "foundation": {
+        "frame": {
+          "inside": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "tangent": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          -1.0,
+          0.0
+        ],
+        "role": "FOUNDATION_INTERFACE",
+        "socket_id": "foundation_end"
+      },
+      "span": {
+        "frame": {
+          "inside": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "tangent": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          6.0,
+          0.0
+        ],
+        "role": "SPAN_JOIN",
+        "socket_id": "span_end"
+      },
+      "wall_walk": {
+        "frame": {
+          "inside": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "tangent": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          12.3,
+          0.0
+        ],
+        "role": "WALL_WALK_CONTINUATION",
+        "socket_id": "wall_walk_end"
+      }
+    },
+    "span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming",
+    "span_length_m": 24.0
+  },
+  "incoming_profile": {
+    "parts": [
+      {
+        "material_slot": "stone_foundation",
+        "part_id": "foundation",
+        "semantic_role": "FOUNDATION",
+        "y_max": 0.0,
+        "y_min": -2.0,
+        "z_max": 4.0,
+        "z_min": -4.0
+      },
+      {
+        "material_slot": "stone_wall",
+        "part_id": "wall_body",
+        "semantic_role": "WALL_BODY",
+        "y_max": 12.0,
+        "y_min": 0.0,
+        "z_max": 3.0,
+        "z_min": -3.0
+      },
+      {
+        "material_slot": "stone_walk",
+        "part_id": "wall_walk",
+        "semantic_role": "WALL_WALK",
+        "y_max": 12.6,
+        "y_min": 12.0,
+        "z_max": 3.2,
+        "z_min": -3.2
+      },
+      {
+        "material_slot": "stone_parapet",
+        "part_id": "inner_parapet",
+        "semantic_role": "INNER_PARAPET",
+        "y_max": 14.4,
+        "y_min": 12.6,
+        "z_max": 3.2,
+        "z_min": 2.4
+      },
+      {
+        "material_slot": "stone_parapet",
+        "part_id": "outer_parapet",
+        "semantic_role": "OUTER_PARAPET",
+        "y_max": 14.4,
+        "y_min": 12.6,
+        "z_max": -2.4,
+        "z_min": -3.2
+      }
+    ],
+    "profile_id": "profile/caelmere/standard@1"
+  },
+  "join_id": "fortification/caelmere/r0b/bevel-join-001",
+  "outgoing": {
+    "anchor_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "endpoint": "START",
+    "frame": {
+      "inside": [
+        -0.5,
+        0.0,
+        0.866025404
+      ],
+      "orientation_determinant": 1.0,
+      "outside": [
+        0.5,
+        0.0,
+        -0.866025404
+      ],
+      "tangent": [
+        0.866025404,
+        0.0,
+        0.5
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    "sockets": {
+      "foundation": {
+        "frame": {
+          "inside": [
+            -0.5,
+            0.0,
+            0.866025404
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.5,
+            0.0,
+            -0.866025404
+          ],
+          "tangent": [
+            0.866025404,
+            0.0,
+            0.5
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          -1.0,
+          0.0
+        ],
+        "role": "FOUNDATION_INTERFACE",
+        "socket_id": "foundation_start"
+      },
+      "span": {
+        "frame": {
+          "inside": [
+            -0.5,
+            0.0,
+            0.866025404
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.5,
+            0.0,
+            -0.866025404
+          ],
+          "tangent": [
+            0.866025404,
+            0.0,
+            0.5
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          6.0,
+          0.0
+        ],
+        "role": "SPAN_JOIN",
+        "socket_id": "span_start"
+      },
+      "wall_walk": {
+        "frame": {
+          "inside": [
+            -0.5,
+            0.0,
+            0.866025404
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.5,
+            0.0,
+            -0.866025404
+          ],
+          "tangent": [
+            0.866025404,
+            0.0,
+            0.5
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          12.3,
+          0.0
+        ],
+        "role": "WALL_WALK_CONTINUATION",
+        "socket_id": "wall_walk_start"
+      }
+    },
+    "span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing",
+    "span_length_m": 24.0
+  },
+  "outgoing_profile": {
+    "parts": [
+      {
+        "material_slot": "stone_foundation",
+        "part_id": "foundation",
+        "semantic_role": "FOUNDATION",
+        "y_max": 0.0,
+        "y_min": -2.0,
+        "z_max": 4.0,
+        "z_min": -4.0
+      },
+      {
+        "material_slot": "stone_wall",
+        "part_id": "wall_body",
+        "semantic_role": "WALL_BODY",
+        "y_max": 12.0,
+        "y_min": 0.0,
+        "z_max": 3.0,
+        "z_min": -3.0
+      },
+      {
+        "material_slot": "stone_walk",
+        "part_id": "wall_walk",
+        "semantic_role": "WALL_WALK",
+        "y_max": 12.6,
+        "y_min": 12.0,
+        "z_max": 3.2,
+        "z_min": -3.2
+      },
+      {
+        "material_slot": "stone_parapet",
+        "part_id": "inner_parapet",
+        "semantic_role": "INNER_PARAPET",
+        "y_max": 14.4,
+        "y_min": 12.6,
+        "z_max": 3.2,
+        "z_min": 2.4
+      },
+      {
+        "material_slot": "stone_parapet",
+        "part_id": "outer_parapet",
+        "semantic_role": "OUTER_PARAPET",
+        "y_max": 14.4,
+        "y_min": 12.6,
+        "z_max": -2.4,
+        "z_min": -3.2
+      }
+    ],
+    "profile_id": "profile/caelmere/standard@1"
+  },
+  "overlap": {
+    "bevel_setback_m": 5.0,
+    "incoming_m": 10.0,
+    "max_m": 10.0,
+    "outgoing_m": 10.0
+  },
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.wall-join/1",
+  "tolerances": {
+    "angular_rad": 1e-06,
+    "linear_m": 1e-06,
+    "mesh_round_digits": 9,
+    "socket_angle_rad": 1e-06,
+    "socket_position_m": 1e-06,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  }
+}

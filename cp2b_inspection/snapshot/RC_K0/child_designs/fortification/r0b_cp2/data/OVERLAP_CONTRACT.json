@@ -1,0 +1,11 @@
+{
+  "schema": "royal-capital.fortification.r0b-cp2-overlap-contract/1",
+  "minimum_overlap_m": 0.25,
+  "maximum_overlap_m": 12.0,
+  "maximum_source_span_ratio": 0.5,
+  "policy": "CENTERLINE_SECTION_INTERVAL_WITH_CONSERVATIVE_PROFILE_ENVELOPE",
+  "miter_apex": "ANCHOR_WITH_BISECTOR_PROFILE_EXPANSION",
+  "bevel": "INCOMING_AND_OUTGOING_SETBACK_CUT_SECTIONS",
+  "profile_transition": "LINEAR_PROFILE_INTERPOLATION_AT_ANCHOR",
+  "partial_source_span_rewrite": false
+}

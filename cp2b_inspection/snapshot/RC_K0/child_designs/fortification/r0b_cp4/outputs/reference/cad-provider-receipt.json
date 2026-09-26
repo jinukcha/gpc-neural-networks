@@ -1,0 +1,74 @@
+{
+  "capabilities": [
+    "fortification.mixed_span_assembly@1",
+    "fortification.segmentation_determinism@1",
+    "fortification.source_coverage@1",
+    "fortification.exact_module_transform@1"
+  ],
+  "connection_count": 6,
+  "fixture_digest": "sha256:36e56a758d562aaf3363885d60880aad182b444e9f882dca26be5b5114dc08ce",
+  "global_boolean_used": false,
+  "module_count": 7,
+  "module_source_digests": {
+    "join/bevel": {
+      "neutral_mesh": "sha256:d9e66b885a63a45f1fee86c8dfc5132da911559c95ba3e38288a3f94fb22474b",
+      "provider_receipt": "sha256:bb27eeeef7400cf6b06ce4e26caf6792b673492c2bd2a0c96e295e5500d42d20",
+      "result": "sha256:9be1b595e64c2f5f8e64eb7c65bfd458736289dba887ca9354231515a600c0ca"
+    },
+    "join/miter": {
+      "neutral_mesh": "sha256:ae8be5380035d76e75320eee9db83a6129871601c0090f6250cb2abf3dc59b2a",
+      "provider_receipt": "sha256:59a485c9f0d95efb4a734986838de387fb0568a9d157ec405b445838acad226b",
+      "result": "sha256:f4c166aad1df2245d0803419e729a1358e21f4431249d4ac263a9e799736b352"
+    },
+    "join/transition": {
+      "neutral_mesh": "sha256:b884890ce44f3fcef7d9ab75f75b522044d3c7c4f7c0dda8d2b0ec0f3ebf868f",
+      "provider_receipt": "sha256:4375a7261c72f18639784e59c70571065d02ecf815886da5077e289dd5d18953",
+      "result": "sha256:eb63d968a736f6cfb4da9c4f0cd266809aab861679598d08867ed544e5068a2a"
+    },
+    "span/curved": {
+      "neutral_mesh": "sha256:21781d0c24aec04f31e4f76b55a2411218b87ff3f21dd6b92c1f25dd4f89f28f",
+      "provider_receipt": "sha256:88a791c859f26845c2385fe74479e7895461e5b09e24f17a28146d571e0d2517",
+      "result": "sha256:5b1081352a342346ae4871832076e5bef452f6c0f6fc556ae52ab0c80b2bde8d"
+    },
+    "span/retaining": {
+      "neutral_mesh": "sha256:63cee46cde71f45880a9e9b49be42693b79a376afd4bd10d7b61ecb0cc6803fc",
+      "provider_receipt": "sha256:878e7f876585d43a55e44911e2e5314a6ab34e2c19aeddfbee84d0afcbefa9f1",
+      "result": "sha256:97a66b2799cfedbe2677599609824589854fe494730eb44ca2d89d680132e630"
+    },
+    "span/stepped": {
+      "neutral_mesh": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c",
+      "provider_receipt": "sha256:4c2522084ba6b47080587ac70cd41bb1df01da88e1206a840c7d89b43c6dc624",
+      "result": "sha256:d0c019f50412d913761c16b825d2baf5ebab62f5bb43575e3b5d7374b1a9d738"
+    },
+    "span/straight": {
+      "neutral_mesh": "sha256:4860acac80995d57352628d4062bbfd0de19c996b1e692a2abe536ccece8634d",
+      "provider_receipt": "sha256:bb90576338a4c71ce002dd283061e06b331ce35b0d682565f5f73fec3baedb68",
+      "result": "sha256:5d7a6ddf47aa4ec4f3109792db8ec232fc923bc0ed9cabe4a0bebf528f088a0f"
+    }
+  },
+  "output_digests": {
+    "instance-transforms.json": "sha256:929f0dc4378e8c1cf1ea0e5746d0934a6f1b0f455bb86ef8c68b5588d7d33574",
+    "mixed-span-plan.json": "sha256:2fd4c988e6e124870a029a329da2e72dcac357fd42300d3214153e5a74a3fa0a",
+    "module-index.json": "sha256:3562892d9256abba9a7ffa6b4ae159fdf3b226d1e7278c7852025d5a476b842e",
+    "module-sockets.json": "sha256:f4b2e570fa4d037d5b4735085776bf277c12495f2001bce57e6b1c9075729ac3",
+    "neutral-mesh.json": "sha256:e971a3e3b662d0f807e40d5f56957187f54a99383024970225e4d4e3a391cc8e",
+    "segmentation-plan.json": "sha256:83c86741a67b0136ac719df3a9d782d50861aa101243c1ef2abbdac99224db73",
+    "socket-alignment.json": "sha256:54c3716598a34c051fa1cdc5acd3831859807a5b31dc62ff1cce9bdbb8ba879d",
+    "source-coverage-map.json": "sha256:2eec794855c344e7eb3f2c4534b6df1301e222708f57e79f6adcf42dc5db8b3d"
+  },
+  "producer_id": "royal-capital/fortification/mixed-span-assembly",
+  "producer_revision": "r0b-cp4.1",
+  "producer_source_digest": "sha256:0d0be0407f05692ffc6301c3ea5d80316c2dedd6c1da8d6240721070bfc8a66d",
+  "provider_face_identity_used": false,
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.mixed-span-receipt/1",
+  "segmentation_digest": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+  "socket_alignment_digest": "sha256:54c3716598a34c051fa1cdc5acd3831859807a5b31dc62ff1cce9bdbb8ba879d",
+  "source_coverage_digest": "sha256:2eec794855c344e7eb3f2c4534b6df1301e222708f57e79f6adcf42dc5db8b3d",
+  "status": "PASS"
+}

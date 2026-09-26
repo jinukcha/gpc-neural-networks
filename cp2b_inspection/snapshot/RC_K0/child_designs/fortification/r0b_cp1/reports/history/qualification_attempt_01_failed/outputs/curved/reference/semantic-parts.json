@@ -1,0 +1,156 @@
+{
+  "parts": [
+    {
+      "bounds_m": {
+        "max": [
+          26.0,
+          0.0,
+          9.894882234
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "material_slot": "stone_foundation",
+      "part_id": "foundation",
+      "provider_receipt_ref": {
+        "bytes": 859,
+        "path": "parts/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:e560a3e425b98183665ca8225b58ae257972bac865cc70c4fdabfefe05bc5983"
+      },
+      "provider_result_ref": {
+        "bytes": 1237,
+        "path": "parts/foundation/result.json",
+        "sha256": "sha256:1d6b0f256ac66ec54bc8d9424489ad207b0a2a4e5b13b567957f921e2f7529e8"
+      },
+      "semantic_role": "FOUNDATION",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "theoretical_volume_m3": 402.123859659,
+      "volume_m3": 401.613662575
+    },
+    {
+      "bounds_m": {
+        "max": [
+          25.5,
+          12.0,
+          9.02885683
+        ],
+        "min": [
+          0.0,
+          0.0,
+          -3.0
+        ]
+      },
+      "material_slot": "stone_wall",
+      "part_id": "wall_body",
+      "provider_receipt_ref": {
+        "bytes": 858,
+        "path": "parts/wall_body/cad-provider-receipt.json",
+        "sha256": "sha256:acdb253446605e60767a34fe85b62dbb3a24fdf3a6b185a87da30f727aa63744"
+      },
+      "provider_result_ref": {
+        "bytes": 1236,
+        "path": "parts/wall_body/result.json",
+        "sha256": "sha256:4f6ec91bc356647a9d105de3cb720a78f2220cdc9e8edb8fe80dc610269d0549"
+      },
+      "semantic_role": "WALL_BODY",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "theoretical_volume_m3": 1809.557368468,
+      "volume_m3": 1807.26148159
+    },
+    {
+      "bounds_m": {
+        "max": [
+          25.6,
+          12.6,
+          9.202061911
+        ],
+        "min": [
+          0.0,
+          12.0,
+          -3.2
+        ]
+      },
+      "material_slot": "stone_walk",
+      "part_id": "wall_walk",
+      "provider_receipt_ref": {
+        "bytes": 858,
+        "path": "parts/wall_walk/cad-provider-receipt.json",
+        "sha256": "sha256:cd496afc51ae60f10d4cfe7bef4e2119a93e6c77b4bf8baf225be0dea86074f7"
+      },
+      "provider_result_ref": {
+        "bytes": 1233,
+        "path": "parts/wall_walk/result.json",
+        "sha256": "sha256:1a638eaae99272bbcd820a388c197e52f34c85776931caafd986051fd676ad29"
+      },
+      "semantic_role": "WALL_WALK",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "theoretical_volume_m3": 96.509726318,
+      "volume_m3": 96.387279018
+    },
+    {
+      "bounds_m": {
+        "max": [
+          22.8,
+          14.4,
+          9.202061911
+        ],
+        "min": [
+          0.0,
+          12.6,
+          2.4
+        ]
+      },
+      "material_slot": "stone_parapet",
+      "part_id": "inner_parapet",
+      "provider_receipt_ref": {
+        "bytes": 862,
+        "path": "parts/inner_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:12c5ddd07b35f4347ee87270ecc05108958b2220430be6018deed8ac9d5f441a"
+      },
+      "provider_result_ref": {
+        "bytes": 1236,
+        "path": "parts/inner_parapet/result.json",
+        "sha256": "sha256:1adad9e026113cf1879dfb53ca6bdb8e7b9960b1e17699f9adcea7380b57965d"
+      },
+      "semantic_role": "INNER_PARAPET",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "theoretical_volume_m3": 34.079997106,
+      "volume_m3": 34.036757904
+    },
+    {
+      "bounds_m": {
+        "max": [
+          25.6,
+          14.4,
+          4.352319648
+        ],
+        "min": [
+          0.0,
+          12.6,
+          -3.2
+        ]
+      },
+      "material_slot": "stone_parapet",
+      "part_id": "outer_parapet",
+      "provider_receipt_ref": {
+        "bytes": 862,
+        "path": "parts/outer_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:a1a0f790b27d2af0b5298cefafc2212226957501f76ba819ed6166c997d664f4"
+      },
+      "provider_result_ref": {
+        "bytes": 1234,
+        "path": "parts/outer_parapet/result.json",
+        "sha256": "sha256:17f58e05ef93f3e520cb7188ce99d9e8f7c4059fa823fdafaab6ad29615506aa"
+      },
+      "semantic_role": "OUTER_PARAPET",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "theoretical_volume_m3": 38.302297633,
+      "volume_m3": 38.25370136
+    }
+  ],
+  "schema": "royal-capital.fortification.path-wall-span-semantic-parts/1",
+  "span_id": "fortification/caelmere/r0b/curved-span-001"
+}

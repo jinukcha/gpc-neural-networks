@@ -1,0 +1,18 @@
+{
+  "schema": "royal-capital.fortification.foundation-interface-contract/1",
+  "project_unit": "METER",
+  "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "contact_status": "PASS_ONLY_WHEN_ALL_REQUIRED_SAMPLES_WITHIN_GAP_ENVELOPE",
+  "terrain_mutation": false,
+  "evidence": [
+    "terrain_profile_digest",
+    "station_interval",
+    "terrain_contact_elevation",
+    "foundation_contact_elevation",
+    "embedment_depth",
+    "contact_area",
+    "unsupported_gap",
+    "step_or_retaining_transition"
+  ],
+  "failure_policy": "FAIL_CLOSED"
+}

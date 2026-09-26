@@ -1,0 +1,10 @@
+{
+  "schema": "royal-capital.fortification.centerline-contract/1",
+  "supported_kinds": ["LINE", "CIRCULAR_ARC"],
+  "plane": "XZ_HORIZONTAL_Y_CONSTANT",
+  "maximum_span_length_m": 60.0,
+  "maximum_arc_sweep_deg": 35.0,
+  "curve_sample_tolerance_domain_m": [0.01, 0.25],
+  "provider_curve_identity_is_authoritative": false,
+  "stable_identity": "canonical project-space samples and digest"
+}

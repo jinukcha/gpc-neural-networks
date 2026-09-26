@@ -1,0 +1,156 @@
+{
+  "join_id": "fortification/caelmere/r0b/miter-join-001",
+  "parts": [
+    {
+      "bounds_m": {
+        "max": [
+          32.573054736,
+          0.0,
+          5.328416436
+        ],
+        "min": [
+          16.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "incoming_material_slot": "stone_foundation",
+      "outgoing_material_slot": "stone_foundation",
+      "part_id": "foundation",
+      "provider_receipt_ref": {
+        "bytes": 1016,
+        "path": "parts/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:562054c0809284fd93544e44efb6969f0b92d6cb832bfcacb7b4fcf613584dae"
+      },
+      "provider_result_ref": {
+        "bytes": 3220,
+        "path": "parts/foundation/result.json",
+        "sha256": "sha256:96cce010113144ce5ea0e206277b77f0a0c631da2e3c6d10b5babd13b8518942"
+      },
+      "semantic_role": "FOUNDATION",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "volume_m3": 256.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          32.399406558,
+          12.0,
+          4.343608683
+        ],
+        "min": [
+          16.0,
+          0.0,
+          -3.0
+        ]
+      },
+      "incoming_material_slot": "stone_wall",
+      "outgoing_material_slot": "stone_wall",
+      "part_id": "wall_body",
+      "provider_receipt_ref": {
+        "bytes": 1015,
+        "path": "parts/wall_body/cad-provider-receipt.json",
+        "sha256": "sha256:c58e6aa9ee085e55282f3e6e6637ce74a859b03399f61a072f0155f5fd072143"
+      },
+      "provider_result_ref": {
+        "bytes": 3199,
+        "path": "parts/wall_body/result.json",
+        "sha256": "sha256:f6bb26a73b4163a387a20936b8a88e67518fb7aaec38ba4f3c5e39e50edf554c"
+      },
+      "semantic_role": "WALL_BODY",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "volume_m3": 1152.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          32.434136194,
+          12.6,
+          4.540570234
+        ],
+        "min": [
+          16.0,
+          12.0,
+          -3.2
+        ]
+      },
+      "incoming_material_slot": "stone_walk",
+      "outgoing_material_slot": "stone_walk",
+      "part_id": "wall_walk",
+      "provider_receipt_ref": {
+        "bytes": 1015,
+        "path": "parts/wall_walk/cad-provider-receipt.json",
+        "sha256": "sha256:d8964c5b4315039f5292f9530ed181c7fe8e2b3f592b1556c062a7d46f7f66d3"
+      },
+      "provider_result_ref": {
+        "bytes": 3197,
+        "path": "parts/wall_walk/result.json",
+        "sha256": "sha256:88127ae1579ac9d73369008ffd5af4596f071129eb08717bd0ccffd673dd54e3"
+      },
+      "semantic_role": "WALL_WALK",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "volume_m3": 61.44
+    },
+    {
+      "bounds_m": {
+        "max": [
+          31.461706397,
+          14.4,
+          4.540570234
+        ],
+        "min": [
+          16.0,
+          12.6,
+          2.4
+        ]
+      },
+      "incoming_material_slot": "stone_parapet",
+      "outgoing_material_slot": "stone_parapet",
+      "part_id": "inner_parapet",
+      "provider_receipt_ref": {
+        "bytes": 1019,
+        "path": "parts/inner_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:8b241c4ca93d4c47b644b85e9b78f18956d87a10f0a643e3e91f60308e4cfbbd"
+      },
+      "provider_result_ref": {
+        "bytes": 3251,
+        "path": "parts/inner_parapet/result.json",
+        "sha256": "sha256:2bff7b6269b2a41cc20f17c26c20d31e19cb3d4477bd2153901f77d2941202ea"
+      },
+      "semantic_role": "INNER_PARAPET",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "volume_m3": 22.334491416
+    },
+    {
+      "bounds_m": {
+        "max": [
+          32.434136194,
+          14.4,
+          -0.974353183
+        ],
+        "min": [
+          16.0,
+          12.6,
+          -3.2
+        ]
+      },
+      "incoming_material_slot": "stone_parapet",
+      "outgoing_material_slot": "stone_parapet",
+      "part_id": "outer_parapet",
+      "provider_receipt_ref": {
+        "bytes": 1019,
+        "path": "parts/outer_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:bb76069b648af029eab8a49680ad33cafd6d351923d3546c39abbd7ebfa3674f"
+      },
+      "provider_result_ref": {
+        "bytes": 3260,
+        "path": "parts/outer_parapet/result.json",
+        "sha256": "sha256:8018beb718d43556f856ad56c6166ce5118ebfb7192b2cadfc9ecce4c0e49c29"
+      },
+      "semantic_role": "OUTER_PARAPET",
+      "surface_coverage": "DEFERRED_TO_R0B_CP4",
+      "volume_m3": 23.745508584
+    }
+  ],
+  "schema": "royal-capital.fortification.wall-join-semantic-parts/1"
+}

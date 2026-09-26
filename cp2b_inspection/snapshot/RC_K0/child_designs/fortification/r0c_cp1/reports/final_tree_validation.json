@@ -1,0 +1,93 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "required_family_outputs",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "qualification_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "focused_validation_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "unit_tests_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_gates_13",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_wheels_58",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "r0c_cp1_status",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "r0b_remains_closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "surface_coverage_not_claimed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "tower_joins_not_claimed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "godot_not_claimed",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "generated_cache_absent",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "json_parse",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "csv_parse",
+      "pass": true
+    },
+    {
+      "detail": {
+        "extra": [],
+        "mismatched": [],
+        "missing": [],
+        "registry_entries": 1416,
+        "status": "PASS",
+        "tree_files_including_registry": 1417
+      },
+      "name": "closed_world_registry",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0c-cp1-final-tree-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 15,
+    "total": 15
+  }
+}

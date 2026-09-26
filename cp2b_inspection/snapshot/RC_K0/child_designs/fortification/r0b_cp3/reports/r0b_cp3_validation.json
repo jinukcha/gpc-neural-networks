@@ -1,0 +1,834 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "families": {
+          "retaining": {
+            "bounds_m": {
+              "max": [
+                24.0,
+                17.4,
+                4.0
+              ],
+              "min": [
+                0.0,
+                -2.0,
+                -5.0
+              ]
+            },
+            "byte_identical": true,
+            "contact_ratio": 1.0,
+            "family": "RETAINING",
+            "files_compared": 38,
+            "foundation_interface_status": "PASS",
+            "maximum_gap_m": 0.0,
+            "maximum_step_height_m": 0.0,
+            "overall_centerline_grade": 0.0,
+            "reference_digest": "sha256:d8a106d210b2e140a1630b401ffa05aabd26c450ed9f22d7f6a8d5874e55b397",
+            "retained_height_m": 3.0,
+            "segment_count": 1,
+            "socket_count": 8,
+            "solid_count": 5,
+            "status": "PASS",
+            "stored_copy_count": 10,
+            "triangle_count": 68,
+            "unit_count": 5,
+            "vertex_count": 44,
+            "volume_m3": 2897.28
+          },
+          "stepped": {
+            "bounds_m": {
+              "max": [
+                30.0,
+                16.4,
+                4.0
+              ],
+              "min": [
+                0.0,
+                -2.0,
+                -4.0
+              ]
+            },
+            "byte_identical": true,
+            "contact_ratio": 1.0,
+            "family": "TERRAIN_STEPPED",
+            "files_compared": 88,
+            "foundation_interface_status": "PASS",
+            "maximum_gap_m": 0.0,
+            "maximum_step_height_m": 1.0,
+            "overall_centerline_grade": 0.066666666667,
+            "reference_digest": "sha256:0f25763ecf2fe1a3e6b36c8b39f11d06810b4e3c3e302d982868346d516fc166",
+            "retained_height_m": 0.0,
+            "segment_count": 3,
+            "socket_count": 14,
+            "solid_count": 15,
+            "status": "PASS",
+            "stored_copy_count": 30,
+            "triangle_count": 180,
+            "unit_count": 15,
+            "vertex_count": 120,
+            "volume_m3": 2841.6
+          }
+        },
+        "negative": [
+          {
+            "case": "overall_grade_exceeded",
+            "code": "GRADE_OUT_OF_DOMAIN",
+            "message": "overall grade 0.13333333333333333 exceeds contract",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "step_height_exceeded",
+            "code": "GRADE_OUT_OF_DOMAIN",
+            "message": "step height 3.0 exceeds contract",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "foundation_gap_exceeded",
+            "code": "FOUNDATION_GAP_OUT_OF_DOMAIN",
+            "message": "terrain contact datum offset 0.05 exceeds max gap 0.02",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "terrace_coverage_gap",
+            "code": "INVALID_TERRAIN_PROFILE",
+            "message": "terrace coverage gap/overlap at 11.0, expected 10.0",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "embedment_out_of_domain",
+            "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+            "message": "foundation embedment outside [1,8] or exceeds maximum",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "retaining_upper_embedment_exceeded",
+            "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+            "message": "inside embedment exceeds maximum",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "stale_terrain_digest",
+            "code": "STALE_INPUT_REFERENCE",
+            "message": "terrain profile digest mismatch expected=sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67 observed=sha256:2522bf68f35f9b8cb98b38ee2755311ca104d15818ad7456089a3eb8f7ec51e7",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "runtime_mismatch",
+            "code": "CAD_RUNTIME_VERSION_MISMATCH",
+            "message": "runtime mismatch: {'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "unit_budget_exceeded",
+            "code": "GEOMETRY_BUDGET_EXCEEDED",
+            "message": "required units 15 exceed budget",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "retaining_height_exceeded",
+            "code": "RETAINING_HEIGHT_OUT_OF_DOMAIN",
+            "message": "retained height 7.0 outside [0.25,6]",
+            "status": "PASS_EXPECTED_REJECTION"
+          }
+        ],
+        "negative_count": 10,
+        "schema": "royal-capital.fortification.r0b-cp3-qualification/1",
+        "status": "PASS"
+      },
+      "name": "qualification",
+      "pass": true
+    },
+    {
+      "detail": [
+        "retaining",
+        "stepped"
+      ],
+      "name": "families",
+      "pass": true
+    },
+    {
+      "detail": {
+        "retaining": {
+          "bounds_m": {
+            "max": [
+              24.0,
+              17.4,
+              4.0
+            ],
+            "min": [
+              0.0,
+              -2.0,
+              -5.0
+            ]
+          },
+          "byte_identical": true,
+          "contact_ratio": 1.0,
+          "family": "RETAINING",
+          "files_compared": 38,
+          "foundation_interface_status": "PASS",
+          "maximum_gap_m": 0.0,
+          "maximum_step_height_m": 0.0,
+          "overall_centerline_grade": 0.0,
+          "reference_digest": "sha256:d8a106d210b2e140a1630b401ffa05aabd26c450ed9f22d7f6a8d5874e55b397",
+          "retained_height_m": 3.0,
+          "segment_count": 1,
+          "socket_count": 8,
+          "solid_count": 5,
+          "status": "PASS",
+          "stored_copy_count": 10,
+          "triangle_count": 68,
+          "unit_count": 5,
+          "vertex_count": 44,
+          "volume_m3": 2897.28
+        },
+        "stepped": {
+          "bounds_m": {
+            "max": [
+              30.0,
+              16.4,
+              4.0
+            ],
+            "min": [
+              0.0,
+              -2.0,
+              -4.0
+            ]
+          },
+          "byte_identical": true,
+          "contact_ratio": 1.0,
+          "family": "TERRAIN_STEPPED",
+          "files_compared": 88,
+          "foundation_interface_status": "PASS",
+          "maximum_gap_m": 0.0,
+          "maximum_step_height_m": 1.0,
+          "overall_centerline_grade": 0.066666666667,
+          "reference_digest": "sha256:0f25763ecf2fe1a3e6b36c8b39f11d06810b4e3c3e302d982868346d516fc166",
+          "retained_height_m": 0.0,
+          "segment_count": 3,
+          "socket_count": 14,
+          "solid_count": 15,
+          "status": "PASS",
+          "stored_copy_count": 30,
+          "triangle_count": 180,
+          "unit_count": 15,
+          "vertex_count": 120,
+          "volume_m3": 2841.6
+        }
+      },
+      "name": "clean_replay",
+      "pass": true
+    },
+    {
+      "detail": [
+        {
+          "case": "overall_grade_exceeded",
+          "code": "GRADE_OUT_OF_DOMAIN",
+          "message": "overall grade 0.13333333333333333 exceeds contract",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "step_height_exceeded",
+          "code": "GRADE_OUT_OF_DOMAIN",
+          "message": "step height 3.0 exceeds contract",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "foundation_gap_exceeded",
+          "code": "FOUNDATION_GAP_OUT_OF_DOMAIN",
+          "message": "terrain contact datum offset 0.05 exceeds max gap 0.02",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "terrace_coverage_gap",
+          "code": "INVALID_TERRAIN_PROFILE",
+          "message": "terrace coverage gap/overlap at 11.0, expected 10.0",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "embedment_out_of_domain",
+          "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+          "message": "foundation embedment outside [1,8] or exceeds maximum",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "retaining_upper_embedment_exceeded",
+          "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+          "message": "inside embedment exceeds maximum",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "stale_terrain_digest",
+          "code": "STALE_INPUT_REFERENCE",
+          "message": "terrain profile digest mismatch expected=sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67 observed=sha256:2522bf68f35f9b8cb98b38ee2755311ca104d15818ad7456089a3eb8f7ec51e7",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "runtime_mismatch",
+          "code": "CAD_RUNTIME_VERSION_MISMATCH",
+          "message": "runtime mismatch: {'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "unit_budget_exceeded",
+          "code": "GEOMETRY_BUDGET_EXCEEDED",
+          "message": "required units 15 exceed budget",
+          "status": "PASS_EXPECTED_REJECTION"
+        },
+        {
+          "case": "retaining_height_exceeded",
+          "code": "RETAINING_HEIGHT_OUT_OF_DOMAIN",
+          "message": "retained height 7.0 outside [0.25,6]",
+          "status": "PASS_EXPECTED_REJECTION"
+        }
+      ],
+      "name": "negative_gates",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_typed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 3609,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:4c2522084ba6b47080587ac70cd41bb1df01da88e1206a840c7d89b43c6dc624"
+          },
+          "canonical-terrain-profile.json": {
+            "bytes": 1395,
+            "path": "canonical-terrain-profile.json",
+            "sha256": "sha256:59df92c46c9e7ea45aa8ec4b28979df74332b47b270a3dca838f1c24fb45dad2"
+          },
+          "construction-units.json": {
+            "bytes": 17537,
+            "path": "construction-units.json",
+            "sha256": "sha256:a6d00509a179613bee2d062a29db44d5385342c07698aa90c68170d2282fae7f"
+          },
+          "contact-evidence.json": {
+            "bytes": 4385,
+            "path": "contact-evidence.json",
+            "sha256": "sha256:8928daaa71d46f17af98c0b842c9233a24e07183478d70b922147a1a9766e9c6"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 890,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:437f8b53e6def5c6c19d6f916abee2fc26ea2ea890b8d6bdd9c868187337982b"
+          },
+          "foundation-interface.json": {
+            "bytes": 3252,
+            "path": "foundation-interface.json",
+            "sha256": "sha256:194ce3e9a69fd1b16da5e0201697e13dca47469059e91dff55fe2c86009ef6fa"
+          },
+          "grade-evidence.json": {
+            "bytes": 835,
+            "path": "grade-evidence.json",
+            "sha256": "sha256:87214a149146d397e3c39b1f009f22311d822e398467f6d66243a1b2e57668e6"
+          },
+          "interface-sockets.json": {
+            "bytes": 7824,
+            "path": "interface-sockets.json",
+            "sha256": "sha256:3a7fc42d1c21c1b662e35c7281bde0a67630062981ee4ca761ab1b94971173a6"
+          },
+          "neutral-mesh.json": {
+            "bytes": 17773,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c"
+          },
+          "semantic-parts.json": {
+            "bytes": 10619,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:f6c15ebee22556dfc544579c2e7cb76b2b9895c3e4b3c3ba1f8b0f1c68c8f2ac"
+          },
+          "stored-copies.json": {
+            "bytes": 16065,
+            "path": "stored-copies.json",
+            "sha256": "sha256:8debac166b44a726f2f5dd821b4c821e4dd916b0b66afdbf617cf8485ba2a313"
+          },
+          "terrain-span-plan.json": {
+            "bytes": 1274,
+            "path": "terrain-span-plan.json",
+            "sha256": "sha256:d764dec7e42ec539ec0a55438ed0f09f38a4b0e118941ca818c3f105999c25a7"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            30.0,
+            16.4,
+            4.0
+          ],
+          "min": [
+            0.0,
+            -2.0,
+            -4.0
+          ]
+        },
+        "contact_evidence_status": "PASS",
+        "failure": null,
+        "family": "TERRAIN_STEPPED",
+        "foundation_interface_status": "PASS",
+        "geometry_route": "BOUNDED_TERRACE_SEGMENT_PROFILE_EXTRUSIONS",
+        "grade_evidence_status": "PASS",
+        "maximum_embedment_depth_m": 2.0,
+        "maximum_gap_m": 0.0,
+        "maximum_step_height_m": 1.0,
+        "overall_centerline_grade": 0.066666666667,
+        "part_count": 5,
+        "retained_height_m": 0.0,
+        "schema": "royal-capital.fortification.terrain-span-result/1",
+        "segment_count": 3,
+        "socket_count": 14,
+        "solid_count": 15,
+        "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+        "status": "SUCCEEDED",
+        "terrain_mutation": false,
+        "triangle_count": 180,
+        "unit_count": 15,
+        "vertex_count": 120,
+        "volume_m3": 2841.6
+      },
+      "name": "stepped_status",
+      "pass": true
+    },
+    {
+      "detail": "TERRAIN_STEPPED",
+      "name": "stepped_family",
+      "pass": true
+    },
+    {
+      "detail": 3,
+      "name": "stepped_segments",
+      "pass": true
+    },
+    {
+      "detail": 15,
+      "name": "stepped_units",
+      "pass": true
+    },
+    {
+      "detail": 15,
+      "name": "stepped_solid_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_parts",
+      "pass": true
+    },
+    {
+      "detail": 14,
+      "name": "stepped_sockets",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_socket_unique",
+      "pass": true
+    },
+    {
+      "detail": 30,
+      "name": "stepped_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_stored_formats",
+      "pass": true
+    },
+    {
+      "detail": {
+        "interface_count": 3,
+        "maximum_embedment_depth_m": 2.0,
+        "maximum_unsupported_gap_m": 0.0,
+        "retained_height_m": 0.0,
+        "status": "PASS",
+        "terrain_mutation": false,
+        "total_contact_area_m2": 240.0,
+        "transition_count": 2
+      },
+      "name": "stepped_interface",
+      "pass": true
+    },
+    {
+      "detail": 240.0,
+      "name": "stepped_contact_area",
+      "pass": true
+    },
+    {
+      "detail": {
+        "contact_count": 15,
+        "contact_ratio": 1.0,
+        "maximum_allowed_gap_m": 0.02,
+        "maximum_gap_m": 0.0,
+        "sample_count": 15,
+        "status": "PASS"
+      },
+      "name": "stepped_gap",
+      "pass": true
+    },
+    {
+      "detail": 2.0,
+      "name": "stepped_embedment",
+      "pass": true
+    },
+    {
+      "detail": {
+        "axis_length_m": 30.0,
+        "equivalent_cross_slope_ratio": 0.0,
+        "family": "TERRAIN_STEPPED",
+        "maximum_allowed_centerline_grade": 0.12,
+        "maximum_allowed_step_height_m": 2.5,
+        "maximum_platform_grade": 0.0,
+        "maximum_step_height_m": 1.0,
+        "overall_centerline_grade": 0.066666666667,
+        "retained_height_m": 0.0,
+        "schema": "royal-capital.fortification.grade-evidence/1",
+        "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+        "status": "PASS",
+        "steps": [
+          {
+            "absolute_step_height_m": 1.0,
+            "signed_step_height_m": 1.0,
+            "station_m": 10.0,
+            "transition_id": "grade-step/00",
+            "within_limit": true
+          },
+          {
+            "absolute_step_height_m": 1.0,
+            "signed_step_height_m": 1.0,
+            "station_m": 20.0,
+            "transition_id": "grade-step/01",
+            "within_limit": true
+          }
+        ]
+      },
+      "name": "stepped_grade",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "stepped_retained_height",
+      "pass": true
+    },
+    {
+      "detail": [
+        "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+        "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+        "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88"
+      ],
+      "name": "stepped_terrain_digest",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_terrain_not_mutated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_mesh",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_indices",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_unit_volumes",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_surface_deferred",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_artifact_refs",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "cad-provider-receipt.json": {
+            "bytes": 3604,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:878e7f876585d43a55e44911e2e5314a6ab34e2c19aeddfbee84d0afcbefa9f1"
+          },
+          "canonical-terrain-profile.json": {
+            "bytes": 1096,
+            "path": "canonical-terrain-profile.json",
+            "sha256": "sha256:44f85dd13532e4964a8cd4bed63fd30c0d2e5b41bd3391396459c962d2f9c74c"
+          },
+          "construction-units.json": {
+            "bytes": 6003,
+            "path": "construction-units.json",
+            "sha256": "sha256:863460086015aad81057481c2e5ba192a151282bf46ad19043ae35f65224c102"
+          },
+          "contact-evidence.json": {
+            "bytes": 7651,
+            "path": "contact-evidence.json",
+            "sha256": "sha256:1a8c222f66dba194f6e9e93da7954809cb026888c66ddc3f84072d9fcd1297ec"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 533,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:315fc67728fc017c4ccb3e1e29a43ad32458b81949f61d1f6b040c9340b03a19"
+          },
+          "foundation-interface.json": {
+            "bytes": 2686,
+            "path": "foundation-interface.json",
+            "sha256": "sha256:30a4349c51d077e369066b1106a9f73a8a021ae0969689174b1adf942dfb022d"
+          },
+          "grade-evidence.json": {
+            "bytes": 467,
+            "path": "grade-evidence.json",
+            "sha256": "sha256:97f0ed54a181410638bd15e1b63f6a6bfccb094584e7b8fbc6ffe4eb0373d5e6"
+          },
+          "interface-sockets.json": {
+            "bytes": 4477,
+            "path": "interface-sockets.json",
+            "sha256": "sha256:6bdb91e52e0863fa969d662d71dbca19615aef6f1db1f650b68308243f5aee2c"
+          },
+          "neutral-mesh.json": {
+            "bytes": 6679,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:63cee46cde71f45880a9e9b49be42693b79a376afd4bd10d7b61ecb0cc6803fc"
+          },
+          "semantic-parts.json": {
+            "bytes": 5067,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:3e58327c9bbebf7f6ea0a66537c76c2f00f02e882d35a6d4c349ea6279864874"
+          },
+          "stored-copies.json": {
+            "bytes": 5493,
+            "path": "stored-copies.json",
+            "sha256": "sha256:e2975b52d743668eb33f18f99cf4a0528f51b3ea0e16f5d4abee3172b67a6ef3"
+          },
+          "terrain-span-plan.json": {
+            "bytes": 1260,
+            "path": "terrain-span-plan.json",
+            "sha256": "sha256:c17bbe88fd545bcc0aff74a55471449f7cf32b69d1abcb81767c202dc697a904"
+          }
+        },
+        "bounds_m": {
+          "max": [
+            24.0,
+            17.4,
+            4.0
+          ],
+          "min": [
+            0.0,
+            -2.0,
+            -5.0
+          ]
+        },
+        "contact_evidence_status": "PASS",
+        "failure": null,
+        "family": "RETAINING",
+        "foundation_interface_status": "PASS",
+        "geometry_route": "ASYMMETRIC_RETAINING_PROFILE_EXTRUSION",
+        "grade_evidence_status": "PASS",
+        "maximum_embedment_depth_m": 5.0,
+        "maximum_gap_m": 0.0,
+        "maximum_step_height_m": 0.0,
+        "overall_centerline_grade": 0.0,
+        "part_count": 5,
+        "retained_height_m": 3.0,
+        "schema": "royal-capital.fortification.terrain-span-result/1",
+        "segment_count": 1,
+        "socket_count": 8,
+        "solid_count": 5,
+        "span_id": "fortification/caelmere/r0b/retaining-001",
+        "status": "SUCCEEDED",
+        "terrain_mutation": false,
+        "triangle_count": 68,
+        "unit_count": 5,
+        "vertex_count": 44,
+        "volume_m3": 2897.28
+      },
+      "name": "retaining_status",
+      "pass": true
+    },
+    {
+      "detail": "RETAINING",
+      "name": "retaining_family",
+      "pass": true
+    },
+    {
+      "detail": 1,
+      "name": "retaining_segments",
+      "pass": true
+    },
+    {
+      "detail": 5,
+      "name": "retaining_units",
+      "pass": true
+    },
+    {
+      "detail": 5,
+      "name": "retaining_solid_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_parts",
+      "pass": true
+    },
+    {
+      "detail": 8,
+      "name": "retaining_sockets",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_socket_unique",
+      "pass": true
+    },
+    {
+      "detail": 10,
+      "name": "retaining_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_stored_formats",
+      "pass": true
+    },
+    {
+      "detail": {
+        "interface_count": 3,
+        "maximum_embedment_depth_m": 5.0,
+        "maximum_unsupported_gap_m": 0.0,
+        "retained_height_m": 3.0,
+        "status": "PASS",
+        "terrain_mutation": false,
+        "total_contact_area_m2": 264.0,
+        "transition_count": 0
+      },
+      "name": "retaining_interface",
+      "pass": true
+    },
+    {
+      "detail": 264.0,
+      "name": "retaining_contact_area",
+      "pass": true
+    },
+    {
+      "detail": {
+        "contact_count": 27,
+        "contact_ratio": 1.0,
+        "maximum_allowed_gap_m": 0.02,
+        "maximum_gap_m": 0.0,
+        "sample_count": 27,
+        "status": "PASS"
+      },
+      "name": "retaining_gap",
+      "pass": true
+    },
+    {
+      "detail": 5.0,
+      "name": "retaining_embedment",
+      "pass": true
+    },
+    {
+      "detail": {
+        "axis_length_m": 24.0,
+        "equivalent_cross_slope_ratio": 0.333333333333,
+        "family": "RETAINING",
+        "maximum_allowed_centerline_grade": 0.12,
+        "maximum_allowed_step_height_m": 2.5,
+        "maximum_platform_grade": 0.0,
+        "maximum_step_height_m": 0.0,
+        "overall_centerline_grade": 0.0,
+        "retained_height_m": 3.0,
+        "schema": "royal-capital.fortification.grade-evidence/1",
+        "span_id": "fortification/caelmere/r0b/retaining-001",
+        "status": "PASS",
+        "steps": []
+      },
+      "name": "retaining_grade",
+      "pass": true
+    },
+    {
+      "detail": 3.0,
+      "name": "retaining_retained_height",
+      "pass": true
+    },
+    {
+      "detail": [
+        "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+        "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+        "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67"
+      ],
+      "name": "retaining_terrain_digest",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_terrain_not_mutated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_mesh",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_indices",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_unit_volumes",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_surface_deferred",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retaining_artifact_refs",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stepped_walk_transition_sockets",
+      "pass": true
+    },
+    {
+      "detail": 0.333333333333,
+      "name": "retaining_cross_slope",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "parent_cp2_complete",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_cache",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_parse",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-cp3-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 56
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "blocking_reason": null,
+  "local": {
+    "canonical_sha256": "e28815485ffc3ca0ad51b52daf43badc5e9a0f92e47951490968e8190cbdaaab",
+    "cold_ab": "PASS",
+    "complete_hash_lock_present": true,
+    "fresh_materialization_A": "PASS",
+    "fresh_materialization_B": "PASS_RETRY1",
+    "global_environment_unchanged": true,
+    "global_install": false,
+    "intake": "PASS",
+    "interrupted_partial_B": "PRESERVED_NOT_REUSED",
+    "native_capability_A": "9_OF_9_PASS",
+    "native_capability_B": "9_OF_9_PASS",
+    "pip_check_A": "PASS",
+    "pip_check_B": "PASS",
+    "raw_delivery_present": true,
+    "wheel_count": 58
+  },
+  "primary_ocp_artifact_fixed": true,
+  "primary_ocp_raw_bytes_present": true,
+  "remote": {
+    "artifact_id": 10846492061,
+    "artifact_sha256": "4e156f6a5c0e584b919192224ae12c08dcddbfbceeb76ae523502496092cbc73",
+    "artifact_upload": "PASS",
+    "cold_ab": "PASS",
+    "job_id": 107939668353,
+    "native_capabilities": "9_OF_9_PASS_X2",
+    "python": "3.13.5",
+    "run_id": 36093161115,
+    "wheel_count": 58
+  },
+  "schema": "royal-capital.fortification.wheel-lock-status/4",
+  "source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+  "status": "ADMITTED_LOCAL_COLD_AB",
+  "target": {
+    "cache_tag": "cpython-313",
+    "executable_observed": "/opt/pyvenv/bin/python3",
+    "executable_sha256_observed": "17b78e0a93175e86f9ac03141924fd7a7f0c0c52e66b34bfa0de20ffef989df1",
+    "glibc": "2.41",
+    "implementation": "CPython",
+    "machine": "x86_64",
+    "platform": "linux-x86_64",
+    "python_version": "3.13.5",
+    "runtime_install_policy": "FRESH_EXTERNAL_PREFIX_NO_GLOBAL_INSTALL",
+    "schema": "royal-capital.fortification.python-abi/1",
+    "soabi": "cpython-313-x86_64-linux-gnu",
+    "status": "FIXED",
+    "system": "Linux",
+    "wheel_tag_required": "cp313-cp313-manylinux_2_28_x86_64"
+  },
+  "transitive_closure_raw_bytes_present_locally": true
+}

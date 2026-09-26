@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "bounded-overlap.json": {
+      "bytes": 815,
+      "path": "bounded-overlap.json",
+      "sha256": "sha256:4243e09cf2d239a8c3eac47838396443a26efdce5ebeb47d7047b754dcd6c5a6"
+    },
+    "cad-provider-receipt.json": {
+      "bytes": 4407,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:4375a7261c72f18639784e59c70571065d02ecf815886da5077e289dd5d18953"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 332,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:a752f0505f4a3a54e91c133078d7a310ab7fd4ea200a77d1a0a05f632bcdbbec"
+    },
+    "join-plan.json": {
+      "bytes": 928,
+      "path": "join-plan.json",
+      "sha256": "sha256:913f3cdafb6490292ccc5b5bae5854d1aeb600ff5e997033c8c3a5b242c6c1d6"
+    },
+    "join-sockets.json": {
+      "bytes": 4626,
+      "path": "join-sockets.json",
+      "sha256": "sha256:5c2db54983c4ce3faf7b92e3838b2d61d9a66062be9c0de781b30395e6e63b73"
+    },
+    "neutral-mesh.json": {
+      "bytes": 8200,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:b884890ce44f3fcef7d9ab75f75b522044d3c7c4f7c0dda8d2b0ec0f3ebf868f"
+    },
+    "section-plan.json": {
+      "bytes": 1631,
+      "path": "section-plan.json",
+      "sha256": "sha256:5000e1154eef219e800e6ac484492d27440be71cd14b9c5657822f4c44ee50b9"
+    },
+    "semantic-parts.json": {
+      "bytes": 4423,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:be515696ac2497ec3a7f729d19db59fecadd15c2eaa4cce3cd37489c1559ce97"
+    },
+    "socket-alignment.json": {
+      "bytes": 2955,
+      "path": "socket-alignment.json",
+      "sha256": "sha256:a5dca0adbaa58c4a9e041eb86558097f877dc6ba80b017142b7592a0c1845dc1"
+    },
+    "stored-copies.json": {
+      "bytes": 4540,
+      "path": "stored-copies.json",
+      "sha256": "sha256:53d2d07c3199dfdf66268d7e1142d164792b9a0fa05767a990d723a1be01ea73"
+    }
+  },
+  "bounded_overlap_status": "PASS",
+  "bounds_m": {
+    "max": [
+      30.0,
+      14.4,
+      5.0
+    ],
+    "min": [
+      18.0,
+      -2.0,
+      -5.0
+    ]
+  },
+  "failure": null,
+  "family": "PROFILE_TRANSITION",
+  "join_id": "fortification/caelmere/r0b/profile-transition-join-001",
+  "part_count": 5,
+  "schema": "royal-capital.fortification.wall-join-result/1",
+  "section_count": 3,
+  "socket_alignment_count": 6,
+  "socket_alignment_status": "PASS",
+  "socket_count": 6,
+  "solid_count": 5,
+  "status": "SUCCEEDED",
+  "triangle_count": 100,
+  "turn_angle_deg": 0.0,
+  "vertex_count": 60,
+  "volume_m3": 1251.36
+}

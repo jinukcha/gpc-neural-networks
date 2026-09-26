@@ -1,0 +1,62 @@
+{
+  "axis": {
+    "end_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "axis_contract": {
+    "end_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "length_m": 24.0,
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "family": "RETAINING",
+  "profile_digest": "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+  "schema": "royal-capital.fortification.canonical-terrain-profile/1",
+  "source_id": "terrain/caelmere/east-terrace/retaining-001",
+  "source_revision": "r1",
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "terrain": {
+    "bearing_elevation_m": -2.0,
+    "inside_elevation_m": 3.0,
+    "inside_heel_width_m": 4.0,
+    "kind": "RETAINING_CROSS_SLOPE",
+    "outside_elevation_m": 0.0,
+    "outside_toe_width_m": 5.0
+  }
+}

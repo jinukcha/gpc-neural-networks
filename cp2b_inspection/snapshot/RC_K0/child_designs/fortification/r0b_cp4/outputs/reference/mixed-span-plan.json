@@ -1,0 +1,24 @@
+{
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "assembly_mode": "EXACT_MODULE_REFERENCES_WITH_RIGID_TRANSFORMS_NO_GLOBAL_BOOLEAN",
+  "connection_count": 6,
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "identity_policy": "EXPLICIT_MODULE_ID_PLUS_CANONICAL_SOURCE_INTERVAL_AND_DIGEST",
+  "join_count": 3,
+  "module_count": 7,
+  "module_order": [
+    "span/straight",
+    "join/miter",
+    "span/curved",
+    "join/bevel",
+    "span/stepped",
+    "span/retaining",
+    "join/transition"
+  ],
+  "product_cook": "DEFERRED_TO_R0E",
+  "schema": "royal-capital.fortification.mixed-span-assembly-plan/1",
+  "segmentation_digest": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+  "source_coverage_policy": "EXCLUSIVE_COMPLETE_MODULE_RANGE_AND_PROJECT_NORMAL_CLASSIFICATION",
+  "span_segment_count": 4,
+  "terrain_mutation": false
+}

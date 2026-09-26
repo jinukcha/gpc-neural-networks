@@ -1,0 +1,70 @@
+{
+  "case_count": 7,
+  "cases": [
+    {
+      "accepted_file_count": 35,
+      "byte_identical": true,
+      "case": "straight",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 35,
+      "status": "SUCCEEDED"
+    },
+    {
+      "accepted_file_count": 35,
+      "byte_identical": true,
+      "case": "curved",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 35,
+      "status": "SUCCEEDED"
+    },
+    {
+      "accepted_file_count": 36,
+      "byte_identical": true,
+      "case": "miter",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 36,
+      "status": "SUCCEEDED"
+    },
+    {
+      "accepted_file_count": 36,
+      "byte_identical": true,
+      "case": "bevel",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 36,
+      "status": "SUCCEEDED"
+    },
+    {
+      "accepted_file_count": 36,
+      "byte_identical": true,
+      "case": "transition",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 36,
+      "status": "SUCCEEDED"
+    },
+    {
+      "accepted_file_count": 88,
+      "byte_identical": true,
+      "case": "stepped",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 88,
+      "status": "SUCCEEDED"
+    },
+    {
+      "accepted_file_count": 38,
+      "byte_identical": true,
+      "case": "retaining",
+      "different": [],
+      "file_set_equal": true,
+      "generated_file_count": 38,
+      "status": "SUCCEEDED"
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-source-replay/1",
+  "status": "PASS"
+}

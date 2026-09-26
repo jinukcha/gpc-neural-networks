@@ -1,0 +1,29 @@
+{
+  "assembly_mode": "BOUNDED_NON_UNIONED_PARTS",
+  "axis": {
+    "end_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "inside_side": "POSITIVE_Z",
+  "length_m": 24.0,
+  "outside_side": "NEGATIVE_Z",
+  "part_order": [
+    "foundation",
+    "wall_body",
+    "wall_walk",
+    "inner_parapet",
+    "outer_parapet"
+  ],
+  "schema": "royal-capital.fortification.wall-span-plan/1",
+  "source_coverage_stage": "R0A_CP3",
+  "span_family": "STRAIGHT_SPAN",
+  "span_id": "fortification/caelmere/pilot/straight-span-001"
+}

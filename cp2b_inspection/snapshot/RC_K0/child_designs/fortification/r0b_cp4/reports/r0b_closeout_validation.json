@@ -1,0 +1,259 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "completion_status",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stage_completion",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "r0b_progress",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "next_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_preservation",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "functional_qualification",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "godot_not_started",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "collision_not_started",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "navigation_not_started",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "product_cook_deferred",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "qualification_pass",
+      "pass": true
+    },
+    {
+      "detail": {
+        "failed": 0,
+        "files_compared": 10,
+        "passed": 58
+      },
+      "name": "focused_validation_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "unittest_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_replay",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "clean_replay",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_gates",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "result_status",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "mesh_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "segmentation_digest",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "segmentation_order_not_identity",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "segmentation_chain",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_complete",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_no_gap_overlap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_surfaces",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "provider_face_not_identity",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "socket_alignment",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "global_boolean_false",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_reuse",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_wheels",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_lock",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "runtime_manifest",
+      "pass": true
+    },
+    {
+      "detail": {
+        "missing": []
+      },
+      "name": "status_rows_complete",
+      "pass": true
+    },
+    {
+      "detail": {
+        "blocking_reason": "NONE",
+        "checkpoint": "CP4",
+        "functional_qualification": "PASS",
+        "local_runtime_admission": "REUSE_R0A_RUNTIME_PASS",
+        "next": "START_R0C_CP1_BY_EXPLICIT_APPROVAL",
+        "remote_self_admission": "NOT_APPLICABLE",
+        "source_preservation": "PASS",
+        "stage": "R0B",
+        "stage_completion": "R0B_COMPLETE"
+      },
+      "name": "status_row_cp4",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "status_text_r0b_closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "status_text_no_false_product",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "roadmap_next_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_r0c_implementation",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "required_closeout_files",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_parse",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_cache",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_nested_bundle",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_symlink",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_unsafe_path",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "licenses_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "provenance_retained",
+      "pass": true
+    }
+  ],
+  "next": "R0C_CP1_BY_EXPLICIT_APPROVAL",
+  "r0b_complete": true,
+  "schema": "royal-capital.fortification.r0b-closeout-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 46,
+    "total": 46
+  }
+}

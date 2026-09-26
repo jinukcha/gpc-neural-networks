@@ -1,0 +1,13 @@
+{
+  "output_files": [
+    "cad-provider-receipt.json",
+    "neutral-mesh.json",
+    "result.json",
+    "shape.brep",
+    "shape.step"
+  ],
+  "result_status": "SUCCEEDED",
+  "returncode": 0,
+  "schema": "royal-capital.fortification.cp1-cli-smoke/1",
+  "status": "PASS"
+}

@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "BODY_PROJECTION_OUT_OF_DOMAIN",
+    "message": "body projection 13.5 outside [1,10.0]"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:603f0fb71bdbe1a04f34d909141087c050ef34709878b879dc87d8b8e913cd79",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

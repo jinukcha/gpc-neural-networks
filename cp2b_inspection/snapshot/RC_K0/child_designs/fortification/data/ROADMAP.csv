@@ -1,0 +1,26 @@
+stage,checkpoint,title,outputs,focused_validation,non_goals,gate,next
+R0A,CP0,exact build123d/OCP runtime admission,RuntimeReceipt,source/runtime/import/capability,geometry,R0A_CP0_RUNTIME_ADMITTED,R0A-CP1
+R0A,CP1,project-owned adapter,ProviderAdapterContract,no public upstream types,wall geometry,R0A_CP1_ADAPTER_PASS,R0A-CP2
+R0A,CP2,straight wall pilot,WallSpanPlan+Geometry,semantic parts/sockets/determinism,curves/towers/gates,R0A_CP2_WALL_PASS,R0A-CP3
+R0A,CP3,coverage and negative gates,SourceCoverage+Evidence,coverage/stale/budget/failure,product integration,R0A_CP3_COVERAGE_PASS,R0A-CP4
+R0A,CP4,R0A closeout,R0A package,replay/full-patch-source,R0B auto start,R0A_COMPLETE,R0B-CP1
+R0B,CP1,straight and curved spans,SpanGeometry,frame/curve bounds,towers/gates,R0B_CP1_PASS,R0B-CP2
+R0B,CP2,joins,JoinGeometry,socket/overlap,terrain steps,R0B_CP2_PASS,R0B-CP3
+R0B,CP3,terrain interface,FoundationInterface,contact/gap/grade,terrain modification,R0B_CP3_PASS,R0B-CP4
+R0B,CP4,mixed span closeout,R0B assembly,determinism/second span profile,towers,R0B_COMPLETE,R0C-CP1
+R0C,CP1,tower families,TowerGeometry,bounds/attachment,gates,R0C_CP1_PASS,R0C-CP2
+R0C,CP2,tower joins,TowerJoinPlan,tangent/wall-walk,gates,R0C_CP2_PASS,R0C-CP3
+R0C,CP3,battlements,ModuleInstancePlan,rhythm/remainder/tier,gate complex,R0C_CP3_PASS,R0C-CP4
+R0C,CP4,R0C closeout,tower-wall assembly,coverage/replay,gate implementation,R0C_COMPLETE,R0D-CP1
+R0D,CP1,minor gate,GateComplexPlan,portal clearance,hero gate,R0D_CP1_PASS,R0D-CP2
+R0D,CP2,main gatehouse,HeroGateAssembly,tower/portal/walk sockets,barbican/water,R0D_CP2_PASS,R0D-CP3
+R0D,CP3,barbican water postern interfaces,GateVariants,road/bridge/service sockets,Manifold decision,R0D_CP3_PASS,R0D-CP4
+R0D,CP4,complex CSG decision,CSG receipt,qualified or explicit unsupported,product cook,R0D_COMPLETE,R0E-CP1
+R0E,CP1,ring assembly,FortificationAssembly,exact module refs,final art,R0E_CP1_PASS,R0E-CP2
+R0E,CP2,interior/traversal binding,TraversalInterface,WORLD-FIELD refs,full city,R0E_CP2_PASS,R0E-CP3
+R0E,CP3,cook collision nav,derived products,P0BB/Godot focused,target performance,R0E_CP3_PASS,R0E-CP4
+R0E,CP4,Godot reopen,stored product,reopen/replay,release,R0E_COMPLETE,R0F-CP1
+R0F,CP1,reference ring,Caelmere outer ring,coverage,second fixture,R0F_CP1_PASS,R0F-CP2
+R0F,CP2,genericity fixture,fortified town,same core/no core diff,new grammar,R0F_CP2_PASS,R0F-CP3
+R0F,CP3,repro/package closure,full patch source,clean rebuild/ArtifactStore,R0G,R0F_CP3_PASS,R0F-CP4
+R0F,CP4,terminal decision,closure report,all statuses explicit,automatic continuation,RC_FORT_ROADMAP_COMPLETE,NONE

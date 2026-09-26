@@ -1,0 +1,15 @@
+{
+  "schema": "royal-capital.fortification.r0b-cp2-socket-alignment-contract/1",
+  "required_pairs": [
+    "incoming_span",
+    "outgoing_span",
+    "incoming_wall_walk",
+    "outgoing_wall_walk",
+    "incoming_foundation",
+    "outgoing_foundation"
+  ],
+  "position_tolerance_m": 0.000001,
+  "angle_tolerance_rad": 0.000001,
+  "required_frame_fields": ["tangent", "up", "inside", "outside", "orientation_determinant"],
+  "acceptance": "ALL_PAIRS_EXACT_OR_WITHIN_TOLERANCE"
+}

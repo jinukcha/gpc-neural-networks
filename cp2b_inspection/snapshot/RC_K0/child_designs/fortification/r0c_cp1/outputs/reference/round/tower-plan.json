@@ -1,0 +1,25 @@
+{
+  "assembly_mode": "BOUNDED_NON_UNIONED_PARTS",
+  "battlement_realization": "DEFERRED_TO_R0C_CP3",
+  "center_m": [
+    0.0,
+    0.0,
+    -4.0
+  ],
+  "construction_route": "POLYGONAL_APPROXIMATION_32",
+  "family": "ROUND",
+  "foundation_depth_m": 3.0,
+  "height_m": 16.0,
+  "outer_width_m": 17.0,
+  "part_order": [
+    "foundation",
+    "tower_body",
+    "tower_crown"
+  ],
+  "roof_realization": "DEFERRED_TO_ARCHITECTURE_PRODUCER",
+  "schema": "royal-capital.fortification.tower-plan/1",
+  "side_count": 32,
+  "surface_source_coverage": "DEFERRED_TO_R0C_CP4",
+  "tower_id": "fortification/caelmere/pilot/tower-round-001",
+  "tower_join_realization": "DEFERRED_TO_R0C_CP2"
+}

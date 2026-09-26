@@ -1,0 +1,70 @@
+{
+  "budget": {
+    "max_artifact_bytes": 2000000,
+    "max_profile_points": 32,
+    "max_triangles": 256,
+    "max_vertices": 4
+  },
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "operation": {
+    "distance_m": 6.0,
+    "kind": "PROFILE_EXTRUSION",
+    "outer_loop_m": [
+      [
+        -2.0,
+        -1.0
+      ],
+      [
+        2.0,
+        -1.0
+      ],
+      [
+        2.0,
+        1.0
+      ],
+      [
+        -2.0,
+        1.0
+      ]
+    ],
+    "plane": {
+      "origin_m": [
+        1.0,
+        2.0,
+        -3.0
+      ],
+      "x_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "y_axis": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "outputs": {
+    "indexed_mesh": true,
+    "stored_copies": [
+      "STEP",
+      "BREP"
+    ]
+  },
+  "request_id": "cad-request/cp1-budget_exceeded@1",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.cad-provider-request/1",
+  "tolerances": {
+    "angular_rad": 1e-07,
+    "linear_m": 1e-07,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  },
+  "units": "METER"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "royal-capital.fortification.terrain-wall-span/1",
+  "title": "Terrain Wall Span Fixture",
+  "type": "object",
+  "required": [
+    "schema", "span_id", "family", "profile_id", "frame", "inside_side", "outside_side",
+    "axis", "terrain_source", "terrain", "foundation", "grade", "tolerances", "budget", "runtime"
+  ],
+  "properties": {
+    "schema": {"const": "royal-capital.fortification.terrain-wall-span/1"},
+    "family": {"enum": ["TERRAIN_STEPPED", "RETAINING"]},
+    "span_id": {"type": "string", "minLength": 1},
+    "profile_id": {"type": "string", "minLength": 1},
+    "frame": {"const": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD"},
+    "inside_side": {"const": "LEFT_OF_TRAVEL"},
+    "outside_side": {"const": "RIGHT_OF_TRAVEL"},
+    "axis": {
+      "type": "object",
+      "required": ["start_m", "end_m"],
+      "properties": {
+        "start_m": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+        "end_m": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

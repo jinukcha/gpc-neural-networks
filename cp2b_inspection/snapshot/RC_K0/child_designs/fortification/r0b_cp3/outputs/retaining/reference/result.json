@@ -1,0 +1,99 @@
+{
+  "artifacts": {
+    "cad-provider-receipt.json": {
+      "bytes": 3604,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:878e7f876585d43a55e44911e2e5314a6ab34e2c19aeddfbee84d0afcbefa9f1"
+    },
+    "canonical-terrain-profile.json": {
+      "bytes": 1096,
+      "path": "canonical-terrain-profile.json",
+      "sha256": "sha256:44f85dd13532e4964a8cd4bed63fd30c0d2e5b41bd3391396459c962d2f9c74c"
+    },
+    "construction-units.json": {
+      "bytes": 6003,
+      "path": "construction-units.json",
+      "sha256": "sha256:863460086015aad81057481c2e5ba192a151282bf46ad19043ae35f65224c102"
+    },
+    "contact-evidence.json": {
+      "bytes": 7651,
+      "path": "contact-evidence.json",
+      "sha256": "sha256:1a8c222f66dba194f6e9e93da7954809cb026888c66ddc3f84072d9fcd1297ec"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 533,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:315fc67728fc017c4ccb3e1e29a43ad32458b81949f61d1f6b040c9340b03a19"
+    },
+    "foundation-interface.json": {
+      "bytes": 2686,
+      "path": "foundation-interface.json",
+      "sha256": "sha256:30a4349c51d077e369066b1106a9f73a8a021ae0969689174b1adf942dfb022d"
+    },
+    "grade-evidence.json": {
+      "bytes": 467,
+      "path": "grade-evidence.json",
+      "sha256": "sha256:97f0ed54a181410638bd15e1b63f6a6bfccb094584e7b8fbc6ffe4eb0373d5e6"
+    },
+    "interface-sockets.json": {
+      "bytes": 4477,
+      "path": "interface-sockets.json",
+      "sha256": "sha256:6bdb91e52e0863fa969d662d71dbca19615aef6f1db1f650b68308243f5aee2c"
+    },
+    "neutral-mesh.json": {
+      "bytes": 6679,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:63cee46cde71f45880a9e9b49be42693b79a376afd4bd10d7b61ecb0cc6803fc"
+    },
+    "semantic-parts.json": {
+      "bytes": 5067,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:3e58327c9bbebf7f6ea0a66537c76c2f00f02e882d35a6d4c349ea6279864874"
+    },
+    "stored-copies.json": {
+      "bytes": 5493,
+      "path": "stored-copies.json",
+      "sha256": "sha256:e2975b52d743668eb33f18f99cf4a0528f51b3ea0e16f5d4abee3172b67a6ef3"
+    },
+    "terrain-span-plan.json": {
+      "bytes": 1260,
+      "path": "terrain-span-plan.json",
+      "sha256": "sha256:c17bbe88fd545bcc0aff74a55471449f7cf32b69d1abcb81767c202dc697a904"
+    }
+  },
+  "bounds_m": {
+    "max": [
+      24.0,
+      17.4,
+      4.0
+    ],
+    "min": [
+      0.0,
+      -2.0,
+      -5.0
+    ]
+  },
+  "contact_evidence_status": "PASS",
+  "failure": null,
+  "family": "RETAINING",
+  "foundation_interface_status": "PASS",
+  "geometry_route": "ASYMMETRIC_RETAINING_PROFILE_EXTRUSION",
+  "grade_evidence_status": "PASS",
+  "maximum_embedment_depth_m": 5.0,
+  "maximum_gap_m": 0.0,
+  "maximum_step_height_m": 0.0,
+  "overall_centerline_grade": 0.0,
+  "part_count": 5,
+  "retained_height_m": 3.0,
+  "schema": "royal-capital.fortification.terrain-span-result/1",
+  "segment_count": 1,
+  "socket_count": 8,
+  "solid_count": 5,
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "status": "SUCCEEDED",
+  "terrain_mutation": false,
+  "triangle_count": 68,
+  "unit_count": 5,
+  "vertex_count": 44,
+  "volume_m3": 2897.28
+}

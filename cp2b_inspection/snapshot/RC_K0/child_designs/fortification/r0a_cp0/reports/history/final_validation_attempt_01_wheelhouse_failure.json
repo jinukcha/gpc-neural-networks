@@ -1,0 +1,90 @@
+{
+  "checks": [
+    {
+      "name": "required:requirements-lock.txt",
+      "pass": true
+    },
+    {
+      "name": "required:WHEELHOUSE.json",
+      "pass": true
+    },
+    {
+      "name": "required:SHA256SUMS.txt",
+      "pass": true
+    },
+    {
+      "name": "required:DELIVERY.json",
+      "pass": true
+    },
+    {
+      "name": "wheelhouse directory",
+      "pass": true
+    },
+    {
+      "name": "wheel count 58",
+      "pass": true
+    },
+    {
+      "name": "source commit",
+      "pass": true
+    },
+    {
+      "name": "OCP expected hash",
+      "pass": true
+    },
+    {
+      "name": "manifest wheel rows",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "wheel bytes and hashes",
+      "pass": true
+    },
+    {
+      "name": "lock rows 58",
+      "pass": true
+    },
+    {
+      "name": "lock all hashed",
+      "pass": true
+    },
+    {
+      "name": "exact OCP raw bytes",
+      "pass": true
+    },
+    {
+      "name": "exact source-derived build123d",
+      "pass": true
+    },
+    {
+      "detail": [
+        "COLD_AB.json",
+        "logs/capability-A.log",
+        "logs/capability-B.log",
+        "logs/offline-install-A.log",
+        "logs/offline-install-B.log",
+        "logs/pip-check-A.log",
+        "logs/pip-check-B.log",
+        "logs/pip-wheel.log",
+        "probe/A/canonical.json",
+        "probe/A/capability-probe.json",
+        "probe/A/probe.brep",
+        "probe/A/probe.step",
+        "probe/B/canonical.json",
+        "probe/B/capability-probe.json",
+        "probe/B/probe.brep",
+        "probe/B/probe.step",
+        "provenance/build123d-commit.txt",
+        "provenance/build123d-git-status.txt",
+        "provenance/pip-freeze-A.txt",
+        "provenance/pip-freeze-B.txt"
+      ],
+      "name": "delivery listed payload",
+      "pass": false
+    }
+  ],
+  "schema": "royal-capital.fortification.received-wheelhouse-check/1",
+  "status": "FAIL",
+  "wheel_count": 58
+}

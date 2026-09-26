@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "SIDE_COUNT_OUT_OF_DOMAIN",
+    "message": "ROUND CP1 requires 32 sides"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:b546e78c63da5b2ce0a01b35f28fe1b0d9f68e60adc9b637e56dcae7f89b0ea8",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

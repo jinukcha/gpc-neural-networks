@@ -1,0 +1,116 @@
+{
+  "copies": [
+    {
+      "bytes": 73045,
+      "canonical_sha256": "sha256:7249651976c6f977f7c85fd9e0042d44ef44494d955f37280936752dea144e3b",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "parts/foundation/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:e4fce66f08a98e00143127e944bc4042d4fade3515b3cbad5a1e196b07d812db",
+      "reopen_volume_m3": 401.613662575,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 27616,
+      "canonical_sha256": "sha256:2085a5f5cca401ccde7d4d0fccb4ae1403465f30b11c806dbb570d977e096a6c",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "parts/foundation/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:2085a5f5cca401ccde7d4d0fccb4ae1403465f30b11c806dbb570d977e096a6c",
+      "reopen_volume_m3": 401.613662575,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 73076,
+      "canonical_sha256": "sha256:0eaedf34a5c4d0d5e76f0c9a08728d161afdaa4d34b05fc04a8fed0f96a93dbf",
+      "format": "STEP",
+      "part_id": "wall_body",
+      "path": "parts/wall_body/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:0859952cdfdb8d21505630d3492644971d81f2b417913e44cac9abd8f3df8aae",
+      "reopen_volume_m3": 1807.261481589,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 27709,
+      "canonical_sha256": "sha256:2fb1a88026fe49fbd7ac308d8e849b99fe97c421799078ebe697c8558d1df820",
+      "format": "BREP",
+      "part_id": "wall_body",
+      "path": "parts/wall_body/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:2fb1a88026fe49fbd7ac308d8e849b99fe97c421799078ebe697c8558d1df820",
+      "reopen_volume_m3": 1807.26148159,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 74140,
+      "canonical_sha256": "sha256:3092d83eed211df4d29141d4c537f14e31db4b75f913f77cacf78c329787ac62",
+      "format": "STEP",
+      "part_id": "wall_walk",
+      "path": "parts/wall_walk/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:be9b415695fbb138e089a8682d25d346c68277fab809084527e95ca8abe971c1",
+      "reopen_volume_m3": 96.387279018,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 28352,
+      "canonical_sha256": "sha256:c97dce10280f2fa38616541967d89e55568b19d3148694e95686c532e82710d1",
+      "format": "BREP",
+      "part_id": "wall_walk",
+      "path": "parts/wall_walk/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:c97dce10280f2fa38616541967d89e55568b19d3148694e95686c532e82710d1",
+      "reopen_volume_m3": 96.387279018,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 74478,
+      "canonical_sha256": "sha256:28d5c3bf6dfd4a59e97747bfa81d07e3a1aceab125a5147c309b13aa4b674ec4",
+      "format": "STEP",
+      "part_id": "inner_parapet",
+      "path": "parts/inner_parapet/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:84f200b8128298d09bd97b136d23ff8da839471259f680de16b180a6441a202c",
+      "reopen_volume_m3": 34.036757904,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 28383,
+      "canonical_sha256": "sha256:1ed2255beaf8c06d7fe72ec84b5eaea7c0c60cfc839060c7b521de7eacc329a1",
+      "format": "BREP",
+      "part_id": "inner_parapet",
+      "path": "parts/inner_parapet/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:1ed2255beaf8c06d7fe72ec84b5eaea7c0c60cfc839060c7b521de7eacc329a1",
+      "reopen_volume_m3": 34.036757904,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 73878,
+      "canonical_sha256": "sha256:dc9c9e4d4f804ec66fe22d246fd1020c34eee0568d55037fe4ceaa9314208d80",
+      "format": "STEP",
+      "part_id": "outer_parapet",
+      "path": "parts/outer_parapet/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:bdd9e0c551e6c7d274485b0a5aa09a7cd986f2c0c67590317ebabf32250d60f7",
+      "reopen_volume_m3": 38.25370136,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 27678,
+      "canonical_sha256": "sha256:ea6df193cf69c5e6bedbb4d918a67b10c420af4e3975477dacc982f15f99da9e",
+      "format": "BREP",
+      "part_id": "outer_parapet",
+      "path": "parts/outer_parapet/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:ea6df193cf69c5e6bedbb4d918a67b10c420af4e3975477dacc982f15f99da9e",
+      "reopen_volume_m3": 38.25370136,
+      "stored_numeric_unit": "MILLIMETER"
+    }
+  ],
+  "schema": "royal-capital.fortification.path-wall-span-stored-copies/1",
+  "span_id": "fortification/caelmere/r0b/curved-span-001"
+}

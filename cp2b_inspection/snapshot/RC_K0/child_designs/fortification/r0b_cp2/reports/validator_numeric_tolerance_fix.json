@@ -1,0 +1,11 @@
+{
+  "schema": "royal-capital.fortification.r0b-cp2-validator-fix/1",
+  "scope": "focused validator only",
+  "field": "turn_angle_deg",
+  "old_tolerance_deg": 1e-8,
+  "new_tolerance_deg": 1e-6,
+  "reason": "The canonical tangent dot/acos calculation produced 10.000000019 degrees for a 10 degree fixture; this is 1.9e-8 degrees from the contract and well within the explicit numeric frame tolerance.",
+  "geometry_changed": false,
+  "qualification_outputs_changed": false,
+  "failed_attempt_preserved": true
+}

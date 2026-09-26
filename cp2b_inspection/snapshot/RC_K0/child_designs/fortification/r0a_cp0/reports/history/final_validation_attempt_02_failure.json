@@ -1,0 +1,9 @@
+{
+  "schema": "royal-capital.fortification.validation-failure/1",
+  "status": "FAIL_VALIDATOR_FALSE_POSITIVE_RUNTIME_FILENAME",
+  "source_preserved": true,
+  "runtime_admission_revoked": false,
+  "cause": "The hygiene check searched the full path string for '/runtime_B' and misclassified the evidence filename reports/resume3/runtime_B_timeout.json as an extracted runtime directory.",
+  "repair": "Inspect directory components only; evidence filenames are permitted.",
+  "checkpoint_before_repair": "A0C_pre2.zip"
+}

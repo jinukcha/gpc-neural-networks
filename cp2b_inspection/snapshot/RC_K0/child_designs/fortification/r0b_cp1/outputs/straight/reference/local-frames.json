@@ -1,0 +1,75 @@
+{
+  "basis_order": [
+    "tangent",
+    "up",
+    "inside"
+  ],
+  "canonical_centerline_digest": "sha256:382c5c586b165872d88ff7fb621ba350c5cfe9da42ff982714dfbd77647d34b9",
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "frames": [
+    {
+      "distance_m": 0.0,
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "u": 0.0,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "distance_m": 24.0,
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        24.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "u": 1.0,
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "orientation_determinant": 1.0,
+  "outside_relation": "outside=-inside",
+  "schema": "royal-capital.fortification.local-frames/1",
+  "span_id": "fortification/caelmere/r0b/straight-span-001"
+}

@@ -1,0 +1,54 @@
+{
+  "auto_continuation": false,
+  "checkpoint": "R0B-CP3",
+  "fixed_initial_baseline": "RCF_D0_full.zip",
+  "new_external_sources": [],
+  "next": "R0B_CP4_BY_EXPLICIT_APPROVAL",
+  "parent_checkpoint": "B2.zip",
+  "qualification": {
+    "final_tree_validation": {
+      "failed": 0,
+      "passed": 34
+    },
+    "focused_validation": {
+      "failed": 0,
+      "passed": 56
+    },
+    "negative_gate_count": 10,
+    "new_external_sources": false,
+    "retaining_reference_digest": "sha256:d8a106d210b2e140a1630b401ffa05aabd26c450ed9f22d7f6a8d5874e55b397",
+    "stepped_reference_digest": "sha256:0f25763ecf2fe1a3e6b36c8b39f11d06810b4e3c3e302d982868346d516fc166"
+  },
+  "reused_sources": [
+    "build123d exact runtime and selected source",
+    "R0A project-owned provider adapter",
+    "R0B-CP1 standard wall profile and frame convention"
+  ],
+  "schema": "royal-capital.fortification.changeset/1",
+  "scope": [
+    "terrain-stepped wall spans",
+    "retaining wall spans",
+    "foundation interface",
+    "contact/gap evidence",
+    "grade evidence"
+  ],
+  "stage_completion": "R0B_CP3_COMPLETE",
+  "validation_history": [
+    {
+      "attempt": 1,
+      "expected": 32,
+      "observed": 34,
+      "source_or_product_rollback": false,
+      "status": "FAILED_VALIDATOR_COUNT_EXPECTATION"
+    },
+    {
+      "attempt": 2,
+      "failed_checks": [
+        "foundation_interfaces_pass",
+        "contact_evidence_pass"
+      ],
+      "source_or_product_rollback": false,
+      "status": "FAILED_VALIDATOR_DOCUMENT_SHAPE_MISMATCH"
+    }
+  ]
+}

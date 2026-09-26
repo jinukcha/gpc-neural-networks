@@ -1,0 +1,5 @@
+# INCOMPLETE / NON-AUTHORITATIVE.
+# Only the primary OCP artifact identity could be fixed before raw wheel closure.
+# Do not pass this file to an acceptance install.
+cadquery-ocp-novtk==8.0.1.0.0 \
+    --hash=sha256:1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f

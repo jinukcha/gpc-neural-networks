@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "SIDE_COUNT_OUT_OF_DOMAIN",
+    "message": "SQUARE requires four sides"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:ace448b5a32e41af96f1a0d6404e01791e66c3fe4973fdd6d33378e3481eab90",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

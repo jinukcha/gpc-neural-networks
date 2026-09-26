@@ -1,0 +1,11 @@
+{
+  "schema": "royal-capital.fortification.validation-failure/1",
+  "status": "PRESERVED",
+  "attempt": 1,
+  "failure_type": "VALIDATOR_EXPECTED_CHECK_COUNT_MISMATCH",
+  "expected_check_count": 32,
+  "observed_check_count": 34,
+  "source_or_product_rollback": false,
+  "qualification_outputs_preserved": true,
+  "action": "update validator and report count only; rerun against the same source and outputs"
+}

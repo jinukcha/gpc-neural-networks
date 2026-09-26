@@ -1,0 +1,138 @@
+{
+  "capabilities": [
+    "fortification.tower_family@1",
+    "fortification.tower_bounds_attachment@1",
+    "fortification.tower_foundation_sockets@1",
+    "cad.fixed_tessellation@1"
+  ],
+  "construction_route": "POLYGONAL_APPROXIMATION_32",
+  "family": "ROUND",
+  "fixed_tessellation": {
+    "angular_deflection_rad": 0.1,
+    "linear_deflection_m": 0.05,
+    "mesh_round_digits": 9,
+    "part_order": [
+      "foundation",
+      "tower_body",
+      "tower_crown"
+    ],
+    "round_radial_chord_error_m": 0.040929823286,
+    "round_route": "POLYGONAL_APPROXIMATION_32",
+    "schema": "royal-capital.fortification.tower-fixed-tessellation/1",
+    "triangle_policy": "CYCLIC_MIN_PRESERVE_WINDING_THEN_SORT",
+    "vertex_policy": "PER_PART_LEXICOGRAPHIC_UNIQUE"
+  },
+  "fixture_digest": "sha256:a74e94cbca5f7e0dcdb689b6dc9635a054f149b90dddd8b3fa0e35d999fbc5b8",
+  "output_digests": {
+    "bounds-attachment.json": "sha256:9247c36a6ba9200b826b3541e5ada7bb265c2eaff19e563e4cf6d851117430b3",
+    "fixed-tessellation.json": "sha256:4811f9c05b54021a3046ea31c59133b61118c509a17ebee11b2658308a6a818b",
+    "foundation-interface.json": "sha256:b42f587a06f97a332b76a11bd6c02f0e0697f6a17babde18af75f97a8f6ccd4e",
+    "neutral-mesh.json": "sha256:e74292dbce97cff88452bfebba94e096b6b34554237166aac8553013d41f71a1",
+    "semantic-parts.json": "sha256:960e21130f7c7d442a00819f2a89eee2e96c6fc4055c3e69bdd5bc219ccb7aa0",
+    "sockets.json": "sha256:6a6a32c092219eea2dee1224b28eacfb53dc11af757cc905f9a698e52c75e0f3",
+    "stored-copies.json": "sha256:0b516263c559fe6f8494e53b08120ad4d50e1c4d092f2aaf1b4153623cbf84a1",
+    "tower-plan.json": "sha256:bae6f3d0d5c5ddaf1e94b720b9ac69ab5fc793b8319e1f4329e1381aa6f03a61"
+  },
+  "part_receipts": [
+    {
+      "adapter_revision": "r0a-cp1.1",
+      "part_id": "foundation",
+      "receipt": {
+        "bytes": 2847,
+        "path": "parts/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:84536476c6fecc8a9db9987cae196fcb2bba7ae97e6d10ba771895083c2b590c"
+      }
+    },
+    {
+      "adapter_revision": "r0a-cp1.1",
+      "part_id": "tower_body",
+      "receipt": {
+        "bytes": 2847,
+        "path": "parts/tower_body/cad-provider-receipt.json",
+        "sha256": "sha256:e07e7c6cab93a88a291c24a6220dcff1e1c77a96ca8b56c30bd2815adf4f5673"
+      }
+    },
+    {
+      "adapter_revision": "r0a-cp1.1",
+      "part_id": "tower_crown",
+      "receipt": {
+        "bytes": 2847,
+        "path": "parts/tower_crown/cad-provider-receipt.json",
+        "sha256": "sha256:c8e33bcb4f6878406ba8d5305323943a6a737939c340ae825755dbc5f299826d"
+      }
+    }
+  ],
+  "producer_id": "royal-capital/fortification/tower-family",
+  "producer_revision": "r0c-cp1.1",
+  "producer_source_digest": "sha256:a4f465bdc146d3ce4215b4f2039e16f089f5d80cfb1197e218222d9bb0698de5",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.tower-provider-receipt/1",
+  "status": "PASS",
+  "surface_source_coverage": "NOT_AUTHORED_R0C_CP4",
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

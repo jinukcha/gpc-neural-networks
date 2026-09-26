@@ -1,0 +1,76 @@
+{
+  "artifacts": {
+    "bounds-attachment.json": {
+      "bytes": 1020,
+      "path": "bounds-attachment.json",
+      "sha256": "sha256:66af15d3f018e4e13e790c9423ad3ab8df44aa7268f002e38f969a4e92db97b2"
+    },
+    "cad-provider-receipt.json": {
+      "bytes": 4125,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:9b42bfbe506262d45dea37a6cb7a7d42c371110c435742fb5c34ac81dad05aad"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 414,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:5cfeb390d4d5ce75025613a34a25a9ac592c2c4745b09530aa1c87863040bc1e"
+    },
+    "foundation-interface.json": {
+      "bytes": 746,
+      "path": "foundation-interface.json",
+      "sha256": "sha256:b0ea6c28ad20c5ab2970660fde4da4d308a265ab015ade2a221174cd7e0edc34"
+    },
+    "neutral-mesh.json": {
+      "bytes": 3541,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:2c62da4883d0cc69dac7c5423c82638a75606b893ab9c60c41a23d7bb196e1a8"
+    },
+    "semantic-parts.json": {
+      "bytes": 2657,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:da1098526e42a698527e91fdd83227b98ce08696f8d8bdf9e0c690e7dfe58154"
+    },
+    "sockets.json": {
+      "bytes": 4966,
+      "path": "sockets.json",
+      "sha256": "sha256:f25009c76d51bd8e40e71e8e4cde06b641d94a47b4ec3f92db68a43d7e119f4a"
+    },
+    "stored-copies.json": {
+      "bytes": 2796,
+      "path": "stored-copies.json",
+      "sha256": "sha256:b2c94f8b971876458f14b2aae4d6964407d6f2259b678079b7a1ac729ebb8016"
+    },
+    "tower-plan.json": {
+      "bytes": 675,
+      "path": "tower-plan.json",
+      "sha256": "sha256:e2abc58b84f6a0c8a443581c7d605c2091a07edd6f3acffbd87c06354bd052e8"
+    }
+  },
+  "body_outside_projection_m": 9.0,
+  "bounds_m": {
+    "max": [
+      9.0,
+      16.6,
+      5.0
+    ],
+    "min": [
+      -9.0,
+      -3.0,
+      -13.0
+    ]
+  },
+  "failure": null,
+  "family": "SQUARE",
+  "foundation_contact_ratio": 1.0,
+  "foundation_maximum_gap_m": 0.0,
+  "part_count": 3,
+  "schema": "royal-capital.fortification.tower-result/1",
+  "socket_count": 10,
+  "solid_count": 3,
+  "status": "SUCCEEDED",
+  "stored_copy_count": 6,
+  "tower_id": "fortification/caelmere/pilot/tower-square-001",
+  "triangle_count": 36,
+  "vertex_count": 24,
+  "volume_m3": 5241.4
+}

@@ -1,0 +1,65 @@
+{
+  "attachment_intersection_count": 2,
+  "attachment_width_m": 16.0,
+  "attachment_x_m": [
+    -8.0,
+    8.0
+  ],
+  "body_bounds_m": {
+    "max": [
+      8.0,
+      16.0,
+      4.0
+    ],
+    "min": [
+      -8.0,
+      0.0,
+      -12.0
+    ]
+  },
+  "body_outside_projection_m": 9.0,
+  "bounds_status": "PASS",
+  "crown_bounds_m": {
+    "max": [
+      8.5,
+      16.6,
+      4.5
+    ],
+    "min": [
+      -8.5,
+      16.0,
+      -12.5
+    ]
+  },
+  "family": "SQUARE",
+  "foundation_bounds_m": {
+    "max": [
+      9.0,
+      0.0,
+      5.0
+    ],
+    "min": [
+      -9.0,
+      -3.0,
+      -13.0
+    ]
+  },
+  "foundation_outside_projection_m": 10.0,
+  "maximum_body_projection_m": 10.0,
+  "overall_bounds_m": {
+    "max": [
+      9.0,
+      16.6,
+      5.0
+    ],
+    "min": [
+      -9.0,
+      -3.0,
+      -13.0
+    ]
+  },
+  "schema": "royal-capital.fortification.tower-bounds-attachment/1",
+  "tower_id": "fortification/caelmere/pilot/tower-square-001",
+  "wall_centerline_z_m": 0.0,
+  "wall_outside_face_z_m": -3.0
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "royal-capital.fortification.path-wall-span/1",
+  "type": "object",
+  "required": ["schema", "span_id", "frame", "inside_side", "outside_side", "centerline", "sampling", "tolerances", "budget", "runtime"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "royal-capital.fortification.path-wall-span/1"},
+    "span_id": {"type": "string", "minLength": 1},
+    "frame": {"const": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD"},
+    "inside_side": {"const": "LEFT_OF_TRAVEL"},
+    "outside_side": {"const": "RIGHT_OF_TRAVEL"},
+    "centerline": {"type": "object"},
+    "sampling": {"type": "object"},
+    "tolerances": {"type": "object"},
+    "budget": {"type": "object"},
+    "runtime": {"type": "object"}
+  }
+}

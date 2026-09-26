@@ -1,0 +1,83 @@
+{
+  "orientation_determinant": 1.0,
+  "project": {
+    "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "unit": "METER"
+  },
+  "project_to_provider_length_scale": 1000.0,
+  "project_to_provider_matrix": [
+    [
+      1000.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      -1000.0,
+      0.0
+    ],
+    [
+      0.0,
+      1000.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "provider": {
+    "frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "numeric_unit": "MILLIMETER"
+  },
+  "provider_to_project_matrix": [
+    [
+      0.001,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.001,
+      0.0
+    ],
+    [
+      0.0,
+      -0.001,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "schema": "royal-capital.fortification.cp1-unit-frame-tolerance/1",
+  "tolerance_domains": {
+    "angular_rad": [
+      1e-09,
+      0.001
+    ],
+    "linear_m": [
+      1e-09,
+      0.001
+    ],
+    "tessellation_angular_rad": [
+      0.01,
+      0.3
+    ],
+    "tessellation_linear_m": [
+      0.001,
+      0.1
+    ]
+  }
+}

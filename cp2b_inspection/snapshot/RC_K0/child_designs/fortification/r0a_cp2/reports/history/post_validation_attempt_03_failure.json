@@ -1,0 +1,13 @@
+{
+  "failure_type": "POST_VALIDATION_PYTHON_CACHE_RESIDUE",
+  "functional_validation": "PASS_BEFORE_HYGIENE_GATE",
+  "job": 107968487350,
+  "message": "CP2 functional qualification and pre-validation checkpoint creation completed, but CP1/CP2 imports and unit tests generated __pycache__/pyc files inside the final source tree; the hygiene gate correctly rejected final packaging.",
+  "preexisting_checkpoint_deleted": false,
+  "prevalidation_checkpoint": "PRESERVED_IN_RELEASE_R3",
+  "repair": "After successful CP2 validation, remove only generated Python cache residue before updating the final closed-world registry and running final hygiene/package verification.",
+  "schema": "royal-capital.fortification.cp2-preserved-failure/1",
+  "source_rollback": false,
+  "status": "PRESERVED_POST_VALIDATION_HYGIENE_FAILURE",
+  "workflow_run": 36102716394
+}

@@ -1,0 +1,115 @@
+{
+  "failure": null,
+  "mesh": {
+    "path": "neutral-mesh.json",
+    "sha256": "sha256:8afea6e7b8fd97619a0e6f6f756aa21b8e72b7a3067729fd2b3a17046ecab17c",
+    "triangle_count": 12,
+    "vertex_count": 8
+  },
+  "provider_receipt_ref": {
+    "path": "cad-provider-receipt.json",
+    "sha256": "sha256:5c089994dd765fce379d8cf4ebab595259c45461e390efed2fc4d209a726762c"
+  },
+  "request_id": "cad-request/fortification/caelmere/r0b/terrain-stepped-001/terrace_02/foundation@1",
+  "schema": "royal-capital.fortification.cad-provider-result/1",
+  "shape": {
+    "bounds_m": {
+      "max": [
+        30.0,
+        2.0,
+        4.0
+      ],
+      "min": [
+        20.0,
+        0.0,
+        -4.0
+      ]
+    },
+    "solid_count": 1,
+    "volume_m3": 160.0
+  },
+  "status": "SUCCEEDED",
+  "stored_copies": [
+    {
+      "bytes": 15701,
+      "canonical_sha256": "sha256:994d6ae17f284f5275d3a198dfaeeb68c7da392900d4210c2a113da793758596",
+      "format": "STEP",
+      "path": "shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:ca4936656b46fc0deddf6f0f34617d55dbb59f9c494727b39ba2a1ee7cf8ddc4",
+      "reopen_volume_m3": 160.0,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 3324,
+      "canonical_sha256": "sha256:258a1cb37490b5073f10e97cac24bdf007e07c8c85827a71f03e8502daf06c6c",
+      "format": "BREP",
+      "path": "shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:258a1cb37490b5073f10e97cac24bdf007e07c8c85827a71f03e8502daf06c6c",
+      "reopen_volume_m3": 160.0,
+      "stored_numeric_unit": "MILLIMETER"
+    }
+  ],
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

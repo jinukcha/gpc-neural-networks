@@ -1,0 +1,19 @@
+{
+  "api_reported_digest": "sha256:4e156f6a5c0e584b919192224ae12c08dcddbfbceeb76ae523502496092cbc73",
+  "artifact_bytes": 256024992,
+  "artifact_id": 10846492061,
+  "artifact_name": "rcf-cp0-cp313-linux-wheelhouse-58",
+  "artifact_sha256": "4e156f6a5c0e584b919192224ae12c08dcddbfbceeb76ae523502496092cbc73",
+  "branch": "automation/rcf-cp0-delivery-20260925",
+  "delivery_status": "BUILT_SELF_ADMITTED_COLD_AB_PASS",
+  "job_id": 107939668353,
+  "local_intake_status": "PASS",
+  "python_observed": "3.13.5",
+  "remote_cold_ab": "PASS",
+  "repository": "jinukcha/gpc-neural-networks",
+  "run_id": 36093161115,
+  "schema": "royal-capital.fortification.remote-delivery-receipt/1",
+  "wheel_count": 58,
+  "workflow_commit": "592688d650f0a6c234e57f43cd6107aea447517b",
+  "zip_crc": "PASS"
+}

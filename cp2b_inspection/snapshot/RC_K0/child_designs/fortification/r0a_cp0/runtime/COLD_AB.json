@@ -1,0 +1,8 @@
+{
+  "a_sha256": "e28815485ffc3ca0ad51b52daf43badc5e9a0f92e47951490968e8190cbdaaab",
+  "b_sha256": "e28815485ffc3ca0ad51b52daf43badc5e9a0f92e47951490968e8190cbdaaab",
+  "byte_identical_canonical": true,
+  "comparison_policy": "SEMANTIC_CANONICAL_WITH_STEP_FILE_NAME_AND_TIMESTAMP_NORMALIZED",
+  "schema": "royal-capital.fortification.remote-cold-ab/1",
+  "status": "PASS"
+}

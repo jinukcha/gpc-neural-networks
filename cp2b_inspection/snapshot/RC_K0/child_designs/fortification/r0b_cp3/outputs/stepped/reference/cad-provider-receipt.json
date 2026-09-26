@@ -1,0 +1,103 @@
+{
+  "capabilities": [
+    "fortification.terrain_stepped_span@1",
+    "fortification.retaining_span@1",
+    "fortification.foundation_interface@1",
+    "fortification.contact_gap_evidence@1",
+    "fortification.grade_evidence@1"
+  ],
+  "contact_evidence_digest": "sha256:8928daaa71d46f17af98c0b842c9233a24e07183478d70b922147a1a9766e9c6",
+  "fixture_digest": "sha256:2c3c44de7883c79204d7ec9349ffca56cc538b31ced1f06804c9ff97379b761a",
+  "foundation_interface_digest": "sha256:194ce3e9a69fd1b16da5e0201697e13dca47469059e91dff55fe2c86009ef6fa",
+  "geometry_route": "BOUNDED_TERRACE_SEGMENT_PROFILE_EXTRUSIONS",
+  "grade_evidence_digest": "sha256:87214a149146d397e3c39b1f009f22311d822e398467f6d66243a1b2e57668e6",
+  "output_digests": {
+    "canonical-terrain-profile.json": "sha256:59df92c46c9e7ea45aa8ec4b28979df74332b47b270a3dca838f1c24fb45dad2",
+    "construction-units.json": "sha256:a6d00509a179613bee2d062a29db44d5385342c07698aa90c68170d2282fae7f",
+    "contact-evidence.json": "sha256:8928daaa71d46f17af98c0b842c9233a24e07183478d70b922147a1a9766e9c6",
+    "fixed-tessellation.json": "sha256:437f8b53e6def5c6c19d6f916abee2fc26ea2ea890b8d6bdd9c868187337982b",
+    "foundation-interface.json": "sha256:194ce3e9a69fd1b16da5e0201697e13dca47469059e91dff55fe2c86009ef6fa",
+    "grade-evidence.json": "sha256:87214a149146d397e3c39b1f009f22311d822e398467f6d66243a1b2e57668e6",
+    "interface-sockets.json": "sha256:3a7fc42d1c21c1b662e35c7281bde0a67630062981ee4ca761ab1b94971173a6",
+    "neutral-mesh.json": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c",
+    "semantic-parts.json": "sha256:f6c15ebee22556dfc544579c2e7cb76b2b9895c3e4b3c3ba1f8b0f1c68c8f2ac",
+    "stored-copies.json": "sha256:8debac166b44a726f2f5dd821b4c821e4dd916b0b66afdbf617cf8485ba2a313",
+    "terrain-span-plan.json": "sha256:d764dec7e42ec539ec0a55438ed0f09f38a4b0e118941ca818c3f105999c25a7"
+  },
+  "producer_id": "royal-capital/fortification/terrain-wall-span",
+  "producer_revision": "r0b-cp3.1",
+  "producer_source_digest": "sha256:f51f7a19075aac9448079a2c55b09cecb1dbcd219761b3e07f1f074c16120faf",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.terrain-span-receipt/1",
+  "status": "PASS",
+  "surface_source_coverage": "DEFERRED_R0B_CP4",
+  "terrain_mutation": false,
+  "terrain_profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+  "unit_count": 15,
+  "unit_frame_contract": {
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "units": "METER"
+  }
+}

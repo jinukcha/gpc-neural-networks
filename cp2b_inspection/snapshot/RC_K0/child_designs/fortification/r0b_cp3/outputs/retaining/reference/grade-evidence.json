@@ -1,0 +1,15 @@
+{
+  "axis_length_m": 24.0,
+  "equivalent_cross_slope_ratio": 0.333333333333,
+  "family": "RETAINING",
+  "maximum_allowed_centerline_grade": 0.12,
+  "maximum_allowed_step_height_m": 2.5,
+  "maximum_platform_grade": 0.0,
+  "maximum_step_height_m": 0.0,
+  "overall_centerline_grade": 0.0,
+  "retained_height_m": 3.0,
+  "schema": "royal-capital.fortification.grade-evidence/1",
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "status": "PASS",
+  "steps": []
+}

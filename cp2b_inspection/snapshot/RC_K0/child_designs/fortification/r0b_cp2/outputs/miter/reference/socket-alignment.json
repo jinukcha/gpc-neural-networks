@@ -1,0 +1,82 @@
+{
+  "alignment_count": 6,
+  "alignments": [
+    {
+      "alignment_id": "alignment/incoming/span",
+      "exact_numeric_equal": true,
+      "inside_angle_error_rad": 0.0,
+      "join_socket_id": "incoming_span",
+      "position_error_m": 0.0,
+      "source_socket_id": "span_end",
+      "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/incoming",
+      "status": "PASS",
+      "tangent_angle_error_rad": 0.0,
+      "up_angle_error_rad": 0.0
+    },
+    {
+      "alignment_id": "alignment/incoming/wall_walk",
+      "exact_numeric_equal": true,
+      "inside_angle_error_rad": 0.0,
+      "join_socket_id": "incoming_wall_walk",
+      "position_error_m": 0.0,
+      "source_socket_id": "wall_walk_end",
+      "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/incoming",
+      "status": "PASS",
+      "tangent_angle_error_rad": 0.0,
+      "up_angle_error_rad": 0.0
+    },
+    {
+      "alignment_id": "alignment/incoming/foundation",
+      "exact_numeric_equal": true,
+      "inside_angle_error_rad": 0.0,
+      "join_socket_id": "incoming_foundation",
+      "position_error_m": 0.0,
+      "source_socket_id": "foundation_end",
+      "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/incoming",
+      "status": "PASS",
+      "tangent_angle_error_rad": 0.0,
+      "up_angle_error_rad": 0.0
+    },
+    {
+      "alignment_id": "alignment/outgoing/span",
+      "exact_numeric_equal": true,
+      "inside_angle_error_rad": 0.0,
+      "join_socket_id": "outgoing_span",
+      "position_error_m": 0.0,
+      "source_socket_id": "span_start",
+      "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/outgoing",
+      "status": "PASS",
+      "tangent_angle_error_rad": 0.0,
+      "up_angle_error_rad": 0.0
+    },
+    {
+      "alignment_id": "alignment/outgoing/wall_walk",
+      "exact_numeric_equal": true,
+      "inside_angle_error_rad": 0.0,
+      "join_socket_id": "outgoing_wall_walk",
+      "position_error_m": 0.0,
+      "source_socket_id": "wall_walk_start",
+      "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/outgoing",
+      "status": "PASS",
+      "tangent_angle_error_rad": 0.0,
+      "up_angle_error_rad": 0.0
+    },
+    {
+      "alignment_id": "alignment/outgoing/foundation",
+      "exact_numeric_equal": true,
+      "inside_angle_error_rad": 0.0,
+      "join_socket_id": "outgoing_foundation",
+      "position_error_m": 0.0,
+      "source_socket_id": "foundation_start",
+      "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/outgoing",
+      "status": "PASS",
+      "tangent_angle_error_rad": 0.0,
+      "up_angle_error_rad": 0.0
+    }
+  ],
+  "angle_tolerance_rad": 1e-06,
+  "join_id": "fortification/caelmere/r0b/miter-join-001",
+  "position_tolerance_m": 1e-06,
+  "schema": "royal-capital.fortification.socket-alignment/1",
+  "status": "PASS"
+}

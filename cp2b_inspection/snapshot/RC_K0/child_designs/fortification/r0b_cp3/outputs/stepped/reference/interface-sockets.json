@@ -1,0 +1,468 @@
+{
+  "schema": "royal-capital.fortification.terrain-span-sockets/1",
+  "sockets": [
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        30.0,
+        8.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        30.0,
+        14.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        30.0,
+        1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        10.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "walk_step_00_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        10.0,
+        13.3,
+        0.0
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "walk_step_00_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        10.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "foundation_step_00_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "foundation_step_00_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        20.0,
+        13.3,
+        0.0
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "walk_step_01_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        20.0,
+        14.3,
+        0.0
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "walk_step_01_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        20.0,
+        0.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "foundation_step_01_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        20.0,
+        1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "foundation_step_01_upper"
+    }
+  ],
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001"
+}

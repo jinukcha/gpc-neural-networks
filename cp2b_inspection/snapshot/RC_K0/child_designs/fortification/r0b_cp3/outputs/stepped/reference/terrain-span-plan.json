@@ -1,0 +1,59 @@
+{
+  "assembly_mode": "BOUNDED_NON_UNIONED_TERRAIN_UNITS",
+  "axis_contract": {
+    "end_m": [
+      30.0,
+      0.0,
+      0.0
+    ],
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "length_m": 30.0,
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "family": "TERRAIN_STEPPED",
+  "geometry_route": "BOUNDED_TERRACE_SEGMENT_PROFILE_EXTRUSIONS",
+  "part_order": [
+    "foundation",
+    "wall_body",
+    "wall_walk",
+    "inner_parapet",
+    "outer_parapet"
+  ],
+  "profile_id": "rcf/standard-wall@1",
+  "schema": "royal-capital.fortification.terrain-wall-span-plan/1",
+  "segment_count": 3,
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+  "surface_coverage_stage": "R0B_CP4",
+  "terrain_mutation": false,
+  "terrain_profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+  "terrain_source": {
+    "profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+    "revision": "r1",
+    "source_id": "terrain/caelmere/west-ridge/terraces-001"
+  },
+  "unit_count": 15
+}

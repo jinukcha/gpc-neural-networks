@@ -1,0 +1,92 @@
+{
+  "accepted_implementation_checkpoints": "9/25",
+  "auto_continuation": false,
+  "clean_replay": {
+    "byte_identical": true,
+    "files_compared": 10,
+    "status": "PASS"
+  },
+  "collision": "NOT_STARTED",
+  "focused_validation": {
+    "failed": 0,
+    "files_compared": 10,
+    "passed": 58
+  },
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "mixed_span": {
+    "bounds_m": {
+      "max": [
+        71.738364417,
+        16.4,
+        68.592296852
+      ],
+      "min": [
+        0.0,
+        -3.0,
+        -4.0
+      ]
+    },
+    "connection_count": 6,
+    "join_count": 3,
+    "module_count": 7,
+    "solid_count": 45,
+    "span_segment_count": 4,
+    "triangle_count": 908,
+    "vertex_count": 544,
+    "volume_m3": 14987.542514048
+  },
+  "navigation": "NOT_STARTED",
+  "negative_gates": {
+    "case_count": 10,
+    "status": "PASS"
+  },
+  "next": "R0C_CP1_BY_EXPLICIT_APPROVAL",
+  "product_cook": "DEFERRED_TO_R0E",
+  "r0b_checkpoint_progress": "4/4",
+  "runtime_reuse": "PASS",
+  "schema": "royal-capital.fortification.r0b-cp4-completion/1",
+  "segmentation": {
+    "boundaries_m": [
+      0.0,
+      24.0,
+      49.132741229,
+      79.132741229,
+      103.132741229
+    ],
+    "chain_order": [
+      "span/straight",
+      "join/miter",
+      "span/curved",
+      "join/bevel",
+      "span/stepped",
+      "span/retaining",
+      "join/transition"
+    ],
+    "digest": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+    "input_array_order_is_identity": false,
+    "total_station_length_m": 103.132741229
+  },
+  "socket_alignment": {
+    "alignment_count": 6,
+    "status": "PASS"
+  },
+  "source_coverage": {
+    "covered_triangle_count": 908,
+    "gap_count": 0,
+    "gaps": [],
+    "mesh_triangle_count": 908,
+    "module_count": 7,
+    "overlap_count": 0,
+    "overlaps": [],
+    "surface_count": 270,
+    "unique_triangle_count": 908
+  },
+  "source_preservation": "PASS",
+  "source_replay": {
+    "case_count": 7,
+    "status": "PASS"
+  },
+  "stage_completion": "R0B_COMPLETE",
+  "status": "PASS"
+}

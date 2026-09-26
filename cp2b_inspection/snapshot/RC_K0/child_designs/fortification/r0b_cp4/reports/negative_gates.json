@@ -1,0 +1,83 @@
+{
+  "all_rejected": true,
+  "case_count": 10,
+  "cases": [
+    {
+      "accepted_target_exists": false,
+      "case": "duplicate_module_id",
+      "message": "MixedSpanContractError: invalid or duplicate module_id 'join/bevel'",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "span_interval_gap",
+      "message": "MixedSpanContractError: connection station mismatch join/miter->span/curved: 24.0 != 25.0",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "span_interval_overlap",
+      "message": "MixedSpanContractError: connection station mismatch join/miter->span/curved: 24.0 != 23.0",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "join_anchor_off_boundary",
+      "message": "MixedSpanContractError: connection station mismatch span/straight->join/miter: 24.0 != 24.5",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "runtime_mismatch",
+      "message": "MixedSpanContractError: runtime identity mismatch",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "module_budget",
+      "message": "MixedSpanContractError: module count exceeds budget",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "source_result_digest",
+      "message": "MixedSpanContractError: source result digest mismatch for span/straight",
+      "preserved_failed_directories": [
+        "source_result_digest.failed-1883"
+      ],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "source_mesh_digest",
+      "message": "MixedSpanContractError: source mesh digest mismatch for span/curved",
+      "preserved_failed_directories": [
+        "source_mesh_digest.failed-1883"
+      ],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "connection_socket_mismatch",
+      "message": "MixedSpanContractError: connection span/stepped->span/retaining does not use declared output socket",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "accepted_target_exists": false,
+      "case": "source_path_escape",
+      "message": "MixedSpanContractError: modules[1].source_dir must stay within the fortification tree",
+      "preserved_failed_directories": [],
+      "status": "PASS_EXPECTED_REJECTION"
+    }
+  ],
+  "no_accepted_negative_output": true,
+  "schema": "royal-capital.fortification.r0b-cp4-negative-gates/1",
+  "status": "PASS"
+}

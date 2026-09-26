@@ -1,0 +1,97 @@
+{
+  "family": "PROFILE_TRANSITION",
+  "join_id": "fortification/caelmere/r0b/profile-transition-join-001",
+  "schema": "royal-capital.fortification.wall-join-sections/1",
+  "sections": [
+    {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        18.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "profile_id": "profile/caelmere/standard@1",
+      "section_id": "incoming_overlap",
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        24.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "profile_id": "profile/caelmere/standard@1->profile/caelmere/reinforced@1/mid",
+      "section_id": "transition_mid",
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "inside": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "orientation_determinant": 1.0,
+      "origin_m": [
+        30.0,
+        0.0,
+        0.0
+      ],
+      "outside": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "profile_id": "profile/caelmere/reinforced@1",
+      "section_id": "outgoing_overlap",
+      "tangent": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "failure_type": "SOURCE_DIET_STORED_COPY_OMISSION",
+  "job": 107966722309,
+  "message": "A1S source package intentionally excluded four CP1 STEP/BREP stored-copy bytes while the A1 closed-world registry retained them.",
+  "missing_paths": [
+    "child_designs/fortification/r0a_cp1/reports/A/shape.brep",
+    "child_designs/fortification/r0a_cp1/reports/A/shape.step",
+    "child_designs/fortification/r0a_cp1/reports/B/shape.brep",
+    "child_designs/fortification/r0a_cp1/reports/B/shape.step"
+  ],
+  "preexisting_checkpoint_deleted": false,
+  "repair": "Regenerate only the four deterministic stored copies through the accepted CP1 adapter and exact CP0 wheelhouse, then require the original A1 FILES.sha256 registry to pass without modification.",
+  "schema": "royal-capital.fortification.cp2-preserved-failure/1",
+  "source_rollback": false,
+  "status": "PRESERVED_RECONSTRUCTION_FAILURE",
+  "workflow_run": 36102144460
+}

@@ -1,0 +1,10 @@
+{
+  "schema": "royal-capital.fortification.segmentation-contract/1",
+  "identity_policy": "EXPLICIT_MODULE_ID_PLUS_CANONICAL_SOURCE_INTERVAL_AND_DIGEST",
+  "array_order_is_identity": false,
+  "span_intervals_must_be_contiguous": true,
+  "join_anchor_must_match_span_boundary": true,
+  "dependency_graph": "SINGLE_REQUIRED_CHAIN",
+  "maximum_span_length_m": 60.0,
+  "maximum_modules": 32
+}

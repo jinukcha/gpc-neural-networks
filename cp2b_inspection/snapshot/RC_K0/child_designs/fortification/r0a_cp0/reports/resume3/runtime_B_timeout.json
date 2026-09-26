@@ -1,0 +1,13 @@
+{
+  "original_log": "/mnt/data/rcf_a0_resume/work/RC_K0/child_designs/fortification/r0a_cp0/reports/resume3/runtime_admission_B_timeout.log",
+  "original_receipt_created": false,
+  "partial_bytes": 30786676,
+  "partial_file_count": 859,
+  "partial_runtime_exists": true,
+  "partial_runtime_path": "/mnt/data/rcf_a0_resume/local_validation/failed_runtime_B_timeout",
+  "policy": "Do not delete or reuse a partially materialized destination; continue in a fresh destination.",
+  "retry_destination": "/mnt/data/rcf_a0_resume/local_validation/runtime_B_retry1",
+  "schema": "royal-capital.fortification.local-runtime-timeout/1",
+  "source_preservation": "PASS",
+  "status": "PRESERVED_PARTIAL_TIMEOUT"
+}

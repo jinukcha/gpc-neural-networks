@@ -1,0 +1,40 @@
+{
+  "budget": {
+    "max_artifact_bytes": 100000000,
+    "max_parts": 8,
+    "max_profile_points": 64,
+    "max_triangles": 500000,
+    "max_vertices": 500000
+  },
+  "center_m": [
+    0.0,
+    0.0,
+    -4.0
+  ],
+  "family": "ROUND",
+  "foundation_depth_m": 3.0,
+  "height_m": 16.0,
+  "outer_width_m": 17.0,
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.tower-family-fixture/1",
+  "side_count": 32,
+  "tolerances": {
+    "angular_rad": 1e-06,
+    "linear_m": 1e-06,
+    "mesh_round_digits": 9,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  },
+  "tower_id": "fortification/caelmere/pilot/tower-round-001",
+  "wall_interface": {
+    "centerline_z_m": 0.0,
+    "max_body_projection_m": 10.0,
+    "outside_face_z_m": -3.0,
+    "wall_walk_y_m": 12.3
+  }
+}

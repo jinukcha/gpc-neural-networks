@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "csv_parse": true,
+    "full_runtime_claimed": false,
+    "json_examples_parse": true,
+    "license_files_present": true,
+    "required_docs": true,
+    "schema_present": true,
+    "selected_source_exact": true
+  },
+  "counts": {
+    "components": 20,
+    "parameter_domains": 22,
+    "roadmap_rows": 25,
+    "selected_source_files": 105,
+    "semantic_surfaces": 20,
+    "sockets": 15,
+    "typed_failures": 18
+  },
+  "functional_geometry": "NOT_RUN",
+  "next": "RC-FORT-R0A-CP0",
+  "packet": "RCF_D0",
+  "runtime_admission": "NOT_RUN",
+  "schema": "royal-capital.fortification.design-validation/1",
+  "source_preservation": "PASS",
+  "stage_completion": "RC_FORT_R0_DESIGN_COMPLETE",
+  "status": "PASS_DESIGN_AND_SELECTED_SOURCE",
+  "terminal": "RC-FORT-R0F-CP4"
+}

@@ -1,0 +1,18 @@
+{
+  "paths": [
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/__init__.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/canonical.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/contract.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0a_cp1/src/rcf_fortification_cad/__pycache__/provider.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0b_cp1/src/rcf_fortification_path_span/__pycache__",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0b_cp1/src/rcf_fortification_path_span/__pycache__/__init__.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0b_cp1/src/rcf_fortification_path_span/__pycache__/model.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0b_cp1/src/rcf_fortification_path_span/__pycache__/producer.cpython-313.pyc",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0b_cp1/tools/__pycache__",
+    "/mnt/data/work_r0bcp1/worktree/RC_K0/child_designs/fortification/r0b_cp1/tools/__pycache__/run_r0b_cp1.cpython-313.pyc"
+  ],
+  "removed_generated_cache_entries": 11,
+  "schema": "royal-capital.fortification.cache-cleanup/1",
+  "source_or_product_removed": false
+}

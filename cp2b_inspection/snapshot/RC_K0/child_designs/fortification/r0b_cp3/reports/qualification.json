@@ -1,0 +1,135 @@
+{
+  "families": {
+    "retaining": {
+      "bounds_m": {
+        "max": [
+          24.0,
+          17.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -5.0
+        ]
+      },
+      "byte_identical": true,
+      "contact_ratio": 1.0,
+      "family": "RETAINING",
+      "files_compared": 38,
+      "foundation_interface_status": "PASS",
+      "maximum_gap_m": 0.0,
+      "maximum_step_height_m": 0.0,
+      "overall_centerline_grade": 0.0,
+      "reference_digest": "sha256:d8a106d210b2e140a1630b401ffa05aabd26c450ed9f22d7f6a8d5874e55b397",
+      "retained_height_m": 3.0,
+      "segment_count": 1,
+      "socket_count": 8,
+      "solid_count": 5,
+      "status": "PASS",
+      "stored_copy_count": 10,
+      "triangle_count": 68,
+      "unit_count": 5,
+      "vertex_count": 44,
+      "volume_m3": 2897.28
+    },
+    "stepped": {
+      "bounds_m": {
+        "max": [
+          30.0,
+          16.4,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "contact_ratio": 1.0,
+      "family": "TERRAIN_STEPPED",
+      "files_compared": 88,
+      "foundation_interface_status": "PASS",
+      "maximum_gap_m": 0.0,
+      "maximum_step_height_m": 1.0,
+      "overall_centerline_grade": 0.066666666667,
+      "reference_digest": "sha256:0f25763ecf2fe1a3e6b36c8b39f11d06810b4e3c3e302d982868346d516fc166",
+      "retained_height_m": 0.0,
+      "segment_count": 3,
+      "socket_count": 14,
+      "solid_count": 15,
+      "status": "PASS",
+      "stored_copy_count": 30,
+      "triangle_count": 180,
+      "unit_count": 15,
+      "vertex_count": 120,
+      "volume_m3": 2841.6
+    }
+  },
+  "negative": [
+    {
+      "case": "overall_grade_exceeded",
+      "code": "GRADE_OUT_OF_DOMAIN",
+      "message": "overall grade 0.13333333333333333 exceeds contract",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "step_height_exceeded",
+      "code": "GRADE_OUT_OF_DOMAIN",
+      "message": "step height 3.0 exceeds contract",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "foundation_gap_exceeded",
+      "code": "FOUNDATION_GAP_OUT_OF_DOMAIN",
+      "message": "terrain contact datum offset 0.05 exceeds max gap 0.02",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "terrace_coverage_gap",
+      "code": "INVALID_TERRAIN_PROFILE",
+      "message": "terrace coverage gap/overlap at 11.0, expected 10.0",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "embedment_out_of_domain",
+      "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+      "message": "foundation embedment outside [1,8] or exceeds maximum",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "retaining_upper_embedment_exceeded",
+      "code": "FOUNDATION_EMBEDMENT_OUT_OF_DOMAIN",
+      "message": "inside embedment exceeds maximum",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "stale_terrain_digest",
+      "code": "STALE_INPUT_REFERENCE",
+      "message": "terrain profile digest mismatch expected=sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67 observed=sha256:2522bf68f35f9b8cb98b38ee2755311ca104d15818ad7456089a3eb8f7ec51e7",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "runtime_mismatch",
+      "code": "CAD_RUNTIME_VERSION_MISMATCH",
+      "message": "runtime mismatch: {'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "unit_budget_exceeded",
+      "code": "GEOMETRY_BUDGET_EXCEEDED",
+      "message": "required units 15 exceed budget",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "retaining_height_exceeded",
+      "code": "RETAINING_HEIGHT_OUT_OF_DOMAIN",
+      "message": "retained height 7.0 outside [0.25,6]",
+      "status": "PASS_EXPECTED_REJECTION"
+    }
+  ],
+  "negative_count": 10,
+  "schema": "royal-capital.fortification.r0b-cp3-qualification/1",
+  "status": "PASS"
+}

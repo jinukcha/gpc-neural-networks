@@ -1,0 +1,30 @@
+parameter,group,type,min,max,notes
+wall_height_m,wall_profile,float,8.0,18.0,example domain; final SITE/URBAN profile authority
+wall_thickness_m,wall_profile,float,3.0,8.0,example domain
+wall_walk_width_m,wall_profile,float,2.0,5.0,playable clearance
+foundation_depth_m,foundation,float,1.0,8.0,site class dependent
+max_span_length_m,segmentation,float,10.0,60.0,bounded module
+curve_sample_tolerance_m,segmentation,float,0.01,0.25,explicit tessellation precursor
+max_horizontal_turn_deg,segmentation,float,1.0,35.0,split above threshold
+max_centerline_grade,terrain,float,0.00,0.12,profile choice
+step_height_m,terrain,float,0.25,2.50,stepped span
+tower_spacing_m,tower,float,25.0,90.0,example domain
+tower_outer_width_m,tower,float,8.0,28.0,family dependent
+tower_projection_m,tower,float,1.0,10.0,defense silhouette
+gate_clear_width_m,gate,float,3.0,14.0,road exact requirement wins
+gate_clear_height_m,gate,float,4.0,16.0,portal exact requirement wins
+barbican_depth_m,gate,float,8.0,50.0,optional
+merlon_width_m,battlement,float,0.8,1.8,example domain
+crenel_width_m,battlement,float,0.5,1.2,example domain
+battlement_height_m,battlement,float,1.2,2.2,example domain
+linear_tolerance_m,tessellation,float,0.001,0.10,profile explicit
+angular_tolerance_rad,tessellation,float,0.01,0.30,profile explicit
+max_boolean_operations,budget,integer,0,4096,aggregate fail-closed
+max_tessellated_triangles,budget,integer,1,5000000,profile/tier specific
+model_linear_tolerance_m,cad_adapter,float,0.000000001,0.001,explicit BREP/reopen contract
+model_angular_tolerance_rad,cad_adapter,float,0.000000001,0.001,frame orthonormal contract
+max_foundation_gap_m,foundation,float,0.0,0.25,required contact envelope
+contact_sample_spacing_m,foundation,float,0.25,10.0,fixed evidence spacing
+retaining_height_m,foundation,float,0.25,6.0,cross-slope retaining fixture
+retaining_toe_width_m,foundation,float,4.0,8.0,outside toe width
+retaining_heel_width_m,foundation,float,3.0,8.0,inside heel width

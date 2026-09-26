@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "exact_runtime_replay",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "wheel_count_retained",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "required_closeout_files",
+      "pass": true
+    },
+    {
+      "detail": [
+        {
+          "blocking_reason": "NONE",
+          "checkpoint": "CP4",
+          "functional_qualification": "PASS",
+          "local_runtime_admission": "PASS_X2",
+          "next": "START_R0B_CP1_BY_EXPLICIT_APPROVAL",
+          "remote_self_admission": "NOT_APPLICABLE",
+          "source_preservation": "PASS",
+          "stage": "R0A",
+          "stage_completion": "R0A_COMPLETE"
+        }
+      ],
+      "name": "cp4_status_row",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "r0a_rows_complete",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_readable_parse",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_generated_cache",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "godot_product_not_claimed",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.cp4-final-tree-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 8
+  }
+}

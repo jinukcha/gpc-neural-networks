@@ -1,0 +1,79 @@
+{
+  "artifacts": {
+    "cad-provider-receipt.json": {
+      "bytes": 4391,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:f7f3f2b697950751b3373a77d38c2011157a418c744650e925aa324a53a300ab"
+    },
+    "instance-transforms.json": {
+      "bytes": 2378,
+      "path": "instance-transforms.json",
+      "sha256": "sha256:929f0dc4378e8c1cf1ea0e5746d0934a6f1b0f455bb86ef8c68b5588d7d33574"
+    },
+    "mixed-span-plan.json": {
+      "bytes": 879,
+      "path": "mixed-span-plan.json",
+      "sha256": "sha256:2fd4c988e6e124870a029a329da2e72dcac357fd42300d3214153e5a74a3fa0a"
+    },
+    "module-index.json": {
+      "bytes": 19272,
+      "path": "module-index.json",
+      "sha256": "sha256:3562892d9256abba9a7ffa6b4ae159fdf3b226d1e7278c7852025d5a476b842e"
+    },
+    "module-sockets.json": {
+      "bytes": 41393,
+      "path": "module-sockets.json",
+      "sha256": "sha256:f4b2e570fa4d037d5b4735085776bf277c12495f2001bce57e6b1c9075729ac3"
+    },
+    "neutral-mesh.json": {
+      "bytes": 75710,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:e971a3e3b662d0f807e40d5f56957187f54a99383024970225e4d4e3a391cc8e"
+    },
+    "segmentation-plan.json": {
+      "bytes": 4224,
+      "path": "segmentation-plan.json",
+      "sha256": "sha256:83c86741a67b0136ac719df3a9d782d50861aa101243c1ef2abbdac99224db73"
+    },
+    "socket-alignment.json": {
+      "bytes": 10787,
+      "path": "socket-alignment.json",
+      "sha256": "sha256:54c3716598a34c051fa1cdc5acd3831859807a5b31dc62ff1cce9bdbb8ba879d"
+    },
+    "source-coverage-map.json": {
+      "bytes": 650130,
+      "path": "source-coverage-map.json",
+      "sha256": "sha256:2eec794855c344e7eb3f2c4534b6df1301e222708f57e79f6adcf42dc5db8b3d"
+    }
+  },
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "bounds_m": {
+    "max": [
+      71.738364417,
+      16.4,
+      68.592296852
+    ],
+    "min": [
+      0.0,
+      -3.0,
+      -4.0
+    ]
+  },
+  "connection_count": 6,
+  "coverage_gap_count": 0,
+  "coverage_overlap_count": 0,
+  "covered_triangle_count": 908,
+  "failure": null,
+  "join_count": 3,
+  "module_count": 7,
+  "schema": "royal-capital.fortification.mixed-span-result/1",
+  "segmentation_digest": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+  "socket_alignment_status": "PASS",
+  "solid_count": 45,
+  "source_surface_count": 270,
+  "span_segment_count": 4,
+  "status": "SUCCEEDED",
+  "triangle_count": 908,
+  "vertex_count": 544,
+  "volume_m3": 14987.542514048
+}

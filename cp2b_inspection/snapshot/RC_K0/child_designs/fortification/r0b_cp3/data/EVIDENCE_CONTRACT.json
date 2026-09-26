@@ -1,0 +1,22 @@
+{
+  "schema": "royal-capital.fortification.terrain-evidence-contract/1",
+  "contact_gap": {
+    "sampling": "FIXED_STATION_SPACING",
+    "required_contact_ratio": 1.0,
+    "maximum_gap_source": "fixture.foundation.max_gap_m"
+  },
+  "grade": {
+    "maximum_centerline_grade_source": "fixture.grade.max_centerline_grade",
+    "maximum_step_height_source": "fixture.grade.max_step_height_m",
+    "terrace_local_grade": 0.0
+  },
+  "retaining": {
+    "required": [
+      "outside_elevation_m",
+      "inside_elevation_m",
+      "bearing_elevation_m",
+      "retained_height_m",
+      "equivalent_cross_slope_ratio"
+    ]
+  }
+}

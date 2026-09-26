@@ -1,0 +1,9 @@
+{
+  "schema": "royal-capital.fortification.source-coverage-contract/1",
+  "coverage_policy": "EXCLUSIVE_COMPLETE_MODULE_RANGE_AND_PROJECT_NORMAL_CLASSIFICATION",
+  "provider_face_identity_used": false,
+  "required_gap_count": 0,
+  "required_overlap_count": 0,
+  "surface_roles": ["TOP", "BOTTOM", "END_CAP", "START_CAP", "INSIDE", "OUTSIDE"],
+  "source_range_authority": ["part_ranges", "unit_ranges"]
+}

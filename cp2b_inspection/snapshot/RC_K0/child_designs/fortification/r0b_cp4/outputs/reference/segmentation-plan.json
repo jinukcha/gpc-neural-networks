@@ -1,0 +1,108 @@
+{
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "boundaries_m": [
+    0.0,
+    24.0,
+    49.132741229,
+    79.132741229,
+    103.132741229
+  ],
+  "chain_order": [
+    "span/straight",
+    "join/miter",
+    "span/curved",
+    "join/bevel",
+    "span/stepped",
+    "span/retaining",
+    "join/transition"
+  ],
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "identity_policy": "EXPLICIT_MODULE_ID_PLUS_CANONICAL_SOURCE_INTERVAL_AND_DIGEST",
+  "input_array_order_is_identity": false,
+  "join_anchors": [
+    {
+      "anchor_m": 24.0,
+      "family": "MITER",
+      "module_id": "join/miter",
+      "source_mesh_sha256": "sha256:ae8be5380035d76e75320eee9db83a6129871601c0090f6250cb2abf3dc59b2a",
+      "source_result_sha256": "sha256:f4c166aad1df2245d0803419e729a1358e21f4431249d4ac263a9e799736b352",
+      "stable_join_key": "sha256:726c9f50838bcf0d50151f857f7471941d58c7f8ed40ab629d08aaf784a8b689"
+    },
+    {
+      "anchor_m": 49.132741229,
+      "family": "BEVEL",
+      "module_id": "join/bevel",
+      "source_mesh_sha256": "sha256:d9e66b885a63a45f1fee86c8dfc5132da911559c95ba3e38288a3f94fb22474b",
+      "source_result_sha256": "sha256:9be1b595e64c2f5f8e64eb7c65bfd458736289dba887ca9354231515a600c0ca",
+      "stable_join_key": "sha256:061062db9f1d71efc14e88d56c765a448672b28e7ada1dc3fafce970d943f2a6"
+    },
+    {
+      "anchor_m": 103.132741229,
+      "family": "PROFILE_TRANSITION",
+      "module_id": "join/transition",
+      "source_mesh_sha256": "sha256:b884890ce44f3fcef7d9ab75f75b522044d3c7c4f7c0dda8d2b0ec0f3ebf868f",
+      "source_result_sha256": "sha256:eb63d968a736f6cfb4da9c4f0cd266809aab861679598d08867ed544e5068a2a",
+      "stable_join_key": "sha256:0ff494d22f66eda0f366eb17c4c59a9b54fc1e013d10f6b260988ca8974f1275"
+    }
+  ],
+  "join_count": 3,
+  "module_count": 7,
+  "schema": "royal-capital.fortification.mixed-span-segmentation/1",
+  "segmentation_digest": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+  "span_segment_count": 4,
+  "span_segments": [
+    {
+      "family": "STRAIGHT_SPAN",
+      "length_m": 24.0,
+      "module_id": "span/straight",
+      "module_kind": "PATH_SPAN",
+      "source_mesh_sha256": "sha256:4860acac80995d57352628d4062bbfd0de19c996b1e692a2abe536ccece8634d",
+      "source_result_sha256": "sha256:5d7a6ddf47aa4ec4f3109792db8ec232fc923bc0ed9cabe4a0bebf528f088a0f",
+      "stable_segment_key": "sha256:e9b369cd425dcf7a23adb6955333d1ca095707174cf57b09c98a3d72d53f056b",
+      "station": {
+        "end_m": 24.0,
+        "start_m": 0.0
+      }
+    },
+    {
+      "family": "CURVED_SPAN",
+      "length_m": 25.132741229,
+      "module_id": "span/curved",
+      "module_kind": "PATH_SPAN",
+      "source_mesh_sha256": "sha256:21781d0c24aec04f31e4f76b55a2411218b87ff3f21dd6b92c1f25dd4f89f28f",
+      "source_result_sha256": "sha256:5b1081352a342346ae4871832076e5bef452f6c0f6fc556ae52ab0c80b2bde8d",
+      "stable_segment_key": "sha256:5d06860fd91dc72f027e27df03997e2cd31764114a4aec02460c8a1c3da0e499",
+      "station": {
+        "end_m": 49.132741229,
+        "start_m": 24.0
+      }
+    },
+    {
+      "family": "TERRAIN_STEPPED",
+      "length_m": 30.0,
+      "module_id": "span/stepped",
+      "module_kind": "TERRAIN_SPAN",
+      "source_mesh_sha256": "sha256:390e6c480433fd24b697f60a59a3a4663fc7601fb2f0fb506daf2592fb36dd8c",
+      "source_result_sha256": "sha256:d0c019f50412d913761c16b825d2baf5ebab62f5bb43575e3b5d7374b1a9d738",
+      "stable_segment_key": "sha256:0c263a871ba8ffc020f88182e0277e92f4c8649cbfc1fc74f18f9ec83fe6bd9a",
+      "station": {
+        "end_m": 79.132741229,
+        "start_m": 49.132741229
+      }
+    },
+    {
+      "family": "RETAINING",
+      "length_m": 24.0,
+      "module_id": "span/retaining",
+      "module_kind": "TERRAIN_SPAN",
+      "source_mesh_sha256": "sha256:63cee46cde71f45880a9e9b49be42693b79a376afd4bd10d7b61ecb0cc6803fc",
+      "source_result_sha256": "sha256:97a66b2799cfedbe2677599609824589854fe494730eb44ca2d89d680132e630",
+      "stable_segment_key": "sha256:b94e0a85f377da7e2d9014b37f27c0236627eafba5d6f92df3f8204fa08004bd",
+      "station": {
+        "end_m": 103.132741229,
+        "start_m": 79.132741229
+      }
+    }
+  ],
+  "total_station_length_m": 103.132741229
+}

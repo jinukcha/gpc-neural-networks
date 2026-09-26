@@ -1,0 +1,22 @@
+{
+  "fixed_baseline": {
+    "file": "RCF_D0_full.zip",
+    "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+  },
+  "parent_full": {
+    "file": "A3.zip",
+    "sha256": "ffbe0be757beaed2b4b5f72125bd31e490b64c6cc0d2524da9957154048c729e"
+  },
+  "parent_patch": {
+    "file": "A3P.zip",
+    "sha256": "b958a30b41842ac367e7b770f9ea8fa068f444ea30e7e289a9a2d3fd4b56cfa4"
+  },
+  "parent_source": {
+    "file": "A3S.zip",
+    "sha256": "6f022d9d1eda1a9bfee4ee9935172f1d343bf57fe0b53b8e0ff61b276656339b"
+  },
+  "runtime_replay": "PENDING",
+  "schema": "royal-capital.fortification.cp4-source-preservation/1",
+  "stage_completion": "OPEN",
+  "status": "PASS"
+}

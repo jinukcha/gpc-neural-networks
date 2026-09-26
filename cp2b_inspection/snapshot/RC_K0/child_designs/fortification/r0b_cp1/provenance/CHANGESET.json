@@ -1,0 +1,10 @@
+{
+  "schema": "royal-capital.fortification.changeset/1",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0B-CP1",
+  "parent": "A4.zip",
+  "parent_sha256": "8f0d0a6667c8521c6f2720f2580304c4e06b480bd9e470384bc2828516edf751",
+  "fixed_baseline": "RCF_D0_full.zip",
+  "fixed_baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+  "scope": ["canonical centerline", "local frames", "straight span", "circular-arc span", "bounded loft geometry"],
+  "non_goals": ["joins", "terrain interface", "tower", "gate", "collision", "navigation", "Godot product"]
+}

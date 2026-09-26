@@ -1,0 +1,11 @@
+{
+  "schema": "royal-capital.fortification.validation-failure/1",
+  "status": "PRESERVED",
+  "attempt": 2,
+  "failure_type": "VALIDATOR_DOCUMENT_SHAPE_MISMATCH",
+  "failed_checks": ["foundation_interfaces_pass", "contact_evidence_pass"],
+  "cause": "validator read status/contact metrics at the document root although the accepted contracts store them under summary",
+  "source_or_product_rollback": false,
+  "qualification_outputs_preserved": true,
+  "action": "correct validator field paths only; rerun against the same source and accepted outputs"
+}

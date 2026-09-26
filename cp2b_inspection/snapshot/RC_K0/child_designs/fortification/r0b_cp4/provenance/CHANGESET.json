@@ -1,0 +1,25 @@
+{
+  "auto_continuation": false,
+  "checkpoint": "R0B-CP4",
+  "fixed_initial_baseline": "RCF_D0_full.zip",
+  "functional_qualification": "PASS",
+  "new_external_sources": [],
+  "next": "R0C_CP1_BY_EXPLICIT_APPROVAL",
+  "parent_checkpoint": "B3.zip",
+  "product_claims": {
+    "Godot": "NOT_STARTED",
+    "collision": "NOT_STARTED",
+    "navigation": "NOT_STARTED"
+  },
+  "schema": "royal-capital.fortification.changeset/1",
+  "scope": [
+    "mixed-span fixture",
+    "canonical segmentation independent of array order",
+    "exact socket-aligned module transforms",
+    "exclusive source triangle coverage",
+    "R0B closeout contracts and validators"
+  ],
+  "source_preservation": "PASS",
+  "stage_completion": "R0B_COMPLETE",
+  "status": "R0B_CP4_COMPLETE"
+}

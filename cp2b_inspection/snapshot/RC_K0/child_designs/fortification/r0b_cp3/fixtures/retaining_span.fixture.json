@@ -1,0 +1,64 @@
+{
+  "axis": {
+    "end_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "budget": {
+    "max_artifact_bytes": 100000000,
+    "max_triangles": 200000,
+    "max_units": 16,
+    "max_vertices": 200000
+  },
+  "family": "RETAINING",
+  "foundation": {
+    "contact_sample_spacing_m": 3.0,
+    "embedment_depth_m": 2.0,
+    "max_embedment_depth_m": 8.0,
+    "max_gap_m": 0.02,
+    "terrain_contact_offset_m": 0.0
+  },
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "grade": {
+    "max_centerline_grade": 0.12,
+    "max_step_height_m": 2.5
+  },
+  "inside_side": "LEFT_OF_TRAVEL",
+  "outside_side": "RIGHT_OF_TRAVEL",
+  "profile_id": "rcf/standard-wall@1",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.terrain-wall-span/1",
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "terrain": {
+    "bearing_elevation_m": -2.0,
+    "inside_elevation_m": 3.0,
+    "inside_heel_width_m": 4.0,
+    "kind": "RETAINING_CROSS_SLOPE",
+    "outside_elevation_m": 0.0,
+    "outside_toe_width_m": 5.0
+  },
+  "terrain_source": {
+    "profile_digest": "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+    "revision": "r1",
+    "source_id": "terrain/caelmere/east-terrace/retaining-001"
+  },
+  "tolerances": {
+    "angular_rad": 1e-06,
+    "linear_m": 1e-06,
+    "mesh_round_digits": 9,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  }
+}

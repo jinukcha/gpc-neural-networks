@@ -1,0 +1,29 @@
+{
+  "schema": "royal-capital.fortification.r0b-cp2-join-contract/1",
+  "families": {
+    "MITER": {
+      "turn_domain_deg": [1.0, 15.0],
+      "profile_policy": "IDENTICAL",
+      "geometry_route": "BOUNDED_MITER_SECTION_LOFT",
+      "required_sections": 3
+    },
+    "BEVEL": {
+      "turn_domain_deg": [15.0, 35.0],
+      "lower_bound_exclusive": true,
+      "profile_policy": "IDENTICAL",
+      "geometry_route": "BOUNDED_BEVEL_SECTION_LOFT",
+      "required_sections": 4
+    },
+    "PROFILE_TRANSITION": {
+      "turn_domain_deg": [0.0, 5.0],
+      "profile_policy": "DISTINCT",
+      "geometry_route": "BOUNDED_PROFILE_TRANSITION_LOFT",
+      "required_sections": 3
+    }
+  },
+  "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "inside_policy": "LEFT_OF_TRAVEL",
+  "outside_policy": "RIGHT_OF_TRAVEL",
+  "provider_face_identity_authoritative": false,
+  "join_ownership": "JOIN_MODULE_ONLY_SPAN_GEOMETRY_UNCHANGED"
+}

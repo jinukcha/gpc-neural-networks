@@ -1,0 +1,27 @@
+{
+  "budget": {
+    "max_artifact_bytes": 2000000,
+    "max_profile_points": 32,
+    "max_triangles": 256,
+    "max_vertices": 128
+  },
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "inside_side": "POSITIVE_Z",
+  "length_m": 24.0,
+  "outside_side": "NEGATIVE_Z",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.straight-wall-span/1",
+  "span_id": "fortification/caelmere/pilot/straight-span-001",
+  "tolerances": {
+    "angular_rad": 1e-07,
+    "linear_m": 1e-07,
+    "mesh_round_digits": 9,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  }
+}

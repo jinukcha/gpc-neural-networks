@@ -1,0 +1,90 @@
+{
+  "capability_canonical_sha256": "a716380284aa4fa9c06e77a1c15e6ca0cc680411f71c1a469f47967889ce0bdf",
+  "checks": {
+    "capability_canonical_A_equals_B": true,
+    "pip_check_A_B": true,
+    "pip_freeze_A_equals_B": true,
+    "product_A_equals_B": true,
+    "product_A_equals_accepted_reference": true,
+    "product_B_equals_accepted_reference": true,
+    "runtime_identity_A_equals_B": true,
+    "runtime_identity_exact": true
+  },
+  "comparisons": {
+    "A_vs_B": {
+      "different": [],
+      "equal": true,
+      "extra": [],
+      "left_count": 36,
+      "missing": [],
+      "right_count": 36
+    },
+    "A_vs_reference": {
+      "different": [],
+      "equal": true,
+      "extra": [],
+      "left_count": 36,
+      "missing": [],
+      "right_count": 36
+    },
+    "B_vs_reference": {
+      "different": [],
+      "equal": true,
+      "extra": [],
+      "left_count": 36,
+      "missing": [],
+      "right_count": 36
+    }
+  },
+  "product_files_compared": 36,
+  "runtime_receipts": [
+    {
+      "capability_canonical_sha256": "sha256:a716380284aa4fa9c06e77a1c15e6ca0cc680411f71c1a469f47967889ce0bdf",
+      "label": "A",
+      "product_result_sha256": "sha256:b78e21f539ca102d110d4cd8b19f6d3724304515b26e31c4d6dd8cecb49b20dd",
+      "python": {
+        "base_prefix": "/opt/hostedtoolcache/Python/3.13.5/x64",
+        "cache_tag": "cpython-313",
+        "implementation": "CPython",
+        "isolated_venv": true,
+        "prefix": "/home/runner/work/gpc-neural-networks/gpc-neural-networks/work/runtime_A",
+        "version": "3.13.5"
+      },
+      "runtime": {
+        "build123d_version": "0.13.1.dev12+ge22d34dae",
+        "global_install": false,
+        "ocp_version": "8.0.1.0.0",
+        "requirements_lock_sha256": "sha256:59b8802bc325c94b4d4e94060e4ed9490ce738fff6ecb8726f86eadb779744bf",
+        "wheel_count": 58,
+        "wheelhouse_manifest_sha256": "sha256:f6e9908f02cbd6b689ff0448a32ca460e374afcbeb6c66d34129ec74f07c51cd"
+      },
+      "schema": "royal-capital.fortification.cp4-runtime-replay-receipt/1",
+      "status": "PASS"
+    },
+    {
+      "capability_canonical_sha256": "sha256:a716380284aa4fa9c06e77a1c15e6ca0cc680411f71c1a469f47967889ce0bdf",
+      "label": "B",
+      "product_result_sha256": "sha256:b78e21f539ca102d110d4cd8b19f6d3724304515b26e31c4d6dd8cecb49b20dd",
+      "python": {
+        "base_prefix": "/opt/hostedtoolcache/Python/3.13.5/x64",
+        "cache_tag": "cpython-313",
+        "implementation": "CPython",
+        "isolated_venv": true,
+        "prefix": "/home/runner/work/gpc-neural-networks/gpc-neural-networks/work/runtime_B",
+        "version": "3.13.5"
+      },
+      "runtime": {
+        "build123d_version": "0.13.1.dev12+ge22d34dae",
+        "global_install": false,
+        "ocp_version": "8.0.1.0.0",
+        "requirements_lock_sha256": "sha256:59b8802bc325c94b4d4e94060e4ed9490ce738fff6ecb8726f86eadb779744bf",
+        "wheel_count": 58,
+        "wheelhouse_manifest_sha256": "sha256:f6e9908f02cbd6b689ff0448a32ca460e374afcbeb6c66d34129ec74f07c51cd"
+      },
+      "schema": "royal-capital.fortification.cp4-runtime-replay-receipt/1",
+      "status": "PASS"
+    }
+  ],
+  "schema": "royal-capital.fortification.cp4-exact-runtime-replay/1",
+  "status": "PASS"
+}

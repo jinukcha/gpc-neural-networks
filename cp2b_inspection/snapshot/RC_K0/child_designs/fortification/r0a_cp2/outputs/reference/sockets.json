@@ -1,0 +1,276 @@
+{
+  "schema": "royal-capital.fortification.socket-plan/1",
+  "sockets": [
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "TOWER_JOIN",
+      "socket_id": "tower_start"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "TOWER_JOIN",
+      "socket_id": "tower_end"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        8.0,
+        6.0,
+        2.75
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "utility_inside_01"
+    },
+    {
+      "frame": {
+        "x_axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "y_axis": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "z_axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "position_m": [
+        16.0,
+        6.0,
+        2.75
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "utility_inside_02"
+    }
+  ],
+  "span_id": "fortification/caelmere/pilot/straight-span-001"
+}

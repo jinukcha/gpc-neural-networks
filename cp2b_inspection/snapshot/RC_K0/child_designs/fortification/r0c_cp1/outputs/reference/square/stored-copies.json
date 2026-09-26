@@ -1,0 +1,73 @@
+{
+  "copies": [
+    {
+      "bytes": 15761,
+      "canonical_sha256": "sha256:8aeeef9448cbde625a71ea6812e540502c1d6cccc4b9fc0b9cc165a0e606acf9",
+      "format": "STEP",
+      "part_id": "foundation",
+      "path": "parts/foundation/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:d5df06a3c39b6e1511abf2ed7ff57dcb72d8c9e1db2f429b6465d3f4dd682fb7",
+      "reopen_volume_m3": 972.0,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 3310,
+      "canonical_sha256": "sha256:63021c3c55b3b9b691813fdf4368657c25f9e3e1c7daf4311b72dba766fb18c7",
+      "format": "BREP",
+      "part_id": "foundation",
+      "path": "parts/foundation/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:63021c3c55b3b9b691813fdf4368657c25f9e3e1c7daf4311b72dba766fb18c7",
+      "reopen_volume_m3": 972.0,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 15725,
+      "canonical_sha256": "sha256:852e394fa46e7ab1347ed1b5e03f295af24edcea182719c554f870b6eb7fd3ac",
+      "format": "STEP",
+      "part_id": "tower_body",
+      "path": "parts/tower_body/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:9237fb4207564949286c0419ae4dd4e3df58932c70250a6940af35f86cb1ee93",
+      "reopen_volume_m3": 4096.0,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 3349,
+      "canonical_sha256": "sha256:98b5e9020cd1f72c3dd0093c9e6403430674ef2b2f5d6539059285c20d4b44b7",
+      "format": "BREP",
+      "part_id": "tower_body",
+      "path": "parts/tower_body/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:98b5e9020cd1f72c3dd0093c9e6403430674ef2b2f5d6539059285c20d4b44b7",
+      "reopen_volume_m3": 4096.0,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 15871,
+      "canonical_sha256": "sha256:55f30b6a9a686ef46aa1f1da61a785977ead7405c7cf065fa72cce82629f3bce",
+      "format": "STEP",
+      "part_id": "tower_crown",
+      "path": "parts/tower_crown/shape.step",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:b7ae009d1177f36eb52ac0209828a1a800547065cdb0ba0f6ece185ef8f519a2",
+      "reopen_volume_m3": 173.4,
+      "stored_numeric_unit": "MILLIMETER"
+    },
+    {
+      "bytes": 3658,
+      "canonical_sha256": "sha256:e7233f6effee54e24174e1c3cb9742ab47c19ac8740f62e4fa575df61a608760",
+      "format": "BREP",
+      "part_id": "tower_crown",
+      "path": "parts/tower_crown/shape.brep",
+      "project_unit": "METER",
+      "raw_sha256": "sha256:e7233f6effee54e24174e1c3cb9742ab47c19ac8740f62e4fa575df61a608760",
+      "reopen_volume_m3": 173.4,
+      "stored_numeric_unit": "MILLIMETER"
+    }
+  ],
+  "family": "SQUARE",
+  "schema": "royal-capital.fortification.tower-stored-copies/1",
+  "tower_id": "fortification/caelmere/pilot/tower-square-001"
+}

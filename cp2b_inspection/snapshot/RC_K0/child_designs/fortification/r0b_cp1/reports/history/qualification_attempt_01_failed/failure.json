@@ -1,0 +1,9 @@
+{
+  "attempt": 1,
+  "cause": "negative matrix used validate_fixture only; derived section-budget gate is enforced by canonicalize_centerline",
+  "failure": "negative fixture accepted: section_budget",
+  "positive_outputs_preserved": true,
+  "schema": "royal-capital.fortification.r0b-cp1-qualification-failure/1",
+  "source_preserved": true,
+  "status": "FAILED_PRESERVED"
+}

@@ -1,0 +1,106 @@
+{
+  "adapter_id": "royal-capital/fortification/build123d-adapter",
+  "adapter_revision": "r0a-cp1.1",
+  "adapter_source_digest": "sha256:044dfe25efb2b328bbb79dfa1b1179cc5f03b00790b1227e5205b769fdc02c5c",
+  "capabilities": [
+    "cad.profile_extrusion@1",
+    "cad.tessellation@1",
+    "cad.step_brep_export@1"
+  ],
+  "contract": {
+    "operation_kind": "PROFILE_EXTRUSION",
+    "orientation_determinant": 1.0,
+    "project_frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+    "project_to_provider_length_scale": 1000.0,
+    "project_to_provider_matrix": [
+      [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1000.0,
+        0.0
+      ],
+      [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "project_unit": "METER",
+    "provider_frame": "RH_X_RIGHT_Y_FORWARD_Z_UP",
+    "provider_numeric_unit": "MILLIMETER",
+    "provider_to_project_matrix": [
+      [
+        0.001,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.001,
+        0.0
+      ],
+      [
+        0.0,
+        -0.001,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "public_upstream_types_exposed": false,
+    "tolerances": {
+      "angular_rad": 1e-06,
+      "linear_m": 1e-06,
+      "tessellation_angular_rad": 0.1,
+      "tessellation_linear_m": 0.05
+    },
+    "units": "METER"
+  },
+  "mesh_digest": "sha256:389dbb5e018f02657ad8c070a4cee49ba0f3925eefe03711952c5cb7fd3cdc77",
+  "provider_id": "build123d/OCP",
+  "request_digest": "sha256:08e66856b1941d019507503632a23d0c6d4451c23fc7b62de944b59c83f79dd0",
+  "result_core_digest": "sha256:5d0aa4b1caa65e1bf9f3399a0b5b64cf7a3abb760712f0f1313302fa9cee6f54",
+  "runtime": {
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "global_install": false,
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f",
+    "platform": "linux-x86_64",
+    "python_cache_tag": "cpython-313",
+    "python_implementation": "CPython",
+    "python_version": "3.13.5",
+    "requirements_lock_sha256": "sha256:59b8802bc325c94b4d4e94060e4ed9490ce738fff6ecb8726f86eadb779744bf",
+    "wheelhouse_manifest_sha256": "sha256:f6e9908f02cbd6b689ff0448a32ca460e374afcbeb6c66d34129ec74f07c51cd"
+  },
+  "schema": "royal-capital.fortification.cad-provider-receipt/1",
+  "source_ref": {
+    "commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "license": "Apache-2.0",
+    "project": "build123d"
+  },
+  "status": "PASS",
+  "stored_copy_canonical_digests": {
+    "BREP": "sha256:594139d0eba13baf648b92f41fdb56d05c70febcc788a747c0724ad7779baecc",
+    "STEP": "sha256:f8d1ba4e0568b9f3aaf9cdaa7a1206f1518fd04f6e7a08279fd8017a291ebd83"
+  }
+}

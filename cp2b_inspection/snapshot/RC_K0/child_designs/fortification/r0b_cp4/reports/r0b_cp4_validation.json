@@ -1,0 +1,360 @@
+{
+  "canonical_result_sha256": "c8ea28b72896cdba6339e2120e4630e9b2694dda07d65148cc99c8daf96d45b7",
+  "checks": [
+    {
+      "detail": [],
+      "name": "required_files_A",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "required_files_B",
+      "pass": true
+    },
+    {
+      "detail": {
+        "extra": [],
+        "missing": []
+      },
+      "name": "clean_file_set",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "clean_byte_identical",
+      "pass": true
+    },
+    {
+      "detail": "SUCCEEDED",
+      "name": "result_status",
+      "pass": true
+    },
+    {
+      "detail": 7,
+      "name": "module_count",
+      "pass": true
+    },
+    {
+      "detail": 4,
+      "name": "span_segment_count",
+      "pass": true
+    },
+    {
+      "detail": 3,
+      "name": "join_count",
+      "pass": true
+    },
+    {
+      "detail": 6,
+      "name": "connection_count",
+      "pass": true
+    },
+    {
+      "detail": 544,
+      "name": "vertex_count",
+      "pass": true
+    },
+    {
+      "detail": 908,
+      "name": "triangle_count",
+      "pass": true
+    },
+    {
+      "detail": 14987.542514048,
+      "name": "positive_volume",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max": [
+          71.738364417,
+          16.4,
+          68.592296852
+        ],
+        "min": [
+          0.0,
+          -3.0,
+          -4.0
+        ]
+      },
+      "name": "finite_bounds",
+      "pass": true
+    },
+    {
+      "detail": [
+        "span/straight",
+        "join/miter",
+        "span/curved",
+        "join/bevel",
+        "span/stepped",
+        "span/retaining",
+        "join/transition"
+      ],
+      "name": "chain_order",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "array_order_not_identity",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "segmentation_digest_match",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "span_rows",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "join_rows",
+      "pass": true
+    },
+    {
+      "detail": [
+        0.0,
+        24.0,
+        49.132741229,
+        79.132741229,
+        103.132741229
+      ],
+      "name": "boundary_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "span_interval_continuity",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stable_segment_keys_unique",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "stable_join_keys_unique",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transform_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transform_order",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "root_transform",
+      "pass": true
+    },
+    {
+      "detail": "PASS",
+      "name": "socket_alignment_status",
+      "pass": true
+    },
+    {
+      "detail": 6,
+      "name": "socket_alignment_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "socket_position_errors",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "socket_angular_errors",
+      "pass": true
+    },
+    {
+      "detail": 60,
+      "name": "module_socket_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "namespaced_socket_ids",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_index_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_index_order",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_ranges_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_range_order",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_range_vertices",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "module_range_triangles",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "mesh_indices",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "mesh_finite",
+      "pass": true
+    },
+    {
+      "detail": {
+        "covered_triangle_count": 908,
+        "gap_count": 0,
+        "gaps": [],
+        "mesh_triangle_count": 908,
+        "module_count": 7,
+        "overlap_count": 0,
+        "overlaps": [],
+        "surface_count": 270,
+        "unique_triangle_count": 908
+      },
+      "name": "coverage_triangle_total",
+      "pass": true
+    },
+    {
+      "detail": {
+        "covered_triangle_count": 908,
+        "gap_count": 0,
+        "gaps": [],
+        "mesh_triangle_count": 908,
+        "module_count": 7,
+        "overlap_count": 0,
+        "overlaps": [],
+        "surface_count": 270,
+        "unique_triangle_count": 908
+      },
+      "name": "coverage_no_gap",
+      "pass": true
+    },
+    {
+      "detail": {
+        "covered_triangle_count": 908,
+        "gap_count": 0,
+        "gaps": [],
+        "mesh_triangle_count": 908,
+        "module_count": 7,
+        "overlap_count": 0,
+        "overlaps": [],
+        "surface_count": 270,
+        "unique_triangle_count": 908
+      },
+      "name": "coverage_no_overlap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_exclusive",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_complete_set",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_modules",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "coverage_source_refs",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "provider_face_identity_false",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "exact_source_refs",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "qualification_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_replay_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "clean_replay_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "shuffle_digest_same",
+      "pass": true
+    },
+    {
+      "detail": 10,
+      "name": "negative_gate_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "negative_all_rejected",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "global_boolean_false",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "terrain_mutation_false",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "product_cook_deferred",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_generated_cache",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-cp4-validation/1",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "files_compared": 10,
+    "passed": 58
+  }
+}

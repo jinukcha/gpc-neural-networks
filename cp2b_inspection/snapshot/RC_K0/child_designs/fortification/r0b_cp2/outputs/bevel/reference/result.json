@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "bounded-overlap.json": {
+      "bytes": 845,
+      "path": "bounded-overlap.json",
+      "sha256": "sha256:e1977f4a863abb1f3373b35f0ca5b33e87c954355ee3dc76e9360c3b3e76acdd"
+    },
+    "cad-provider-receipt.json": {
+      "bytes": 4398,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:bb27eeeef7400cf6b06ce4e26caf6792b673492c2bd2a0c96e295e5500d42d20"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 327,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:3deac49f4211dc4ad718af9065437a227e5a21ac269ec72d0dd55956bb338405"
+    },
+    "join-plan.json": {
+      "bytes": 913,
+      "path": "join-plan.json",
+      "sha256": "sha256:ffc081c5c817d8406e1079302b081a83811c60dc701fbfba8f49bc62160ac365"
+    },
+    "join-sockets.json": {
+      "bytes": 4610,
+      "path": "join-sockets.json",
+      "sha256": "sha256:d65147dff527f72b69fc2d6fd1262aa2654e096f33b46869b13604679617e847"
+    },
+    "neutral-mesh.json": {
+      "bytes": 11419,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:d9e66b885a63a45f1fee86c8dfc5132da911559c95ba3e38288a3f94fb22474b"
+    },
+    "section-plan.json": {
+      "bytes": 2106,
+      "path": "section-plan.json",
+      "sha256": "sha256:20c01818ff3db1e7635178ed41d704383622bf0b38a69f413c3eb907ff6e71d2"
+    },
+    "semantic-parts.json": {
+      "bytes": 4522,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:20de0760ad7771268ec466314c4309b106e4189ce9886bb8afa3344f8ac59519"
+    },
+    "socket-alignment.json": {
+      "bytes": 2864,
+      "path": "socket-alignment.json",
+      "sha256": "sha256:1ba6eda803fdc053922772574ca16fd7a097a8de003094eb6c43e5b3c6d31047"
+    },
+    "stored-copies.json": {
+      "bytes": 4610,
+      "path": "stored-copies.json",
+      "sha256": "sha256:8f37372e6831daf964a4c9858e18019bcdadac868ea19e432923bdcfc6268e79"
+    }
+  },
+  "bounded_overlap_status": "PASS",
+  "bounds_m": {
+    "max": [
+      34.66025404,
+      14.4,
+      8.464101616
+    ],
+    "min": [
+      14.0,
+      -2.0,
+      -4.0
+    ]
+  },
+  "failure": null,
+  "family": "BEVEL",
+  "join_id": "fortification/caelmere/r0b/bevel-join-001",
+  "part_count": 5,
+  "schema": "royal-capital.fortification.wall-join-result/1",
+  "section_count": 4,
+  "socket_alignment_count": 6,
+  "socket_alignment_status": "PASS",
+  "socket_count": 6,
+  "solid_count": 5,
+  "status": "SUCCEEDED",
+  "triangle_count": 140,
+  "turn_angle_deg": 29.999999994,
+  "vertex_count": 80,
+  "volume_m3": 1830.949631601
+}

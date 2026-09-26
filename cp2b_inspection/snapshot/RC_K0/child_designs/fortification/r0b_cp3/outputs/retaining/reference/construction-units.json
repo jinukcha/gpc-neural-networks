@@ -1,0 +1,218 @@
+{
+  "family": "RETAINING",
+  "schema": "royal-capital.fortification.terrain-span-construction-units/1",
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "unit_count": 5,
+  "units": [
+    {
+      "bounds_m": {
+        "max": [
+          24.0,
+          3.0,
+          4.0
+        ],
+        "min": [
+          0.0,
+          -2.0,
+          -5.0
+        ]
+      },
+      "distance_m": 24.0,
+      "expected_volume_m3": 1008.0,
+      "material_slot": "stone_foundation",
+      "part_id": "foundation",
+      "profile_area_m2": 42.0,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "units/retaining_00/foundation/cad-provider-receipt.json",
+        "sha256": "sha256:81ea4cc2e696fede6e88092fe8a7f39c3bddd8e6e647713df8c8aa3dae407406"
+      },
+      "provider_result_ref": {
+        "bytes": 2538,
+        "path": "units/retaining_00/foundation/result.json",
+        "sha256": "sha256:e432778edbcd1e374af60c3c8c7d1c5021bad8820d1fb2cc12385bfd41414597"
+      },
+      "relative_volume_error": 0.0,
+      "segment_id": "retaining_00",
+      "segment_index": 0,
+      "semantic_role": "FOUNDATION",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 0.0,
+      "triangle_count": 20,
+      "unit_id": "unit/retaining/foundation",
+      "vertex_count": 12,
+      "volume_m3": 1008.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          24.0,
+          15.0,
+          3.0
+        ],
+        "min": [
+          0.0,
+          3.0,
+          -3.0
+        ]
+      },
+      "distance_m": 24.0,
+      "expected_volume_m3": 1728.0,
+      "material_slot": "stone_wall",
+      "part_id": "wall_body",
+      "profile_area_m2": 72.0,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "units/retaining_00/wall_body/cad-provider-receipt.json",
+        "sha256": "sha256:46f7ad2027aaeabcb2e32f295e2d0eff5c49fc36903fa4da46d8143d77c0cb81"
+      },
+      "provider_result_ref": {
+        "bytes": 2536,
+        "path": "units/retaining_00/wall_body/result.json",
+        "sha256": "sha256:984fdadb4fb8c29dc2bd416731df3fd0f888718013dc2e33882aed00fe9a0ab6"
+      },
+      "relative_volume_error": 0.0,
+      "segment_id": "retaining_00",
+      "segment_index": 0,
+      "semantic_role": "WALL_BODY",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 3.0,
+      "triangle_count": 12,
+      "unit_id": "unit/retaining/wall_body",
+      "vertex_count": 8,
+      "volume_m3": 1728.0
+    },
+    {
+      "bounds_m": {
+        "max": [
+          24.0,
+          15.6,
+          3.2
+        ],
+        "min": [
+          0.0,
+          15.0,
+          -3.2
+        ]
+      },
+      "distance_m": 24.0,
+      "expected_volume_m3": 92.16,
+      "material_slot": "stone_walk",
+      "part_id": "wall_walk",
+      "profile_area_m2": 3.84,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "units/retaining_00/wall_walk/cad-provider-receipt.json",
+        "sha256": "sha256:e8f8b6ee6e50fc81f85c127f0cf84a4e0d5d2c2727e3b7a17d2e4170564d2810"
+      },
+      "provider_result_ref": {
+        "bytes": 2534,
+        "path": "units/retaining_00/wall_walk/result.json",
+        "sha256": "sha256:79a6ce92a8b61f1dd28d09794e235802e312e42f72027bf14c0d52ec78cf3aec"
+      },
+      "relative_volume_error": 0.0,
+      "segment_id": "retaining_00",
+      "segment_index": 0,
+      "semantic_role": "WALL_WALK",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 3.0,
+      "triangle_count": 12,
+      "unit_id": "unit/retaining/wall_walk",
+      "vertex_count": 8,
+      "volume_m3": 92.16
+    },
+    {
+      "bounds_m": {
+        "max": [
+          24.0,
+          17.4,
+          3.2
+        ],
+        "min": [
+          0.0,
+          15.6,
+          2.4
+        ]
+      },
+      "distance_m": 24.0,
+      "expected_volume_m3": 34.56,
+      "material_slot": "stone_parapet",
+      "part_id": "inner_parapet",
+      "profile_area_m2": 1.44,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "units/retaining_00/inner_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:7440c9333d6ae64b7625858924c649fcd6a0359de39d91516f65859849af9957"
+      },
+      "provider_result_ref": {
+        "bytes": 2537,
+        "path": "units/retaining_00/inner_parapet/result.json",
+        "sha256": "sha256:ff58d79c10250c88c3457c818dd485c067211ad54f8bc1b63d9827b36c2be23e"
+      },
+      "relative_volume_error": 0.0,
+      "segment_id": "retaining_00",
+      "segment_index": 0,
+      "semantic_role": "INNER_PARAPET",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 3.0,
+      "triangle_count": 12,
+      "unit_id": "unit/retaining/inner_parapet",
+      "vertex_count": 8,
+      "volume_m3": 34.56
+    },
+    {
+      "bounds_m": {
+        "max": [
+          24.0,
+          17.4,
+          -2.4
+        ],
+        "min": [
+          0.0,
+          15.6,
+          -3.2
+        ]
+      },
+      "distance_m": 24.0,
+      "expected_volume_m3": 34.56,
+      "material_slot": "stone_parapet",
+      "part_id": "outer_parapet",
+      "profile_area_m2": 1.44,
+      "provider_receipt_ref": {
+        "bytes": 2847,
+        "path": "units/retaining_00/outer_parapet/cad-provider-receipt.json",
+        "sha256": "sha256:d748debd9591e108cf7b36b49cb012bbbdeda78ab75065c4b3eb43fc47ed8206"
+      },
+      "provider_result_ref": {
+        "bytes": 2539,
+        "path": "units/retaining_00/outer_parapet/result.json",
+        "sha256": "sha256:d9c0dd3c787b6484670db6bc5135802298eab2b4403412a1a8aa908dec3a722a"
+      },
+      "relative_volume_error": 0.0,
+      "segment_id": "retaining_00",
+      "segment_index": 0,
+      "semantic_role": "OUTER_PARAPET",
+      "station_interval_m": [
+        0.0,
+        24.0
+      ],
+      "terrain_elevation_m": 3.0,
+      "triangle_count": 12,
+      "unit_id": "unit/retaining/outer_parapet",
+      "vertex_count": 8,
+      "volume_m3": 34.56
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "byte_identical": true,
+  "canonical_segmentation_digest_a": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+  "canonical_segmentation_digest_b": "sha256:9f6c33708ea9f827a793c25d8b1d5201cf432fdb29fff94e3bb5d01c6d6076cf",
+  "different": [],
+  "file_set_equal": true,
+  "files_compared": 10,
+  "fixture_a_raw_digest": "sha256:612ae13e073454b5611fdc38d65d6a3b453dd0d6d16d9ad1e27b0302408560b9",
+  "fixture_b_raw_digest": "sha256:8e100a6b3cf71f3bccc5f486cc8bcb5a981e67112fed8c8c83eb3a357b91f6a1",
+  "schema": "royal-capital.fortification.r0b-cp4-clean-replay/1",
+  "status": "PASS"
+}

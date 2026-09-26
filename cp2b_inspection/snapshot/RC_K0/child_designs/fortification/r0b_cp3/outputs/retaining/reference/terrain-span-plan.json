@@ -1,0 +1,59 @@
+{
+  "assembly_mode": "BOUNDED_NON_UNIONED_TERRAIN_UNITS",
+  "axis_contract": {
+    "end_m": [
+      24.0,
+      0.0,
+      0.0
+    ],
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "length_m": 24.0,
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "family": "RETAINING",
+  "geometry_route": "ASYMMETRIC_RETAINING_PROFILE_EXTRUSION",
+  "part_order": [
+    "foundation",
+    "wall_body",
+    "wall_walk",
+    "inner_parapet",
+    "outer_parapet"
+  ],
+  "profile_id": "rcf/standard-wall@1",
+  "schema": "royal-capital.fortification.terrain-wall-span-plan/1",
+  "segment_count": 1,
+  "span_id": "fortification/caelmere/r0b/retaining-001",
+  "surface_coverage_stage": "R0B_CP4",
+  "terrain_mutation": false,
+  "terrain_profile_digest": "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+  "terrain_source": {
+    "profile_digest": "sha256:d2fd2db26db050d623c53e4340cab76c9b0df8d112a9590c89fbe99930529f67",
+    "revision": "r1",
+    "source_id": "terrain/caelmere/east-terrace/retaining-001"
+  },
+  "unit_count": 5
+}

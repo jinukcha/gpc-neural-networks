@@ -1,0 +1,77 @@
+{
+  "axis": {
+    "end_m": [
+      30.0,
+      0.0,
+      0.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "axis_contract": {
+    "end_m": [
+      30.0,
+      0.0,
+      0.0
+    ],
+    "inside": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "length_m": 30.0,
+    "orientation_determinant": 1.0,
+    "outside": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tangent": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "up": [
+      0.0,
+      1.0,
+      0.0
+    ]
+  },
+  "family": "TERRAIN_STEPPED",
+  "profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+  "schema": "royal-capital.fortification.canonical-terrain-profile/1",
+  "source_id": "terrain/caelmere/west-ridge/terraces-001",
+  "source_revision": "r1",
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+  "terrain": {
+    "kind": "STEPPED_TERRACES",
+    "terraces": [
+      {
+        "elevation_m": 0.0,
+        "end_station_m": 10.0,
+        "segment_id": "terrace_00",
+        "start_station_m": 0.0
+      },
+      {
+        "elevation_m": 1.0,
+        "end_station_m": 20.0,
+        "segment_id": "terrace_01",
+        "start_station_m": 10.0
+      },
+      {
+        "elevation_m": 2.0,
+        "end_station_m": 30.0,
+        "segment_id": "terrace_02",
+        "start_station_m": 20.0
+      }
+    ]
+  }
+}

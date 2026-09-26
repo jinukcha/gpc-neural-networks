@@ -1,0 +1,999 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "families": {
+          "bevel": {
+            "bounded_overlap_status": "PASS",
+            "bounds_m": {
+              "max": [
+                34.66025404,
+                14.4,
+                8.464101616
+              ],
+              "min": [
+                14.0,
+                -2.0,
+                -4.0
+              ]
+            },
+            "byte_identical": true,
+            "family": "BEVEL",
+            "files_compared": 36,
+            "reference_digest": "9b60baeb48131a678fff183ccba2ad470d138c3b7b18aa25eba9149f4d619f71",
+            "section_count": 4,
+            "socket_alignment_count": 6,
+            "socket_alignment_status": "PASS",
+            "socket_count": 6,
+            "solid_count": 5,
+            "status": "PASS",
+            "triangle_count": 140,
+            "turn_angle_deg": 29.999999994,
+            "vertex_count": 80,
+            "volume_m3": 1830.949631601
+          },
+          "miter": {
+            "bounded_overlap_status": "PASS",
+            "bounds_m": {
+              "max": [
+                32.573054736,
+                14.4,
+                5.328416436
+              ],
+              "min": [
+                16.0,
+                -2.0,
+                -4.0
+              ]
+            },
+            "byte_identical": true,
+            "family": "MITER",
+            "files_compared": 36,
+            "reference_digest": "62c3d1f5a9102ddc480b5127ae1bbdf45e453e53e9f0cb4eb53e916355be66bb",
+            "section_count": 3,
+            "socket_alignment_count": 6,
+            "socket_alignment_status": "PASS",
+            "socket_count": 6,
+            "solid_count": 5,
+            "status": "PASS",
+            "triangle_count": 100,
+            "turn_angle_deg": 10.000000019,
+            "vertex_count": 60,
+            "volume_m3": 1515.52
+          },
+          "transition": {
+            "bounded_overlap_status": "PASS",
+            "bounds_m": {
+              "max": [
+                30.0,
+                14.4,
+                5.0
+              ],
+              "min": [
+                18.0,
+                -2.0,
+                -5.0
+              ]
+            },
+            "byte_identical": true,
+            "family": "PROFILE_TRANSITION",
+            "files_compared": 36,
+            "reference_digest": "44de558fbecba99fac6bafd94a680b4045342aaff28ff40ad9a66d86164649b4",
+            "section_count": 3,
+            "socket_alignment_count": 6,
+            "socket_alignment_status": "PASS",
+            "socket_count": 6,
+            "solid_count": 5,
+            "status": "PASS",
+            "triangle_count": 100,
+            "turn_angle_deg": 0.0,
+            "vertex_count": 60,
+            "volume_m3": 1251.36
+          }
+        },
+        "negative": [
+          {
+            "case": "miter_turn_out_of_domain",
+            "error": "JoinContractError",
+            "message": "MITER turn must be within [1,15] degrees",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "bevel_turn_out_of_domain",
+            "error": "JoinContractError",
+            "message": "BEVEL turn must be within (15,35] degrees",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "transition_requires_distinct_profile",
+            "error": "JoinContractError",
+            "message": "PROFILE_TRANSITION requires distinct profiles",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "socket_position_mismatch",
+            "error": "JoinContractError",
+            "message": "outgoing.sockets.span position mismatch",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "socket_frame_mismatch",
+            "error": "JoinContractError",
+            "message": "outgoing.sockets.span frame mismatch",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "overlap_exceeds_max",
+            "error": "JoinContractError",
+            "message": "overlap outside bounded domain",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "section_budget",
+            "error": "JoinContractError",
+            "message": "required sections exceed join budget",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "runtime_mismatch",
+            "error": "JoinContractError",
+            "message": "runtime mismatch: {'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+            "status": "PASS_EXPECTED_REJECTION"
+          },
+          {
+            "case": "opposed_tangents",
+            "error": "JoinContractError",
+            "message": "opposed tangents unsupported",
+            "status": "PASS_EXPECTED_REJECTION"
+          }
+        ],
+        "negative_count": 9,
+        "schema": "royal-capital.fortification.r0b-cp2-qualification/1",
+        "source_span_digest_after": "f542bc1485ce0d8d364490955dedd34f873889d167119245d0404eb75fe87845",
+        "source_span_digest_before": "f542bc1485ce0d8d364490955dedd34f873889d167119245d0404eb75fe87845",
+        "source_spans_unchanged": true,
+        "status": "PASS"
+      },
+      "name": "qualification",
+      "pass": true
+    },
+    {
+      "detail": [
+        "bevel",
+        "miter",
+        "transition"
+      ],
+      "name": "families",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "clean_replay",
+      "pass": true
+    },
+    {
+      "detail": 9,
+      "name": "negative_gates",
+      "pass": true
+    },
+    {
+      "detail": [
+        "f542bc1485ce0d8d364490955dedd34f873889d167119245d0404eb75fe87845",
+        "f542bc1485ce0d8d364490955dedd34f873889d167119245d0404eb75fe87845"
+      ],
+      "name": "source_spans_unchanged",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "bounded-overlap.json": {
+            "bytes": 807,
+            "path": "bounded-overlap.json",
+            "sha256": "sha256:c98486d38ab0d37e1d11eba09d04d048ee1f05d1cb8c81308106d4da14882a9b"
+          },
+          "cad-provider-receipt.json": {
+            "bytes": 4398,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:59a485c9f0d95efb4a734986838de387fb0568a9d157ec405b445838acad226b"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 327,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:657e134a113b635f20e71772dada11324be68982236f07427de7f1d61e55618b"
+          },
+          "join-plan.json": {
+            "bytes": 879,
+            "path": "join-plan.json",
+            "sha256": "sha256:33e7677f68a4f69d91ad828525fd4c0de4ea20d511751195c9094fb201d67dfd"
+          },
+          "join-sockets.json": {
+            "bytes": 4682,
+            "path": "join-sockets.json",
+            "sha256": "sha256:0686138f2ee47d5ca870b8f4456f5a99978d835b456ed848f48cee3ddada2655"
+          },
+          "neutral-mesh.json": {
+            "bytes": 8694,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:ae8be5380035d76e75320eee9db83a6129871601c0090f6250cb2abf3dc59b2a"
+          },
+          "section-plan.json": {
+            "bytes": 1693,
+            "path": "section-plan.json",
+            "sha256": "sha256:484fd5ecb66d76dbf4b4a148abc4fb8fd907fc2284bcb602b2aa87c6c01b86e9"
+          },
+          "semantic-parts.json": {
+            "bytes": 4506,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:0271f8d2870e306d221bea06546dffab013a5f985d6e79a5c5ad8b9515bc2c30"
+          },
+          "socket-alignment.json": {
+            "bytes": 2864,
+            "path": "socket-alignment.json",
+            "sha256": "sha256:380f2c5f137d7411ff68a5545128779c9c23bdd744f2b5946dba3014343343b9"
+          },
+          "stored-copies.json": {
+            "bytes": 4564,
+            "path": "stored-copies.json",
+            "sha256": "sha256:d0243a9b918c60a61e35375213ffd3e89c194ca01870a3163af6d802fb476a5c"
+          }
+        },
+        "bounded_overlap_status": "PASS",
+        "bounds_m": {
+          "max": [
+            32.573054736,
+            14.4,
+            5.328416436
+          ],
+          "min": [
+            16.0,
+            -2.0,
+            -4.0
+          ]
+        },
+        "failure": null,
+        "family": "MITER",
+        "join_id": "fortification/caelmere/r0b/miter-join-001",
+        "part_count": 5,
+        "schema": "royal-capital.fortification.wall-join-result/1",
+        "section_count": 3,
+        "socket_alignment_count": 6,
+        "socket_alignment_status": "PASS",
+        "socket_count": 6,
+        "solid_count": 5,
+        "status": "SUCCEEDED",
+        "triangle_count": 100,
+        "turn_angle_deg": 10.000000019,
+        "vertex_count": 60,
+        "volume_m3": 1515.52
+      },
+      "name": "miter_status",
+      "pass": true
+    },
+    {
+      "detail": "MITER",
+      "name": "miter_family",
+      "pass": true
+    },
+    {
+      "detail": 10.000000019,
+      "name": "miter_turn",
+      "pass": false
+    },
+    {
+      "detail": 3,
+      "name": "miter_sections",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_parts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_sockets",
+      "pass": true
+    },
+    {
+      "detail": {
+        "alignment_count": 6,
+        "alignments": [
+          {
+            "alignment_id": "alignment/incoming/span",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_span",
+            "position_error_m": 0.0,
+            "source_socket_id": "span_end",
+            "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/incoming/wall_walk",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_wall_walk",
+            "position_error_m": 0.0,
+            "source_socket_id": "wall_walk_end",
+            "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/incoming/foundation",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_foundation",
+            "position_error_m": 0.0,
+            "source_socket_id": "foundation_end",
+            "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/span",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_span",
+            "position_error_m": 0.0,
+            "source_socket_id": "span_start",
+            "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/wall_walk",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_wall_walk",
+            "position_error_m": 0.0,
+            "source_socket_id": "wall_walk_start",
+            "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/foundation",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_foundation",
+            "position_error_m": 0.0,
+            "source_socket_id": "foundation_start",
+            "source_span_id": "fortification/caelmere/r0b/source/miter-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          }
+        ],
+        "angle_tolerance_rad": 1e-06,
+        "join_id": "fortification/caelmere/r0b/miter-join-001",
+        "position_tolerance_m": 1e-06,
+        "schema": "royal-capital.fortification.socket-alignment/1",
+        "status": "PASS"
+      },
+      "name": "miter_alignment",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_alignment_exact",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bevel_setback_m": 0.0,
+        "family": "MITER",
+        "incoming": {
+          "interval_m": [
+            -8.0,
+            0.0
+          ],
+          "max_m": 10.0,
+          "overlap_m": 8.0,
+          "ratio": 0.333333333333,
+          "source_span_length_m": 24.0,
+          "status": "PASS"
+        },
+        "join_id": "fortification/caelmere/r0b/miter-join-001",
+        "observed_section_count": 3,
+        "outgoing": {
+          "interval_m": [
+            0.0,
+            8.0
+          ],
+          "max_m": 10.0,
+          "overlap_m": 8.0,
+          "ratio": 0.333333333333,
+          "source_span_length_m": 24.0,
+          "status": "PASS"
+        },
+        "policy": "CENTERLINE_SECTION_INTERVAL_WITH_CONSERVATIVE_PROFILE_ENVELOPE",
+        "required_section_count": 3,
+        "schema": "royal-capital.fortification.bounded-overlap/1",
+        "section_ids": [
+          "incoming_overlap",
+          "miter_apex",
+          "outgoing_overlap"
+        ],
+        "status": "PASS"
+      },
+      "name": "miter_overlap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_bounded_ratio",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_mesh",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "miter_ownership",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "bounded-overlap.json": {
+            "bytes": 845,
+            "path": "bounded-overlap.json",
+            "sha256": "sha256:e1977f4a863abb1f3373b35f0ca5b33e87c954355ee3dc76e9360c3b3e76acdd"
+          },
+          "cad-provider-receipt.json": {
+            "bytes": 4398,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:bb27eeeef7400cf6b06ce4e26caf6792b673492c2bd2a0c96e295e5500d42d20"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 327,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:3deac49f4211dc4ad718af9065437a227e5a21ac269ec72d0dd55956bb338405"
+          },
+          "join-plan.json": {
+            "bytes": 913,
+            "path": "join-plan.json",
+            "sha256": "sha256:ffc081c5c817d8406e1079302b081a83811c60dc701fbfba8f49bc62160ac365"
+          },
+          "join-sockets.json": {
+            "bytes": 4610,
+            "path": "join-sockets.json",
+            "sha256": "sha256:d65147dff527f72b69fc2d6fd1262aa2654e096f33b46869b13604679617e847"
+          },
+          "neutral-mesh.json": {
+            "bytes": 11419,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:d9e66b885a63a45f1fee86c8dfc5132da911559c95ba3e38288a3f94fb22474b"
+          },
+          "section-plan.json": {
+            "bytes": 2106,
+            "path": "section-plan.json",
+            "sha256": "sha256:20c01818ff3db1e7635178ed41d704383622bf0b38a69f413c3eb907ff6e71d2"
+          },
+          "semantic-parts.json": {
+            "bytes": 4522,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:20de0760ad7771268ec466314c4309b106e4189ce9886bb8afa3344f8ac59519"
+          },
+          "socket-alignment.json": {
+            "bytes": 2864,
+            "path": "socket-alignment.json",
+            "sha256": "sha256:1ba6eda803fdc053922772574ca16fd7a097a8de003094eb6c43e5b3c6d31047"
+          },
+          "stored-copies.json": {
+            "bytes": 4610,
+            "path": "stored-copies.json",
+            "sha256": "sha256:8f37372e6831daf964a4c9858e18019bcdadac868ea19e432923bdcfc6268e79"
+          }
+        },
+        "bounded_overlap_status": "PASS",
+        "bounds_m": {
+          "max": [
+            34.66025404,
+            14.4,
+            8.464101616
+          ],
+          "min": [
+            14.0,
+            -2.0,
+            -4.0
+          ]
+        },
+        "failure": null,
+        "family": "BEVEL",
+        "join_id": "fortification/caelmere/r0b/bevel-join-001",
+        "part_count": 5,
+        "schema": "royal-capital.fortification.wall-join-result/1",
+        "section_count": 4,
+        "socket_alignment_count": 6,
+        "socket_alignment_status": "PASS",
+        "socket_count": 6,
+        "solid_count": 5,
+        "status": "SUCCEEDED",
+        "triangle_count": 140,
+        "turn_angle_deg": 29.999999994,
+        "vertex_count": 80,
+        "volume_m3": 1830.949631601
+      },
+      "name": "bevel_status",
+      "pass": true
+    },
+    {
+      "detail": "BEVEL",
+      "name": "bevel_family",
+      "pass": true
+    },
+    {
+      "detail": 29.999999994,
+      "name": "bevel_turn",
+      "pass": true
+    },
+    {
+      "detail": 4,
+      "name": "bevel_sections",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_parts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_sockets",
+      "pass": true
+    },
+    {
+      "detail": {
+        "alignment_count": 6,
+        "alignments": [
+          {
+            "alignment_id": "alignment/incoming/span",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_span",
+            "position_error_m": 0.0,
+            "source_socket_id": "span_end",
+            "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/incoming/wall_walk",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_wall_walk",
+            "position_error_m": 0.0,
+            "source_socket_id": "wall_walk_end",
+            "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/incoming/foundation",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_foundation",
+            "position_error_m": 0.0,
+            "source_socket_id": "foundation_end",
+            "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/span",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_span",
+            "position_error_m": 0.0,
+            "source_socket_id": "span_start",
+            "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/wall_walk",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_wall_walk",
+            "position_error_m": 0.0,
+            "source_socket_id": "wall_walk_start",
+            "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/foundation",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_foundation",
+            "position_error_m": 0.0,
+            "source_socket_id": "foundation_start",
+            "source_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          }
+        ],
+        "angle_tolerance_rad": 1e-06,
+        "join_id": "fortification/caelmere/r0b/bevel-join-001",
+        "position_tolerance_m": 1e-06,
+        "schema": "royal-capital.fortification.socket-alignment/1",
+        "status": "PASS"
+      },
+      "name": "bevel_alignment",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_alignment_exact",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bevel_setback_m": 5.0,
+        "family": "BEVEL",
+        "incoming": {
+          "interval_m": [
+            -10.0,
+            0.0
+          ],
+          "max_m": 10.0,
+          "overlap_m": 10.0,
+          "ratio": 0.416666666667,
+          "source_span_length_m": 24.0,
+          "status": "PASS"
+        },
+        "join_id": "fortification/caelmere/r0b/bevel-join-001",
+        "observed_section_count": 4,
+        "outgoing": {
+          "interval_m": [
+            0.0,
+            10.0
+          ],
+          "max_m": 10.0,
+          "overlap_m": 10.0,
+          "ratio": 0.416666666667,
+          "source_span_length_m": 24.0,
+          "status": "PASS"
+        },
+        "policy": "CENTERLINE_SECTION_INTERVAL_WITH_CONSERVATIVE_PROFILE_ENVELOPE",
+        "required_section_count": 4,
+        "schema": "royal-capital.fortification.bounded-overlap/1",
+        "section_ids": [
+          "incoming_overlap",
+          "incoming_bevel_cut",
+          "outgoing_bevel_cut",
+          "outgoing_overlap"
+        ],
+        "status": "PASS"
+      },
+      "name": "bevel_overlap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_bounded_ratio",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_mesh",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bevel_ownership",
+      "pass": true
+    },
+    {
+      "detail": {
+        "artifacts": {
+          "bounded-overlap.json": {
+            "bytes": 815,
+            "path": "bounded-overlap.json",
+            "sha256": "sha256:4243e09cf2d239a8c3eac47838396443a26efdce5ebeb47d7047b754dcd6c5a6"
+          },
+          "cad-provider-receipt.json": {
+            "bytes": 4407,
+            "path": "cad-provider-receipt.json",
+            "sha256": "sha256:4375a7261c72f18639784e59c70571065d02ecf815886da5077e289dd5d18953"
+          },
+          "fixed-tessellation.json": {
+            "bytes": 332,
+            "path": "fixed-tessellation.json",
+            "sha256": "sha256:a752f0505f4a3a54e91c133078d7a310ab7fd4ea200a77d1a0a05f632bcdbbec"
+          },
+          "join-plan.json": {
+            "bytes": 928,
+            "path": "join-plan.json",
+            "sha256": "sha256:913f3cdafb6490292ccc5b5bae5854d1aeb600ff5e997033c8c3a5b242c6c1d6"
+          },
+          "join-sockets.json": {
+            "bytes": 4626,
+            "path": "join-sockets.json",
+            "sha256": "sha256:5c2db54983c4ce3faf7b92e3838b2d61d9a66062be9c0de781b30395e6e63b73"
+          },
+          "neutral-mesh.json": {
+            "bytes": 8200,
+            "path": "neutral-mesh.json",
+            "sha256": "sha256:b884890ce44f3fcef7d9ab75f75b522044d3c7c4f7c0dda8d2b0ec0f3ebf868f"
+          },
+          "section-plan.json": {
+            "bytes": 1631,
+            "path": "section-plan.json",
+            "sha256": "sha256:5000e1154eef219e800e6ac484492d27440be71cd14b9c5657822f4c44ee50b9"
+          },
+          "semantic-parts.json": {
+            "bytes": 4423,
+            "path": "semantic-parts.json",
+            "sha256": "sha256:be515696ac2497ec3a7f729d19db59fecadd15c2eaa4cce3cd37489c1559ce97"
+          },
+          "socket-alignment.json": {
+            "bytes": 2955,
+            "path": "socket-alignment.json",
+            "sha256": "sha256:a5dca0adbaa58c4a9e041eb86558097f877dc6ba80b017142b7592a0c1845dc1"
+          },
+          "stored-copies.json": {
+            "bytes": 4540,
+            "path": "stored-copies.json",
+            "sha256": "sha256:53d2d07c3199dfdf66268d7e1142d164792b9a0fa05767a990d723a1be01ea73"
+          }
+        },
+        "bounded_overlap_status": "PASS",
+        "bounds_m": {
+          "max": [
+            30.0,
+            14.4,
+            5.0
+          ],
+          "min": [
+            18.0,
+            -2.0,
+            -5.0
+          ]
+        },
+        "failure": null,
+        "family": "PROFILE_TRANSITION",
+        "join_id": "fortification/caelmere/r0b/profile-transition-join-001",
+        "part_count": 5,
+        "schema": "royal-capital.fortification.wall-join-result/1",
+        "section_count": 3,
+        "socket_alignment_count": 6,
+        "socket_alignment_status": "PASS",
+        "socket_count": 6,
+        "solid_count": 5,
+        "status": "SUCCEEDED",
+        "triangle_count": 100,
+        "turn_angle_deg": 0.0,
+        "vertex_count": 60,
+        "volume_m3": 1251.36
+      },
+      "name": "transition_status",
+      "pass": true
+    },
+    {
+      "detail": "PROFILE_TRANSITION",
+      "name": "transition_family",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "transition_turn",
+      "pass": true
+    },
+    {
+      "detail": 3,
+      "name": "transition_sections",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_parts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_sockets",
+      "pass": true
+    },
+    {
+      "detail": {
+        "alignment_count": 6,
+        "alignments": [
+          {
+            "alignment_id": "alignment/incoming/span",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_span",
+            "position_error_m": 0.0,
+            "source_socket_id": "span_end",
+            "source_span_id": "fortification/caelmere/r0b/source/profile-transition-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/incoming/wall_walk",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_wall_walk",
+            "position_error_m": 0.0,
+            "source_socket_id": "wall_walk_end",
+            "source_span_id": "fortification/caelmere/r0b/source/profile-transition-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/incoming/foundation",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "incoming_foundation",
+            "position_error_m": 0.0,
+            "source_socket_id": "foundation_end",
+            "source_span_id": "fortification/caelmere/r0b/source/profile-transition-join-001/incoming",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/span",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_span",
+            "position_error_m": 0.0,
+            "source_socket_id": "span_start",
+            "source_span_id": "fortification/caelmere/r0b/source/profile-transition-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/wall_walk",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_wall_walk",
+            "position_error_m": 0.0,
+            "source_socket_id": "wall_walk_start",
+            "source_span_id": "fortification/caelmere/r0b/source/profile-transition-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          },
+          {
+            "alignment_id": "alignment/outgoing/foundation",
+            "exact_numeric_equal": true,
+            "inside_angle_error_rad": 0.0,
+            "join_socket_id": "outgoing_foundation",
+            "position_error_m": 0.0,
+            "source_socket_id": "foundation_start",
+            "source_span_id": "fortification/caelmere/r0b/source/profile-transition-join-001/outgoing",
+            "status": "PASS",
+            "tangent_angle_error_rad": 0.0,
+            "up_angle_error_rad": 0.0
+          }
+        ],
+        "angle_tolerance_rad": 1e-06,
+        "join_id": "fortification/caelmere/r0b/profile-transition-join-001",
+        "position_tolerance_m": 1e-06,
+        "schema": "royal-capital.fortification.socket-alignment/1",
+        "status": "PASS"
+      },
+      "name": "transition_alignment",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_alignment_exact",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bevel_setback_m": 0.0,
+        "family": "PROFILE_TRANSITION",
+        "incoming": {
+          "interval_m": [
+            -6.0,
+            0.0
+          ],
+          "max_m": 8.0,
+          "overlap_m": 6.0,
+          "ratio": 0.25,
+          "source_span_length_m": 24.0,
+          "status": "PASS"
+        },
+        "join_id": "fortification/caelmere/r0b/profile-transition-join-001",
+        "observed_section_count": 3,
+        "outgoing": {
+          "interval_m": [
+            0.0,
+            6.0
+          ],
+          "max_m": 8.0,
+          "overlap_m": 6.0,
+          "ratio": 0.25,
+          "source_span_length_m": 24.0,
+          "status": "PASS"
+        },
+        "policy": "CENTERLINE_SECTION_INTERVAL_WITH_CONSERVATIVE_PROFILE_ENVELOPE",
+        "required_section_count": 3,
+        "schema": "royal-capital.fortification.bounded-overlap/1",
+        "section_ids": [
+          "incoming_overlap",
+          "transition_mid",
+          "outgoing_overlap"
+        ],
+        "status": "PASS"
+      },
+      "name": "transition_overlap",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_bounded_ratio",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_stored",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_mesh",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "transition_ownership",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "parent_cp1_complete",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "no_cache",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "machine_parse",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.r0b-cp2-validation/1",
+  "status": "FAIL",
+  "summary": {
+    "failed": 1,
+    "passed": 46
+  }
+}

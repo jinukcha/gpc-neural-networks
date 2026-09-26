@@ -1,0 +1,270 @@
+{
+  "schema": "royal-capital.fortification.terrain-span-sockets/1",
+  "sockets": [
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        9.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        9.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        15.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        15.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        0.0,
+        2.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        24.0,
+        2.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        12.0,
+        0.0,
+        -5.0
+      ],
+      "required": false,
+      "role": "DRAINAGE",
+      "socket_id": "drainage_outside_01"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "position_m": [
+        12.0,
+        3.0,
+        4.0
+      ],
+      "required": true,
+      "role": "RETAINING_INTERFACE",
+      "socket_id": "retaining_inside_01"
+    }
+  ],
+  "span_id": "fortification/caelmere/r0b/retaining-001"
+}

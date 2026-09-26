@@ -1,0 +1,9 @@
+{
+  "schema": "royal-capital.fortification.package-verifier-fix/1",
+  "reason": "System zip records POSIX file-type bits in external_attr while Python ZipInfo writer records permission bits only.",
+  "old_policy": "compare raw upper 16 bits",
+  "new_policy": "compare stat.S_IMODE of upper 16 bits",
+  "scope": "packaging verifier only",
+  "source_or_artifact_rollback": false,
+  "failed_checkpoint_preserved": true
+}

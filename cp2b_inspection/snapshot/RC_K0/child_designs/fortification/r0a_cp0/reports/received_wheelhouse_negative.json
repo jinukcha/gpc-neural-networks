@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "name": "required:requirements-lock.txt",
+      "pass": false
+    },
+    {
+      "name": "required:WHEELHOUSE.json",
+      "pass": false
+    },
+    {
+      "name": "required:SHA256SUMS.txt",
+      "pass": false
+    },
+    {
+      "name": "required:DELIVERY.json",
+      "pass": false
+    },
+    {
+      "name": "wheelhouse directory",
+      "pass": false
+    }
+  ],
+  "schema": "royal-capital.fortification.received-wheelhouse-check/1",
+  "status": "FAIL"
+}

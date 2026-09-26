@@ -1,0 +1,21 @@
+component_id,category,requirement,geometry_route,contract_focus,roadmap_stage
+WALL_STRAIGHT,wall_span,required,profile_extrusion,foundation/body/walk/parapet,R0A/R0B
+WALL_CURVED,wall_span,required,path_sweep,bounded curvature,R0B
+WALL_STEPPED,wall_span,required,segmented_extrusion,terrain step interface,R0B
+WALL_RETAINING,wall_span,optional,profile_extrusion,retaining foundation,R0B
+JOIN_MITER,join,required,trim/intersection,small angle,R0B
+JOIN_BEVEL,join,required,bounded transition,large angle,R0B
+JOIN_TOWER,join,required,socket assembly,tower anchor,R0C
+TOWER_ROUND,tower,optional,revolve/extrude,round profile,R0C
+TOWER_SQUARE,tower,optional,profile_extrusion,square profile,R0C
+TOWER_POLYGON,tower,optional,profile_extrusion/loft,polygon profile,R0C
+TOWER_CORNER,tower,required_if_anchored,assembly,corner coverage,R0C
+GATE_MINOR,gate,optional,boolean/assembly,road portal,R0D
+GATE_MAIN,gate,required_initial_fixture,compound assembly,hero portal,R0D
+GATE_BARBICAN,gate,optional,compound assembly,forecourt defense,R0D
+GATE_WATER,gate,optional,boolean/assembly,water/service portal,R0D
+GATE_POSTERN,gate,optional,boolean,small portal,R0D
+BATTLEMENT,repeated_module,required,module instances,merlon/crenel rhythm,R0C
+WALL_WALK,traversal_surface,required,part surface,continuity graph,R0A-R0E
+FOUNDATION_INTERFACE,foundation,required,footprint/contact,terrain relation,R0B
+UTILITY_SOCKET_SET,socket,optional,frames only,ward/light/drainage,R0D/R0E

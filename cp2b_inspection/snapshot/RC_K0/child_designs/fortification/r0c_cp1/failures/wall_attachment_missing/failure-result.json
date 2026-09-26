@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "ATTACHMENT_INTERSECTION_MISSING",
+    "message": "wall centerline z=0.0 intersects footprint at []"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:61466b1433627c8cead3240af77cfef67ea0f69153add2f75f82900e22174275",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

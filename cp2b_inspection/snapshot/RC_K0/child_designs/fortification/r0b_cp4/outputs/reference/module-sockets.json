@@ -1,0 +1,2107 @@
+{
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "schema": "royal-capital.fortification.mixed-span-sockets/1",
+  "socket_count": 60,
+  "sockets": [
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/straight::foundation_end",
+      "source_socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/straight::foundation_start",
+      "source_socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/straight::span_end",
+      "source_socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        0.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/straight::span_start",
+      "source_socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "TOWER_JOIN",
+      "socket_id": "span/straight::tower_end",
+      "source_socket_id": "tower_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        0.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "TOWER_JOIN",
+      "socket_id": "span/straight::tower_start",
+      "source_socket_id": "tower_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        8.0,
+        6.0,
+        2.75
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "span/straight::utility_inside_01",
+      "source_socket_id": "utility_inside_01"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        16.0,
+        6.0,
+        2.75
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "span/straight::utility_inside_02",
+      "source_socket_id": "utility_inside_02"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/straight::wall_walk_end",
+      "source_socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/straight",
+      "position_m": [
+        0.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/straight::wall_walk_start",
+      "source_socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/miter",
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "join/miter::incoming_foundation",
+      "source_socket_id": "incoming_foundation"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/miter",
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "join/miter::incoming_span",
+      "source_socket_id": "incoming_span"
+    },
+    {
+      "frame": {
+        "inside": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "tangent": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/miter",
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "join/miter::incoming_wall_walk",
+      "source_socket_id": "incoming_wall_walk"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/miter",
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "join/miter::outgoing_foundation",
+      "source_socket_id": "outgoing_foundation"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/miter",
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "join/miter::outgoing_span",
+      "source_socket_id": "outgoing_span"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/miter",
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "join/miter::outgoing_wall_walk",
+      "source_socket_id": "outgoing_wall_walk"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        46.518692734,
+        -1.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/curved::foundation_end",
+      "source_socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        24.0,
+        -1.0,
+        0.0
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/curved::foundation_start",
+      "source_socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        46.518692734,
+        6.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/curved::span_end",
+      "source_socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/curved::span_start",
+      "source_socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        46.518692734,
+        6.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "TOWER_JOIN",
+      "socket_id": "span/curved::tower_end",
+      "source_socket_id": "tower_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        24.0,
+        6.0,
+        0.0
+      ],
+      "required": true,
+      "role": "TOWER_JOIN",
+      "socket_id": "span/curved::tower_start",
+      "source_socket_id": "tower_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.342020144,
+          0.0,
+          0.939692621
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.342020144,
+          0.0,
+          -0.939692621
+        ],
+        "tangent": [
+          0.939692621,
+          0.0,
+          0.342020144
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        31.141298956,
+        6.0,
+        4.749681056
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "span/curved::utility_inside_01",
+      "source_socket_id": "utility_inside_01"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.5,
+          0.0,
+          0.866025404
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.5,
+          0.0,
+          -0.866025404
+        ],
+        "tangent": [
+          0.866025404,
+          0.0,
+          0.5
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        38.289887471,
+        6.0,
+        8.083122629
+      ],
+      "required": false,
+      "role": "UTILITY_INSIDE",
+      "socket_id": "span/curved::utility_inside_02",
+      "source_socket_id": "utility_inside_02"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        46.518692734,
+        12.3,
+        10.500638882
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/curved::wall_walk_end",
+      "source_socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.173648178,
+          0.0,
+          0.984807753
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.173648178,
+          0.0,
+          -0.984807753
+        ],
+        "tangent": [
+          0.984807753,
+          0.0,
+          0.173648178
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/curved",
+      "position_m": [
+        24.0,
+        12.3,
+        0.0
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/curved::wall_walk_start",
+      "source_socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/bevel",
+      "position_m": [
+        46.518692734,
+        -1.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "join/bevel::incoming_foundation",
+      "source_socket_id": "incoming_foundation"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/bevel",
+      "position_m": [
+        46.518692734,
+        6.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "join/bevel::incoming_span",
+      "source_socket_id": "incoming_span"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.64278761,
+          0.0,
+          0.766044443
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.64278761,
+          0.0,
+          -0.766044443
+        ],
+        "tangent": [
+          0.766044443,
+          0.0,
+          0.64278761
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/bevel",
+      "position_m": [
+        46.518692734,
+        12.3,
+        10.500638882
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "join/bevel::incoming_wall_walk",
+      "source_socket_id": "incoming_wall_walk"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/bevel",
+      "position_m": [
+        46.518692734,
+        -1.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "join/bevel::outgoing_foundation",
+      "source_socket_id": "outgoing_foundation"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/bevel",
+      "position_m": [
+        46.518692734,
+        6.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "join/bevel::outgoing_span",
+      "source_socket_id": "outgoing_span"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/bevel",
+      "position_m": [
+        46.518692734,
+        12.3,
+        10.500638882
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "join/bevel::outgoing_wall_walk",
+      "source_socket_id": "outgoing_wall_walk"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        56.779297023,
+        1.0,
+        38.69141751
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/stepped::foundation_end",
+      "source_socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        46.518692734,
+        -1.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/stepped::foundation_start",
+      "source_socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        49.938894164,
+        -1.0,
+        19.897565091
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "span/stepped::foundation_step_00_lower",
+      "source_socket_id": "foundation_step_00_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        49.938894164,
+        0.0,
+        19.897565091
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "span/stepped::foundation_step_00_upper",
+      "source_socket_id": "foundation_step_00_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        53.359095593,
+        0.0,
+        29.2944913
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "span/stepped::foundation_step_01_lower",
+      "source_socket_id": "foundation_step_01_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        53.359095593,
+        1.0,
+        29.2944913
+      ],
+      "required": true,
+      "role": "FOUNDATION_STEP_INTERFACE",
+      "socket_id": "span/stepped::foundation_step_01_upper",
+      "source_socket_id": "foundation_step_01_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        56.779297023,
+        8.0,
+        38.69141751
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/stepped::span_end",
+      "source_socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        46.518692734,
+        6.0,
+        10.500638882
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/stepped::span_start",
+      "source_socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        49.938894164,
+        12.3,
+        19.897565091
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "span/stepped::walk_step_00_lower",
+      "source_socket_id": "walk_step_00_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        49.938894164,
+        13.3,
+        19.897565091
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "span/stepped::walk_step_00_upper",
+      "source_socket_id": "walk_step_00_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        53.359095593,
+        13.3,
+        29.2944913
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "span/stepped::walk_step_01_lower",
+      "source_socket_id": "walk_step_01_lower"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        53.359095593,
+        14.3,
+        29.2944913
+      ],
+      "required": true,
+      "role": "STAIR_RAMP_SOCKET",
+      "socket_id": "span/stepped::walk_step_01_upper",
+      "source_socket_id": "walk_step_01_upper"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        56.779297023,
+        14.3,
+        38.69141751
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/stepped::wall_walk_end",
+      "source_socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/stepped",
+      "position_m": [
+        46.518692734,
+        12.3,
+        10.500638882
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/stepped::wall_walk_start",
+      "source_socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        65.582001843,
+        -1.0,
+        48.257628246
+      ],
+      "required": false,
+      "role": "DRAINAGE",
+      "socket_id": "span/retaining::drainage_outside_01",
+      "source_socket_id": "drainage_outside_01"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        64.987780454,
+        1.0,
+        61.244040412
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/retaining::foundation_end",
+      "source_socket_id": "foundation_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        56.779297023,
+        1.0,
+        38.69141751
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "span/retaining::foundation_start",
+      "source_socket_id": "foundation_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        57.124768255,
+        2.0,
+        51.335809533
+      ],
+      "required": true,
+      "role": "RETAINING_INTERFACE",
+      "socket_id": "span/retaining::retaining_inside_01",
+      "source_socket_id": "retaining_inside_01"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        64.987780454,
+        8.0,
+        61.244040412
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/retaining::span_end",
+      "source_socket_id": "span_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        56.779297023,
+        8.0,
+        38.69141751
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "span/retaining::span_start",
+      "source_socket_id": "span_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        64.987780454,
+        14.3,
+        61.244040412
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/retaining::wall_walk_end",
+      "source_socket_id": "wall_walk_end"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "span/retaining",
+      "position_m": [
+        56.779297023,
+        14.3,
+        38.69141751
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "span/retaining::wall_walk_start",
+      "source_socket_id": "wall_walk_start"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/transition",
+      "position_m": [
+        64.987780454,
+        1.0,
+        61.244040412
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "join/transition::incoming_foundation",
+      "source_socket_id": "incoming_foundation"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/transition",
+      "position_m": [
+        64.987780454,
+        8.0,
+        61.244040412
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "join/transition::incoming_span",
+      "source_socket_id": "incoming_span"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/transition",
+      "position_m": [
+        64.987780454,
+        14.3,
+        61.244040412
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "join/transition::incoming_wall_walk",
+      "source_socket_id": "incoming_wall_walk"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/transition",
+      "position_m": [
+        64.987780454,
+        1.0,
+        61.244040412
+      ],
+      "required": true,
+      "role": "FOUNDATION_INTERFACE",
+      "socket_id": "join/transition::outgoing_foundation",
+      "source_socket_id": "outgoing_foundation"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/transition",
+      "position_m": [
+        64.987780454,
+        8.0,
+        61.244040412
+      ],
+      "required": true,
+      "role": "SPAN_JOIN",
+      "socket_id": "join/transition::outgoing_span",
+      "source_socket_id": "outgoing_span"
+    },
+    {
+      "frame": {
+        "inside": [
+          -0.939692621,
+          0.0,
+          0.342020143
+        ],
+        "orientation_determinant": 1.0,
+        "outside": [
+          0.939692621,
+          0.0,
+          -0.342020143
+        ],
+        "tangent": [
+          0.342020143,
+          0.0,
+          0.939692621
+        ],
+        "up": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "module_id": "join/transition",
+      "position_m": [
+        64.987780454,
+        14.3,
+        61.244040412
+      ],
+      "required": true,
+      "role": "WALL_WALK_CONTINUATION",
+      "socket_id": "join/transition::outgoing_wall_walk",
+      "source_socket_id": "outgoing_wall_walk"
+    }
+  ]
+}

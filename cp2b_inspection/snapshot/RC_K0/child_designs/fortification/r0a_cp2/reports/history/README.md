@@ -1,0 +1,3 @@
+# Preserved CP2 recovery history
+
+Attempt 1 stopped before CP2 implementation because the compact A1 source package omitted four deterministic CP1 STEP/BREP evidence files still listed in the immutable A1 registry. Attempt 2 regenerated those files successfully but was stopped because Python import cache residue appeared before the A1 registry gate. Attempt 3 passed reconstruction, created the pre-validation source/full/patch checkpoint and completed CP2 functional validation, but final hygiene rejected generated CP1/CP2 Python caches. No source, checkpoint or unique modification was deleted or rolled back. The final resume removes only generated cache residue after validation and before final registry/hygiene/package verification.

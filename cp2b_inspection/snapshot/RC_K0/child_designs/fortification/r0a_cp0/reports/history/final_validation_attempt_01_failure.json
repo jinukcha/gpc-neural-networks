@@ -1,0 +1,9 @@
+{
+  "schema": "royal-capital.fortification.validation-failure/1",
+  "status": "FAIL_PACKAGE_LAYOUT_MISSING_DELIVERY_EVIDENCE_PATHS",
+  "source_preserved": true,
+  "runtime_admission_revoked": false,
+  "cause": "DELIVERY.json correctly listed remote logs/probes/provenance, but the integrated runtime root initially retained only wheels/manifests while duplicate evidence lived under remote/delivery_run_36093161115.",
+  "repair": "Place the exact delivery evidence under runtime/ so the delivery root is self-contained, then remove the duplicate remote copy.",
+  "checkpoint_before_repair": "A0C_pre.zip"
+}

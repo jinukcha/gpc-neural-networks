@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "royal-capital.fortification.wall-join/1",
+  "type": "object",
+  "required": ["schema", "join_id", "family", "frame", "incoming", "outgoing", "incoming_profile", "outgoing_profile", "overlap", "tolerances", "budget", "runtime"],
+  "properties": {
+    "schema": {"const": "royal-capital.fortification.wall-join/1"},
+    "join_id": {"type": "string", "minLength": 1},
+    "family": {"enum": ["MITER", "BEVEL", "PROFILE_TRANSITION"]},
+    "frame": {"const": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD"},
+    "incoming": {"type": "object"},
+    "outgoing": {"type": "object"},
+    "incoming_profile": {"type": "object"},
+    "outgoing_profile": {"type": "object"},
+    "overlap": {"type": "object"},
+    "tolerances": {"type": "object"},
+    "budget": {"type": "object"},
+    "runtime": {"type": "object"}
+  },
+  "additionalProperties": false
+}

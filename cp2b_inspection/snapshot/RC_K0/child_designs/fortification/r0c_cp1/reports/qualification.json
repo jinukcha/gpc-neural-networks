@@ -1,0 +1,92 @@
+{
+  "battlements": "DEFERRED_TO_R0C_CP3",
+  "clean_replay": {
+    "all_byte_identical": true,
+    "families": 3,
+    "status": "PASS"
+  },
+  "godot_product": "NOT_STARTED",
+  "negative_gates": {
+    "passed": 13,
+    "status": "PASS",
+    "total": 13
+  },
+  "positive_families": [
+    {
+      "body_outside_projection_m": 9.5,
+      "bounds_m": {
+        "max": [
+          9.5,
+          16.6,
+          5.5
+        ],
+        "min": [
+          -9.5,
+          -3.0,
+          -13.5
+        ]
+      },
+      "family": "ROUND",
+      "part_count": 3,
+      "reference_tree_digest": "sha256:c06ab27818b4878ff712a5779e2f4897b2f5dd0a608b63586d57d74d563c3d2d",
+      "socket_count": 10,
+      "stored_copy_count": 6,
+      "tower_id": "fortification/caelmere/pilot/tower-round-001",
+      "triangle_count": 372,
+      "vertex_count": 192,
+      "volume_m3": 4605.224105384
+    },
+    {
+      "body_outside_projection_m": 9.0,
+      "bounds_m": {
+        "max": [
+          9.0,
+          16.6,
+          5.0
+        ],
+        "min": [
+          -9.0,
+          -3.0,
+          -13.0
+        ]
+      },
+      "family": "SQUARE",
+      "part_count": 3,
+      "reference_tree_digest": "sha256:55da50ea276972b67e9021d8b325657159c7edf3af6da1efd1df4df3fe531aab",
+      "socket_count": 10,
+      "stored_copy_count": 6,
+      "tower_id": "fortification/caelmere/pilot/tower-square-001",
+      "triangle_count": 36,
+      "vertex_count": 24,
+      "volume_m3": 5241.4
+    },
+    {
+      "body_outside_projection_m": 10.0,
+      "bounds_m": {
+        "max": [
+          10.0,
+          16.6,
+          6.0
+        ],
+        "min": [
+          -10.0,
+          -3.0,
+          -14.0
+        ]
+      },
+      "family": "POLYGONAL",
+      "part_count": 3,
+      "reference_tree_digest": "sha256:c9f872047784864ca5cd3a235855a180f264fc53c40914973f20768a63f3db0f",
+      "socket_count": 10,
+      "stored_copy_count": 6,
+      "tower_id": "fortification/caelmere/pilot/tower-polygonal-001",
+      "triangle_count": 84,
+      "vertex_count": 48,
+      "volume_m3": 4667.3290199
+    }
+  ],
+  "schema": "royal-capital.fortification.r0c-cp1-qualification/1",
+  "status": "PASS",
+  "surface_source_coverage": "DEFERRED_TO_R0C_CP4",
+  "tower_joins": "DEFERRED_TO_R0C_CP2"
+}

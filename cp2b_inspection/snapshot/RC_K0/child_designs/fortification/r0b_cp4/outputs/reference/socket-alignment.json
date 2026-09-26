@@ -1,0 +1,502 @@
+{
+  "alignment_count": 6,
+  "alignments": [
+    {
+      "connection_index": 0,
+      "errors": {
+        "inside_rad": 0.0,
+        "outside_rad": 0.0,
+        "position_m": 0.0,
+        "tangent_rad": 0.0,
+        "up_rad": 0.0
+      },
+      "from_module": "span/straight",
+      "from_socket": "span_end",
+      "source_world_socket": {
+        "frame": {
+          "inside": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "tangent": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          6.0,
+          0.0
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_end"
+      },
+      "station_m": 24.0,
+      "status": "PASS",
+      "target_world_socket": {
+        "frame": {
+          "inside": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "tangent": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          6.0,
+          0.0
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "incoming_span"
+      },
+      "to_module": "join/miter",
+      "to_socket": "incoming_span"
+    },
+    {
+      "connection_index": 1,
+      "errors": {
+        "inside_rad": 0.0,
+        "outside_rad": 0.0,
+        "position_m": 0.0,
+        "tangent_rad": 0.0,
+        "up_rad": 0.0
+      },
+      "from_module": "join/miter",
+      "from_socket": "outgoing_span",
+      "source_world_socket": {
+        "frame": {
+          "inside": [
+            -0.173648178,
+            0.0,
+            0.984807753
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.173648178,
+            0.0,
+            -0.984807753
+          ],
+          "tangent": [
+            0.984807753,
+            0.0,
+            0.173648178
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          6.0,
+          0.0
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "outgoing_span"
+      },
+      "station_m": 24.0,
+      "status": "PASS",
+      "target_world_socket": {
+        "frame": {
+          "inside": [
+            -0.173648178,
+            0.0,
+            0.984807753
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.173648178,
+            0.0,
+            -0.984807753
+          ],
+          "tangent": [
+            0.984807753,
+            0.0,
+            0.173648178
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          24.0,
+          6.0,
+          0.0
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_start"
+      },
+      "to_module": "span/curved",
+      "to_socket": "span_start"
+    },
+    {
+      "connection_index": 2,
+      "errors": {
+        "inside_rad": 0.0,
+        "outside_rad": 0.0,
+        "position_m": 0.0,
+        "tangent_rad": 0.0,
+        "up_rad": 0.0
+      },
+      "from_module": "span/curved",
+      "from_socket": "span_end",
+      "source_world_socket": {
+        "frame": {
+          "inside": [
+            -0.64278761,
+            0.0,
+            0.766044443
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.64278761,
+            0.0,
+            -0.766044443
+          ],
+          "tangent": [
+            0.766044443,
+            0.0,
+            0.64278761
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          46.518692734,
+          6.0,
+          10.500638882
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_end"
+      },
+      "station_m": 49.132741229,
+      "status": "PASS",
+      "target_world_socket": {
+        "frame": {
+          "inside": [
+            -0.64278761,
+            0.0,
+            0.766044443
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.64278761,
+            0.0,
+            -0.766044443
+          ],
+          "tangent": [
+            0.766044443,
+            0.0,
+            0.64278761
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          46.518692734,
+          6.0,
+          10.500638882
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "incoming_span"
+      },
+      "to_module": "join/bevel",
+      "to_socket": "incoming_span"
+    },
+    {
+      "connection_index": 3,
+      "errors": {
+        "inside_rad": 0.0,
+        "outside_rad": 0.0,
+        "position_m": 0.0,
+        "tangent_rad": 0.0,
+        "up_rad": 0.0
+      },
+      "from_module": "join/bevel",
+      "from_socket": "outgoing_span",
+      "source_world_socket": {
+        "frame": {
+          "inside": [
+            -0.939692621,
+            0.0,
+            0.342020143
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.939692621,
+            0.0,
+            -0.342020143
+          ],
+          "tangent": [
+            0.342020143,
+            0.0,
+            0.939692621
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          46.518692734,
+          6.0,
+          10.500638882
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "outgoing_span"
+      },
+      "station_m": 49.132741229,
+      "status": "PASS",
+      "target_world_socket": {
+        "frame": {
+          "inside": [
+            -0.939692621,
+            0.0,
+            0.342020143
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.939692621,
+            0.0,
+            -0.342020143
+          ],
+          "tangent": [
+            0.342020143,
+            0.0,
+            0.939692621
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          46.518692734,
+          6.0,
+          10.500638882
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_start"
+      },
+      "to_module": "span/stepped",
+      "to_socket": "span_start"
+    },
+    {
+      "connection_index": 4,
+      "errors": {
+        "inside_rad": 0.0,
+        "outside_rad": 0.0,
+        "position_m": 0.0,
+        "tangent_rad": 0.0,
+        "up_rad": 0.0
+      },
+      "from_module": "span/stepped",
+      "from_socket": "span_end",
+      "source_world_socket": {
+        "frame": {
+          "inside": [
+            -0.939692621,
+            0.0,
+            0.342020143
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.939692621,
+            0.0,
+            -0.342020143
+          ],
+          "tangent": [
+            0.342020143,
+            0.0,
+            0.939692621
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          56.779297023,
+          8.0,
+          38.69141751
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_end"
+      },
+      "station_m": 79.132741229,
+      "status": "PASS",
+      "target_world_socket": {
+        "frame": {
+          "inside": [
+            -0.939692621,
+            0.0,
+            0.342020143
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.939692621,
+            0.0,
+            -0.342020143
+          ],
+          "tangent": [
+            0.342020143,
+            0.0,
+            0.939692621
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          56.779297023,
+          8.0,
+          38.69141751
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_start"
+      },
+      "to_module": "span/retaining",
+      "to_socket": "span_start"
+    },
+    {
+      "connection_index": 5,
+      "errors": {
+        "inside_rad": 0.0,
+        "outside_rad": 0.0,
+        "position_m": 0.0,
+        "tangent_rad": 0.0,
+        "up_rad": 0.0
+      },
+      "from_module": "span/retaining",
+      "from_socket": "span_end",
+      "source_world_socket": {
+        "frame": {
+          "inside": [
+            -0.939692621,
+            0.0,
+            0.342020143
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.939692621,
+            0.0,
+            -0.342020143
+          ],
+          "tangent": [
+            0.342020143,
+            0.0,
+            0.939692621
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          64.987780454,
+          8.0,
+          61.244040412
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "span_end"
+      },
+      "station_m": 103.132741229,
+      "status": "PASS",
+      "target_world_socket": {
+        "frame": {
+          "inside": [
+            -0.939692621,
+            0.0,
+            0.342020143
+          ],
+          "orientation_determinant": 1.0,
+          "outside": [
+            0.939692621,
+            0.0,
+            -0.342020143
+          ],
+          "tangent": [
+            0.342020143,
+            0.0,
+            0.939692621
+          ],
+          "up": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "position_m": [
+          64.987780454,
+          8.0,
+          61.244040412
+        ],
+        "required": true,
+        "role": "SPAN_JOIN",
+        "source_socket_id": "incoming_span"
+      },
+      "to_module": "join/transition",
+      "to_socket": "incoming_span"
+    }
+  ],
+  "angular_tolerance_rad": 1e-06,
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "linear_tolerance_m": 1e-06,
+  "schema": "royal-capital.fortification.mixed-span-socket-alignment/1",
+  "status": "PASS"
+}

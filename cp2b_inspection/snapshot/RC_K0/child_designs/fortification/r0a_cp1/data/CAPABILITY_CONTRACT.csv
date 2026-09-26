@@ -1,0 +1,7 @@
+capability,adapter_revision,status,notes
+cad.profile_extrusion@1,r0a-cp1.1,QUALIFIED,neutral project-frame polygon extrusion
+cad.tessellation@1,r0a-cp1.1,QUALIFIED,canonical indexed mesh in project frame
+cad.step_brep_export@1,r0a-cp1.1,QUALIFIED,deterministic stored copies and reopen
+cad.path_sweep@1,r0a-cp1.1,NOT_EXPOSED_CP1,provider runtime admitted only
+cad.loft@1,r0a-cp1.1,NOT_EXPOSED_CP1,provider runtime admitted only
+cad.boolean_difference@1,r0a-cp1.1,NOT_EXPOSED_CP1,provider runtime admitted only

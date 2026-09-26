@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "GEOMETRY_BUDGET_EXCEEDED",
+    "message": "part budget is below required tower parts"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:dbee9b32c5028d514d62f2d1b7663a8ceb45991b02070d77b292ce51b81d8ac6",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

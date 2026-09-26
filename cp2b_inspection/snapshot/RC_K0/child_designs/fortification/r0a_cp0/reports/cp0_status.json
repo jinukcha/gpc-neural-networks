@@ -1,0 +1,20 @@
+{
+  "artifact_transport": "PASS",
+  "blocking_reason": null,
+  "functional_qualification": "PASS",
+  "local_cold_ab": "PASS",
+  "local_native_capability_checks": "9_OF_9_PASS_X2",
+  "local_runtime_admission": "PASS_X2",
+  "local_wheelhouse_files": 58,
+  "local_wheelhouse_intake": "PASS",
+  "official_next": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0A-CP1 — PROJECT-OWNED PROVIDER ADAPTER, NEUTRAL REQUEST/RESULT TYPES, UNIT/FRAME/TOLERANCE CONTRACT & CAD PROVIDER RECEIPT",
+  "python_abi": "FIXED_CP3135_LINUX_X86_64",
+  "r0a_cp1_start_allowed": true,
+  "remote_cold_ab": "PASS",
+  "remote_wheel_closure": "58_OF_58",
+  "schema": "royal-capital.fortification.cp0-status/4",
+  "selected_source_fence": "PASS",
+  "source_preservation": "PASS",
+  "stage_completion": "R0A_CP0_COMPLETE",
+  "task": "ROYAL-CAPITAL-FORTIFICATION-CAD-R0A-CP0 RESUME"
+}

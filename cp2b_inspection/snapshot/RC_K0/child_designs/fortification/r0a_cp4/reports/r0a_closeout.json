@@ -1,0 +1,21 @@
+{
+  "auto_continuation": false,
+  "completed_checkpoints": [
+    "CP0",
+    "CP1",
+    "CP2",
+    "CP3",
+    "CP4"
+  ],
+  "exact_runtime_replay": "PASS_X2",
+  "functional_qualification": "PASS",
+  "godot_product": "NOT_STARTED",
+  "next": "R0B-CP1",
+  "next_requires_explicit_approval": true,
+  "package_equality": "PASS",
+  "schema": "royal-capital.fortification.r0a-closeout/1",
+  "source_preservation": "PASS",
+  "stage": "R0A",
+  "stage_completion": "R0A_COMPLETE",
+  "status": "PASS"
+}

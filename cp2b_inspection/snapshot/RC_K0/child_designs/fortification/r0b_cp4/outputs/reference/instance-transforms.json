@@ -1,0 +1,95 @@
+{
+  "assembly_id": "fortification/caelmere/r0b/mixed-span-closeout-001",
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "schema": "royal-capital.fortification.mixed-span-instance-transforms/1",
+  "transforms": [
+    {
+      "heading_deg": 0.0,
+      "module_id": "span/straight",
+      "source": "ROOT_TRANSFORM",
+      "translation_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "aligned_from_module": "span/straight",
+      "aligned_from_socket": "span_end",
+      "aligned_to_socket": "incoming_span",
+      "heading_deg": 0.0,
+      "module_id": "join/miter",
+      "source": "SOCKET_ALIGNMENT",
+      "translation_m": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "aligned_from_module": "join/miter",
+      "aligned_from_socket": "outgoing_span",
+      "aligned_to_socket": "span_start",
+      "heading_deg": 10.000000019,
+      "module_id": "span/curved",
+      "source": "SOCKET_ALIGNMENT",
+      "translation_m": [
+        24.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "aligned_from_module": "span/curved",
+      "aligned_from_socket": "span_end",
+      "aligned_to_socket": "incoming_span",
+      "heading_deg": 40.000000018,
+      "module_id": "join/bevel",
+      "source": "SOCKET_ALIGNMENT",
+      "translation_m": [
+        28.133626104,
+        0.0,
+        -4.926263756
+      ]
+    },
+    {
+      "aligned_from_module": "join/bevel",
+      "aligned_from_socket": "outgoing_span",
+      "aligned_to_socket": "span_start",
+      "heading_deg": 70.000000022,
+      "module_id": "span/stepped",
+      "source": "SOCKET_ALIGNMENT",
+      "translation_m": [
+        46.518692734,
+        0.0,
+        10.500638882
+      ]
+    },
+    {
+      "aligned_from_module": "span/stepped",
+      "aligned_from_socket": "span_end",
+      "aligned_to_socket": "span_start",
+      "heading_deg": 70.000000022,
+      "module_id": "span/retaining",
+      "source": "SOCKET_ALIGNMENT",
+      "translation_m": [
+        56.779297023,
+        -1.0,
+        38.69141751
+      ]
+    },
+    {
+      "aligned_from_module": "span/retaining",
+      "aligned_from_socket": "span_end",
+      "aligned_to_socket": "incoming_span",
+      "heading_deg": 70.000000022,
+      "module_id": "join/transition",
+      "source": "SOCKET_ALIGNMENT",
+      "translation_m": [
+        56.779297023,
+        2.0,
+        38.69141751
+      ]
+    }
+  ]
+}

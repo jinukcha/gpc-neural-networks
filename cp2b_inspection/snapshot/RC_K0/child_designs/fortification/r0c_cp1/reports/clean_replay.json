@@ -1,0 +1,35 @@
+{
+  "all_byte_identical": true,
+  "families": [
+    {
+      "byte_identical": true,
+      "different": [],
+      "extra_in_b": [],
+      "family": "ROUND",
+      "files_compared": 25,
+      "missing_in_b": [],
+      "status": "PASS"
+    },
+    {
+      "byte_identical": true,
+      "different": [],
+      "extra_in_b": [],
+      "family": "SQUARE",
+      "files_compared": 25,
+      "missing_in_b": [],
+      "status": "PASS"
+    },
+    {
+      "byte_identical": true,
+      "different": [],
+      "extra_in_b": [],
+      "family": "POLYGONAL",
+      "files_compared": 25,
+      "missing_in_b": [],
+      "status": "PASS"
+    }
+  ],
+  "family_count": 3,
+  "schema": "royal-capital.fortification.tower-clean-replay/1",
+  "status": "PASS"
+}

@@ -1,0 +1,153 @@
+{
+  "families": {
+    "bevel": {
+      "bounded_overlap_status": "PASS",
+      "bounds_m": {
+        "max": [
+          34.66025404,
+          14.4,
+          8.464101616
+        ],
+        "min": [
+          14.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "family": "BEVEL",
+      "files_compared": 36,
+      "reference_digest": "9b60baeb48131a678fff183ccba2ad470d138c3b7b18aa25eba9149f4d619f71",
+      "section_count": 4,
+      "socket_alignment_count": 6,
+      "socket_alignment_status": "PASS",
+      "socket_count": 6,
+      "solid_count": 5,
+      "status": "PASS",
+      "triangle_count": 140,
+      "turn_angle_deg": 29.999999994,
+      "vertex_count": 80,
+      "volume_m3": 1830.949631601
+    },
+    "miter": {
+      "bounded_overlap_status": "PASS",
+      "bounds_m": {
+        "max": [
+          32.573054736,
+          14.4,
+          5.328416436
+        ],
+        "min": [
+          16.0,
+          -2.0,
+          -4.0
+        ]
+      },
+      "byte_identical": true,
+      "family": "MITER",
+      "files_compared": 36,
+      "reference_digest": "62c3d1f5a9102ddc480b5127ae1bbdf45e453e53e9f0cb4eb53e916355be66bb",
+      "section_count": 3,
+      "socket_alignment_count": 6,
+      "socket_alignment_status": "PASS",
+      "socket_count": 6,
+      "solid_count": 5,
+      "status": "PASS",
+      "triangle_count": 100,
+      "turn_angle_deg": 10.000000019,
+      "vertex_count": 60,
+      "volume_m3": 1515.52
+    },
+    "transition": {
+      "bounded_overlap_status": "PASS",
+      "bounds_m": {
+        "max": [
+          30.0,
+          14.4,
+          5.0
+        ],
+        "min": [
+          18.0,
+          -2.0,
+          -5.0
+        ]
+      },
+      "byte_identical": true,
+      "family": "PROFILE_TRANSITION",
+      "files_compared": 36,
+      "reference_digest": "44de558fbecba99fac6bafd94a680b4045342aaff28ff40ad9a66d86164649b4",
+      "section_count": 3,
+      "socket_alignment_count": 6,
+      "socket_alignment_status": "PASS",
+      "socket_count": 6,
+      "solid_count": 5,
+      "status": "PASS",
+      "triangle_count": 100,
+      "turn_angle_deg": 0.0,
+      "vertex_count": 60,
+      "volume_m3": 1251.36
+    }
+  },
+  "negative": [
+    {
+      "case": "miter_turn_out_of_domain",
+      "error": "JoinContractError",
+      "message": "MITER turn must be within [1,15] degrees",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "bevel_turn_out_of_domain",
+      "error": "JoinContractError",
+      "message": "BEVEL turn must be within (15,35] degrees",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "transition_requires_distinct_profile",
+      "error": "JoinContractError",
+      "message": "PROFILE_TRANSITION requires distinct profiles",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "socket_position_mismatch",
+      "error": "JoinContractError",
+      "message": "outgoing.sockets.span position mismatch",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "socket_frame_mismatch",
+      "error": "JoinContractError",
+      "message": "outgoing.sockets.span frame mismatch",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "overlap_exceeds_max",
+      "error": "JoinContractError",
+      "message": "overlap outside bounded domain",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "section_budget",
+      "error": "JoinContractError",
+      "message": "required sections exceed join budget",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "runtime_mismatch",
+      "error": "JoinContractError",
+      "message": "runtime mismatch: {'build123d_source_commit': 'e22d34dae17111e5b9fdb361317e055d0daae466', 'build123d_version': '0.13.1.dev12+ge22d34dae', 'ocp_version': '0.0.0', 'ocp_wheel_sha256': '1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f'}",
+      "status": "PASS_EXPECTED_REJECTION"
+    },
+    {
+      "case": "opposed_tangents",
+      "error": "JoinContractError",
+      "message": "opposed tangents unsupported",
+      "status": "PASS_EXPECTED_REJECTION"
+    }
+  ],
+  "negative_count": 9,
+  "schema": "royal-capital.fortification.r0b-cp2-qualification/1",
+  "source_span_digest_after": "f542bc1485ce0d8d364490955dedd34f873889d167119245d0404eb75fe87845",
+  "source_span_digest_before": "f542bc1485ce0d8d364490955dedd34f873889d167119245d0404eb75fe87845",
+  "source_spans_unchanged": true,
+  "status": "PASS"
+}

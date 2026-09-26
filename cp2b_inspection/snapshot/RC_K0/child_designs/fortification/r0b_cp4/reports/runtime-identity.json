@@ -1,0 +1,8 @@
+{
+  "build123d": "0.13.1.dev12+ge22d34dae",
+  "cache_tag": "cpython-313",
+  "global_install": false,
+  "implementation": "CPython",
+  "ocp": "8.0.1.0.0",
+  "python": "3.13.5"
+}

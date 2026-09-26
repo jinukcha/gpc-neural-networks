@@ -1,0 +1,32 @@
+{
+  "archives": {
+    "build123d": {
+      "actual_sha256": "77fe1b25fc56e7d59a89b95ae3c81af2bd0acad1814669296d786291b7f325ca",
+      "expected_sha256": "77fe1b25fc56e7d59a89b95ae3c81af2bd0acad1814669296d786291b7f325ca",
+      "pass": true,
+      "path": "/mnt/data/rcf_oss/build123d-e22d34dae171-source.zip",
+      "present": true
+    },
+    "building_tools": {
+      "actual_sha256": "c68f4dca2bb9870c99420ff2512c240a88a6af9d508c0b34e9e79c0ba8860c72",
+      "expected_sha256": "c68f4dca2bb9870c99420ff2512c240a88a6af9d508c0b34e9e79c0ba8860c72",
+      "pass": true,
+      "path": "/mnt/data/rcf_oss/building_tools-0216534645b1-source.zip",
+      "present": true
+    },
+    "cadquery": {
+      "actual_sha256": "70ac4afc26fb105fc6cf388d8690b52372ea874078a25f6feef80120260acd0e",
+      "expected_sha256": "70ac4afc26fb105fc6cf388d8690b52372ea874078a25f6feef80120260acd0e",
+      "pass": true,
+      "path": "/mnt/data/rcf_oss/cadquery-c11b3f93278b-source.zip",
+      "present": true
+    }
+  },
+  "findings": [],
+  "schema": "royal-capital.fortification.source-fence-report/1",
+  "selected_files": {
+    "expected": 105,
+    "passed": 105
+  },
+  "status": "PASS"
+}

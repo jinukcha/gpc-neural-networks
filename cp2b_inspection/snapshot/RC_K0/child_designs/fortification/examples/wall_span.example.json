@@ -1,0 +1,83 @@
+{
+  "centerline_m": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      40,
+      0,
+      0
+    ]
+  ],
+  "family": "STRAIGHT_SPAN",
+  "outside": "RIGHT",
+  "profile_ref": {
+    "digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "id": "fortification/profile/royal-wall",
+    "revision": "1"
+  },
+  "schema": "royal-capital.fortification.wall-span-plan/1",
+  "sockets": [
+    {
+      "required": true,
+      "role": "SPAN_START",
+      "socket_id": "span-start",
+      "transform": {
+        "basis": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "origin_m": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "required": true,
+      "role": "SPAN_END",
+      "socket_id": "span-end",
+      "transform": {
+        "basis": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "origin_m": [
+          40,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "span_id": "fortification/span/outer/s000"
+}

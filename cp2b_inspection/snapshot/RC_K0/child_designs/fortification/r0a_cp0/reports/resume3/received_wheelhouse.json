@@ -1,0 +1,69 @@
+{
+  "checks": [
+    {
+      "name": "required:requirements-lock.txt",
+      "pass": true
+    },
+    {
+      "name": "required:WHEELHOUSE.json",
+      "pass": true
+    },
+    {
+      "name": "required:SHA256SUMS.txt",
+      "pass": true
+    },
+    {
+      "name": "required:DELIVERY.json",
+      "pass": true
+    },
+    {
+      "name": "wheelhouse directory",
+      "pass": true
+    },
+    {
+      "name": "wheel count 58",
+      "pass": true
+    },
+    {
+      "name": "source commit",
+      "pass": true
+    },
+    {
+      "name": "OCP expected hash",
+      "pass": true
+    },
+    {
+      "name": "manifest wheel rows",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "wheel bytes and hashes",
+      "pass": true
+    },
+    {
+      "name": "lock rows 58",
+      "pass": true
+    },
+    {
+      "name": "lock all hashed",
+      "pass": true
+    },
+    {
+      "name": "exact OCP raw bytes",
+      "pass": true
+    },
+    {
+      "name": "exact source-derived build123d",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "delivery listed payload",
+      "pass": true
+    }
+  ],
+  "schema": "royal-capital.fortification.received-wheelhouse-check/1",
+  "status": "PASS",
+  "wheel_count": 58
+}

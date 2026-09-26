@@ -1,0 +1,79 @@
+{
+  "axis": {
+    "end_m": [
+      30.0,
+      0.0,
+      0.0
+    ],
+    "start_m": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "budget": {
+    "max_artifact_bytes": 100000000,
+    "max_triangles": 200000,
+    "max_units": 32,
+    "max_vertices": 200000
+  },
+  "family": "TERRAIN_STEPPED",
+  "foundation": {
+    "contact_sample_spacing_m": 2.5,
+    "embedment_depth_m": 2.0,
+    "max_embedment_depth_m": 8.0,
+    "max_gap_m": 0.02,
+    "terrain_contact_offset_m": 0.0
+  },
+  "frame": "RH_X_RIGHT_Y_UP_NEG_Z_FORWARD",
+  "grade": {
+    "max_centerline_grade": 0.12,
+    "max_step_height_m": 2.5
+  },
+  "inside_side": "LEFT_OF_TRAVEL",
+  "outside_side": "RIGHT_OF_TRAVEL",
+  "profile_id": "rcf/standard-wall@1",
+  "runtime": {
+    "build123d_source_commit": "e22d34dae17111e5b9fdb361317e055d0daae466",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "ocp_wheel_sha256": "1702dfc8f5bdcb916ce65ea0c6314fe453cc78a6a3d49a044fb3062d47b0ef9f"
+  },
+  "schema": "royal-capital.fortification.terrain-wall-span/1",
+  "span_id": "fortification/caelmere/r0b/terrain-stepped-001",
+  "terrain": {
+    "kind": "STEPPED_TERRACES",
+    "terraces": [
+      {
+        "elevation_m": 0.0,
+        "end_station_m": 10.0,
+        "segment_id": "terrace_00",
+        "start_station_m": 0.0
+      },
+      {
+        "elevation_m": 1.0,
+        "end_station_m": 20.0,
+        "segment_id": "terrace_01",
+        "start_station_m": 10.0
+      },
+      {
+        "elevation_m": 2.0,
+        "end_station_m": 30.0,
+        "segment_id": "terrace_02",
+        "start_station_m": 20.0
+      }
+    ]
+  },
+  "terrain_source": {
+    "profile_digest": "sha256:820a49dbb346453b552ca4b162e2684044e7417bc68c2f2a79afe2dd26562d88",
+    "revision": "r1",
+    "source_id": "terrain/caelmere/west-ridge/terraces-001"
+  },
+  "tolerances": {
+    "angular_rad": 1e-06,
+    "linear_m": 1e-06,
+    "mesh_round_digits": 9,
+    "tessellation_angular_rad": 0.1,
+    "tessellation_linear_m": 0.05
+  }
+}

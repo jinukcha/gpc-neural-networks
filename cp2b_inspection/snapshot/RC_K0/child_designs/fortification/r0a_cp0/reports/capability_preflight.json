@@ -1,0 +1,29 @@
+{
+  "canonical": {
+    "brep_sha256": "e42b6afce98ebb9c854b3670c5d6d44237c0411d7b49a944e6168d6b0985cce8",
+    "build123d_version": "0.13.1.dev12+ge22d34dae",
+    "ocp_version": "8.0.1.0.0",
+    "step_normalized_sha256": "5bf3cefd4f8555d61c55cfe7a8e520e1ed979367eb74d4d700bc535a713453b8",
+    "triangle_count": 12,
+    "vertex_count": 24,
+    "volume": 240.0
+  },
+  "canonical_sha256": "e28815485ffc3ca0ad51b52daf43badc5e9a0f92e47951490968e8190cbdaaab",
+  "fabricated_success": false,
+  "local_cold_ab": "PASS",
+  "local_native_capabilities": "9_OF_9_PASS_X2",
+  "promotion_allowed": true,
+  "raw_brep_byte_identical": true,
+  "raw_step_byte_identical": false,
+  "raw_step_policy": "Raw STEP bytes retain FILE_NAME path/timestamp and are evidence only; normalized STEP canonical identity is equal.",
+  "remote_cold_ab": "PASS",
+  "remote_native_capabilities": "9_OF_9_PASS_X2",
+  "reports": [
+    "reports/resume3/capability_A.json",
+    "reports/resume3/capability_B.json",
+    "reports/resume3/local_cold_ab.json"
+  ],
+  "schema": "royal-capital.fortification.capability-preflight/4",
+  "source_api_checks": "7_OF_7_PASS",
+  "status": "PASS_LOCAL_COLD_AB"
+}

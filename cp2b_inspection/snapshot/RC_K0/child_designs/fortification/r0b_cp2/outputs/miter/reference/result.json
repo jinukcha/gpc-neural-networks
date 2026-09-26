@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "bounded-overlap.json": {
+      "bytes": 807,
+      "path": "bounded-overlap.json",
+      "sha256": "sha256:c98486d38ab0d37e1d11eba09d04d048ee1f05d1cb8c81308106d4da14882a9b"
+    },
+    "cad-provider-receipt.json": {
+      "bytes": 4398,
+      "path": "cad-provider-receipt.json",
+      "sha256": "sha256:59a485c9f0d95efb4a734986838de387fb0568a9d157ec405b445838acad226b"
+    },
+    "fixed-tessellation.json": {
+      "bytes": 327,
+      "path": "fixed-tessellation.json",
+      "sha256": "sha256:657e134a113b635f20e71772dada11324be68982236f07427de7f1d61e55618b"
+    },
+    "join-plan.json": {
+      "bytes": 879,
+      "path": "join-plan.json",
+      "sha256": "sha256:33e7677f68a4f69d91ad828525fd4c0de4ea20d511751195c9094fb201d67dfd"
+    },
+    "join-sockets.json": {
+      "bytes": 4682,
+      "path": "join-sockets.json",
+      "sha256": "sha256:0686138f2ee47d5ca870b8f4456f5a99978d835b456ed848f48cee3ddada2655"
+    },
+    "neutral-mesh.json": {
+      "bytes": 8694,
+      "path": "neutral-mesh.json",
+      "sha256": "sha256:ae8be5380035d76e75320eee9db83a6129871601c0090f6250cb2abf3dc59b2a"
+    },
+    "section-plan.json": {
+      "bytes": 1693,
+      "path": "section-plan.json",
+      "sha256": "sha256:484fd5ecb66d76dbf4b4a148abc4fb8fd907fc2284bcb602b2aa87c6c01b86e9"
+    },
+    "semantic-parts.json": {
+      "bytes": 4506,
+      "path": "semantic-parts.json",
+      "sha256": "sha256:0271f8d2870e306d221bea06546dffab013a5f985d6e79a5c5ad8b9515bc2c30"
+    },
+    "socket-alignment.json": {
+      "bytes": 2864,
+      "path": "socket-alignment.json",
+      "sha256": "sha256:380f2c5f137d7411ff68a5545128779c9c23bdd744f2b5946dba3014343343b9"
+    },
+    "stored-copies.json": {
+      "bytes": 4564,
+      "path": "stored-copies.json",
+      "sha256": "sha256:d0243a9b918c60a61e35375213ffd3e89c194ca01870a3163af6d802fb476a5c"
+    }
+  },
+  "bounded_overlap_status": "PASS",
+  "bounds_m": {
+    "max": [
+      32.573054736,
+      14.4,
+      5.328416436
+    ],
+    "min": [
+      16.0,
+      -2.0,
+      -4.0
+    ]
+  },
+  "failure": null,
+  "family": "MITER",
+  "join_id": "fortification/caelmere/r0b/miter-join-001",
+  "part_count": 5,
+  "schema": "royal-capital.fortification.wall-join-result/1",
+  "section_count": 3,
+  "socket_alignment_count": 6,
+  "socket_alignment_status": "PASS",
+  "socket_count": 6,
+  "solid_count": 5,
+  "status": "SUCCEEDED",
+  "triangle_count": 100,
+  "turn_angle_deg": 10.000000019,
+  "vertex_count": 60,
+  "volume_m3": 1515.52
+}

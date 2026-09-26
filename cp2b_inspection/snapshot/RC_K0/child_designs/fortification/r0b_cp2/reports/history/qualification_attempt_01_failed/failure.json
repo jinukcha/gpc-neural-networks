@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_PRESERVED",
+  "phase": "EXACT_RUNTIME_MATERIALIZATION_AND_FIRST_QUALIFICATION",
+  "failure": "partial runtime returned pip-check pass but build123d was not installed after tool timeout",
+  "source_tree_preserved": true,
+  "pre_validation_checkpoint_preserved": true,
+  "partial_runtime_preserved": true,
+  "failed_work_preserved": true
+}

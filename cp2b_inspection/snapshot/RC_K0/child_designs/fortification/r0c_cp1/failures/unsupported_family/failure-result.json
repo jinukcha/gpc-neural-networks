@@ -1,0 +1,14 @@
+{
+  "accepted_target_digest_after": null,
+  "accepted_target_digest_before": null,
+  "accepted_target_unchanged": true,
+  "failure": {
+    "code": "FAMILY_UNSUPPORTED",
+    "message": "unsupported family HEX_MAGIC"
+  },
+  "partial_output_published": false,
+  "preserved_failed_work": true,
+  "request_digest": "sha256:44ca9d0682e27a149e8dc4433ef844fdbfdd5cf288341d87a39bf5b87ef2f6f9",
+  "schema": "royal-capital.fortification.tower-failure/1",
+  "status": "REJECTED"
+}

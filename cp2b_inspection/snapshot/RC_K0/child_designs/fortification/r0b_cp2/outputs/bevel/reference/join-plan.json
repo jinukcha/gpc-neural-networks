@@ -1,0 +1,32 @@
+{
+  "anchor_m": [
+    24.0,
+    0.0,
+    0.0
+  ],
+  "assembly_mode": "BOUNDED_NON_UNIONED_PARTS",
+  "family": "BEVEL",
+  "incoming_profile_id": "profile/caelmere/standard@1",
+  "incoming_span_id": "fortification/caelmere/r0b/source/bevel-join-001/incoming",
+  "join_id": "fortification/caelmere/r0b/bevel-join-001",
+  "join_ownership": "JOIN_MODULE_ONLY_SPAN_GEOMETRY_UNCHANGED",
+  "outgoing_profile_id": "profile/caelmere/standard@1",
+  "outgoing_span_id": "fortification/caelmere/r0b/source/bevel-join-001/outgoing",
+  "part_order": [
+    "foundation",
+    "wall_body",
+    "wall_walk",
+    "inner_parapet",
+    "outer_parapet"
+  ],
+  "schema": "royal-capital.fortification.wall-join-plan/1",
+  "section_count": 4,
+  "section_ids": [
+    "incoming_overlap",
+    "incoming_bevel_cut",
+    "outgoing_bevel_cut",
+    "outgoing_overlap"
+  ],
+  "source_coverage_stage": "R0B_CP4",
+  "turn_angle_deg": 29.999999994
+}
