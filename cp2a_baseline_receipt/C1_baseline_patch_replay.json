@@ -1,0 +1,32 @@
+{
+  "baseline_plus_patch_equals_full": true,
+  "comparison": {
+    "different": [],
+    "extra": [],
+    "missing": [],
+    "mode_different": []
+  },
+  "cumulative_patch": {
+    "deleted_paths": 0,
+    "name": "C1P.zip",
+    "overlay_files": 1264,
+    "sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4"
+  },
+  "expected_full": {
+    "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+    "files": 1418,
+    "name": "C1.zip",
+    "sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878"
+  },
+  "fixed_baseline": {
+    "files": 1418,
+    "name": "RCF_D0_full.zip",
+    "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+  },
+  "reconstructed": {
+    "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+    "files": 1418
+  },
+  "schema": "royal-capital.fortification.r0c-cp1-baseline-patch-replay/1",
+  "status": "PASS"
+}

@@ -1,0 +1,57 @@
+{
+  "accepted_artifact_id": 10888433130,
+  "accepted_artifact_sha256": "17be24bd7c8868e5ba14ea100162b747df5225d3ec7145b2324ebef49ee4d2cb",
+  "accepted_workflow_run_id": 36192768002,
+  "authority": {
+    "baseline_sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2",
+    "patch_sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4",
+    "target_sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878"
+  },
+  "failed_predecessor_preserved": 36212994542,
+  "records": [
+    {
+      "bytes": 984,
+      "json": {
+        "baseline_plus_patch_equals_full": true,
+        "comparison": {
+          "different": [],
+          "extra": [],
+          "missing": [],
+          "mode_different": []
+        },
+        "cumulative_patch": {
+          "deleted_paths": 0,
+          "name": "C1P.zip",
+          "overlay_files": 1264,
+          "sha256": "dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4"
+        },
+        "expected_full": {
+          "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+          "files": 1418,
+          "name": "C1.zip",
+          "sha256": "91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878"
+        },
+        "fixed_baseline": {
+          "files": 1418,
+          "name": "RCF_D0_full.zip",
+          "sha256": "6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2"
+        },
+        "reconstructed": {
+          "closed_world_digest": "sha256:d4c65b55deb60f5dda29375693477f5ce88fad9ab8098970537b2976bea9d1be",
+          "files": 1418
+        },
+        "schema": "royal-capital.fortification.r0c-cp1-baseline-patch-replay/1",
+        "status": "PASS"
+      },
+      "path": "C1_baseline_patch_replay.json",
+      "sha256": "eafa0579f11a72ecd85eb5996266c7bc2970c822a8b4788521791aa74f8332ac"
+    },
+    {
+      "bytes": 141,
+      "path": "C1_baseline_patch_replay.txt",
+      "sha256": "0ba7c693b31b0b0753f3a240d0d44913eeb5f4e94c1618d36d1841dadbff9453"
+    }
+  ],
+  "schema": "royal-capital.fortification.r0c-cp2.cp2a-baseline-receipt-inspection/1",
+  "status": "PASS"
+}
