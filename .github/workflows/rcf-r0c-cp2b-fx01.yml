@@ -1,0 +1,300 @@
+name: RCF R0C CP2-B FX01
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp2b-fx01-20260926]
+    paths: [.github/workflows/rcf-r0c-cp2b-fx01.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  fx01:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    env:
+      BRANCH: automation/rcf-r0c-cp2b-fx01-20260926
+      TAG: rcf-r0c-cp2b-fx01-20260926-r1
+      C1_TAG: rcf-r0c-cp1-20260925-r1
+      C2A_TAG: rcf-r0c-cp2a-20260926-r1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2b-fx01-20260926
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13.5'
+
+      - name: Download exact accepted C1 and C2A inputs
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf cp2b_inputs cp2b_work cp2b_output cp2b_runtime_logs
+          mkdir -p cp2b_inputs cp2b_work cp2b_output cp2b_runtime_logs
+          gh release download "$C1_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern 'C1.zip' --pattern 'C1P.zip' --pattern 'C1.sha256' \
+            --dir cp2b_inputs
+          gh release download "$C2A_TAG" --repo "$GITHUB_REPOSITORY" \
+            --pattern 'C2A.zip' --pattern 'C2AP.zip' --pattern 'C2A_check.json' --pattern 'C2A.sha256' \
+            --dir cp2b_inputs
+          (cd cp2b_inputs && sha256sum -c C1.sha256 --ignore-missing)
+          (cd cp2b_inputs && sha256sum -c C2A.sha256 --ignore-missing)
+          for f in C1.zip C1P.zip C2A.zip C2AP.zip; do unzip -t "cp2b_inputs/$f" >/dev/null; done
+
+      - name: Compile CP2-B source and packager
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python -m py_compile \
+            cp2b_tools/driver.py \
+            cp2b_source/RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/__init__.py \
+            cp2b_source/RC_K0/child_designs/fortification/r0c_cp2/src/rcf_fortification_tower_join/fx01.py \
+            cp2b_source/RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx01.py \
+            r0c_cp1/package_tools.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          fixture = Path('cp2b_source/RC_K0/child_designs/fortification/r0c_cp2/fixtures/R0C_CP2_FX01.fixture.json')
+          data = json.loads(fixture.read_text(encoding='utf-8'))
+          assert data['fixture_id'] == 'R0C_CP2_FX01'
+          assert data['tower']['family'] == 'ROUND'
+          assert data['join_kind'] == 'TANGENT'
+          assert data['span']['family'] == 'STRAIGHT_SPAN'
+          print('CP2-B source parse: PASS')
+          PY
+
+      - name: Preserve source patch and full checkpoint before exact runtime qualification
+        id: prepare
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONDONTWRITEBYTECODE=1 python cp2b_tools/driver.py prepare \
+            --inputs cp2b_inputs \
+            --source-root cp2b_source \
+            --work cp2b_work \
+            --output cp2b_output \
+            2>&1 | tee cp2b_runtime_logs/prepare.log
+          for f in C2B_pre.zip C2B_preP.zip C2B_preS.zip; do unzip -t "cp2b_output/$f" >/dev/null; done
+
+      - name: Publish pre-validation checkpoint
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          files=(
+            cp2b_output/C2B_pre.zip
+            cp2b_output/C2B_preP.zip
+            cp2b_output/C2B_preS.zip
+            cp2b_output/C2B_pre_check.json
+            cp2b_runtime_logs/prepare.log
+          )
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" "${files[@]}" --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$TAG" "${files[@]}" \
+              --target "$BRANCH" \
+              --title 'RCF R0C CP2-B FX01' \
+              --notes 'Source/patch/full checkpoint published before exact-runtime FX01 qualification.' \
+              --repo "$GITHUB_REPOSITORY"
+          fi
+
+      - name: Fresh exact offline runtime materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv cp2b_work/runtime
+          cp2b_work/runtime/bin/python -m pip install \
+            --no-index \
+            --find-links cp2b_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/wheelhouse \
+            --require-hashes \
+            -r cp2b_work/current/RC_K0/child_designs/fortification/r0a_cp0/runtime/requirements-lock.txt \
+            2>&1 | tee cp2b_runtime_logs/runtime-materialization.log
+          cp2b_work/runtime/bin/python -m pip check 2>&1 | tee cp2b_runtime_logs/runtime-pip-check.log
+          cp2b_work/runtime/bin/python -m pip freeze --all > cp2b_runtime_logs/runtime-pip-freeze.txt
+
+      - name: Native FX01 qualification and clean replay
+        id: qualify
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 cp2b_work/runtime/bin/python \
+            cp2b_work/current/RC_K0/child_designs/fortification/r0c_cp2/tools/run_fx01.py \
+            --tree cp2b_work/current \
+            --work cp2b_work/qualification \
+            2>&1 | tee cp2b_runtime_logs/qualification.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > cp2b_runtime_logs/QUALIFICATION_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve pre-checkpoint and failed staging on qualification failure
+        if: steps.qualify.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2B_FX01_QUALIFICATION_FAILURE_${{ github.run_id }}
+          path: |
+            cp2b_output/C2B_pre.zip
+            cp2b_output/C2B_preP.zip
+            cp2b_output/C2B_preS.zip
+            cp2b_output/C2B_pre_check.json
+            cp2b_work/qualification/failures
+            cp2b_runtime_logs
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
+
+      - name: Finalize accepted FX01 checkpoint
+        id: finalize
+        if: steps.qualify.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set +e
+          PYTHONDONTWRITEBYTECODE=1 cp2b_work/runtime/bin/python cp2b_tools/driver.py finalize \
+            --inputs cp2b_inputs \
+            --work cp2b_work \
+            --output cp2b_output \
+            --runtime-logs cp2b_runtime_logs \
+            2>&1 | tee cp2b_runtime_logs/finalize.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > cp2b_runtime_logs/FINALIZE_EXIT_CODE.txt
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve sources and pre-checkpoint on finalization failure
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code != '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2B_FX01_FINALIZE_FAILURE_${{ github.run_id }}
+          path: |
+            cp2b_output/C2B_pre.zip
+            cp2b_output/C2B_preP.zip
+            cp2b_output/C2B_preS.zip
+            cp2b_output/C2B_pre_check.json
+            cp2b_work/current/RC_K0/child_designs/fortification/r0c_cp2
+            cp2b_work/qualification/failures
+            cp2b_runtime_logs
+          if-no-files-found: warn
+          compression-level: 0
+          retention-days: 7
+
+      - name: Reopen final artifacts independently
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in C2B.zip C2BP.zip C2BS.zip C2BR.zip C2B_pre.zip C2B_preP.zip C2B_preS.zip; do
+            unzip -t "cp2b_output/$f" >/dev/null
+          done
+          (cd cp2b_output && sha256sum -c C2B.sha256)
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          check = json.loads(Path('cp2b_output/C2B_check.json').read_text(encoding='utf-8'))
+          assert check['source_preservation'] == 'PASS'
+          assert check['functional_qualification'] == 'PASS_FX01'
+          assert check['stage_completion'] == 'CP2_B_COMPLETE_CLOSED'
+          assert check['r0c_cp2'] == 'OPEN'
+          assert check['godot_product'] == 'NOT_STARTED'
+          assert check['validation']['status'] == 'PASS'
+          assert check['validation']['C1_plus_source_equals_full']['status'] == 'PASS'
+          assert check['validation']['C2A_plus_current_delta_equals_full']['status'] == 'PASS'
+          assert check['validation']['patch_current_delta_equals_source_payload']['status'] == 'PASS'
+          assert check['validation']['fixed_baseline_plus_cumulative_patch_equals_full']['status'] == 'PASS_COMPOSITIONAL_WITH_ACCEPTED_CP2A_REPLAY'
+          print('independent final reopen: PASS')
+          PY
+
+      - name: Commit small accepted result set
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf cp2b_result
+          mkdir -p cp2b_result
+          cp cp2b_output/C2BS.zip cp2b_result/
+          cp cp2b_output/C2BR.zip cp2b_result/
+          cp cp2b_output/C2B_check.json cp2b_result/
+          cp cp2b_output/C2B_delivery.json cp2b_result/
+          cp cp2b_output/C2B_report.md cp2b_result/
+          cp cp2b_output/C2B.sha256 cp2b_result/
+          cp cp2b_output/C2B_pre_check.json cp2b_result/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2b_result
+          git commit -m 'Publish accepted R0C CP2-B FX01 receipts'
+          git push origin HEAD:$BRANCH
+
+      - name: Publish final release assets
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          files=(
+            cp2b_output/C2B.zip
+            cp2b_output/C2BP.zip
+            cp2b_output/C2BS.zip
+            cp2b_output/C2BR.zip
+            cp2b_output/C2B_check.json
+            cp2b_output/C2B_delivery.json
+            cp2b_output/C2B_report.md
+            cp2b_output/C2B.sha256
+            cp2b_output/C2B_pre.zip
+            cp2b_output/C2B_preP.zip
+            cp2b_output/C2B_preS.zip
+            cp2b_output/C2B_pre_check.json
+          )
+          gh release upload "$TAG" "${files[@]}" --clobber --repo "$GITHUB_REPOSITORY"
+          gh release edit "$TAG" \
+            --title 'RCF R0C CP2-B FX01' \
+            --notes-file cp2b_output/C2B_report.md \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Upload complete delivery
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2B_DELIVERY
+          path: |
+            cp2b_output/C2B.zip
+            cp2b_output/C2BP.zip
+            cp2b_output/C2BS.zip
+            cp2b_output/C2BR.zip
+            cp2b_output/C2B_check.json
+            cp2b_output/C2B_delivery.json
+            cp2b_output/C2B_report.md
+            cp2b_output/C2B.sha256
+            cp2b_output/C2B_pre.zip
+            cp2b_output/C2B_preP.zip
+            cp2b_output/C2B_preS.zip
+            cp2b_output/C2B_pre_check.json
+          compression-level: 0
+          retention-days: 7
+
+      - name: Upload compact delivery
+        if: steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code == '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: C2B_SMALL
+          path: |
+            cp2b_output/C2BS.zip
+            cp2b_output/C2BR.zip
+            cp2b_output/C2B_check.json
+            cp2b_output/C2B_delivery.json
+            cp2b_output/C2B_report.md
+            cp2b_output/C2B.sha256
+            cp2b_output/C2B_pre_check.json
+          compression-level: 0
+          retention-days: 7
+
+      - name: Fail workflow when qualification or finalization failed
+        if: steps.qualify.outputs.exit_code != '0' || (steps.qualify.outputs.exit_code == '0' && steps.finalize.outputs.exit_code != '0')
+        shell: bash
+        run: exit 1
