@@ -1,0 +1,96 @@
+name: RCF R0C CP2-A accepted baseline receipt inspection
+
+on:
+  push:
+    branches: [automation/rcf-r0c-cp2a-freeze-20260926]
+    paths: [.github/workflows/rcf-r0c-cp2a-baseline-receipt-inspect.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/rcf-r0c-cp2a-freeze-20260926
+          fetch-depth: 0
+
+      - name: Download exact accepted transfer and find replay receipt
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf baseline_receipt_work cp2a_baseline_receipt
+          mkdir -p baseline_receipt_work/transport baseline_receipt_work/c1 baseline_receipt_work/c1r cp2a_baseline_receipt
+          curl -L --fail --retry 3 \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -o baseline_receipt_work/C1_transfer.zip \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/10887764464/zip"
+          echo 'b8f4f6788c4295770364f722d9e40403dcdab652487404f50226f0c1995dae53  baseline_receipt_work/C1_transfer.zip' | sha256sum -c -
+          unzip -q baseline_receipt_work/C1_transfer.zip -d baseline_receipt_work/transport
+          unzip -q baseline_receipt_work/transport/C1.zip -d baseline_receipt_work/c1
+          unzip -q baseline_receipt_work/transport/C1R.zip -d baseline_receipt_work/c1r
+          {
+            find baseline_receipt_work/transport baseline_receipt_work/c1 baseline_receipt_work/c1r -type f \
+              \( -iname '*baseline*patch*replay*' -o -iname '*patch*replay*' -o -iname '*baseline*equality*' \) -print
+          } | sort | tee cp2a_baseline_receipt/CANDIDATES.txt
+          test -s cp2a_baseline_receipt/CANDIDATES.txt
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, shutil
+
+          candidates = [Path(x) for x in Path('cp2a_baseline_receipt/CANDIDATES.txt').read_text().splitlines() if x.strip()]
+          records = []
+          for idx, src in enumerate(candidates):
+              name = f'{idx:02d}_{src.name}'
+              dst = Path('cp2a_baseline_receipt') / name
+              shutil.copy2(src, dst)
+              record = {
+                  'source_path': src.as_posix(),
+                  'copied_name': name,
+                  'bytes': src.stat().st_size,
+                  'sha256': hashlib.sha256(src.read_bytes()).hexdigest(),
+              }
+              if src.suffix.lower() == '.json':
+                  try:
+                      record['json'] = json.loads(src.read_text(encoding='utf-8'))
+                  except Exception as exc:
+                      record['json_parse_error'] = repr(exc)
+              records.append(record)
+          result = {
+              'schema': 'royal-capital.fortification.r0c-cp2.cp2a-baseline-receipt-inspection/1',
+              'status': 'FOUND',
+              'authority': {
+                  'C1.zip': '91cf2025f311772b0a137d3509efa0b1d65b96832a78f1e4f46ba9cf3b06e878',
+                  'C1P.zip': 'dddb960aa467689eecf1e312724ce06c0c9175e0fdc902c534c4e12ffdca77b4',
+                  'RCF_D0_full.zip': '6b705952be72036e9d6c6eaa614ddd33abe963ed9d1411f9d839b1f11e7f1cd2',
+              },
+              'records': records,
+          }
+          Path('cp2a_baseline_receipt/INSPECTION.json').write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          print(json.dumps(result, indent=2, sort_keys=True))
+          PY
+
+      - name: Commit accepted replay receipt snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cp2a_baseline_receipt
+          git commit -m 'Record accepted C1 fixed-baseline replay receipt'
+          git push origin HEAD:automation/rcf-r0c-cp2a-freeze-20260926
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rcf-r0c-cp2a-baseline-receipt
+          path: cp2a_baseline_receipt
+          retention-days: 7
