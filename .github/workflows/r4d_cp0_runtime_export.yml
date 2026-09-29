@@ -65,6 +65,10 @@ jobs:
 
           python -m pip wheel --no-deps --wheel-dir export/wheelhouse \
             ./src/godot_rl_agents
+          python -m pip wheel --no-deps --wheel-dir export/wheelhouse \
+            wget==3.2
+          python -m pip download --dest export/wheelhouse \
+            pip==25.2 setuptools==80.9.0 wheel==0.45.1
 
           python -m pip download --dest export/wheelhouse \
             --index-url https://download.pytorch.org/whl/cpu \
@@ -96,7 +100,7 @@ jobs:
           python -m venv verify
           verify/bin/python -m pip install --upgrade \
             --no-index --find-links export/wheelhouse \
-            pip==25.2 setuptools==80.9.0 wheel==0.45.1 || true
+            pip==25.2 setuptools==80.9.0 wheel==0.45.1
           verify/bin/python -m pip install --no-index --find-links export/wheelhouse \
             -r export/manifests/requirements-top-level.txt \
             godot-rl==0.8.1
@@ -146,6 +150,7 @@ jobs:
               'godot_rl_agents_plugin': '3984fd124a2b941a446f4614bb0eacd09a2468f5',
               'stable_baselines3': '2.4.0/020ee42f4dd6b30d0b3931aceaabd8370a9a1152',
               'sb3_contrib': '2.4.0/d5ac968ff1c43cb1074ac47f4768ebf023d6b02c',
+              'gymnasium': '1.0.0',
               'torch': '2.5.1+cpu',
               'numpy': '1.26.4',
               'files': records,
