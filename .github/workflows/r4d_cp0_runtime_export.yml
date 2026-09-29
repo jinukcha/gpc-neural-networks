@@ -11,17 +11,211 @@ permissions:
 jobs:
   export:
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
-      - name: Create cleanup placeholder
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.14'
+
+      - name: Build exact split offline runtime
         shell: bash
         run: |
-          mkdir -p export
-          printf 'temporary local cleanup artifact\n' > export/placeholder.txt
-      - name: Upload cleanup artifact
-        uses: actions/upload-artifact@v4
+          set -euo pipefail
+          python -m pip install --upgrade pip==25.2 setuptools==80.9.0 wheel==0.45.1
+          mkdir -p export/sources export/wheelhouse export/manifests src stage
+
+          fetch_repo() {
+            local name="$1" url="$2" commit="$3"
+            git init -q "src/$name"
+            git -C "src/$name" remote add origin "$url"
+            git -C "src/$name" fetch -q --depth=1 origin "$commit"
+            git -C "src/$name" checkout -q --detach FETCH_HEAD
+            test "$(git -C "src/$name" rev-parse HEAD)" = "$commit"
+          }
+
+          fetch_repo godot_rl_agents https://github.com/edbeeching/godot_rl_agents.git f4b53921f0f6602d930b7b174a3ba7b8aed361aa
+          fetch_repo godot_rl_agents_plugin https://github.com/edbeeching/godot_rl_agents_plugin.git 3984fd124a2b941a446f4614bb0eacd09a2468f5
+          fetch_repo stable_baselines3 https://github.com/DLR-RM/stable-baselines3.git 020ee42f4dd6b30d0b3931aceaabd8370a9a1152
+          fetch_repo sb3_contrib https://github.com/Stable-Baselines-Team/stable-baselines3-contrib.git d5ac968ff1c43cb1074ac47f4768ebf023d6b02c
+
+          git -C src/godot_rl_agents archive --format=zip --prefix=godot_rl_agents-f4b53921/ HEAD -o "$GITHUB_WORKSPACE/export/sources/godot_rl_agents-v0.8.2-f4b53921-source.zip"
+          git -C src/godot_rl_agents_plugin archive --format=zip --prefix=godot_rl_agents_plugin-3984fd12/ HEAD -o "$GITHUB_WORKSPACE/export/sources/godot_rl_agents_plugin-3984fd12-source.zip"
+          git -C src/stable_baselines3 archive --format=zip --prefix=stable_baselines3-020ee42f/ HEAD -o "$GITHUB_WORKSPACE/export/sources/stable_baselines3-v2.4.0-020ee42f-source.zip"
+          git -C src/sb3_contrib archive --format=zip --prefix=sb3_contrib-d5ac968f/ HEAD -o "$GITHUB_WORKSPACE/export/sources/sb3_contrib-v2.4.0-d5ac968f-source.zip"
+
+          python -m pip wheel --no-deps --wheel-dir export/wheelhouse ./src/godot_rl_agents
+          python -m pip wheel --no-deps --wheel-dir export/wheelhouse wget==3.2
+          python -m pip download --dest export/wheelhouse pip==25.2 setuptools==80.9.0 wheel==0.45.1
+          python -m pip download --dest export/wheelhouse --index-url https://download.pytorch.org/whl/cpu 'torch==2.5.1+cpu'
+
+          cat > export/manifests/requirements-top-level.txt <<'REQ'
+          gymnasium==1.0.0
+          stable-baselines3==2.4.0
+          sb3-contrib==2.4.0
+          numpy==1.26.4
+          torch==2.5.1+cpu
+          pandas==2.2.3
+          matplotlib==3.9.2
+          cloudpickle==3.1.0
+          tensorboard==2.18.0
+          onnx==1.17.0
+          onnxruntime==1.20.1
+          wget==3.2
+          huggingface-hub==0.26.5
+          huggingface-sb3==3.0
+          REQ
+
+          python -m pip download --dest export/wheelhouse --only-binary=:all: \
+            --find-links export/wheelhouse --extra-index-url https://download.pytorch.org/whl/cpu \
+            -r export/manifests/requirements-top-level.txt
+
+          python -m venv verify
+          verify/bin/python -m pip install --upgrade --no-index --find-links export/wheelhouse pip==25.2 setuptools==80.9.0 wheel==0.45.1
+          verify/bin/python -m pip install --no-index --find-links export/wheelhouse -r export/manifests/requirements-top-level.txt godot-rl==0.8.1
+          verify/bin/python -m pip freeze --all | sort > export/manifests/requirements-lock.txt
+          verify/bin/python - <<'PY'
+          import importlib.metadata as m
+          import gymnasium, numpy, torch
+          from stable_baselines3 import PPO
+          from sb3_contrib import RecurrentPPO
+          import godot_rl
+          expected = {
+              'gymnasium': '1.0.0',
+              'stable-baselines3': '2.4.0',
+              'sb3-contrib': '2.4.0',
+              'godot-rl': '0.8.1',
+              'numpy': '1.26.4',
+              'torch': '2.5.1+cpu',
+          }
+          actual = {name: m.version(name) for name in expected}
+          assert actual == expected, (actual, expected)
+          print(actual)
+          PY
+
+          PYTHON_ARCHIVE='cpython-3.11.14+20260203-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz'
+          curl --fail --location --retry 3 \
+            'https://github.com/astral-sh/python-build-standalone/releases/download/20260203/cpython-3.11.14%2B20260203-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz' \
+            --output "export/$PYTHON_ARCHIVE"
+
+          python - <<'PY'
+          import hashlib, json, pathlib, shutil, zipfile
+          root = pathlib.Path('export')
+          stage = pathlib.Path('stage')
+          meta = stage / 'meta'
+          for name in ('sources', 'manifests'):
+              shutil.copytree(root / name, meta / name, dirs_exist_ok=True)
+          python_archive = next(root.glob('cpython-*.tar.gz'))
+          shutil.copy2(python_archive, meta / python_archive.name)
+
+          records = []
+          for path in sorted(p for p in root.rglob('*') if p.is_file()):
+              data = path.read_bytes()
+              records.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data),
+                              'sha256': hashlib.sha256(data).hexdigest()})
+          manifest = {
+              'schema': 'maritime.r4d.cp0.offline_runtime/1',
+              'python': '3.11.14+20260203',
+              'platform': 'linux-x86_64-gnu',
+              'godot_rl_agents': 'v0.8.2/f4b53921f0f6602d930b7b174a3ba7b8aed361aa',
+              'godot_rl_agents_python_distribution': '0.8.1',
+              'godot_rl_agents_plugin': '3984fd124a2b941a446f4614bb0eacd09a2468f5',
+              'stable_baselines3': '2.4.0/020ee42f4dd6b30d0b3931aceaabd8370a9a1152',
+              'sb3_contrib': '2.4.0/d5ac968ff1c43cb1074ac47f4768ebf023d6b02c',
+              'gymnasium': '1.0.0', 'torch': '2.5.1+cpu', 'numpy': '1.26.4',
+              'files': records,
+          }
+          manifest_path = root / 'manifests' / 'offline-runtime-manifest.json'
+          manifest_path.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+          shutil.copy2(manifest_path, meta / 'manifests' / manifest_path.name)
+
+          core_prefixes = ('godot_rl-', 'gymnasium-', 'stable_baselines3-', 'sb3_contrib-',
+                           'numpy-', 'pandas-', 'onnx-', 'onnxruntime-')
+          runtime_prefixes = ('matplotlib-', 'tensorboard-', 'tensorboard_data_server-',
+                              'fonttools-', 'grpcio-', 'pillow-', 'sympy-', 'pip-',
+                              'setuptools-', 'wheel-')
+          torch_wheel = None
+          groups = {'wheels-core': [], 'wheels-runtime': [], 'wheels-deps': []}
+          for wheel in sorted((root / 'wheelhouse').glob('*.whl')):
+              name = wheel.name.lower()
+              if name.startswith('torch-'):
+                  torch_wheel = wheel
+                  continue
+              target = 'wheels-core' if name.startswith(core_prefixes) else (
+                  'wheels-runtime' if name.startswith(runtime_prefixes) else 'wheels-deps')
+              dest = stage / target / wheel.name
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(wheel, dest)
+              groups[target].append(wheel.name)
+          assert torch_wheel is not None
+          for group, names in groups.items():
+              total = sum((stage / group / name).stat().st_size for name in names)
+              assert total < 80 * 1024 * 1024, (group, total)
+          raw = torch_wheel.read_bytes()
+          chunk_size = 48 * 1024 * 1024
+          chunks = [raw[i:i + chunk_size] for i in range(0, len(raw), chunk_size)]
+          assert len(chunks) == 4, len(chunks)
+          split = {'original_name': torch_wheel.name, 'bytes': len(raw),
+                   'sha256': hashlib.sha256(raw).hexdigest(), 'parts': []}
+          for index, data in enumerate(chunks):
+              directory = stage / f'torch-{index}'
+              directory.mkdir(parents=True, exist_ok=True)
+              part = directory / f'torch.part.{index:02d}'
+              part.write_bytes(data)
+              split['parts'].append({'name': part.name, 'bytes': len(data),
+                                     'sha256': hashlib.sha256(data).hexdigest()})
+          (meta / 'manifests' / 'split-runtime-manifest.json').write_text(
+              json.dumps({'wheel_groups': groups, 'torch': split}, indent=2) + '\n', encoding='utf-8')
+          for source in sorted((root / 'sources').glob('*.zip')):
+              with zipfile.ZipFile(source) as zf:
+                  assert zf.testzip() is None
+          PY
+
+      - uses: actions/upload-artifact@v4
         with:
-          name: r4d-cp0-runtime-cleanup
-          path: export/
-          compression-level: 9
+          name: r4d-cp0-runtime-meta
+          path: stage/meta/
+          compression-level: 0
           retention-days: 1
-          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-wheels-core
+          path: stage/wheels-core/
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-wheels-runtime
+          path: stage/wheels-runtime/
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-wheels-deps
+          path: stage/wheels-deps/
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-torch-0
+          path: stage/torch-0/
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-torch-1
+          path: stage/torch-1/
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-torch-2
+          path: stage/torch-2/
+          compression-level: 0
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-torch-3
+          path: stage/torch-3/
+          compression-level: 0
+          retention-days: 1
