@@ -26,7 +26,10 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --pattern 'cp0-offline-intake.tar.zst*' \
             --dir "$RUNNER_TEMP/relay"
-          (cd "$RUNNER_TEMP/relay" && sha256sum -c cp0-offline-intake.tar.zst.sha256)
+          cd "$RUNNER_TEMP/relay"
+          expected="$(awk 'NR==1 {print $1}' cp0-offline-intake.tar.zst.sha256)"
+          actual="$(sha256sum cp0-offline-intake.tar.zst | awk '{print $1}')"
+          test "$actual" = "$expected"
       - name: Upload relay artifact
         uses: actions/upload-artifact@v4
         with:
