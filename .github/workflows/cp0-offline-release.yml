@@ -1,0 +1,136 @@
+name: cp0-offline-release
+
+on:
+  push:
+    branches:
+      - cp0-offline-intake-20260929
+    paths:
+      - .github/workflows/cp0-offline-release.yml
+
+permissions:
+  contents: write
+
+jobs:
+  intake:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build exact offline intake
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/cp0-intake"
+          PAYLOAD="$ROOT/payload"
+          mkdir -p "$PAYLOAD/wheelhouse" "$PAYLOAD/sources" "$PAYLOAD/licenses" "$PAYLOAD/manifests" "$PAYLOAD/runtime"
+          cat > "$ROOT/requirements-selected.txt" <<'EOF'
+          gymnasium==1.0.0
+          stable-baselines3==2.4.0
+          sb3-contrib==2.4.0
+          godot-rl==0.8.2
+          numpy==1.26.4
+          torch==2.3.1+cpu
+          EOF
+          python -m pip install --upgrade pip wheel
+          python -m pip wheel \
+            --wheel-dir "$PAYLOAD/wheelhouse" \
+            --extra-index-url https://download.pytorch.org/whl/cpu \
+            -r "$ROOT/requirements-selected.txt"
+          test -z "$(find "$PAYLOAD/wheelhouse" -maxdepth 1 -type f ! -name '*.whl' -print -quit)"
+
+          curl -fL --retry 3 -o "$PAYLOAD/sources/godot_rl_agents-f4b53921.tar.gz" \
+            https://github.com/edbeeching/godot_rl_agents/archive/f4b53921f0f6602d930b7b174a3ba7b8aed361aa.tar.gz
+          curl -fL --retry 3 -o "$PAYLOAD/sources/godot_rl_agents_plugin-3984fd12.tar.gz" \
+            https://github.com/edbeeching/godot_rl_agents_plugin/archive/3984fd124a2b941a446f4614bb0eacd09a2468f5.tar.gz
+          curl -fL --retry 3 -o "$PAYLOAD/sources/stable-baselines3-020ee42f.tar.gz" \
+            https://github.com/DLR-RM/stable-baselines3/archive/020ee42f4dd6b30d0b3931aceaabd8370a9a1152.tar.gz
+          curl -fL --retry 3 -o "$PAYLOAD/sources/sb3-contrib-d5ac968f.tar.gz" \
+            https://github.com/Stable-Baselines-Team/stable-baselines3-contrib/archive/d5ac968ff1c43cb1074ac47f4768ebf023d6b02c.tar.gz
+
+          mkdir -p "$ROOT/reopen"
+          for archive in "$PAYLOAD"/sources/*.tar.gz; do
+            tar -xzf "$archive" -C "$ROOT/reopen"
+          done
+          test -f "$ROOT"/reopen/godot_rl_agents-f4b53921f0f6602d930b7b174a3ba7b8aed361aa/godot_rl/core/godot_env.py
+          test -f "$ROOT"/reopen/godot_rl_agents_plugin-3984fd124a2b941a446f4614bb0eacd09a2468f5/addons/godot_rl_agents/sync.gd
+          test -f "$ROOT"/reopen/stable-baselines3-020ee42f4dd6b30d0b3931aceaabd8370a9a1152/stable_baselines3/ppo/ppo.py
+          test -f "$ROOT"/reopen/stable-baselines3-contrib-d5ac968ff1c43cb1074ac47f4768ebf023d6b02c/sb3_contrib/ppo_recurrent/ppo_recurrent.py
+
+          cp "$ROOT"/reopen/godot_rl_agents-f4b53921f0f6602d930b7b174a3ba7b8aed361aa/LICENSE "$PAYLOAD/licenses/Godot-RL-Agents-LICENSE"
+          cp "$ROOT"/reopen/godot_rl_agents_plugin-3984fd124a2b941a446f4614bb0eacd09a2468f5/LICENSE "$PAYLOAD/licenses/Godot-RL-Agents-Plugin-LICENSE"
+          cp "$ROOT"/reopen/stable-baselines3-020ee42f4dd6b30d0b3931aceaabd8370a9a1152/LICENSE "$PAYLOAD/licenses/Stable-Baselines3-LICENSE"
+          cp "$ROOT"/reopen/stable-baselines3-contrib-d5ac968ff1c43cb1074ac47f4768ebf023d6b02c/LICENSE "$PAYLOAD/licenses/SB3-Contrib-LICENSE"
+
+          PYROOT="$(python -c 'import sys; print(sys.prefix)')"
+          BASE="$ROOT/python311-base"
+          cp -a "$PYROOT" "$BASE"
+          PYTHONHOME="$BASE" LD_LIBRARY_PATH="$BASE/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
+            "$BASE/bin/python3.11" -c 'import sys; assert sys.version_info[:3] == (3, 11, 16)'
+          tar --zstd -cf "$PAYLOAD/runtime/python311-base.tar.zst" -C "$ROOT" python311-base
+          rm -rf "$BASE"
+
+          TEST="$ROOT/python311-test"
+          cp -a "$PYROOT" "$TEST"
+          python -m pip install --no-index --find-links "$PAYLOAD/wheelhouse" \
+            --target "$TEST/lib/python3.11/site-packages" -r "$ROOT/requirements-selected.txt"
+          PYTHONHOME="$TEST" LD_LIBRARY_PATH="$TEST/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
+            "$TEST/bin/python3.11" - <<'PY'
+          import json
+          import gymnasium
+          import numpy
+          import stable_baselines3
+          import sb3_contrib
+          import torch
+          import godot_rl
+          print(json.dumps({
+              'python': __import__('sys').version.split()[0],
+              'gymnasium': gymnasium.__version__,
+              'numpy': numpy.__version__,
+              'stable_baselines3': stable_baselines3.__version__,
+              'sb3_contrib': sb3_contrib.__version__,
+              'torch': torch.__version__,
+              'godot_rl_import': True,
+          }, sort_keys=True))
+          PY
+          PYTHONHOME="$TEST" LD_LIBRARY_PATH="$TEST/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
+            "$TEST/bin/python3.11" -m pip freeze --all > "$PAYLOAD/manifests/requirements-resolved.txt"
+          rm -rf "$TEST"
+
+          cp "$ROOT/requirements-selected.txt" "$PAYLOAD/manifests/requirements-selected.txt"
+          (cd "$PAYLOAD" && find wheelhouse sources licenses runtime -type f -print0 | sort -z | xargs -0 sha256sum > manifests/SHA256SUMS)
+          python - <<'PY' "$PAYLOAD"
+          import hashlib, json, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          sources = {
+              'godot_rl_agents': {'version': '0.8.2', 'commit': 'f4b53921f0f6602d930b7b174a3ba7b8aed361aa'},
+              'godot_rl_agents_plugin': {'commit': '3984fd124a2b941a446f4614bb0eacd09a2468f5'},
+              'stable_baselines3': {'version': '2.4.0', 'commit': '020ee42f4dd6b30d0b3931aceaabd8370a9a1152'},
+              'sb3_contrib': {'version': '2.4.0', 'commit': 'd5ac968ff1c43cb1074ac47f4768ebf023d6b02c'},
+              'gymnasium': {'version': '1.0.0'},
+              'numpy': {'version': '1.26.4'},
+              'torch': {'version': '2.3.1+cpu'},
+          }
+          files = []
+          for path in sorted(p for p in root.rglob('*') if p.is_file()):
+              data = path.read_bytes()
+              files.append({'path': path.relative_to(root).as_posix(), 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()})
+          manifest = {'schema': 'maritime.r4d.cp0.offline-intake/1', 'python': '3.11.16', 'sources': sources, 'files': files}
+          (root / 'manifests' / 'intake.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
+          PY
+          tar --zstd -cf "$ROOT/cp0-offline-intake.tar.zst" -C "$ROOT" payload
+          sha256sum "$ROOT/cp0-offline-intake.tar.zst" > "$ROOT/cp0-offline-intake.tar.zst.sha256"
+      - name: Publish temporary public OSS intake
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="r4d-cp0-intake-20260929"
+          gh release delete "$TAG" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag >/dev/null 2>&1 || true
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" \
+            --title "Temporary R4D CP0 OSS intake" \
+            --notes "Public upstream OSS wheels, source snapshots, licenses and Python 3.11 base runtime only. Temporary intake asset." \
+            "$RUNNER_TEMP/cp0-intake/cp0-offline-intake.tar.zst#cp0-offline-intake.tar.zst" \
+            "$RUNNER_TEMP/cp0-intake/cp0-offline-intake.tar.zst.sha256#cp0-offline-intake.tar.zst.sha256"
