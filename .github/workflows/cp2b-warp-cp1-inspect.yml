@@ -1,4 +1,4 @@
-name: CP2B Warp CP1 inspect recovery bundle
+name: CP2B Warp CP1 inspect recovery receipts
 
 on:
   push:
@@ -28,47 +28,21 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36672145048
 
-      - name: Inspect exact authority candidates
+      - name: Print recovery authority and mesh receipts
         shell: bash
         run: |
           set -euo pipefail
           root="$GITHUB_WORKSPACE/received"
-          echo "BUNDLE_ROOT=$root"
-          echo '=== TOP TREE ==='
-          find "$root" -maxdepth 5 -type f | sed "s#^$root/##" | sort | head -700
-          echo '=== NPZ FILES ==='
-          find "$root" -type f -name '*.npz' | sed "s#^$root/##" | sort
-          echo '=== AUTHORITY FILES ==='
-          find "$root" -type f \( -name 'pattern_package.json' -o -name 'provider_pattern_package.json' -o -name 'native_input_mesh.npz' -o -name 'arrangement_admission.json' -o -name 'body_package.json' -o -name 'provider_receipt.json' \) | sed "s#^$root/##" | sort
-
-          python3 - "$root" <<'PY'
-          import hashlib, json, pathlib, sys
-          import numpy as np
-          root = pathlib.Path(sys.argv[1])
-          print('=== NPZ INVENTORY ===')
-          for path in sorted(root.rglob('*.npz')):
-              rel = path.relative_to(root)
-              print(f'--- {rel} sha256={hashlib.sha256(path.read_bytes()).hexdigest()} ---')
-              try:
-                  with np.load(path, allow_pickle=False) as data:
-                      for key in data.files:
-                          arr = data[key]
-                          line = {'key': key, 'shape': list(arr.shape), 'dtype': str(arr.dtype)}
-                          if arr.size and arr.dtype.kind in 'fiu':
-                              line.update(min=float(np.min(arr)), max=float(np.max(arr)))
-                          print(json.dumps(line, sort_keys=True))
-              except Exception as exc:
-                  print(f'<npz error: {exc}>')
-
-          print('=== AUTHORITY HASHES ===')
-          for name in ('pattern_package.json','provider_pattern_package.json','native_input_mesh.npz','arrangement_admission.json','body_package.json','provider_receipt.json'):
-              for path in sorted(root.rglob(name)):
-                  print(path.relative_to(root), hashlib.sha256(path.read_bytes()).hexdigest())
-
-          print('=== SOURCE CONTRACT HINTS ===')
-          for path in sorted(root.rglob('*.py')):
-              rel = str(path.relative_to(root))
-              if any(token in rel for token in ('drape','cp2b','warp_backend')):
-                  print(f'--- {rel} ---')
-                  print(path.read_text(encoding='utf-8', errors='replace')[:12000])
-          PY
+          echo '=== ALL JSON ==='
+          for p in $(find "$root" -type f -name '*.json' | sort); do
+            echo "--- ${p#$root/} ---"
+            cat "$p"
+            echo
+          done
+          echo '=== BLEND/GLB HASHES ==='
+          find "$root" -type f \( -name '*.blend' -o -name '*.glb' \) -print0 | sort -z | xargs -0 sha256sum
+          echo '=== SOURCE FILES ==='
+          for p in $(find "$root/source" -type f -name '*.py' | sort); do
+            echo "--- ${p#$root/} ---"
+            sed -n '1,360p' "$p"
+          done
