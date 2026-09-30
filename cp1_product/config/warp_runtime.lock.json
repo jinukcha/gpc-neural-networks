@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "package": "warp-lang",
+  "version": "1.17.0",
+  "wheel": {
+    "filename": "warp_lang-1.17.0-py3-none-manylinux_2_28_x86_64.whl",
+    "sha256": "47cd93636828dd16e55eeb4e77a0e3547b5fb0f383000a3d228629df68f28fd8",
+    "size_bytes": 164347636,
+    "platform": "manylinux_2_28_x86_64"
+  },
+  "upstream": {
+    "repository": "NVIDIA/warp",
+    "tag": "v1.17.0",
+    "commit": "f4c57f26f1e3936a89afd283e39fcabf6d548dc7"
+  },
+  "deprecated_warp_sim_allowed": false,
+  "wheel_bundled": false
+}
