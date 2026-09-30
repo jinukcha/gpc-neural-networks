@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/contracts/warp_simulation_state.schema.json",
+  "title": "WarpSimulationState metadata",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract",
+    "frame_completed",
+    "runtime_device",
+    "model_array_sha256",
+    "solver_profile_sha256",
+    "arrays"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "WarpSimulationState/1"},
+    "frame_completed": {"type": "integer", "minimum": 0},
+    "runtime_device": {"type": "string", "minLength": 1},
+    "model_array_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "solver_profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "arrays": {
+      "type": "object",
+      "required": ["positions", "previous_positions", "velocities"],
+      "properties": {
+        "positions": {"const": [13802, 3]},
+        "previous_positions": {"const": [13802, 3]},
+        "velocities": {"const": [13802, 3]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
