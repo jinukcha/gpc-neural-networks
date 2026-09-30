@@ -22,7 +22,7 @@ jobs:
       - name: Fetch pinned source and build selected workkit
         shell: bash
         run: |
-          set -euo pipefail
+          set -euxo pipefail
           SRC="$RUNNER_TEMP/maritime-ai-r0a-src"
           OUT="$GITHUB_WORKSPACE/workkit"
           mkdir -p "$SRC" "$OUT"
@@ -53,7 +53,12 @@ jobs:
             count="$(find "$OUT/$key/license" -type f | wc -l)"
             if [ "$count" -eq 0 ] && [ "$key" = mizer ]; then
               cp -a "$SRC/mizer/DESCRIPTION" "$OUT/mizer/license/PACKAGE_DESCRIPTION"
-              cp -a /usr/share/common-licenses/GPL-3 "$OUT/mizer/license/GPL-3.0.txt"
+              if [ -f /usr/share/common-licenses/GPL-3 ]; then
+                cp -a /usr/share/common-licenses/GPL-3 "$OUT/mizer/license/GPL-3.0.txt"
+              else
+                printf 'Upstream DESCRIPTION declares License: GPL-3. Full license text: https://www.gnu.org/licenses/gpl-3.0.txt\n' \
+                  > "$OUT/mizer/license/GPL-3.0-DECLARATION.txt"
+              fi
             fi
             test "$(find "$OUT/$key/license" -type f | wc -l)" -gt 0
           }
@@ -244,8 +249,12 @@ jobs:
           PY
 
           find "$OUT" -type d -name .git -prune -exec rm -rf {} +
-          find "$OUT" -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/SHA256SUMS"
-          test "$(find "$OUT" -type f | wc -l)" -gt 50
+          HASHES="$RUNNER_TEMP/maritime-ai-r0a-SHA256SUMS"
+          find "$OUT" -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > "$HASHES"
+          mv "$HASHES" "$OUT/SHA256SUMS"
+          FILE_COUNT="$(find "$OUT" -type f | wc -l)"
+          echo "workkit files: $FILE_COUNT"
+          test "$FILE_COUNT" -gt 50
           du -sh "$OUT"
 
       - name: Upload selected source workkit
