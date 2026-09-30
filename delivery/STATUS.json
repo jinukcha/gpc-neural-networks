@@ -1,0 +1,12 @@
+{
+  "authority_exact_cp2": false,
+  "checkpoint": "CP3_RECOVERY_RUN_COMPLETE",
+  "cp2c_admission": "BLOCKED_BY_CP2B",
+  "iterations": 12,
+  "numeric_pass": true,
+  "product_acceptance": false,
+  "simulation_frames_executed": 180,
+  "substeps": 8,
+  "technical_pass": false,
+  "terminal_decision": "HOLD_CP3_RECOVERY_NOT_CP2_BYTE_EXACT"
+}

@@ -1,0 +1,78 @@
+{
+  "checkpoint": "CP3_FRAME_1_180_RECOVERY_RUN",
+  "convergence_png_sha256": "8293dc0241191450efad6271b7328285e1615b9ac5572d85df97b09a73a23163",
+  "evidence_png_sha256": "ad20c9b1e6aeba68376afd14bfd14b4ca032ba3446e4547fee77afa67b546991",
+  "final_mesh_sha256": "3aa098fc3ffc99e73814940e1a450c934269e1b3c31187fbf6a6b9d96160ed6e",
+  "model_package_sha256": "fc7759e88fcfda6e5e481c472dffe0814ee0a2c5437dd5479b7732c3510dedec",
+  "product_acceptance": false,
+  "production_schedule": {
+    "authority_mode": "BOUNDED_CP2_RECOVERY_FROM_CP1_STATIC_MODEL",
+    "cp2_source_byte_exact": false,
+    "exact_triangle_self_intersection": false,
+    "fps": 60.0,
+    "frames": 180,
+    "iterations": 12,
+    "substeps": 8
+  },
+  "qualification": {
+    "authority_exact_cp2": false,
+    "body_contact": {
+      "penetrated_vertex_count": 0,
+      "penetrated_vertex_ratio": 0.0,
+      "penetration_max_m": 4.893761307304229e-09,
+      "penetration_p99_m": 0.0
+    },
+    "convergence": {
+      "tail_final_max_displacement_m": 3.6147825376488626e-07,
+      "tail_frame_end": 180,
+      "tail_frame_start": 161,
+      "tail_max_displacement_mean_m": 3.907803494767983e-07,
+      "tail_max_displacement_peak_m": 9.397187844173647e-07,
+      "tail_mean_displacement_mean_m": 9.056853048544878e-09
+    },
+    "edge_strain": {
+      "edge_compression_min": 0.5163849557541835,
+      "edge_count": 40627,
+      "edge_stretch_max": 1.378210758235923,
+      "edge_stretch_p99": 1.1267815877714455
+    },
+    "exact_nonsewn_self_intersection_gate": false,
+    "finite_geometry": {
+      "degenerate_triangles": 0,
+      "minimum_double_area": 5.745487260454323e-09,
+      "non_finite_vertices": 0
+    },
+    "numeric_gates": {
+      "body_max": true,
+      "body_p99": true,
+      "body_ratio": true,
+      "degenerate": true,
+      "edge_max": true,
+      "edge_p99": true,
+      "finite": true,
+      "seam_mean": true,
+      "seam_open": true,
+      "seam_p95": true,
+      "tail": true
+    },
+    "numeric_pass": true,
+    "seam_closure": {
+      "open_critical_seams": 0,
+      "seam_coverage": 1.0,
+      "seam_gap_max_m": 0.002287025508778921,
+      "seam_gap_mean_m": 0.001585948292199826,
+      "seam_gap_p95_m": 0.0016887680998072165,
+      "seam_pair_count": 273
+    },
+    "self_contact": {
+      "exact_triangle_triangle_test": false,
+      "method": "CROSS_PANEL_VERTEX_SAMPLE_PROXY_EVERY_SUBSTEP_STATE",
+      "minimum_sample_distance_m": 0.008926910102458111,
+      "tail_peak_sampled_pairs_under_2mm": 0
+    },
+    "technical_pass": false,
+    "terminal_decision": "HOLD_CP3_RECOVERY_NOT_CP2_BYTE_EXACT"
+  },
+  "technical_pass": false,
+  "terminal_decision": "HOLD_CP3_RECOVERY_NOT_CP2_BYTE_EXACT"
+}
