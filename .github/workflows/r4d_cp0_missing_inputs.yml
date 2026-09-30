@@ -1,0 +1,153 @@
+name: r4d-cp0-missing-inputs
+
+on:
+  push:
+    branches:
+      - automation/r4d-cp0-missing-20260930
+    paths:
+      - .github/workflows/r4d_cp0_missing_inputs.yml
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.10'
+          architecture: x64
+
+      - name: Download only missing exact wheels and selected sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade 'pip==24.2' 'setuptools==75.1.0' 'wheel==0.44.0'
+          mkdir -p out/small/wheels out/small/sources out/torch
+
+          cat > /tmp/missing-wheels.txt <<'REQ'
+          cloudpickle==3.1.2
+          filelock==4.0.7
+          fonttools==4.66.1
+          hf-xet==1.6.0
+          huggingface-hub==0.36.2
+          matplotlib==3.11.2
+          onnxruntime==1.19.2
+          pandas==3.0.6
+          sympy==1.14.0
+          tensorboard==2.21.0
+          REQ
+
+          python -m pip download \
+            --no-deps \
+            --only-binary=:all: \
+            --index-url https://pypi.org/simple \
+            --dest out/small/wheels \
+            -r /tmp/missing-wheels.txt
+
+          python -m pip download \
+            --no-deps \
+            --only-binary=:all: \
+            --index-url https://download.pytorch.org/whl/cpu \
+            --dest out/torch \
+            'torch==2.4.1+cpu'
+
+          fetch_repo() {
+            local name="$1" url="$2" commit="$3" prefix="$4" output="$5"
+            git init -q "/tmp/$name"
+            git -C "/tmp/$name" remote add origin "$url"
+            git -C "/tmp/$name" fetch -q --depth=1 origin "$commit"
+            git -C "/tmp/$name" checkout -q --detach FETCH_HEAD
+            test "$(git -C "/tmp/$name" rev-parse HEAD)" = "$commit"
+            git -C "/tmp/$name" archive --format=zip --prefix="$prefix/" HEAD -o "$GITHUB_WORKSPACE/$output"
+          }
+
+          fetch_repo godot_rl_agents \
+            https://github.com/edbeeching/godot_rl_agents.git \
+            f4b53921f0f6602d930b7b174a3ba7b8aed361aa \
+            godot_rl_agents-f4b53921 \
+            out/small/sources/godot_rl_agents-v0.8.2-f4b53921-source.zip
+          fetch_repo godot_rl_agents_plugin \
+            https://github.com/edbeeching/godot_rl_agents_plugin.git \
+            3984fd124a2b941a446f4614bb0eacd09a2468f5 \
+            godot_rl_agents_plugin-3984fd12 \
+            out/small/sources/godot_rl_agents_plugin-3984fd12-source.zip
+
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib
+          import json
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          def sha256(path: Path) -> str:
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+
+          def blob_sha(data: bytes) -> str:
+              return hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
+
+          checks = (
+              (Path('out/small/sources/godot_rl_agents-v0.8.2-f4b53921-source.zip'),
+               'godot_rl/core/godot_env.py', '74988fc4bc8f2f087a411ce6df6e7223eff4ccb9'),
+              (Path('out/small/sources/godot_rl_agents_plugin-3984fd12-source.zip'),
+               'addons/godot_rl_agents/sync.gd', 'cd4f268f80fd3ad45cef902e4fa3fcd57484db47'),
+          )
+          for archive, suffix, expected_blob in checks:
+              with ZipFile(archive) as bundle:
+                  assert bundle.testzip() is None
+                  matches = [name for name in bundle.namelist() if name.endswith(suffix)]
+                  assert len(matches) == 1
+                  assert blob_sha(bundle.read(matches[0])) == expected_blob
+                  assert any(name.endswith('/LICENSE') for name in bundle.namelist())
+
+          files = []
+          for path in sorted(Path('out').rglob('*')):
+              if path.is_file():
+                  files.append({
+                      'path': path.as_posix(),
+                      'bytes': path.stat().st_size,
+                      'sha256': sha256(path),
+                  })
+          manifest = {
+              'schema': 'maritime.r4d.cp0.missing_inputs/1',
+              'python': '3.11.10',
+              'top_level': {
+                  'torch': '2.4.1+cpu',
+                  'stable-baselines3': '2.4.0',
+                  'sb3-contrib': '2.4.0',
+                  'gymnasium': '1.0.0',
+                  'godot-rl': '0.8.1',
+                  'numpy': '1.26.4',
+                  'onnx': '1.17.0',
+                  'onnxruntime': '1.19.2',
+              },
+              'files': files,
+          }
+          Path('out/small/MISSING_INPUTS_MANIFEST.json').write_text(
+              json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+
+          (cd out/small && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS)
+          (cd out/torch && find . -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS)
+          test "$(find out/small/wheels -maxdepth 1 -name '*.whl' | wc -l)" -eq 10
+          test "$(find out/torch -maxdepth 1 -name '*.whl' | wc -l)" -eq 1
+
+      - name: Upload small missing inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-missing-small
+          path: out/small/
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
+
+      - name: Upload torch 2.4.1 CPU wheel
+        uses: actions/upload-artifact@v4
+        with:
+          name: r4d-cp0-torch-2.4.1-cpu
+          path: out/torch/
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
