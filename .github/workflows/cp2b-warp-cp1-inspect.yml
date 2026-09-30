@@ -1,4 +1,4 @@
-name: CP2B Warp CP1 inspect recovery receipts
+name: CP2B Warp CP1 static model build
 
 on:
   push:
@@ -6,43 +6,164 @@ on:
       - cp2b-warp-cp1-20260930
 
 permissions:
-  actions: read
   contents: read
 
 jobs:
-  inspect:
+  build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
           ref: cp2b-warp-cp1-20260930
           persist-credentials: false
 
-      - name: Download preserved R4 recovery bundle
-        uses: actions/download-artifact@v4
+      - uses: actions/setup-python@v5
         with:
-          name: WG_OSS_R0A_CP2B_R4_RECOVERY_FINAL
-          path: received
-          github-token: ${{ github.token }}
-          repository: jinukcha/gpc-neural-networks
-          run-id: 36672145048
+          python-version: '3.12'
 
-      - name: Print recovery authority and mesh receipts
+      - name: Install bounded CP1 tooling
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.1.3 scipy==1.14.1 pytest==8.3.5 jsonschema==4.23.0
+
+      - name: Materialize single integrated source tree
         shell: bash
         run: |
           set -euo pipefail
-          root="$GITHUB_WORKSPACE/received"
-          echo '=== ALL JSON ==='
-          for p in $(find "$root" -type f -name '*.json' | sort); do
-            echo "--- ${p#$root/} ---"
-            cat "$p"
-            echo
-          done
-          echo '=== BLEND/GLB HASHES ==='
-          find "$root" -type f \( -name '*.blend' -o -name '*.glb' \) -print0 | sort -z | xargs -0 sha256sum
-          echo '=== SOURCE FILES ==='
-          for p in $(find "$root/source" -type f -name '*.py' | sort); do
-            echo "--- ${p#$root/} ---"
-            sed -n '1,360p' "$p"
-          done
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_CP2B_R4_REV1_CP1_REBUILT"
+          mkdir -p "$(dirname "$root")"
+          cp -a cp1_product "$root"
+          curl --fail --location --retry 4 \
+            https://raw.githubusercontent.com/NVIDIA/warp/v1.17.0/LICENSE.md \
+            -o "$root/third_party/WARP_LICENSE.md"
+          curl --fail --location --retry 4 \
+            https://raw.githubusercontent.com/NVIDIA/warp/v1.17.0/licenses/libmathdx-LICENSE.txt \
+            -o "$root/third_party/WARP_LIBMATHDX_LICENSE.txt"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Compile Warp garment static model
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/run_warp_cp1.py" --root "$ROOT"
+
+      - name: Run CP1 acceptance tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests"
+
+      - name: Validate schemas, arrays, and source budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python - "$ROOT" <<'PY'
+          import ast, json, pathlib, sys
+          import jsonschema
+          import numpy as np
+          from wuxia_garment_oss.drape.warp_backend.model.contract import validate_model_arrays
+
+          root = pathlib.Path(sys.argv[1])
+          metadata = json.loads((root / 'fixtures/pilot/tunic/warp_model_package.json').read_text())
+          schema = json.loads((root / 'contracts/warp_garment_model_package.schema.json').read_text())
+          jsonschema.validate(metadata, schema)
+          with np.load(root / 'build/tunic_pilot/warp_cp1/warp_model_package.npz', allow_pickle=False) as data:
+              arrays = {name: data[name] for name in data.files}
+          validation = validate_model_arrays(arrays)
+          assert validation['canonical_array_sha256'] == metadata['contract_validation']['canonical_array_sha256']
+
+          maximum_file = {'path': '', 'loc': 0}
+          maximum_function = {'path': '', 'name': '', 'loc': 0}
+          violations = []
+          source_files = sorted((root / 'source').rglob('*.py')) + sorted((root / 'scripts').glob('*.py'))
+          for path in source_files:
+              text = path.read_text(encoding='utf-8')
+              loc = len(text.splitlines())
+              rel = path.relative_to(root).as_posix()
+              if loc > maximum_file['loc']:
+                  maximum_file = {'path': rel, 'loc': loc}
+              tree = ast.parse(text)
+              for node in ast.walk(tree):
+                  if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                      fn_loc = (getattr(node, 'end_lineno', node.lineno) - node.lineno + 1)
+                      if fn_loc > maximum_function['loc']:
+                          maximum_function = {'path': rel, 'name': node.name, 'loc': fn_loc}
+                      if fn_loc > 80:
+                          violations.append({'path': rel, 'name': node.name, 'loc': fn_loc})
+          budget = {
+              'files_checked': len(source_files),
+              'maximum_file': maximum_file,
+              'maximum_function': maximum_function,
+              'files_over_500': [str(p.relative_to(root)) for p in source_files if len(p.read_text().splitlines()) > 500],
+              'functions_over_80': violations,
+          }
+          assert not budget['files_over_500'] and not violations, budget
+          checks_path = root / 'CHECKS.json'
+          checks = json.loads(checks_path.read_text())
+          checks['source_budget'] = budget
+          checks['schema_validation'] = True
+          checks_path.write_text(json.dumps(checks, indent=2, sort_keys=True) + '\n')
+          receipt = {
+              'platform': 'ubuntu-24.04',
+              'python': sys.version.split()[0],
+              'model_validation': validation,
+              'source_budget': budget,
+              'contact_executed': False,
+              'simulation_frames_executed': 0,
+          }
+          out = root / 'build/tunic_pilot/warp_cp1/cp1_execution_receipt.json'
+          out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + '\n')
+          PY
+
+      - name: Diet, manifest, and fresh-copy verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' \) -delete
+          python - "$ROOT" <<'PY'
+          import hashlib, pathlib, sys, zipfile
+          root = pathlib.Path(sys.argv[1])
+          rows = []
+          for path in sorted(root.rglob('*')):
+              if path.is_file() and path.name != 'MANIFEST.sha256':
+                  rows.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(root).as_posix()}")
+          (root / 'MANIFEST.sha256').write_text('\n'.join(rows) + '\n')
+          temp = pathlib.Path('/tmp/cp1-fresh.zip')
+          with zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+              for path in sorted(root.rglob('*')):
+                  if path.is_file():
+                      archive.write(path, path.relative_to(root.parent).as_posix())
+          with zipfile.ZipFile(temp) as archive:
+              assert archive.testzip() is None
+              assert len(archive.namelist()) == len(set(archive.namelist()))
+              assert all(not name.startswith('/') and '..' not in pathlib.PurePosixPath(name).parts for name in archive.namelist())
+          PY
+          fresh="$RUNNER_TEMP/fresh"
+          rm -rf "$fresh"
+          mkdir -p "$fresh"
+          unzip -q /tmp/cp1-fresh.zip -d "$fresh"
+          bundle="$fresh/WG_OSS_R0A_CP2B_R4_REV1_CP1_REBUILT"
+          (cd "$bundle" && sha256sum -c MANIFEST.sha256)
+          PYTHONPATH="$bundle/source" python - "$bundle" <<'PY'
+          import json, pathlib, sys
+          import numpy as np
+          from wuxia_garment_oss.drape.warp_backend.model.contract import validate_model_arrays
+          root = pathlib.Path(sys.argv[1])
+          with np.load(root / 'build/tunic_pilot/warp_cp1/warp_model_package.npz', allow_pickle=False) as data:
+              arrays = {name: data[name] for name in data.files}
+          actual = validate_model_arrays(arrays)
+          expected = json.loads((root / 'fixtures/pilot/tunic/warp_model_package.json').read_text())['contract_validation']
+          assert actual['canonical_array_sha256'] == expected['canonical_array_sha256']
+          PY
+          rm -f /tmp/cp1-fresh.zip
+
+      - name: Upload single CP1 integrated bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_REV1_CP1_REBUILT
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: error
