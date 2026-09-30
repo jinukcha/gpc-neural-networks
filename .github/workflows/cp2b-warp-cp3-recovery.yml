@@ -3,13 +3,13 @@ name: CP2B Warp CP3 recovery production run
 on:
   push:
     branches:
-      - cp2b-warp-cp3-recovery-20260930
+      - cp2b-warp-cp3-recovery-r2-20260930
 
 permissions:
   contents: write
 
 concurrency:
-  group: cp2b-warp-cp3-recovery-20260930
+  group: cp2b-warp-cp3-recovery-r2-20260930
   cancel-in-progress: false
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: cp2b-warp-cp3-recovery-20260930
+          ref: cp2b-warp-cp3-recovery-r2-20260930
           persist-credentials: true
 
       - uses: actions/setup-python@v5
@@ -144,6 +144,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf delivery
           mkdir -p delivery
           cp "$ROOT/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" delivery/
           cp "$ROOT/build/tunic_pilot/warp_cp3/cp3_convergence.png" delivery/
@@ -153,7 +154,7 @@ jobs:
           git config user.email 'chatgpt-cp3-runtime@users.noreply.github.com'
           git add delivery
           git commit -m 'Publish CP3 recovery evidence [skip ci]'
-          git push origin HEAD:cp2b-warp-cp3-recovery-20260930
+          git push origin HEAD:cp2b-warp-cp3-recovery-r2-20260930
 
       - name: Upload single integrated CP3 bundle
         uses: actions/upload-artifact@v4
