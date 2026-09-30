@@ -45,10 +45,16 @@ jobs:
 
           copy_licenses() {
             local key="$1"
+            local count
             mkdir -p "$OUT/$key/license"
             find "$SRC/$key" -maxdepth 1 -type f \
               \( -iname 'LICENSE*' -o -iname 'COPYING*' -o -iname 'NOTICE*' \) \
               -print0 | sort -z | xargs -0 -r -I{} cp -a {} "$OUT/$key/license/"
+            count="$(find "$OUT/$key/license" -type f | wc -l)"
+            if [ "$count" -eq 0 ] && [ "$key" = mizer ]; then
+              cp -a "$SRC/mizer/DESCRIPTION" "$OUT/mizer/license/PACKAGE_DESCRIPTION"
+              cp -a /usr/share/common-licenses/GPL-3 "$OUT/mizer/license/GPL-3.0.txt"
+            fi
             test "$(find "$OUT/$key/license" -type f | wc -l)" -gt 0
           }
 
