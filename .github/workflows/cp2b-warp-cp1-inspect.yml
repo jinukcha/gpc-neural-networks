@@ -1,0 +1,102 @@
+name: CP2B Warp CP1 inspect preserved bundle
+
+on:
+  push:
+    branches:
+      - cp2b-warp-cp1-20260930
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cp2b-warp-cp1-20260930
+          persist-credentials: false
+
+      - name: Download preserved integrated R4 bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_TECHNICAL_ACCEPTED
+          path: received
+          github-token: ${{ github.token }}
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36674821921
+
+      - name: Inspect bundle structure and native input
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f received/STATUS.json ]]; then
+            root="$GITHUB_WORKSPACE/received"
+          elif [[ -f received/WG_OSS_R0A_CP2B_R4_RECOVERY/STATUS.json ]]; then
+            root="$GITHUB_WORKSPACE/received/WG_OSS_R0A_CP2B_R4_RECOVERY"
+          else
+            root="$(dirname "$(find received -name STATUS.json -print -quit)")"
+          fi
+          echo "BUNDLE_ROOT=$root"
+          echo '=== TOP TREE ==='
+          find "$root" -maxdepth 4 -type f | sed "s#^$root/##" | sort | head -400
+          echo '=== TUNIC FILES ==='
+          find "$root" -type f \( -path '*/tunic/*' -o -path '*/tunic_pilot/*' -o -path '*/drape/*' \) | sed "s#^$root/##" | sort | head -500
+
+          python3 - "$root" <<'PY'
+          import json, pathlib, sys
+          import numpy as np
+          root = pathlib.Path(sys.argv[1])
+          candidates = sorted(root.rglob('native_input_mesh.npz'))
+          print('=== NATIVE INPUT CANDIDATES ===')
+          print('\n'.join(str(p.relative_to(root)) for p in candidates))
+          if not candidates:
+              raise SystemExit('native_input_mesh.npz not found')
+          path = candidates[0]
+          with np.load(path, allow_pickle=False) as data:
+              print('=== NPZ ARRAYS ===')
+              for key in data.files:
+                  arr = data[key]
+                  line = {'key': key, 'shape': list(arr.shape), 'dtype': str(arr.dtype)}
+                  if arr.size and arr.dtype.kind in 'fiu':
+                      line.update(min=float(np.min(arr)), max=float(np.max(arr)))
+                  print(json.dumps(line, sort_keys=True))
+
+          print('=== RELEVANT JSON ===')
+          names = [
+              'fixtures/pilot/tunic/pattern_package.json',
+              'fixtures/pilot/tunic/provider_pattern_package.json',
+              'fixtures/pilot/tunic/drape_job.json',
+              'fixtures/pilot/body_package.json',
+              'STATUS.json', 'CHECKS.json',
+          ]
+          for rel in names:
+              p = root / rel
+              if p.exists():
+                  print(f'--- {rel} ---')
+                  text = p.read_text(encoding='utf-8')
+                  print(text[:12000])
+
+          print('=== RELEVANT SOURCE ===')
+          patterns = [
+              'source/wuxia_garment_oss/drape/**/*.py',
+              'scripts/*cp2b*.py',
+              'tests/**/*cp2b*.py',
+              'contracts/*.schema.json',
+              'config/profiles/**/*.json',
+          ]
+          seen = set()
+          for pattern in patterns:
+              for p in sorted(root.glob(pattern)):
+                  if not p.is_file() or p in seen:
+                      continue
+                  seen.add(p)
+                  rel = p.relative_to(root)
+                  print(f'--- {rel} ---')
+                  try:
+                      print(p.read_text(encoding='utf-8')[:10000])
+                  except UnicodeDecodeError:
+                      print('<binary>')
+          PY
