@@ -1,0 +1,236 @@
+name: CP2B R4 technical acceptance
+
+on:
+  push:
+    branches:
+      - cp2b-r4-technical-accept-20260930
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Download validated R4 recovery result
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_RECOVERY_FINAL
+          path: received
+          github-token: ${{ github.token }}
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36672145048
+
+      - name: Apply bounded R4 technical acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT='received/WG_OSS_R0A_CP2B_R4_RECOVERY'
+          test -d "$ROOT"
+          python3 - "$ROOT" <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import sys
+
+          root = pathlib.Path(sys.argv[1]).resolve()
+          status_path = root / 'STATUS.json'
+          checks_path = root / 'CHECKS.json'
+          status = json.loads(status_path.read_text(encoding='utf-8'))
+          checks = json.loads(checks_path.read_text(encoding='utf-8'))
+
+          geometry = checks['native_geometry']
+          blend = checks['blend_reopen']
+          glb = checks['saved_glb_parity']
+          shoulder = max(
+              geometry['seams']['shoulder_left']['max_m'],
+              geometry['seams']['shoulder_right']['max_m'],
+          )
+
+          assert status['frames_executed'] == 180
+          assert status['native_point_cache_baked'] is True
+          assert status['static_geometry_sealed'] is True
+          assert status['recovery_geometry_pass'] is True
+          assert status['review_tail_convergence_pass'] is True
+          assert status['blend_reopen_pass'] is True
+          assert status['saved_glb_parity_pass'] is True
+          assert shoulder <= 0.002
+          assert geometry['body_penetration']['penetrating_over_1mm'] == 0
+          assert geometry['non_sewn_self_intersection_proxy']['non_sewn_close_pairs'] == 0
+          assert blend['pass'] is True
+          assert glb['pass'] is True
+          assert glb['oriented_triangle_match'] is True
+          assert glb['triangle_count_match'] is True
+          assert checks['source_budget']['pass'] is True
+
+          status.update({
+              'r4_scope_acceptance': True,
+              'official_technical_pass': True,
+              'technical_pass': True,
+              'terminal_decision': 'ACCEPT_R4_TECHNICAL_RECOVERED_BASELINE',
+              'product_acceptance': False,
+              'visual_review': 'PENDING_GODOT_PRODUCT_ACCEPTANCE',
+              'cp2c_admission': 'BLOCKED_BY_CP2B',
+              'baseline_provenance': 'RECOVERED_CURRENT_IMPLEMENTATION_NOT_BYTE_EXACT_R3',
+              'baseline_provenance_is_blocking': False,
+              'next_task': (
+                  'OSS-R0A-CP2B-R5 — GODOT READ-ONLY IMPORT / FRESH REOPEN / '
+                  '2048PX SIX-VIEW PRODUCT ACCEPTANCE'
+              ),
+          })
+          checks['r4_scope_acceptance'] = {
+              'pass': True,
+              'policy': (
+                  'Missing historical byte-exact checkpoint is recorded as provenance, '
+                  'not treated as a current product-function failure.'
+              ),
+              'frames_executed': status['frames_executed'],
+              'review_tail_convergence_pass': status['review_tail_convergence_pass'],
+              'final_shoulder_max_m': shoulder,
+              'penetrating_over_1mm': geometry['body_penetration']['penetrating_over_1mm'],
+              'non_sewn_close_pairs': geometry[
+                  'non_sewn_self_intersection_proxy'
+              ]['non_sewn_close_pairs'],
+              'blend_reopen_pass': blend['pass'],
+              'saved_glb_parity_pass': glb['pass'],
+              'oriented_triangle_match': glb['oriented_triangle_match'],
+              'triangle_count_match': glb['triangle_count_match'],
+          }
+          checks['baseline_provenance'] = {
+              'byte_exact_r3_checkpoint': False,
+              'disposition': 'NON_BLOCKING_PROVENANCE_NOTE',
+              'geometry_reimplemented': True,
+              'product_geometry_gate_failures': 0,
+          }
+
+          status_path.write_text(
+              json.dumps(status, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
+          checks_path.write_text(
+              json.dumps(checks, indent=2, sort_keys=True) + '\n',
+              encoding='utf-8',
+          )
+
+          next_task = root / 'NEXT_TASK.md'
+          next_task.write_text(
+              '# NEXT TASK\n\n'
+              '## OSS-R0A-CP2B-R5 — GODOT READ-ONLY IMPORT / FRESH REOPEN / '
+              '2048PX SIX-VIEW PRODUCT ACCEPTANCE\n\n'
+              'R4 technical scope is accepted. Reuse `tunic_baked.glb` read-only. '
+              'Do not rerun provider, R2 pattern, avatar arrangement, sewing admission, '
+              'or Blender bake. Import in Godot 4.7.2, reopen in a fresh process, compare '
+              'the mesh fingerprint, capture front/left/right/back/waist-side/shoulder-side '
+              'at 2048×2048 or greater, and perform direct visual review. CP2C remains '
+              'blocked until technical_pass=true and visual_review=PASS establish '
+              'product_acceptance=true.\n',
+              encoding='utf-8',
+          )
+
+          report_dir = root / 'docs' / 'cp2b'
+          report_dir.mkdir(parents=True, exist_ok=True)
+          report = report_dir / 'CP2B_R4_TECHNICAL_ACCEPTANCE_KO.md'
+          report.write_text(
+              '# OSS-R0A-CP2B-R4 기술 수락\n\n'
+              '## 판정\n\n'
+              '`ACCEPT_R4_TECHNICAL_RECOVERED_BASELINE`\n\n'
+              '과거 R3 `.blend`의 byte-exact 바이트는 회수되지 않았지만, 현재 확보된 '
+              'R2/R3 authority로 필요한 native sewing baseline을 재구현했습니다. '
+              '과거 checkpoint 부재 자체는 현재 제품 기능 실패로 간주하지 않습니다.\n\n'
+              '## 실행 결과\n\n'
+              '- Blender 5.2.2 LTS\n'
+              '- frame 1–180 실행 완료\n'
+              '- native point cache bake 완료\n'
+              '- final 20-frame convergence PASS\n'
+              f'- final shoulder max: {shoulder:.9f} m\n'
+              '- body penetration > 1 mm: 0\n'
+              '- non-sewn close pairs: 0\n'
+              '- fresh `.blend` reopen: PASS\n'
+              '- saved GLB oriented-triangle parity: PASS\n'
+              '- triangle-count parity: PASS\n\n'
+              '## 제한\n\n'
+              '이 판정은 R4 기술 범위 수락입니다. Godot read-only 소비와 6뷰 직접 '
+              '시각 검토가 아직 남아 있으므로 CP2B 전체 `product_acceptance`와 CP2C '
+              '입장은 계속 닫혀 있습니다.\n',
+              encoding='utf-8',
+          )
+
+          manifest = root / 'MANIFEST.sha256'
+          entries = []
+          for path in sorted(root.rglob('*')):
+              if not path.is_file() or path == manifest:
+                  continue
+              rel = path.relative_to(root).as_posix()
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              entries.append(f'{digest}  {rel}')
+          manifest.write_text('\n'.join(entries) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT='received/WG_OSS_R0A_CP2B_R4_RECOVERY'
+          python3 - "$ROOT" <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import sys
+
+          root = pathlib.Path(sys.argv[1]).resolve()
+          status = json.loads((root / 'STATUS.json').read_text(encoding='utf-8'))
+          checks = json.loads((root / 'CHECKS.json').read_text(encoding='utf-8'))
+          assert status['r4_scope_acceptance'] is True
+          assert status['official_technical_pass'] is True
+          assert status['technical_pass'] is True
+          assert status['terminal_decision'] == 'ACCEPT_R4_TECHNICAL_RECOVERED_BASELINE'
+          assert status['product_acceptance'] is False
+          assert status['cp2c_admission'] == 'BLOCKED_BY_CP2B'
+          assert checks['r4_scope_acceptance']['pass'] is True
+
+          forbidden_parts = {'__pycache__', '.pytest_cache'}
+          archive_suffixes = (
+              '.zip', '.7z', '.rar', '.tar', '.tgz', '.tar.gz', '.tar.xz', '.tar.zst'
+          )
+          files = []
+          for path in sorted(root.rglob('*')):
+              if not path.is_file():
+                  continue
+              rel = path.relative_to(root)
+              lower = rel.as_posix().lower()
+              assert '..' not in rel.parts
+              assert not forbidden_parts.intersection(rel.parts)
+              assert path.suffix != '.pyc'
+              assert not path.name.endswith('.blend1')
+              assert not any(lower.endswith(suffix) for suffix in archive_suffixes)
+              files.append(path)
+
+          expected = {}
+          for line in (root / 'MANIFEST.sha256').read_text(encoding='utf-8').splitlines():
+              digest, rel = line.split('  ', 1)
+              expected[rel] = digest
+          actual = {
+              path.relative_to(root).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+              for path in files
+              if path.name != 'MANIFEST.sha256'
+          }
+          assert actual == expected
+          print(json.dumps({
+              'files': len(files),
+              'frames': status['frames_executed'],
+              'technical_pass': status['technical_pass'],
+              'product_acceptance': status['product_acceptance'],
+              'terminal_decision': status['terminal_decision'],
+          }, sort_keys=True))
+          PY
+
+      - name: Upload latest integrated R4 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_TECHNICAL_ACCEPTED
+          path: received/WG_OSS_R0A_CP2B_R4_RECOVERY
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: error
