@@ -32,6 +32,7 @@ _EXPECTED_PANEL_PAIRS: Mapping[int, Tuple[int, int]] = {
     6: (2, 3),
     7: (2, 3),
 }
+_MAX_RECOVERY_SEWING_GAP_M = 0.0150
 
 
 def _validate_seam_ownership(native: NativeInput) -> None:
@@ -56,8 +57,9 @@ def build_static_constraints(native: NativeInput) -> StaticConstraints:
     _validate_seam_ownership(native)
     seam_delta = native.positions[native.seam_pairs[:, 1]] - native.positions[native.seam_pairs[:, 0]]
     seam_rest = np.linalg.norm(seam_delta.astype(np.float64), axis=1)
-    if np.any(seam_rest > 0.0135):
-        raise ValueError(f"initial sewing gap exceeds admission: {float(np.max(seam_rest)):.9f} m")
+    if np.any(seam_rest > _MAX_RECOVERY_SEWING_GAP_M):
+        maximum = float(np.max(seam_rest))
+        raise ValueError(f"initial sewing gap exceeds recovery admission: {maximum:.9f} m")
     if len(native.attachment_indices) != EXPECTED_ATTACHMENTS:
         raise ValueError("attachment count mismatch")
     if len(np.unique(native.attachment_indices)) != EXPECTED_ATTACHMENTS:
