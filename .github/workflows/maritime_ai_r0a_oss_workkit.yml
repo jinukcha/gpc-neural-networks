@@ -1,0 +1,255 @@
+name: maritime-ai-r0a-oss-workkit
+
+on:
+  push:
+    branches:
+      - automation/maritime-ai-r0a-oss-workkit-20260930
+    paths:
+      - .github/workflows/maritime_ai_r0a_oss_workkit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch pinned source and build selected workkit
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="$RUNNER_TEMP/maritime-ai-r0a-src"
+          OUT="$GITHUB_WORKSPACE/workkit"
+          mkdir -p "$SRC" "$OUT"
+
+          fetch_repo() {
+            local key="$1" url="$2" commit="$3"
+            git init -q "$SRC/$key"
+            git -C "$SRC/$key" remote add origin "$url"
+            git -C "$SRC/$key" fetch -q --depth=1 origin "$commit"
+            git -C "$SRC/$key" checkout -q --detach FETCH_HEAD
+            test "$(git -C "$SRC/$key" rev-parse HEAD)" = "$commit"
+          }
+
+          copy_required() {
+            local key="$1" path="$2"
+            test -e "$SRC/$key/$path"
+            mkdir -p "$OUT/$key/selected"
+            (cd "$SRC/$key" && cp -a --parents "$path" "$OUT/$key/selected/")
+          }
+
+          copy_licenses() {
+            local key="$1"
+            mkdir -p "$OUT/$key/license"
+            find "$SRC/$key" -maxdepth 1 -type f \
+              \( -iname 'LICENSE*' -o -iname 'COPYING*' -o -iname 'NOTICE*' \) \
+              -print0 | sort -z | xargs -0 -r -I{} cp -a {} "$OUT/$key/license/"
+            test "$(find "$OUT/$key/license" -type f | wc -l)" -gt 0
+          }
+
+          fetch_repo MOOS-IvP https://github.com/moos-ivp/moos-ivp.git 477be7e91bf220185d55e5a2a9dba16dbde32c3f
+          fetch_repo PX4-Autopilot https://github.com/PX4/PX4-Autopilot.git d6f12ad1c4f70ad3230afd7d86e971421e02fef4
+          fetch_repo Unified-Planning https://github.com/aiplan4eu/unified-planning.git 42e66926e400ab1367b5b02af504d8c7016b9243
+          fetch_repo discrete-choosers https://github.com/CarrKnight/discrete-choosers.git 1957b2642fcb48c498f737f7b1fcd657ffd11a73
+          fetch_repo DISPLACE https://github.com/frabas/DISPLACE_GUI.git 96eadecb1980d6f9ad22571cd6f963cc05379815
+          fetch_repo mizer https://github.com/sizespectrum/mizer.git bc15500d3ead330e79c86949830548c4b580bebf
+          fetch_repo OceanParcels https://github.com/OceanParcels/Parcels.git fb88390d2bc9e2d45cd3056c601c7acaa9afcdac
+
+          copy_required MOOS-IvP ivp/src/lib_helmivp/BehaviorSet.h
+          copy_required MOOS-IvP ivp/src/lib_helmivp/BehaviorSet.cpp
+          copy_required MOOS-IvP ivp/src/lib_helmivp/BehaviorSetEntry.h
+          copy_required MOOS-IvP ivp/src/lib_helmivp/BehaviorSetEntry.cpp
+          copy_required MOOS-IvP ivp/src/lib_behaviors/IvPBehavior.h
+          copy_required MOOS-IvP ivp/src/lib_behaviors/IvPBehavior.cpp
+          copy_required MOOS-IvP ivp/src/pHelmIvP/HelmEngine.h
+          copy_required MOOS-IvP ivp/src/pHelmIvP/HelmEngine.cpp
+
+          copy_required PX4-Autopilot src/modules/navigator/mission_block.h
+          copy_required PX4-Autopilot src/modules/navigator/mission_block.cpp
+          copy_required PX4-Autopilot src/modules/navigator/mission_base.h
+          copy_required PX4-Autopilot src/modules/navigator/mission_base.cpp
+          copy_required PX4-Autopilot src/modules/navigator/mission.h
+          copy_required PX4-Autopilot src/modules/navigator/mission.cpp
+          copy_required PX4-Autopilot src/modules/navigator/test/test_mission_base.cpp
+
+          copy_required Unified-Planning unified_planning/model/htn
+          copy_required Unified-Planning unified_planning/model/action.py
+          copy_required Unified-Planning unified_planning/model/problem.py
+          copy_required Unified-Planning unified_planning/plans/hierarchical_plan.py
+          copy_required Unified-Planning unified_planning/engines/mixins/plan_validator.py
+
+          copy_required discrete-choosers README.md
+          copy_required discrete-choosers src/main/java/io/github/carrknight
+
+          copy_required DISPLACE commons/dtree
+          copy_required DISPLACE commons/Vessel.cpp
+          copy_required DISPLACE include/Vessel.h
+          copy_required DISPLACE include/comstructs.h
+          copy_required DISPLACE tests/unittests/dtrees.cpp
+
+          copy_required mizer DESCRIPTION
+          copy_required mizer R/setFishing.R
+          copy_required mizer R/selectivity_funcs.R
+          copy_required mizer R/project_methods.R
+          copy_required mizer R/summary_methods.R
+          copy_required mizer tests/testthat/test-selectivity_funcs.R
+          copy_required mizer tests/testthat/test-setFishing.R
+
+          copy_required OceanParcels parcels/application_kernels/advection.py
+          copy_required OceanParcels parcels/application_kernels/advectiondiffusion.py
+          copy_required OceanParcels parcels/field.py
+          copy_required OceanParcels parcels/fieldset.py
+          copy_required OceanParcels parcels/grid.py
+          copy_required OceanParcels parcels/particleset.py
+          copy_required OceanParcels parcels/rng.py
+          copy_required OceanParcels tests/test_advection.py
+          copy_required OceanParcels tests/test_diffusion.py
+
+          for key in MOOS-IvP PX4-Autopilot Unified-Planning discrete-choosers DISPLACE mizer OceanParcels; do
+            copy_licenses "$key"
+          done
+
+          python - <<'PY'
+          from __future__ import annotations
+          import csv
+          import hashlib
+          import json
+          from pathlib import Path
+
+          root = Path('workkit')
+          fixed = {
+              'MOOS-IvP': {
+                  'repository': 'moos-ivp/moos-ivp',
+                  'ref': 'v24.8.1',
+                  'commit': '477be7e91bf220185d55e5a2a9dba16dbde32c3f',
+                  'license': 'GPL-3.0/LGPL-3.0 dual distribution; commercial terms available upstream',
+                  'adoption': 'REFERENCE_ONLY_NO_CODE_COPY_NO_LINK',
+                  'question': 'behavior arbitration, lifecycle events, helm decision boundaries',
+              },
+              'PX4-Autopilot': {
+                  'repository': 'PX4/PX4-Autopilot',
+                  'ref': 'v1.17.0',
+                  'commit': 'd6f12ad1c4f70ad3230afd7d86e971421e02fef4',
+                  'license': 'BSD-3-Clause',
+                  'adoption': 'SEMANTIC_REFERENCE_REIMPLEMENT_PROJECT_CONTRACTS',
+                  'question': 'mission item lifecycle, failure handling, resume/return semantics',
+              },
+              'Unified-Planning': {
+                  'repository': 'aiplan4eu/unified-planning',
+                  'ref': 'v1.3.0',
+                  'commit': '42e66926e400ab1367b5b02af504d8c7016b9243',
+                  'license': 'Apache-2.0',
+                  'adoption': 'OFFLINE_DESIGN_ORACLE_NO_GAMEPLAY_RUNTIME',
+                  'question': 'HTN task/method/decomposition/ordering and plan validation semantics',
+              },
+              'discrete-choosers': {
+                  'repository': 'CarrKnight/discrete-choosers',
+                  'ref': 'master',
+                  'commit': '1957b2642fcb48c498f737f7b1fcd657ffd11a73',
+                  'license': 'MIT',
+                  'adoption': 'SEMANTIC_REFERENCE_OWNED_IMPLEMENTATION',
+                  'question': 'bounded exploration/exploitation and belief-based fishing-ground choice',
+              },
+              'DISPLACE': {
+                  'repository': 'frabas/DISPLACE_GUI',
+                  'ref': 'v1.8.0 lineage',
+                  'commit': '96eadecb1980d6f9ad22571cd6f963cc05379815',
+                  'license': 'GPL-2.0',
+                  'adoption': 'REFERENCE_ONLY_NO_CODE_COPY_NO_LINK',
+                  'question': 'fishing decision trees, ground changes, quota/TAC and vessel voyage semantics',
+              },
+              'mizer': {
+                  'repository': 'sizespectrum/mizer',
+                  'ref': 'v3.4.0',
+                  'commit': 'bc15500d3ead330e79c86949830548c4b580bebf',
+                  'license': 'GPL-3.0',
+                  'adoption': 'OFFLINE_ORACLE_REFERENCE_ONLY_NO_CODE_COPY',
+                  'question': 'selectivity, fishing mortality, catch/yield aggregation and input validation',
+              },
+              'OceanParcels': {
+                  'repository': 'OceanParcels/Parcels',
+                  'ref': 'v3.1.4',
+                  'commit': 'fb88390d2bc9e2d45cd3056c601c7acaa9afcdac',
+                  'license': 'MIT',
+                  'adoption': 'OFFLINE_ORACLE_REFERENCE_ONLY',
+                  'question': 'advection/diffusion trajectory semantics for aging fishing-ground beliefs',
+              },
+          }
+
+          def sha256(path: Path) -> str:
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+
+          inventory = []
+          receipts = {}
+          for key, meta in fixed.items():
+              folder = root / key
+              files = []
+              for path in sorted(p for p in folder.rglob('*') if p.is_file()):
+                  rel = path.relative_to(folder).as_posix()
+                  data = path.read_bytes()
+                  try:
+                      lines = len(data.decode('utf-8').splitlines())
+                  except UnicodeDecodeError:
+                      lines = None
+                  row = {
+                      'project': key,
+                      'path': rel,
+                      'bytes': len(data),
+                      'sha256': hashlib.sha256(data).hexdigest(),
+                      'lines': lines,
+                      'commit': meta['commit'],
+                      'license': meta['license'],
+                      'adoption': meta['adoption'],
+                  }
+                  inventory.append(row)
+                  files.append({k: row[k] for k in ('path', 'bytes', 'sha256', 'lines')})
+              receipt = dict(meta)
+              receipt.update({
+                  'schema': 'maritime.ai.r0a.oss_source_receipt/1',
+                  'selected_file_count': len(files),
+                  'selected_bytes': sum(item['bytes'] for item in files),
+                  'files': files,
+              })
+              (folder / 'SOURCE_RECEIPT.json').write_text(
+                  json.dumps(receipt, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+              scope = f"""# {key} reference scope\n\n- Repository: `{meta['repository']}`\n- Ref: `{meta['ref']}`\n- Commit: `{meta['commit']}`\n- License: {meta['license']}\n- Adoption: `{meta['adoption']}`\n- Design question: {meta['question']}\n\nThis selected source is a bounded design/source oracle. It is not added as a normal gameplay runtime dependency. Project-owned public SDK contracts and native state authority remain canonical.\n"""
+              (folder / 'REFERENCE_SCOPE.md').write_text(scope, encoding='utf-8')
+              receipts[key] = receipt
+
+          with (root / 'MARITIME_AI_R0A_OSS_SOURCE_INVENTORY.csv').open('w', newline='', encoding='utf-8') as handle:
+              writer = csv.DictWriter(handle, fieldnames=[
+                  'project', 'path', 'bytes', 'sha256', 'lines', 'commit', 'license', 'adoption'
+              ])
+              writer.writeheader()
+              writer.writerows(inventory)
+
+          global_receipt = {
+              'schema': 'maritime.ai.r0a.oss_workkit/1',
+              'projects': fixed,
+              'project_count': len(fixed),
+              'file_count': len(inventory),
+              'total_bytes': sum(row['bytes'] for row in inventory),
+              'receipts': receipts,
+          }
+          (root / 'MARITIME_AI_R0A_OSS_WORKKIT.json').write_text(
+              json.dumps(global_receipt, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+
+          find "$OUT" -type d -name .git -prune -exec rm -rf {} +
+          find "$OUT" -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/SHA256SUMS"
+          test "$(find "$OUT" -type f | wc -l)" -gt 50
+          du -sh "$OUT"
+
+      - name: Upload selected source workkit
+        uses: actions/upload-artifact@v4
+        with:
+          name: maritime-ai-r0a-oss-workkit
+          path: workkit/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: error
