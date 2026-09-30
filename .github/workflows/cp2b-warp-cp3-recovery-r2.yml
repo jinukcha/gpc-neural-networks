@@ -1,0 +1,166 @@
+name: CP2B Warp CP3 recovery production run R2
+
+on:
+  push:
+    branches:
+      - cp2b-warp-cp3-recovery-r2-20260930
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cp2b-warp-cp3-recovery-r2-20260930
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cp2b-warp-cp3-recovery-r2-20260930
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install exact runtime and bounded tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.1.3 scipy==1.14.1 matplotlib==3.9.4 pillow==11.1.0 pytest==8.3.5
+          name='warp_lang-1.17.0-py3-none-manylinux_2_28_x86_64.whl'
+          url='https://files.pythonhosted.org/packages/a6/a1/e11aa6898e8bbb6910e89fe31a3338fb2566f038912010875c072e6dafd1/warp_lang-1.17.0-py3-none-manylinux_2_28_x86_64.whl'
+          sha='47cd93636828dd16e55eeb4e77a0e3547b5fb0f383000a3d228629df68f28fd8'
+          curl --fail --location --retry 5 --retry-all-errors --output "$RUNNER_TEMP/$name" "$url"
+          echo "$sha  $RUNNER_TEMP/$name" | sha256sum --check --status
+          python -m pip install --disable-pip-version-check --no-cache-dir "$RUNNER_TEMP/$name"
+          python - <<'PY'
+          import warp as wp
+          assert wp.__version__ == '1.17.0'
+          assert [str(d) for d in wp.get_devices()] == ['cpu']
+          PY
+
+      - name: Materialize immutable CP1 static source
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_CP2B_R4_REV1_CP3_RECOVERY"
+          mkdir -p "$(dirname "$root")"
+          cp -a cp1_product "$root"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Materialize CP1 model package
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/run_warp_cp1.py" --root "$ROOT"
+
+      - name: Execute frame 1–180 production recovery
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/run_warp_cp3_recovery.py" --root "$ROOT"
+
+      - name: Validate run outputs and source budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python - "$ROOT" <<'PY'
+          import ast, json, pathlib, sys
+          import numpy as np
+          from PIL import Image
+          root = pathlib.Path(sys.argv[1])
+          status = json.loads((root / 'STATUS.json').read_text())
+          assert status['simulation_frames_executed'] == 180
+          assert status['substeps'] == 8 and status['iterations'] == 12
+          assert status['technical_pass'] is False
+          receipt = json.loads((root / 'build/tunic_pilot/warp_cp3/cp3_receipt.json').read_text())
+          assert receipt['production_schedule']['frames'] == 180
+          with np.load(root / 'build/tunic_pilot/warp_cp3/final_simulation_mesh.npz', allow_pickle=False) as mesh:
+              assert mesh['positions'].shape == (13802, 3)
+              assert mesh['triangles'].shape == (26829, 3)
+              assert np.isfinite(mesh['positions']).all()
+          for name in ('cp3_frame180_evidence.png', 'cp3_convergence.png'):
+              path = root / 'build/tunic_pilot/warp_cp3' / name
+              with Image.open(path) as image:
+                  assert image.width >= 1600 and image.height >= 900
+          violations = []
+          maximum_file = ('', 0)
+          maximum_function = ('', '', 0)
+          files = sorted((root / 'source').rglob('*.py')) + sorted((root / 'scripts').glob('*.py'))
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              rel = path.relative_to(root).as_posix()
+              loc = len(text.splitlines())
+              if loc > maximum_file[1]:
+                  maximum_file = (rel, loc)
+              tree = ast.parse(text)
+              for node in ast.walk(tree):
+                  if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                      fn_loc = getattr(node, 'end_lineno', node.lineno) - node.lineno + 1
+                      if fn_loc > maximum_function[2]:
+                          maximum_function = (rel, node.name, fn_loc)
+                      if fn_loc > 80:
+                          violations.append((rel, node.name, fn_loc))
+          assert maximum_file[1] <= 500, maximum_file
+          assert not violations, violations
+          checks = json.loads((root / 'CHECKS.json').read_text())
+          checks['source_budget'] = {
+              'files_checked': len(files),
+              'maximum_file': {'path': maximum_file[0], 'loc': maximum_file[1]},
+              'maximum_function': {
+                  'path': maximum_function[0],
+                  'name': maximum_function[1],
+                  'loc': maximum_function[2],
+              },
+              'files_over_500': [],
+              'functions_over_80': [],
+          }
+          (root / 'CHECKS.json').write_text(json.dumps(checks, indent=2, sort_keys=True) + '\n')
+          PY
+
+      - name: Diet and create manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python - "$ROOT" <<'PY'
+          import hashlib, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          rows = []
+          for path in sorted(root.rglob('*')):
+              if path.is_file() and path.name != 'MANIFEST.sha256':
+                  rows.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(root).as_posix()}")
+          (root / 'MANIFEST.sha256').write_text('\n'.join(rows) + '\n')
+          PY
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish PNG evidence on temporary branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery
+          mkdir -p delivery
+          cp "$ROOT/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" delivery/
+          cp "$ROOT/build/tunic_pilot/warp_cp3/cp3_convergence.png" delivery/
+          cp "$ROOT/build/tunic_pilot/warp_cp3/cp3_receipt.json" delivery/
+          cp "$ROOT/STATUS.json" delivery/
+          git config user.name 'chatgpt-cp3-runtime'
+          git config user.email 'chatgpt-cp3-runtime@users.noreply.github.com'
+          git add delivery
+          git commit -m 'Publish CP3 recovery evidence [skip ci]'
+          git push origin HEAD:cp2b-warp-cp3-recovery-r2-20260930
+
+      - name: Upload single integrated CP3 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_REV1_CP3_RECOVERY
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
