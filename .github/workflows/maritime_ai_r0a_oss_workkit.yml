@@ -75,7 +75,7 @@ jobs:
           copy_required PX4-Autopilot src/modules/navigator/mission_base.cpp
           copy_required PX4-Autopilot src/modules/navigator/mission.h
           copy_required PX4-Autopilot src/modules/navigator/mission.cpp
-          copy_required PX4-Autopilot src/modules/navigator/test/test_mission_base.cpp
+          copy_required PX4-Autopilot src/modules/navigator/CMakeLists.txt
 
           copy_required Unified-Planning unified_planning/model/htn
           copy_required Unified-Planning unified_planning/model/action.py
@@ -180,9 +180,6 @@ jobs:
                   'question': 'advection/diffusion trajectory semantics for aging fishing-ground beliefs',
               },
           }
-
-          def sha256(path: Path) -> str:
-              return hashlib.sha256(path.read_bytes()).hexdigest()
 
           inventory = []
           receipts = {}
