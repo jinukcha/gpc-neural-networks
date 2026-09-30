@@ -34,15 +34,39 @@ jobs:
           fetch_repo mizer https://github.com/sizespectrum/mizer.git bc15500d3ead330e79c86949830548c4b580bebf
           fetch_repo OceanParcels https://github.com/OceanParcels/Parcels.git fb88390d2bc9e2d45cd3056c601c7acaa9afcdac
           check MOOS-IvP ivp/src/lib_helmivp/BehaviorSet.cpp
+          check MOOS-IvP ivp/src/lib_behaviors/IvPBehavior.cpp
+          check MOOS-IvP ivp/src/pHelmIvP/HelmEngine.cpp
           check PX4-Autopilot src/modules/navigator/mission_block.cpp
-          check PX4-Autopilot src/modules/navigator/test/test_mission_base.cpp
+          check PX4-Autopilot src/modules/navigator/mission_base.cpp
+          check PX4-Autopilot src/modules/navigator/mission.cpp
+          check PX4-Autopilot src/modules/navigator/CMakeLists.txt
+          check Unified-Planning unified_planning/model/htn
+          check Unified-Planning unified_planning/model/action.py
+          check Unified-Planning unified_planning/model/problem.py
+          check Unified-Planning unified_planning/plans/hierarchical_plan.py
           check Unified-Planning unified_planning/engines/mixins/plan_validator.py
+          check discrete-choosers README.md
           check discrete-choosers src/main/java/io/github/carrknight
           check DISPLACE commons/dtree
+          check DISPLACE commons/Vessel.cpp
+          check DISPLACE include/Vessel.h
+          check DISPLACE include/comstructs.h
           check DISPLACE tests/unittests/dtrees.cpp
+          check mizer DESCRIPTION
+          check mizer R/setFishing.R
+          check mizer R/selectivity_funcs.R
           check mizer R/project_methods.R
+          check mizer R/summary_methods.R
           check mizer tests/testthat/test-selectivity_funcs.R
+          check mizer tests/testthat/test-setFishing.R
+          check OceanParcels parcels/application_kernels/advection.py
           check OceanParcels parcels/application_kernels/advectiondiffusion.py
+          check OceanParcels parcels/field.py
+          check OceanParcels parcels/fieldset.py
+          check OceanParcels parcels/grid.py
+          check OceanParcels parcels/particleset.py
+          check OceanParcels parcels/rng.py
+          check OceanParcels tests/test_advection.py
           check OceanParcels tests/test_diffusion.py
           for key in MOOS-IvP PX4-Autopilot Unified-Planning discrete-choosers DISPLACE mizer OceanParcels; do
             echo "LICENSES $key"
