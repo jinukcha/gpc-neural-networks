@@ -1,0 +1,50 @@
+name: maritime-ai-r0a-oss-diag
+on:
+  push:
+    branches: [automation/maritime-ai-r0a-oss-workkit-20260930]
+    paths: [.github/workflows/maritime_ai_r0a_oss_diag.yml]
+permissions:
+  contents: read
+jobs:
+  diag:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check pinned repositories and paths
+        shell: bash
+        run: |
+          set -euxo pipefail
+          SRC="$RUNNER_TEMP/src"
+          mkdir -p "$SRC"
+          fetch_repo() {
+            local key="$1" url="$2" commit="$3"
+            echo "FETCH $key $commit"
+            git init "$SRC/$key"
+            git -C "$SRC/$key" remote add origin "$url"
+            git -C "$SRC/$key" fetch --depth=1 origin "$commit"
+            git -C "$SRC/$key" checkout --detach FETCH_HEAD
+            test "$(git -C "$SRC/$key" rev-parse HEAD)" = "$commit"
+          }
+          check() { echo "CHECK $1 $2"; test -e "$SRC/$1/$2"; }
+          fetch_repo MOOS-IvP https://github.com/moos-ivp/moos-ivp.git 477be7e91bf220185d55e5a2a9dba16dbde32c3f
+          fetch_repo PX4-Autopilot https://github.com/PX4/PX4-Autopilot.git d6f12ad1c4f70ad3230afd7d86e971421e02fef4
+          fetch_repo Unified-Planning https://github.com/aiplan4eu/unified-planning.git 42e66926e400ab1367b5b02af504d8c7016b9243
+          fetch_repo discrete-choosers https://github.com/CarrKnight/discrete-choosers.git 1957b2642fcb48c498f737f7b1fcd657ffd11a73
+          fetch_repo DISPLACE https://github.com/frabas/DISPLACE_GUI.git 96eadecb1980d6f9ad22571cd6f963cc05379815
+          fetch_repo mizer https://github.com/sizespectrum/mizer.git bc15500d3ead330e79c86949830548c4b580bebf
+          fetch_repo OceanParcels https://github.com/OceanParcels/Parcels.git fb88390d2bc9e2d45cd3056c601c7acaa9afcdac
+          check MOOS-IvP ivp/src/lib_helmivp/BehaviorSet.cpp
+          check PX4-Autopilot src/modules/navigator/mission_block.cpp
+          check PX4-Autopilot src/modules/navigator/test/test_mission_base.cpp
+          check Unified-Planning unified_planning/engines/mixins/plan_validator.py
+          check discrete-choosers src/main/java/io/github/carrknight
+          check DISPLACE commons/dtree
+          check DISPLACE tests/unittests/dtrees.cpp
+          check mizer R/project_methods.R
+          check mizer tests/testthat/test-selectivity_funcs.R
+          check OceanParcels parcels/application_kernels/advectiondiffusion.py
+          check OceanParcels tests/test_diffusion.py
+          for key in MOOS-IvP PX4-Autopilot Unified-Planning discrete-choosers DISPLACE mizer OceanParcels; do
+            echo "LICENSES $key"
+            find "$SRC/$key" -maxdepth 1 -type f \( -iname 'LICENSE*' -o -iname 'COPYING*' -o -iname 'NOTICE*' \) -print
+          done
