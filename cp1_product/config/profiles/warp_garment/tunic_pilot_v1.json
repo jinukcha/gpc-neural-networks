@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "fixture_id": "cp2b_sleeveless_long_tunic_v1",
+  "model_contract": "WarpGarmentModelPackage/1",
+  "areal_density_kg_m2": 0.22,
+  "grain": {
+    "warp_axis": "uv_v",
+    "weft_axis": "uv_u",
+    "shear_basis": "triangle_uv_inverse"
+  },
+  "bending": {
+    "topology": "manifold_interior_edges",
+    "rest_measure": "signed_dihedral_radians"
+  },
+  "seams": {
+    "topology_weld": false,
+    "pair_count": 273,
+    "named_groups": 8
+  },
+  "attachments": {
+    "vertex_count": 52,
+    "target": "front_back_shoulder_pair_midpoint"
+  },
+  "body_contact": "deferred_cp2",
+  "self_contact": "deferred_cp2",
+  "simulation": "deferred_cp3"
+}
