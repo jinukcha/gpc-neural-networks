@@ -160,6 +160,8 @@ def force_shoulder_gap(
 ) -> None:
     sign = 1.0 if front else -1.0
     for role in ("shoulder_left", "shoulder_right"):
+        if role not in role_indices:
+            continue
         local = role_indices[role]
         global_indices = boundary_indices[local]
         positions[global_indices, 1] = sign * INITIAL_SEWING_GAP_M * 0.5
