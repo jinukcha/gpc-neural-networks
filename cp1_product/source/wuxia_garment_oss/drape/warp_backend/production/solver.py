@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, Tuple
+from typing import Dict, Tuple
 
 import numpy as np
 import warp as wp
@@ -59,6 +59,28 @@ class ProductionResult:
     frame_metrics: list[dict]
     self_contact_metrics: list[dict]
     profile: ProductionProfile
+
+
+@dataclass
+class _RunState:
+    positions: np.ndarray
+    initial: np.ndarray
+    velocities: np.ndarray
+    triangles: np.ndarray
+    panel_ids: np.ndarray
+    inverse_mass: np.ndarray
+    structural: np.ndarray
+    structural_rest: np.ndarray
+    bending: np.ndarray
+    bending_rest: np.ndarray
+    seam_pairs: np.ndarray
+    seam_initial: np.ndarray
+    attachment_indices: np.ndarray
+    attachment_targets: np.ndarray
+    seam_vertices: np.ndarray
+    dt: float
+    frame_metrics: list[dict]
+    self_metrics: list[dict]
 
 
 def _unique_edges(triangles: np.ndarray) -> np.ndarray:
@@ -236,6 +258,114 @@ def _frame_metric(
     }
 
 
+def _prepare_state(
+    arrays: Dict[str, np.ndarray], profile: ProductionProfile
+) -> _RunState:
+    positions = arrays["positions_initial"].astype(np.float32, copy=True)
+    triangles = arrays["triangles"].astype(np.int32, copy=False)
+    structural = _unique_edges(triangles)
+    bending = _bending_pairs(arrays)
+    seam_pairs = arrays["seam_pairs"].astype(np.int32, copy=False)
+    return _RunState(
+        positions=positions,
+        initial=positions.copy(),
+        velocities=arrays["velocities_initial"].astype(np.float32, copy=True),
+        triangles=triangles,
+        panel_ids=arrays["panel_ids"].astype(np.int32, copy=False),
+        inverse_mass=arrays["inverse_mass"].astype(np.float32, copy=False),
+        structural=structural,
+        structural_rest=_rest_lengths(positions, structural),
+        bending=bending,
+        bending_rest=_rest_lengths(positions, bending),
+        seam_pairs=seam_pairs,
+        seam_initial=arrays["seam_rest_length"].astype(np.float32, copy=False),
+        attachment_indices=arrays["attachment_indices"].astype(np.int32, copy=False),
+        attachment_targets=arrays["attachment_targets"].astype(np.float32, copy=False),
+        seam_vertices=np.unique(seam_pairs.reshape(-1)),
+        dt=1.0 / (profile.fps * profile.substeps),
+        frame_metrics=[],
+        self_metrics=[],
+    )
+
+
+def _project_iteration(
+    state: _RunState,
+    profile: ProductionProfile,
+    seam_target: np.ndarray,
+    support: float,
+    iteration: int,
+) -> int:
+    _project_pairs(
+        state.positions,
+        state.seam_pairs,
+        seam_target,
+        state.inverse_mass,
+        profile.seam_stiffness,
+    )
+    _project_attachments(
+        state.positions, state.attachment_indices, state.attachment_targets, support
+    )
+    if iteration % 3 != 0:
+        return 0
+    _project_pairs(
+        state.positions,
+        state.structural,
+        state.structural_rest,
+        state.inverse_mass,
+        profile.structural_stiffness,
+    )
+    _project_pairs(
+        state.positions,
+        state.bending,
+        state.bending_rest,
+        state.inverse_mass,
+        profile.bending_stiffness,
+    )
+    state.positions += (state.initial - state.positions) * profile.tether_stiffness
+    return _project_body(state.positions, state.panel_ids, profile.body_clearance_m)
+
+
+def _run_frame(state: _RunState, frame: int, profile: ProductionProfile) -> np.ndarray:
+    frame_start = state.positions.copy()
+    damping = profile.tail_damping if frame >= 140 else profile.early_damping
+    seam_target = _seam_target(state.seam_initial, frame, profile)
+    support = _attachment_strength(frame)
+    body_contacts = 0
+    for _substep in range(profile.substeps):
+        before = state.positions.copy()
+        state.positions, state.velocities = _predict_with_warp(
+            state.positions, state.velocities, state.dt, profile.gravity_z, damping
+        )
+        for iteration in range(profile.iterations):
+            body_contacts += _project_iteration(
+                state, profile, seam_target, support, iteration
+            )
+        state.velocities = (
+            (state.positions - before) / state.dt
+        ).astype(np.float32) * damping
+    state.frame_metrics.append(
+        _frame_metric(frame, frame_start, state.positions, state.seam_pairs, body_contacts)
+    )
+    state.self_metrics.append(
+        _sample_self_contact(state.positions, state.panel_ids, state.seam_vertices)
+    )
+    return frame_start
+
+
+def _write_checkpoint(
+    output_dir: Path, state: _RunState, frame: int, previous: np.ndarray
+) -> None:
+    if frame % 20 != 0:
+        return
+    np.savez_compressed(
+        output_dir / "simulation_state.npz",
+        positions=state.positions.astype(np.float32),
+        velocities=state.velocities.astype(np.float32),
+        previous_positions=previous.astype(np.float32),
+        frame_completed=np.asarray([frame], dtype=np.int32),
+    )
+
+
 def run_production(
     arrays: Dict[str, np.ndarray],
     output_dir: Path,
@@ -243,86 +373,19 @@ def run_production(
 ) -> ProductionResult:
     profile = profile or ProductionProfile()
     wp.init()
-    positions = arrays["positions_initial"].astype(np.float32, copy=True)
-    initial = positions.copy()
-    velocities = arrays["velocities_initial"].astype(np.float32, copy=True)
-    triangles = arrays["triangles"].astype(np.int32, copy=False)
-    panel_ids = arrays["panel_ids"].astype(np.int32, copy=False)
-    inverse_mass = arrays["inverse_mass"].astype(np.float32, copy=False)
-    structural = _unique_edges(triangles)
-    structural_rest = _rest_lengths(initial, structural)
-    bending = _bending_pairs(arrays)
-    bending_rest = _rest_lengths(initial, bending)
-    seam_pairs = arrays["seam_pairs"].astype(np.int32, copy=False)
-    seam_initial = arrays["seam_rest_length"].astype(np.float32, copy=False)
-    attachment_indices = arrays["attachment_indices"].astype(np.int32, copy=False)
-    attachment_targets = arrays["attachment_targets"].astype(np.float32, copy=False)
-    seam_vertices = np.unique(seam_pairs.reshape(-1))
-    frame_metrics: list[dict] = []
-    self_metrics: list[dict] = []
-    dt = 1.0 / (profile.fps * profile.substeps)
     output_dir.mkdir(parents=True, exist_ok=True)
-
+    state = _prepare_state(arrays, profile)
     for frame in range(1, profile.frames + 1):
-        frame_start = positions.copy()
-        body_contacts = 0
-        damping = profile.tail_damping if frame >= 140 else profile.early_damping
-        seam_target = _seam_target(seam_initial, frame, profile)
-        support = _attachment_strength(frame)
-        for _substep in range(profile.substeps):
-            before = positions.copy()
-            positions, velocities = _predict_with_warp(
-                positions, velocities, dt, profile.gravity_z, damping
-            )
-            for iteration in range(profile.iterations):
-                _project_pairs(
-                    positions, seam_pairs, seam_target, inverse_mass, profile.seam_stiffness
-                )
-                _project_attachments(
-                    positions, attachment_indices, attachment_targets, support
-                )
-                if iteration % 3 == 0:
-                    _project_pairs(
-                        positions,
-                        structural,
-                        structural_rest,
-                        inverse_mass,
-                        profile.structural_stiffness,
-                    )
-                    _project_pairs(
-                        positions,
-                        bending,
-                        bending_rest,
-                        inverse_mass,
-                        profile.bending_stiffness,
-                    )
-                    positions += (initial - positions) * profile.tether_stiffness
-                    body_contacts += _project_body(
-                        positions, panel_ids, profile.body_clearance_m
-                    )
-            velocities = ((positions - before) / dt).astype(np.float32) * damping
-        metric = _frame_metric(
-            frame, frame_start, positions, seam_pairs, body_contacts
-        )
-        frame_metrics.append(metric)
-        self_metrics.append(_sample_self_contact(positions, panel_ids, seam_vertices))
-        if frame % 20 == 0 or frame == profile.frames:
-            np.savez_compressed(
-                output_dir / "simulation_state.npz",
-                positions=positions.astype(np.float32),
-                velocities=velocities.astype(np.float32),
-                previous_positions=frame_start.astype(np.float32),
-                frame_completed=np.asarray([frame], dtype=np.int32),
-            )
-
-    _project_body(positions, panel_ids, profile.body_clearance_m)
+        previous = _run_frame(state, frame, profile)
+        _write_checkpoint(output_dir, state, frame, previous)
+    _project_body(state.positions, state.panel_ids, profile.body_clearance_m)
     return ProductionResult(
-        positions_initial=initial,
-        positions_final=positions,
-        velocities_final=velocities,
-        triangles=triangles,
-        panel_ids=panel_ids,
-        frame_metrics=frame_metrics,
-        self_contact_metrics=self_metrics,
+        positions_initial=state.initial,
+        positions_final=state.positions,
+        velocities_final=state.velocities,
+        triangles=state.triangles,
+        panel_ids=state.panel_ids,
+        frame_metrics=state.frame_metrics,
+        self_contact_metrics=state.self_metrics,
         profile=profile,
     )
