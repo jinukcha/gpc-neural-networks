@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/contracts/warp_garment_model_package.schema.json",
+  "title": "WarpGarmentModelPackage metadata",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "contract",
+    "fixture_id",
+    "authority",
+    "seam_names",
+    "density_kg_m2",
+    "total_area_m2",
+    "total_mass_kg",
+    "boundary_edges",
+    "interior_edges",
+    "contact_model_included",
+    "simulation_frames_executed",
+    "contract_validation",
+    "native_input",
+    "model_package"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "WarpGarmentModelPackage/1"},
+    "fixture_id": {"const": "cp2b_sleeveless_long_tunic_v1"},
+    "authority": {
+      "type": "object",
+      "required": ["mode", "source_cp0_sha256", "source_cp0_available", "expected", "seam_counts"]
+    },
+    "seam_names": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "density_kg_m2": {"type": "number", "exclusiveMinimum": 0},
+    "total_area_m2": {"type": "number", "exclusiveMinimum": 0},
+    "total_mass_kg": {"type": "number", "exclusiveMinimum": 0},
+    "boundary_edges": {"type": "integer", "const": 767},
+    "interior_edges": {"type": "integer", "const": 39860},
+    "contact_model_included": {"const": false},
+    "simulation_frames_executed": {"const": 0},
+    "contract_validation": {
+      "type": "object",
+      "required": ["vertices", "triangles", "seam_pairs", "attachments", "canonical_array_sha256"],
+      "properties": {
+        "vertices": {"const": 13802},
+        "triangles": {"const": 26829},
+        "seam_pairs": {"const": 273},
+        "attachments": {"const": 52},
+        "canonical_array_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "native_input": {"$ref": "#/$defs/artifact"},
+    "model_package": {"$ref": "#/$defs/artifact"}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
