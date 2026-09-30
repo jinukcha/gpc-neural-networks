@@ -95,7 +95,7 @@ jobs:
           grep -q 'STANDARD_SIZE' "$ROOT/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
           grep -q 'AUTO_BODY_FIT' "$ROOT/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
           grep -q 'CUSTOM_MEASUREMENTS' "$ROOT/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
-          grep -q 'arbitrary-N' "$ROOT/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
+          grep -q '임의 개수' "$ROOT/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
           grep -q 'CP6' "$ROOT/docs/roadmap/GARMENT_SIZING_R0A_ROADMAP_KO.md"
           grep -q 'GARMENT-SIZING-R0A / CP0' "$ROOT/NEXT_TASK.md"
 
