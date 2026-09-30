@@ -23,13 +23,27 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36672145048
 
+      - name: Detect integrated bundle root
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f received/STATUS.json ]]; then
+            root="$GITHUB_WORKSPACE/received"
+          elif [[ -f received/WG_OSS_R0A_CP2B_R4_RECOVERY/STATUS.json ]]; then
+            root="$GITHUB_WORKSPACE/received/WG_OSS_R0A_CP2B_R4_RECOVERY"
+          else
+            find received -maxdepth 3 -type f -print
+            echo 'R4 bundle root not found' >&2
+            exit 1
+          fi
+          printf 'BUNDLE_ROOT=%s\n' "$root" >> "$GITHUB_ENV"
+          echo "Detected bundle root: $root"
+
       - name: Apply bounded R4 technical acceptance
         shell: bash
         run: |
           set -euo pipefail
-          ROOT='received/WG_OSS_R0A_CP2B_R4_RECOVERY'
-          test -d "$ROOT"
-          python3 - "$ROOT" <<'PY'
+          python3 - "$BUNDLE_ROOT" <<'PY'
           import hashlib
           import json
           import pathlib
@@ -172,8 +186,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ROOT='received/WG_OSS_R0A_CP2B_R4_RECOVERY'
-          python3 - "$ROOT" <<'PY'
+          python3 - "$BUNDLE_ROOT" <<'PY'
           import hashlib
           import json
           import pathlib
@@ -230,7 +243,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: WG_OSS_R0A_CP2B_R4_TECHNICAL_ACCEPTED
-          path: received/WG_OSS_R0A_CP2B_R4_RECOVERY
+          path: ${{ env.BUNDLE_ROOT }}
           compression-level: 6
           retention-days: 1
           if-no-files-found: error
