@@ -70,6 +70,10 @@ def test_published_registry_and_plans() -> None:
     rejected = _load(BUILD / "outfits/incompatible_duplicate_tunic.json")
     assert registry["contract"] == "GarmentLibraryRegistry/1"
     assert len(registry["entries"]) == 3
+    product_entries = [entry for entry in registry["entries"] if not entry["metadata"].get("fixture_only")]
+    assert len(product_entries) == 2
+    assert all(len(entry["required_bones"]) == 23 for entry in product_entries)
+    assert all(entry["required_bones"][0] == "ROOT" for entry in product_entries)
     assert accepted["status"] == "ACCEPTED"
     assert accepted["layer_order"] == ["TROUSERS_RIGGED_R1B", "SLEEVELESS_TUNIC_RIGGED_R1B"]
     assert rejected["status"] == "REJECTED_ATOMIC"
@@ -81,6 +85,8 @@ def test_body_occlusion_and_transactions_pass() -> None:
     transactions = _load(BUILD / "outfit_transaction_suite.json")
     assert mask["mask_pass"] is True
     assert 0 < mask["hidden_triangle_count"] < mask["source_triangle_count"]
+    assert mask["original_body_mesh_claimed"] is False
+    assert mask["source_kind"] == "CP4_SEMANTIC_PROXY_FROM_CP0_SKELETON"
     assert transactions["compatible_commit_pass"] is True
     assert transactions["incompatible_rejection_pass"] is True
     assert transactions["rejected_state_preserved"] is True
@@ -92,6 +98,7 @@ def test_terminal_and_godot_consumer_pass() -> None:
     runtime = _load(BUILD / "godot_product/godot_outfit_runtime_receipt.json")
     assert receipt["terminal_decision"] == "CP4_COMPLETE_MULTI_GARMENT_OUTFIT"
     assert receipt["cp4_acceptance"] is True
+    assert receipt["required_bone_count"] == 23
     assert receipt["godot_outfit_consumer_pass"] is True
     assert runtime["consumer_pass"] is True
     assert runtime["equipped_garment_count"] == 2
