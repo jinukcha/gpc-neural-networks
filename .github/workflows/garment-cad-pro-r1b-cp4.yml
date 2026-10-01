@@ -82,8 +82,17 @@ jobs:
           mkdir -p "$project/products" "$project/data"
           cp "$ROOT/godot/garment_r1b_cp4/project.godot" "$project/"
           cp "$ROOT/godot/garment_r1b_cp4/verify_outfit.gd" "$project/"
-          cp "$ROOT/build/rig_cp3/products/tunic/tunic_rigged.glb" "$project/products/"
-          cp "$ROOT/build/rig_cp3/products/trousers/trousers_rigged.glb" "$project/products/"
+          python - "$ROOT/build/rig_cp4/garment_library_registry.json" "$ROOT" "$project/products" <<'PY'
+          import json,pathlib,shutil,sys
+          registry=json.loads(pathlib.Path(sys.argv[1]).read_text()); root=pathlib.Path(sys.argv[2]); out=pathlib.Path(sys.argv[3])
+          targets={'SLEEVELESS_TUNIC_RIGGED_R1B':'tunic_rigged.glb','TROUSERS_RIGGED_R1B':'trousers_rigged.glb'}
+          found=set()
+          for entry in registry['entries']:
+              garment_id=entry['garment_id']
+              if garment_id in targets:
+                  shutil.copy2(root/entry['product_path'],out/targets[garment_id]); found.add(garment_id)
+          assert found==set(targets),found
+          PY
           cp "$ROOT/build/rig_cp4/outfits/reference_two_piece.json" "$project/data/"
           cp "$ROOT/build/rig_cp4/outfits/incompatible_duplicate_tunic.json" "$project/data/"
           cp "$ROOT/build/rig_cp4/body_occlusion/body_hide_mask.json" "$project/data/"
