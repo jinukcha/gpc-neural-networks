@@ -1,0 +1,25 @@
+{
+  "design_status": "COMPLETE",
+  "document_count": 11,
+  "documents": {
+    "NEXT_TASK.md": "b3954bdfcd09fa086fc775c111e0a5a5e4ef80e0fd1129681fae8e834952fd18",
+    "R1B_START_HERE.md": "90eaa6d128fa38c811b843dfb70a81af8f7b25f8893ed299308243d0c2cd6557",
+    "docs/architecture/professional_rig/CANONICAL_SKELETON_AND_BODY_BIND_CONTRACT_KO.md": "723f3d00df9c69f2223d203ac27ed47ff024092be04b41ae10279b0e620e8a17",
+    "docs/architecture/professional_rig/GARMENT_CAD_PRO_R1B_GAME_GARMENT_PLATFORM_KO.md": "c57e525862248b66f4847959d57ff020cd904245076b0f4801e905dbe6908a70",
+    "docs/architecture/professional_rig/GODOT_RIGGED_GARMENT_PRODUCT_CONTRACT_KO.md": "91fb558958c9825bd8da6dc3fbba21c386b3cb0bfce3677265955fcfa1739335",
+    "docs/architecture/professional_rig/MULTI_GARMENT_LIBRARY_AND_OUTFIT_COMPOSITION_KO.md": "328c1ce00eb630d0d632d9fe77dc43a0a13e814a6b23dac70b6836e7ba4cba98",
+    "docs/architecture/professional_rig/README.md": "0da0b7b116a9b454f0bc0eb32d53239ad046f47efb05258c0633f3f67edb2d5c",
+    "docs/architecture/professional_rig/RIGGED_GARMENT_ACCEPTANCE_MATRIX_KO.md": "34eb2ff4873b179ed1ed2801a266e50acda5ae95ee496920106964630d9e5967",
+    "docs/architecture/professional_rig/RUNTIME_SECONDARY_MOTION_AND_LOD_KO.md": "edeb6c9f3652ea636840dfe5a95e82f381dbe16fd0f3b3e96eef5bfa379ef92e",
+    "docs/architecture/professional_rig/SKIN_WEIGHT_TRANSFER_AND_CORRECTIVES_KO.md": "f7db871120550ee10069bf155096c772f04f9a917bc70125255894504e768e33",
+    "docs/roadmap/GARMENT_CAD_PRO_R1B_ROADMAP_KO.md": "4ac0b74863ca1e0f990b452a09471792dd9fcb23bd14071d5223191b1af19c95"
+  },
+  "immutable_predecessor": "GARMENT_CAD_PRO_R1A_CP6_R1",
+  "implementation_status": "NOT_STARTED",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1B_CP0",
+  "next_task": "CANONICAL_HUMANOID_SKELETON_BODY_SKIN_SOURCE_RIG_COMPATIBILITY",
+  "predecessor_terminal_decision": "GARMENT_CAD_PRO_R1A_COMPLETE",
+  "program": "GARMENT_CAD_PRO_R1B",
+  "receipt_sha256": "96da34629cd00ce87ab259ae0744bf63700ecd0674019ba27650597f80fc042b",
+  "title": "GARMENT-CAD-PRO-R1B — RIG-AWARE GAME GARMENT PLATFORM / MULTI-GARMENT PRODUCTIZATION"
+}
