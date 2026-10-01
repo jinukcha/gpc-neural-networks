@@ -29,27 +29,19 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36874764717
           github-token: ${{ github.token }}
-      - name: Publish temporary body-skin source snapshot
+      - name: Publish temporary rig source snapshot
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf cp4_body_source_snapshot
-          mkdir -p cp4_body_source_snapshot
-          cp -a "$RUNNER_TEMP/base/source/wuxia_garment_oss/rig/body_skin/." cp4_body_source_snapshot/
-          python - "$RUNNER_TEMP/base/build" cp4_body_archive_diagnostic.json <<'PY'
-          import json,pathlib,sys
-          root=pathlib.Path(sys.argv[1]); target=pathlib.Path(sys.argv[2])
-          relevant=[]
-          for path in sorted(p for p in root.rglob('*') if p.is_file()):
-              lower=path.as_posix().lower()
-              if any(token in lower for token in ('body','skin','collision')) or path.suffix.lower() in {'.npz','.npy','.glb'}:
-                  relevant.append({'path':path.relative_to(root).as_posix(),'bytes':path.stat().st_size})
-          target.write_text(json.dumps({'relevant_files':relevant[:1500]},indent=2,sort_keys=True)+'\n')
-          PY
+          rm -rf cp4_rig_source_snapshot
+          mkdir -p cp4_rig_source_snapshot
+          cp -a "$RUNNER_TEMP/base/source/wuxia_garment_oss/rig/." cp4_rig_source_snapshot/
+          find cp4_rig_source_snapshot -type d -name __pycache__ -prune -exec rm -rf {} +
+          find cp4_rig_source_snapshot -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
           git config user.name 'chatgpt-garment-cad'
           git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
-          git add cp4_body_source_snapshot cp4_body_archive_diagnostic.json
+          git add cp4_rig_source_snapshot
           if ! git diff --cached --quiet; then
-            git commit -m 'Publish temporary CP4 body source snapshot [skip ci]'
+            git commit -m 'Publish temporary CP4 rig source snapshot [skip ci]'
             git push origin HEAD:garment-cad-pro-r1b-cp4-20261001
           fi
