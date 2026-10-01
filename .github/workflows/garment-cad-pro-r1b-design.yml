@@ -1,0 +1,119 @@
+name: Garment CAD Pro R1B Design Package
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1b-design-20261001
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: garment-cad-pro-r1b-design-20261001
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1b-design-20261001
+          persist-credentials: true
+
+      - name: Download immutable R1A CP6-R1 predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP6_R1_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36855920180
+          github-token: ${{ github.token }}
+
+      - name: Add R1B design authority without product mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work"
+          mkdir -p "$root"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          python - "$root" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib, json, pathlib, sys
+          root=pathlib.Path(sys.argv[1]); out=pathlib.Path(sys.argv[2])
+          def h(path):
+              d=hashlib.sha256()
+              if path.is_file():
+                  d.update(path.name.encode()); d.update(hashlib.sha256(path.read_bytes()).digest()); return d.hexdigest()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  d.update(item.relative_to(path).as_posix().encode()); d.update(hashlib.sha256(item.read_bytes()).digest())
+              return d.hexdigest()
+          paths=('PROFESSIONAL_STATUS.json','build/garment_cad_pro_cp6_r1','build/garment_cad_pro_cp6','source')
+          out.write_text(json.dumps({p:h(root/p) for p in paths},indent=2,sort_keys=True)+'\n')
+          PY
+          python r1b_design_overlay/write_r1b_design.py --root "$root"
+          python - "$root" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib, json, pathlib, sys
+          root=pathlib.Path(sys.argv[1]); before=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          def h(path):
+              d=hashlib.sha256()
+              if path.is_file():
+                  d.update(path.name.encode()); d.update(hashlib.sha256(path.read_bytes()).digest()); return d.hexdigest()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  d.update(item.relative_to(path).as_posix().encode()); d.update(hashlib.sha256(item.read_bytes()).digest())
+              return d.hexdigest()
+          after={p:h(root/p) for p in before}
+          assert before==after,(before,after)
+          status=json.loads((root/'R1B_DESIGN_STATUS.json').read_text())
+          assert status['design_status']=='COMPLETE'
+          assert status['implementation_status']=='NOT_STARTED'
+          assert status['document_count']==11
+          assert status['next_checkpoint']=='GARMENT_CAD_PRO_R1B_CP0'
+          required=(
+              'docs/architecture/professional_rig/GARMENT_CAD_PRO_R1B_GAME_GARMENT_PLATFORM_KO.md',
+              'docs/architecture/professional_rig/CANONICAL_SKELETON_AND_BODY_BIND_CONTRACT_KO.md',
+              'docs/architecture/professional_rig/SKIN_WEIGHT_TRANSFER_AND_CORRECTIVES_KO.md',
+              'docs/architecture/professional_rig/MULTI_GARMENT_LIBRARY_AND_OUTFIT_COMPOSITION_KO.md',
+              'docs/architecture/professional_rig/RUNTIME_SECONDARY_MOTION_AND_LOD_KO.md',
+              'docs/architecture/professional_rig/GODOT_RIGGED_GARMENT_PRODUCT_CONTRACT_KO.md',
+              'docs/architecture/professional_rig/RIGGED_GARMENT_ACCEPTANCE_MATRIX_KO.md',
+              'docs/roadmap/GARMENT_CAD_PRO_R1B_ROADMAP_KO.md',
+              'R1B_START_HERE.md','NEXT_TASK.md','R1B_DESIGN_STATUS.json',
+          )
+          assert all((root/p).is_file() for p in required)
+          print(json.dumps({'predecessor_unchanged':True,'status':status},ensure_ascii=False,sort_keys=True))
+          PY
+          find "$root" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$root" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$root/scripts/write_manifest.py" --root "$root"
+          (cd "$root" && sha256sum -c MANIFEST.sha256 >/dev/null)
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Publish R1B design documents
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_r1b_design
+          mkdir -p delivery_r1b_design/architecture delivery_r1b_design/roadmap
+          cp -a "$ROOT/docs/architecture/professional_rig/." delivery_r1b_design/architecture/
+          cp "$ROOT/docs/roadmap/GARMENT_CAD_PRO_R1B_ROADMAP_KO.md" delivery_r1b_design/roadmap/
+          cp "$ROOT/R1B_START_HERE.md" "$ROOT/R1B_DESIGN_STATUS.json" delivery_r1b_design/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_r1b_design
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish GARMENT-CAD-PRO-R1B design authority [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1b-design-20261001
+          fi
+
+      - name: Upload single integrated R1B design bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1B_DESIGN
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
