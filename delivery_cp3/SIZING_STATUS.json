@@ -1,0 +1,16 @@
+{
+  "all_geometry_admitted": true,
+  "checkpoint": "GARMENT_SIZING_R0A_CP3",
+  "cp2_parameter_packages_mutated": false,
+  "geometry_package_count": 11,
+  "maximum_seam_length_mismatch_ratio": 0.011856608867330608,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_SIZING_R0A_CP4",
+  "panel_count": 44,
+  "product_simulation_executed": false,
+  "seam_identity_count": 88,
+  "terminal_decision": "CP3_COMPLETE_GEOMETRY_ADMISSION",
+  "total_triangles": 774756,
+  "triangulation_admission_executed": true,
+  "warp_simulation_executed": false
+}
