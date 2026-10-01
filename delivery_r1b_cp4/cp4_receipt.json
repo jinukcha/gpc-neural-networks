@@ -1,0 +1,19 @@
+{
+  "body_occlusion_pass": true,
+  "checkpoint": "GARMENT_CAD_PRO_R1B_CP4",
+  "compatible_outfit_pass": true,
+  "cp4_acceptance": true,
+  "godot_outfit_consumer_pass": true,
+  "godot_version": "4.7.2",
+  "incompatible_outfit_rejected": true,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1B_CP5",
+  "predecessor_mutated": false,
+  "product_entry_count": 2,
+  "python_atomic_transaction_pass": true,
+  "receipt_sha256": "2362b67ae4ed601a6dc520d603dc7abb4c65a192004b0ff48caae36fa23213f7",
+  "registry_entry_count": 3,
+  "rig_aware_lod_executed": false,
+  "secondary_motion_executed": false,
+  "terminal_decision": "CP4_COMPLETE_MULTI_GARMENT_OUTFIT"
+}

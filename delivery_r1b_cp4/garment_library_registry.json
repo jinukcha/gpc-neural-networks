@@ -1,0 +1,191 @@
+{
+  "contract": "GarmentLibraryRegistry/1",
+  "entries": [
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "CHEST",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "TORSO",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0045
+        },
+        {
+          "occludes_body": false,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0038
+        }
+      ],
+      "exclusive_slots": [
+        "UPPER_BODY_PRIMARY"
+      ],
+      "family_id": "SLEEVELESS_TUNIC",
+      "garment_id": "SLEEVELESS_TUNIC_RIGGED_R1B",
+      "incompatible_families": [],
+      "layer_class": "MID",
+      "metadata": {
+        "rigged_product": true,
+        "source_checkpoint": "GARMENT_CAD_PRO_R1B_CP3"
+      },
+      "product_path": "build/rig_cp3/products/feature_complete_tunic_rigged.glb",
+      "product_sha256": "a96041d6a522d06fc459804baf09d47dab5c1b07951da4099abd18120ff1bef9",
+      "required_bones": [],
+      "slots": [
+        "UPPER_BODY",
+        "LONG_TOP"
+      ]
+    },
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0036
+        },
+        {
+          "occludes_body": true,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.004
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_THIGH",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0038
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_THIGH",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0038
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_KNEE",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0032
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_KNEE",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0032
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_CALF",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.003
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_CALF",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.003
+        }
+      ],
+      "exclusive_slots": [
+        "LOWER_BODY_PRIMARY"
+      ],
+      "family_id": "TROUSERS",
+      "garment_id": "TROUSERS_RIGGED_R1B",
+      "incompatible_families": [],
+      "layer_class": "BASE",
+      "metadata": {
+        "rigged_product": true,
+        "source_checkpoint": "GARMENT_CAD_PRO_R1B_CP3"
+      },
+      "product_path": "build/rig_cp3/products/trousers_rigged.glb",
+      "product_sha256": "8e50bb162dce35735622f0efe970d3763578935d402a38ca99995ea96d58d877",
+      "required_bones": [],
+      "slots": [
+        "LOWER_BODY",
+        "LEGS"
+      ]
+    },
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "CHEST",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.010079999999999999
+        },
+        {
+          "occludes_body": true,
+          "region_id": "TORSO",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.010079999999999999
+        },
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.010799999999999999
+        },
+        {
+          "occludes_body": false,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.00912
+        }
+      ],
+      "exclusive_slots": [
+        "UPPER_BODY_PRIMARY"
+      ],
+      "family_id": "SLEEVELESS_TUNIC_BLOCKER",
+      "garment_id": "SLEEVELESS_TUNIC_DUPLICATE_BLOCKER",
+      "incompatible_families": [
+        "SLEEVELESS_TUNIC"
+      ],
+      "layer_class": "MID",
+      "metadata": {
+        "expected_admission": "REJECTED_ATOMIC",
+        "fixture_only": true
+      },
+      "product_path": "build/rig_cp3/products/feature_complete_tunic_rigged.glb",
+      "product_sha256": "a96041d6a522d06fc459804baf09d47dab5c1b07951da4099abd18120ff1bef9",
+      "required_bones": [],
+      "slots": [
+        "UPPER_BODY",
+        "LONG_TOP"
+      ]
+    }
+  ],
+  "layer_order": [
+    "BASE",
+    "INNER",
+    "MID",
+    "OUTER",
+    "ARMOR",
+    "ACCESSORY"
+  ],
+  "regional_thickness_limits_m": {
+    "CHEST": 0.01,
+    "LEFT_CALF": 0.007,
+    "LEFT_KNEE": 0.008,
+    "LEFT_THIGH": 0.009,
+    "PELVIS": 0.012,
+    "RIGHT_CALF": 0.007,
+    "RIGHT_KNEE": 0.008,
+    "RIGHT_THIGH": 0.009,
+    "TORSO": 0.01,
+    "WAIST": 0.012
+  },
+  "registry_id": "GARMENT_LIBRARY_R1B_CP4",
+  "registry_sha256": "1f51e718db2b270d931c2dc2abad2691a9360865292c61d0b8d035f86d0f9db0"
+}

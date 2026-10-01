@@ -1,0 +1,25 @@
+{
+  "boundary_preserved_triangle_count": 0,
+  "contract": "BodyOcclusionMask/1",
+  "coordinate_frame": "SOURCE_PRODUCT_FRAME_Y_UP",
+  "hidden_semantic_regions": [
+    "LEFT_LEG",
+    "RIGHT_LEG",
+    "TORSO"
+  ],
+  "hidden_triangle_count": 1584,
+  "mask_pass": true,
+  "mask_path": "build/rig_cp4/body_occlusion/body_hide_mask.npz",
+  "original_body_mesh_claimed": false,
+  "preserved_safety_regions": [
+    "LEFT_LEG",
+    "RIGHT_LEG",
+    "TORSO"
+  ],
+  "receipt_sha256": "428b17dc56f2d7e94a304e2f3b7deb8490e2450d14da8d17cdb2407c35900213",
+  "source_kind": "CP4_SEMANTIC_PROXY_FROM_CP0_SKELETON",
+  "source_path": "build/rig_cp0/canonical_skeleton.json",
+  "source_triangle_count": 5808,
+  "source_vertex_count": 2926,
+  "visible_triangle_count": 4224
+}

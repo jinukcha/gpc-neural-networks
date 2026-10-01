@@ -1,0 +1,81 @@
+{
+  "committed_receipt": {
+    "after": {
+      "active_outfit_id": "REFERENCE_TUNIC_TROUSERS",
+      "body_hide_mask_sha256": "428b17dc56f2d7e94a304e2f3b7deb8490e2450d14da8d17cdb2407c35900213",
+      "equipped_garment_ids": [
+        "TROUSERS_RIGGED_R1B",
+        "SLEEVELESS_TUNIC_RIGGED_R1B"
+      ],
+      "revision": 1
+    },
+    "before": {
+      "active_outfit_id": null,
+      "body_hide_mask_sha256": null,
+      "equipped_garment_ids": [],
+      "revision": 0
+    },
+    "operation": "EQUIP_OUTFIT",
+    "outfit_id": "REFERENCE_TUNIC_TROUSERS",
+    "reasons": [],
+    "state_preserved": false,
+    "status": "COMMITTED"
+  },
+  "compatible_commit_pass": true,
+  "contract": "OutfitTransactionSuiteReceipt/1",
+  "incompatible_rejection_pass": true,
+  "receipt_sha256": "9bb3f94ba0d4e35cb6f178804280f411ed15047f6b4e7c0f3f486b1620953405",
+  "rejected_receipt": {
+    "after": {
+      "active_outfit_id": "REFERENCE_TUNIC_TROUSERS",
+      "body_hide_mask_sha256": "428b17dc56f2d7e94a304e2f3b7deb8490e2450d14da8d17cdb2407c35900213",
+      "equipped_garment_ids": [
+        "TROUSERS_RIGGED_R1B",
+        "SLEEVELESS_TUNIC_RIGGED_R1B"
+      ],
+      "revision": 1
+    },
+    "before": {
+      "active_outfit_id": "REFERENCE_TUNIC_TROUSERS",
+      "body_hide_mask_sha256": "428b17dc56f2d7e94a304e2f3b7deb8490e2450d14da8d17cdb2407c35900213",
+      "equipped_garment_ids": [
+        "TROUSERS_RIGGED_R1B",
+        "SLEEVELESS_TUNIC_RIGGED_R1B"
+      ],
+      "revision": 1
+    },
+    "operation": "EQUIP_OUTFIT",
+    "outfit_id": "INVALID_DUPLICATE_TUNIC",
+    "reasons": [
+      "EXCLUSIVE_SLOT_CONFLICT:UPPER_BODY_PRIMARY:SLEEVELESS_TUNIC_RIGGED_R1B,SLEEVELESS_TUNIC_DUPLICATE_BLOCKER",
+      "INCOMPATIBLE_FAMILY:SLEEVELESS_TUNIC_BLOCKER:SLEEVELESS_TUNIC",
+      "THICKNESS_BUDGET:CHEST:0.014280>0.010000",
+      "THICKNESS_BUDGET:PELVIS:0.012920>0.012000",
+      "THICKNESS_BUDGET:TORSO:0.014280>0.010000",
+      "THICKNESS_BUDGET:WAIST:0.015300>0.012000"
+    ],
+    "state_preserved": true,
+    "status": "REJECTED_ATOMIC"
+  },
+  "rejected_state_preserved": true,
+  "unequip_pass": true,
+  "unequip_receipt": {
+    "after": {
+      "active_outfit_id": null,
+      "body_hide_mask_sha256": null,
+      "equipped_garment_ids": [],
+      "revision": 2
+    },
+    "before": {
+      "active_outfit_id": "REFERENCE_TUNIC_TROUSERS",
+      "body_hide_mask_sha256": "428b17dc56f2d7e94a304e2f3b7deb8490e2450d14da8d17cdb2407c35900213",
+      "equipped_garment_ids": [
+        "TROUSERS_RIGGED_R1B",
+        "SLEEVELESS_TUNIC_RIGGED_R1B"
+      ],
+      "revision": 1
+    },
+    "operation": "UNEQUIP_OUTFIT",
+    "status": "COMMITTED"
+  }
+}
