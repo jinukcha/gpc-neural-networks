@@ -1,0 +1,34 @@
+name: maritime-ai-cp1-stage-artifact
+
+on:
+  push:
+    branches:
+      - automation/maritime-ai-r0a-oss-workkit-20260930
+    paths:
+      - .github/workflows/maritime_ai_cp1_stage_artifact.yml
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate staged tree
+        run: |
+          set -euo pipefail
+          test -d .tmp/maritime_ai_cp1
+          test -f .tmp/maritime_ai_cp1/sdk/include/maritime/fisheries/autonomy/fishing_skipper.hpp
+          test -f .tmp/maritime_ai_cp1/sdk/src/fisheries/autonomy/runtime/fishing_skipper.cpp
+          test -f .tmp/maritime_ai_cp1/sdk/tests/maritime_ai_cp1/fishing_cp1_contract_test.cpp
+          find .tmp/maritime_ai_cp1 -type f -print0 | sort -z | xargs -0 sha256sum > .tmp/maritime_ai_cp1/SHA256SUMS
+          find .tmp/maritime_ai_cp1 -type f | sort
+      - uses: actions/upload-artifact@v4
+        with:
+          name: maritime-ai-r0a-cp1-stage
+          path: .tmp/maritime_ai_cp1/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: error
