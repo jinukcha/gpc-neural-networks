@@ -78,7 +78,7 @@ def _friction(material_id: str, kind: str, coefficient: float) -> MeasurementSer
 def _shrinkage(material_id: str, axis: str, ratio: float) -> MeasurementSeries:
     x = (1.0, 2.0, 3.0, 4.0, 5.0)
     ideal = tuple(ratio for _ in x)
-    return _series(material_id, f"{axis}_SHRINKAGE", "specimen_index", "index", "post_pre_length_ratio", "ratio", x, ideal, 0.004, 0.0015)
+    return _series(material_id, f"{axis}_SHRINKAGE", "specimen_index", "index", "post_pre_length_ratio", "ratio", x, ideal, 0.015, 0.004)
 
 
 def _material(
