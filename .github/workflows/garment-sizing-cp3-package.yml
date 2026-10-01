@@ -1,0 +1,124 @@
+name: Garment sizing CP3 package
+
+on:
+  push:
+    branches:
+      - garment-sizing-r0a-cp3-20261001
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: garment-sizing-r0a-cp3-20261001
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-sizing-r0a-cp3-20261001
+          persist-credentials: true
+
+      - name: Download CP2 integrated baseline
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_REV1_GARMENT_SIZING_CP2
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36799400521
+          github-token: ${{ github.token }}
+
+      - name: Overlay CP3 implementation and preserve authorities
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_CP2B_R4_REV1_GARMENT_SIZING_CP3"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          before_drape="$(find "$root/source/wuxia_garment_oss/drape" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
+          legacy_mesh="$(sha256sum "$root/build/tunic_pilot/warp_cp3/final_simulation_mesh.npz" | awk '{print $1}')"
+          legacy_png="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" | awk '{print $1}')"
+          legacy_receipt="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_receipt.json" | awk '{print $1}')"
+          cp1_tree="$(cd "$root/build/tunic_pilot/sizing_cp1/selection_receipts" && find . -type f -name '*.json' -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
+          cp2_tree="$(cd "$root/build/tunic_pilot/sizing_cp2/pattern_parameter_packages" && find . -type f -name '*.json' -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
+          cp -a cp3_overlay/source/. "$root/source/"
+          cp -a cp3_overlay/scripts/. "$root/scripts/"
+          cp -a cp3_overlay/tests/. "$root/tests/"
+          chmod +x "$root/scripts/"*.py
+          after_drape="$(find "$root/source/wuxia_garment_oss/drape" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
+          test "$before_drape" = "$after_drape"
+          test "$legacy_mesh" = "$(sha256sum "$root/build/tunic_pilot/warp_cp3/final_simulation_mesh.npz" | awk '{print $1}')"
+          test "$legacy_png" = "$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" | awk '{print $1}')"
+          test "$legacy_receipt" = "$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_receipt.json" | awk '{print $1}')"
+          printf '\n## CP3 구현 상태\n\nCP3는 CP2 POM·landmark package를 read-only로 소비해 실제 neckline, armhole, side, waist, hem curve를 발행한다. 물리 길이 기반 boundary resampling과 normalized arc-length seam correspondence를 만들고, S/M/L·AUTO_BODY_FIT·CUSTOM_MEASUREMENTS에 size-aware 2D triangulation admission을 수행한다. 180-frame Warp product simulation은 실행하지 않는다.\n' >> "$root/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
+          printf '\n## CP3 결과\n\n- dynamic panel curves: 구현\n- physical-length boundary resampling: 구현\n- 8-seam normalized arc-length correspondence: 구현\n- size-aware 2D triangulation admission: 구현\n- CP1/CP2 authority preservation: 구현\n- Warp product simulation: 미실행\n- 다음 단계: CP4 body envelope, layer-aware arrangement, size-specific Warp model compile\n' >> "$root/docs/roadmap/GARMENT_SIZING_R0A_ROADMAP_KO.md"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "DRAPE_HASH=$after_drape" >> "$GITHUB_ENV"
+          echo "LEGACY_MESH_HASH=$legacy_mesh" >> "$GITHUB_ENV"
+          echo "LEGACY_PNG_HASH=$legacy_png" >> "$GITHUB_ENV"
+          echo "LEGACY_RECEIPT_HASH=$legacy_receipt" >> "$GITHUB_ENV"
+          echo "CP1_RECEIPT_TREE_HASH=$cp1_tree" >> "$GITHUB_ENV"
+          echo "CP2_PARAMETER_TREE_HASH=$cp2_tree" >> "$GITHUB_ENV"
+
+      - name: Install bounded CP3 tooling
+        run: >-
+          python -m pip install --disable-pip-version-check --no-cache-dir
+          numpy==2.1.3 matplotlib==3.9.4 pillow==11.1.0
+          pytest==8.3.5 jsonschema==4.25.1
+
+      - name: Execute CP3 geometry admission
+        run: >-
+          env MPLBACKEND=Agg PYTHONPATH="$ROOT/source"
+          python "$ROOT/scripts/run_garment_sizing_cp3.py" --root "$ROOT"
+
+      - name: Test CP1 through CP3 contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q \
+            "$ROOT/tests/test_garment_sizing_cp1.py" \
+            "$ROOT/tests/test_garment_sizing_cp2.py" \
+            "$ROOT/tests/test_garment_sizing_cp3.py"
+
+      - name: Validate CP3 outputs and source budget
+        run: python "$ROOT/scripts/validate_garment_sizing_cp3.py" --root "$ROOT"
+
+      - name: Validate schemas and diet bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -c "import json,pathlib; from jsonschema import Draft202012Validator; p=pathlib.Path('$ROOT/contracts/sizing'); s=list(p.glob('*.schema.json')); assert len(s)==11; [Draft202012Validator.check_schema(json.loads(x.read_text())) for x in s]"
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish CP3 PNG evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_cp3
+          mkdir -p delivery_cp3
+          cp "$ROOT/build/tunic_pilot/sizing_cp3/cp3_geometry_evidence.png" delivery_cp3/
+          cp "$ROOT/build/tunic_pilot/sizing_cp3/cp3_receipt.json" delivery_cp3/
+          cp "$ROOT/SIZING_STATUS.json" delivery_cp3/
+          git config user.name 'chatgpt-garment-sizing'
+          git config user.email 'chatgpt-garment-sizing@users.noreply.github.com'
+          git add delivery_cp3
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish garment sizing CP3 evidence [skip ci]'
+            git push origin HEAD:garment-sizing-r0a-cp3-20261001
+          fi
+
+      - name: Upload single integrated CP3 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_REV1_GARMENT_SIZING_CP3
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
