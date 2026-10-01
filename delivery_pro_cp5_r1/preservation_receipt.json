@@ -1,0 +1,134 @@
+{
+  "contract": "CP5ScenarioPreservationReceipt/1",
+  "cp5_build_tree_after": "0ce6416a737bc3d9e06e28eb5c04e89bf996d28bee88aff6333391e508564d4b",
+  "cp5_build_tree_before": "0ce6416a737bc3d9e06e28eb5c04e89bf996d28bee88aff6333391e508564d4b",
+  "cp5_build_tree_unchanged": true,
+  "passed_hashes_after": {
+    "COTTON_CANVAS_HEAVY_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "794b707714be81da2bd54805c752c55b5dc6b312f85b5b27107905fa94cb0d3d",
+      "package_sha256": "20424c947c785369e6a79afa1284e89f36b973a18eb3db11086a7e069296b949",
+      "receipt_sha256": "b17dbd83d6c706cb4f620c48907d90094177324cd030801115d7b328a5ff1251"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "8a65635f5c9b5877232916d7e70fe573cd8f2a54639f22229ce9e33efa1ca7ee",
+      "package_sha256": "ad43289632847e0ca614589eece970919393c2d557ca8b0382978b60b6758d3a",
+      "receipt_sha256": "4f9cad151125dceb4427343819b9e4c5b21facceca045d44efae5dbeef6bb339"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "7169fc492eadee003f31eb54330b43ef639b749c50d09b3f518aca82f8d360f0",
+      "receipt_sha256": "3a90ac5e42f75fd61cefc253fd183538b888851ad324273fa55900009a23894b"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "7dab62c3d4c48795fd9b329f89eaa390a41e4a12a1ae85d940dbcd0eb4bc3569",
+      "package_sha256": "207cda98c6982d90c52c07a43c5f5ee0dd7f1475ba9c9ca26df4e2354229b46a",
+      "receipt_sha256": "081482f264f9de10313955df09ea7216efbdd6def7d36fb16bed74b774ecb3e9"
+    },
+    "LINEN_LIGHT_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "a1986f3f62d707c7cb2ca6bdcfa9c5ee1f3c4bf7513d4173d7ac0a95edf3104c",
+      "package_sha256": "c717fe7a127d7ddab4ea84bb17769e9dc19e0aedeb15cb8fd4fb11cc772a259c",
+      "receipt_sha256": "80c7fb47bf4c5e5ce31a69d68fce68b72ed010b3fe490ef0dd05a4f548d87daa"
+    },
+    "LINEN_LIGHT_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "65f63d40c5916702f5f55e090283fc9a86e6cdac106f918fcefdd24a0c6c536b",
+      "package_sha256": "d934d41ae37485d389509e6ea1ae491af172c597e2fb71fb6e52bde08943edd9",
+      "receipt_sha256": "f11d75abd643ece64db9c9efb534f55828013aacba42900ad7d43fbabff82052"
+    },
+    "LINEN_LIGHT_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "148c30580a45d96561233f09daa9e27adfbef4548f86c0aeaf8b30de194ffabf",
+      "receipt_sha256": "0427b4aa990c0c399a4c40e56852f1e57161063e02a495b1bf0ff0451773e0f3"
+    },
+    "LINEN_LIGHT_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "a50811d258253e4281d3344ccfb60ffc771f14f468b8d9ec2c06c196fb862beb",
+      "package_sha256": "702724368db828c1cb3eeb98505e539cc7686451b19a87fb3fa370c29fffcdb8",
+      "receipt_sha256": "45b77f2847ecd0ae92e87159ab4380debe91b14ece3f1ce5f01a7c0ce63381b9"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "0a6f27744ee4100f205572b2d5a395790bcec58ee1b5fed383f346a550ffd617",
+      "package_sha256": "43942fb6bdaa351dc6f8d565fd409d2961e29d5d993c4422874838bc8236296a",
+      "receipt_sha256": "a841791238a53afe88210c4dd1f1230cc6b411e85cf43fb257f0b6e881b7d8aa"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "ead50d515ee29d98e16d6516e0745fc6d597977e4787776ae49e54fe6cf08e69",
+      "package_sha256": "42daac3453a7c2b2088b1bf3174d1170914cd2d4fb959f3a9c9bbc1dd051e451",
+      "receipt_sha256": "1a462d1714fb00db0fff0fd14fbcaa0054eeb92992013bc6697a792d2a876313"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "801a8c031623a9445516e4e337ad4130ac2299c6b7cf384225afca694400da75",
+      "receipt_sha256": "13fc44c6849fc30eb249ce35b9d8ad2f11d9884ed0a6f5ea000082919bc7830e"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "eb2258b5b4429abb1a5030018c4544c5bad01dda45e5b6adf71b6bde6a8dbcb3",
+      "package_sha256": "a5831b5dc5317b301bebccfe3c82c6e73f142ffddd4dde31c351135c3b3b58ff",
+      "receipt_sha256": "a63bc44eb2c913e7973ab3f09b61b7c8356b018c1daa7126fc10d40792585626"
+    }
+  },
+  "passed_hashes_before": {
+    "COTTON_CANVAS_HEAVY_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "794b707714be81da2bd54805c752c55b5dc6b312f85b5b27107905fa94cb0d3d",
+      "package_sha256": "20424c947c785369e6a79afa1284e89f36b973a18eb3db11086a7e069296b949",
+      "receipt_sha256": "b17dbd83d6c706cb4f620c48907d90094177324cd030801115d7b328a5ff1251"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "8a65635f5c9b5877232916d7e70fe573cd8f2a54639f22229ce9e33efa1ca7ee",
+      "package_sha256": "ad43289632847e0ca614589eece970919393c2d557ca8b0382978b60b6758d3a",
+      "receipt_sha256": "4f9cad151125dceb4427343819b9e4c5b21facceca045d44efae5dbeef6bb339"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "7169fc492eadee003f31eb54330b43ef639b749c50d09b3f518aca82f8d360f0",
+      "receipt_sha256": "3a90ac5e42f75fd61cefc253fd183538b888851ad324273fa55900009a23894b"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "7dab62c3d4c48795fd9b329f89eaa390a41e4a12a1ae85d940dbcd0eb4bc3569",
+      "package_sha256": "207cda98c6982d90c52c07a43c5f5ee0dd7f1475ba9c9ca26df4e2354229b46a",
+      "receipt_sha256": "081482f264f9de10313955df09ea7216efbdd6def7d36fb16bed74b774ecb3e9"
+    },
+    "LINEN_LIGHT_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "a1986f3f62d707c7cb2ca6bdcfa9c5ee1f3c4bf7513d4173d7ac0a95edf3104c",
+      "package_sha256": "c717fe7a127d7ddab4ea84bb17769e9dc19e0aedeb15cb8fd4fb11cc772a259c",
+      "receipt_sha256": "80c7fb47bf4c5e5ce31a69d68fce68b72ed010b3fe490ef0dd05a4f548d87daa"
+    },
+    "LINEN_LIGHT_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "65f63d40c5916702f5f55e090283fc9a86e6cdac106f918fcefdd24a0c6c536b",
+      "package_sha256": "d934d41ae37485d389509e6ea1ae491af172c597e2fb71fb6e52bde08943edd9",
+      "receipt_sha256": "f11d75abd643ece64db9c9efb534f55828013aacba42900ad7d43fbabff82052"
+    },
+    "LINEN_LIGHT_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "148c30580a45d96561233f09daa9e27adfbef4548f86c0aeaf8b30de194ffabf",
+      "receipt_sha256": "0427b4aa990c0c399a4c40e56852f1e57161063e02a495b1bf0ff0451773e0f3"
+    },
+    "LINEN_LIGHT_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "a50811d258253e4281d3344ccfb60ffc771f14f468b8d9ec2c06c196fb862beb",
+      "package_sha256": "702724368db828c1cb3eeb98505e539cc7686451b19a87fb3fa370c29fffcdb8",
+      "receipt_sha256": "45b77f2847ecd0ae92e87159ab4380debe91b14ece3f1ce5f01a7c0ce63381b9"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "0a6f27744ee4100f205572b2d5a395790bcec58ee1b5fed383f346a550ffd617",
+      "package_sha256": "43942fb6bdaa351dc6f8d565fd409d2961e29d5d993c4422874838bc8236296a",
+      "receipt_sha256": "a841791238a53afe88210c4dd1f1230cc6b411e85cf43fb257f0b6e881b7d8aa"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "ead50d515ee29d98e16d6516e0745fc6d597977e4787776ae49e54fe6cf08e69",
+      "package_sha256": "42daac3453a7c2b2088b1bf3174d1170914cd2d4fb959f3a9c9bbc1dd051e451",
+      "receipt_sha256": "1a462d1714fb00db0fff0fd14fbcaa0054eeb92992013bc6697a792d2a876313"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "801a8c031623a9445516e4e337ad4130ac2299c6b7cf384225afca694400da75",
+      "receipt_sha256": "13fc44c6849fc30eb249ce35b9d8ad2f11d9884ed0a6f5ea000082919bc7830e"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "eb2258b5b4429abb1a5030018c4544c5bad01dda45e5b6adf71b6bde6a8dbcb3",
+      "package_sha256": "a5831b5dc5317b301bebccfe3c82c6e73f142ffddd4dde31c351135c3b3b58ff",
+      "receipt_sha256": "a63bc44eb2c913e7973ab3f09b61b7c8356b018c1daa7126fc10d40792585626"
+    }
+  },
+  "passed_scenarios_byte_identical": true,
+  "preserved_scenario_count": 12,
+  "receipt_sha256": "bdd9a4e421b4267402c50a8ec6f23cb88e0b9de32be79dcc6210eb8879b25f61",
+  "reexecuted_passed_scenarios": 0
+}

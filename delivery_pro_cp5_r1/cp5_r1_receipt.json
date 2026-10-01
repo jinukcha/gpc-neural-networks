@@ -1,0 +1,30 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP5_R1",
+  "cp5_predecessor_mutated": false,
+  "failed_scenarios": [
+    "COTTON_CANVAS_HEAVY_REFERENCE::FORWARD_BEND"
+  ],
+  "feature_complete_cp3_topology_triangulated": false,
+  "mesh_scaling": "FORBIDDEN",
+  "motion_fit_pass": false,
+  "next_checkpoint": "GARMENT_CAD_PRO_R1A_CP5_R2",
+  "passed_scenarios_reexecuted": 0,
+  "pattern_or_construction_mutated": false,
+  "pose_pass_count": 29,
+  "preserved_scenario_count": 12,
+  "product_acceptance": false,
+  "receipt_sha256": "cddeab6d232af0294b1dcf528536ab8f5388ee52ffb66bc7d1c0a71735b16262",
+  "repair_package_count": 18,
+  "rerun_scenario_count": 18,
+  "runtime": {
+    "cuda_status": "EXPLICIT_NO_CUDA_DEVICE",
+    "device": "cpu",
+    "kernel": "CP5_R1_SEGMENTED_POSE_DRIVE_V1",
+    "package": "warp-lang",
+    "version": "1.17.0"
+  },
+  "scenario_count": 30,
+  "terminal_decision": "HOLD_CP5_R1_MOTION_FIT",
+  "thresholds_changed": false,
+  "worst_repaired_reference_pose": "FORWARD_BEND"
+}
