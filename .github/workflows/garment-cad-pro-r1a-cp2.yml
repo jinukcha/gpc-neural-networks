@@ -40,7 +40,7 @@ jobs:
           mkdir -p "$root/source" "$root/scripts" "$root/tests"
           cp -a "$RUNNER_TEMP/base/." "$root/"
           tree_hash() {
-            find "$1" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}'
+            python -c 'import hashlib,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=hashlib.sha256(); items=sorted(x for x in p.rglob("*") if x.is_file()); [(d.update(x.relative_to(p).as_posix().encode("utf-8")),d.update(hashlib.sha256(x.read_bytes()).digest())) for x in items]; print(d.hexdigest())' "$1"
           }
           pattern_hash="$(tree_hash "$root/build/pattern_cad_cp1")"
           tunic_hash="$(tree_hash "$root/build/tunic_pilot")"
