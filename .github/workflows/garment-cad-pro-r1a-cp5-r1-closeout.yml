@@ -1,0 +1,152 @@
+name: Garment CAD Pro R1A CP5-R1 Closeout
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1a-cp5-r1-20261001
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: garment-cad-pro-r1a-cp5-r1-closeout
+  cancel-in-progress: true
+
+jobs:
+  closeout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1a-cp5-r1-20261001
+          persist-credentials: true
+
+      - name: Download immutable 29-of-30 CP5-R1 predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP5_R1
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36838230307
+          github-token: ${{ github.token }}
+
+      - name: Overlay closeout implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP5_R1_FINAL"
+          mkdir -p "$root/source" "$root/scripts"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          tree_hash() {
+            python -c 'import hashlib,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=hashlib.sha256(); items=sorted(x for x in p.rglob("*") if x.is_file()); [(d.update(x.relative_to(p).as_posix().encode("utf-8")),d.update(hashlib.sha256(x.read_bytes()).digest())) for x in items]; print(d.hexdigest())' "$1"
+          }
+          cp5_hash="$(tree_hash "$root/build/motion_fit_cp5")"
+          cp5_r1_hash="$(tree_hash "$root/build/motion_fit_cp5_r1")"
+          pattern_hash="$(tree_hash "$root/build/pattern_cad_cp2")"
+          construction_hash="$(tree_hash "$root/build/construction_cp3")"
+          material_hash="$(tree_hash "$root/build/material_calibration_cp4")"
+          cp -a cp5_r1_overlay/source/. "$root/source/"
+          cp -a cp5_r1_closeout_overlay/scripts/. "$root/scripts/"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "EXPECTED_CP5_HASH=$cp5_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_CP5_R1_HASH=$cp5_r1_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_HASH=$pattern_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_CONSTRUCTION_HASH=$construction_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_MATERIAL_HASH=$material_hash" >> "$GITHUB_ENV"
+
+      - name: Install exact Warp and bounded tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 matplotlib==3.9.4 pillow==11.1.0
+          wheel_dir="$RUNNER_TEMP/warp-wheel"
+          mkdir -p "$wheel_dir"
+          python -m pip download --disable-pip-version-check --no-cache-dir --no-deps \
+            --only-binary=:all: warp-lang==1.17.0 -d "$wheel_dir"
+          wheel="$(find "$wheel_dir" -type f -name 'warp_lang-1.17.0-*.whl' | head -1)"
+          echo "47cd93636828dd16e55eeb4e77a0e3547b5fb0f383000a3d228629df68f28fd8  $wheel" | sha256sum -c -
+          python -m pip install --disable-pip-version-check --no-cache-dir --no-deps "$wheel"
+
+      - name: Reexecute only heavy-canvas forward bend
+        run: >-
+          env MPLBACKEND=Agg WARP_CACHE_PATH="$RUNNER_TEMP/warp-cache" PYTHONPATH="$ROOT/source"
+          python "$ROOT/scripts/run_garment_cad_pro_cp5_r1_closeout.py" --root "$ROOT"
+
+      - name: Validate closeout and source budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import ast, hashlib, json, os, pathlib
+          root=pathlib.Path(os.environ['ROOT'])
+          def tree_hash(path):
+              d=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  d.update(item.relative_to(path).as_posix().encode())
+                  d.update(hashlib.sha256(item.read_bytes()).digest())
+              return d.hexdigest()
+          assert tree_hash(root/'build/motion_fit_cp5') == os.environ['EXPECTED_CP5_HASH']
+          assert tree_hash(root/'build/motion_fit_cp5_r1') == os.environ['EXPECTED_CP5_R1_HASH']
+          assert tree_hash(root/'build/pattern_cad_cp2') == os.environ['EXPECTED_PATTERN_HASH']
+          assert tree_hash(root/'build/construction_cp3') == os.environ['EXPECTED_CONSTRUCTION_HASH']
+          assert tree_hash(root/'build/material_calibration_cp4') == os.environ['EXPECTED_MATERIAL_HASH']
+          receipt=json.loads((root/'build/motion_fit_cp5_r1_closeout/cp5_r1_final_receipt.json').read_text())
+          preserve=json.loads((root/'build/motion_fit_cp5_r1_closeout/preservation_receipt.json').read_text())
+          assert receipt['closeout_rerun_scenario_count'] == 1
+          assert receipt['preserved_scenario_count'] == 29
+          assert receipt['thresholds_changed'] is False
+          assert preserve['preserved_scenarios_byte_identical'] is True
+          assert preserve['cp5_tree_unchanged'] is True
+          assert preserve['cp5_r1_tree_unchanged'] is True
+          files=sorted((root/'source').rglob('*.py'))+sorted((root/'scripts').glob('*.py'))
+          file_max=('',0); func_max=('', '',0); violations=[]
+          for path in files:
+              text=path.read_text(); loc=len(text.splitlines())
+              file_max=max(file_max,(str(path.relative_to(root)),loc),key=lambda x:x[1])
+              if loc>500: violations.append(('file',str(path),loc))
+              tree=ast.parse(text)
+              for node in ast.walk(tree):
+                  if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):
+                      size=getattr(node,'end_lineno',node.lineno)-node.lineno+1
+                      func_max=max(func_max,(str(path.relative_to(root)),node.name,size),key=lambda x:x[2])
+                      if size>80: violations.append(('function',str(path),node.name,size))
+          assert not violations, violations
+          checks={'receipt':receipt,'preservation':preserve,'source_budget':{'files':len(files),'max_file':file_max,'max_function':func_max}}
+          (root/'PROFESSIONAL_CHECKS.json').write_text(json.dumps(checks,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(checks,sort_keys=True))
+          PY
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish final CP5-R1 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_pro_cp5_r1_final
+          mkdir -p delivery_pro_cp5_r1_final
+          cp "$ROOT/build/motion_fit_cp5_r1_closeout/cp5_r1_final_overview.png" delivery_pro_cp5_r1_final/
+          cp "$ROOT/build/motion_fit_cp5_r1_closeout/cp5_r1_final_before_after.png" delivery_pro_cp5_r1_final/
+          cp "$ROOT/build/motion_fit_cp5_r1_closeout/cp5_r1_final_fit_maps.png" delivery_pro_cp5_r1_final/
+          cp "$ROOT/build/motion_fit_cp5_r1_closeout/cp5_r1_final_receipt.json" delivery_pro_cp5_r1_final/
+          cp "$ROOT/build/motion_fit_cp5_r1_closeout/preservation_receipt.json" delivery_pro_cp5_r1_final/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_pro_cp5_r1_final
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish final garment CAD Pro CP5-R1 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1a-cp5-r1-20261001
+          fi
+
+      - name: Upload final integrated CP5-R1 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP5_R1_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
