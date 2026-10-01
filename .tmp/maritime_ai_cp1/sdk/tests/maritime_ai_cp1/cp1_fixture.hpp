@@ -132,16 +132,17 @@ inline void deploy_gear(
     SimulationWorld& world,
     const PersistentEntityId owner,
     const FishingGearDefinition& definition,
+    const std::string_view gear_key,
     SourceSequence& sequence) {
     const Tick tick = world.capture_snapshot().world_tick + 1U;
     auto command = mission_command(
         CommandKind::DeployFishingGear, owner, tick,
-        sequence++, "cp1.deploy");
+        sequence++, "cp1.deploy." + std::string{gear_key});
     command.payload = DeployFishingGearCommand{
-        "gear.cp1", definition.key, {0.0, 0.0, 20.0}, 80.0};
+        std::string{gear_key}, definition.key, {0.0, 0.0, 20.0}, 80.0};
     submit_and_step(world, std::move(command), "deploy gear");
     for (std::size_t index = 0U; index < 20U; ++index) {
-        const auto state = world.query_fishing_gear(owner, "gear.cp1");
+        const auto state = world.query_fishing_gear(owner, gear_key);
         require_ok(state, "query deployed gear");
         if (state.value.operation_state
                 == FishingGearOperationState::DeployedTowing
@@ -157,16 +158,17 @@ inline void deploy_gear(
 inline void haul_gear(
     SimulationWorld& world,
     const PersistentEntityId owner,
+    const std::string_view gear_key,
     SourceSequence& sequence,
     std::string token) {
     const Tick tick = world.capture_snapshot().world_tick + 1U;
     auto command = mission_command(
         CommandKind::HaulFishingGear, owner, tick,
         sequence++, std::move(token));
-    command.payload = HaulFishingGearCommand{"gear.cp1"};
+    command.payload = HaulFishingGearCommand{std::string{gear_key}};
     submit_and_step(world, std::move(command), "haul gear");
     for (std::size_t index = 0U; index < 20U; ++index) {
-        const auto state = world.query_fishing_gear(owner, "gear.cp1");
+        const auto state = world.query_fishing_gear(owner, gear_key);
         require_ok(state, "query hauled gear");
         if (state.value.operation_state
             == FishingGearOperationState::Recovered) {
