@@ -43,6 +43,21 @@ def _vertex_normals(positions: np.ndarray, triangles: np.ndarray) -> np.ndarray:
     return normals / length[:, None]
 
 
+def _planar_uv(positions: np.ndarray) -> np.ndarray:
+    """Generate stable UV0 from the two largest object-space extents."""
+    source = np.asarray(positions, dtype=np.float64)
+    if not len(source):
+        raise ValueError("primitive positions must not be empty")
+    extent = np.ptp(source, axis=0)
+    axes = np.argsort(-extent, kind="stable")[:2]
+    selected = source[:, axes]
+    minimum = np.min(selected, axis=0)
+    span = np.ptp(selected, axis=0)
+    span = np.where(span > 1.0e-12, span, 1.0)
+    uv = (selected - minimum) / span
+    return uv.astype(np.float32)
+
+
 def oriented_triangle_sha256(positions: np.ndarray, triangles: np.ndarray) -> str:
     transformed = _to_gltf_vectors(positions)
     indices = np.asarray(triangles, dtype=np.uint32)
@@ -85,6 +100,22 @@ class _BufferBuilder:
         self.accessors.append(accessor)
         return len(self.accessors) - 1
 
+    def vectors2(self, values: np.ndarray, target: int = _ARRAY_BUFFER) -> int:
+        array = np.asarray(values, dtype=np.float32)
+        if array.ndim != 2 or array.shape[1] != 2:
+            raise ValueError("VEC2 accessor values must be Nx2")
+        view = self._append(array.tobytes(order="C"), target)
+        accessor = {
+            "bufferView": view,
+            "componentType": _COMPONENT_FLOAT,
+            "count": int(len(array)),
+            "type": "VEC2",
+            "min": np.min(array, axis=0).astype(float).tolist(),
+            "max": np.max(array, axis=0).astype(float).tolist(),
+        }
+        self.accessors.append(accessor)
+        return len(self.accessors) - 1
+
     def indices(self, values: np.ndarray) -> int:
         array = np.asarray(values, dtype=np.uint32).reshape(-1)
         view = self._append(array.tobytes(order="C"), _ELEMENT_ARRAY_BUFFER)
@@ -117,6 +148,7 @@ def _primitive_payload(
     attributes = {
         "POSITION": builder.vectors(_to_gltf_vectors(positions)),
         "NORMAL": builder.vectors(_to_gltf_vectors(normals)),
+        "TEXCOORD_0": builder.vectors2(_planar_uv(positions)),
     }
     targets = []
     morphs = dict(primitive.get("morph_targets", {}))
@@ -137,6 +169,7 @@ def _primitive_payload(
         "name": str(primitive.get("name", "primitive")),
         "vertex_count": int(len(positions)),
         "triangle_count": int(len(triangles)),
+        "uv0": True,
         "oriented_triangle_sha256": oriented_triangle_sha256(positions, triangles),
     }
     return payload, receipt
@@ -203,6 +236,7 @@ def write_glb(
         "primitive_receipts": primitive_receipts,
         "coordinate_conversion": "RH_Z_UP_TO_GLTF_RH_Y_UP_X_Z_NEGY",
         "neutral_gray_material": True,
+        "uv0_present": True,
     }
     receipt["receipt_sha256"] = canonical_sha256(receipt)
     return receipt
@@ -234,6 +268,7 @@ def verify_glb(path: Path, expected_morphs: Sequence[str]) -> dict:
     names = mesh.get("extras", {}).get("targetNames", [])
     primitive_count = len(mesh["primitives"])
     target_counts = [len(item.get("targets", [])) for item in mesh["primitives"]]
+    uv0_pass = all("TEXCOORD_0" in item.get("attributes", {}) for item in mesh["primitives"])
     result = {
         "contract": "GLBFreshReopenReceipt/1",
         "path": path.name,
@@ -247,6 +282,7 @@ def verify_glb(path: Path, expected_morphs: Sequence[str]) -> dict:
         "morph_target_counts": target_counts,
         "morph_identity_pass": list(names) == list(expected_morphs),
         "target_count_pass": all(item == len(expected_morphs) for item in target_counts),
+        "uv0_pass": uv0_pass,
     }
     result["fresh_reopen_pass"] = (
         result["asset_version"] == "2.0"
@@ -254,6 +290,7 @@ def verify_glb(path: Path, expected_morphs: Sequence[str]) -> dict:
         and result["binary_byte_length"] > 0
         and result["morph_identity_pass"]
         and result["target_count_pass"]
+        and result["uv0_pass"]
     )
     result["receipt_sha256"] = canonical_sha256(result)
     return result
