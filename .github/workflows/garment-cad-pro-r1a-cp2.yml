@@ -82,7 +82,12 @@ jobs:
             "$ROOT/tests/test_garment_cad_pro_cp2.py"
 
       - name: Validate CP2 outputs and source budget
-        run: python "$ROOT/scripts/validate_garment_cad_pro_cp2.py" --root "$ROOT"
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python "$ROOT/scripts/validate_garment_cad_pro_cp2.py" --root "$ROOT"
 
       - name: Validate schemas and diet bundle
         shell: bash
