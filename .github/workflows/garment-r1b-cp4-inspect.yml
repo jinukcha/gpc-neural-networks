@@ -1,0 +1,47 @@
+name: Garment R1B CP4 Inspect Body Source
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1b-cp4-20261001
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: garment-r1b-cp4-inspect
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1b-cp4-20261001
+      - uses: actions/download-artifact@v4
+        with:
+          name: GARMENT_R1B_CP3_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36874764717
+          github-token: ${{ github.token }}
+      - name: Inspect CP0 body source files and contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'CP4_BODY_SOURCE_FILES_BEGIN'
+          find "$RUNNER_TEMP/base/build/rig_cp0" -type f -printf '%P\t%s\n' | sort
+          echo 'CP4_BODY_SOURCE_FILES_END'
+          python - "$RUNNER_TEMP/base/build/rig_cp0" <<'PY'
+          import json,pathlib,sys
+          root=pathlib.Path(sys.argv[1])
+          for path in sorted(root.rglob('*.json')):
+              try: payload=json.loads(path.read_text())
+              except Exception: continue
+              text=json.dumps(payload,sort_keys=True)
+              if any(word in path.name.lower() or word in text[:2000].lower() for word in ('body','skin','geometry','mesh','archive')):
+                  print('CP4_JSON_SUMMARY='+json.dumps({'path':path.relative_to(root).as_posix(),'keys':sorted(payload) if isinstance(payload,dict) else [],'sample':text[:3000]},sort_keys=True))
+          PY
