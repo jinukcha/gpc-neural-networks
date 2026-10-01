@@ -20,13 +20,16 @@ def _standard(size_id: str) -> dict:
     return resolve_pattern_parameters(receipt, table, None)
 
 
-def _auto(body_id: str) -> dict:
+def _body_mode(body_id: str, mode: str, requested_size: str | None = None) -> dict:
     table = reference_size_table()
     body = body_fixtures()[body_id]
-    receipt = resolve_selection(
-        SelectionRequest(f"AUTO_{body_id}", "AUTO_BODY_FIT"), table, body
-    ).to_dict()
+    request = SelectionRequest(f"{mode}_{body_id}", mode, requested_size)
+    receipt = resolve_selection(request, table, body).to_dict()
     return resolve_pattern_parameters(receipt, table, body)
+
+
+def _auto(body_id: str) -> dict:
+    return _body_mode(body_id, "AUTO_BODY_FIT")
 
 
 def test_standard_sml_poms_are_monotonic() -> None:
@@ -59,6 +62,13 @@ def test_reference_m_reproduces_cp2b_parameters() -> None:
         "hem_half_m": 0.310,
     }
     assert max(abs(poms[name] - value) for name, value in expected.items()) <= 1.0e-12
+
+
+def test_custom_measurements_publish_supported_alteration() -> None:
+    package = _body_mode("MILD_CUSTOM", "CUSTOM_MEASUREMENTS", "M")
+    assert package["sizing_mode"] == "CUSTOM_MEASUREMENTS"
+    assert package["selection"]["admission"] == "CUSTOM_ALTERATION"
+    assert package["selection"]["selected_size_id"] == "M"
 
 
 def test_full_chest_changes_front_distribution() -> None:
