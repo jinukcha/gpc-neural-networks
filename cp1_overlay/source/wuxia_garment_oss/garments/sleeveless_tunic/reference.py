@@ -62,20 +62,20 @@ def body_fixtures() -> dict[str, BodyMeasurementProfile]:
             front_waist_arc=0.435, back_waist_arc=0.435,
             shoulder_width=0.415, front_torso_length=0.462,
         ),
-        "BROAD_SHOULDER": _measurements(shoulder_width=0.462),
+        "BROAD_SHOULDER": _measurements(shoulder_width=0.440),
         "FULL_CHEST": _measurements(
-            chest_circumference=1.050, front_chest_arc=0.570, back_chest_arc=0.480,
+            chest_circumference=1.029, front_chest_arc=0.540, back_chest_arc=0.489,
         ),
         "FULL_ABDOMEN": _measurements(
-            waist_circumference=0.960, front_waist_arc=0.520, back_waist_arc=0.440,
+            waist_circumference=0.906, front_waist_arc=0.478, back_waist_arc=0.428,
         ),
         "TALL": _measurements(
-            stature=1.900, front_torso_length=0.500,
-            back_torso_length=0.480, armscye_depth=0.240,
+            stature=1.820, front_torso_length=0.480,
+            back_torso_length=0.460, armscye_depth=0.235,
         ),
         "SHORT": _measurements(
-            stature=1.580, front_torso_length=0.420,
-            back_torso_length=0.400, armscye_depth=0.210,
+            stature=1.660, front_torso_length=0.430,
+            back_torso_length=0.410, armscye_depth=0.215,
         ),
         "NEAR_L_FORCED_M": _measurements(
             stature=1.815, chest_circumference=1.055, front_chest_arc=0.533,
