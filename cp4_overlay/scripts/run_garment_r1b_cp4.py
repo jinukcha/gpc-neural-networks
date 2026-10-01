@@ -58,6 +58,26 @@ def required_bones(root: Path) -> tuple[str, ...]:
     return tuple(value for value in result if value)
 
 
+def discover_product(root: Path, garment_token: str) -> str:
+    candidates = sorted((root / "build").rglob("*.glb"))
+    ranked = []
+    for path in candidates:
+        lower = path.relative_to(root).as_posix().lower()
+        if garment_token not in lower:
+            continue
+        score = 0
+        score += 16 if "rig_cp3" in lower else 0
+        score += 8 if "rigged" in lower else 0
+        score += 4 if "product" in lower else 0
+        score += 2 if "game" in lower else 0
+        score -= 4 if "cp6_r1" in lower else 0
+        ranked.append((score, lower, path))
+    if not ranked:
+        raise FileNotFoundError(f"no GLB product found for {garment_token}")
+    ranked.sort(key=lambda item: (-item[0], item[1]))
+    return ranked[0][2].relative_to(root).as_posix()
+
+
 def _entry(root: Path, garment_id: str, family_id: str, path: str, layer: str, slots, coverage, exclusive=()):
     product = root / path
     return GarmentFamilyEntry(
@@ -75,11 +95,13 @@ def _entry(root: Path, garment_id: str, family_id: str, path: str, layer: str, s
 
 
 def build_registry(root: Path) -> GarmentLibraryRegistry:
+    tunic_path = discover_product(root, "tunic")
+    trousers_path = discover_product(root, "trousers")
     tunic = _entry(
         root,
         "SLEEVELESS_TUNIC_RIGGED_R1B",
         "SLEEVELESS_TUNIC",
-        "build/rig_cp3/products/tunic/tunic_rigged.glb",
+        tunic_path,
         "MID",
         ("UPPER_BODY", "LONG_TOP"),
         (
@@ -94,7 +116,7 @@ def build_registry(root: Path) -> GarmentLibraryRegistry:
         root,
         "TROUSERS_RIGGED_R1B",
         "TROUSERS",
-        "build/rig_cp3/products/trousers/trousers_rigged.glb",
+        trousers_path,
         "BASE",
         ("LOWER_BODY", "LEGS"),
         (
