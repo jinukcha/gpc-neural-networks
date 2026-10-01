@@ -1,0 +1,17 @@
+{
+  "admission_counts": {
+    "ALTERNATE_BLOCK_REQUIRED": 6,
+    "CUSTOM_ALTERATION": 1,
+    "HOLD": 1,
+    "NORMAL_GRADE": 2,
+    "TOPOLOGY_CHANGE_REQUIRED": 1
+  },
+  "checkpoint": "GARMENT_SIZING_R0A_CP1",
+  "fixture_count": 11,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_SIZING_R0A_CP2",
+  "size_table_cardinality": 4,
+  "terminal_decision": "CP1_COMPLETE_SELECTION_ONLY",
+  "triangulation_executed": false,
+  "warp_simulation_executed": false
+}
