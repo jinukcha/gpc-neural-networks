@@ -1,0 +1,155 @@
+name: Garment CAD Pro R1A CP3
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1a-cp3-20261001
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: garment-cad-pro-r1a-cp3-20261001
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1a-cp3-20261001
+          persist-credentials: true
+
+      - name: Download CP2 integrated predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP2
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36827885741
+          github-token: ${{ github.token }}
+
+      - name: Overlay CP3 construction implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP3"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests" "$root/docs/architecture/professional"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          tree_hash() {
+            python -c 'import hashlib,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=hashlib.sha256(); items=sorted(x for x in p.rglob("*") if x.is_file()); [(d.update(x.relative_to(p).as_posix().encode("utf-8")),d.update(hashlib.sha256(x.read_bytes()).digest())) for x in items]; print(d.hexdigest())' "$1"
+          }
+          pattern_cp1_hash="$(tree_hash "$root/build/pattern_cad_cp1")"
+          pattern_cp2_hash="$(tree_hash "$root/build/pattern_cad_cp2")"
+          tunic_hash="$(tree_hash "$root/build/tunic_pilot")"
+          pattern_source_hash="$(tree_hash "$root/source/wuxia_garment_oss/pattern_cad")"
+          tunic_pattern_hash="$(tree_hash "$root/source/wuxia_garment_oss/garments/sleeveless_tunic/pattern_cad")"
+          sizing_hash="$(tree_hash "$root/source/wuxia_garment_oss/sizing")"
+          drape_hash="$(tree_hash "$root/source/wuxia_garment_oss/drape")"
+          cp -a cp3_pro_overlay/source/. "$root/source/"
+          cp -a cp3_pro_overlay/scripts/. "$root/scripts/"
+          cp -a cp3_pro_overlay/tests/. "$root/tests/"
+          chmod +x "$root/scripts/"*.py
+          test "$pattern_cp1_hash" = "$(tree_hash "$root/build/pattern_cad_cp1")"
+          test "$pattern_cp2_hash" = "$(tree_hash "$root/build/pattern_cad_cp2")"
+          test "$tunic_hash" = "$(tree_hash "$root/build/tunic_pilot")"
+          test "$pattern_source_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/pattern_cad")"
+          test "$tunic_pattern_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/garments/sleeveless_tunic/pattern_cad")"
+          test "$sizing_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/sizing")"
+          test "$drape_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/drape")"
+          cat > "$root/docs/architecture/professional/CONSTRUCTION_GRAPH_CONTRACT_KO.md" <<'DOC'
+          # Construction Graph Contract
+
+          CP3는 CP2의 graded·feature-complete PatternDocument를 read-only source로 사용한다.
+          SeamSpec/2는 paired boundary interval, stitch class, ease/gather, allowance, notch correspondence,
+          topstitch와 turn-of-cloth를 소유한다. Stitch line은 exact curve authority이며 cut line은
+          panel centroid 기준 outward allowance offset으로 파생된다. Closure, facing, lining,
+          interfacing과 assembly order는 ConstructionPackage/1에 포함된다. AssemblyGraph는 cycle을
+          허용하지 않으며 실패 시 PatternDocument와 construction package를 변경하지 않는다.
+          Triangulation과 Warp simulation은 CP3 범위에서 실행하지 않는다.
+          DOC
+          cat >> "$root/docs/roadmap/GARMENT_CAD_PRO_R1A_ROADMAP_KO.md" <<'DOC'
+
+          ## CP3 결과
+
+          - SeamSpec/2, stitch/cut line, allowance: 구현
+          - notch correspondence, ease/gather: 구현
+          - closure, facing, lining, interfacing, turn-of-cloth: 구현
+          - cycle-free assembly DAG와 failure atomicity: 구현
+          - triangulation / Warp: 미실행
+          - 다음 단계: CP4 measured material calibration / CPU-Warp parity
+          DOC
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_CP1_HASH=$pattern_cp1_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_CP2_HASH=$pattern_cp2_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_TUNIC_BUILD_HASH=$tunic_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_SOURCE_HASH=$pattern_source_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_TUNIC_PATTERN_CAD_SOURCE_HASH=$tunic_pattern_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_SIZING_SOURCE_HASH=$sizing_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_DRAPE_SOURCE_HASH=$drape_hash" >> "$GITHUB_ENV"
+
+      - name: Install bounded CP3 tooling
+        run: >-
+          python -m pip install --disable-pip-version-check --no-cache-dir
+          matplotlib==3.9.4 pillow==11.1.0 pytest==8.3.5 jsonschema==4.25.1
+
+      - name: Execute CP3 construction graph
+        run: >-
+          env MPLBACKEND=Agg PYTHONPATH="$ROOT/source"
+          python "$ROOT/scripts/run_garment_cad_pro_cp3.py" --root "$ROOT"
+
+      - name: Test CP1 through CP3 pattern and construction CAD
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q \
+            "$ROOT/tests/test_garment_cad_pro_cp1.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp2.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp3.py"
+
+      - name: Validate CP3 outputs and source budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python "$ROOT/scripts/validate_garment_cad_pro_cp3.py" --root "$ROOT"
+
+      - name: Validate schemas and diet bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -c "import json,pathlib; from jsonschema import Draft202012Validator; p=pathlib.Path('$ROOT/contracts/construction'); s=sorted(p.glob('*.schema.json')); assert len(s)==4; [Draft202012Validator.check_schema(json.loads(x.read_text())) for x in s]"
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish CP3 PNG evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_pro_cp3
+          mkdir -p delivery_pro_cp3
+          cp "$ROOT/build/construction_cp3/cp3_construction_evidence.png" delivery_pro_cp3/
+          cp "$ROOT/build/construction_cp3/cp3_receipt.json" delivery_pro_cp3/
+          cp "$ROOT/PROFESSIONAL_STATUS.json" delivery_pro_cp3/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_pro_cp3
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish garment CAD Pro CP3 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1a-cp3-20261001
+          fi
+
+      - name: Upload single integrated CP3 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP3
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
