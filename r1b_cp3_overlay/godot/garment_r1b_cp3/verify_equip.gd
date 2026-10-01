@@ -164,7 +164,7 @@ func _initialize() -> void:
     _tx(transactions, "re_equip", "UPPER", canonical.name, re_equip)
     var tunic_stats := _mesh_stats(tunic_scene)
     var trousers_stats := _mesh_stats(trousers_scene)
-    var all_pass := (
+    var all_pass: bool = (
         upper.pass and not duplicate.pass and lower.pass and swap_ok.pass and not swap_bad.pass
         and failed_preserved and unequip.pass and re_equip.pass
         and runtime.state_count() == 2
