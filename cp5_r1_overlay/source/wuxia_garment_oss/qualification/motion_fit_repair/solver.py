@@ -11,7 +11,7 @@ from ..motion_fit.mesh import MotionMesh
 from ..motion_fit.poses import MotionPose
 from ..motion_fit.solver import material_controls
 from .contact import project_outside
-from .field import PoseField, build_pose_field
+from .field import PoseField, build_pose_field, scaled_pose_field
 from .transforms import smoothstep
 
 
@@ -65,7 +65,7 @@ def schedule_for(pose_id: str) -> RepairSchedule:
     values = {
         "ARMS_OVERHEAD": RepairSchedule(12, 14, 2, 7, 0.72, 0.30),
         "CROSS_BODY_REACH": RepairSchedule(12, 14, 2, 7, 0.66, 0.28),
-        "FORWARD_BEND": RepairSchedule(18, 18, 3, 9, 0.45, 0.22),
+        "FORWARD_BEND": RepairSchedule(20, 22, 3, 10, 0.40, 0.20),
         "SEATED": RepairSchedule(14, 14, 2, 7, 0.62, 0.20),
         "SQUAT": RepairSchedule(16, 16, 3, 8, 0.56, 0.20),
         "WALK_STRIDE": RepairSchedule(14, 14, 2, 8, 0.58, 0.18),
@@ -149,14 +149,20 @@ def _runtime() -> dict:
         "version": version,
         "device": "cpu",
         "cuda_status": "AVAILABLE_NOT_USED" if cuda_available else "EXPLICIT_NO_CUDA_DEVICE",
-        "kernel": "CP5_R1_SEGMENTED_POSE_DRIVE_V1",
+        "kernel": "CP5_R1_SEGMENTED_POSE_DRIVE_V2",
     }
 
 
-def _phase_target(mesh: MotionMesh, field: PoseField, frame: int, schedule: RepairSchedule) -> np.ndarray:
+def _phase_state(
+    mesh: MotionMesh,
+    field: PoseField,
+    frame: int,
+    schedule: RepairSchedule,
+) -> tuple[np.ndarray, PoseField]:
     ratio = min((frame + 1) / schedule.transition_frames, 1.0)
     phase = float(smoothstep(0.0, 1.0, np.asarray([ratio]))[0])
-    return mesh.positions + phase * (field.target_positions - mesh.positions)
+    contact_field = scaled_pose_field(mesh.positions, field, phase)
+    return contact_field.target_positions, contact_field
 
 
 def solve_failed_pose(
@@ -176,7 +182,7 @@ def solve_failed_pose(
     maximum_correction = np.zeros(mesh.vertex_count, dtype=np.float64)
     for frame in range(schedule.frame_count):
         start = positions.copy()
-        target = _phase_target(mesh, field, frame, schedule)
+        target, contact_field = _phase_state(mesh, field, frame, schedule)
         settling = frame >= schedule.transition_frames
         damping = 0.0 if settling else min(controls.damping, 0.035)
         drive_gain = controls.drive_gain * schedule.drive_scale * (0.72 if settling else 1.0)
@@ -186,7 +192,7 @@ def solve_failed_pose(
                 positions = _project_pairs(positions, mesh.edges, mesh.edge_rest_lengths, controls.structural_gain)
                 positions = _project_pairs(positions, mesh.seam_pairs, mesh.seam_rest_lengths, controls.seam_gain)
                 positions = _project_attachments(positions, target, mesh.attachment_indices, schedule.attachment_gain)
-                positions, correction = project_outside(positions, envelope, field)
+                positions, correction = project_outside(positions, envelope, contact_field)
                 contact_count += correction > 1.0e-9
                 maximum_correction = np.maximum(maximum_correction, correction)
         frame_motion.append(float(np.max(np.linalg.norm(positions - start, axis=1))))
