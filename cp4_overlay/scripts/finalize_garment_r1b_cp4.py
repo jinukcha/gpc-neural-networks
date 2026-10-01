@@ -26,6 +26,32 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def _update_roadmap(root: Path) -> None:
+    path = root / "docs/roadmap/GARMENT_CAD_PRO_R1B_ROADMAP_KO.md"
+    marker = "## CP4 실행 결과"
+    text = path.read_text(encoding="utf-8") if path.is_file() else "# GARMENT-CAD-PRO-R1B Roadmap\n"
+    if marker in text:
+        return
+    addition = """
+
+## CP4 실행 결과
+
+```text
+GarmentLibraryRegistry/1      구현
+OutfitAssemblyPlan/1          구현
+BodyOcclusionMask/1           구현
+compatible two-piece outfit   PASS
+incompatible atomic reject    PASS
+Godot 4.7.2 consumer          PASS
+secondary motion              미실행
+rig-aware LOD                 미실행
+next                          CP5
+```
+"""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text.rstrip() + addition, encoding="utf-8")
+
+
 def write_report(root: Path, receipt: dict, runtime: dict) -> None:
     report = f"""# GARMENT-CAD-PRO-R1B / CP4 실행 보고서
 
@@ -67,6 +93,7 @@ trousers vertices   {runtime['trousers']['vertex_count']}
         "Secondary motion and rig-aware LOD remain deferred to CP6.\n",
         encoding="utf-8",
     )
+    _update_roadmap(root)
 
 
 def main() -> int:
