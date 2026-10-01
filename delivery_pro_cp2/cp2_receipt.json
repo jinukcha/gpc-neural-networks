@@ -1,0 +1,25 @@
+{
+  "accepted_feature_count": 4,
+  "arbitrary_n_grading": true,
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP2",
+  "cp1_document_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+  "cp1_predecessor_mutated": false,
+  "curve_propagation_pass": true,
+  "failure_atomicity_pass": true,
+  "failure_probe_count": 4,
+  "feature_types": [
+    "DART",
+    "PLEAT",
+    "GATHER",
+    "GUSSET"
+  ],
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1A_CP3",
+  "notch_arc_position_preserved": true,
+  "receipt_sha256": "eedfa6b9f26b143822f26fa098f39c16e02782b09098b5ad0b41367207c6dc60",
+  "size_variant_count": 7,
+  "stable_ids_removed": 0,
+  "terminal_decision": "CP2_COMPLETE_GRADING_FEATURE_GRAPH",
+  "triangulation_executed": false,
+  "warp_simulation_executed": false
+}
