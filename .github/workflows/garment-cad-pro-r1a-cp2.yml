@@ -1,0 +1,142 @@
+name: Garment CAD Pro R1A CP2
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1a-cp2-20261001
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: garment-cad-pro-r1a-cp2-20261001
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1a-cp2-20261001
+          persist-credentials: true
+
+      - name: Download CP1 integrated predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP1_RECOVERY
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36824376282
+          github-token: ${{ github.token }}
+
+      - name: Overlay CP2 implementation and preserve predecessors
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP2"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          tree_hash() {
+            find "$1" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}'
+          }
+          pattern_hash="$(tree_hash "$root/build/pattern_cad_cp1")"
+          anthropometry_hash="$(tree_hash "$root/build/anthropometry_cp0")"
+          tunic_hash="$(tree_hash "$root/build/tunic_pilot")"
+          robe_hash="$(tree_hash "$root/build/robe_pilot")"
+          cp -a cp2_pro_overlay/source/. "$root/source/"
+          cp -a cp2_pro_overlay/scripts/. "$root/scripts/"
+          cp -a cp2_pro_overlay/tests/. "$root/tests/"
+          chmod +x "$root/scripts/"*.py
+          cat >> "$root/docs/architecture/professional/PARAMETRIC_PATTERN_CAD_KERNEL_KO.md" <<'DOC'
+
+## CP2 구현 상태
+
+CP2는 committed PatternDocument를 immutable predecessor로 사용해 arbitrary-N grade rule,
+named grade point, exact-curve propagation, notch normalized arc-position과 dart·pleat·gather·gusset
+feature graph를 발행한다. Feature는 CP1 atomic transaction store에서 적용하며 rejected operation은
+revision과 document hash를 보존한다. Triangulation과 Warp product simulation은 실행하지 않는다.
+DOC
+          cat >> "$root/docs/roadmap/GARMENT_CAD_PRO_R1A_ROADMAP_KO.md" <<'DOC'
+
+## CP2 결과
+
+- arbitrary-N industrial grading: 구현
+- named grade point와 exact curve propagation: 구현
+- notch arc-position preservation: 구현
+- dart·pleat·gather·gusset feature graph: 구현
+- stable-ID mapping과 failure atomicity: 구현
+- triangulation / Warp: 미실행
+- 다음 단계: CP3 ConstructionGraph / SeamSpec/2 / allowance / closures / lining-interfacing
+DOC
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_CP1_HASH=$pattern_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_ANTHROPOMETRY_CP0_HASH=$anthropometry_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_TUNIC_BUILD_HASH=$tunic_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_ROBE_BUILD_HASH=$robe_hash" >> "$GITHUB_ENV"
+
+      - name: Install bounded CP2 tooling
+        run: >-
+          python -m pip install --disable-pip-version-check --no-cache-dir
+          matplotlib==3.9.4 pillow==11.1.0 pytest==8.3.5 jsonschema==4.25.1
+
+      - name: Execute CP2 grading and feature graph
+        run: >-
+          env MPLBACKEND=Agg PYTHONPATH="$ROOT/source"
+          python "$ROOT/scripts/run_garment_cad_pro_cp2.py" --root "$ROOT"
+
+      - name: Test CP1 and CP2 pattern CAD
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q \
+            "$ROOT/tests/test_garment_cad_pro_cp1.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp2.py"
+
+      - name: Validate CP2 outputs and source budget
+        run: python "$ROOT/scripts/validate_garment_cad_pro_cp2.py" --root "$ROOT"
+
+      - name: Validate schemas and diet bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<PY
+          import json, pathlib
+          from jsonschema import Draft202012Validator
+          paths = sorted(pathlib.Path("$ROOT/contracts/pattern_cad").glob("*.schema.json"))
+          assert len(paths) == 4
+          for path in paths:
+              Draft202012Validator.check_schema(json.loads(path.read_text()))
+          PY
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish CP2 PNG evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_pro_cp2
+          mkdir -p delivery_pro_cp2
+          cp "$ROOT/build/pattern_cad_cp2/cp2_grading_feature_evidence.png" delivery_pro_cp2/
+          cp "$ROOT/build/pattern_cad_cp2/cp2_receipt.json" delivery_pro_cp2/
+          cp "$ROOT/PROFESSIONAL_STATUS.json" delivery_pro_cp2/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_pro_cp2
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish garment CAD Pro CP2 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1a-cp2-20261001
+          fi
+
+      - name: Upload single integrated CP2 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP2
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
