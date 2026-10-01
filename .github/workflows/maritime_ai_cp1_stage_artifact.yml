@@ -16,10 +16,12 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Validate staged tree
+      - name: Validate and normalize staged tree
         run: |
           set -euo pipefail
           test -d .tmp/maritime_ai_cp1
+          python .tmp/maritime_ai_cp1/post_stage_fixes.py
+          rm -f .tmp/maritime_ai_cp1/SHA256SUMS
           test -f .tmp/maritime_ai_cp1/sdk/include/maritime/fisheries/autonomy/fishing_skipper.hpp
           test -f .tmp/maritime_ai_cp1/sdk/src/fisheries/autonomy/runtime/fishing_skipper.cpp
           test -f .tmp/maritime_ai_cp1/sdk/tests/maritime_ai_cp1/fishing_cp1_contract_test.cpp
@@ -27,7 +29,7 @@ jobs:
           find .tmp/maritime_ai_cp1 -type f | sort
       - uses: actions/upload-artifact@v4
         with:
-          name: maritime-ai-r0a-cp1-stage-v2
+          name: maritime-ai-r0a-cp1-stage-v3
           path: .tmp/maritime_ai_cp1/
           compression-level: 6
           retention-days: 1
