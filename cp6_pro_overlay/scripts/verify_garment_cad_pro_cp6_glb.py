@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import shutil
 
 from wuxia_garment_oss.export.glb import verify_glb
 from wuxia_garment_oss.garments.trousers.fit import POSE_IDS
@@ -26,6 +27,15 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def remove_transient_bytecode(root: Path) -> None:
+    for directory in root.rglob("__pycache__"):
+        if directory.is_dir():
+            shutil.rmtree(directory)
+    for pattern in ("*.pyc", "*.pyo"):
+        for path in root.rglob(pattern):
+            path.unlink(missing_ok=True)
+
+
 def main() -> int:
     root = parse_args().root.resolve()
     directory = root / "build/garment_cad_pro_cp6/game_products"
@@ -40,6 +50,7 @@ def main() -> int:
         "fresh_process_pass": tunic["fresh_reopen_pass"] and trousers["fresh_reopen_pass"],
     }
     write_json(directory / "fresh_process_receipt.json", result)
+    remove_transient_bytecode(root)
     print(json.dumps(result, sort_keys=True))
     return 0 if result["fresh_process_pass"] else 1
 
