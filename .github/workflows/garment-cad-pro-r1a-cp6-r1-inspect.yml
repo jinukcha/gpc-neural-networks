@@ -1,0 +1,45 @@
+name: Garment CAD Pro R1A CP6-R1 Inspect
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1a-cp6-r1-20261001
+
+permissions:
+  contents: read
+
+concurrency:
+  group: garment-cad-pro-r1a-cp6-r1-inspect
+  cancel-in-progress: true
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1a-cp6-r1-20261001
+
+      - name: Reconstruct and inspect saved overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat cp6_r1_overlay_chunks/part*.b64 | base64 --decode > "$RUNNER_TEMP/cp6_r1_overlay.tar.gz"
+          echo "CP6_R1_OVERLAY_SHA256=$(sha256sum "$RUNNER_TEMP/cp6_r1_overlay.tar.gz" | awk '{print $1}')"
+          file "$RUNNER_TEMP/cp6_r1_overlay.tar.gz"
+          mkdir -p "$RUNNER_TEMP/cp6_r1_overlay"
+          tar -xzf "$RUNNER_TEMP/cp6_r1_overlay.tar.gz" -C "$RUNNER_TEMP/cp6_r1_overlay"
+          echo '--- overlay files ---'
+          find "$RUNNER_TEMP/cp6_r1_overlay" -type f -printf '%P\n' | sort
+          echo '--- python LOC ---'
+          find "$RUNNER_TEMP/cp6_r1_overlay" -type f -name '*.py' -print0 | xargs -0 wc -l | sort -n
+
+      - name: Upload reconstructed checkpoint
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_CAD_PRO_R1A_CP6_R1_OVERLAY_CHECKPOINT
+          path: ${{ runner.temp }}/cp6_r1_overlay
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: error
