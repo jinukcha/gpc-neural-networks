@@ -1,0 +1,26 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP6_R1",
+  "cp3_feature_topology_embodied": true,
+  "cp6_r1_scope_acceptance": true,
+  "exact_warp_runtime_pass": true,
+  "feature_component_count": 14,
+  "feature_triangle_count": 55850,
+  "feature_vertex_count": 29199,
+  "garment_cad_pro_r1a_complete": true,
+  "glb_fresh_process_pass": true,
+  "godot_4_7_2_consumer_pass": true,
+  "mesh_scaling": "FORBIDDEN",
+  "motion_fit_pass_count": 30,
+  "motion_fit_scenario_count": 30,
+  "next_action": "NEW_DESIGN_AND_ROADMAP_REQUIRED",
+  "predecessor_limits_unchanged": true,
+  "predecessor_preservation_pass": true,
+  "product_acceptance": true,
+  "receipt_sha256": "b19392aeb5bf06688a1d2fc2315e064031db0dc548852cbb4f2be85c010af97f",
+  "roadmap_complete": true,
+  "runtime": {
+    "godot": "4.7.2",
+    "warp": "1.17.0"
+  },
+  "terminal_decision": "GARMENT_CAD_PRO_R1A_COMPLETE"
+}
