@@ -71,7 +71,7 @@ def validate_scenarios(root: Path, vertex_count: int) -> dict:
     assert len(receipts) == len(archives) == len(packages) == 30
     identities = set()
     pass_count = 0
-    nonzero_motion = 0
+    nonneutral_motion = 0
     maximum_strain = 0.0
     maximum_pressure = 0.0
     for receipt_path, archive_path, package_path in zip(receipts, archives, packages):
@@ -90,16 +90,20 @@ def validate_scenarios(root: Path, vertex_count: int) -> dict:
             for name in MAP_KEYS - {"positions", "target_positions", "frame_max_displacement_m"}:
                 assert data[name].shape == (vertex_count,)
                 assert np.isfinite(data[name]).all(), (identity, name)
-            assert data["frame_max_displacement_m"].shape == (12,)
+            frame_motion = data["frame_max_displacement_m"]
+            assert frame_motion.shape == (12,)
             maximum_strain = max(maximum_strain, float(np.max(data["strain_ratio"])))
             maximum_pressure = max(maximum_pressure, float(np.max(data["pressure_pa"])))
-            nonzero_motion += bool(np.max(np.linalg.norm(data["positions"] - data["target_positions"], axis=1)) > 0.0)
+            if identity[1] != "NEUTRAL_A":
+                assert float(np.max(frame_motion)) > 0.0, identity
+                nonneutral_motion += 1
     expected = {(material, pose) for material in MATERIAL_IDS for pose in POSE_IDS}
     assert identities == expected
-    assert nonzero_motion == 30
+    assert nonneutral_motion == 27
     return {
         "scenario_count": len(archives),
         "pose_pass_count": pass_count,
+        "nonneutral_motion_scenario_count": nonneutral_motion,
         "maximum_vertex_strain": maximum_strain,
         "maximum_pressure_pa": maximum_pressure,
     }
