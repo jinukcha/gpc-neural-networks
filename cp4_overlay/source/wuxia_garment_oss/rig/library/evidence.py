@@ -141,11 +141,18 @@ def _plot_summary(ax, receipt: dict, transactions: dict) -> None:
     ax.set_title("terminal evidence summary")
 
 
+def _product_path(registry: dict, garment_id: str) -> str:
+    for entry in registry["entries"]:
+        if entry["garment_id"] == garment_id:
+            return entry["product_path"]
+    raise KeyError(garment_id)
+
+
 def render_cp4_evidence(root: Path, receipt: dict, transactions: dict) -> Path:
     build = root / "build/rig_cp4"
-    tunic = load_glb_positions(root / "build/rig_cp3/products/tunic/tunic_rigged.glb")
-    trousers = load_glb_positions(root / "build/rig_cp3/products/trousers/trousers_rigged.glb")
     registry = json.loads((build / "garment_library_registry.json").read_text(encoding="utf-8"))
+    tunic = load_glb_positions(root / _product_path(registry, "SLEEVELESS_TUNIC_RIGGED_R1B"))
+    trousers = load_glb_positions(root / _product_path(registry, "TROUSERS_RIGGED_R1B"))
     plan = json.loads((build / "outfits/reference_two_piece.json").read_text(encoding="utf-8"))
     fig, axes = plt.subplots(2, 3, figsize=(20, 14), constrained_layout=True)
     _plot_outfit(axes[0, 0], tunic, trousers, "front")
