@@ -79,15 +79,15 @@ def pose_target(positions: np.ndarray, pose_id: str, pom: dict[str, float]) -> t
     upper_leg, lower_leg, side = _motion_domains(base, pom)
     target = base.copy()
     if pose_id == "SEATED":
-        target = _rotate_x(target, upper_leg * 0.27, _pivot(base, crotch_z + 0.065, 0.12))
-        target[:, 2] -= upper_leg * 0.020
-        target[:, 1] += upper_leg * 0.022
+        target = _rotate_x(target, upper_leg * 0.20, _pivot(base, crotch_z + 0.065, 0.12))
+        target[:, 2] -= upper_leg * 0.015
+        target[:, 1] += upper_leg * 0.017
     elif pose_id == "SQUAT":
-        target = _rotate_x(target, upper_leg * 0.17, _pivot(base, crotch_z + 0.070, 0.12))
-        target = _rotate_x(target, -lower_leg * 0.13, _pivot(target, knee_z + 0.015, 0.30))
-        target[:, 2] -= upper_leg * 0.032 + lower_leg * 0.010
-        target[:, 1] += upper_leg * 0.012
-        target[:, 0] += side * upper_leg * 0.004
+        target = _rotate_x(target, upper_leg * 0.125, _pivot(base, crotch_z + 0.070, 0.12))
+        target = _rotate_x(target, -lower_leg * 0.095, _pivot(target, knee_z + 0.015, 0.30))
+        target[:, 2] -= upper_leg * 0.024 + lower_leg * 0.007
+        target[:, 1] += upper_leg * 0.009
+        target[:, 0] += side * upper_leg * 0.003
     elif pose_id == "WALK_STRIDE":
         target = _rotate_x(target, side * upper_leg * 0.18, _pivot(base, crotch_z + 0.060, 0.18))
         target[:, 1] += side * lower_leg * 0.018
@@ -164,7 +164,7 @@ def _runtime() -> dict:
         "version": version,
         "device": "cpu",
         "cuda_status": "AVAILABLE_NOT_USED" if cuda else "EXPLICIT_NO_CUDA_DEVICE",
-        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V3",
+        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V4",
     }
 
 
