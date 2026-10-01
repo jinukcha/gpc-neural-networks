@@ -1,0 +1,23 @@
+{
+  "assembly_cycle_free": true,
+  "assembly_operation_count": 21,
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP3",
+  "closure_count": 1,
+  "edge_finish_count": 8,
+  "facing_count": 2,
+  "failure_atomicity_pass": true,
+  "failure_probe_count": 4,
+  "gather_ratio": 1.12,
+  "layer_piece_count": 7,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1A_CP4",
+  "notch_pair_count": 12,
+  "receipt_sha256": "a3d1563f916bf4dd2f0fc0f3f355208b8bf90c80f9f7e7952dc6970002f8daf2",
+  "seam_spec_count": 12,
+  "source_document_mutated": false,
+  "source_pattern_document_sha256": "93ed68c803d35b429d40b27c03dc36f9b3bcb779755a4fc8775369e282760969",
+  "terminal_decision": "CP3_COMPLETE_CONSTRUCTION_GRAPH",
+  "triangulation_executed": false,
+  "turn_of_cloth_count": 3,
+  "warp_simulation_executed": false
+}
