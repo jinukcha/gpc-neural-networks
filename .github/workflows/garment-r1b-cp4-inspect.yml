@@ -28,20 +28,22 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36874764717
           github-token: ${{ github.token }}
-      - name: Inspect CP0 body source files and contracts
+      - name: Inspect preserved geometry products
         shell: bash
         run: |
           set -euo pipefail
-          echo 'CP4_BODY_SOURCE_FILES_BEGIN'
-          find "$RUNNER_TEMP/base/build/rig_cp0" -type f -printf '%P\t%s\n' | sort
-          echo 'CP4_BODY_SOURCE_FILES_END'
-          python - "$RUNNER_TEMP/base/build/rig_cp0" <<'PY'
+          base="$RUNNER_TEMP/base"
+          echo 'CP4_RELEVANT_FILES_BEGIN'
+          find "$base/build" -type f \( -iname '*body*' -o -iname '*skin*' -o -iname '*collision*' -o -iname '*.npz' -o -iname '*.glb' \) -printf '%P\t%s\n' | sort | head -1000
+          echo 'CP4_RELEVANT_FILES_END'
+          python - "$base/build" <<'PY'
           import json,pathlib,sys
           root=pathlib.Path(sys.argv[1])
           for path in sorted(root.rglob('*.json')):
               try: payload=json.loads(path.read_text())
               except Exception: continue
               text=json.dumps(payload,sort_keys=True)
-              if any(word in path.name.lower() or word in text[:2000].lower() for word in ('body','skin','geometry','mesh','archive')):
-                  print('CP4_JSON_SUMMARY='+json.dumps({'path':path.relative_to(root).as_posix(),'keys':sorted(payload) if isinstance(payload,dict) else [],'sample':text[:3000]},sort_keys=True))
+              if any(word in path.as_posix().lower() or word in text[:4000].lower() for word in ('body_skin','body source','collision','vertex_count','triangle_count','archive_path')):
+                  summary={'path':path.relative_to(root).as_posix(),'keys':sorted(payload) if isinstance(payload,dict) else [],'sample':text[:4000]}
+                  print('CP4_JSON_SUMMARY='+json.dumps(summary,sort_keys=True))
           PY
