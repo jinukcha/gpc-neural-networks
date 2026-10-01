@@ -50,27 +50,8 @@ jobs:
           cp -a cp2_pro_overlay/scripts/. "$root/scripts/"
           cp -a cp2_pro_overlay/tests/. "$root/tests/"
           chmod +x "$root/scripts/"*.py
-          cat >> "$root/docs/architecture/professional/PARAMETRIC_PATTERN_CAD_KERNEL_KO.md" <<'DOC'
-
-## CP2 구현 상태
-
-CP2는 committed PatternDocument를 immutable predecessor로 사용해 arbitrary-N grade rule,
-named grade point, exact-curve propagation, notch normalized arc-position과 dart·pleat·gather·gusset
-feature graph를 발행한다. Feature는 CP1 atomic transaction store에서 적용하며 rejected operation은
-revision과 document hash를 보존한다. Triangulation과 Warp product simulation은 실행하지 않는다.
-DOC
-          cat >> "$root/docs/roadmap/GARMENT_CAD_PRO_R1A_ROADMAP_KO.md" <<'DOC'
-
-## CP2 결과
-
-- arbitrary-N industrial grading: 구현
-- named grade point와 exact curve propagation: 구현
-- notch arc-position preservation: 구현
-- dart·pleat·gather·gusset feature graph: 구현
-- stable-ID mapping과 failure atomicity: 구현
-- triangulation / Warp: 미실행
-- 다음 단계: CP3 ConstructionGraph / SeamSpec/2 / allowance / closures / lining-interfacing
-DOC
+          printf '\n## CP2 구현 상태\n\nCP2는 committed PatternDocument를 immutable predecessor로 사용해 arbitrary-N grade rule, named grade point, exact-curve propagation, notch normalized arc-position과 dart·pleat·gather·gusset feature graph를 발행한다. Feature는 CP1 atomic transaction store에서 적용하며 rejected operation은 revision과 document hash를 보존한다. Triangulation과 Warp product simulation은 실행하지 않는다.\n' >> "$root/docs/architecture/professional/PARAMETRIC_PATTERN_CAD_KERNEL_KO.md"
+          printf '\n## CP2 결과\n\n- arbitrary-N industrial grading: 구현\n- named grade point와 exact curve propagation: 구현\n- notch arc-position preservation: 구현\n- dart·pleat·gather·gusset feature graph: 구현\n- stable-ID mapping과 failure atomicity: 구현\n- triangulation / Warp: 미실행\n- 다음 단계: CP3 ConstructionGraph / SeamSpec/2 / allowance / closures / lining-interfacing\n' >> "$root/docs/roadmap/GARMENT_CAD_PRO_R1A_ROADMAP_KO.md"
           echo "ROOT=$root" >> "$GITHUB_ENV"
           echo "EXPECTED_PATTERN_CAD_CP1_HASH=$pattern_hash" >> "$GITHUB_ENV"
           echo "EXPECTED_ANTHROPOMETRY_CP0_HASH=$anthropometry_hash" >> "$GITHUB_ENV"
@@ -102,14 +83,7 @@ DOC
         shell: bash
         run: |
           set -euo pipefail
-          python - <<PY
-          import json, pathlib
-          from jsonschema import Draft202012Validator
-          paths = sorted(pathlib.Path("$ROOT/contracts/pattern_cad").glob("*.schema.json"))
-          assert len(paths) == 4
-          for path in paths:
-              Draft202012Validator.check_schema(json.loads(path.read_text()))
-          PY
+          python -c "import json,pathlib; from jsonschema import Draft202012Validator; p=pathlib.Path('$ROOT/contracts/pattern_cad'); s=sorted(p.glob('*.schema.json')); assert len(s)==4; [Draft202012Validator.check_schema(json.loads(x.read_text())) for x in s]"
           find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
           find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
           python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
