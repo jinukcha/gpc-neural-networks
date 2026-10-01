@@ -29,10 +29,13 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36874764717
           github-token: ${{ github.token }}
-      - name: Publish compact geometry diagnostic
+      - name: Publish temporary body-skin source snapshot
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf cp4_body_source_snapshot
+          mkdir -p cp4_body_source_snapshot
+          cp -a "$RUNNER_TEMP/base/source/wuxia_garment_oss/rig/body_skin/." cp4_body_source_snapshot/
           python - "$RUNNER_TEMP/base/build" cp4_body_archive_diagnostic.json <<'PY'
           import json,pathlib,sys
           root=pathlib.Path(sys.argv[1]); target=pathlib.Path(sys.argv[2])
@@ -41,26 +44,12 @@ jobs:
               lower=path.as_posix().lower()
               if any(token in lower for token in ('body','skin','collision')) or path.suffix.lower() in {'.npz','.npy','.glb'}:
                   relevant.append({'path':path.relative_to(root).as_posix(),'bytes':path.stat().st_size})
-          summaries=[]
-          for path in sorted(root.rglob('*.json')):
-              try: payload=json.loads(path.read_text())
-              except Exception: continue
-              if not isinstance(payload,dict): continue
-              encoded=json.dumps(payload,sort_keys=True)
-              lower=(path.as_posix()+' '+encoded[:6000]).lower()
-              if any(token in lower for token in ('body_skin','body source','collision','vertex_count','triangle_count','archive_path','array_path')):
-                  values={}
-                  for key in ('contract','archive_path','array_path','npz_path','geometry_path','source_archive_path','vertex_count','triangle_count','body_vertex_count','body_triangle_count','product_path','mesh_archive_path'):
-                      if key in payload: values[key]=payload[key]
-                  summaries.append({'path':path.relative_to(root).as_posix(),'keys':sorted(payload),'values':values})
-          result={'relevant_files':relevant[:1500],'json_summaries':summaries[:500]}
-          target.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
-          print(json.dumps({'relevant_count':len(relevant),'summary_count':len(summaries)}))
+          target.write_text(json.dumps({'relevant_files':relevant[:1500]},indent=2,sort_keys=True)+'\n')
           PY
           git config user.name 'chatgpt-garment-cad'
           git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
-          git add cp4_body_archive_diagnostic.json
+          git add cp4_body_source_snapshot cp4_body_archive_diagnostic.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Publish temporary CP4 body archive diagnostic [skip ci]'
+            git commit -m 'Publish temporary CP4 body source snapshot [skip ci]'
             git push origin HEAD:garment-cad-pro-r1b-cp4-20261001
           fi
