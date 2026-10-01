@@ -26,11 +26,11 @@ def parse_args() -> argparse.Namespace:
 
 
 def hash_tree(path: Path) -> str:
-    digest = hashlib.sha256()
+    rows = []
     for item in sorted(path.rglob("*.json")):
-        digest.update(item.relative_to(path).as_posix().encode("utf-8"))
-        digest.update(hashlib.sha256(item.read_bytes()).digest())
-    return digest.hexdigest()
+        rel = "./" + item.relative_to(path).as_posix()
+        rows.append(f"{hashlib.sha256(item.read_bytes()).hexdigest()}  {rel}\n")
+    return hashlib.sha256("".join(rows).encode("utf-8")).hexdigest()
 
 
 def load_packages(root: Path) -> dict[str, dict]:
