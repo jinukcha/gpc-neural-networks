@@ -37,10 +37,11 @@ def load_json(path: Path) -> dict:
 def validate_grading(root: Path) -> dict:
     build = root / "build/pattern_cad_cp2/grading"
     rule_set = load_json(build / "grade_rule_set.json")
-    receipt = load_json(build / "grading_receipt.json")
-    variants = {path.stem: load_json(path) for path in (build / "variants").glob("*.json")}
+    loaded = {path.stem: load_json(path) for path in (build / "variants").glob("*.json")}
+    variants = {size_id: loaded[size_id] for size_id in EXPECTED_SIZES}
     assert tuple(rule_set["ordered_size_ids"]) == EXPECTED_SIZES
-    assert tuple(variants) == EXPECTED_SIZES
+    assert set(loaded) == set(EXPECTED_SIZES)
+    receipt = load_json(build / "grading_receipt.json")
     assert receipt["arbitrary_n_supported"] is True
     assert receipt["size_count"] == 7
     assert receipt["maximum_notch_fraction_error"] <= 1.0e-12
@@ -126,12 +127,13 @@ def source_budget(root: Path) -> dict:
 def validate_predecessors(root: Path) -> dict:
     targets = {
         "pattern_cad_cp1": root / "build/pattern_cad_cp1",
-        "anthropometry_cp0": root / "build/anthropometry_cp0",
         "tunic_build": root / "build/tunic_pilot",
-        "robe_build": root / "build/robe_pilot",
+        "sizing_source": root / "source/wuxia_garment_oss/sizing",
+        "drape_source": root / "source/wuxia_garment_oss/drape",
     }
     result = {}
     for name, path in targets.items():
+        assert path.exists(), (name, path)
         actual = hash_tree(path)
         expected = os.environ[f"EXPECTED_{name.upper()}_HASH"]
         assert actual == expected, (name, actual, expected)
