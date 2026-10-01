@@ -1,0 +1,210 @@
+name: Garment sizing CP1 package
+
+on:
+  push:
+    branches:
+      - garment-sizing-r0a-cp1-20261001
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: garment-sizing-r0a-cp1-20261001
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-sizing-r0a-cp1-20261001
+          persist-credentials: true
+
+      - name: Download sizing design baseline
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_REV1_CP3_SIZING_DESIGN
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36708519608
+          github-token: ${{ github.token }}
+
+      - name: Overlay CP1 implementation and preserve product authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_CP2B_R4_REV1_GARMENT_SIZING_CP1"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          before_drape="$(find "$root/source/wuxia_garment_oss/drape" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
+          before_mesh="$(sha256sum "$root/build/tunic_pilot/warp_cp3/final_simulation_mesh.npz" | awk '{print $1}')"
+          before_png="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" | awk '{print $1}')"
+          before_receipt="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_receipt.json" | awk '{print $1}')"
+          cp -a cp1_overlay/source/. "$root/source/"
+          cp -a cp1_overlay/scripts/. "$root/scripts/"
+          cp -a cp1_overlay/tests/. "$root/tests/"
+          chmod +x "$root/scripts/run_garment_sizing_cp1.py"
+          cat >> "$root/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md" <<'DOC'
+
+## CP1 구현 상태
+
+`GARMENT-SIZING-R0A / CP1`은 튜닉 family의 다차원 size score, shape/height block,
+standard grade와 custom alteration 분리, excessive-alteration admission을 구현한다.
+이 단계는 2D pattern parameter를 아직 변경하지 않고 selection receipt만 발행한다.
+`NORMAL_GRADE`, `CUSTOM_ALTERATION`, `ALTERNATE_BLOCK_REQUIRED`,
+`TOPOLOGY_CHANGE_REQUIRED`, `HOLD`는 서로 배타적인 terminal admission이다.
+DOC
+          cat >> "$root/docs/roadmap/GARMENT_SIZING_R0A_ROADMAP_KO.md" <<'DOC'
+
+## CP1 결과
+
+- 다차원 normalized size score: 구현
+- REGULAR/BROAD_SHOULDER/FULL_CHEST/FULL_ABDOMEN: 구현
+- REGULAR/TALL/SHORT height block: 구현
+- grade/custom alteration 분리: 구현
+- excessive alteration admission/receipt: 구현
+- triangulation/Warp: 미실행
+- 다음 단계: CP2 parametric tunic POM/landmark resolver
+DOC
+          after_drape="$(find "$root/source/wuxia_garment_oss/drape" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
+          after_mesh="$(sha256sum "$root/build/tunic_pilot/warp_cp3/final_simulation_mesh.npz" | awk '{print $1}')"
+          after_png="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" | awk '{print $1}')"
+          after_receipt="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_receipt.json" | awk '{print $1}')"
+          test "$before_drape" = "$after_drape"
+          test "$before_mesh" = "$after_mesh"
+          test "$before_png" = "$after_png"
+          test "$before_receipt" = "$after_receipt"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "DRAPE_HASH=$after_drape" >> "$GITHUB_ENV"
+          echo "MESH_HASH=$after_mesh" >> "$GITHUB_ENV"
+          echo "PNG_HASH=$after_png" >> "$GITHUB_ENV"
+          echo "CP3_RECEIPT_HASH=$after_receipt" >> "$GITHUB_ENV"
+
+      - name: Install bounded CP1 tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.1.3 matplotlib==3.9.4 pillow==11.1.0 pytest==8.3.5 jsonschema==4.25.1
+
+      - name: Execute CP1 selection pilot
+        shell: bash
+        run: |
+          set -euo pipefail
+          MPLBACKEND=Agg PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/run_garment_sizing_cp1.py" --root "$ROOT"
+
+      - name: Test contracts, selection, and source budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests/test_garment_sizing_cp1.py"
+          python - "$ROOT" <<'PY'
+          import ast, json, pathlib, sys
+          from PIL import Image
+          root = pathlib.Path(sys.argv[1])
+          status = json.loads((root / 'SIZING_STATUS.json').read_text())
+          assert status['terminal_decision'] == 'CP1_COMPLETE_SELECTION_ONLY'
+          assert status['triangulation_executed'] is False
+          assert status['warp_simulation_executed'] is False
+          assert status['size_table_cardinality'] == 4
+          required = {
+              'NORMAL_GRADE', 'CUSTOM_ALTERATION',
+              'ALTERNATE_BLOCK_REQUIRED', 'TOPOLOGY_CHANGE_REQUIRED', 'HOLD',
+          }
+          assert required.issubset(status['admission_counts'])
+          evidence = root / 'build/tunic_pilot/sizing_cp1/cp1_selection_evidence.png'
+          with Image.open(evidence) as image:
+              assert image.width >= 1600 and image.height >= 1000
+          files = sorted((root / 'source').rglob('*.py')) + sorted((root / 'scripts').glob('*.py'))
+          maximum_file = ('', 0)
+          maximum_function = ('', '', 0)
+          violations = []
+          for path in files:
+              text = path.read_text(encoding='utf-8')
+              rel = path.relative_to(root).as_posix()
+              loc = len(text.splitlines())
+              maximum_file = max(maximum_file, (rel, loc), key=lambda row: row[1])
+              tree = ast.parse(text)
+              for node in ast.walk(tree):
+                  if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                      size = getattr(node, 'end_lineno', node.lineno) - node.lineno + 1
+                      if size > maximum_function[2]:
+                          maximum_function = (rel, node.name, size)
+                      if size > 80:
+                          violations.append((rel, node.name, size))
+          assert maximum_file[1] <= 500, maximum_file
+          assert not violations, violations
+          checks = {
+              'schema_version': 1,
+              'cp1_tests': 'PASS',
+              'product_drape_source_sha256': __import__('os').environ['DRAPE_HASH'],
+              'cp3_final_mesh_sha256': __import__('os').environ['MESH_HASH'],
+              'cp3_frame180_png_sha256': __import__('os').environ['PNG_HASH'],
+              'cp3_receipt_sha256': __import__('os').environ['CP3_RECEIPT_HASH'],
+              'source_budget': {
+                  'files_checked': len(files),
+                  'maximum_file': {'path': maximum_file[0], 'loc': maximum_file[1]},
+                  'maximum_function': {
+                      'path': maximum_function[0], 'name': maximum_function[1],
+                      'loc': maximum_function[2],
+                  },
+                  'files_over_500': [], 'functions_over_80': [],
+              },
+          }
+          (root / 'SIZING_CHECKS.json').write_text(json.dumps(checks, indent=2, sort_keys=True) + '\n')
+          PY
+
+      - name: Validate schemas and diet bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$ROOT" <<'PY'
+          import json, pathlib, sys
+          from jsonschema import Draft202012Validator
+          root = pathlib.Path(sys.argv[1])
+          schemas = sorted((root / 'contracts/sizing').glob('*.schema.json'))
+          assert len(schemas) == 9
+          for path in schemas:
+              Draft202012Validator.check_schema(json.loads(path.read_text()))
+          assert not list(root.rglob('*.whl'))
+          PY
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python - "$ROOT" <<'PY'
+          import hashlib, pathlib, sys
+          root = pathlib.Path(sys.argv[1])
+          rows = []
+          for path in sorted(root.rglob('*')):
+              if path.is_file() and path.name != 'MANIFEST.sha256':
+                  rows.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.relative_to(root).as_posix()}")
+          (root / 'MANIFEST.sha256').write_text('\n'.join(rows) + '\n')
+          PY
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish CP1 PNG evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_cp1
+          mkdir -p delivery_cp1
+          cp "$ROOT/build/tunic_pilot/sizing_cp1/cp1_selection_evidence.png" delivery_cp1/
+          cp "$ROOT/build/tunic_pilot/sizing_cp1/cp1_receipt.json" delivery_cp1/
+          cp "$ROOT/SIZING_STATUS.json" delivery_cp1/
+          git config user.name 'chatgpt-garment-sizing'
+          git config user.email 'chatgpt-garment-sizing@users.noreply.github.com'
+          git add delivery_cp1
+          git commit -m 'Publish garment sizing CP1 evidence [skip ci]'
+          git push origin HEAD:garment-sizing-r0a-cp1-20261001
+
+      - name: Upload single integrated CP1 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_CP2B_R4_REV1_GARMENT_SIZING_CP1
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
