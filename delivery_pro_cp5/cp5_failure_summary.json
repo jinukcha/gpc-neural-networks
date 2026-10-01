@@ -1,0 +1,479 @@
+{
+  "by_pose": {
+    "ARMS_FORWARD": {
+      "failed_gates": {},
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.0048495961981093174,
+          "minimum": 0.003911946843540747
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.17708261348139817,
+          "minimum": 0.14112502904807397
+        },
+        "pressure_p99_kpa": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.11484119855309036,
+          "minimum": 0.10883618598016123
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.005366399969222658,
+          "minimum": 0.0053224349084849505
+        }
+      },
+      "pass_count": 3,
+      "scenario_count": 3
+    },
+    "ARMS_OVERHEAD": {
+      "failed_gates": {
+        "convergence": 3
+      },
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.018590486550895215,
+          "minimum": 0.017863063136950037
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.18301296952973684,
+          "minimum": 0.1449756505760471
+        },
+        "pressure_p99_kpa": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.3148255268542412,
+          "minimum": 0.2933230328249481
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.007824916221772874,
+          "minimum": 0.007778616299014339
+        }
+      },
+      "pass_count": 0,
+      "scenario_count": 3
+    },
+    "CROSS_BODY_REACH": {
+      "failed_gates": {
+        "convergence": 3,
+        "pressure_p99": 1
+      },
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.003493012371180586,
+          "minimum": 0.003486968158108805
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.125,
+          "minimum": 0.08333333333333333
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.19128224558589035,
+          "minimum": 0.15840473938586339
+        },
+        "pressure_p99_kpa": {
+          "maximum": 36.41055710121,
+          "minimum": 5.082237451467673
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.28982381452060496,
+          "minimum": 0.2543124190720513
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.006521710977696809,
+          "minimum": 0.00647932656521746
+        }
+      },
+      "pass_count": 0,
+      "scenario_count": 3
+    },
+    "DEEP_ELBOW_BEND": {
+      "failed_gates": {},
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.00855388855583974,
+          "minimum": 0.007718030923754311
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.17689635793402844,
+          "minimum": 0.140921853740123
+        },
+        "pressure_p99_kpa": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.09585837195641059,
+          "minimum": 0.09091171643635335
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.004517625732978614,
+          "minimum": 0.004480536209225346
+        }
+      },
+      "pass_count": 3,
+      "scenario_count": 3
+    },
+    "FORWARD_BEND": {
+      "failed_gates": {
+        "body_clearance": 1,
+        "contact_persistence": 3,
+        "convergence": 3,
+        "pressure_p99": 1,
+        "strain_p99": 3
+      },
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.001118399306622811,
+          "minimum": -0.0008367645851380779
+        },
+        "contact_persistence_p99": {
+          "maximum": 1.0,
+          "minimum": 1.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.18365120070993254,
+          "minimum": 0.15387075866833644
+        },
+        "pressure_p99_kpa": {
+          "maximum": 36.41055710121,
+          "minimum": 5.082237451467673
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 6.105977769242168,
+          "minimum": 4.886864394709537
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.1714127257382871,
+          "minimum": 0.1633792547261615
+        }
+      },
+      "pass_count": 0,
+      "scenario_count": 3
+    },
+    "NEUTRAL_A": {
+      "failed_gates": {},
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.02636339797098485,
+          "minimum": 0.02636339797098485
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "pressure_p99_kpa": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        }
+      },
+      "pass_count": 3,
+      "scenario_count": 3
+    },
+    "SEATED": {
+      "failed_gates": {
+        "convergence": 3,
+        "pressure_p99": 1
+      },
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.026363393569557924,
+          "minimum": 0.026363345200453216
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.20833333333333334,
+          "minimum": 0.20833333333333334
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.18152030851390827,
+          "minimum": 0.15299517802369267
+        },
+        "pressure_p99_kpa": {
+          "maximum": 36.41055710121,
+          "minimum": 5.082237451467673
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.05445325239700438,
+          "minimum": 0.05236560575187887
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.008646561998485297,
+          "minimum": 0.008305198504993892
+        }
+      },
+      "pass_count": 0,
+      "scenario_count": 3
+    },
+    "SQUAT": {
+      "failed_gates": {
+        "convergence": 3,
+        "pressure_p99": 1
+      },
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.018425866493839187,
+          "minimum": 0.016603483073677233
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.4583333333333333,
+          "minimum": 0.4583333333333333
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.1816858496352598,
+          "minimum": 0.1533140550188104
+        },
+        "pressure_p99_kpa": {
+          "maximum": 36.41055710121,
+          "minimum": 5.082237451467673
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.21793892851199134,
+          "minimum": 0.20511280782031108
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.014211496943156614,
+          "minimum": 0.013650393991222216
+        }
+      },
+      "pass_count": 0,
+      "scenario_count": 3
+    },
+    "TORSO_TWIST": {
+      "failed_gates": {},
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.02582982127099572,
+          "minimum": 0.025702759282139075
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.18191148695632997,
+          "minimum": 0.1520478574866983
+        },
+        "pressure_p99_kpa": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 0.07861354341985413,
+          "minimum": 0.07770374892162021
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.005997476425984888,
+          "minimum": 0.005976989789592564
+        }
+      },
+      "pass_count": 3,
+      "scenario_count": 3
+    },
+    "WALK_STRIDE": {
+      "failed_gates": {
+        "convergence": 3,
+        "strain_p99": 3
+      },
+      "metric_ranges": {
+        "clearance_min_m": {
+          "maximum": 0.022705619763072293,
+          "minimum": 0.0212521962129647
+        },
+        "contact_persistence_p99": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "mobility_restriction_p95": {
+          "maximum": 0.18858424198301024,
+          "minimum": 0.1608647605560609
+        },
+        "pressure_p99_kpa": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "seam_tension_p95_n_m": {
+          "maximum": 0.0,
+          "minimum": 0.0
+        },
+        "strain_p99_ratio": {
+          "maximum": 1.1422957175296886,
+          "minimum": 0.9524924498945987
+        },
+        "tail_peak_displacement_m": {
+          "maximum": 0.006693558209794948,
+          "minimum": 0.00642635041948382
+        }
+      },
+      "pass_count": 0,
+      "scenario_count": 3
+    }
+  },
+  "contract": "CP5FailureDiagnosticSummary/1",
+  "diagnostic_only": true,
+  "failed_count": 18,
+  "failed_gate_counts": {
+    "body_clearance": 1,
+    "contact_persistence": 3,
+    "convergence": 18,
+    "pressure_p99": 4,
+    "strain_p99": 6
+  },
+  "pass_count": 12,
+  "scenario_count": 30,
+  "simulation_reexecuted": false,
+  "worst_metrics": {
+    "clearance_min_m": {
+      "material_id": "LINEN_LIGHT_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": -0.0008367645851380779
+    },
+    "clearance_p01_m": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 0.0032255942901581163
+    },
+    "contact_persistence_p99": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 1.0
+    },
+    "final_frame_max_displacement_m": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 0.1714127257382871
+    },
+    "mobility_restriction_max": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 1.0
+    },
+    "mobility_restriction_p95": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "CROSS_BODY_REACH",
+      "value": 0.19128224558589035
+    },
+    "non_finite_map_count": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "WALK_STRIDE",
+      "value": 0.0
+    },
+    "pressure_max_kpa": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "SQUAT",
+      "value": 36.41055710121
+    },
+    "pressure_p95_kpa": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "SQUAT",
+      "value": 36.41055710121
+    },
+    "pressure_p99_kpa": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "SQUAT",
+      "value": 36.41055710121
+    },
+    "seam_tension_max_n_m": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "CROSS_BODY_REACH",
+      "value": 2925.9432419389996
+    },
+    "seam_tension_p95_n_m": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "WALK_STRIDE",
+      "value": 0.0
+    },
+    "strain_max_ratio": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 24.61059072981463
+    },
+    "strain_p95_ratio": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "ARMS_OVERHEAD",
+      "value": 0.247248316894552
+    },
+    "strain_p99_ratio": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 6.105977769242168
+    },
+    "stress_p95_n_m": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "ARMS_OVERHEAD",
+      "value": 3325.6003325288434
+    },
+    "stress_p99_n_m": {
+      "material_id": "COTTON_CANVAS_HEAVY_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 86193.28072408358
+    },
+    "tail_peak_displacement_m": {
+      "material_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+      "pose_id": "FORWARD_BEND",
+      "value": 0.1714127257382871
+    }
+  }
+}
