@@ -2,12 +2,12 @@ extends SceneTree
 
 func _collect_meshes(node: Node, rows: Array) -> void:
     if node is MeshInstance3D:
-        var mesh := node.mesh
+        var mesh: Mesh = node.mesh
         if mesh != null:
             var vertex_count := 0
             var triangle_count := 0
             for surface_index in range(mesh.get_surface_count()):
-                var arrays := mesh.surface_get_arrays(surface_index)
+                var arrays: Array = mesh.surface_get_arrays(surface_index)
                 var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
                 var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX]
                 vertex_count += vertices.size()
@@ -23,10 +23,11 @@ func _collect_meshes(node: Node, rows: Array) -> void:
         _collect_meshes(child, rows)
 
 func _inspect(path: String) -> Dictionary:
-    var resource := load(path)
+    var resource: Resource = load(path)
     if resource == null or not resource is PackedScene:
         return {"loaded": false, "path": path, "meshes": []}
-    var root := resource.instantiate()
+    var scene: PackedScene = resource as PackedScene
+    var root: Node = scene.instantiate()
     var rows: Array = []
     _collect_meshes(root, rows)
     var surface_count := 0
@@ -59,7 +60,7 @@ func _matches(actual: Dictionary, expected: Dictionary) -> bool:
 
 func _init() -> void:
     var expected_text := FileAccess.get_file_as_string("res://expected.json")
-    var expected = JSON.parse_string(expected_text)
+    var expected: Variant = JSON.parse_string(expected_text)
     if expected == null:
         push_error("failed to parse expected.json")
         quit(2)
