@@ -33,7 +33,9 @@ def test_trousers_pattern_has_required_professional_features() -> None:
     assert len(authority["panel_ids"]) == 7
     pom = authority["points_of_measure"]
     assert pom["finished_outseam"] > pom["finished_inseam"]
-    assert pom["back_rise"] > pom["front_rise"]
+    assert pom["back_crotch_extension"] > pom["front_crotch_extension"]
+    assert pom["back_waist_quarter"] > pom["front_waist_quarter"]
+    assert pom["back_hip_quarter"] > pom["front_hip_quarter"]
 
 
 def test_trousers_topology_is_product_admissible() -> None:
@@ -65,6 +67,8 @@ def test_glb_fresh_reopen_and_godot_consumer() -> None:
     assert fresh["fresh_process_pass"] is True
     assert fresh["tunic"]["morph_target_counts"] == [10]
     assert fresh["trousers"]["morph_target_counts"] == [3, 3, 3]
+    assert fresh["tunic"]["uv0_pass"] is True
+    assert fresh["trousers"]["uv0_pass"] is True
     assert godot["consumer_pass"] is True
     assert godot["tunic_pass"] is True
     assert godot["trousers_pass"] is True
