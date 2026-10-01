@@ -1,0 +1,90 @@
+name: Garment CAD Pro R1A CP6 Diagnostic
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1a-cp6-20261001
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: garment-cad-pro-r1a-cp6-diagnostic
+  cancel-in-progress: true
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1a-cp6-20261001
+
+      - name: Download immutable CP5-R1 integrated predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP5_R1_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36839280076
+          github-token: ${{ github.token }}
+
+      - name: Overlay CP6 implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP6_DIAGNOSTIC"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          cp -a cp6_pro_overlay/source/. "$root/source/"
+          cp -a cp6_pro_overlay/scripts/. "$root/scripts/"
+          cp -a cp6_pro_overlay/tests/. "$root/tests/"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Install exact Warp and plotting dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 matplotlib==3.9.4 pillow==11.1.0
+          wheel_dir="$RUNNER_TEMP/warp-wheel"
+          mkdir -p "$wheel_dir"
+          python -m pip download --disable-pip-version-check --no-cache-dir --no-deps \
+            --only-binary=:all: warp-lang==1.17.0 -d "$wheel_dir"
+          wheel="$(find "$wheel_dir" -type f -name 'warp_lang-1.17.0-*.whl' | head -1)"
+          echo "47cd93636828dd16e55eeb4e77a0e3547b5fb0f383000a3d228629df68f28fd8  $wheel" | sha256sum -c -
+          python -m pip install --disable-pip-version-check --no-cache-dir --no-deps "$wheel"
+
+      - name: Build and print bounded diagnostic receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          env MPLBACKEND=Agg WARP_CACHE_PATH="$RUNNER_TEMP/warp-cache" PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/run_garment_cad_pro_cp6.py" --root "$ROOT"
+          python - <<'PY'
+          import json, os, pathlib
+          root=pathlib.Path(os.environ['ROOT'])
+          topology=json.loads((root/'build/garment_cad_pro_cp6/trousers/topology_receipt.json').read_text())
+          rows=[]
+          for path in sorted((root/'build/garment_cad_pro_cp6/trousers/fit').glob('*/*.json')):
+              value=json.loads(path.read_text())
+              rows.append({
+                  'scenario': f"{value['material_id']}::{value['pose_id']}",
+                  'pass': value['pose_pass'],
+                  'metrics': value['metrics'],
+                  'gates': value['gates'],
+              })
+          print('CP6_TOPOLOGY_DIAGNOSTIC='+json.dumps(topology,sort_keys=True))
+          print('CP6_FIT_DIAGNOSTIC='+json.dumps(rows,sort_keys=True))
+          PY
+
+      - name: Upload bounded diagnostic outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_CAD_PRO_R1A_CP6_DIAGNOSTIC
+          path: ${{ env.ROOT }}/build/garment_cad_pro_cp6
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: error
