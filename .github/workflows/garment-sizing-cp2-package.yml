@@ -43,6 +43,7 @@ jobs:
           before_mesh="$(sha256sum "$root/build/tunic_pilot/warp_cp3/final_simulation_mesh.npz" | awk '{print $1}')"
           before_png="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_frame180_evidence.png" | awk '{print $1}')"
           before_receipt="$(sha256sum "$root/build/tunic_pilot/warp_cp3/cp3_receipt.json" | awk '{print $1}')"
+          receipt_tree="$(cd "$root/build/tunic_pilot/sizing_cp1/selection_receipts" && find . -type f -name '*.json' -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}')"
           cp -a cp2_overlay/source/. "$root/source/"
           cp -a cp2_overlay/scripts/. "$root/scripts/"
           cp -a cp2_overlay/tests/. "$root/tests/"
@@ -55,36 +56,8 @@ jobs:
           test "$before_mesh" = "$after_mesh"
           test "$before_png" = "$after_png"
           test "$before_receipt" = "$after_receipt"
-          receipt_tree="$(python - "$root/build/tunic_pilot/sizing_cp1/selection_receipts" <<'PY'
-          import hashlib, pathlib, sys
-          root = pathlib.Path(sys.argv[1])
-          digest = hashlib.sha256()
-          for path in sorted(root.rglob('*.json')):
-              digest.update(path.relative_to(root).as_posix().encode('utf-8'))
-              digest.update(hashlib.sha256(path.read_bytes()).digest())
-          print(digest.hexdigest())
-          PY
-          )"
-          cat >> "$root/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md" <<'DOC'
-
-## CP2 구현 상태
-
-CP2는 CP1 selection receipt를 read-only 입력으로 사용해 튜닉 S/M/L과 지원 custom fixture의
-완성치수 POM, named landmark, open/sewn boundary, 8개 seam identity를 발행한다.
-결과는 `GarmentPatternParameterPackage/1`이며 triangulation·Warp·mesh scaling은 수행하지 않는다.
-차단 admission은 parameter package를 발행하지 않는다.
-DOC
-          cat >> "$root/docs/roadmap/GARMENT_SIZING_R0A_ROADMAP_KO.md" <<'DOC'
-
-## CP2 결과
-
-- S/M/L parametric POM: 구현
-- 상세 치수별 front/back 분배: 구현
-- 4-panel named landmarks와 boundary disposition: 구현
-- CP1 receipt hash-preserving consumption: 구현
-- triangulation/Warp: 미실행
-- 다음 단계: CP3 dynamic curves, seam resampling, size-aware triangulation admission
-DOC
+          printf '\n## CP2 구현 상태\n\nCP2는 CP1 selection receipt를 read-only 입력으로 사용해 튜닉 S/M/L과 지원 custom fixture의 완성치수 POM, named landmark, open/sewn boundary, 8개 seam identity를 발행한다. 결과는 `GarmentPatternParameterPackage/1`이며 triangulation·Warp·mesh scaling은 수행하지 않는다. 차단 admission은 parameter package를 발행하지 않는다.\n' >> "$root/docs/architecture/GARMENT_SIZING_SYSTEM_KO.md"
+          printf '\n## CP2 결과\n\n- S/M/L parametric POM: 구현\n- 상세 치수별 front/back 분배: 구현\n- 4-panel named landmarks와 boundary disposition: 구현\n- CP1 receipt hash-preserving consumption: 구현\n- triangulation/Warp: 미실행\n- 다음 단계: CP3 dynamic curves, seam resampling, size-aware triangulation admission\n' >> "$root/docs/roadmap/GARMENT_SIZING_R0A_ROADMAP_KO.md"
           echo "ROOT=$root" >> "$GITHUB_ENV"
           echo "DRAPE_HASH=$after_drape" >> "$GITHUB_ENV"
           echo "MESH_HASH=$after_mesh" >> "$GITHUB_ENV"
@@ -104,10 +77,12 @@ DOC
           python "$ROOT/scripts/run_garment_sizing_cp2.py" --root "$ROOT"
 
       - name: Test CP1 and CP2 contracts
-        run: >-
-          env PYTHONPATH="$ROOT/source"
-          pytest -q "$ROOT/tests/test_garment_sizing_cp1.py"
-          "$ROOT/tests/test_garment_sizing_cp2.py"
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q \
+            "$ROOT/tests/test_garment_sizing_cp1.py" \
+            "$ROOT/tests/test_garment_sizing_cp2.py"
 
       - name: Validate CP2 outputs and source budget
         run: python "$ROOT/scripts/validate_garment_sizing_cp2.py" --root "$ROOT"
