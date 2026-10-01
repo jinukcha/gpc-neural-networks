@@ -19,6 +19,20 @@ def _profile_record(profile: CalibratedMaterialProfile) -> dict:
     }
 
 
+def profile_from_record(record: dict) -> CalibratedMaterialProfile:
+    sizing = record["sizing_profile"]
+    warp = record["warp_profile"]
+    return CalibratedMaterialProfile(
+        record["material_id"],
+        record["measurement_set_sha256"],
+        float(sizing["areal_density_kg_m2"]),
+        float(sizing["thickness_m"]),
+        float(sizing["recommended_meshing_edge_m"]),
+        {name: float(value) for name, value in warp["parameters"].items()},
+        warp["calibration_metrics"],
+    )
+
+
 def write_checkpoint(
     path: Path,
     profiles: tuple[CalibratedMaterialProfile, ...],
@@ -28,6 +42,7 @@ def write_checkpoint(
     payload = {
         "contract": "MaterialCalibrationCheckpoint/1",
         "phase": phase,
+        "writer_process_id": os.getpid(),
         "completed_material_ids": [item.material_id for item in profiles],
         "all_measurement_hashes": dict(sorted(all_measurement_hashes.items())),
         "profiles": [_profile_record(item) for item in profiles],
