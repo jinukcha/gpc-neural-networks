@@ -1,0 +1,181 @@
+name: Garment CAD Pro R1A CP5
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1a-cp5-20261001
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: garment-cad-pro-r1a-cp5-20261001
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1a-cp5-20261001
+          persist-credentials: true
+
+      - name: Download CP4 integrated predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP4
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36831202547
+          github-token: ${{ github.token }}
+
+      - name: Overlay CP5 motion-fit implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP5"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests" "$root/docs/architecture/professional"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          tree_hash() {
+            python -c 'import hashlib,pathlib,sys; p=pathlib.Path(sys.argv[1]); d=hashlib.sha256(); items=sorted(x for x in p.rglob("*") if x.is_file()); [(d.update(x.relative_to(p).as_posix().encode("utf-8")),d.update(hashlib.sha256(x.read_bytes()).digest())) for x in items]; print(d.hexdigest())' "$1"
+          }
+          pattern_cp1_hash="$(tree_hash "$root/build/pattern_cad_cp1")"
+          pattern_cp2_hash="$(tree_hash "$root/build/pattern_cad_cp2")"
+          construction_cp3_hash="$(tree_hash "$root/build/construction_cp3")"
+          material_cp4_hash="$(tree_hash "$root/build/material_calibration_cp4")"
+          tunic_hash="$(tree_hash "$root/build/tunic_pilot")"
+          pattern_source_hash="$(tree_hash "$root/source/wuxia_garment_oss/pattern_cad")"
+          construction_source_hash="$(tree_hash "$root/source/wuxia_garment_oss/construction")"
+          materials_source_hash="$(tree_hash "$root/source/wuxia_garment_oss/materials")"
+          sizing_hash="$(tree_hash "$root/source/wuxia_garment_oss/sizing")"
+          drape_hash="$(tree_hash "$root/source/wuxia_garment_oss/drape")"
+          cp -a cp5_pro_overlay/source/. "$root/source/"
+          cp -a cp5_pro_overlay/scripts/. "$root/scripts/"
+          cp -a cp5_pro_overlay/tests/. "$root/tests/"
+          chmod +x "$root/scripts/"*.py
+          test "$pattern_cp1_hash" = "$(tree_hash "$root/build/pattern_cad_cp1")"
+          test "$pattern_cp2_hash" = "$(tree_hash "$root/build/pattern_cad_cp2")"
+          test "$construction_cp3_hash" = "$(tree_hash "$root/build/construction_cp3")"
+          test "$material_cp4_hash" = "$(tree_hash "$root/build/material_calibration_cp4")"
+          test "$tunic_hash" = "$(tree_hash "$root/build/tunic_pilot")"
+          test "$pattern_source_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/pattern_cad")"
+          test "$construction_source_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/construction")"
+          test "$materials_source_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/materials")"
+          test "$sizing_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/sizing")"
+          test "$drape_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/drape")"
+          cat > "$root/docs/architecture/professional/MOTION_FIT_QUALIFICATION_KO.md" <<'DOC'
+          # Motion Fit Qualification
+
+          CP5는 CP4 calibrated material profile 3종과 immutable CP2B fitted tunic reference mesh를
+          사용해 10개 pose, 30개 scenario의 bounded quasi-static motion fit을 실행한다. Exact Warp
+          1.17.0 CPU kernel은 pose drive를 담당하고 project-owned structural, seam, body-contact
+          projection이 rest-shape 보존과 clearance를 담당한다.
+
+          각 scenario는 stress, strain, pressure, clearance, seam tension, contact persistence,
+          mobility restriction per-vertex map과 pose receipt를 발행한다. CP3 construction package는
+          seam·open-edge·gather·gusset 의미론의 read-only authority지만 CP3 feature-complete topology는
+          아직 triangulation되지 않았으므로 CP5 motion-fit pass는 전문 제품 acceptance가 아니다.
+          DOC
+          cat >> "$root/docs/roadmap/GARMENT_CAD_PRO_R1A_ROADMAP_KO.md" <<'DOC'
+
+          ## CP5 결과
+
+          - 10-pose MotionFitSuite/1: 구현
+          - 3 calibrated materials × 10 poses = 30 scenarios: 구현
+          - stress/strain/pressure/clearance/seam/contact/mobility maps: 구현
+          - pose and suite FitQualificationReceipt/2: 구현
+          - CP3 feature-complete topology triangulation: 미실행
+          - product acceptance: false
+          - 다음 단계: CP6 manufacturing 2D / game 3D export / trousers closeout
+          DOC
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_CP1_HASH=$pattern_cp1_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_CP2_HASH=$pattern_cp2_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_CONSTRUCTION_CP3_HASH=$construction_cp3_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_MATERIAL_CP4_HASH=$material_cp4_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_TUNIC_BUILD_HASH=$tunic_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_PATTERN_CAD_SOURCE_HASH=$pattern_source_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_CONSTRUCTION_SOURCE_HASH=$construction_source_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_MATERIALS_SOURCE_HASH=$materials_source_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_SIZING_SOURCE_HASH=$sizing_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_DRAPE_SOURCE_HASH=$drape_hash" >> "$GITHUB_ENV"
+
+      - name: Install exact Warp and bounded CP5 tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 matplotlib==3.9.4 pillow==11.1.0 pytest==8.3.5 jsonschema==4.25.1
+          wheel_dir="$RUNNER_TEMP/warp-wheel"
+          mkdir -p "$wheel_dir"
+          python -m pip download --disable-pip-version-check --no-cache-dir --no-deps \
+            --only-binary=:all: warp-lang==1.17.0 -d "$wheel_dir"
+          wheel="$(find "$wheel_dir" -type f -name 'warp_lang-1.17.0-*.whl' | head -1)"
+          test -n "$wheel"
+          echo "47cd93636828dd16e55eeb4e77a0e3547b5fb0f383000a3d228629df68f28fd8  $wheel" | sha256sum -c -
+          python -m pip install --disable-pip-version-check --no-cache-dir --no-deps "$wheel"
+
+      - name: Execute CP5 motion-fit suite
+        run: >-
+          env MPLBACKEND=Agg WARP_CACHE_PATH="$RUNNER_TEMP/warp-cache" PYTHONPATH="$ROOT/source"
+          python "$ROOT/scripts/run_garment_cad_pro_cp5.py" --root "$ROOT"
+
+      - name: Test CP1 through CP5 professional CAD
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q \
+            "$ROOT/tests/test_garment_cad_pro_cp1.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp2.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp3.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp4.py" \
+            "$ROOT/tests/test_garment_cad_pro_cp5.py"
+
+      - name: Validate CP5 outputs and source budget
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python "$ROOT/scripts/validate_garment_cad_pro_cp5.py" --root "$ROOT"
+
+      - name: Validate schemas and diet bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -c "import json,pathlib; from jsonschema import Draft202012Validator; p=pathlib.Path('$ROOT/contracts/qualification'); s=sorted(p.glob('*.schema.json')); assert len(s)==4; [Draft202012Validator.check_schema(json.loads(x.read_text())) for x in s]"
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256)
+
+      - name: Publish CP5 PNG evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_pro_cp5
+          mkdir -p delivery_pro_cp5
+          cp "$ROOT/build/motion_fit_cp5/cp5_motion_fit_overview.png" delivery_pro_cp5/
+          cp "$ROOT/build/motion_fit_cp5/cp5_fit_maps_evidence.png" delivery_pro_cp5/
+          cp "$ROOT/build/motion_fit_cp5/cp5_material_comparison.png" delivery_pro_cp5/
+          cp "$ROOT/build/motion_fit_cp5/cp5_receipt.json" delivery_pro_cp5/
+          cp "$ROOT/PROFESSIONAL_STATUS.json" delivery_pro_cp5/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_pro_cp5
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish garment CAD Pro CP5 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1a-cp5-20261001
+          fi
+
+      - name: Upload single integrated CP5 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP5
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
