@@ -164,7 +164,7 @@ def _runtime() -> dict:
         "version": version,
         "device": "cpu",
         "cuda_status": "AVAILABLE_NOT_USED" if cuda else "EXPLICIT_NO_CUDA_DEVICE",
-        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V2",
+        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V3",
     }
 
 
@@ -190,6 +190,19 @@ def _mobility_map(mesh: TrousersMesh, positions: np.ndarray, target: np.ndarray,
     return np.clip(restriction, 0.0, 1.0)
 
 
+def _strain_maps(
+    mesh: TrousersMesh,
+    edges: np.ndarray,
+    rest: np.ndarray,
+    positions: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    length = np.linalg.norm(positions[edges[:, 1]] - positions[edges[:, 0]], axis=1)
+    signed = (length - rest) / np.maximum(rest, 1.0e-8)
+    tensile = _vertex_max(len(positions), edges, np.maximum(signed, 0.0))
+    compression = _vertex_max(len(positions), edges, np.maximum(-signed, 0.0))
+    return tensile, compression
+
+
 def _maps(
     mesh: TrousersMesh,
     edges: np.ndarray,
@@ -200,21 +213,22 @@ def _maps(
     stiffness: float,
     profile: dict,
 ) -> dict[str, np.ndarray]:
-    length = np.linalg.norm(positions[edges[:, 1]] - positions[edges[:, 0]], axis=1)
-    strain_edge = np.abs(length - rest) / np.maximum(rest, 1.0e-8)
-    strain = _vertex_max(len(positions), edges, strain_edge)
-    stress = strain * stiffness
+    tensile, fold_compression = _strain_maps(mesh, edges, rest, positions)
+    stress = tensile * stiffness
     residual = np.linalg.norm(target - positions, axis=1)
     lateral = np.clip(np.abs(positions[:, 0]) / max(np.ptp(positions[:, 0]), 1.0e-8), 0.0, 1.0)
     clearance = 0.010 + 0.006 * lateral - residual * 0.055
     penetration = np.maximum(-clearance, 0.0)
     parameters = profile["parameters"]
     thickness = max(float(profile.get("thickness_m", 0.0008)), 1.0e-5)
-    compression = np.clip(penetration / thickness, 0.0, 0.35)
-    pressure = float(parameters["compression_scale"]) * (np.exp(float(parameters["compression_exponent"]) * compression) - 1.0)
+    contact_compression = np.clip(penetration / thickness, 0.0, 0.35)
+    pressure = float(parameters["compression_scale"]) * (
+        np.exp(float(parameters["compression_exponent"]) * contact_compression) - 1.0
+    )
     mobility = _mobility_map(mesh, positions, target, weights)
     return {
-        "strain_ratio": strain,
+        "strain_ratio": tensile,
+        "fold_compression_ratio": fold_compression,
         "stress_n_m": stress,
         "clearance_m": clearance,
         "pressure_pa": pressure,
@@ -231,6 +245,8 @@ def _metrics(maps: dict[str, np.ndarray], frame_motion: np.ndarray) -> dict[str,
     return {
         "strain_p99_ratio": _percentile(maps["strain_ratio"], 99.0),
         "strain_max_ratio": float(np.max(maps["strain_ratio"])),
+        "fold_compression_p99_ratio": _percentile(maps["fold_compression_ratio"], 99.0),
+        "fold_compression_max_ratio": float(np.max(maps["fold_compression_ratio"])),
         "stress_p99_n_m": _percentile(maps["stress_n_m"], 99.0),
         "pressure_p99_kpa": _percentile(maps["pressure_pa"], 99.0) / 1000.0,
         "clearance_min_m": float(np.min(maps["clearance_m"])),
@@ -262,6 +278,7 @@ def _qualification(material_id: str, pose_id: str, metrics: dict[str, float], ru
         "metrics": metrics,
         "limits": limits,
         "gates": gates,
+        "strain_semantics": "TENSILE_ONLY_FOLD_COMPRESSION_REPORTED_SEPARATELY",
         "runtime": runtime,
         "pose_pass": all(gates.values()),
     }
