@@ -27,7 +27,7 @@ jobs:
           find .tmp/maritime_ai_cp1 -type f | sort
       - uses: actions/upload-artifact@v4
         with:
-          name: maritime-ai-r0a-cp1-stage
+          name: maritime-ai-r0a-cp1-stage-v2
           path: .tmp/maritime_ai_cp1/
           compression-level: 6
           retention-days: 1
