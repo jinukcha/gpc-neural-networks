@@ -1,0 +1,36 @@
+{
+  "atomic_failure_preserved": true,
+  "byte_exact_cp0_predecessor": false,
+  "cp0_recovery_basis": "CP3 sizing authority",
+  "cp1_tests": "PASS",
+  "document_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+  "evidence_dimensions": [
+    2400,
+    1599
+  ],
+  "evidence_sha256": "9bad1e2277212e08bf9a32541551f449fd77574e2e32a1198eb15b1d44eb10ef",
+  "fresh_reopen_pass": true,
+  "predecessor": {
+    "drape_source_sha256": "5a5446ce2526086bfe7c804c1fb92a69569f6982f6bcc89291acb97234f15bdc",
+    "mutation_count": 0,
+    "sizing_source_sha256": "5fe719ea76b0c4b73ae45e5daa090c2afab0353a854a0652fa7f56af1314ab4f",
+    "tunic_build_sha256": "b13cc2a3899a2238ab893580287bd16a78abb7b53b00af2d85fdd7ee0c9a4977"
+  },
+  "reference_parity_max_error": 0.0,
+  "schema_version": 1,
+  "source_budget": {
+    "files_checked": 79,
+    "files_over_500": [],
+    "functions_over_80": [],
+    "maximum_file": {
+      "loc": 391,
+      "path": "source/wuxia_garment_oss/drape/warp_backend/production/solver.py"
+    },
+    "maximum_function": {
+      "loc": 73,
+      "name": "main",
+      "path": "scripts/run_garment_cad_pro_cp1.py"
+    }
+  },
+  "undo_redo_pass": true
+}

@@ -1,0 +1,50 @@
+{
+  "transactions": [
+    {
+      "accepted": true,
+      "after_revision": 1,
+      "after_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+      "before_revision": 0,
+      "before_sha256": "5f1455d34708ea3faf4fc69aee1b8dc1a92eb6d117f3b20f10f0e1d7a246b46e",
+      "command": {
+        "command_type": "SET_INPUT",
+        "input_id": "front_chest_ease",
+        "value": 0.056
+      },
+      "error": null,
+      "operation": "SET_INPUT"
+    },
+    {
+      "accepted": false,
+      "after_revision": 1,
+      "after_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+      "before_revision": 1,
+      "before_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+      "command": {
+        "command_type": "SET_EXPRESSION",
+        "expression": "-0.01",
+        "expression_id": "neck_half"
+      },
+      "error": "ValueError: hard constraints failed: ['bodice_back.neck_min', 'bodice_front.neck_min']",
+      "operation": "SET_EXPRESSION"
+    },
+    {
+      "accepted": true,
+      "after_revision": 0,
+      "after_sha256": "5f1455d34708ea3faf4fc69aee1b8dc1a92eb6d117f3b20f10f0e1d7a246b46e",
+      "before_revision": 1,
+      "before_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+      "error": null,
+      "operation": "UNDO"
+    },
+    {
+      "accepted": true,
+      "after_revision": 1,
+      "after_sha256": "4c7a11bfdc5a70e03c67e63be0cf2711875756d0a63dde26bc672b0523f7b00b",
+      "before_revision": 0,
+      "before_sha256": "5f1455d34708ea3faf4fc69aee1b8dc1a92eb6d117f3b20f10f0e1d7a246b46e",
+      "error": null,
+      "operation": "REDO"
+    }
+  ]
+}

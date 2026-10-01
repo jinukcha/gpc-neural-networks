@@ -1,0 +1,16 @@
+{
+  "accepted_edit": true,
+  "byte_exact_cp0_predecessor": false,
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP1",
+  "cp0_recovery_basis": "CP3 sizing authority after two failed acquisition paths",
+  "fresh_reopen_pass": true,
+  "next_checkpoint": "GARMENT_CAD_PRO_R1A_CP2",
+  "pattern_document_revision": 1,
+  "redo_pass": true,
+  "reference_parity_max_error": 0.0,
+  "rejected_edit_atomic": true,
+  "terminal_decision": "CP1_COMPLETE_PATTERN_DOCUMENT",
+  "triangulation_executed": false,
+  "undo_pass": true,
+  "warp_simulation_executed": false
+}
