@@ -23,7 +23,7 @@ from wuxia_garment_oss.sizing.selection.resolver import SelectionRequest, resolv
 
 
 STANDARD_SIZES = ("S", "M", "L")
-CUSTOM_CASES = (
+AUTO_CASES = (
     ("AUTO_REFERENCE", "REFERENCE"),
     ("AUTO_MILD_CUSTOM", "MILD_CUSTOM"),
     ("AUTO_BROAD_SHOULDER", "BROAD_SHOULDER"),
@@ -73,6 +73,16 @@ def standard_receipt(root: Path, size_id: str, table) -> dict:
     return resolve_selection(request, table, None).to_dict()
 
 
+def publish_custom_measurement_case(build: Path, table, body) -> tuple[str, dict]:
+    name = "CUSTOM_MILD"
+    request = SelectionRequest(name, "CUSTOM_MEASUREMENTS", "M")
+    receipt = resolve_selection(request, table, body).to_dict()
+    if receipt["admission"] != "CUSTOM_ALTERATION":
+        raise ValueError(f"custom fixture was not admitted: {receipt['admission']}")
+    write_json(build / "selection_inputs" / f"{name}.json", receipt)
+    return name, receipt
+
+
 def execute_packages(root: Path) -> tuple[dict[str, dict], list[dict]]:
     table = reference_size_table()
     bodies = body_fixtures()
@@ -85,9 +95,15 @@ def execute_packages(root: Path) -> tuple[dict[str, dict], list[dict]]:
         write_json(build / "selection_inputs" / f"{name}.json", receipt)
         packages[name] = resolve_pattern_parameters(receipt, table, None)
     cp1_dir = root / "build/tunic_pilot/sizing_cp1/selection_receipts"
-    for name, body_name in CUSTOM_CASES:
+    for name, body_name in AUTO_CASES:
         receipt = load_receipt(cp1_dir / f"{name}.json")
         packages[name] = resolve_pattern_parameters(receipt, table, bodies[body_name])
+    custom_name, custom_receipt = publish_custom_measurement_case(
+        build, table, bodies["MILD_CUSTOM"]
+    )
+    packages[custom_name] = resolve_pattern_parameters(
+        custom_receipt, table, bodies["MILD_CUSTOM"]
+    )
     for name in BLOCKED_CASES:
         receipt = load_receipt(cp1_dir / f"{name}.json")
         blocked.append({
@@ -132,8 +148,8 @@ def plot_standard(ax, packages: dict[str, dict]) -> None:
 
 def plot_custom(ax, packages: dict[str, dict]) -> None:
     names = (
-        "AUTO_REFERENCE", "AUTO_BROAD_SHOULDER", "AUTO_FULL_CHEST",
-        "AUTO_FULL_ABDOMEN", "AUTO_TALL", "AUTO_SHORT",
+        "AUTO_REFERENCE", "CUSTOM_MILD", "AUTO_BROAD_SHOULDER",
+        "AUTO_FULL_CHEST", "AUTO_FULL_ABDOMEN", "AUTO_TALL", "AUTO_SHORT",
     )
     for name in names:
         _draw_front_pattern(ax, packages[name], name.replace("AUTO_", ""))
@@ -233,7 +249,12 @@ def publish_status(root: Path, packages: dict[str, dict], blocked: list[dict]) -
         "terminal_decision": "CP2_COMPLETE_PARAMETERS_ONLY",
         "published_package_count": len(packages),
         "standard_sizes": list(STANDARD_SIZES),
-        "custom_package_count": len(packages) - len(STANDARD_SIZES),
+        "custom_measurement_package_count": sum(
+            package["sizing_mode"] == "CUSTOM_MEASUREMENTS" for package in packages.values()
+        ),
+        "body_fit_package_count": sum(
+            package["sizing_mode"] == "AUTO_BODY_FIT" for package in packages.values()
+        ),
         "blocked_count": len(blocked),
         "reference_parity_max_error": parity["maximum_error"],
         "selection_receipts_mutated": False,
@@ -257,15 +278,17 @@ def write_report(root: Path, status: dict) -> None:
 ```text
 terminal decision          {status['terminal_decision']}
 published packages         {status['published_package_count']}
+custom measurement package {status['custom_measurement_package_count']}
 blocked admissions         {status['blocked_count']}
 reference parity max error {status['reference_parity_max_error']}
 triangulation              false
 Warp simulation            false
 ```
 
-S/M/L과 지원되는 상세 치수 fixture를 실제 POM 및 named 2D landmark package로 발행했다.
-CP1 selection receipt는 읽기 전용 입력이며 변경하지 않았다. 차단 admission은 pattern package를
-발행하지 않는다. 현재 결과는 2D parameter authority이고 polygon tessellation이나 cloth solve가 아니다.
+S/M/L, AUTO_BODY_FIT, CUSTOM_MEASUREMENTS의 지원 fixture를 실제 POM 및 named 2D
+landmark package로 발행했다. 기존 CP1 selection receipt는 읽기 전용 입력이며 변경하지 않았다.
+CP2가 새로 생성한 bounded custom selection input은 별도 provenance로 보존한다. 차단 admission은
+pattern package를 발행하지 않는다. 현재 결과는 2D parameter authority이며 tessellation이나 solve가 아니다.
 """
     path = root / "docs/cp2b/GARMENT_SIZING_CP2_EXECUTION_REPORT_KO.md"
     path.parent.mkdir(parents=True, exist_ok=True)
