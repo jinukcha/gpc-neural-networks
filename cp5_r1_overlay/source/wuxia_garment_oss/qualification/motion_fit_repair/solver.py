@@ -75,6 +75,12 @@ def schedule_for(pose_id: str) -> RepairSchedule:
     return values[pose_id]
 
 
+def _contact_step_cap(pose_id: str, material_id: str) -> float | None:
+    if pose_id == "FORWARD_BEND" and material_id == "COTTON_CANVAS_HEAVY_REFERENCE":
+        return 0.00040
+    return None
+
+
 def _accumulate(count: int, indices: np.ndarray, corrections: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     vectors = np.zeros((count, 3), dtype=np.float64)
     weights = np.zeros(count, dtype=np.float64)
@@ -149,7 +155,7 @@ def _runtime() -> dict:
         "version": version,
         "device": "cpu",
         "cuda_status": "AVAILABLE_NOT_USED" if cuda_available else "EXPLICIT_NO_CUDA_DEVICE",
-        "kernel": "CP5_R1_SEGMENTED_POSE_DRIVE_V2",
+        "kernel": "CP5_R1_SEGMENTED_POSE_DRIVE_V3",
     }
 
 
@@ -175,6 +181,7 @@ def solve_failed_pose(
     controls = material_controls(material_profile)
     schedule = schedule_for(pose.pose_id)
     field = build_pose_field(mesh, envelope, pose)
+    step_cap = _contact_step_cap(pose.pose_id, material_id)
     positions = mesh.positions.copy()
     previous = positions.copy()
     frame_motion = []
@@ -192,7 +199,7 @@ def solve_failed_pose(
                 positions = _project_pairs(positions, mesh.edges, mesh.edge_rest_lengths, controls.structural_gain)
                 positions = _project_pairs(positions, mesh.seam_pairs, mesh.seam_rest_lengths, controls.seam_gain)
                 positions = _project_attachments(positions, target, mesh.attachment_indices, schedule.attachment_gain)
-                positions, correction = project_outside(positions, envelope, contact_field)
+                positions, correction = project_outside(positions, envelope, contact_field, step_cap)
                 contact_count += correction > 1.0e-9
                 maximum_correction = np.maximum(maximum_correction, correction)
         frame_motion.append(float(np.max(np.linalg.norm(positions - start, axis=1))))
