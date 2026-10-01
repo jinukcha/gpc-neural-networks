@@ -72,7 +72,10 @@ def project_outside(
     points: np.ndarray,
     envelope: BodyEnvelope,
     field: PoseField,
+    maximum_step_m: float | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
+    """Apply a bounded XPBD contact step; repeated iterations close the full gap."""
     clearance, normal = clearance_and_normal(points, envelope, field)
-    correction = np.maximum(envelope.contact_margin_m - clearance, 0.0)
-    return points + normal * correction[:, None], correction
+    required = np.maximum(envelope.contact_margin_m - clearance, 0.0)
+    applied = required if maximum_step_m is None else np.minimum(required, maximum_step_m)
+    return points + normal * applied[:, None], applied
