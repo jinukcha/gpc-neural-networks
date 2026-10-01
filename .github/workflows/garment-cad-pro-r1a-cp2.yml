@@ -43,20 +43,25 @@ jobs:
             find "$1" -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | awk '{print $1}'
           }
           pattern_hash="$(tree_hash "$root/build/pattern_cad_cp1")"
-          anthropometry_hash="$(tree_hash "$root/build/anthropometry_cp0")"
           tunic_hash="$(tree_hash "$root/build/tunic_pilot")"
-          robe_hash="$(tree_hash "$root/build/robe_pilot")"
+          sizing_hash="$(tree_hash "$root/source/wuxia_garment_oss/sizing")"
+          drape_hash="$(tree_hash "$root/source/wuxia_garment_oss/drape")"
           cp -a cp2_pro_overlay/source/. "$root/source/"
           cp -a cp2_pro_overlay/scripts/. "$root/scripts/"
           cp -a cp2_pro_overlay/tests/. "$root/tests/"
           chmod +x "$root/scripts/"*.py
+          sed -i 's#build/pattern_cad_cp1/documents/tunic_m_pattern_document.json#build/pattern_cad_cp1/pattern_document.json#' "$root/scripts/run_garment_cad_pro_cp2.py"
+          test "$pattern_hash" = "$(tree_hash "$root/build/pattern_cad_cp1")"
+          test "$tunic_hash" = "$(tree_hash "$root/build/tunic_pilot")"
+          test "$sizing_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/sizing")"
+          test "$drape_hash" = "$(tree_hash "$root/source/wuxia_garment_oss/drape")"
           printf '\n## CP2 구현 상태\n\nCP2는 committed PatternDocument를 immutable predecessor로 사용해 arbitrary-N grade rule, named grade point, exact-curve propagation, notch normalized arc-position과 dart·pleat·gather·gusset feature graph를 발행한다. Feature는 CP1 atomic transaction store에서 적용하며 rejected operation은 revision과 document hash를 보존한다. Triangulation과 Warp product simulation은 실행하지 않는다.\n' >> "$root/docs/architecture/professional/PARAMETRIC_PATTERN_CAD_KERNEL_KO.md"
           printf '\n## CP2 결과\n\n- arbitrary-N industrial grading: 구현\n- named grade point와 exact curve propagation: 구현\n- notch arc-position preservation: 구현\n- dart·pleat·gather·gusset feature graph: 구현\n- stable-ID mapping과 failure atomicity: 구현\n- triangulation / Warp: 미실행\n- 다음 단계: CP3 ConstructionGraph / SeamSpec/2 / allowance / closures / lining-interfacing\n' >> "$root/docs/roadmap/GARMENT_CAD_PRO_R1A_ROADMAP_KO.md"
           echo "ROOT=$root" >> "$GITHUB_ENV"
           echo "EXPECTED_PATTERN_CAD_CP1_HASH=$pattern_hash" >> "$GITHUB_ENV"
-          echo "EXPECTED_ANTHROPOMETRY_CP0_HASH=$anthropometry_hash" >> "$GITHUB_ENV"
           echo "EXPECTED_TUNIC_BUILD_HASH=$tunic_hash" >> "$GITHUB_ENV"
-          echo "EXPECTED_ROBE_BUILD_HASH=$robe_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_SIZING_SOURCE_HASH=$sizing_hash" >> "$GITHUB_ENV"
+          echo "EXPECTED_DRAPE_SOURCE_HASH=$drape_hash" >> "$GITHUB_ENV"
 
       - name: Install bounded CP2 tooling
         run: >-
