@@ -1,0 +1,306 @@
+{
+  "contract": "CP5R1CloseoutPreservationReceipt/1",
+  "cp5_r1_tree_unchanged": true,
+  "cp5_tree_unchanged": true,
+  "preserved_hashes_after": {
+    "COTTON_CANVAS_HEAVY_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "794b707714be81da2bd54805c752c55b5dc6b312f85b5b27107905fa94cb0d3d",
+      "package_sha256": "20424c947c785369e6a79afa1284e89f36b973a18eb3db11086a7e069296b949",
+      "receipt_sha256": "b17dbd83d6c706cb4f620c48907d90094177324cd030801115d7b328a5ff1251"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::ARMS_OVERHEAD": {
+      "archive_sha256": "8659f544e7e406ba782f14967fed2e3ce17d4d8908dc0ac8326437efab95461d",
+      "package_sha256": "45d00095a35262306394520aaa07adce987fb068f1b25cb3c474117ce99f1d81",
+      "receipt_sha256": "4bd30c56b6c0d2567106e2da6e71139c78ba13fd890d3373831d14acd8e18657"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::CROSS_BODY_REACH": {
+      "archive_sha256": "055c2127aa21b867b438dae383f764838848e39fe40dbc500400698aea32cfce",
+      "package_sha256": "7cdf7d0100da9416d05f34f88d94aa8613afdc1ccf21296d538697a818f07226",
+      "receipt_sha256": "85be3a4f03b822a1d0aeb80a6f12c9d63dc1811559e209a114a1bb0a3b87e897"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "8a65635f5c9b5877232916d7e70fe573cd8f2a54639f22229ce9e33efa1ca7ee",
+      "package_sha256": "ad43289632847e0ca614589eece970919393c2d557ca8b0382978b60b6758d3a",
+      "receipt_sha256": "4f9cad151125dceb4427343819b9e4c5b21facceca045d44efae5dbeef6bb339"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "7169fc492eadee003f31eb54330b43ef639b749c50d09b3f518aca82f8d360f0",
+      "receipt_sha256": "3a90ac5e42f75fd61cefc253fd183538b888851ad324273fa55900009a23894b"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::SEATED": {
+      "archive_sha256": "0107304d556b415e35d10418e0fef6b53cfe7d8b857e6963a0c5ae8b81c74c1a",
+      "package_sha256": "1c88636ddd1e339b9bcc56f802b9ab5bc8dfacf162ba1fe13c8e103f3c65b821",
+      "receipt_sha256": "aaf353d86d7b59f6a931a3a62113901edd7181f58f4b4e0a00d051a6f84fac60"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::SQUAT": {
+      "archive_sha256": "ae1e2dedefec69e6124df0bd0e9f56ab98507d678b920cafd5b7ad0adac10122",
+      "package_sha256": "8a04f5f8e468cbd3d4dbd7f693b79a95827b062085684057d053e5f622ab35b0",
+      "receipt_sha256": "b289b4878da95b382f6e5e66b11063bd275de48fad4519e5575bafc84a1f1d88"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "7dab62c3d4c48795fd9b329f89eaa390a41e4a12a1ae85d940dbcd0eb4bc3569",
+      "package_sha256": "207cda98c6982d90c52c07a43c5f5ee0dd7f1475ba9c9ca26df4e2354229b46a",
+      "receipt_sha256": "081482f264f9de10313955df09ea7216efbdd6def7d36fb16bed74b774ecb3e9"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::WALK_STRIDE": {
+      "archive_sha256": "b4eafd79f51fa9e8b5392165bf53078ee5b7252be0e8d569514bdf2f5ccfc19f",
+      "package_sha256": "c636be54f92b093103b525e0aa0ba8ee5f625469a1995c0ceb2bc9e674ddbac3",
+      "receipt_sha256": "7d0c07e77bdee43014396cce7fcc2a079f3614353055e4f68105b3e5ad595424"
+    },
+    "LINEN_LIGHT_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "a1986f3f62d707c7cb2ca6bdcfa9c5ee1f3c4bf7513d4173d7ac0a95edf3104c",
+      "package_sha256": "c717fe7a127d7ddab4ea84bb17769e9dc19e0aedeb15cb8fd4fb11cc772a259c",
+      "receipt_sha256": "80c7fb47bf4c5e5ce31a69d68fce68b72ed010b3fe490ef0dd05a4f548d87daa"
+    },
+    "LINEN_LIGHT_REFERENCE::ARMS_OVERHEAD": {
+      "archive_sha256": "00a0896212fc911e0462718528b5f5cab87302f96d66d7b87fffc33339e416bb",
+      "package_sha256": "7ff9417e3a0cd98ab4d1808e369635ac7b487f7b9f4bc88bf21c43e580c30f02",
+      "receipt_sha256": "5b39f7e38e56ddf412d0f41380dd91145027a807ecacc7f6a8cdb6096aa6f049"
+    },
+    "LINEN_LIGHT_REFERENCE::CROSS_BODY_REACH": {
+      "archive_sha256": "099edc0e2e07ae1743bbe32d32af1b69b499d54032ea4036d88815f916d92fc9",
+      "package_sha256": "33652d09363c494d970e96bd9898e64501eebf0a9570e56bf7b821ce26310677",
+      "receipt_sha256": "0bfd483168aaf1ae4c52fcb83174c86f6325fd61431aa5dcb0742d66bec6e442"
+    },
+    "LINEN_LIGHT_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "65f63d40c5916702f5f55e090283fc9a86e6cdac106f918fcefdd24a0c6c536b",
+      "package_sha256": "d934d41ae37485d389509e6ea1ae491af172c597e2fb71fb6e52bde08943edd9",
+      "receipt_sha256": "f11d75abd643ece64db9c9efb534f55828013aacba42900ad7d43fbabff82052"
+    },
+    "LINEN_LIGHT_REFERENCE::FORWARD_BEND": {
+      "archive_sha256": "a5de1d4e428e029d5120a986d16bbf219a51b1c94cdb7821442f3d0cba8e5c51",
+      "package_sha256": "478dfd8d5107fbb320bd88cec828b4bcbd4f5cb580af3a84601098e5bb85f033",
+      "receipt_sha256": "4945f90e4dccda6f13cefd9d35f64abc210b8d48d69d201c0e38577f674e5e21"
+    },
+    "LINEN_LIGHT_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "148c30580a45d96561233f09daa9e27adfbef4548f86c0aeaf8b30de194ffabf",
+      "receipt_sha256": "0427b4aa990c0c399a4c40e56852f1e57161063e02a495b1bf0ff0451773e0f3"
+    },
+    "LINEN_LIGHT_REFERENCE::SEATED": {
+      "archive_sha256": "f145e11780089fc690cbb23e6964668a7c0315f90dbaceb2ee45a26f3bfc95f7",
+      "package_sha256": "6649720cf72f8ca8e63c7c8fc3507502b816f1345704a5addf6f4cc0b02193d7",
+      "receipt_sha256": "a551be596132f3e8a1e3be46a7c6bef24102e0aa1629c459398ced4b122e36b1"
+    },
+    "LINEN_LIGHT_REFERENCE::SQUAT": {
+      "archive_sha256": "ffdb930d3cfddfec74a34532e692d6a2d147a4abdc0b4d50b5f021a123b78160",
+      "package_sha256": "4a64adec0bce6f44363bf2821c5c1f534450e75e2ab3d035d9a538a9d647e2d2",
+      "receipt_sha256": "141361c5ee60db17937cb22bfd2c61b71247ab1d34ff35092ebbc62cfaf422a0"
+    },
+    "LINEN_LIGHT_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "a50811d258253e4281d3344ccfb60ffc771f14f468b8d9ec2c06c196fb862beb",
+      "package_sha256": "702724368db828c1cb3eeb98505e539cc7686451b19a87fb3fa370c29fffcdb8",
+      "receipt_sha256": "45b77f2847ecd0ae92e87159ab4380debe91b14ece3f1ce5f01a7c0ce63381b9"
+    },
+    "LINEN_LIGHT_REFERENCE::WALK_STRIDE": {
+      "archive_sha256": "492cec0af6fae377d932c8088ca30c0002ed77de9228695ad2e039a17368b31a",
+      "package_sha256": "bef472ddbf3d32505d93e51056da76d5abe2f7090cc08a85d6b55c7392af0661",
+      "receipt_sha256": "14fa4cffc4dc1aceda03e291b77fd945192925435c1863d9ac8c2b34e27f118d"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "0a6f27744ee4100f205572b2d5a395790bcec58ee1b5fed383f346a550ffd617",
+      "package_sha256": "43942fb6bdaa351dc6f8d565fd409d2961e29d5d993c4422874838bc8236296a",
+      "receipt_sha256": "a841791238a53afe88210c4dd1f1230cc6b411e85cf43fb257f0b6e881b7d8aa"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::ARMS_OVERHEAD": {
+      "archive_sha256": "6f1f94abc72fe1ec738cdb74ccc34b6290535db1cad92bdd49666685e4a548d3",
+      "package_sha256": "c43c0e6b5b2e3e1ab5f8557262bfc2ce69a885efcd606e0c5c02b600b7d80246",
+      "receipt_sha256": "3b93370f6bd2bf8a3b88dd163edd97944282bf0f042602971ce982bd3806722e"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::CROSS_BODY_REACH": {
+      "archive_sha256": "a2d018e5be0e1b51032a5f51c4f6e69d25553fb7453539272592812865249c9c",
+      "package_sha256": "3418650150711bd09195c352d1a856e8c1e249337388cf7bcdd04d8595fa11fe",
+      "receipt_sha256": "51fd316c2d5a33b5ecc5ca6deace354074a15bd0cbdfdad1257df7d389cdff8c"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "ead50d515ee29d98e16d6516e0745fc6d597977e4787776ae49e54fe6cf08e69",
+      "package_sha256": "42daac3453a7c2b2088b1bf3174d1170914cd2d4fb959f3a9c9bbc1dd051e451",
+      "receipt_sha256": "1a462d1714fb00db0fff0fd14fbcaa0054eeb92992013bc6697a792d2a876313"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::FORWARD_BEND": {
+      "archive_sha256": "25105d4333a359cd3f2eb8efa8da7591727e1df6b41eaac71540fd8f725c7261",
+      "package_sha256": "2875f96ec5ec6b8a6e34d8af12a3e9ad10477622c0552c8d523f48b02bf1b95a",
+      "receipt_sha256": "df1ec827e3eb6b4cf7923e972d8a077996de596cd95e5b88a53792cde4a61087"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "801a8c031623a9445516e4e337ad4130ac2299c6b7cf384225afca694400da75",
+      "receipt_sha256": "13fc44c6849fc30eb249ce35b9d8ad2f11d9884ed0a6f5ea000082919bc7830e"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::SEATED": {
+      "archive_sha256": "b71282f13bafb3cb25c7045857fcafe0f2952e79c64ce2bbdbf4bed719c88571",
+      "package_sha256": "4caf911112d866751f2d25e25a2d80d53494c0bcee8d44c3925bd81d7189dda2",
+      "receipt_sha256": "e45ec6f4ee765713f80fb49021084edee87f0f5cf6b40ec227b9b581ff24a8df"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::SQUAT": {
+      "archive_sha256": "5e1072ea5148cdd5b56f8a8650a49590829ff833b3902c7491916f935b4144eb",
+      "package_sha256": "a70222f159f2d10038f8293007453acf51858dbcea79b38f2540a7f24617a8e4",
+      "receipt_sha256": "6691a47af5f2efc54bfc38686bcc0dc62616d8bd60b857fc9c50c8c5e4560206"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "eb2258b5b4429abb1a5030018c4544c5bad01dda45e5b6adf71b6bde6a8dbcb3",
+      "package_sha256": "a5831b5dc5317b301bebccfe3c82c6e73f142ffddd4dde31c351135c3b3b58ff",
+      "receipt_sha256": "a63bc44eb2c913e7973ab3f09b61b7c8356b018c1daa7126fc10d40792585626"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::WALK_STRIDE": {
+      "archive_sha256": "aa2e73edaa14d47ec762e24b2a3eee8732682993742a2c9b1ed05ad2d87c7ba8",
+      "package_sha256": "dcc7800d3ee395ea8ff99439b45a4798937b44f737c729e08a880e32a7966908",
+      "receipt_sha256": "4436a582708d1a4ea91dd1aa4599f41c7e4f2d3b8a1dd5a99a4fc2c0975636cc"
+    }
+  },
+  "preserved_hashes_before": {
+    "COTTON_CANVAS_HEAVY_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "794b707714be81da2bd54805c752c55b5dc6b312f85b5b27107905fa94cb0d3d",
+      "package_sha256": "20424c947c785369e6a79afa1284e89f36b973a18eb3db11086a7e069296b949",
+      "receipt_sha256": "b17dbd83d6c706cb4f620c48907d90094177324cd030801115d7b328a5ff1251"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::ARMS_OVERHEAD": {
+      "archive_sha256": "8659f544e7e406ba782f14967fed2e3ce17d4d8908dc0ac8326437efab95461d",
+      "package_sha256": "45d00095a35262306394520aaa07adce987fb068f1b25cb3c474117ce99f1d81",
+      "receipt_sha256": "4bd30c56b6c0d2567106e2da6e71139c78ba13fd890d3373831d14acd8e18657"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::CROSS_BODY_REACH": {
+      "archive_sha256": "055c2127aa21b867b438dae383f764838848e39fe40dbc500400698aea32cfce",
+      "package_sha256": "7cdf7d0100da9416d05f34f88d94aa8613afdc1ccf21296d538697a818f07226",
+      "receipt_sha256": "85be3a4f03b822a1d0aeb80a6f12c9d63dc1811559e209a114a1bb0a3b87e897"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "8a65635f5c9b5877232916d7e70fe573cd8f2a54639f22229ce9e33efa1ca7ee",
+      "package_sha256": "ad43289632847e0ca614589eece970919393c2d557ca8b0382978b60b6758d3a",
+      "receipt_sha256": "4f9cad151125dceb4427343819b9e4c5b21facceca045d44efae5dbeef6bb339"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "7169fc492eadee003f31eb54330b43ef639b749c50d09b3f518aca82f8d360f0",
+      "receipt_sha256": "3a90ac5e42f75fd61cefc253fd183538b888851ad324273fa55900009a23894b"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::SEATED": {
+      "archive_sha256": "0107304d556b415e35d10418e0fef6b53cfe7d8b857e6963a0c5ae8b81c74c1a",
+      "package_sha256": "1c88636ddd1e339b9bcc56f802b9ab5bc8dfacf162ba1fe13c8e103f3c65b821",
+      "receipt_sha256": "aaf353d86d7b59f6a931a3a62113901edd7181f58f4b4e0a00d051a6f84fac60"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::SQUAT": {
+      "archive_sha256": "ae1e2dedefec69e6124df0bd0e9f56ab98507d678b920cafd5b7ad0adac10122",
+      "package_sha256": "8a04f5f8e468cbd3d4dbd7f693b79a95827b062085684057d053e5f622ab35b0",
+      "receipt_sha256": "b289b4878da95b382f6e5e66b11063bd275de48fad4519e5575bafc84a1f1d88"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "7dab62c3d4c48795fd9b329f89eaa390a41e4a12a1ae85d940dbcd0eb4bc3569",
+      "package_sha256": "207cda98c6982d90c52c07a43c5f5ee0dd7f1475ba9c9ca26df4e2354229b46a",
+      "receipt_sha256": "081482f264f9de10313955df09ea7216efbdd6def7d36fb16bed74b774ecb3e9"
+    },
+    "COTTON_CANVAS_HEAVY_REFERENCE::WALK_STRIDE": {
+      "archive_sha256": "b4eafd79f51fa9e8b5392165bf53078ee5b7252be0e8d569514bdf2f5ccfc19f",
+      "package_sha256": "c636be54f92b093103b525e0aa0ba8ee5f625469a1995c0ceb2bc9e674ddbac3",
+      "receipt_sha256": "7d0c07e77bdee43014396cce7fcc2a079f3614353055e4f68105b3e5ad595424"
+    },
+    "LINEN_LIGHT_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "a1986f3f62d707c7cb2ca6bdcfa9c5ee1f3c4bf7513d4173d7ac0a95edf3104c",
+      "package_sha256": "c717fe7a127d7ddab4ea84bb17769e9dc19e0aedeb15cb8fd4fb11cc772a259c",
+      "receipt_sha256": "80c7fb47bf4c5e5ce31a69d68fce68b72ed010b3fe490ef0dd05a4f548d87daa"
+    },
+    "LINEN_LIGHT_REFERENCE::ARMS_OVERHEAD": {
+      "archive_sha256": "00a0896212fc911e0462718528b5f5cab87302f96d66d7b87fffc33339e416bb",
+      "package_sha256": "7ff9417e3a0cd98ab4d1808e369635ac7b487f7b9f4bc88bf21c43e580c30f02",
+      "receipt_sha256": "5b39f7e38e56ddf412d0f41380dd91145027a807ecacc7f6a8cdb6096aa6f049"
+    },
+    "LINEN_LIGHT_REFERENCE::CROSS_BODY_REACH": {
+      "archive_sha256": "099edc0e2e07ae1743bbe32d32af1b69b499d54032ea4036d88815f916d92fc9",
+      "package_sha256": "33652d09363c494d970e96bd9898e64501eebf0a9570e56bf7b821ce26310677",
+      "receipt_sha256": "0bfd483168aaf1ae4c52fcb83174c86f6325fd61431aa5dcb0742d66bec6e442"
+    },
+    "LINEN_LIGHT_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "65f63d40c5916702f5f55e090283fc9a86e6cdac106f918fcefdd24a0c6c536b",
+      "package_sha256": "d934d41ae37485d389509e6ea1ae491af172c597e2fb71fb6e52bde08943edd9",
+      "receipt_sha256": "f11d75abd643ece64db9c9efb534f55828013aacba42900ad7d43fbabff82052"
+    },
+    "LINEN_LIGHT_REFERENCE::FORWARD_BEND": {
+      "archive_sha256": "a5de1d4e428e029d5120a986d16bbf219a51b1c94cdb7821442f3d0cba8e5c51",
+      "package_sha256": "478dfd8d5107fbb320bd88cec828b4bcbd4f5cb580af3a84601098e5bb85f033",
+      "receipt_sha256": "4945f90e4dccda6f13cefd9d35f64abc210b8d48d69d201c0e38577f674e5e21"
+    },
+    "LINEN_LIGHT_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "148c30580a45d96561233f09daa9e27adfbef4548f86c0aeaf8b30de194ffabf",
+      "receipt_sha256": "0427b4aa990c0c399a4c40e56852f1e57161063e02a495b1bf0ff0451773e0f3"
+    },
+    "LINEN_LIGHT_REFERENCE::SEATED": {
+      "archive_sha256": "f145e11780089fc690cbb23e6964668a7c0315f90dbaceb2ee45a26f3bfc95f7",
+      "package_sha256": "6649720cf72f8ca8e63c7c8fc3507502b816f1345704a5addf6f4cc0b02193d7",
+      "receipt_sha256": "a551be596132f3e8a1e3be46a7c6bef24102e0aa1629c459398ced4b122e36b1"
+    },
+    "LINEN_LIGHT_REFERENCE::SQUAT": {
+      "archive_sha256": "ffdb930d3cfddfec74a34532e692d6a2d147a4abdc0b4d50b5f021a123b78160",
+      "package_sha256": "4a64adec0bce6f44363bf2821c5c1f534450e75e2ab3d035d9a538a9d647e2d2",
+      "receipt_sha256": "141361c5ee60db17937cb22bfd2c61b71247ab1d34ff35092ebbc62cfaf422a0"
+    },
+    "LINEN_LIGHT_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "a50811d258253e4281d3344ccfb60ffc771f14f468b8d9ec2c06c196fb862beb",
+      "package_sha256": "702724368db828c1cb3eeb98505e539cc7686451b19a87fb3fa370c29fffcdb8",
+      "receipt_sha256": "45b77f2847ecd0ae92e87159ab4380debe91b14ece3f1ce5f01a7c0ce63381b9"
+    },
+    "LINEN_LIGHT_REFERENCE::WALK_STRIDE": {
+      "archive_sha256": "492cec0af6fae377d932c8088ca30c0002ed77de9228695ad2e039a17368b31a",
+      "package_sha256": "bef472ddbf3d32505d93e51056da76d5abe2f7090cc08a85d6b55c7392af0661",
+      "receipt_sha256": "14fa4cffc4dc1aceda03e291b77fd945192925435c1863d9ac8c2b34e27f118d"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::ARMS_FORWARD": {
+      "archive_sha256": "0a6f27744ee4100f205572b2d5a395790bcec58ee1b5fed383f346a550ffd617",
+      "package_sha256": "43942fb6bdaa351dc6f8d565fd409d2961e29d5d993c4422874838bc8236296a",
+      "receipt_sha256": "a841791238a53afe88210c4dd1f1230cc6b411e85cf43fb257f0b6e881b7d8aa"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::ARMS_OVERHEAD": {
+      "archive_sha256": "6f1f94abc72fe1ec738cdb74ccc34b6290535db1cad92bdd49666685e4a548d3",
+      "package_sha256": "c43c0e6b5b2e3e1ab5f8557262bfc2ce69a885efcd606e0c5c02b600b7d80246",
+      "receipt_sha256": "3b93370f6bd2bf8a3b88dd163edd97944282bf0f042602971ce982bd3806722e"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::CROSS_BODY_REACH": {
+      "archive_sha256": "a2d018e5be0e1b51032a5f51c4f6e69d25553fb7453539272592812865249c9c",
+      "package_sha256": "3418650150711bd09195c352d1a856e8c1e249337388cf7bcdd04d8595fa11fe",
+      "receipt_sha256": "51fd316c2d5a33b5ecc5ca6deace354074a15bd0cbdfdad1257df7d389cdff8c"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::DEEP_ELBOW_BEND": {
+      "archive_sha256": "ead50d515ee29d98e16d6516e0745fc6d597977e4787776ae49e54fe6cf08e69",
+      "package_sha256": "42daac3453a7c2b2088b1bf3174d1170914cd2d4fb959f3a9c9bbc1dd051e451",
+      "receipt_sha256": "1a462d1714fb00db0fff0fd14fbcaa0054eeb92992013bc6697a792d2a876313"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::FORWARD_BEND": {
+      "archive_sha256": "25105d4333a359cd3f2eb8efa8da7591727e1df6b41eaac71540fd8f725c7261",
+      "package_sha256": "2875f96ec5ec6b8a6e34d8af12a3e9ad10477622c0552c8d523f48b02bf1b95a",
+      "receipt_sha256": "df1ec827e3eb6b4cf7923e972d8a077996de596cd95e5b88a53792cde4a61087"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::NEUTRAL_A": {
+      "archive_sha256": "2113c41487db594fac85ffb4b06b3d95489ad524e85d5f7f819032e368b5967b",
+      "package_sha256": "801a8c031623a9445516e4e337ad4130ac2299c6b7cf384225afca694400da75",
+      "receipt_sha256": "13fc44c6849fc30eb249ce35b9d8ad2f11d9884ed0a6f5ea000082919bc7830e"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::SEATED": {
+      "archive_sha256": "b71282f13bafb3cb25c7045857fcafe0f2952e79c64ce2bbdbf4bed719c88571",
+      "package_sha256": "4caf911112d866751f2d25e25a2d80d53494c0bcee8d44c3925bd81d7189dda2",
+      "receipt_sha256": "e45ec6f4ee765713f80fb49021084edee87f0f5cf6b40ec227b9b581ff24a8df"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::SQUAT": {
+      "archive_sha256": "5e1072ea5148cdd5b56f8a8650a49590829ff833b3902c7491916f935b4144eb",
+      "package_sha256": "a70222f159f2d10038f8293007453acf51858dbcea79b38f2540a7f24617a8e4",
+      "receipt_sha256": "6691a47af5f2efc54bfc38686bcc0dc62616d8bd60b857fc9c50c8c5e4560206"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::TORSO_TWIST": {
+      "archive_sha256": "eb2258b5b4429abb1a5030018c4544c5bad01dda45e5b6adf71b6bde6a8dbcb3",
+      "package_sha256": "a5831b5dc5317b301bebccfe3c82c6e73f142ffddd4dde31c351135c3b3b58ff",
+      "receipt_sha256": "a63bc44eb2c913e7973ab3f09b61b7c8356b018c1daa7126fc10d40792585626"
+    },
+    "WOOL_TWILL_MEDIUM_REFERENCE::WALK_STRIDE": {
+      "archive_sha256": "aa2e73edaa14d47ec762e24b2a3eee8732682993742a2c9b1ed05ad2d87c7ba8",
+      "package_sha256": "dcc7800d3ee395ea8ff99439b45a4798937b44f737c729e08a880e32a7966908",
+      "receipt_sha256": "4436a582708d1a4ea91dd1aa4599f41c7e4f2d3b8a1dd5a99a4fc2c0975636cc"
+    }
+  },
+  "preserved_scenario_count": 29,
+  "preserved_scenarios_byte_identical": true,
+  "receipt_sha256": "6668973dfb62dac3fb4f677eb52491ec57ffc286f8e49e68eb040feb21fa00ae",
+  "reexecuted_scenario_ids": [
+    "COTTON_CANVAS_HEAVY_REFERENCE::FORWARD_BEND"
+  ],
+  "thresholds_changed": false
+}
