@@ -29,19 +29,15 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36874764717
           github-token: ${{ github.token }}
-      - name: Publish temporary rig source snapshot
+      - name: Publish temporary canonical skeleton fixture
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf cp4_rig_source_snapshot
-          mkdir -p cp4_rig_source_snapshot
-          cp -a "$RUNNER_TEMP/base/source/wuxia_garment_oss/rig/." cp4_rig_source_snapshot/
-          find cp4_rig_source_snapshot -type d -name __pycache__ -prune -exec rm -rf {} +
-          find cp4_rig_source_snapshot -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          cp "$RUNNER_TEMP/base/build/rig_cp0/canonical_skeleton.json" cp4_canonical_skeleton_snapshot.json
           git config user.name 'chatgpt-garment-cad'
           git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
-          git add cp4_rig_source_snapshot
+          git add cp4_canonical_skeleton_snapshot.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Publish temporary CP4 rig source snapshot [skip ci]'
+            git commit -m 'Publish temporary CP4 skeleton fixture [skip ci]'
             git push origin HEAD:garment-cad-pro-r1b-cp4-20261001
           fi
