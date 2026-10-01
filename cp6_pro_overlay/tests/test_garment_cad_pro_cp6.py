@@ -42,7 +42,13 @@ def test_trousers_topology_is_product_admissible() -> None:
     assert receipt["degenerate_triangle_count"] == 0
     assert receipt["non_finite_vertex_count"] == 0
     assert receipt["maximum_edge_incidence"] <= 2
-    assert receipt["boundary_loop_count"] == 3
+    assert receipt["boundary_loop_count"] == receipt["expected_boundary_loop_count"] == 4
+    assert set(receipt["expected_open_boundaries"]) == {
+        "waistband_join",
+        "left_ankle_hem",
+        "right_ankle_hem",
+        "crotch_gusset_insertion",
+    }
 
 
 def test_trousers_nine_motion_scenarios_pass() -> None:
