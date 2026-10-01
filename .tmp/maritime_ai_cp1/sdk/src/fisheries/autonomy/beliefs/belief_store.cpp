@@ -78,8 +78,9 @@ bool initialize_grounds(
         if (!validate_ground(profile) || prepared.contains(profile.key)) {
             return false;
         }
+        const auto key = profile.key;
         FishingGroundBelief belief;
-        belief.ground_key = profile.key;
+        belief.ground_key = key;
         belief.estimated_catch_rate_kg_per_hour =
             profile.prior_catch_rate_kg_per_hour;
         belief.estimated_bycatch_ratio = profile.prior_bycatch_ratio;
@@ -87,7 +88,7 @@ bool initialize_grounds(
             profile.prior_market_value_per_kg;
         belief.access_allowed = profile.access_allowed;
         prepared.emplace(
-            profile.key,
+            key,
             GroundState{std::move(profile), std::move(belief), {}});
     }
     state.grounds = std::move(prepared);
