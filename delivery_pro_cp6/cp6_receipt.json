@@ -1,0 +1,27 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP6",
+  "cp6_scope_acceptance": true,
+  "garment_cad_pro_r1a_complete": false,
+  "glb_fresh_process_pass": true,
+  "godot_4_7_2_consumer_pass": true,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1A_CP6_R1",
+  "predecessor_preservation_pass": true,
+  "product_acceptance": true,
+  "program_hold_reason": "CP3 dart/pleat/gather/gusset manufacturing authority is exported, but the tunic game mesh still uses the immutable CP2B reference topology.",
+  "receipt_sha256": "0e8ea9b90a32a7c34a47420c67b7cb6a19e84a03853fe44f67f05af12f125195",
+  "runtime": {
+    "godot": "4.7.2",
+    "warp": "1.17.0"
+  },
+  "terminal_decision": "CP6_ACCEPTED_EXPORT_AND_TROUSERS_CLOSEOUT",
+  "thresholds_changed": false,
+  "trousers_actual_product_topology": true,
+  "trousers_fit_pass_count": 9,
+  "trousers_fit_scenario_count": 9,
+  "trousers_manufacturing_pass": true,
+  "trousers_topology_pass": true,
+  "tunic_cp3_feature_topology_embodied": false,
+  "tunic_game_product_scope": "IMMUTABLE_CP2B_REFERENCE_MESH_WITH_CP5_R1_ACCEPTED_MORPHS",
+  "tunic_manufacturing_pass": true
+}
