@@ -7,7 +7,7 @@ on:
 
 permissions:
   actions: read
-  contents: read
+  contents: write
 
 concurrency:
   group: garment-r1b-cp4-inspect
@@ -21,6 +21,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: garment-cad-pro-r1b-cp4-20261001
+          persist-credentials: true
       - uses: actions/download-artifact@v4
         with:
           name: GARMENT_R1B_CP3_FINAL
@@ -28,22 +29,38 @@ jobs:
           repository: jinukcha/gpc-neural-networks
           run-id: 36874764717
           github-token: ${{ github.token }}
-      - name: Inspect preserved geometry products
+      - name: Publish compact geometry diagnostic
         shell: bash
         run: |
           set -euo pipefail
-          base="$RUNNER_TEMP/base"
-          echo 'CP4_RELEVANT_FILES_BEGIN'
-          find "$base/build" -type f \( -iname '*body*' -o -iname '*skin*' -o -iname '*collision*' -o -iname '*.npz' -o -iname '*.glb' \) -printf '%P\t%s\n' | sort | head -1000
-          echo 'CP4_RELEVANT_FILES_END'
-          python - "$base/build" <<'PY'
+          python - "$RUNNER_TEMP/base/build" cp4_body_archive_diagnostic.json <<'PY'
           import json,pathlib,sys
-          root=pathlib.Path(sys.argv[1])
+          root=pathlib.Path(sys.argv[1]); target=pathlib.Path(sys.argv[2])
+          relevant=[]
+          for path in sorted(p for p in root.rglob('*') if p.is_file()):
+              lower=path.as_posix().lower()
+              if any(token in lower for token in ('body','skin','collision')) or path.suffix.lower() in {'.npz','.npy','.glb'}:
+                  relevant.append({'path':path.relative_to(root).as_posix(),'bytes':path.stat().st_size})
+          summaries=[]
           for path in sorted(root.rglob('*.json')):
               try: payload=json.loads(path.read_text())
               except Exception: continue
-              text=json.dumps(payload,sort_keys=True)
-              if any(word in path.as_posix().lower() or word in text[:4000].lower() for word in ('body_skin','body source','collision','vertex_count','triangle_count','archive_path')):
-                  summary={'path':path.relative_to(root).as_posix(),'keys':sorted(payload) if isinstance(payload,dict) else [],'sample':text[:4000]}
-                  print('CP4_JSON_SUMMARY='+json.dumps(summary,sort_keys=True))
+              if not isinstance(payload,dict): continue
+              encoded=json.dumps(payload,sort_keys=True)
+              lower=(path.as_posix()+' '+encoded[:6000]).lower()
+              if any(token in lower for token in ('body_skin','body source','collision','vertex_count','triangle_count','archive_path','array_path')):
+                  values={}
+                  for key in ('contract','archive_path','array_path','npz_path','geometry_path','source_archive_path','vertex_count','triangle_count','body_vertex_count','body_triangle_count','product_path','mesh_archive_path'):
+                      if key in payload: values[key]=payload[key]
+                  summaries.append({'path':path.relative_to(root).as_posix(),'keys':sorted(payload),'values':values})
+          result={'relevant_files':relevant[:1500],'json_summaries':summaries[:500]}
+          target.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
+          print(json.dumps({'relevant_count':len(relevant),'summary_count':len(summaries)}))
           PY
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add cp4_body_archive_diagnostic.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish temporary CP4 body archive diagnostic [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1b-cp4-20261001
+          fi
