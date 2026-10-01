@@ -52,6 +52,7 @@ jobs:
           cp -a cp3_pro_overlay/source/. "$root/source/"
           cp -a cp3_pro_overlay/scripts/. "$root/scripts/"
           cp -a cp3_pro_overlay/tests/. "$root/tests/"
+          sed -i 's/from \.\.\.\.\.construction\.model/from ....construction.model/' "$root/source/wuxia_garment_oss/garments/sleeveless_tunic/construction/professional.py"
           chmod +x "$root/scripts/"*.py
           test "$pattern_cp1_hash" = "$(tree_hash "$root/build/pattern_cad_cp1")"
           test "$pattern_cp2_hash" = "$(tree_hash "$root/build/pattern_cad_cp2")"
