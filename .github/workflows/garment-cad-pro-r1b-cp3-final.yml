@@ -1,0 +1,217 @@
+name: Garment CAD Pro R1B CP3 Final
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1b-cp3-20261001
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: garment-cad-pro-r1b-cp3-final
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1b-cp3-20261001
+          persist-credentials: true
+
+      - name: Download immutable R1A CP6-R1 predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP6_R1_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36855920180
+          github-token: ${{ github.token }}
+
+      - name: Restore integrated root and overlay CP3
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests" "$root/godot"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          cp -a r1b_cp3_overlay/source/. "$root/source/"
+          cp -a r1b_cp3_overlay/scripts/. "$root/scripts/"
+          cp -a r1b_cp3_overlay/tests/. "$root/tests/"
+          cp -a r1b_cp3_overlay/godot/. "$root/godot/"
+          mkdir -p "$root/docs/architecture/professional_rig" "$root/docs/roadmap"
+          cp -a delivery_r1b_design/architecture/. "$root/docs/architecture/professional_rig/"
+          cp -a delivery_r1b_design/roadmap/. "$root/docs/roadmap/"
+          cp delivery_r1b_design/R1B_START_HERE.md "$root/R1B_START_HERE.md"
+          cp delivery_r1b_design/R1B_DESIGN_STATUS.json "$root/R1B_DESIGN_STATUS.json"
+          chmod +x "$root/scripts/"*.py
+          python - "$RUNNER_TEMP/base" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); out=pathlib.Path(sys.argv[2])
+          paths=(
+            'build/pattern_cad_cp1','build/pattern_cad_cp2','build/construction_cp3',
+            'build/material_calibration_cp4','build/motion_fit_cp5_r1_closeout',
+            'build/garment_cad_pro_cp6','build/garment_cad_pro_cp6_r1','build/tunic_pilot',
+            'source/wuxia_garment_oss/pattern_cad','source/wuxia_garment_oss/construction',
+            'source/wuxia_garment_oss/materials','source/wuxia_garment_oss/qualification',
+            'source/wuxia_garment_oss/sizing','source/wuxia_garment_oss/garments/trousers')
+          def h(path):
+            d=hashlib.sha256()
+            for item in sorted(x for x in path.rglob('*') if x.is_file()):
+              if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+              d.update(item.relative_to(path).as_posix().encode()); d.update(hashlib.sha256(item.read_bytes()).digest())
+            return d.hexdigest()
+          out.write_text(json.dumps({p:h(root/p) for p in paths},indent=2,sort_keys=True)+'\n')
+          PY
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Install bounded Linux tooling
+        run: >-
+          python -m pip install --disable-pip-version-check --no-cache-dir
+          numpy==2.5.3 matplotlib==3.9.4 pillow==11.1.0 pytest==8.3.5 jsonschema==4.25.1
+
+      - name: Publish schemas and build skinned GLBs
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python - "$ROOT" <<'PY'
+          import json,pathlib,sys
+          from wuxia_garment_oss.rig.game_product.contracts import product_schemas
+          root=pathlib.Path(sys.argv[1]); target=root/'contracts/rig_game_product'; target.mkdir(parents=True,exist_ok=True)
+          for name,schema in product_schemas().items():
+            (target/name).write_text(json.dumps(schema,indent=2,sort_keys=True)+'\n')
+          PY
+          env MPLBACKEND=Agg PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/run_garment_cad_pro_r1b_cp3.py" --root "$ROOT"
+          env PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/verify_r1b_cp3_products.py" --root "$ROOT"
+
+      - name: Normalize external rig names for Godot Skeleton3D
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -i 's/mixamorig:/mixamorig_/g' "$ROOT/godot/garment_r1b_cp3/verify_equip.gd"
+          python - "$ROOT" <<'PY'
+          import json,pathlib,sys
+          root=pathlib.Path(sys.argv[1])
+          for path in sorted((root/'build/rig_cp0/adapters').glob('MIXAMO*.json')):
+            data=json.loads(path.read_text())
+            data['semantic_to_source']={k:v.replace('mixamorig:','mixamorig_') for k,v in data['semantic_to_source'].items()}
+            data['engine_name_normalization']='COLON_TO_UNDERSCORE_FOR_GODOT_SKELETON3D'
+            path.write_text(json.dumps(data,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Exact Godot 4.7.2 equip and character swap
+        shell: bash
+        run: |
+          set -euo pipefail
+          project="$ROOT/build/rig_cp3/godot_product"
+          mkdir -p "$project/products"
+          cp "$ROOT/godot/garment_r1b_cp3/project.godot" "$project/"
+          cp "$ROOT/godot/garment_r1b_cp3/garment_runtime.gd" "$project/"
+          cp "$ROOT/godot/garment_r1b_cp3/verify_equip.gd" "$project/"
+          cp "$ROOT/build/rig_cp3/products/feature_complete_tunic_rigged.glb" "$project/products/"
+          cp "$ROOT/build/rig_cp3/products/trousers_rigged.glb" "$project/products/"
+          godot_dir="$RUNNER_TEMP/godot-4.7.2"; mkdir -p "$godot_dir"
+          curl -L --fail --retry 3 -o "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" -d "$godot_dir"
+          godot="$godot_dir/Godot_v4.7.2-stable_linux.x86_64"; chmod +x "$godot"
+          timeout 180 "$godot" --headless --path "$project" --import
+          timeout 180 "$godot" --headless --path "$project" --script res://verify_equip.gd | tee "$RUNNER_TEMP/godot.log"
+          python - "$RUNNER_TEMP/godot.log" "$project/godot_equip_receipt.json" <<'PY'
+          import json,pathlib,sys
+          marker='R1B_CP3_GODOT_RECEIPT='
+          rows=[line.split(marker,1)[1] for line in pathlib.Path(sys.argv[1]).read_text(errors='replace').splitlines() if marker in line]
+          if not rows: raise SystemExit('missing R1B_CP3_GODOT_RECEIPT')
+          payload=json.loads(rows[-1]); version=payload['godot_version']
+          assert (int(version['major']),int(version['minor']),int(version['patch']))==(4,7,2)
+          assert payload['read_only_consumer'] and payload['consumer_pass']
+          pathlib.Path(sys.argv[2]).write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+          rm -rf "$project/.godot" "$project/products"
+          rm -f "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip"
+
+      - name: Finalize, preserve predecessors, and test
+        shell: bash
+        run: |
+          set -euo pipefail
+          env MPLBACKEND=Agg PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/finalize_garment_cad_pro_r1b_cp3.py" --root "$ROOT"
+          find "$ROOT/source" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT/source" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - "$ROOT" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); before=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          def h(path):
+            d=hashlib.sha256()
+            for item in sorted(x for x in path.rglob('*') if x.is_file()):
+              if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+              d.update(item.relative_to(path).as_posix().encode()); d.update(hashlib.sha256(item.read_bytes()).digest())
+            return d.hexdigest()
+          after={p:h(root/p) for p in before}; unchanged={p:before[p]==after[p] for p in before}
+          payload={'contract':'R1BCP3PredecessorPreservationReceipt/1','before':before,'after':after,'unchanged':unchanged,'all_predecessors_unchanged':all(unchanged.values())}
+          payload['receipt_sha256']=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          (root/'build/rig_cp3/predecessor_preservation.json').write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          assert payload['all_predecessors_unchanged'],[p for p,v in unchanged.items() if not v]
+          PY
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests/test_garment_cad_pro_r1b_cp3.py"
+          python - "$ROOT" <<'PY'
+          import ast,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); files=sorted((root/'source').rglob('*.py'))+sorted((root/'scripts').glob('*.py'))
+          mf=('',0); mfn=('','',0); violations=[]
+          for path in files:
+            text=path.read_text(); rel=path.relative_to(root).as_posix(); loc=len(text.splitlines())
+            if loc>mf[1]: mf=(rel,loc)
+            if loc>500: violations.append(('file',rel,loc))
+            for node in ast.walk(ast.parse(text)):
+              if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):
+                size=getattr(node,'end_lineno',node.lineno)-node.lineno+1
+                if size>mfn[2]: mfn=(rel,node.name,size)
+                if size>80: violations.append(('function',rel,node.name,size))
+          assert not violations,violations
+          checks={'cp3_tests':'PASS','files_checked':len(files),'maximum_file':mf,'maximum_function':mfn,'files_over_500':[],'functions_over_80':[]}
+          (root/'R1B_CHECKS.json').write_text(json.dumps(checks,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(checks,sort_keys=True))
+          PY
+          python -c "import json,pathlib; from jsonschema import Draft202012Validator; p=pathlib.Path('$ROOT/contracts/rig_game_product'); s=sorted(p.glob('*.schema.json')); assert len(s)==4; [Draft202012Validator.check_schema(json.loads(x.read_text())) for x in s]"
+
+      - name: Diet and manifest integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256 >/dev/null)
+
+      - name: Publish CP3 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_r1b_cp3; mkdir -p delivery_r1b_cp3
+          cp "$ROOT/build/rig_cp3/cp3_godot_equip_evidence.png" delivery_r1b_cp3/
+          cp "$ROOT/build/rig_cp3/cp3_receipt.json" delivery_r1b_cp3/
+          cp "$ROOT/build/rig_cp3/godot_product/godot_equip_receipt.json" delivery_r1b_cp3/
+          cp "$ROOT/build/rig_cp3/restored_input_provenance.json" delivery_r1b_cp3/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_r1b_cp3
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish garment CAD Pro R1B CP3 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1b-cp3-20261001
+          fi
+
+      - name: Upload single integrated CP3 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_R1B_CP3_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
