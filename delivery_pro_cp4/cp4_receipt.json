@@ -1,0 +1,27 @@
+{
+  "all_backend_parity_pass": true,
+  "all_calibration_pass": true,
+  "checkpoint": "GARMENT_CAD_PRO_R1A_CP4",
+  "cp3_predecessor_mutated": false,
+  "experiment_series_count": 30,
+  "final_checkpoint_sha256": "b92660bf98079ff5b76bad7fd0e3606aaf02fbc83ed1c998f11cf18f54928ebc",
+  "fresh_process_resume_pass": true,
+  "material_fixture_count": 3,
+  "maximum_backend_relative_metric_error": 1.911631630958652e-07,
+  "maximum_backend_relative_response_error": 1.4113851406320667e-07,
+  "maximum_calibration_normalized_rmse": 0.4906387476584388,
+  "maximum_calibration_sigma_error": 0.731785023233367,
+  "mesh_scaling": "FORBIDDEN",
+  "motion_fit_executed": false,
+  "next_checkpoint": "GARMENT_CAD_PRO_R1A_CP5",
+  "receipt_sha256": "fdba0c51781d49c90c1ec831b0b941ca7a9106f4c1fa9d88c41f1f72ce5158c2",
+  "runtime": {
+    "cuda_status": "EXPLICIT_NO_CUDA_DEVICE",
+    "device": "cpu",
+    "kernel_family": "CP4_MATERIAL_RESPONSE_V1",
+    "package": "warp-lang",
+    "version": "1.17.0"
+  },
+  "terminal_decision": "CP4_COMPLETE_MATERIAL_CALIBRATION_PARITY",
+  "triangulation_executed": false
+}
