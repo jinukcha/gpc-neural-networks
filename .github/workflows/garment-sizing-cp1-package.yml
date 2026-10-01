@@ -102,8 +102,10 @@ jobs:
           git config user.name 'chatgpt-garment-sizing'
           git config user.email 'chatgpt-garment-sizing@users.noreply.github.com'
           git add delivery_cp1
-          git commit -m 'Publish garment sizing CP1 evidence [skip ci]'
-          git push origin HEAD:garment-sizing-r0a-cp1-20261001
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish garment sizing CP1 evidence [skip ci]'
+            git push origin HEAD:garment-sizing-r0a-cp1-20261001
+          fi
 
       - name: Upload single integrated CP1 bundle
         uses: actions/upload-artifact@v4
