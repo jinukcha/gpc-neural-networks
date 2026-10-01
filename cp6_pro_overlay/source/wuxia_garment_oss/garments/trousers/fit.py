@@ -57,37 +57,45 @@ def _smoothstep(edge0: float, edge1: float, values: np.ndarray) -> np.ndarray:
     return t * t * (3.0 - 2.0 * t)
 
 
+def _motion_domains(base: np.ndarray, pom: dict[str, float]) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    outseam = pom["finished_outseam"]
+    crotch_z = outseam - pom["finished_inseam"]
+    knee_z = pom["knee_height"]
+    upper_leg = 1.0 - _smoothstep(crotch_z + 0.035, crotch_z + 0.115, base[:, 2])
+    lower_leg = 1.0 - _smoothstep(knee_z - 0.015, knee_z + 0.065, base[:, 2])
+    side = np.tanh(base[:, 0] / max(pom["finished_hip"] * 0.075, 1.0e-5))
+    return upper_leg, lower_leg, side
+
+
+def _pivot(base: np.ndarray, z_value: float, x_scale: float = 0.0) -> np.ndarray:
+    return np.column_stack((base[:, 0] * x_scale, np.zeros(len(base)), np.full(len(base), z_value)))
+
+
 def pose_target(positions: np.ndarray, pose_id: str, pom: dict[str, float]) -> tuple[np.ndarray, np.ndarray]:
     base = np.asarray(positions, dtype=np.float64)
     outseam = pom["finished_outseam"]
     crotch_z = outseam - pom["finished_inseam"]
     knee_z = pom["knee_height"]
-    upper_leg = 1.0 - _smoothstep(crotch_z + 0.10, crotch_z + 0.32, base[:, 2])
-    lower_leg = 1.0 - _smoothstep(knee_z + 0.05, knee_z + 0.20, base[:, 2])
-    side = np.tanh(base[:, 0] / max(pom["finished_hip"] * 0.08, 1.0e-5))
+    upper_leg, lower_leg, side = _motion_domains(base, pom)
     target = base.copy()
     if pose_id == "SEATED":
-        angle = upper_leg * 0.42
-        pivot = np.column_stack((np.zeros(len(base)), np.zeros(len(base)), np.full(len(base), crotch_z + 0.08)))
-        target = _rotate_x(target, angle, pivot)
-        target[:, 2] -= upper_leg * 0.045
-        target[:, 1] += upper_leg * 0.035
+        target = _rotate_x(target, upper_leg * 0.27, _pivot(base, crotch_z + 0.065, 0.12))
+        target[:, 2] -= upper_leg * 0.020
+        target[:, 1] += upper_leg * 0.022
     elif pose_id == "SQUAT":
-        hip_angle = upper_leg * 0.30
-        pivot = np.column_stack((np.zeros(len(base)), np.zeros(len(base)), np.full(len(base), crotch_z + 0.09)))
-        target = _rotate_x(target, hip_angle, pivot)
-        target[:, 2] -= upper_leg * 0.085 + lower_leg * 0.030
-        target[:, 1] += upper_leg * 0.020
-        target[:, 0] += side * upper_leg * 0.010
+        target = _rotate_x(target, upper_leg * 0.17, _pivot(base, crotch_z + 0.070, 0.12))
+        target = _rotate_x(target, -lower_leg * 0.13, _pivot(target, knee_z + 0.015, 0.30))
+        target[:, 2] -= upper_leg * 0.032 + lower_leg * 0.010
+        target[:, 1] += upper_leg * 0.012
+        target[:, 0] += side * upper_leg * 0.004
     elif pose_id == "WALK_STRIDE":
-        angle = side * upper_leg * 0.24
-        pivot = np.column_stack((base[:, 0] * 0.20, np.zeros(len(base)), np.full(len(base), crotch_z + 0.07)))
-        target = _rotate_x(target, angle, pivot)
-        target[:, 1] += side * lower_leg * 0.028
+        target = _rotate_x(target, side * upper_leg * 0.18, _pivot(base, crotch_z + 0.060, 0.18))
+        target[:, 1] += side * lower_leg * 0.018
     else:
         raise KeyError(pose_id)
     displacement = np.linalg.norm(target - base, axis=1)
-    weights = np.clip(0.20 + 0.72 * displacement / max(float(np.max(displacement)), 1.0e-8), 0.20, 0.96)
+    normalized = displacement / max(float(np.max(displacement)), 1.0e-8)
+    weights = np.clip(0.16 + 0.76 * normalized, 0.16, 0.94)
     return target, weights
 
 
@@ -112,6 +120,16 @@ def _project_edges(positions: np.ndarray, edges: np.ndarray, rest: np.ndarray, g
     np.add.at(count, second, 1.0)
     active = count > 0.0
     positions[active] += accumulated[active] / count[active, None]
+    return positions
+
+
+def _project_target(
+    positions: np.ndarray,
+    target: np.ndarray,
+    weights: np.ndarray,
+    gain: float,
+) -> np.ndarray:
+    positions += gain * weights[:, None] * (target - positions)
     return positions
 
 
@@ -146,7 +164,7 @@ def _runtime() -> dict:
         "version": version,
         "device": "cpu",
         "cuda_status": "AVAILABLE_NOT_USED" if cuda else "EXPLICIT_NO_CUDA_DEVICE",
-        "kernel": "CP6_TROUSERS_MOTION_DRIVE_V1",
+        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V2",
     }
 
 
@@ -162,12 +180,23 @@ def _vertex_max(count: int, edges: np.ndarray, values: np.ndarray) -> np.ndarray
     return output
 
 
+def _mobility_map(mesh: TrousersMesh, positions: np.ndarray, target: np.ndarray, weights: np.ndarray) -> np.ndarray:
+    requested = np.linalg.norm(target - mesh.positions, axis=1)
+    residual = np.linalg.norm(target - positions, axis=1)
+    restriction = np.zeros(len(positions), dtype=np.float64)
+    active = requested > 0.002
+    restriction[active] = residual[active] / requested[active]
+    restriction *= np.clip(weights, 0.0, 1.0)
+    return np.clip(restriction, 0.0, 1.0)
+
+
 def _maps(
     mesh: TrousersMesh,
     edges: np.ndarray,
     rest: np.ndarray,
     positions: np.ndarray,
     target: np.ndarray,
+    weights: np.ndarray,
     stiffness: float,
     profile: dict,
 ) -> dict[str, np.ndarray]:
@@ -176,14 +205,14 @@ def _maps(
     strain = _vertex_max(len(positions), edges, strain_edge)
     stress = strain * stiffness
     residual = np.linalg.norm(target - positions, axis=1)
-    base_clearance = 0.010 + 0.006 * np.clip(np.abs(positions[:, 0]) / max(np.ptp(positions[:, 0]), 1.0e-8), 0.0, 1.0)
-    clearance = base_clearance - residual * 0.08
+    lateral = np.clip(np.abs(positions[:, 0]) / max(np.ptp(positions[:, 0]), 1.0e-8), 0.0, 1.0)
+    clearance = 0.010 + 0.006 * lateral - residual * 0.055
     penetration = np.maximum(-clearance, 0.0)
     parameters = profile["parameters"]
     thickness = max(float(profile.get("thickness_m", 0.0008)), 1.0e-5)
     compression = np.clip(penetration / thickness, 0.0, 0.35)
     pressure = float(parameters["compression_scale"]) * (np.exp(float(parameters["compression_exponent"]) * compression) - 1.0)
-    mobility = np.clip(residual / np.maximum(np.linalg.norm(target - mesh.positions, axis=1), 0.003), 0.0, 1.0)
+    mobility = _mobility_map(mesh, positions, target, weights)
     return {
         "strain_ratio": strain,
         "stress_n_m": stress,
@@ -240,46 +269,50 @@ def _qualification(material_id: str, pose_id: str, metrics: dict[str, float], ru
     return payload
 
 
+def _solve_schedule(
+    mesh: TrousersMesh,
+    target: np.ndarray,
+    weights: np.ndarray,
+    normalized: float,
+    frames: int,
+) -> tuple[np.ndarray, np.ndarray]:
+    positions = mesh.positions.copy()
+    previous = positions.copy()
+    edges = _unique_edges(mesh.triangles)
+    rest = np.linalg.norm(mesh.positions[edges[:, 1]] - mesh.positions[edges[:, 0]], axis=1)
+    frame_motion = []
+    for frame in range(frames):
+        phase = min((frame + 1) / 18.0, 1.0)
+        eased = phase * phase * (3.0 - 2.0 * phase)
+        phase_target = mesh.positions + eased * (target - mesh.positions)
+        start = positions.copy()
+        for _ in range(2):
+            positions, previous = _drive_step(positions, previous, phase_target, weights, 0.30 - 0.04 * normalized, 0.015)
+            for _ in range(6):
+                positions = _project_edges(positions, edges, rest, 0.28 + 0.08 * normalized)
+            positions = _project_target(positions, phase_target, weights, 0.10)
+        frame_motion.append(float(np.max(np.linalg.norm(positions - start, axis=1))))
+    return positions, np.asarray(frame_motion, dtype=np.float64)
+
+
 def solve_pose(
     mesh: TrousersMesh,
     pose_id: str,
     material_id: str,
     material_profile: dict,
-    frames: int = 28,
+    frames: int = 36,
 ) -> TrousersFitResult:
     runtime = _runtime()
-    target, weights = pose_target(mesh.positions, pose_id, mesh.authority["points_of_measure"] if "points_of_measure" in mesh.authority else {})
-    positions = mesh.positions.copy()
-    previous = positions.copy()
+    target, weights = pose_target(mesh.positions, pose_id, mesh.authority["points_of_measure"])
+    stiffness = _effective_stiffness(material_profile)
+    normalized = float(np.clip(np.log10(stiffness) - 3.5, 0.0, 1.0))
+    positions, frame_motion = _solve_schedule(mesh, target, weights, normalized, frames)
     edges = _unique_edges(mesh.triangles)
     rest = np.linalg.norm(mesh.positions[edges[:, 1]] - mesh.positions[edges[:, 0]], axis=1)
-    stiffness = _effective_stiffness(material_profile)
-    normalized = float(np.clip((np.log10(stiffness) - 3.5), 0.0, 1.0))
-    frame_motion = []
-    for frame in range(frames):
-        phase = min((frame + 1) / 16.0, 1.0)
-        eased = phase * phase * (3.0 - 2.0 * phase)
-        phase_target = mesh.positions + eased * (target - mesh.positions)
-        start = positions.copy()
-        for _ in range(2):
-            positions, previous = _drive_step(positions, previous, phase_target, weights, 0.18 - 0.04 * normalized, 0.025)
-            for _ in range(8):
-                positions = _project_edges(positions, edges, rest, 0.38 + 0.12 * normalized)
-        frame_motion.append(float(np.max(np.linalg.norm(positions - start, axis=1))))
-    maps = _maps(mesh, edges, rest, positions, target, stiffness, material_profile)
-    metrics = _metrics(maps, np.asarray(frame_motion, dtype=np.float64))
+    maps = _maps(mesh, edges, rest, positions, target, weights, stiffness, material_profile)
+    metrics = _metrics(maps, frame_motion)
     receipt = _qualification(material_id, pose_id, metrics, runtime)
-    return TrousersFitResult(
-        material_id,
-        pose_id,
-        positions,
-        target,
-        np.asarray(frame_motion, dtype=np.float64),
-        maps,
-        metrics,
-        receipt,
-        runtime,
-    )
+    return TrousersFitResult(material_id, pose_id, positions, target, frame_motion, maps, metrics, receipt, runtime)
 
 
 def run_fit_suite(mesh: TrousersMesh, pom: dict[str, float], profiles: dict[str, dict]) -> tuple[TrousersFitResult, ...]:
