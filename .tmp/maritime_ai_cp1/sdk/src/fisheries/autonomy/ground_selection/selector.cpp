@@ -9,7 +9,8 @@ namespace {
 
 std::uint64_t stable_hash(const std::uint64_t seed, std::string_view key) {
     std::uint64_t value = 1469598103934665603ULL ^ seed;
-    for (const unsigned char character : key) {
+    for (const char raw_character : key) {
+        const auto character = static_cast<unsigned char>(raw_character);
         value ^= static_cast<std::uint64_t>(character);
         value *= 1099511628211ULL;
     }
