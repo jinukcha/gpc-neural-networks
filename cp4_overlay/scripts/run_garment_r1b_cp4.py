@@ -52,10 +52,21 @@ def required_bones(root: Path) -> tuple[str, ...]:
     result = []
     for item in bones:
         if isinstance(item, str):
-            result.append(item)
+            value = item
         else:
-            result.append(item.get("bone_id", item.get("semantic_bone_id", item.get("id"))))
-    return tuple(value for value in result if value)
+            value = (
+                item.get("semantic_id")
+                or item.get("bone_id")
+                or item.get("semantic_bone_id")
+                or item.get("id")
+            )
+        if value:
+            result.append(str(value))
+    unique = tuple(dict.fromkeys(result))
+    expected_count = int(skeleton.get("bone_count", len(bones)))
+    if len(unique) != expected_count or expected_count < 20:
+        raise ValueError(f"canonical skeleton identity loss: {len(unique)} / {expected_count}")
+    return unique
 
 
 def discover_product(root: Path, garment_token: str) -> str:
@@ -139,7 +150,10 @@ def build_registry(root: Path) -> GarmentLibraryRegistry:
         layer_class="MID",
         slots=tunic.slots,
         exclusive_slots=tunic.exclusive_slots,
-        coverage=tuple(CoverageRegion(item.region_id, item.thickness_m * 2.4, item.occludes_body, item.safety_band_m) for item in tunic.coverage),
+        coverage=tuple(
+            CoverageRegion(item.region_id, item.thickness_m * 2.4, item.occludes_body, item.safety_band_m)
+            for item in tunic.coverage
+        ),
         required_bones=tunic.required_bones,
         incompatible_families=("SLEEVELESS_TUNIC",),
         metadata={"fixture_only": True, "expected_admission": "REJECTED_ATOMIC"},
@@ -193,12 +207,14 @@ def run_transactions(reference, rejected, mask_receipt: dict) -> dict:
 
 
 def terminal_receipt(registry, reference, rejected, mask, transactions) -> dict:
+    product_entries = [entry for entry in registry.entries if not entry.metadata.get("fixture_only")]
     payload = {
         "checkpoint": "GARMENT_CAD_PRO_R1B_CP4",
         "terminal_decision": "CP4_COMPLETE_MULTI_GARMENT_OUTFIT",
         "cp4_acceptance": True,
         "registry_entry_count": len(registry.entries),
-        "product_entry_count": 2,
+        "product_entry_count": len(product_entries),
+        "required_bone_count": len(product_entries[0].required_bones),
         "compatible_outfit_pass": reference.status == "ACCEPTED",
         "incompatible_outfit_rejected": rejected.status == "REJECTED_ATOMIC",
         "body_occlusion_pass": bool(mask["mask_pass"]),
@@ -223,10 +239,19 @@ def main() -> int:
     build.mkdir(parents=True, exist_ok=True)
     publish_schemas(root)
     registry = build_registry(root)
-    registry_payload = registry.to_dict()
-    write_json(build / "garment_library_registry.json", registry_payload)
-    reference = compile_outfit(registry, "REFERENCE_TUNIC_TROUSERS", "CANONICAL_EXACT_FIXTURE", ("SLEEVELESS_TUNIC_RIGGED_R1B", "TROUSERS_RIGGED_R1B"))
-    rejected = compile_outfit(registry, "INVALID_DUPLICATE_TUNIC", "CANONICAL_EXACT_FIXTURE", ("SLEEVELESS_TUNIC_RIGGED_R1B", "SLEEVELESS_TUNIC_DUPLICATE_BLOCKER"))
+    write_json(build / "garment_library_registry.json", registry.to_dict())
+    reference = compile_outfit(
+        registry,
+        "REFERENCE_TUNIC_TROUSERS",
+        "CANONICAL_EXACT_FIXTURE",
+        ("SLEEVELESS_TUNIC_RIGGED_R1B", "TROUSERS_RIGGED_R1B"),
+    )
+    rejected = compile_outfit(
+        registry,
+        "INVALID_DUPLICATE_TUNIC",
+        "CANONICAL_EXACT_FIXTURE",
+        ("SLEEVELESS_TUNIC_RIGGED_R1B", "SLEEVELESS_TUNIC_DUPLICATE_BLOCKER"),
+    )
     write_json(build / "outfits/reference_two_piece.json", reference.to_dict())
     write_json(build / "outfits/incompatible_duplicate_tunic.json", rejected.to_dict())
     mask = compile_body_hide_mask(root, reference.hidden_body_regions, reference.preserved_safety_regions)
