@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def _base() -> PatternDocument:
     payload = json.loads(
-        (ROOT / "build/pattern_cad_cp1/documents/tunic_m_pattern_document.json").read_text()
+        (ROOT / "build/pattern_cad_cp1/pattern_document.json").read_text()
     )
     return PatternDocument.from_dict(payload)
 
