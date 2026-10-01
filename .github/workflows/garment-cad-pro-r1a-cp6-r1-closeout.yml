@@ -1,4 +1,4 @@
-name: Garment CAD Pro R1A CP6-R1 Preservation Diagnostic
+name: Garment CAD Pro R1A CP6-R1 Final Closeout
 
 on:
   push:
@@ -7,20 +7,21 @@ on:
 
 permissions:
   actions: read
-  contents: read
+  contents: write
 
 concurrency:
-  group: garment-cad-pro-r1a-cp6-r1-preservation-diagnostic
+  group: garment-cad-pro-r1a-cp6-r1-final-closeout
   cancel-in-progress: true
 
 jobs:
-  diagnose:
+  closeout:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
           ref: garment-cad-pro-r1a-cp6-r1-20261001
+          persist-credentials: true
 
       - name: Download accepted CP6-R1 build checkpoint
         uses: actions/download-artifact@v4
@@ -31,7 +32,7 @@ jobs:
           run-id: 36855164606
           github-token: ${{ github.token }}
 
-      - name: Download immutable CP6 predecessor
+      - name: Download immutable CP6 predecessor for comparison
         uses: actions/download-artifact@v4
         with:
           name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP6_FINAL
@@ -40,27 +41,149 @@ jobs:
           run-id: 36848757183
           github-token: ${{ github.token }}
 
-      - name: Print exact source differences
+      - name: Set product root and install bounded verification runtime
         shell: bash
         run: |
           set -euo pipefail
-          python - "$RUNNER_TEMP/base" "$RUNNER_TEMP/work" <<'PY'
-          import hashlib,json,pathlib,sys
-          base=pathlib.Path(sys.argv[1]); work=pathlib.Path(sys.argv[2])
-          roots=(
-            'source/wuxia_garment_oss/pattern_cad',
-            'source/wuxia_garment_oss/qualification',
-            'source/wuxia_garment_oss/sizing',
-          )
-          def file_map(root):
-            return {p.relative_to(root).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
-          result={}
-          for name in roots:
-            before=file_map(base/name); after=file_map(work/name)
-            result[name]={
-              'added':sorted(set(after)-set(before)),
-              'removed':sorted(set(before)-set(after)),
-              'changed':sorted(k for k in set(before)&set(after) if before[k]!=after[k]),
-            }
-          print('CP6_R1_PRESERVATION_DIFF='+json.dumps(result,sort_keys=True))
+          root="$RUNNER_TEMP/work"
+          test -f "$root/build/garment_cad_pro_cp6_r1/cp6_r1_preliminary_receipt.json"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 scipy==1.16.3 pytest==8.3.5
+          wheel_dir="$RUNNER_TEMP/warp-wheel"; mkdir -p "$wheel_dir"
+          python -m pip download --disable-pip-version-check --no-cache-dir --no-deps \
+            --only-binary=:all: warp-lang==1.17.0 -d "$wheel_dir"
+          wheel="$(find "$wheel_dir" -type f -name 'warp_lang-1.17.0-*.whl' | head -1)"
+          test -n "$wheel"
+          echo "47cd93636828dd16e55eeb4e77a0e3547b5fb0f383000a3d228629df68f28fd8  $wheel" | sha256sum -c -
+          python -m pip install --disable-pip-version-check --no-cache-dir --no-deps "$wheel"
+
+      - name: Fresh-process GLB product parity
+        shell: bash
+        run: |
+          set -euo pipefail
+          env PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/verify_garment_cad_pro_cp6_r1_glb.py" --root "$ROOT"
+
+      - name: Exact Godot 4.7.2 read-only consumer
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot_dir="$RUNNER_TEMP/godot-4.7.2"
+          project="$ROOT/build/garment_cad_pro_cp6_r1/godot_product"
+          mkdir -p "$godot_dir" "$project/products"
+          curl -L --fail --retry 3 \
+            -o "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" -d "$godot_dir"
+          godot="$godot_dir/Godot_v4.7.2-stable_linux.x86_64"; chmod +x "$godot"
+          cp "$ROOT/godot/garment_cad_pro_cp6_r1/project.godot" "$project/"
+          cp "$ROOT/godot/garment_cad_pro_cp6_r1/verify_import.gd" "$project/"
+          cp "$ROOT/build/garment_cad_pro_cp6_r1/game_products/feature_complete_tunic.glb" "$project/products/"
+          cp "$ROOT/build/garment_cad_pro_cp6/game_products/trousers.glb" "$project/products/"
+          timeout 180 "$godot" --headless --path "$project" --import
+          timeout 180 "$godot" --headless --path "$project" --script res://verify_import.gd | tee "$RUNNER_TEMP/godot.log"
+          python - "$RUNNER_TEMP/godot.log" "$project/godot_consumer_receipt.json" <<'PY'
+          import json,pathlib,sys
+          lines=pathlib.Path(sys.argv[1]).read_text(errors='replace').splitlines(); marker='CP6_R1_GODOT_RECEIPT='
+          rows=[line.split(marker,1)[1] for line in lines if marker in line]
+          if not rows: raise SystemExit('missing CP6_R1_GODOT_RECEIPT')
+          payload=json.loads(rows[-1]); version=payload['godot_version']
+          assert (int(version['major']),int(version['minor']),int(version['patch']))==(4,7,2)
+          assert payload['read_only_consumer'] and payload['consumer_pass']
+          pathlib.Path(sys.argv[2]).write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
           PY
+          rm -rf "$project/.godot" "$project/products"
+          rm -f "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip"
+
+      - name: Verify immutable predecessor owners
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT/source" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT/source" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - "$RUNNER_TEMP/base" "$ROOT" <<'PY'
+          import hashlib,json,pathlib,sys
+          base=pathlib.Path(sys.argv[1]); root=pathlib.Path(sys.argv[2])
+          paths=(
+            'build/pattern_cad_cp1','build/pattern_cad_cp2','build/construction_cp3','build/material_calibration_cp4',
+            'build/motion_fit_cp5','build/motion_fit_cp5_r1','build/motion_fit_cp5_r1_closeout','build/garment_cad_pro_cp6','build/tunic_pilot',
+            'source/wuxia_garment_oss/pattern_cad','source/wuxia_garment_oss/construction','source/wuxia_garment_oss/materials',
+            'source/wuxia_garment_oss/qualification','source/wuxia_garment_oss/sizing','source/wuxia_garment_oss/garments/trousers',
+            'source/wuxia_garment_oss/garments/sleeveless_tunic/construction','source/wuxia_garment_oss/garments/sleeveless_tunic/geometry',
+            'source/wuxia_garment_oss/garments/sleeveless_tunic/pattern','source/wuxia_garment_oss/garments/sleeveless_tunic/pattern_cad',
+            'source/wuxia_garment_oss/garments/sleeveless_tunic/reference.py','source/wuxia_garment_oss/garments/sleeveless_tunic/resolver.py')
+          def h(path):
+            d=hashlib.sha256()
+            if path.is_file():
+              d.update(path.name.encode()); d.update(hashlib.sha256(path.read_bytes()).digest()); return d.hexdigest()
+            for item in sorted(x for x in path.rglob('*') if x.is_file()):
+              if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+              d.update(item.relative_to(path).as_posix().encode()); d.update(hashlib.sha256(item.read_bytes()).digest())
+            return d.hexdigest()
+          before={p:h(base/p) for p in paths}; after={p:h(root/p) for p in paths}; unchanged={p:before[p]==after[p] for p in paths}
+          payload={'contract':'CP6R1PredecessorPreservationReceipt/1','before':before,'after':after,'unchanged':unchanged,'all_predecessors_unchanged':all(unchanged.values())}
+          payload['receipt_sha256']=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          target=root/'build/garment_cad_pro_cp6_r1/predecessor_preservation.json'; target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          assert payload['all_predecessors_unchanged'],[p for p,v in unchanged.items() if not v]
+          PY
+
+      - name: Finalize program and test direct scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          env PYTHONPATH="$ROOT/source" python "$ROOT/scripts/finalize_garment_cad_pro_cp6_r1.py" --root "$ROOT"
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests/test_garment_cad_pro_cp6_r1.py"
+          python - "$ROOT" <<'PY'
+          import ast,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); files=sorted((root/'source').rglob('*.py'))+sorted((root/'scripts').glob('*.py'))
+          mf=('',0); mfn=('','',0); violations=[]
+          for p in files:
+            text=p.read_text(); rel=p.relative_to(root).as_posix(); loc=len(text.splitlines())
+            if loc>mf[1]: mf=(rel,loc)
+            if loc>500: violations.append(('file',rel,loc))
+            for node in ast.walk(ast.parse(text)):
+              if isinstance(node,(ast.FunctionDef,ast.AsyncFunctionDef)):
+                size=getattr(node,'end_lineno',node.lineno)-node.lineno+1
+                if size>mfn[2]: mfn=(rel,node.name,size)
+                if size>80: violations.append(('function',rel,node.name,size))
+          assert not violations,violations
+          checks={'cp6_r1_tests':'PASS','files_checked':len(files),'maximum_file':mf,'maximum_function':mfn,'files_over_500':[],'functions_over_80':[]}
+          (root/'PROFESSIONAL_CHECKS.json').write_text(json.dumps(checks,indent=2,sort_keys=True)+'\n')
+          print(json.dumps(checks,sort_keys=True))
+          PY
+
+      - name: Diet and manifest latest integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/godot"
+          rm -f "$ROOT/build/garment_cad_pro_cp6_r1/predecessor_before.json"
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256 >/dev/null)
+
+      - name: Publish final evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_pro_cp6_r1; mkdir -p delivery_pro_cp6_r1
+          cp "$ROOT/build/garment_cad_pro_cp6_r1/cp6_r1_feature_topology_evidence.png" delivery_pro_cp6_r1/
+          cp "$ROOT/build/garment_cad_pro_cp6_r1/cp6_r1_ten_pose_product_evidence.png" delivery_pro_cp6_r1/
+          cp "$ROOT/build/garment_cad_pro_cp6_r1/cp6_r1_motion_qualification_evidence.png" delivery_pro_cp6_r1/
+          cp "$ROOT/build/garment_cad_pro_cp6_r1/cp6_r1_receipt.json" delivery_pro_cp6_r1/
+          cp "$ROOT/build/garment_cad_pro_cp6_r1/predecessor_preservation.json" delivery_pro_cp6_r1/
+          git config user.name 'chatgpt-garment-cad'; git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_pro_cp6_r1
+          if ! git diff --cached --quiet; then git commit -m 'Publish garment CAD Pro CP6-R1 final evidence [skip ci]'; git push origin HEAD:garment-cad-pro-r1a-cp6-r1-20261001; fi
+
+      - name: Upload single final integrated bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: WG_OSS_R0A_GARMENT_CAD_PRO_R1A_CP6_R1_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
