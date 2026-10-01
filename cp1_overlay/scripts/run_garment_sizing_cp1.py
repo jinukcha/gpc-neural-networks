@@ -67,8 +67,7 @@ def render_evidence(path: Path, results: list[dict], size_ids: list[str]) -> Non
     fig = plt.figure(figsize=(18, 12), constrained_layout=True)
     grid = fig.add_gridspec(2, 2, height_ratios=(1.15, 1.0))
     ax0 = fig.add_subplot(grid[0, 0])
-    masked = np.ma.masked_invalid(matrix)
-    image = ax0.imshow(masked, aspect="auto")
+    image = ax0.imshow(np.ma.masked_invalid(matrix), aspect="auto")
     ax0.set_xticks(range(len(size_ids)), size_ids)
     ax0.set_yticks(range(len(labels)), labels)
     ax0.set_title("Normalized multi-dimensional size scores")
@@ -147,6 +146,35 @@ def publish_status(root: Path, results: list[dict], table: dict) -> dict:
     return summary
 
 
+def append_once(path: Path, marker: str, text: str) -> None:
+    current = path.read_text(encoding="utf-8") if path.exists() else ""
+    if marker not in current:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(current.rstrip() + "\n\n" + text.strip() + "\n", encoding="utf-8")
+
+
+def update_docs(root: Path) -> None:
+    append_once(
+        root / "docs/architecture/GARMENT_SIZING_SYSTEM_KO.md",
+        "## CP1 구현 상태",
+        """## CP1 구현 상태
+
+CP1은 튜닉 family의 다차원 size score, shape/height block, standard grade와
+custom alteration 분리, excessive-alteration admission을 구현한다. 이 단계는
+2D pattern parameter를 변경하지 않고 selection receipt만 발행한다.""",
+    )
+    append_once(
+        root / "docs/roadmap/GARMENT_SIZING_R0A_ROADMAP_KO.md",
+        "## CP1 결과",
+        """## CP1 결과
+
+- normalized size score와 shape/height block 구현
+- grade/custom alteration 분리와 terminal admission 구현
+- triangulation/Warp 미실행
+- 다음 단계: CP2 parametric tunic POM/landmark resolver""",
+    )
+
+
 def main() -> int:
     args = parse_args()
     root = args.root.resolve()
@@ -158,6 +186,7 @@ def main() -> int:
     report = root / "docs/cp2b/GARMENT_SIZING_CP1_EXECUTION_REPORT_KO.md"
     report.parent.mkdir(parents=True, exist_ok=True)
     report.write_text(report_text(summary), encoding="utf-8")
+    update_docs(root)
     (root / "NEXT_TASK.md").write_text(
         "# Next task\n\n"
         "`GARMENT-SIZING-R0A / CP2 — TUNIC S/M/L + DETAILED-MEASUREMENT RESOLVER / "
