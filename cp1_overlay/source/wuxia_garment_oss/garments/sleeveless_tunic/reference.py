@@ -56,6 +56,12 @@ def reference_size_table() -> GarmentSizeTable:
 def body_fixtures() -> dict[str, BodyMeasurementProfile]:
     bodies = {
         "REFERENCE": _measurements(),
+        "MILD_CUSTOM": _measurements(
+            chest_circumference=1.004, front_chest_arc=0.508,
+            back_chest_arc=0.496, waist_circumference=0.870,
+            front_waist_arc=0.435, back_waist_arc=0.435,
+            shoulder_width=0.415, front_torso_length=0.462,
+        ),
         "BROAD_SHOULDER": _measurements(shoulder_width=0.462),
         "FULL_CHEST": _measurements(
             chest_circumference=1.050, front_chest_arc=0.570, back_chest_arc=0.480,
@@ -95,6 +101,7 @@ def request_fixtures() -> tuple[tuple[str, SelectionRequest, str | None], ...]:
     return (
         ("STANDARD_M", SelectionRequest("STANDARD_M", "STANDARD_SIZE", "M"), None),
         ("AUTO_REFERENCE", SelectionRequest("AUTO_REFERENCE", "AUTO_BODY_FIT"), "REFERENCE"),
+        ("AUTO_MILD_CUSTOM", SelectionRequest("AUTO_MILD_CUSTOM", "AUTO_BODY_FIT"), "MILD_CUSTOM"),
         ("AUTO_BROAD_SHOULDER", SelectionRequest("AUTO_BROAD_SHOULDER", "AUTO_BODY_FIT"), "BROAD_SHOULDER"),
         ("AUTO_FULL_CHEST", SelectionRequest("AUTO_FULL_CHEST", "AUTO_BODY_FIT"), "FULL_CHEST"),
         ("AUTO_FULL_ABDOMEN", SelectionRequest("AUTO_FULL_ABDOMEN", "AUTO_BODY_FIT"), "FULL_ABDOMEN"),
