@@ -1,0 +1,18 @@
+{
+  "blocked_count": 3,
+  "checkpoint": "GARMENT_SIZING_R0A_CP2",
+  "custom_package_count": 7,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_SIZING_R0A_CP3",
+  "published_package_count": 10,
+  "reference_parity_max_error": 5.551115123125783e-17,
+  "selection_receipts_mutated": false,
+  "standard_sizes": [
+    "S",
+    "M",
+    "L"
+  ],
+  "terminal_decision": "CP2_COMPLETE_PARAMETERS_ONLY",
+  "triangulation_executed": false,
+  "warp_simulation_executed": false
+}
