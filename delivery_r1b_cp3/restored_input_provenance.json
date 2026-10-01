@@ -1,0 +1,26 @@
+{
+  "acquisition_attempts": [
+    "conversation-mounted GARMENT_R1B_CP2_FINAL.zip via container",
+    "GitHub branch/artifact search for R1B CP2"
+  ],
+  "authoritative_sources": {
+    "trousers": {
+      "path": "build/garment_cad_pro_cp6/game_products/trousers.glb",
+      "sha256": "064ecd5a6a7edf3998192ba02da5187e3cb2b80859a962f78552be900163eb29"
+    },
+    "tunic": {
+      "path": "build/garment_cad_pro_cp6_r1/game_products/feature_complete_tunic.glb",
+      "sha256": "8ed87ff93f2ade2613c99b368d58a9dfe3c0100712ec6e1d5a1423f6fe0fff79"
+    }
+  },
+  "contract": "R1BCP3RestoredInputProvenance/1",
+  "exact_cp2_byte_continuity_verified": false,
+  "r1a_products_mutated": false,
+  "reason": "LOCAL_EXECUTION_SURFACE_CLIENT_ERROR_AND_NO_PUBLISHED_CP2_CHECKPOINT",
+  "receipt_sha256": "559d47c849aa753f94ee3a7b21feef546fadeb2c7c7995d5ef46fcaf9622f141",
+  "reconstruction_scope": [
+    "canonical 23-bone skeleton contract",
+    "deterministic body-to-garment semantic skin weights",
+    "corrective contract metadata from accepted ten-pose product morph identities"
+  ]
+}

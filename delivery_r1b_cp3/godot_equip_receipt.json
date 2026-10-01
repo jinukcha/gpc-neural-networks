@@ -1,0 +1,96 @@
+{
+  "atomic_equip_pass": true,
+  "character_swap_pass": true,
+  "consumer_pass": true,
+  "contract": "GodotGarmentEquipReceipt/1",
+  "failed_swap_preserved": true,
+  "final_state_count": 2,
+  "godot_version": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "read_only_consumer": true,
+  "runtime_node": "GarmentEquipRuntime",
+  "transactions": [
+    {
+      "operation": "equip",
+      "pass": true,
+      "result": "EQUIPPED",
+      "slot": "UPPER",
+      "state_count": 1,
+      "target": "CanonicalCharacter"
+    },
+    {
+      "operation": "equip_duplicate",
+      "pass": false,
+      "result": "SLOT_OCCUPIED",
+      "slot": "UPPER",
+      "state_count": 1,
+      "target": "CanonicalCharacter"
+    },
+    {
+      "operation": "equip",
+      "pass": true,
+      "result": "EQUIPPED",
+      "slot": "LOWER",
+      "state_count": 2,
+      "target": "CanonicalCharacter"
+    },
+    {
+      "operation": "swap_character",
+      "pass": true,
+      "result": "CHARACTER_SWAPPED",
+      "slot": "UPPER",
+      "state_count": 2,
+      "target": "MixamoCharacter"
+    },
+    {
+      "operation": "swap_incompatible",
+      "pass": false,
+      "result": "MISSING_REQUIRED_BONE",
+      "slot": "LOWER",
+      "state_count": 2,
+      "target": "IncompatibleCharacter"
+    },
+    {
+      "operation": "unequip",
+      "pass": true,
+      "result": "UNEQUIPPED",
+      "slot": "UPPER",
+      "state_count": 1,
+      "target": ""
+    },
+    {
+      "operation": "re_equip",
+      "pass": true,
+      "result": "EQUIPPED",
+      "slot": "UPPER",
+      "state_count": 2,
+      "target": "CanonicalCharacter"
+    }
+  ],
+  "trousers": {
+    "blend_shapes": 3,
+    "bone_count": 23,
+    "skin_surfaces": 3,
+    "surfaces": 3,
+    "triangles": 6266,
+    "vertices": 3288
+  },
+  "tunic": {
+    "blend_shapes": 10,
+    "bone_count": 23,
+    "skin_surfaces": 14,
+    "surfaces": 14,
+    "triangles": 55850,
+    "vertices": 29199
+  },
+  "unequip_re_equip_pass": true
+}
