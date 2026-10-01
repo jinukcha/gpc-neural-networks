@@ -13,7 +13,7 @@ from PIL import Image
 
 
 EXPECTED_PACKAGES = {
-    "STANDARD_S", "STANDARD_M", "STANDARD_L",
+    "STANDARD_S", "STANDARD_M", "STANDARD_L", "CUSTOM_MILD",
     "AUTO_REFERENCE", "AUTO_MILD_CUSTOM", "AUTO_BROAD_SHOULDER",
     "AUTO_FULL_CHEST", "AUTO_FULL_ABDOMEN", "AUTO_TALL", "AUTO_SHORT",
 }
@@ -48,6 +48,8 @@ def validate_packages(packages: dict[str, dict]) -> dict:
         assert package["mesh_scaling"] == "FORBIDDEN"
         assert len(package["panels"]) == 4
         assert len(package["seam_pairs"]) == 8
+    assert packages["CUSTOM_MILD"]["sizing_mode"] == "CUSTOM_MEASUREMENTS"
+    assert packages["CUSTOM_MILD"]["selection"]["admission"] == "CUSTOM_ALTERATION"
     standard = [packages[f"STANDARD_{size}"]["poms"] for size in ("S", "M", "L")]
     for key in (
         "finished_chest_circumference_m", "finished_waist_circumference_m",
@@ -67,7 +69,11 @@ def validate_packages(packages: dict[str, dict]) -> dict:
     assert broad["shoulder_half_m"] > reference["shoulder_half_m"]
     assert tall["skirt_length_m"] > reference["skirt_length_m"]
     assert short["skirt_length_m"] < reference["skirt_length_m"]
-    return {"package_count": len(packages), "standard_sizes": ["S", "M", "L"]}
+    return {
+        "package_count": len(packages),
+        "standard_sizes": ["S", "M", "L"],
+        "custom_measurements": "PASS",
+    }
 
 
 def source_budget(root: Path) -> dict:
@@ -109,6 +115,7 @@ def main() -> int:
     status = json.loads((root / "SIZING_STATUS.json").read_text())
     assert status["terminal_decision"] == "CP2_COMPLETE_PARAMETERS_ONLY"
     assert status["reference_parity_max_error"] <= 1.0e-12
+    assert status["custom_measurement_package_count"] == 1
     assert status["triangulation_executed"] is False
     assert status["warp_simulation_executed"] is False
     packages = load_packages(root)
