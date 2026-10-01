@@ -1,7 +1,7 @@
 {
   "admission_counts": {
-    "ALTERNATE_BLOCK_REQUIRED": 6,
-    "CUSTOM_ALTERATION": 1,
+    "ALTERNATE_BLOCK_REQUIRED": 1,
+    "CUSTOM_ALTERATION": 6,
     "HOLD": 1,
     "NORMAL_GRADE": 2,
     "TOPOLOGY_CHANGE_REQUIRED": 1
