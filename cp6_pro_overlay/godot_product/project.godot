@@ -1,0 +1,11 @@
+[application]
+config/name="Garment CAD Pro CP6 Consumer"
+run/main_scene=""
+
+[display]
+window/size/viewport_width=1024
+window/size/viewport_height=1024
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
