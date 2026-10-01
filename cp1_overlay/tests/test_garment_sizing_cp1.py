@@ -29,15 +29,31 @@ def test_reference_selects_m_without_alteration() -> None:
     assert receipt.admission == "NORMAL_GRADE"
 
 
-def test_shape_blocks() -> None:
-    assert _auto("BROAD_SHOULDER").shape_block == "BROAD_SHOULDER"
-    assert _auto("FULL_CHEST").shape_block == "FULL_CHEST"
-    assert _auto("FULL_ABDOMEN").shape_block == "FULL_ABDOMEN"
+def test_supported_shape_blocks() -> None:
+    expectations = {
+        "BROAD_SHOULDER": "BROAD_SHOULDER",
+        "FULL_CHEST": "FULL_CHEST",
+        "FULL_ABDOMEN": "FULL_ABDOMEN",
+    }
+    for fixture, block in expectations.items():
+        receipt = _auto(fixture)
+        assert receipt.shape_block == block
+        assert receipt.admission == "CUSTOM_ALTERATION"
 
 
-def test_height_blocks() -> None:
-    assert _auto("TALL").height_block == "TALL"
-    assert _auto("SHORT").height_block == "SHORT"
+def test_supported_height_blocks() -> None:
+    expectations = {"TALL": "TALL", "SHORT": "SHORT"}
+    for fixture, block in expectations.items():
+        receipt = _auto(fixture)
+        assert receipt.height_block == block
+        assert receipt.admission == "CUSTOM_ALTERATION"
+
+
+def test_mild_custom_alteration_is_admitted() -> None:
+    receipt = _auto("MILD_CUSTOM")
+    assert receipt.shape_block == "REGULAR"
+    assert receipt.height_block == "REGULAR"
+    assert receipt.admission == "CUSTOM_ALTERATION"
 
 
 def test_forced_custom_size_requests_alternate() -> None:
