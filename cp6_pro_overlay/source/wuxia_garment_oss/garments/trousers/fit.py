@@ -164,7 +164,7 @@ def _runtime() -> dict:
         "version": version,
         "device": "cpu",
         "cuda_status": "AVAILABLE_NOT_USED" if cuda else "EXPLICIT_NO_CUDA_DEVICE",
-        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V4",
+        "kernel": "CP6_TROUSERS_ARTICULATED_DRIVE_V5",
     }
 
 
@@ -292,11 +292,14 @@ def _solve_schedule(
     weights: np.ndarray,
     normalized: float,
     frames: int,
+    pose_id: str,
 ) -> tuple[np.ndarray, np.ndarray]:
     positions = mesh.positions.copy()
     previous = positions.copy()
     edges = _unique_edges(mesh.triangles)
     rest = np.linalg.norm(mesh.positions[edges[:, 1]] - mesh.positions[edges[:, 0]], axis=1)
+    iterations = 7 if pose_id == "SQUAT" else 6
+    edge_gain = (0.30 if pose_id == "SQUAT" else 0.28) + 0.08 * normalized
     frame_motion = []
     for frame in range(frames):
         phase = min((frame + 1) / 18.0, 1.0)
@@ -305,8 +308,8 @@ def _solve_schedule(
         start = positions.copy()
         for _ in range(2):
             positions, previous = _drive_step(positions, previous, phase_target, weights, 0.30 - 0.04 * normalized, 0.015)
-            for _ in range(6):
-                positions = _project_edges(positions, edges, rest, 0.28 + 0.08 * normalized)
+            for _ in range(iterations):
+                positions = _project_edges(positions, edges, rest, edge_gain)
             positions = _project_target(positions, phase_target, weights, 0.10)
         frame_motion.append(float(np.max(np.linalg.norm(positions - start, axis=1))))
     return positions, np.asarray(frame_motion, dtype=np.float64)
@@ -323,7 +326,7 @@ def solve_pose(
     target, weights = pose_target(mesh.positions, pose_id, mesh.authority["points_of_measure"])
     stiffness = _effective_stiffness(material_profile)
     normalized = float(np.clip(np.log10(stiffness) - 3.5, 0.0, 1.0))
-    positions, frame_motion = _solve_schedule(mesh, target, weights, normalized, frames)
+    positions, frame_motion = _solve_schedule(mesh, target, weights, normalized, frames, pose_id)
     edges = _unique_edges(mesh.triangles)
     rest = np.linalg.norm(mesh.positions[edges[:, 1]] - mesh.positions[edges[:, 0]], axis=1)
     maps = _maps(mesh, edges, rest, positions, target, weights, stiffness, material_profile)
