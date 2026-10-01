@@ -164,7 +164,7 @@ func _initialize() -> void:
     _tx(transactions, "re_equip", "UPPER", canonical.name, re_equip)
     var tunic_stats := _mesh_stats(tunic_scene)
     var trousers_stats := _mesh_stats(trousers_scene)
-    var pass := (
+    var all_pass := (
         upper.pass and not duplicate.pass and lower.pass and swap_ok.pass and not swap_bad.pass
         and failed_preserved and unequip.pass and re_equip.pass
         and runtime.state_count() == 2
@@ -185,7 +185,7 @@ func _initialize() -> void:
         "final_state_count": runtime.state_count(),
         "tunic": tunic_stats,
         "trousers": trousers_stats,
-        "consumer_pass": pass,
+        "consumer_pass": all_pass,
     }
     print("R1B_CP3_GODOT_RECEIPT=" + JSON.stringify(receipt))
-    quit(0 if pass else 3)
+    quit(0 if all_pass else 3)
