@@ -90,3 +90,19 @@ def build_pose_field(mesh: MotionMesh, envelope: BodyEnvelope, pose: MotionPose)
     if mesh.attachment_indices.size:
         weights[mesh.attachment_indices] = np.maximum(weights[mesh.attachment_indices], 0.92)
     return PoseField(target, weights, twist, bend, translation, zones["z"])
+
+
+def scaled_pose_field(base: np.ndarray, field: PoseField, phase: float) -> PoseField:
+    """Scale every body-transform component to the current continuation phase."""
+    bounded = float(np.clip(phase, 0.0, 1.0))
+    target = np.asarray(base, dtype=np.float64) + bounded * (
+        field.target_positions - np.asarray(base, dtype=np.float64)
+    )
+    return PoseField(
+        target,
+        field.drive_weights,
+        field.twist_angles * bounded,
+        field.bend_angles * bounded,
+        field.translations * bounded,
+        field.normalized_z,
+    )
