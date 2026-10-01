@@ -75,10 +75,7 @@ def _equal_axes(ax, first: int, second: int, arrays: tuple[np.ndarray, ...]) -> 
 
 
 def _plot_outfit(ax, tunic: np.ndarray, trousers: np.ndarray, view: str) -> None:
-    if view == "front":
-        first, second = 0, 2
-    else:
-        first, second = 1, 2
+    first, second = (0, 1) if view == "front" else (2, 1)
     step_tunic = max(1, len(tunic) // 9000)
     step_trousers = max(1, len(trousers) // 4000)
     ax.scatter(tunic[::step_tunic, first], tunic[::step_tunic, second], s=0.2, label="tunic")
@@ -96,10 +93,10 @@ def _plot_occlusion(ax, mask_path: Path) -> None:
         hide = np.asarray(data["hide_triangle_mask"], dtype=np.bool_)
     centroids = positions[triangles].mean(axis=1)
     visible = ~hide
-    ax.scatter(centroids[visible, 0], centroids[visible, 2], s=0.5, label="visible body")
-    ax.scatter(centroids[hide, 0], centroids[hide, 2], s=0.5, label="hidden body")
-    _equal_axes(ax, 0, 2, (positions,))
-    ax.set_title("semantic body occlusion mask")
+    ax.scatter(centroids[visible, 0], centroids[visible, 1], s=0.5, label="visible body")
+    ax.scatter(centroids[hide, 0], centroids[hide, 1], s=0.5, label="hidden body")
+    _equal_axes(ax, 0, 1, (positions,))
+    ax.set_title("semantic body occlusion mask — Y-up front")
     ax.legend(markerscale=6)
     ax.axis("off")
 
