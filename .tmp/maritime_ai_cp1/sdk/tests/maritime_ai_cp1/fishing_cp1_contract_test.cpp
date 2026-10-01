@@ -112,39 +112,64 @@ void submit_transit(
     submit_and_step(world, std::move(command), "transit");
 }
 
-void run_product_voyage() {
-    auto prepared = campaign_fixture::prepare_world(51021U);
+void begin_product_voyage(
+    campaign_fixture::PreparedWorld& prepared,
+    FishingSkipper& skipper,
+    VoyageFacts& facts,
+    SourceSequence& sequence) {
     tether::register_p0f_assets(*prepared.world);
     require_ok(prepared.world->start(), "start CP1 product world");
+    require(skipper.start_voyage(
+                skipper_profile(), grounds(), 51021U).started,
+            "product skipper start failed");
     const auto owner = prepared.spawned.persistent_id;
-    const auto gear_definition = tether::load_gear("gear.trawl.v1.json");
-    FishingSkipper skipper;
-    const auto started = skipper.start_voyage(
-        skipper_profile(), grounds(), 51021U);
-    require(started.started, "product skipper start failed");
-    VoyageFacts facts;
-    SourceSequence sequence = 1U;
-
     const auto begin = require_action(
         skipper, facts, ActionKind::BeginVoyage);
     require_ok(prepared.world->begin_fisheries_voyage(
         owner, {prepared.world->capture_snapshot().world_tick, 0.0, 0.0}),
         "begin autonomous fisheries voyage");
     acknowledge(skipper, begin);
-
-    const auto select_alpha = require_action(
+    const auto selected = require_action(
         skipper, facts, ActionKind::SelectGround);
-    require(select_alpha.ground_key == "ground.alpha",
+    require(selected.ground_key == "ground.alpha",
             "product voyage did not select alpha first");
-    acknowledge(skipper, select_alpha);
+    acknowledge(skipper, selected);
     submit_transit(*prepared.world, owner, sequence, "cp1.transit.alpha");
     acknowledge(skipper, require_action(
         skipper, facts, ActionKind::TransitToGround));
+}
+
+FishingDecision restore_deployed_checkpoint(
+    campaign_fixture::PreparedWorld& prepared,
+    FishingSkipper& skipper,
+    const VoyageFacts& facts,
+    const FishingDecision& before,
+    const WorldSnapshot& world_checkpoint,
+    const std::string& skipper_checkpoint) {
+    require_ok(prepared.world->restore_snapshot(world_checkpoint),
+               "restore deployed-gear world checkpoint");
+    FishingSkipper restored;
+    require(restored.restore_snapshot(skipper_checkpoint),
+            "restore deployed-gear skipper checkpoint");
+    const auto after = require_action(
+        restored, facts, ActionKind::HaulGear);
+    require(before.ground_key == after.ground_key,
+            "deployed-gear restore changed decision");
+    skipper = std::move(restored);
+    return after;
+}
+
+auto run_alpha_set(
+    campaign_fixture::PreparedWorld& prepared,
+    FishingSkipper& skipper,
+    VoyageFacts& facts,
+    SourceSequence& sequence,
+    const FishingGearDefinition& gear_definition) {
+    const auto owner = prepared.spawned.persistent_id;
     deploy_gear(*prepared.world, owner, gear_definition,
                 "gear.cp1.alpha", sequence);
     acknowledge(skipper, require_action(
         skipper, facts, ActionKind::DeployGear));
-
     require(skipper.admit_observation(
         observation("ground.alpha",
                     prepared.world->capture_snapshot().world_tick,
@@ -156,37 +181,39 @@ void run_product_voyage() {
     facts.sets_completed = 1U;
     const auto world_checkpoint = prepared.world->capture_snapshot();
     const auto skipper_checkpoint = skipper.save_snapshot();
-    const auto alpha_haul = require_action(
+    const auto before = require_action(
         skipper, facts, ActionKind::HaulGear);
-    require_ok(prepared.world->restore_snapshot(world_checkpoint),
-               "restore deployed-gear world checkpoint");
-    FishingSkipper restored;
-    require(restored.restore_snapshot(skipper_checkpoint),
-            "restore deployed-gear skipper checkpoint");
-    const auto restored_haul = require_action(
-        restored, facts, ActionKind::HaulGear);
-    require(alpha_haul.ground_key == restored_haul.ground_key,
-            "deployed-gear restore changed decision");
-    skipper = std::move(restored);
+    const auto after = restore_deployed_checkpoint(
+        prepared, skipper, facts, before,
+        world_checkpoint, skipper_checkpoint);
     haul_gear(*prepared.world, owner, "gear.cp1.alpha",
               sequence, "cp1.haul.alpha");
-    acknowledge(skipper, restored_haul);
-    auto first_lot = prepared.world->append_catch_lot(
+    acknowledge(skipper, after);
+    auto lot = prepared.world->append_catch_lot(
         owner, campaign_fixture::world_lot(
             "fishstock.r2c1.demersal.v1",
             HarvestClassification::Target,
             CatchProductState::DeckRaw, 1U, 15.0, 0.9));
-    require_ok(first_lot, "append alpha catch lot");
+    require_ok(lot, "append alpha catch lot");
     queue_processing(*prepared.world, owner,
                      prepared.processing, 10.0, sequence);
     acknowledge(skipper, require_action(
         skipper, facts, ActionKind::RecoverAndProcess));
+    return lot.value;
+}
 
-    const auto select_beta = require_action(
+auto run_beta_set(
+    campaign_fixture::PreparedWorld& prepared,
+    FishingSkipper& skipper,
+    VoyageFacts& facts,
+    SourceSequence& sequence,
+    const FishingGearDefinition& gear_definition) {
+    const auto owner = prepared.spawned.persistent_id;
+    const auto selected = require_action(
         skipper, facts, ActionKind::SelectGround);
-    require(select_beta.ground_key == "ground.beta",
+    require(selected.ground_key == "ground.beta",
             "poor catch did not relocate to beta");
-    acknowledge(skipper, select_beta);
+    acknowledge(skipper, selected);
     submit_transit(*prepared.world, owner, sequence, "cp1.transit.beta");
     acknowledge(skipper, require_action(
         skipper, facts, ActionKind::TransitToGround));
@@ -202,25 +229,35 @@ void run_product_voyage() {
     facts.current_catch_rate_kg_per_hour = 80.0;
     facts.current_bycatch_ratio = 0.04;
     facts.sets_completed = 2U;
-    const auto beta_haul = require_action(
+    const auto haul = require_action(
         skipper, facts, ActionKind::HaulGear);
     haul_gear(*prepared.world, owner, "gear.cp1.beta",
               sequence, "cp1.haul.beta");
-    acknowledge(skipper, beta_haul);
-    auto second_lot = prepared.world->append_catch_lot(
+    acknowledge(skipper, haul);
+    auto lot = prepared.world->append_catch_lot(
         owner, campaign_fixture::world_lot(
             "fishstock.r2c1.demersal.v1",
             HarvestClassification::Target,
             CatchProductState::DeckRaw, 1U, 35.0, 0.95));
-    require_ok(second_lot, "append beta catch lot");
+    require_ok(lot, "append beta catch lot");
     acknowledge(skipper, require_action(
         skipper, facts, ActionKind::RecoverAndProcess));
+    return lot.value;
+}
 
+template <typename LotId>
+void finish_product_voyage(
+    campaign_fixture::PreparedWorld& prepared,
+    FishingSkipper& skipper,
+    const VoyageFacts& facts,
+    const LotId first_lot,
+    const LotId second_lot) {
+    const auto owner = prepared.spawned.persistent_id;
     acknowledge(skipper, require_action(
         skipper, facts, ActionKind::ReturnToPort));
     auto landing = prepared.world->settle_fisheries_landing(
         owner, prepared.world->capture_snapshot().world_tick + 1U,
-        {first_lot.value, second_lot.value});
+        {first_lot, second_lot});
     require_ok(landing, "settle autonomous landing");
     require_ok(prepared.world->close_fisheries_voyage(
         owner, prepared.world->capture_snapshot().world_tick + 2U, 25.0),
@@ -237,6 +274,20 @@ void run_product_voyage() {
     require_ok(summary, "query processing summary");
     require(summary.value.target_mass_kg >= 0.0,
             "processing summary invalid");
+}
+
+void run_product_voyage() {
+    auto prepared = campaign_fixture::prepare_world(51021U);
+    FishingSkipper skipper;
+    VoyageFacts facts;
+    SourceSequence sequence = 1U;
+    begin_product_voyage(prepared, skipper, facts, sequence);
+    const auto gear = tether::load_gear("gear.trawl.v1.json");
+    const auto alpha = run_alpha_set(
+        prepared, skipper, facts, sequence, gear);
+    const auto beta = run_beta_set(
+        prepared, skipper, facts, sequence, gear);
+    finish_product_voyage(prepared, skipper, facts, alpha, beta);
 }
 
 void write_receipt(const std::filesystem::path& path) {
