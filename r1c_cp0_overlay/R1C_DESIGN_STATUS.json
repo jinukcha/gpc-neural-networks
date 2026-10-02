@@ -1,0 +1,12 @@
+{
+  "program": "GARMENT_CAD_PRO_R1C",
+  "design_status": "COMPLETE",
+  "implementation_status": "CP0_COMPLETE",
+  "immutable_predecessor": "GARMENT_CAD_PRO_R1B_CP6",
+  "active_checkpoint": "GARMENT_CAD_PRO_R1C_CP0",
+  "roadmap": ["CP0", "CP1", "CP2", "CP3", "CP4", "CP5", "CP6", "CP7"],
+  "next_checkpoint": "GARMENT_CAD_PRO_R1C_CP1",
+  "geometry_generated_in_cp0": false,
+  "simulation_executed_in_cp0": false,
+  "godot_executed_in_cp0": false
+}
