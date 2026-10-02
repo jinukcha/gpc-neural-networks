@@ -95,7 +95,8 @@ def _boundary_samples(boundary: BoundaryGeometry, segment_map: dict[str, CurveSe
 def point_at_arc(boundary: BoundaryGeometry, segment_map: dict[str, CurveSegment], arc_length_m: float) -> tuple[Point2, float]:
     points, cumulative = _boundary_samples(boundary, segment_map)
     total = cumulative[-1]
-    if not 0.0 <= arc_length_m <= total + 1.0e-9:
+    tolerance = max(1.0e-7, total * 1.0e-5)
+    if arc_length_m < -tolerance or arc_length_m > total + tolerance:
         raise ValueError(f"arc length outside boundary: {boundary.boundary_id}")
     target = min(max(arc_length_m, 0.0), total)
     index = bisect_left(cumulative, target)
