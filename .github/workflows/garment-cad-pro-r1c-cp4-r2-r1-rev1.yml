@@ -1,0 +1,254 @@
+name: Garment CAD Pro R1C CP4-R2-R1 REV1
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1c-cp4-r2-r1-rev1-20261002
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: garment-cad-pro-r1c-cp4-r2-r1-rev1-20261002
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1c-cp4-r2-r1-rev1-20261002
+          persist-credentials: true
+
+      - name: Download immutable CP4-R1 predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: GARMENT_R1C_CP4_R1_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36986369125
+          github-token: ${{ github.token }}
+
+      - name: Restore predecessor and overlay Blender-free REV1 kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/GARMENT_R1C_CP4_R2_R1_REV1_FINAL"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests" "$root/godot"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          python - "$RUNNER_TEMP/base" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          base=pathlib.Path(sys.argv[1]); target=pathlib.Path(sys.argv[2])
+          def tree_hash(path):
+              digest=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  digest.update(item.relative_to(path).as_posix().encode())
+                  digest.update(hashlib.sha256(item.read_bytes()).digest())
+              return digest.hexdigest()
+          roots=tuple(f'build/rig_cp{index}' for index in range(7)) + tuple(f'build/r1c_cp{index}' for index in range(4)) + ('build/r1c_cp4_r1',)
+          payload={'build_roots':{name:tree_hash(base/name) for name in roots}}
+          payload['source_files']={
+              path.relative_to(base/'source').as_posix():hashlib.sha256(path.read_bytes()).hexdigest()
+              for path in (base/'source').rglob('*')
+              if path.is_file() and '__pycache__' not in path.parts and path.suffix in {'.py','.gd'}
+          }
+          target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+          cp -a r1c_cp4_r2_rev1_overlay/source/. "$root/source/"
+          cp -a r1c_cp4_r2_rev1_overlay/scripts/. "$root/scripts/"
+          cp -a r1c_cp4_r2_rev1_overlay/tests/. "$root/tests/"
+          cp -a r1c_cp4_r2_rev1_overlay/godot/. "$root/godot/"
+          cp -a r1c_cp4_r2_rev1_overlay/art_review/. "$root/build/r1c_cp4_r2_rev1/"
+          chmod +x "$root/scripts/"*cp4_r2_rev1.py
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Install bounded Blender-free tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 scipy==1.16.3 pillow==11.1.0 pytest==8.3.5 warp-lang==1.17.0
+
+      - name: Build metric repair and direct GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/run_garment_r1c_cp4_r2_rev1.py" --root "$ROOT"
+
+      - name: Exact Khronos glTF validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          validator_root="$RUNNER_TEMP/gltf-validator"
+          mkdir -p "$validator_root/pack" "$validator_root/install"
+          cd "$validator_root/pack"
+          npm pack gltf-validator@2.0.0-dev.3.10 --json > pack.json
+          tgz=$(python - <<'PY'
+          import json
+          print(json.load(open('pack.json'))[0]['filename'])
+          PY
+          )
+          sha=$(sha256sum "$tgz" | awk '{print $1}')
+          npm install --prefix "$validator_root/install" --no-save gltf-validator@2.0.0-dev.3.10 >/dev/null
+          glb="$ROOT/product/r1c_cp4_r2_rev1_sleeved_tunic.glb"
+          report="$RUNNER_TEMP/gltf_validation_report.json"
+          node - "$validator_root/install/node_modules/gltf-validator" "$glb" "$report" <<'JS'
+          const fs = require('fs');
+          const validator = require(process.argv[2]);
+          const bytes = new Uint8Array(fs.readFileSync(process.argv[3]));
+          validator.validateBytes(bytes, {uri: 'r1c_cp4_r2_rev1_sleeved_tunic.glb', maxIssues: 0})
+            .then((report) => {
+              fs.writeFileSync(process.argv[4], JSON.stringify(report, null, 2));
+              if (report.issues.numErrors !== 0) process.exit(2);
+            })
+            .catch((error) => { console.error(error); process.exit(3); });
+          JS
+          mkdir -p "$ROOT/build/r1c_cp4_r2_rev1/tool_metadata" "$ROOT/licenses/gltf-validator"
+          cp "$validator_root/install/node_modules/gltf-validator/LICENSE" "$ROOT/licenses/gltf-validator/LICENSE"
+          python - "$validator_root/install/node_modules/gltf-validator/package.json" "$sha" "$ROOT/build/r1c_cp4_r2_rev1/tool_metadata/gltf_validator.json" <<'PY'
+          import json,pathlib,sys
+          package=json.load(open(sys.argv[1]))
+          payload={
+              'tool':'KhronosGroup glTF-Validator',
+              'npm_package':'gltf-validator',
+              'version':package['version'],
+              'npm_pack_sha256':sys.argv[2],
+              'license':'Apache-2.0',
+              'runtime_bundled':False,
+          }
+          pathlib.Path(sys.argv[3]).write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Exact Godot 4.7.2 same-camera capture
+        shell: bash
+        run: |
+          set -euo pipefail
+          project="$ROOT/build/r1c_cp4_r2_rev1/godot_product"
+          mkdir -p "$project/products" "$project/data" "$project/captures"
+          cp "$ROOT/godot/garment_r1c_cp4_r2_rev1/project.godot" "$project/"
+          cp "$ROOT/godot/garment_r1c_cp4_r2_rev1/capture.gd" "$project/"
+          cp "$ROOT/product/r1c_cp4_r1_sleeved_tunic.glb" "$project/products/before_cp4_r1.glb"
+          cp "$ROOT/product/r1c_cp4_r2_rev1_sleeved_tunic.glb" "$project/products/after_cp4_r2.glb"
+          cp "$ROOT/build/r1c_cp4_r2_rev1/before_seam_lines.json" "$project/data/"
+          cp "$ROOT/build/r1c_cp4_r2_rev1/after_seam_lines.json" "$project/data/"
+          godot_dir="$RUNNER_TEMP/godot-4.7.2"; mkdir -p "$godot_dir"
+          archive="$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip"
+          curl -L --fail --retry 3 -o "$archive" \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $archive" | sha256sum -c -
+          unzip -q "$archive" -d "$godot_dir"
+          godot="$godot_dir/Godot_v4.7.2-stable_linux.x86_64"; chmod +x "$godot"
+          xvfb-run -a "$godot" --path "$project" --editor --quit-after 8
+          xvfb-run -a "$godot" --path "$project" --script res://capture.gd | tee "$RUNNER_TEMP/godot_capture.log"
+          python - "$RUNNER_TEMP/godot_capture.log" "$RUNNER_TEMP/godot_receipt.json" <<'PY'
+          import json,pathlib,sys
+          marker='R1C_CP4_R2_GODOT_RECEIPT='
+          rows=[line.split(marker,1)[1] for line in pathlib.Path(sys.argv[1]).read_text(errors='replace').splitlines() if marker in line]
+          if not rows: raise SystemExit('missing Godot receipt')
+          payload=json.loads(rows[-1]); assert payload['consumer_pass']
+          version=payload['godot_version']; assert (int(version['major']),int(version['minor']),int(version['patch']))==(4,7,2)
+          pathlib.Path(sys.argv[2]).write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+          rm -rf "$project/.godot" "$project/products"
+          rm -f "$archive"; rm -rf "$godot_dir"
+
+      - name: Compose evidence and finalize pending direct audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python "$ROOT/scripts/compose_garment_r1c_cp4_r2_rev1_evidence.py" \
+            --root "$ROOT" --godot-receipt "$RUNNER_TEMP/godot_receipt.json"
+          python "$ROOT/scripts/finalize_garment_r1c_cp4_r2_rev1.py" \
+            --root "$ROOT" \
+            --validator-report "$RUNNER_TEMP/gltf_validation_report.json" \
+            --art-review "$ROOT/build/r1c_cp4_r2_rev1/direct_art_review_input.json"
+
+      - name: Test Blender-free REV1 products
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests/test_garment_r1c_cp4_r2_rev1.py"
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/validate_garment_r1c_cp4_r2_rev1.py" --root "$ROOT"
+
+      - name: Verify immutable CP4-R1 predecessor
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT/source" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT/source" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - "$ROOT" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); before=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          def tree_hash(path):
+              digest=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  digest.update(item.relative_to(path).as_posix().encode())
+                  digest.update(hashlib.sha256(item.read_bytes()).digest())
+              return digest.hexdigest()
+          after={name:tree_hash(root/name) for name in before['build_roots']}
+          changed=[]
+          for rel,expected in before['source_files'].items():
+              path=root/'source'/rel
+              actual=hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+              if actual!=expected: changed.append(rel)
+          payload={
+              'contract':'R1CCP4R2Rev1PredecessorPreservationReceipt/1',
+              'build_roots_before':before['build_roots'],
+              'build_roots_after':after,
+              'changed_predecessor_source_files':changed,
+              'all_predecessors_unchanged':after==before['build_roots'] and not changed,
+          }
+          payload['receipt_sha256']=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          target=root/'build/r1c_cp4_r2_rev1/predecessor_preservation.json'
+          target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          assert payload['all_predecessors_unchanged'],payload
+          PY
+
+      - name: Diet and manifest integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          rm -rf "$ROOT/build/r1c_cp4_r1/visual"
+          rm -f "$ROOT/build/r1c_cp4_r1/cp4_r1_body_visible_contact_sheet.png"
+          rm -f "$ROOT/product/r1c_cp4_r1_sleeved_tunic.glb"
+          rm -f "$ROOT/build/r1c_cp4_r2_rev1/godot_product/project.godot" "$ROOT/build/r1c_cp4_r2_rev1/godot_product/capture.gd"
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256 >/dev/null)
+
+      - name: Publish REV1 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_r1c_cp4_r2_rev1
+          mkdir -p delivery_r1c_cp4_r2_rev1
+          cp "$ROOT/build/r1c_cp4_r2_rev1/cp4_r2_before_after_contact_sheet.png" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/cp4_r2_rev1_receipt.json" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/technical_qualification_receipt.json" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/metric_decomposition_before.json" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/metric_decomposition_after.json" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/direct_glb_package.json" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/godot_visual_evidence_receipt.json" delivery_r1c_cp4_r2_rev1/
+          cp "$ROOT/build/r1c_cp4_r2_rev1/direct_visual_art_review_receipt.json" delivery_r1c_cp4_r2_rev1/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_r1c_cp4_r2_rev1
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish Blender-free CP4-R2 REV1 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1c-cp4-r2-r1-rev1-20261002
+          fi
+
+      - name: Upload integrated Blender-free REV1 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_R1C_CP4_R2_R1_REV1_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
