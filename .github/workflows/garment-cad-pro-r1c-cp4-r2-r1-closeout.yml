@@ -1,0 +1,237 @@
+name: Garment CAD Pro R1C CP4-R2-R1 Closeout
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1c-cp4-r2-r1-20261002
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: garment-cad-pro-r1c-cp4-r2-r1-closeout
+  cancel-in-progress: true
+
+jobs:
+  closeout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1c-cp4-r2-r1-20261002
+          persist-credentials: true
+
+      - name: Download validated metric candidate
+        uses: actions/download-artifact@v4
+        with:
+          name: GARMENT_R1C_CP4_R2_R1_CANDIDATE
+          path: ${{ runner.temp }}/candidate
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36997823624
+          github-token: ${{ github.token }}
+
+      - name: Restore candidate and direct-art authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/GARMENT_R1C_CP4_R2_R1_FINAL"
+          mkdir -p "$root/build/r1c_cp4_r2_r1/direct_art_audit"
+          cp -a "$RUNNER_TEMP/candidate/." "$root/"
+          cp -a delivery_r1c_cp4_r2_r1_audit/. "$root/build/r1c_cp4_r2_r1/direct_art_audit/"
+          cp r1c_cp4_r2_r1_closeout/direct_art_audit_input.json \
+            "$root/build/r1c_cp4_r2_r1/direct_art_audit_input.json"
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Finalize terminal receipts and roadmap
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$ROOT" <<'PY'
+          from __future__ import annotations
+          import hashlib,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); build=root/'build/r1c_cp4_r2_r1'
+          def load(path): return json.loads(path.read_text(encoding='utf-8'))
+          def write(path,payload):
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          def canonical(payload):
+              return hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          def file_sha(path):
+              digest=hashlib.sha256()
+              with path.open('rb') as stream:
+                  for chunk in iter(lambda:stream.read(1024*1024),b''): digest.update(chunk)
+              return digest.hexdigest()
+
+          candidate=load(build/'cp4_r2_r1_candidate_receipt.json')
+          repair=load(build/'isometric_arrangement_repair.json')
+          technical=load(build/'technical_qualification_receipt.json')
+          evidence=load(build/'before_after_evidence_receipt.json')
+          audit=load(build/'direct_art_audit_input.json')
+          preservation=load(build/'predecessor_preservation.json')
+          blender=load(build/'blender_visual_product_receipt.json')
+          product=load(build/'product/materialized_product_receipt.json')
+
+          assertions={
+              'metric_improved':candidate['metric_improved'] is True,
+              'technical_pass':technical['technical_pass'] is True,
+              'direct_art_pass':audit['decision']=='PASS',
+              'same_camera':evidence['same_camera_definition'] is True,
+              'all_views':evidence['view_count']==12,
+              'silhouette_continuity':evidence['minimum_silhouette_iou']>=0.95,
+              'predecessor_preserved':preservation['all_predecessors_unchanged'] is True,
+              'source_pattern_unchanged':repair['source_pattern_changed'] is False,
+              'bodice_unchanged':repair['bodice_arrangement_changed'] is False,
+              'no_post_repair_edit':repair['post_repair_vertex_edit_count']==0,
+          }
+          if not all(assertions.values()): raise SystemExit(assertions)
+
+          direct={
+              'contract':'CP4R2R1DirectArtAuditReceipt/1',
+              'decision':'PASS',
+              'review_disposition':audit['review_disposition'],
+              'reviewed_views':audit['audit_basis']['reviewed_views'],
+              'observations':audit['observations'],
+              'blocking_defects':audit['blocking_defects'],
+              'residual_risks':audit['residual_risks'],
+              'minimum_silhouette_iou':evidence['minimum_silhouette_iou'],
+              'critical_detail_iou':audit['critical_detail_iou'],
+              'same_camera_definition':True,
+              'audit_evidence_path':'build/r1c_cp4_r2_r1/direct_art_audit/cp4_r2_r1_direct_art_audit.pdf',
+              'model_direct_review':True,
+          }
+          direct['receipt_sha256']=canonical(direct)
+          write(build/'direct_art_audit_receipt.json',direct)
+
+          glb=root/'build/r1c_cp4_r2_r1'/blender['glb_path']
+          blend=root/'build/r1c_cp4_r2_r1'/blender['blend_path']
+          product.update({
+              'glb_pending_blender_export':False,
+              'glb_path':glb.relative_to(root).as_posix(),
+              'glb_sha256':file_sha(glb),
+              'blend_path':blend.relative_to(root).as_posix(),
+              'blend_sha256':file_sha(blend),
+              'direct_art_audit_receipt_sha256':direct['receipt_sha256'],
+          })
+          product.pop('receipt_sha256',None); product['receipt_sha256']=canonical(product)
+          write(build/'product/materialized_product_receipt.json',product)
+          write(build/'materialized_product_receipt.json',product)
+
+          before95=candidate['before_ratio_p95']; after95=candidate['after_ratio_p95']
+          before99=candidate['before_ratio_p99']; after99=candidate['after_ratio_p99']
+          receipt={
+              'checkpoint':'GARMENT_CAD_PRO_R1C_CP4_R2_R1',
+              'phase':'CLOSED',
+              'terminal_decision':'CP4_R2_ACCEPTED_METRIC_FIDELITY_AND_ART_AUDIT',
+              'cp4_r2_acceptance':True,
+              'product_acceptance':True,
+              'edge_count':candidate['edge_count'],
+              'before_ratio_p95':before95,'after_ratio_p95':after95,
+              'before_ratio_p99':before99,'after_ratio_p99':after99,
+              'ratio_p95_reduction_percent':(before95-after95)/before95*100.0,
+              'ratio_p99_reduction_percent':(before99-after99)/before99*100.0,
+              'selected_ratio_p95_reduction_percent':(repair['before']['selected_p95']-repair['after']['selected_p95'])/repair['before']['selected_p95']*100.0,
+              'selected_ratio_p99_reduction_percent':(repair['before']['selected_p99']-repair['after']['selected_p99'])/repair['before']['selected_p99']*100.0,
+              'technical_pass':True,
+              'direct_art_audit':'PASS',
+              'minimum_silhouette_iou':evidence['minimum_silhouette_iou'],
+              'maximum_local_displacement_m':repair['maximum_displacement_m'],
+              'source_pattern_changed':False,
+              'bodice_arrangement_changed':False,
+              'post_repair_vertex_edit_count':0,
+              'cp4_r1_predecessor_mutated':False,
+              'residual_metric_risk':audit['residual_risks'],
+              'next_checkpoint':'GARMENT_CAD_PRO_R1C_CP5',
+              'assertions':assertions,
+          }
+          receipt['receipt_sha256']=canonical(receipt)
+          write(build/'cp4_r2_r1_receipt.json',receipt)
+          write(root/'R1C_STATUS.json',receipt)
+
+          checks={
+              'checkpoint':'GARMENT_CAD_PRO_R1C_CP4_R2_R1',
+              'validation':'PASS',
+              'metric_improved':True,
+              'technical_pass':True,
+              'direct_art_audit':'PASS',
+              'view_count':12,
+              'minimum_silhouette_iou':evidence['minimum_silhouette_iou'],
+              'predecessor_preservation':True,
+              'source_pattern_changed':False,
+              'bodice_arrangement_changed':False,
+              'post_repair_vertex_edit_count':0,
+              'source_budget':load(build/'source_budget.json'),
+          }
+          write(root/'R1C_CHECKS.json',checks)
+
+          report=f'''# GARMENT-CAD-PRO-R1C / CP4-R2-R1 실행 보고서\n\n## Terminal decision\n\n```text\n{receipt['terminal_decision']}\nproduct_acceptance = true\ntechnical_pass = true\ndirect_art_audit = PASS\n```\n\n- Structural edges decomposed: {receipt['edge_count']}\n- Global ratio p95: {before95:.9f} -> {after95:.9f}\n- Global ratio p99: {before99:.9f} -> {after99:.9f}\n- Minimum same-camera silhouette IoU: {receipt['minimum_silhouette_iou']:.6f}\n- CP4-R1 predecessor mutation: false\n- CP3 source pattern mutation: false\n'''
+          (root/'docs/cp2b/GARMENT_CAD_PRO_R1C_CP4_R2_R1_EXECUTION_REPORT_KO.md').write_text(report,encoding='utf-8')
+          next_task='''# Next task\n\n**`GARMENT-CAD-PRO-R1C / CP5 — FULL-LENGTH STRAIGHT-SLEEVE ROBE / SIDE-GORE PATTERN MATERIALIZATION`**\n\nUse the accepted CP4-R2-R1 tunic, CP3 completion authority and registered side-gore component as immutable inputs. Build full-length front/back panels, side gores, center-front opening and robe-specific visual acceptance.\n'''
+          (root/'NEXT_TASK.md').write_text(next_task,encoding='utf-8')
+          roadmap=root/'docs/roadmap/GARMENT_CAD_PRO_R1C_ROADMAP_KO.md'
+          marker='## CP4-R2-R1 구현 결과'
+          if roadmap.is_file() and marker not in roadmap.read_text(encoding='utf-8'):
+              with roadmap.open('a',encoding='utf-8') as stream:
+                  stream.write('\n\n'+marker+'\n\n- 4,014-edge component/boundary decomposition: 완료\n- sleeve/collar/cuff local isometric repair: 완료\n- same-camera 12-view direct art audit: PASS\n- terminal: CP4_R2_ACCEPTED_METRIC_FIDELITY_AND_ART_AUDIT\n- 다음 단계: CP5 straight-sleeve robe\n')
+          print(json.dumps(receipt,sort_keys=True))
+          PY
+
+      - name: Validate closeout and preserve source budgets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - "$ROOT" <<'PY'
+          import json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); build=root/'build/r1c_cp4_r2_r1'
+          receipt=json.loads((build/'cp4_r2_r1_receipt.json').read_text())
+          audit=json.loads((build/'direct_art_audit_receipt.json').read_text())
+          product=json.loads((build/'materialized_product_receipt.json').read_text())
+          assert receipt['terminal_decision']=='CP4_R2_ACCEPTED_METRIC_FIDELITY_AND_ART_AUDIT'
+          assert receipt['product_acceptance'] is True
+          assert receipt['after_ratio_p95'] < receipt['before_ratio_p95']
+          assert receipt['after_ratio_p99'] < receipt['before_ratio_p99']
+          assert audit['decision']=='PASS' and len(audit['reviewed_views'])==12
+          assert product['glb_pending_blender_export'] is False
+          assert (root/product['glb_path']).is_file() and (root/product['blend_path']).is_file()
+          assert json.loads((build/'predecessor_preservation.json').read_text())['all_predecessors_unchanged']
+          print({'closeout':'PASS','receipt_sha256':receipt['receipt_sha256']})
+          PY
+
+      - name: Diet and manifest final integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf "$ROOT/delivery_r1c_cp4_r2_r1_candidate"
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256 >/dev/null)
+
+      - name: Publish terminal evidence and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_r1c_cp4_r2_r1
+          mkdir -p delivery_r1c_cp4_r2_r1
+          cp "$ROOT/build/r1c_cp4_r2_r1/cp4_r2_r1_receipt.json" delivery_r1c_cp4_r2_r1/
+          cp "$ROOT/build/r1c_cp4_r2_r1/direct_art_audit_receipt.json" delivery_r1c_cp4_r2_r1/
+          cp "$ROOT/build/r1c_cp4_r2_r1/isometric_arrangement_repair.json" delivery_r1c_cp4_r2_r1/
+          cp "$ROOT/build/r1c_cp4_r2_r1/technical_qualification_receipt.json" delivery_r1c_cp4_r2_r1/
+          cp "$ROOT/build/r1c_cp4_r2_r1/cp4_r2_r1_before_after_contact_sheet.png" delivery_r1c_cp4_r2_r1/
+          cp "$ROOT/build/r1c_cp4_r2_r1/direct_art_audit/cp4_r2_r1_direct_art_audit.pdf" delivery_r1c_cp4_r2_r1/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_r1c_cp4_r2_r1
+          git rm .github/workflows/garment-cad-pro-r1c-cp4-r2-r1-closeout.yml
+          git commit -m 'Publish GARMENT-CAD-PRO-R1C CP4-R2-R1 terminal evidence [skip ci]'
+          git push origin HEAD:garment-cad-pro-r1c-cp4-r2-r1-20261002
+
+      - name: Upload single integrated final bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_R1C_CP4_R2_R1_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
