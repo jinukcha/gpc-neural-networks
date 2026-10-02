@@ -125,7 +125,11 @@ def main() -> int:
         inputs.turn_of_cloth_m,
     )
     if package is None:
-        raise RuntimeError(f"canonical CP2 assembly rejected: {compilation['errors']}")
+        raise RuntimeError(
+            "canonical CP2 assembly rejected: "
+            f"interface_errors={interface_receipt['errors']} "
+            f"compilation_errors={compilation['errors']}"
+        )
     rejected = build_rejection(registry, recipe, interfaces, geometries, inputs)
     publish_library(build, registry, library, geometries)
     publish_assembly(build, recipe, interfaces, interface_receipt, package, compilation)
