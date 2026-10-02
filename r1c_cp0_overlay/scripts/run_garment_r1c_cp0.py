@@ -74,6 +74,34 @@ def _terminal_receipt(assembly, broken, clean, rejected, registry, profile) -> d
     return payload
 
 
+def _write_execution_report(root: Path, receipt: dict) -> None:
+    lines = [
+        "# GARMENT-CAD-PRO-R1C / CP0 실행 보고서",
+        "",
+        "## Terminal decision",
+        "",
+        "```text",
+        f"terminal decision              {receipt['terminal_decision']}",
+        f"CP0 acceptance                 {receipt['cp0_acceptance']}",
+        f"component definitions          {receipt['component_definition_count']}",
+        f"component instances            {receipt['component_instance_count']}",
+        f"interfaces                     {receipt['interface_count']}",
+        f"visual gates                   {receipt['visual_gate_count']}",
+        f"required views                 {receipt['required_view_count']}",
+        "geometry executed              false",
+        "simulation executed            false",
+        "Godot executed                 false",
+        "```",
+        "",
+        "CP0는 exact 2D pattern component, boundary interface, garment recipe와 visual acceptance authority만 발행한다.",
+        "R1B CP6의 rigged products와 runtime build는 immutable predecessor로 유지한다.",
+        "",
+    ]
+    path = root / "docs/cp2b/GARMENT_CAD_PRO_R1C_CP0_EXECUTION_REPORT_KO.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def _write_status_docs(root: Path, receipt: dict) -> None:
     status = {
         **receipt,
@@ -89,6 +117,7 @@ def _write_status_docs(root: Path, receipt: dict) -> None:
         "and immutable resolution receipts. Do not triangulate, simulate, or rebind products in CP1.\n",
         encoding="utf-8",
     )
+    _write_execution_report(root, receipt)
 
 
 def main() -> int:
