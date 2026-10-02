@@ -69,8 +69,10 @@ func _expand_bounds(mesh_instance: MeshInstance3D, state: Dictionary) -> void:
                     state["maximum"] = point
                     state["initialized"] = true
                 else:
-                    state["minimum"] = (state["minimum"] as Vector3).min(point)
-                    state["maximum"] = (state["maximum"] as Vector3).max(point)
+                    var minimum: Vector3 = state["minimum"]
+                    var maximum: Vector3 = state["maximum"]
+                    state["minimum"] = minimum.min(point)
+                    state["maximum"] = maximum.max(point)
 
 
 func _bounds(root: Node) -> AABB:
@@ -145,10 +147,11 @@ func _camera_setup(bounds: AABB, distance: float) -> void:
     _camera.fov = 35.0
     _camera.near = 0.03
     _camera.far = 100.0
-    var centre: Vector3 = bounds.get_center()
-    _camera.position = centre + Vector3(0.0, 0.03 * bounds.size.y, distance)
-    _camera.look_at(centre + Vector3(0.0, 0.04 * bounds.size.y, 0.0), Vector3.UP)
     _scene_root.add_child(_camera)
+    var centre: Vector3 = bounds.get_center()
+    var position := centre + Vector3(0.0, 0.03 * bounds.size.y, distance)
+    var target := centre + Vector3(0.0, 0.04 * bounds.size.y, 0.0)
+    _camera.look_at_from_position(position, target, Vector3.UP)
     _camera.current = true
 
 
