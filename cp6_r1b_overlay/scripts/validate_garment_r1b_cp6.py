@@ -69,14 +69,15 @@ def _validate_runtime(build: Path) -> dict:
     return runtime
 
 
-def _validate_captures(root: Path, build: Path) -> dict:
+def _validate_captures(build: Path) -> dict:
     receipt = load_json(build / "multi_distance_capture_receipt.json")
     assert receipt["capture_count"] == 6
     assert receipt["all_captures_accepted"] is True
+    capture_root = build / receipt["capture_root"]
     for capture in receipt["captures"]:
-        path = root / capture["path"] if not Path(capture["path"]).is_absolute() else Path(capture["path"])
+        path = capture_root / capture["path"]
         assert path.is_file() and capture["accepted"] is True
-    sheet = build / "cp6_multi_distance_contact_sheet.png"
+    sheet = build / receipt["contact_sheet_path"]
     with Image.open(sheet) as image:
         assert image.width == 1920 and image.height == 1280
     return receipt
@@ -138,7 +139,7 @@ def main() -> int:
     build = root / BUILD_REL
     products = _validate_products(root, build)
     runtime = _validate_runtime(build)
-    captures = _validate_captures(root, build)
+    captures = _validate_captures(build)
     receipt = load_json(build / "cp6_receipt.json")
     assert receipt["cp6_acceptance"] is True
     assert receipt["r1b_complete"] is True
