@@ -5,49 +5,49 @@
   "captures": [
     {
       "accepted": true,
-      "centre_luminance_variance": 9344.675905018834,
+      "centre_luminance_variance": 9525.435463392227,
       "height": 1024,
-      "luminance_variance": 9885.517074969512,
+      "luminance_variance": 9973.130698147268,
       "path": "sleeved_tunic_near.png",
       "width": 1024
     },
     {
       "accepted": true,
-      "centre_luminance_variance": 9629.934729995888,
+      "centre_luminance_variance": 9634.741286704833,
       "height": 1024,
-      "luminance_variance": 8303.993817284054,
+      "luminance_variance": 8309.674618980673,
       "path": "sleeved_tunic_mid.png",
       "width": 1024
     },
     {
       "accepted": true,
-      "centre_luminance_variance": 9242.945976419334,
+      "centre_luminance_variance": 9243.80832149876,
       "height": 1024,
-      "luminance_variance": 8236.111582171085,
+      "luminance_variance": 8239.851245207083,
       "path": "sleeved_tunic_far.png",
       "width": 1024
     },
     {
       "accepted": true,
-      "centre_luminance_variance": 8644.66488515397,
+      "centre_luminance_variance": 8856.893638486365,
       "height": 1024,
-      "luminance_variance": 9434.006515099409,
+      "luminance_variance": 9516.495048874593,
       "path": "straight_robe_near.png",
       "width": 1024
     },
     {
       "accepted": true,
-      "centre_luminance_variance": 9429.94637030355,
+      "centre_luminance_variance": 9432.483636435787,
       "height": 1024,
-      "luminance_variance": 8255.27333242336,
+      "luminance_variance": 8260.691803760064,
       "path": "straight_robe_mid.png",
       "width": 1024
     },
     {
       "accepted": true,
-      "centre_luminance_variance": 9200.67389972301,
+      "centre_luminance_variance": 9201.219689841873,
       "height": 1024,
-      "luminance_variance": 8228.6646157225,
+      "luminance_variance": 8232.376967852313,
       "path": "straight_robe_far.png",
       "width": 1024
     }
