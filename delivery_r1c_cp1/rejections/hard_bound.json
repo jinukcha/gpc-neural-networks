@@ -1,0 +1,24 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "BOUND_REJECTED",
+    "details": {
+      "bounds": {
+        "disposition": "REJECT",
+        "maximum_si": 0.5,
+        "minimum_si": 0.1
+      },
+      "value_si": 1.0
+    },
+    "message": "parameter violates a hard bound",
+    "parameter_id": "too_long"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "24dafca1cfdab418601e6d8a3318932c44bd5d6df7999d53086c995b3f7e923c",
+  "resolution_id": "R1C_CP1_REJECT_HARD_BOUND",
+  "resolved_set_sha256": null,
+  "status": "BOUND_REJECTED"
+}

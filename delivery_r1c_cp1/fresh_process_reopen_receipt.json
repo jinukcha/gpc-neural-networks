@@ -1,0 +1,12 @@
+{
+  "context_hash_pass": true,
+  "contract": "ParameterFreshProcessReopenReceipt/1",
+  "definition_set_hash_pass": true,
+  "deterministic_rerun_pass": true,
+  "fresh_process_reopen_pass": true,
+  "receipt_sha256": "ca4b2a96025393084423a53b46252e6e4c8d6f9adbef9404169f4e3faa155f35",
+  "rejection_receipts_pass": true,
+  "reopen_process_id": 2142,
+  "resolved_set_hash_pass": true,
+  "writer_process_id": 2140
+}

@@ -1,0 +1,17 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "UNIT_MISMATCH",
+    "details": {},
+    "message": "unit quantity mismatch: m is LENGTH, expected ANGLE",
+    "parameter_id": "bad_unit"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "a755ad66ecbc9688f9703c1aa12a50d203e968ea6e8dba921579574d6aec0540",
+  "resolution_id": "R1C_CP1_REJECT_UNIT_MISMATCH",
+  "resolved_set_sha256": null,
+  "status": "UNIT_MISMATCH"
+}

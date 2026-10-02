@@ -1,0 +1,17 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "QUANTITY_MISMATCH",
+    "details": {},
+    "message": "reference quantity LENGTH does not match ANGLE",
+    "parameter_id": "wrong_quantity"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "7a64867dac83b22227880712ff233e4a767912406dd3216afb6e92941795c547",
+  "resolution_id": "R1C_CP1_REJECT_QUANTITY_MISMATCH",
+  "resolved_set_sha256": null,
+  "status": "QUANTITY_MISMATCH"
+}

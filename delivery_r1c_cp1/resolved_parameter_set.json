@@ -1,0 +1,377 @@
+{
+  "context_sha256": "3e835e85aed8c2f6e5b3549f836d84b38ad2e3e9b7839ecd120b4a74e8690225",
+  "contract": "ResolvedParameterSet/1",
+  "definition_set_sha256": "321e5fd8a5c96afaffa7543bbe8943b581ec260f7639ba83a403341472e3d795",
+  "immutable": true,
+  "parameters": [
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.5,
+        "minimum_si": 0.0,
+        "requested_value_si": 0.20943951023931956,
+        "resolved_value_si": 0.20943951023931956
+      },
+      "expression": null,
+      "mode": "ABSOLUTE",
+      "owner_component_id": "SET_IN_SLEEVE_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "arm_rest_pitch",
+      "quantity": "ANGLE",
+      "ratio": null,
+      "reference_paths": [],
+      "requested_value_si": 0.20943951023931956,
+      "resolution_index": 0,
+      "resolved_value_si": 0.20943951023931956,
+      "unit": "rad"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 1.12,
+        "minimum_si": 1.01,
+        "requested_value_si": 1.055,
+        "resolved_value_si": 1.055
+      },
+      "expression": null,
+      "mode": "ABSOLUTE",
+      "owner_component_id": "SET_IN_SLEEVE_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "cap_ease_ratio",
+      "quantity": "DIMENSIONLESS",
+      "ratio": null,
+      "reference_paths": [],
+      "requested_value_si": 1.055,
+      "resolution_index": 1,
+      "resolved_value_si": 1.055,
+      "unit": "1"
+    },
+    {
+      "bounds": {
+        "action": "CLAMPED",
+        "delta_si": -0.006099999999999963,
+        "disposition": "SAFE_CLAMP",
+        "maximum_si": 0.028,
+        "minimum_si": 0.008,
+        "requested_value_si": 0.034099999999999964,
+        "resolved_value_si": 0.028
+      },
+      "expression": "boundary.armhole_total_length * (param.cap_ease_ratio - 1.0)",
+      "mode": "AUTO_DERIVED",
+      "owner_component_id": "SET_IN_SLEEVE_BASIC",
+      "parameter_dependencies": [
+        "cap_ease_ratio"
+      ],
+      "parameter_id": "cap_ease",
+      "quantity": "LENGTH",
+      "ratio": null,
+      "reference_paths": [
+        "boundary.armhole_total_length",
+        "param.cap_ease_ratio"
+      ],
+      "requested_value_si": 0.034099999999999964,
+      "resolution_index": 2,
+      "resolved_value_si": 0.028,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.16,
+        "minimum_si": 0.09,
+        "requested_value_si": 0.11044999999999999,
+        "resolved_value_si": 0.11044999999999999
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "SET_IN_SLEEVE_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "cap_height",
+      "quantity": "LENGTH",
+      "ratio": 0.47,
+      "reference_paths": [
+        "block.armscye_depth"
+      ],
+      "requested_value_si": 0.11044999999999999,
+      "resolution_index": 3,
+      "resolved_value_si": 0.11044999999999999,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.05,
+        "minimum_si": 0.015,
+        "requested_value_si": 0.023800000000000005,
+        "resolved_value_si": 0.023800000000000005
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "BODICE_FRONT_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "collar_depth",
+      "quantity": "LENGTH",
+      "ratio": 0.28,
+      "reference_paths": [
+        "component.neckline_depth"
+      ],
+      "requested_value_si": 0.023800000000000005,
+      "resolution_index": 4,
+      "resolved_value_si": 0.023800000000000005,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.16,
+        "minimum_si": 0.08,
+        "requested_value_si": 0.11024999999999999,
+        "resolved_value_si": 0.11024999999999999
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "SET_IN_SLEEVE_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "front_pitch_notch",
+      "quantity": "LENGTH",
+      "ratio": 0.35,
+      "reference_paths": [
+        "boundary.cap_front_arc_length"
+      ],
+      "requested_value_si": 0.11024999999999999,
+      "resolution_index": 5,
+      "resolved_value_si": 0.11024999999999999,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.004,
+        "minimum_si": 0.0005,
+        "requested_value_si": 0.0015600000000000002,
+        "resolved_value_si": 0.0015600000000000002
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "FACING_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "interfacing_offset",
+      "quantity": "LENGTH",
+      "ratio": 2.0,
+      "reference_paths": [
+        "material.thickness"
+      ],
+      "requested_value_si": 0.0015600000000000002,
+      "resolution_index": 6,
+      "resolved_value_si": 0.0015600000000000002,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.6,
+        "minimum_si": 0.08,
+        "requested_value_si": 0.265,
+        "resolved_value_si": 0.265
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "GLOBAL",
+      "parameter_dependencies": [],
+      "parameter_id": "material_mass",
+      "quantity": "MASS_PER_AREA",
+      "ratio": 1.0,
+      "reference_paths": [
+        "material.areal_density"
+      ],
+      "requested_value_si": 0.265,
+      "resolution_index": 7,
+      "resolved_value_si": 0.265,
+      "unit": "kg/m2"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.24,
+        "minimum_si": 0.1,
+        "requested_value_si": 0.16,
+        "resolved_value_si": 0.16
+      },
+      "expression": null,
+      "mode": "ABSOLUTE",
+      "owner_component_id": "POCKET_PATCH_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "pocket_height",
+      "quantity": "LENGTH",
+      "ratio": null,
+      "reference_paths": [],
+      "requested_value_si": 0.16,
+      "resolution_index": 8,
+      "resolved_value_si": 0.16,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.18,
+        "minimum_si": 0.08,
+        "requested_value_si": 0.11560000000000002,
+        "resolved_value_si": 0.11560000000000002
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "POCKET_PATCH_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "pocket_width",
+      "quantity": "LENGTH",
+      "ratio": 0.34,
+      "reference_paths": [
+        "block.front_panel_width"
+      ],
+      "requested_value_si": 0.11560000000000002,
+      "resolution_index": 9,
+      "resolved_value_si": 0.11560000000000002,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.04,
+        "minimum_si": 0.008,
+        "requested_value_si": 0.018496000000000005,
+        "resolved_value_si": 0.018496000000000005
+      },
+      "expression": "param.pocket_width * param.pocket_height",
+      "mode": "AUTO_DERIVED",
+      "owner_component_id": "POCKET_PATCH_BASIC",
+      "parameter_dependencies": [
+        "pocket_height",
+        "pocket_width"
+      ],
+      "parameter_id": "pocket_area",
+      "quantity": "AREA",
+      "ratio": null,
+      "reference_paths": [
+        "param.pocket_height",
+        "param.pocket_width"
+      ],
+      "requested_value_si": 0.018496000000000005,
+      "resolution_index": 10,
+      "resolved_value_si": 0.018496000000000005,
+      "unit": "m2"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.025,
+        "minimum_si": 0.006,
+        "requested_value_si": 0.012,
+        "resolved_value_si": 0.012
+      },
+      "expression": null,
+      "mode": "ABSOLUTE",
+      "owner_component_id": "GLOBAL",
+      "parameter_dependencies": [],
+      "parameter_id": "seam_allowance",
+      "quantity": "LENGTH",
+      "ratio": null,
+      "reference_paths": [],
+      "requested_value_si": 0.012,
+      "resolution_index": 11,
+      "resolved_value_si": 0.012,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.68,
+        "minimum_si": 0.42,
+        "requested_value_si": 0.5952,
+        "resolved_value_si": 0.5952
+      },
+      "expression": null,
+      "mode": "RELATIVE",
+      "owner_component_id": "SET_IN_SLEEVE_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "sleeve_length",
+      "quantity": "LENGTH",
+      "ratio": 0.96,
+      "reference_paths": [
+        "body.arm_length"
+      ],
+      "requested_value_si": 0.5952,
+      "resolution_index": 12,
+      "resolved_value_si": 0.5952,
+      "unit": "m"
+    },
+    {
+      "bounds": {
+        "action": "UNCHANGED",
+        "delta_si": 0.0,
+        "disposition": "REJECT",
+        "maximum_si": 0.003,
+        "minimum_si": 0.0006,
+        "requested_value_si": 0.00117,
+        "resolved_value_si": 0.00117
+      },
+      "expression": "clamp(material.thickness * 1.5, material.turn_of_cloth_min, component.turn_of_cloth_max)",
+      "mode": "AUTO_DERIVED",
+      "owner_component_id": "FACING_BASIC",
+      "parameter_dependencies": [],
+      "parameter_id": "turn_of_cloth",
+      "quantity": "LENGTH",
+      "ratio": null,
+      "reference_paths": [
+        "component.turn_of_cloth_max",
+        "material.thickness",
+        "material.turn_of_cloth_min"
+      ],
+      "requested_value_si": 0.00117,
+      "resolution_index": 13,
+      "resolved_value_si": 0.00117,
+      "unit": "m"
+    }
+  ],
+  "resolution_id": "R1C_CP1_CANONICAL_RESOLUTION",
+  "resolution_order": [
+    "arm_rest_pitch",
+    "cap_ease_ratio",
+    "cap_ease",
+    "cap_height",
+    "collar_depth",
+    "front_pitch_notch",
+    "interfacing_offset",
+    "material_mass",
+    "pocket_height",
+    "pocket_width",
+    "pocket_area",
+    "seam_allowance",
+    "sleeve_length",
+    "turn_of_cloth"
+  ],
+  "resolved_set_sha256": "ae616e97c2e7b7bdf6f6771589148da2c88b3843dd6b535437024e76bde84b45"
+}

@@ -1,0 +1,17 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "MISSING_REFERENCE",
+    "details": {},
+    "message": "'missing reference: BODY_RELATIVE:unknown_length'",
+    "parameter_id": "missing"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "5b15e12ed9717cedef080581382a76d3076243748a4e6bdc7b6057d29d5b5e12",
+  "resolution_id": "R1C_CP1_REJECT_MISSING_REFERENCE",
+  "resolved_set_sha256": null,
+  "status": "MISSING_REFERENCE"
+}

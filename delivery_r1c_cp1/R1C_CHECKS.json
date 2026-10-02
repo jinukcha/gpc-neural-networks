@@ -1,0 +1,43 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP1",
+  "evidence": {
+    "height": 1680,
+    "path": "build/r1c_cp1/cp1_ratio_parameter_evidence.png",
+    "width": 2400
+  },
+  "geometry_executed": false,
+  "godot_executed": false,
+  "predecessor_preservation": true,
+  "products": {
+    "clamp_count": 1,
+    "parameter_count": 14,
+    "resolved_set_sha256": "ae616e97c2e7b7bdf6f6771589148da2c88b3843dd6b535437024e76bde84b45"
+  },
+  "rejections": {
+    "alternate_component": "ALTERNATE_COMPONENT_REQUIRED",
+    "dependency_cycle": "CYCLE_DETECTED",
+    "expression_quantity_mismatch": "QUANTITY_MISMATCH",
+    "hard_bound": "BOUND_REJECTED",
+    "missing_reference": "MISSING_REFERENCE",
+    "non_finite_ratio": "NON_FINITE_RATIO",
+    "quantity_mismatch": "QUANTITY_MISMATCH",
+    "unit_mismatch": "UNIT_MISMATCH"
+  },
+  "schemas": 5,
+  "simulation_executed": false,
+  "source_budget": {
+    "files_checked": 22,
+    "files_over_500": [],
+    "functions_over_80": [],
+    "maximum_file": [
+      "source/wuxia_garment_oss/proportions/resolution/resolver.py",
+      237
+    ],
+    "maximum_function": [
+      "source/wuxia_garment_oss/proportions/resolution/resolver.py",
+      "_resolve",
+      70
+    ]
+  },
+  "validation": "PASS"
+}

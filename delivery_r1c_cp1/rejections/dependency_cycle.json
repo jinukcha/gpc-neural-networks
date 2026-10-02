@@ -1,0 +1,17 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "CYCLE_DETECTED",
+    "details": {},
+    "message": "CYCLE_DETECTED:cycle_a -> cycle_b -> cycle_a",
+    "parameter_id": null
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "a64a194fddcc0c1107063074f26402fbd05d2dba1cbf8bcb61b9c39cdebeb152",
+  "resolution_id": "R1C_CP1_REJECT_DEPENDENCY_CYCLE",
+  "resolved_set_sha256": null,
+  "status": "CYCLE_DETECTED"
+}

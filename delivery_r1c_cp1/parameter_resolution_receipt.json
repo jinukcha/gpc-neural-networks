@@ -1,0 +1,14 @@
+{
+  "accepted": true,
+  "clamp_count": 1,
+  "context_sha256": "3e835e85aed8c2f6e5b3549f836d84b38ad2e3e9b7839ecd120b4a74e8690225",
+  "contract": "ParameterResolutionReceipt/1",
+  "definition_set_sha256": "321e5fd8a5c96afaffa7543bbe8943b581ec260f7639ba83a403341472e3d795",
+  "error": null,
+  "parameter_count": 14,
+  "partial_publication_count": 0,
+  "receipt_sha256": "956efd2138884ff613ddf9cb16b195db79aa4f92f5bf1ac6ca91cc6db1cf6486",
+  "resolution_id": "R1C_CP1_CANONICAL_RESOLUTION",
+  "resolved_set_sha256": "ae616e97c2e7b7bdf6f6771589148da2c88b3843dd6b535437024e76bde84b45",
+  "status": "RESOLVED"
+}

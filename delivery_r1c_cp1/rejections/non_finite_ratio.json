@@ -1,0 +1,17 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "NON_FINITE_RATIO",
+    "details": {},
+    "message": "RELATIVE requires finite ratio",
+    "parameter_id": "nan_ratio"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "66bf3f0da691a8f91e878ca7b43a8bdf7d2343b9819b9c6661494e552f42ed2e",
+  "resolution_id": "R1C_CP1_REJECT_NON_FINITE_RATIO",
+  "resolved_set_sha256": null,
+  "status": "NON_FINITE_RATIO"
+}

@@ -1,0 +1,24 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "ALTERNATE_COMPONENT_REQUIRED",
+    "details": {
+      "bounds": {
+        "disposition": "ALTERNATE_COMPONENT_REQUIRED",
+        "maximum_si": 0.3,
+        "minimum_si": 0.08
+      },
+      "value_si": 0.4
+    },
+    "message": "parameter exceeds the topology-preserving range",
+    "parameter_id": "cap_height"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "2c4a3a970417800c3c985ac52dea16df2eb1446376455da853d1761e2c2a87ca",
+  "resolution_id": "R1C_CP1_REJECT_ALTERNATE_COMPONENT",
+  "resolved_set_sha256": null,
+  "status": "ALTERNATE_COMPONENT_REQUIRED"
+}

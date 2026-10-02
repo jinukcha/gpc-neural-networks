@@ -1,0 +1,17 @@
+{
+  "accepted": false,
+  "clamp_count": 0,
+  "contract": "ParameterResolutionReceipt/1",
+  "error": {
+    "code": "QUANTITY_MISMATCH",
+    "details": {},
+    "message": "quantity mismatch in addition/subtraction",
+    "parameter_id": "wrong_expression"
+  },
+  "parameter_count": 0,
+  "partial_publication_count": 0,
+  "receipt_sha256": "b6574c54cd22838f12ce83cf82f6c64126a74d7509d70b7d11f12d66ba438d5c",
+  "resolution_id": "R1C_CP1_REJECT_EXPRESSION_QUANTITY_MISMATCH",
+  "resolved_set_sha256": null,
+  "status": "QUANTITY_MISMATCH"
+}
