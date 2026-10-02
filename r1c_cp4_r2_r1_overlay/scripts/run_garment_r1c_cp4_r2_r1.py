@@ -6,14 +6,18 @@ import argparse
 import json
 from pathlib import Path
 
-from wuxia_garment_oss.materialization.metric_fidelity.pipeline import run_metric_fidelity
+from wuxia_garment_oss.materialization.metric_fidelity import pipeline
+from wuxia_garment_oss.materialization.metric_fidelity.repair_override import (
+    repair_arrangement,
+)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, required=True)
     root = parser.parse_args().root.resolve()
-    receipt = run_metric_fidelity(root)
+    pipeline.repair_arrangement = repair_arrangement
+    receipt = pipeline.run_metric_fidelity(root)
     print(json.dumps(receipt, sort_keys=True))
     return 0
 
