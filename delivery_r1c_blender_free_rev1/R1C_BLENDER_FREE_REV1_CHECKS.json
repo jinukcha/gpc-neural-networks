@@ -1,0 +1,15 @@
+{
+  "blender_required": false,
+  "build_tree_unchanged": true,
+  "checkpoint": "GARMENT_CAD_PRO_R1C_BLENDER_FREE_REV1_DESIGN",
+  "design_status": "COMPLETE",
+  "geometry_generated": false,
+  "godot_executed": false,
+  "implementation_status": "NOT_STARTED",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1C_CP4_R2_R1_REV1",
+  "product_acceptance_changed": false,
+  "product_tree_unchanged": true,
+  "receipt_sha256": "d699fee36e601179c28063b74c402546e91098f7af661498c95ecd5eaf30b526",
+  "simulation_executed": false,
+  "source_tree_unchanged": true
+}

@@ -1,0 +1,26 @@
+{
+  "program": "GARMENT-CAD-PRO-R1C",
+  "revision": "BLENDER_FREE_REV1",
+  "design_status": "COMPLETE",
+  "implementation_status": "NOT_STARTED",
+  "immutable_predecessor": "GARMENT_CAD_PRO_R1C_CP4_R1",
+  "immutable_predecessor_decision": "CP4_R1_ACCEPTED_PATTERN_DRIVEN_TUNIC",
+  "mandatory_product_path": [
+    "PATTERN_COMPILER",
+    "WARP_1_17_0",
+    "DIRECT_GLB_WRITER",
+    "KHRONOS_GLTF_VALIDATOR",
+    "GODOT_4_7_2"
+  ],
+  "blender_required": false,
+  "blender_disposition": "OPTIONAL_GUIDED_ARTIST_OVERRIDE_ONLY",
+  "new_blend_files_allowed_in_default_pipeline": false,
+  "accepted_cp4_r1_blend_preserved_as_predecessor_evidence": true,
+  "active_checkpoint": "GARMENT_CAD_PRO_R1C_CP4_R2_R1_REV1",
+  "active_checkpoint_title": "COMPONENT_BOUNDARY_METRIC_DECOMPOSITION_ISOMETRIC_ARRANGEMENT_REPAIR_DIRECT_GLB_GODOT_ART_AUDIT",
+  "geometry_generated": false,
+  "simulation_executed": false,
+  "godot_executed": false,
+  "product_acceptance_changed": false,
+  "next_task": "GARMENT-CAD-PRO-R1C / CP4-R2-R1-REV1"
+}
