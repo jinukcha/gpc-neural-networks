@@ -1,0 +1,240 @@
+name: Garment CAD Pro R1B CP6
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1b-cp6-20261002
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: garment-cad-pro-r1b-cp6-20261002
+  cancel-in-progress: true
+
+jobs:
+  closeout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1b-cp6-20261002
+          persist-credentials: true
+
+      - name: Download immutable CP5 integrated predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: GARMENT_R1B_CP5_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36949956286
+          github-token: ${{ github.token }}
+
+      - name: Restore CP5 and overlay CP6 kernels
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/GARMENT_R1B_CP6_FINAL"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests" "$root/godot"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          python - "$RUNNER_TEMP/base" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          base=pathlib.Path(sys.argv[1]); target=pathlib.Path(sys.argv[2])
+          def tree_hash(path):
+              digest=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  digest.update(item.relative_to(path).as_posix().encode())
+                  digest.update(hashlib.sha256(item.read_bytes()).digest())
+              return digest.hexdigest()
+          roots=tuple(f'build/rig_cp{index}' for index in range(6))
+          payload={'build_roots':{name:tree_hash(base/name) for name in roots}}
+          payload['source_files']={
+              path.relative_to(base/'source').as_posix():hashlib.sha256(path.read_bytes()).hexdigest()
+              for path in (base/'source').rglob('*')
+              if path.is_file() and '__pycache__' not in path.parts and path.suffix in {'.py','.gd'}
+          }
+          target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+          cp -a cp6_r1b_overlay/source/. "$root/source/"
+          cp -a cp6_r1b_overlay/scripts/. "$root/scripts/"
+          cp -a cp6_r1b_overlay/tests/. "$root/tests/"
+          cp -a cp6_r1b_overlay/godot/. "$root/godot/"
+          chmod +x "$root/scripts/"*r1b_cp6.py
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Install bounded CP6 tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 pillow==11.1.0 pytest==8.3.5
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri libglu1-mesa
+
+      - name: Compile secondary motion and rig-aware LOD products
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/run_garment_r1b_cp6.py" --root "$ROOT"
+
+      - name: Prepare exact Godot 4.7.2 project
+        shell: bash
+        run: |
+          set -euo pipefail
+          project="$ROOT/build/rig_cp6/godot_product"
+          mkdir -p "$project/products/sleeved_tunic" "$project/products/straight_robe" "$project/profiles"
+          cp "$ROOT/godot/garment_r1b_cp6/"* "$project/"
+          cp "$ROOT/build/rig_cp6/products/sleeved_tunic/"lod*.glb "$project/products/sleeved_tunic/"
+          cp "$ROOT/build/rig_cp6/products/straight_robe/"lod*.glb "$project/products/straight_robe/"
+          cp "$ROOT/build/rig_cp6/products/sleeved_tunic/secondary_motion_profile.json" "$project/profiles/sleeved_tunic.json"
+          cp "$ROOT/build/rig_cp6/products/straight_robe/secondary_motion_profile.json" "$project/profiles/straight_robe.json"
+          godot_dir="$RUNNER_TEMP/godot-4.7.2"; mkdir -p "$godot_dir"
+          curl -L --fail --retry 3 \
+            -o "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" \
+            https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          echo "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  $RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip" -d "$godot_dir"
+          godot="$godot_dir/Godot_v4.7.2-stable_linux.x86_64"; chmod +x "$godot"
+          echo "PROJECT=$project" >> "$GITHUB_ENV"
+          echo "GODOT=$godot" >> "$GITHUB_ENV"
+          timeout 240 "$godot" --headless --path "$project" --import
+
+      - name: Verify runtime state transfer in exact Godot
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 240 "$GODOT" --headless --path "$PROJECT" --script res://verify_cp6.gd | tee "$RUNNER_TEMP/godot_cp6.log"
+          python - "$RUNNER_TEMP/godot_cp6.log" "$RUNNER_TEMP/godot_cp6_receipt.json" <<'PY'
+          import json,pathlib,sys
+          marker='CP6_GODOT_RUNTIME_RECEIPT='
+          rows=[line.split(marker,1)[1] for line in pathlib.Path(sys.argv[1]).read_text(errors='replace').splitlines() if marker in line]
+          if not rows: raise SystemExit('missing CP6 Godot runtime receipt')
+          payload=json.loads(rows[-1])
+          assert payload['runtime_acceptance'] and payload['read_only_consumer']
+          version=payload['godot_version']
+          assert (int(version['major']),int(version['minor']),int(version['patch']))==(4,7,2)
+          pathlib.Path(sys.argv[2]).write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+
+      - name: Capture near mid far products in exact Godot
+        shell: bash
+        run: |
+          set -euo pipefail
+          captures="$ROOT/build/rig_cp6/captures"; mkdir -p "$captures"
+          capture() {
+            local owner="$1" lod="$2" distance="$3" band="$4" label="$5"
+            xvfb-run -a -s "-screen 0 1024x1024x24" \
+              timeout 240 "$GODOT" --display-driver x11 --rendering-method gl_compatibility \
+              --path "$PROJECT" --script res://capture_product.gd -- \
+              --product "res://products/$owner/$lod.glb" \
+              --profile "res://profiles/$owner.json" \
+              --output "$captures/${owner}_${band}.png" \
+              --distance "$distance" --label "$label"
+          }
+          capture sleeved_tunic lod0 2.4 near "SLEEVED TUNIC — 2.4 m / LOD0"
+          capture sleeved_tunic lod1 8.0 mid "SLEEVED TUNIC — 8 m / LOD1"
+          capture sleeved_tunic lod2 20.0 far "SLEEVED TUNIC — 20 m / LOD2"
+          capture straight_robe lod0 2.4 near "STRAIGHT-SLEEVE ROBE — 2.4 m / LOD0"
+          capture straight_robe lod1 8.0 mid "STRAIGHT-SLEEVE ROBE — 8 m / LOD1"
+          capture straight_robe lod2 20.0 far "STRAIGHT-SLEEVE ROBE — 20 m / LOD2"
+          test "$(find "$captures" -name '*.png' -size +10k | wc -l)" -eq 6
+
+      - name: Finalize R1B terminal closeout
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/finalize_garment_r1b_cp6.py" \
+            --root "$ROOT" \
+            --godot-receipt "$RUNNER_TEMP/godot_cp6_receipt.json" \
+            --capture-root "$ROOT/build/rig_cp6/captures"
+          rm -rf "$PROJECT/.godot" "$PROJECT/products" "$PROJECT/profiles"
+          rm -f "$PROJECT/project.godot" "$PROJECT/"*.gd
+          rm -f "$RUNNER_TEMP/Godot_v4.7.2-stable_linux.x86_64.zip"
+
+      - name: Verify immutable CP0-CP5 owners
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT/source" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT/source" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - "$ROOT" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); before=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          def tree_hash(path):
+              digest=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  digest.update(item.relative_to(path).as_posix().encode())
+                  digest.update(hashlib.sha256(item.read_bytes()).digest())
+              return digest.hexdigest()
+          after={name:tree_hash(root/name) for name in before['build_roots']}
+          changed=[]
+          for rel,expected in before['source_files'].items():
+              path=root/'source'/rel
+              actual=hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+              if actual!=expected: changed.append(rel)
+          payload={
+              'contract':'R1BCP6PredecessorPreservationReceipt/1',
+              'build_roots_before':before['build_roots'],
+              'build_roots_after':after,
+              'changed_predecessor_source_files':changed,
+              'all_predecessors_unchanged':after==before['build_roots'] and not changed,
+          }
+          payload['receipt_sha256']=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          target=root/'build/rig_cp6/predecessor_preservation.json'
+          target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          assert payload['all_predecessors_unchanged'],payload
+          PY
+
+      - name: Test and validate CP6
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests/test_garment_r1b_cp6.py"
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/validate_garment_r1b_cp6.py" --root "$ROOT"
+
+      - name: Diet and manifest final integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256 >/dev/null)
+
+      - name: Publish CP6 terminal evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_r1b_cp6
+          mkdir -p delivery_r1b_cp6/captures delivery_r1b_cp6/products
+          cp "$ROOT/build/rig_cp6/cp6_receipt.json" delivery_r1b_cp6/
+          cp "$ROOT/build/rig_cp6/godot_runtime_receipt.json" delivery_r1b_cp6/
+          cp "$ROOT/build/rig_cp6/multi_distance_capture_receipt.json" delivery_r1b_cp6/
+          cp "$ROOT/build/rig_cp6/cp6_multi_distance_contact_sheet.png" delivery_r1b_cp6/
+          cp "$ROOT/build/rig_cp6/runtime_garment_lod_registry.json" delivery_r1b_cp6/
+          cp "$ROOT/build/rig_cp6/captures/"*.png delivery_r1b_cp6/captures/
+          cp "$ROOT/build/rig_cp6/products/sleeved_tunic/lod_qualification.json" \
+            delivery_r1b_cp6/products/sleeved_tunic_lod_qualification.json
+          cp "$ROOT/build/rig_cp6/products/straight_robe/lod_qualification.json" \
+            delivery_r1b_cp6/products/straight_robe_lod_qualification.json
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_r1b_cp6
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish GARMENT-CAD-PRO-R1B CP6 closeout [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1b-cp6-20261002
+          fi
+
+      - name: Upload single final R1B bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_R1B_CP6_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
