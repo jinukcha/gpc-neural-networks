@@ -142,8 +142,9 @@ def _component_amplitudes(arrays: dict) -> np.ndarray:
 def _project_body_clearance(positions: np.ndarray, arrays: dict, profile: BodyProfile, clearance: float):
     result = positions.copy()
     count = 0
+    movable = ~arrays["fixed_mask"]
     for component_index, instance_id in enumerate(arrays["component_order"]):
-        indices = np.flatnonzero(arrays["component_ids"] == component_index)
+        indices = np.flatnonzero((arrays["component_ids"] == component_index) & movable)
         if instance_id.startswith("bodice") or instance_id == "collar":
             count += _project_torso(result, indices, profile, clearance)
         elif instance_id.endswith("left"):
