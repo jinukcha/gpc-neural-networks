@@ -15,7 +15,7 @@ from wuxia_garment_oss.proportions.resolution.receipt import (
     write_json,
 )
 from wuxia_garment_oss.proportions.resolution.resolver import resolve_parameter_set
-from wuxia_garment_oss.r1c_cp1_fixtures import canonical_context, canonical_definitions, rejection_fixtures
+from wuxia_garment_oss.r1c_cp1_fixtures import canonical_context, canonical_definitions
 
 
 BUILD_REL = Path("build/r1c_cp1")
@@ -54,6 +54,82 @@ def _load_rejections(build: Path) -> dict[str, dict]:
             raise ValueError(f"partial publication detected: {name}")
         receipts[name] = payload
     return receipts
+
+
+def _load_products(build: Path) -> dict:
+    return {
+        "preliminary": read_verified_json(build / "cp1_preliminary_receipt.json", "receipt_sha256"),
+        "definitions": _definition_set(build / "parameter_definitions.json"),
+        "context": read_verified_json(build / "resolution_context.json", "context_sha256"),
+        "resolved": read_verified_json(build / "resolved_parameter_set.json", "resolved_set_sha256"),
+        "resolution_receipt": read_verified_json(build / "parameter_resolution_receipt.json", "receipt_sha256"),
+        "rejections": _load_rejections(build),
+    }
+
+
+def _deterministic_rerun_pass(products: dict) -> bool:
+    rerun, receipt = resolve_parameter_set(
+        canonical_definitions(), canonical_context(), "R1C_CP1_CANONICAL_RESOLUTION"
+    )
+    return bool(
+        rerun is not None
+        and rerun["resolved_set_sha256"] == products["resolved"]["resolved_set_sha256"]
+        and receipt["receipt_sha256"] == products["resolution_receipt"]["receipt_sha256"]
+    )
+
+
+def _reopen_receipt(products: dict) -> dict:
+    preliminary = products["preliminary"]
+    resolved = products["resolved"]
+    receipt = products["resolution_receipt"]
+    payload = {
+        "contract": "ParameterFreshProcessReopenReceipt/1",
+        "writer_process_id": preliminary["writer_process_id"],
+        "reopen_process_id": os.getpid(),
+        "fresh_process_reopen_pass": preliminary["writer_process_id"] != os.getpid(),
+        "definition_set_hash_pass": products["definitions"]["definition_set_sha256"] == resolved["definition_set_sha256"],
+        "context_hash_pass": products["context"]["context_sha256"] == resolved["context_sha256"],
+        "resolved_set_hash_pass": receipt["resolved_set_sha256"] == resolved["resolved_set_sha256"],
+        "deterministic_rerun_pass": _deterministic_rerun_pass(products),
+        "rejection_receipts_pass": len(products["rejections"]) == len(EXPECTED_REJECTIONS),
+    }
+    payload["receipt_sha256"] = canonical_sha256(payload)
+    return payload
+
+
+def _terminal_receipt(products: dict, reopen: dict) -> dict:
+    gates = (
+        "fresh_process_reopen_pass",
+        "definition_set_hash_pass",
+        "context_hash_pass",
+        "resolved_set_hash_pass",
+        "deterministic_rerun_pass",
+        "rejection_receipts_pass",
+    )
+    accepted = all(reopen[name] for name in gates)
+    preliminary = products["preliminary"]
+    payload = {
+        "checkpoint": "GARMENT_CAD_PRO_R1C_CP1",
+        "terminal_decision": "CP1_COMPLETE_RATIO_PARAMETER_ENGINE" if accepted else "HOLD_CP1",
+        "cp1_acceptance": accepted,
+        "parameter_mode_count": preliminary["mode_count"],
+        "reference_scope_count": preliminary["reference_scope_count"],
+        "parameter_count": preliminary["parameter_count"],
+        "clamp_count": preliminary["clamp_count"],
+        "rejection_fixture_count": preliminary["rejection_fixture_count"],
+        "partial_publication_count": 0,
+        "resolved_set_sha256": products["resolved"]["resolved_set_sha256"],
+        "fresh_process_reopen_pass": reopen["fresh_process_reopen_pass"],
+        "deterministic_rerun_pass": reopen["deterministic_rerun_pass"],
+        "geometry_executed": False,
+        "triangulation_executed": False,
+        "simulation_executed": False,
+        "godot_executed": False,
+        "r1c_cp0_predecessor_mutated": False,
+        "next_checkpoint": "GARMENT_CAD_PRO_R1C_CP2",
+    }
+    payload["receipt_sha256"] = canonical_sha256(payload)
+    return payload
 
 
 def _append_roadmap(root: Path) -> None:
@@ -101,77 +177,16 @@ reference provenance, dependency order, bounded-resolution decisions, and immuta
     path.write_text(report, encoding="utf-8")
 
 
-def main() -> int:
-    root = parse_args().root.resolve()
+def _publish(root: Path, products: dict, reopen: dict, receipt: dict) -> None:
     build = root / BUILD_REL
-    preliminary = read_verified_json(build / "cp1_preliminary_receipt.json", "receipt_sha256")
-    definitions = _definition_set(build / "parameter_definitions.json")
-    context = read_verified_json(build / "resolution_context.json", "context_sha256")
-    resolved = read_verified_json(build / "resolved_parameter_set.json", "resolved_set_sha256")
-    resolution_receipt = read_verified_json(build / "parameter_resolution_receipt.json", "receipt_sha256")
-    rejections = _load_rejections(build)
-    rerun, rerun_receipt = resolve_parameter_set(
-        canonical_definitions(),
-        canonical_context(),
-        "R1C_CP1_CANONICAL_RESOLUTION",
-    )
-    rerun_pass = bool(
-        rerun is not None
-        and rerun["resolved_set_sha256"] == resolved["resolved_set_sha256"]
-        and rerun_receipt["receipt_sha256"] == resolution_receipt["receipt_sha256"]
-    )
-    reopen = {
-        "contract": "ParameterFreshProcessReopenReceipt/1",
-        "writer_process_id": preliminary["writer_process_id"],
-        "reopen_process_id": os.getpid(),
-        "fresh_process_reopen_pass": preliminary["writer_process_id"] != os.getpid(),
-        "definition_set_hash_pass": definitions["definition_set_sha256"] == resolved["definition_set_sha256"],
-        "context_hash_pass": context["context_sha256"] == resolved["context_sha256"],
-        "resolved_set_hash_pass": resolution_receipt["resolved_set_sha256"] == resolved["resolved_set_sha256"],
-        "deterministic_rerun_pass": rerun_pass,
-        "rejection_receipts_pass": len(rejections) == len(EXPECTED_REJECTIONS),
-    }
-    reopen["receipt_sha256"] = canonical_sha256(reopen)
     write_json(build / "fresh_process_reopen_receipt.json", reopen)
-    accepted = all(
-        reopen[name]
-        for name in (
-            "fresh_process_reopen_pass",
-            "definition_set_hash_pass",
-            "context_hash_pass",
-            "resolved_set_hash_pass",
-            "deterministic_rerun_pass",
-            "rejection_receipts_pass",
-        )
-    )
-    receipt = {
-        "checkpoint": "GARMENT_CAD_PRO_R1C_CP1",
-        "terminal_decision": "CP1_COMPLETE_RATIO_PARAMETER_ENGINE" if accepted else "HOLD_CP1",
-        "cp1_acceptance": accepted,
-        "parameter_mode_count": preliminary["mode_count"],
-        "reference_scope_count": preliminary["reference_scope_count"],
-        "parameter_count": preliminary["parameter_count"],
-        "clamp_count": preliminary["clamp_count"],
-        "rejection_fixture_count": preliminary["rejection_fixture_count"],
-        "partial_publication_count": 0,
-        "resolved_set_sha256": resolved["resolved_set_sha256"],
-        "fresh_process_reopen_pass": reopen["fresh_process_reopen_pass"],
-        "deterministic_rerun_pass": rerun_pass,
-        "geometry_executed": False,
-        "triangulation_executed": False,
-        "simulation_executed": False,
-        "godot_executed": False,
-        "r1c_cp0_predecessor_mutated": False,
-        "next_checkpoint": "GARMENT_CAD_PRO_R1C_CP2",
-    }
-    receipt["receipt_sha256"] = canonical_sha256(receipt)
     write_json(build / "cp1_receipt.json", receipt)
     write_json(root / "R1C_STATUS.json", receipt)
     render_cp1_evidence(
         build / "cp1_ratio_parameter_evidence.png",
-        resolved,
-        resolution_receipt,
-        rejections,
+        products["resolved"],
+        products["resolution_receipt"],
+        products["rejections"],
         reopen,
     )
     _write_report(root, receipt, reopen)
@@ -183,6 +198,14 @@ def main() -> int:
         "authority, interface compatibility, notch correspondence, and assembly compilation without triangulation or simulation.\n",
         encoding="utf-8",
     )
+
+
+def main() -> int:
+    root = parse_args().root.resolve()
+    products = _load_products(root / BUILD_REL)
+    reopen = _reopen_receipt(products)
+    receipt = _terminal_receipt(products, reopen)
+    _publish(root, products, reopen, receipt)
     print(json.dumps(receipt, sort_keys=True))
     return 0
 
