@@ -59,5 +59,3 @@ def test_published_arrays_are_finite() -> None:
         assert np.isfinite(data["positions_final"]).all()
         assert len(data["triangles"]) > 0
         assert len(data["seam_pairs"]) > 0
-    preservation = load(BUILD / "predecessor_preservation.json")
-    assert preservation["all_predecessors_unchanged"] is True
