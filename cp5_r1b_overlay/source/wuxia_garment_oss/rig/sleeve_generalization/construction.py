@@ -151,7 +151,7 @@ def build_robe_skirt(joints: dict[str, np.ndarray], rings: int = 12, sides: int 
             longitudinal.append(t)
             angular.append(angle)
     return ConstructedPrimitive(
-        name="STRAIGHT_SLEEVE_ROBE_SKIRT",
+        name="STRAIGHT_ROBE_SKIRT",
         positions=np.asarray(positions, dtype=np.float32),
         normals=np.asarray(normals, dtype=np.float32),
         texcoords=np.asarray(texcoords, dtype=np.float32),
