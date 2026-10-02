@@ -1,0 +1,15 @@
+[application]
+config/name="Garment R1B CP6 Runtime Closeout"
+run/main_scene=""
+
+[display]
+window/size/viewport_width=1024
+window/size/viewport_height=1024
+window/size/window_width_override=1024
+window/size/window_height_override=1024
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.075, 0.085, 0.105, 1)
