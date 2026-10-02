@@ -1,0 +1,14 @@
+[application]
+config/name="Garment R1C CP4-R2 REV1 Visual Audit"
+run/main_scene=""
+
+[display]
+window/size/viewport_width=2048
+window/size/viewport_height=2048
+window/size/window_width_override=2048
+window/size/window_height_override=2048
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.08, 0.08, 0.08, 1)

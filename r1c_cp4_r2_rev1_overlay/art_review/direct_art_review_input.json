@@ -1,0 +1,24 @@
+{
+  "contract": "DirectVisualArtReviewReceipt/1",
+  "review_mode": "DIRECT_HUMAN_REVIEW_PENDING",
+  "same_camera_before_after": true,
+  "required_view_count": 12,
+  "views": [
+    {"view_id": "front", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "left", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "right", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "back", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "front_three_quarter", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "back_three_quarter", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "garment_only", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "shoulder_cap_detail", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "underarm_detail", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "neck_collar_detail", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "wireframe_front", "disposition": "NOT_REVIEWABLE", "notes": "pending"},
+    {"view_id": "seam_notch_overlay", "disposition": "NOT_REVIEWABLE", "notes": "pending"}
+  ],
+  "blocking_defects": [],
+  "non_blocking_defects": [],
+  "reviewer": "PENDING",
+  "visual_review": "PENDING"
+}
