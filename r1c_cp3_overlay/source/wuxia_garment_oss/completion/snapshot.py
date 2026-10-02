@@ -60,8 +60,24 @@ def clone_snapshot(snapshot: dict, snapshot_id: str) -> dict:
     return refresh_snapshot(result)
 
 
+def _sort_owner_list(payload: dict, canonical_payload: dict, field: str, identity: str) -> None:
+    rank = {
+        item[identity]: index
+        for index, item in enumerate(canonical_payload.get(field, []))
+    }
+    payload[field].sort(key=lambda item: rank.get(item[identity], 10_000))
+
+
 def _normalise_geometry(snapshot: dict, canonical: dict | None) -> None:
     geometry = snapshot["geometry_by_instance"]
+    if canonical is not None:
+        for instance_id, payload in geometry.items():
+            authority = canonical["geometry_by_instance"].get(instance_id)
+            if authority is None:
+                continue
+            _sort_owner_list(payload, authority, "segments", "segment_id")
+            _sort_owner_list(payload, authority, "boundaries", "boundary_id")
+            _sort_owner_list(payload, authority, "notches", "notch_id")
     for instance_id, payload in list(geometry.items()):
         geometry[instance_id] = _rehash(payload, "geometry_sha256")
     if canonical is None:
