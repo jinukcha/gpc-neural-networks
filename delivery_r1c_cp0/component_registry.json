@@ -1,0 +1,392 @@
+{
+  "component_count": 3,
+  "components": [
+    {
+      "boundaries": [
+        {
+          "boundary_id": "shoulder_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_LEFT",
+          "notch_ids": [
+            "SHOULDER_LEFT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SHOULDER_FRONT"
+        },
+        {
+          "boundary_id": "shoulder_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_RIGHT",
+          "notch_ids": [
+            "SHOULDER_RIGHT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SHOULDER_FRONT"
+        },
+        {
+          "boundary_id": "side_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_LEFT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SIDE_FRONT"
+        },
+        {
+          "boundary_id": "side_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_RIGHT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SIDE_FRONT"
+        },
+        {
+          "boundary_id": "armhole_left_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_FRONT",
+          "notch_ids": [
+            "LEFT_FRONT_PITCH",
+            "LEFT_SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_ARMHOLE_FRONT"
+        },
+        {
+          "boundary_id": "armhole_right_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_FRONT",
+          "notch_ids": [
+            "RIGHT_FRONT_PITCH",
+            "RIGHT_SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_ARMHOLE_FRONT"
+        },
+        {
+          "boundary_id": "neckline_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "FINISHED",
+          "interface_family": "NECKLINE_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "FRONT_NECKLINE"
+        },
+        {
+          "boundary_id": "hem_front",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "HEM_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "FRONT_HEM"
+        },
+        {
+          "boundary_id": "center_front_fold",
+          "curve_kind": "LINE",
+          "disposition": "FOLD",
+          "interface_family": "CENTER_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "CENTER_FRONT_FOLD"
+        }
+      ],
+      "category": "BODICE",
+      "component_id": "BODICE_FRONT_BASIC",
+      "component_sha256": "e1c31425be7821daba6ff064970a7e86ac6e9509fb92e6542c5ee8303abcb148",
+      "construction_features": [
+        "GRAINLINE",
+        "WAIST_REFERENCE",
+        "CHEST_REFERENCE"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "BASIC_TUNIC_BLOCK",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "shoulder_left",
+        "shoulder_right",
+        "side_left",
+        "side_right",
+        "armhole_left_front",
+        "armhole_right_front"
+      ],
+      "landmarks": [
+        "CF_NECK",
+        "CF_HEM",
+        "LEFT_UNDERARM",
+        "RIGHT_UNDERARM",
+        "LEFT_WAIST",
+        "RIGHT_WAIST"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "NONE",
+      "parameter_ports": [
+        "body.front_chest_arc",
+        "body.front_waist_arc",
+        "design.bodice_length"
+      ],
+      "revision": 1,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "shoulder_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_LEFT",
+          "notch_ids": [
+            "SHOULDER_LEFT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SHOULDER_BACK"
+        },
+        {
+          "boundary_id": "shoulder_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_RIGHT",
+          "notch_ids": [
+            "SHOULDER_RIGHT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SHOULDER_BACK"
+        },
+        {
+          "boundary_id": "side_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_LEFT",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SIDE_BACK"
+        },
+        {
+          "boundary_id": "side_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_RIGHT",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SIDE_BACK"
+        },
+        {
+          "boundary_id": "armhole_left_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_BACK",
+          "notch_ids": [
+            "LEFT_BACK_PITCH",
+            "LEFT_SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_ARMHOLE_BACK"
+        },
+        {
+          "boundary_id": "armhole_right_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_BACK",
+          "notch_ids": [
+            "RIGHT_BACK_PITCH",
+            "RIGHT_SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_ARMHOLE_BACK"
+        },
+        {
+          "boundary_id": "neckline_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "FINISHED",
+          "interface_family": "NECKLINE_BACK",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "BACK_NECKLINE"
+        },
+        {
+          "boundary_id": "hem_back",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "HEM_BACK",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "BACK_HEM"
+        },
+        {
+          "boundary_id": "center_back_fold",
+          "curve_kind": "LINE",
+          "disposition": "FOLD",
+          "interface_family": "CENTER_BACK",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "CENTER_BACK_FOLD"
+        }
+      ],
+      "category": "BODICE",
+      "component_id": "BODICE_BACK_BASIC",
+      "component_sha256": "9dc1d4cfe5320aa728e7c019bb42d5be93e101f421528a182bd2114588e4c129",
+      "construction_features": [
+        "GRAINLINE",
+        "WAIST_REFERENCE",
+        "BACK_BALANCE_REFERENCE"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "BASIC_TUNIC_BLOCK",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "shoulder_left",
+        "shoulder_right",
+        "side_left",
+        "side_right",
+        "armhole_left_back",
+        "armhole_right_back"
+      ],
+      "landmarks": [
+        "CB_NECK",
+        "CB_HEM",
+        "LEFT_UNDERARM",
+        "RIGHT_UNDERARM",
+        "LEFT_WAIST",
+        "RIGHT_WAIST"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "NONE",
+      "parameter_ports": [
+        "body.back_chest_arc",
+        "body.back_waist_arc",
+        "design.bodice_length"
+      ],
+      "revision": 1,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "cap_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_FRONT",
+          "notch_ids": [
+            "FRONT_PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_CAP_FRONT"
+        },
+        {
+          "boundary_id": "cap_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_BACK",
+          "notch_ids": [
+            "BACK_PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_CAP_BACK"
+        },
+        {
+          "boundary_id": "underarm_front",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SLEEVE_UNDERARM",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_UNDERARM_FRONT"
+        },
+        {
+          "boundary_id": "underarm_back",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SLEEVE_UNDERARM",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_UNDERARM_BACK"
+        },
+        {
+          "boundary_id": "wrist",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "WRIST_FINISH",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_WRIST"
+        }
+      ],
+      "category": "SLEEVE",
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "component_sha256": "73660ba72a4f38845f67ed8bb36e266e209d26c79795ccecad527249a279fe6f",
+      "construction_features": [
+        "GRAINLINE",
+        "BICEPS_LINE",
+        "ELBOW_LINE",
+        "WRIST_LINE",
+        "UNDERARM_SEAM"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "SET_IN_ONE_PIECE",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "cap_front",
+        "cap_back",
+        "underarm_front",
+        "underarm_back"
+      ],
+      "landmarks": [
+        "SHOULDER_POINT",
+        "FRONT_PITCH",
+        "BACK_PITCH",
+        "BICEPS_FRONT",
+        "BICEPS_BACK",
+        "ELBOW_FRONT",
+        "ELBOW_BACK",
+        "WRIST_FRONT",
+        "WRIST_BACK"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "MIRROR_ALLOWED",
+      "parameter_ports": [
+        "body.arm_length",
+        "body.upper_arm_circumference",
+        "body.elbow_circumference",
+        "body.wrist_circumference",
+        "design.cap_ease"
+      ],
+      "revision": 1,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    }
+  ],
+  "contract": "PatternComponentRegistry/1",
+  "registry_id": "R1C_CP0_PATTERN_COMPONENTS",
+  "registry_sha256": "a69d12c1a9f21811a481be759bd2646dd60c8cef8ac608205f9a2cf733224d91"
+}

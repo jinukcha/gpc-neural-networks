@@ -1,0 +1,22 @@
+{
+  "all_sewn_boundaries_owned": true,
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP0",
+  "clean_visual_fixture_pass": true,
+  "component_definition_count": 3,
+  "component_instance_count": 4,
+  "cp0_acceptance": true,
+  "defective_visual_fixture_rejected": true,
+  "geometry_executed": false,
+  "godot_executed": false,
+  "incomplete_recipe_rejected": true,
+  "interface_count": 10,
+  "next_checkpoint": "GARMENT_CAD_PRO_R1C_CP1",
+  "r1b_predecessor_mutated": false,
+  "receipt_sha256": "30f0081ae7e289c39d3de7a725b7b169a46e7b0ea9e2d01adf4b48484bfcd92b",
+  "required_view_count": 32,
+  "simulation_executed": false,
+  "terminal_decision": "CP0_COMPLETE_VISUAL_AND_MODULAR_FOUNDATION",
+  "triangulation_executed": false,
+  "visual_gate_count": 16,
+  "visual_profile_id": "R1C_VISUAL_PROFILE_V1"
+}

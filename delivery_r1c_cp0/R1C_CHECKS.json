@@ -1,0 +1,31 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP0",
+  "component_count": 3,
+  "evidence": {
+    "height": 1680,
+    "path": "build/r1c_cp0/cp0_modular_visual_authority_evidence.png",
+    "width": 2400
+  },
+  "geometry_executed": false,
+  "godot_executed": false,
+  "interface_count": 10,
+  "required_view_count": 32,
+  "schema_count": 6,
+  "simulation_executed": false,
+  "source_budget": {
+    "files_checked": 18,
+    "files_over_500": [],
+    "functions_over_80": [],
+    "maximum_file": [
+      "scripts/run_garment_r1c_cp0.py",
+      172
+    ],
+    "maximum_function": [
+      "source/wuxia_garment_oss/r1c_cp0_contracts.py",
+      "r1c_cp0_schemas",
+      72
+    ]
+  },
+  "validation": "PASS",
+  "visual_gate_count": 16
+}

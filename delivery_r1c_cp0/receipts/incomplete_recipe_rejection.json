@@ -1,0 +1,24 @@
+{
+  "accepted": false,
+  "bound_sewn_boundary_count": 18,
+  "component_instance_count": 4,
+  "contract": "AssemblyAdmissionReceipt/1",
+  "duplicated_boundary_bindings": [],
+  "errors": [
+    "UNBOUND_SEWN_BOUNDARY:sleeve_right.underarm_back",
+    "UNBOUND_SEWN_BOUNDARY:sleeve_right.underarm_front"
+  ],
+  "garment_family": "SLEEVED_TUNIC",
+  "geometry_executed": false,
+  "interface_count": 9,
+  "receipt_sha256": "40158885e9f5d9279e4f23f91ecf9458118793cef65f1caf7fae05ccc511ccdc",
+  "recipe_id": "SLEEVED_TUNIC_MODULAR_REFERENCE",
+  "required_sewn_boundary_count": 20,
+  "simulation_executed": false,
+  "topology_change_policy": "HOLD",
+  "unbound_sewn_boundaries": [
+    "sleeve_right.underarm_back",
+    "sleeve_right.underarm_front"
+  ],
+  "unexpected_interface_boundaries": []
+}

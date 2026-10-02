@@ -1,0 +1,573 @@
+{
+  "acceptance_expression": "TECHNICAL_PASS_AND_VISUAL_PASS",
+  "contract": "VisualAcceptanceProfile/1",
+  "gates": [
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "PRIMARY",
+        "DIAGNOSTIC"
+      ],
+      "gate_id": "floating_component_count",
+      "metric": "floating_component_count",
+      "owner_scope": "GARMENT",
+      "repair_disposition": "HOLD",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "WIREFRAME",
+        "COMPONENT_ID"
+      ],
+      "gate_id": "unowned_loose_triangle_count",
+      "metric": "unowned_loose_triangle_count",
+      "owner_scope": "TOPOLOGY",
+      "repair_disposition": "HOLD",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "WIREFRAME",
+        "SEAM"
+      ],
+      "gate_id": "non_design_open_boundary_count",
+      "metric": "non_design_open_boundary_count",
+      "owner_scope": "BOUNDARY",
+      "repair_disposition": "HOLD",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "DETAIL",
+        "LAYER"
+      ],
+      "gate_id": "neck_facing_separation_count",
+      "metric": "neck_facing_separation_count",
+      "owner_scope": "NECK",
+      "repair_disposition": "GUIDED",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "DETAIL",
+        "SEAM"
+      ],
+      "gate_id": "sleeve_cap_armhole_gap_count",
+      "metric": "sleeve_cap_armhole_gap_count",
+      "owner_scope": "SHOULDER",
+      "repair_disposition": "GUIDED",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "DETAIL",
+        "SEAM"
+      ],
+      "gate_id": "underarm_seam_gap_count",
+      "metric": "underarm_seam_gap_count",
+      "owner_scope": "UNDERARM",
+      "repair_disposition": "GUIDED",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "NORMAL"
+      ],
+      "gate_id": "normal_inversion_count",
+      "metric": "normal_inversion_count",
+      "owner_scope": "SURFACE",
+      "repair_disposition": "GUIDED",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "LAYER"
+      ],
+      "gate_id": "layer_order_reversal_count",
+      "metric": "layer_order_reversal_count",
+      "owner_scope": "LAYER",
+      "repair_disposition": "HOLD",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "DETAIL"
+      ],
+      "gate_id": "closure_separation_count",
+      "metric": "closure_separation_count",
+      "owner_scope": "CLOSURE",
+      "repair_disposition": "GUIDED",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "EQ",
+      "evidence_categories": [
+        "DIAGNOSTIC"
+      ],
+      "gate_id": "non_finite_geometry_count",
+      "metric": "non_finite_geometry_count",
+      "owner_scope": "GEOMETRY",
+      "repair_disposition": "HOLD",
+      "severity": "ZERO_TOLERANCE",
+      "threshold": 0
+    },
+    {
+      "comparator": "LE",
+      "evidence_categories": [
+        "BODY_VISIBLE",
+        "MOTION"
+      ],
+      "gate_id": "body_penetration_p99_m",
+      "metric": "body_penetration_p99_m",
+      "owner_scope": "FIT",
+      "repair_disposition": "GUIDED",
+      "severity": "BOUNDED",
+      "threshold": 0.002
+    },
+    {
+      "comparator": "LE",
+      "evidence_categories": [
+        "PRIMARY"
+      ],
+      "gate_id": "undesigned_silhouette_asymmetry_ratio",
+      "metric": "undesigned_silhouette_asymmetry_ratio",
+      "owner_scope": "SILHOUETTE",
+      "repair_disposition": "GUIDED",
+      "severity": "BOUNDED",
+      "threshold": 0.01
+    },
+    {
+      "comparator": "GE",
+      "evidence_categories": [
+        "LOD_EQUAL_COVERAGE"
+      ],
+      "gate_id": "lod1_silhouette_iou",
+      "metric": "lod1_silhouette_iou",
+      "owner_scope": "LOD1",
+      "repair_disposition": "HOLD",
+      "severity": "BOUNDED",
+      "threshold": 0.985
+    },
+    {
+      "comparator": "GE",
+      "evidence_categories": [
+        "LOD_EQUAL_COVERAGE"
+      ],
+      "gate_id": "lod2_silhouette_iou",
+      "metric": "lod2_silhouette_iou",
+      "owner_scope": "LOD2",
+      "repair_disposition": "HOLD",
+      "severity": "BOUNDED",
+      "threshold": 0.96
+    },
+    {
+      "comparator": "LE",
+      "evidence_categories": [
+        "LOD_EQUAL_COVERAGE"
+      ],
+      "gate_id": "lod_feature_boundary_displacement_px",
+      "metric": "lod_feature_boundary_displacement_px",
+      "owner_scope": "LOD",
+      "repair_disposition": "HOLD",
+      "severity": "BOUNDED",
+      "threshold": 1.5
+    },
+    {
+      "comparator": "TRUE",
+      "evidence_categories": [
+        "MOTION"
+      ],
+      "gate_id": "required_motion_view_pass",
+      "metric": "required_motion_view_pass",
+      "owner_scope": "MOTION",
+      "repair_disposition": "HOLD",
+      "severity": "BOUNDED",
+      "threshold": true
+    }
+  ],
+  "profile_id": "R1C_VISUAL_PROFILE_V1",
+  "profile_sha256": "7bec49527a8683b73c426c26600e0a41bd60d4ba36eebbc9377e4134f48ad730",
+  "required_views": [
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "PRIMARY",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "front"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "PRIMARY",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "left"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "PRIMARY",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "right"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "PRIMARY",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "back"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "PRIMARY",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "front_three_quarter"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "PRIMARY",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "back_three_quarter"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DETAIL",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "neck_facing_detail"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DETAIL",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "shoulder_sleeve_cap_detail"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DETAIL",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "underarm_detail"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DETAIL",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "elbow_cuff_detail"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DETAIL",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "waist_side_detail"
+    },
+    {
+      "applicable_families": [
+        "STRAIGHT_SLEEVE_ROBE"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DETAIL",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "robe_opening_gore_hem_detail"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "body_visible_fit"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "OCCLUDED",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [],
+      "view_id": "body_occlusion_runtime"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [
+        "WIREFRAME"
+      ],
+      "view_id": "wireframe"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [
+        "SEAM",
+        "NOTCH"
+      ],
+      "view_id": "seam_notch_overlay"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [
+        "COMPONENT_ID"
+      ],
+      "view_id": "component_ownership"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [
+        "LAYER"
+      ],
+      "view_id": "layer_cutaway"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "DIAGNOSTIC",
+      "minimum_height": 2048,
+      "minimum_width": 2048,
+      "required_overlays": [
+        "NORMAL"
+      ],
+      "view_id": "normal_diagnostic"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_arms_forward"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_arms_overhead"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_cross_body_reach"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_deep_elbow_bend"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_torso_twist"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_walk_stride"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "MOTION",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "motion_seated"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "LOD_ACTUAL_DISTANCE",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "actual_distance_near"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "LOD_ACTUAL_DISTANCE",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "actual_distance_mid"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "LOD_ACTUAL_DISTANCE",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "actual_distance_far"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "LOD_EQUAL_COVERAGE",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "equal_coverage_lod0"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "LOD_EQUAL_COVERAGE",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "equal_coverage_lod1"
+    },
+    {
+      "applicable_families": [
+        "ALL"
+      ],
+      "body_visibility": "VISIBLE",
+      "category": "LOD_EQUAL_COVERAGE",
+      "minimum_height": 1600,
+      "minimum_width": 1600,
+      "required_overlays": [],
+      "view_id": "equal_coverage_lod2"
+    }
+  ],
+  "revision": 1
+}
