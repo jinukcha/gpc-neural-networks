@@ -71,7 +71,8 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --disable-pip-version-check --no-cache-dir \
-            numpy==2.5.3 scipy==1.16.3 pillow==11.1.0 pytest==8.3.5 warp-lang==1.17.0
+            numpy==2.5.3 scipy==1.16.3 matplotlib==3.9.4 pillow==11.1.0 \
+            pytest==8.3.5 warp-lang==1.17.0
 
       - name: Build metric repair and direct GLB
         shell: bash
