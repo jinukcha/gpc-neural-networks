@@ -7,7 +7,7 @@ from matplotlib.path import Path as PolygonPath
 import numpy as np
 from scipy.spatial import Delaunay
 
-from .curves import boundary_length, sample_outline
+from .curves import sample_outline
 from .model import ComponentMesh
 
 
@@ -58,15 +58,16 @@ def _interior_points(outline: np.ndarray, spacing_m: float) -> np.ndarray:
 def _filter_triangles(vertices: np.ndarray, triangles: np.ndarray, outline: np.ndarray) -> np.ndarray:
     path = PolygonPath(outline, closed=True)
     centroids = vertices[triangles].mean(axis=1)
-    inside = path.contains_points(centroids, radius=-1.0e-9)
-    selected = triangles[inside]
+    selected = triangles[path.contains_points(centroids, radius=-1.0e-9)]
     a = vertices[selected[:, 1]] - vertices[selected[:, 0]]
     b = vertices[selected[:, 2]] - vertices[selected[:, 0]]
     signed = a[:, 0] * b[:, 1] - a[:, 1] * b[:, 0]
     nondegenerate = np.abs(signed) > 1.0e-12
     selected = selected[nondegenerate]
     signed = signed[nondegenerate]
-    selected[signed < 0.0, [1, 2]] = selected[signed < 0.0, [2, 1]]
+    negative = np.flatnonzero(signed < 0.0)
+    if len(negative):
+        selected[negative] = selected[negative][:, [0, 2, 1]]
     return selected.astype(np.int32)
 
 
@@ -117,10 +118,11 @@ def triangulate_component(
 def triangulate_snapshot(snapshot: dict) -> tuple[dict[str, ComponentMesh], dict]:
     package = snapshot["assembled_package"]
     counts = seam_boundary_counts(package)
+    active = {item["instance_id"] for item in package["component_instances"]}
     meshes = {
         instance_id: triangulate_component(geometry, counts)
         for instance_id, geometry in snapshot["geometry_by_instance"].items()
-        if instance_id in {item["instance_id"] for item in package["component_instances"]}
+        if instance_id in active
     }
     receipt = {
         "contract": "ComponentTriangulationReceipt/1",
