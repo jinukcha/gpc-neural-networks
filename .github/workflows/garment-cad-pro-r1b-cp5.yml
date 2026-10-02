@@ -170,14 +170,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf delivery_r1b_cp5; mkdir -p delivery_r1b_cp5/products delivery_r1b_cp5/outfits
+          rm -rf delivery_r1b_cp5
+          mkdir -p delivery_r1b_cp5/products delivery_r1b_cp5/outfits
           cp "$ROOT/build/rig_cp5/cp5_sleeve_generalization_evidence.png" delivery_r1b_cp5/
           cp "$ROOT/build/rig_cp5/cp5_receipt.json" delivery_r1b_cp5/
           cp "$ROOT/build/rig_cp5/arm_measurements.json" delivery_r1b_cp5/
           cp "$ROOT/build/rig_cp5/garment_library_registry.json" delivery_r1b_cp5/
           cp "$ROOT/build/rig_cp5/godot_product/godot_sleeve_runtime_receipt.json" delivery_r1b_cp5/
-          cp "$ROOT/build/rig_cp5/sleeved_tunic/rigged_garment_product.json" delivery_r1b_cp5/products/
-          cp "$ROOT/build/rig_cp5/straight_sleeve_robe/rigged_garment_product.json" delivery_r1b_cp5/products/
+          cp "$ROOT/build/rig_cp5/sleeved_tunic/rigged_garment_product.json" \
+            delivery_r1b_cp5/products/sleeved_tunic_rigged_garment_product.json
+          cp "$ROOT/build/rig_cp5/straight_sleeve_robe/rigged_garment_product.json" \
+            delivery_r1b_cp5/products/straight_sleeve_robe_rigged_garment_product.json
           cp "$ROOT/build/rig_cp5/outfits/"*.json delivery_r1b_cp5/outfits/
           git config user.name 'chatgpt-garment-cad'
           git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
