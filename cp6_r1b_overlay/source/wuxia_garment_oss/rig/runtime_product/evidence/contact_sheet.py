@@ -28,7 +28,7 @@ def validate_capture(path: Path) -> dict:
     centre_variance = float(np.var(centre))
     accepted = width >= 768 and height >= 768 and variance >= 15.0 and centre_variance >= 8.0
     return {
-        "path": path.as_posix(),
+        "path": path.name,
         "width": width,
         "height": height,
         "luminance_variance": variance,
@@ -66,8 +66,9 @@ def build_contact_sheet(capture_root: Path, target: Path) -> dict:
     return {
         "contract": "MultiDistanceCaptureBoard/1",
         "capture_count": len(validations),
+        "capture_root": capture_root.name,
         "captures": validations,
-        "contact_sheet_path": target.as_posix(),
+        "contact_sheet_path": target.name,
         "contact_sheet_width": sheet.width,
         "contact_sheet_height": sheet.height,
         "all_captures_accepted": all(item["accepted"] for item in validations),
