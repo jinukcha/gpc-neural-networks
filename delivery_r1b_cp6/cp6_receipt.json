@@ -1,0 +1,22 @@
+{
+  "capture_count": 6,
+  "checkpoint": "GARMENT_CAD_PRO_R1B_CP6",
+  "contact_sheet": "cp6_multi_distance_contact_sheet.png",
+  "corrective_continuity_pass": true,
+  "cp5_predecessor_mutated": false,
+  "cp6_acceptance": true,
+  "godot_runtime_pass": true,
+  "godot_version": "4.7.2",
+  "lod_qualification_pass": true,
+  "lod_variant_count": 6,
+  "mesh_scaling": "FORBIDDEN",
+  "multi_distance_capture_pass": true,
+  "phase": "CLOSED",
+  "product_count": 2,
+  "r1b_complete": true,
+  "receipt_sha256": "5012b65496361599c7b04c5a5290de7e64c4a59ee40b487e7208d920ba2e5cfa",
+  "runtime_registry_sha256": "e88ca870b5ee72a2ccc2cfa1ff3f995e2725d5dded1924bd7269e8a1350a5119",
+  "secondary_motion_domain_count": 5,
+  "skin_continuity_pass": true,
+  "terminal_decision": "GARMENT_CAD_PRO_R1B_COMPLETE"
+}

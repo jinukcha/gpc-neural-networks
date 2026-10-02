@@ -1,0 +1,108 @@
+{
+  "accepted": true,
+  "active_morph_targets_preserved": true,
+  "active_target_names": [
+    "SHOULDER_RAISE",
+    "UNDERARM_REACH",
+    "ELBOW_BEND",
+    "SECONDARY_L_SLEEVE",
+    "SECONDARY_R_SLEEVE",
+    "SECONDARY_ROBE_HEM"
+  ],
+  "contract": "RigAwareLODQualification/1",
+  "counts_descend": true,
+  "lod_metrics": [
+    {
+      "bone_count": 23,
+      "cp5_target_maximum_displacement_m": {
+        "ELBOW_BEND": 0.017834765882554754,
+        "SECONDARY_L_SLEEVE": 0.04044749595587192,
+        "SECONDARY_ROBE_HEM": 0.060120964544230895,
+        "SECONDARY_R_SLEEVE": 0.04044749595587192,
+        "SHOULDER_RAISE": 0.027202941641937328,
+        "UNDERARM_REACH": 0.024982701855337706
+      },
+      "cp5_target_names": [
+        "SHOULDER_RAISE",
+        "UNDERARM_REACH",
+        "ELBOW_BEND",
+        "SECONDARY_L_SLEEVE",
+        "SECONDARY_R_SLEEVE",
+        "SECONDARY_ROBE_HEM"
+      ],
+      "file_size_bytes": 6132284,
+      "maximum_weight_sum_error": 2.9802322387695312e-08,
+      "mesh_count": 2,
+      "negative_weight_count": 0,
+      "path": "/home/runner/work/_temp/work/GARMENT_R1B_CP6_FINAL/build/rig_cp6/products/straight_robe/lod0.glb",
+      "primitive_count": 17,
+      "sha256": "4c32fa5451e9fe8484f83e452bef85cf17dd628cf6d610fb3e4bcf687474d98a",
+      "skin_count": 1,
+      "triangle_count": 58970,
+      "vertex_count": 30855,
+      "zero_weight_vertex_count": 0
+    },
+    {
+      "bone_count": 23,
+      "cp5_target_maximum_displacement_m": {
+        "ELBOW_BEND": 0.017834765882554754,
+        "SECONDARY_L_SLEEVE": 0.040401467575901004,
+        "SECONDARY_ROBE_HEM": 0.057569114541215695,
+        "SECONDARY_R_SLEEVE": 0.04044749595587192,
+        "SHOULDER_RAISE": 0.027202941641937328,
+        "UNDERARM_REACH": 0.024982701855337706
+      },
+      "cp5_target_names": [
+        "SHOULDER_RAISE",
+        "UNDERARM_REACH",
+        "ELBOW_BEND",
+        "SECONDARY_L_SLEEVE",
+        "SECONDARY_R_SLEEVE",
+        "SECONDARY_ROBE_HEM"
+      ],
+      "file_size_bytes": 9746816,
+      "maximum_weight_sum_error": 2.9802322387695312e-08,
+      "mesh_count": 2,
+      "negative_weight_count": 0,
+      "path": "/home/runner/work/_temp/work/GARMENT_R1B_CP6_FINAL/build/rig_cp6/products/straight_robe/lod1.glb",
+      "primitive_count": 17,
+      "sha256": "1932c99c371fbdbc945a624edf4c8396a6327da68e0e7a7e9cdb926f88c102eb",
+      "skin_count": 1,
+      "triangle_count": 35665,
+      "vertex_count": 18368,
+      "zero_weight_vertex_count": 0
+    },
+    {
+      "bone_count": 23,
+      "cp5_target_maximum_displacement_m": {
+        "ELBOW_BEND": 0.017834765882554754,
+        "SECONDARY_L_SLEEVE": 0.039036242055446535,
+        "SECONDARY_ROBE_HEM": 0.057569114541215695,
+        "SECONDARY_R_SLEEVE": 0.04044749595587192,
+        "SHOULDER_RAISE": 0.027202941641937328,
+        "UNDERARM_REACH": 0.023852459661460435
+      },
+      "cp5_target_names": [
+        "SHOULDER_RAISE",
+        "UNDERARM_REACH",
+        "ELBOW_BEND",
+        "SECONDARY_L_SLEEVE",
+        "SECONDARY_R_SLEEVE",
+        "SECONDARY_ROBE_HEM"
+      ],
+      "file_size_bytes": 8019692,
+      "maximum_weight_sum_error": 2.9802322387695312e-08,
+      "mesh_count": 2,
+      "negative_weight_count": 0,
+      "path": "/home/runner/work/_temp/work/GARMENT_R1B_CP6_FINAL/build/rig_cp6/products/straight_robe/lod2.glb",
+      "primitive_count": 17,
+      "sha256": "abaad722d8895ef12d7fc697afc35415d9a6ba1619b3e0cd8a00628810ab03ad",
+      "skin_count": 1,
+      "triangle_count": 18196,
+      "vertex_count": 9616,
+      "zero_weight_vertex_count": 0
+    }
+  ],
+  "skin_preserved": true,
+  "target_names_preserved": true
+}

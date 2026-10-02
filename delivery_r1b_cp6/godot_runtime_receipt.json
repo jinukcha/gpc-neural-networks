@@ -1,0 +1,225 @@
+{
+  "contract": "GodotRigAwareLODRuntimeReceipt/1",
+  "godot_version": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "products": [
+    {
+      "accepted": true,
+      "corrective_and_secondary_names_preserved": true,
+      "counts_descend": true,
+      "lod_stats": {
+        "LOD0": {
+          "blend_names": [
+            "ARMS_FORWARD",
+            "ARMS_OVERHEAD",
+            "CROSS_BODY_REACH",
+            "DEEP_ELBOW_BEND",
+            "ELBOW_BEND",
+            "FORWARD_BEND",
+            "NEUTRAL_A",
+            "SEATED",
+            "SECONDARY_L_SLEEVE",
+            "SECONDARY_ROBE_HEM",
+            "SECONDARY_R_SLEEVE",
+            "SHOULDER_RAISE",
+            "SQUAT",
+            "TORSO_TWIST",
+            "UNDERARM_REACH",
+            "WALK_STRIDE"
+          ],
+          "max_blend_shape_count": 10,
+          "mesh_instance_count": 2,
+          "skeleton_count": 1,
+          "skeleton_signatures": [
+            "ROOT|PELVIS|SPINE_01|SPINE_02|CHEST|NECK|HEAD|L_CLAVICLE|L_UPPER_ARM|L_FOREARM|L_HAND|R_CLAVICLE|R_UPPER_ARM|R_FOREARM|R_HAND|L_THIGH|L_CALF|L_FOOT|L_TOE|R_THIGH|R_CALF|R_FOOT|R_TOE"
+          ],
+          "surface_count": 16,
+          "triangle_count": 58090,
+          "vertex_count": 30375
+        },
+        "LOD1": {
+          "blend_names": [
+            "ARMS_FORWARD",
+            "ARMS_OVERHEAD",
+            "CROSS_BODY_REACH",
+            "DEEP_ELBOW_BEND",
+            "ELBOW_BEND",
+            "FORWARD_BEND",
+            "NEUTRAL_A",
+            "SEATED",
+            "SECONDARY_L_SLEEVE",
+            "SECONDARY_ROBE_HEM",
+            "SECONDARY_R_SLEEVE",
+            "SHOULDER_RAISE",
+            "SQUAT",
+            "TORSO_TWIST",
+            "UNDERARM_REACH",
+            "WALK_STRIDE"
+          ],
+          "max_blend_shape_count": 10,
+          "mesh_instance_count": 2,
+          "skeleton_count": 1,
+          "skeleton_signatures": [
+            "ROOT|PELVIS|SPINE_01|SPINE_02|CHEST|NECK|HEAD|L_CLAVICLE|L_UPPER_ARM|L_FOREARM|L_HAND|R_CLAVICLE|R_UPPER_ARM|R_FOREARM|R_HAND|L_THIGH|L_CALF|L_FOOT|L_TOE|R_THIGH|R_CALF|R_FOOT|R_TOE"
+          ],
+          "surface_count": 16,
+          "triangle_count": 35195,
+          "vertex_count": 18100
+        },
+        "LOD2": {
+          "blend_names": [
+            "ARMS_FORWARD",
+            "ARMS_OVERHEAD",
+            "CROSS_BODY_REACH",
+            "DEEP_ELBOW_BEND",
+            "ELBOW_BEND",
+            "FORWARD_BEND",
+            "NEUTRAL_A",
+            "SEATED",
+            "SECONDARY_L_SLEEVE",
+            "SECONDARY_ROBE_HEM",
+            "SECONDARY_R_SLEEVE",
+            "SHOULDER_RAISE",
+            "SQUAT",
+            "TORSO_TWIST",
+            "UNDERARM_REACH",
+            "WALK_STRIDE"
+          ],
+          "max_blend_shape_count": 10,
+          "mesh_instance_count": 2,
+          "skeleton_count": 1,
+          "skeleton_signatures": [
+            "ROOT|PELVIS|SPINE_01|SPINE_02|CHEST|NECK|HEAD|L_CLAVICLE|L_UPPER_ARM|L_FOREARM|L_HAND|R_CLAVICLE|R_UPPER_ARM|R_FOREARM|R_HAND|L_THIGH|L_CALF|L_FOOT|L_TOE|R_THIGH|R_CALF|R_FOOT|R_TOE"
+          ],
+          "surface_count": 16,
+          "triangle_count": 17964,
+          "vertex_count": 9478
+        }
+      },
+      "maximum_secondary_weights": {
+        "SECONDARY_L_SLEEVE": 0.72,
+        "SECONDARY_R_SLEEVE": 0.72
+      },
+      "product_id": "SLEEVED_TUNIC_RIGGED_R1B",
+      "secondary_motion_bounded": true,
+      "secondary_state_transfer_pass": true,
+      "skeleton_signature_preserved": true
+    },
+    {
+      "accepted": true,
+      "corrective_and_secondary_names_preserved": true,
+      "counts_descend": true,
+      "lod_stats": {
+        "LOD0": {
+          "blend_names": [
+            "ARMS_FORWARD",
+            "ARMS_OVERHEAD",
+            "CROSS_BODY_REACH",
+            "DEEP_ELBOW_BEND",
+            "ELBOW_BEND",
+            "FORWARD_BEND",
+            "NEUTRAL_A",
+            "SEATED",
+            "SECONDARY_L_SLEEVE",
+            "SECONDARY_ROBE_HEM",
+            "SECONDARY_R_SLEEVE",
+            "SHOULDER_RAISE",
+            "SQUAT",
+            "TORSO_TWIST",
+            "UNDERARM_REACH",
+            "WALK_STRIDE"
+          ],
+          "max_blend_shape_count": 10,
+          "mesh_instance_count": 2,
+          "skeleton_count": 1,
+          "skeleton_signatures": [
+            "ROOT|PELVIS|SPINE_01|SPINE_02|CHEST|NECK|HEAD|L_CLAVICLE|L_UPPER_ARM|L_FOREARM|L_HAND|R_CLAVICLE|R_UPPER_ARM|R_FOREARM|R_HAND|L_THIGH|L_CALF|L_FOOT|L_TOE|R_THIGH|R_CALF|R_FOOT|R_TOE"
+          ],
+          "surface_count": 17,
+          "triangle_count": 58970,
+          "vertex_count": 30855
+        },
+        "LOD1": {
+          "blend_names": [
+            "ARMS_FORWARD",
+            "ARMS_OVERHEAD",
+            "CROSS_BODY_REACH",
+            "DEEP_ELBOW_BEND",
+            "ELBOW_BEND",
+            "FORWARD_BEND",
+            "NEUTRAL_A",
+            "SEATED",
+            "SECONDARY_L_SLEEVE",
+            "SECONDARY_ROBE_HEM",
+            "SECONDARY_R_SLEEVE",
+            "SHOULDER_RAISE",
+            "SQUAT",
+            "TORSO_TWIST",
+            "UNDERARM_REACH",
+            "WALK_STRIDE"
+          ],
+          "max_blend_shape_count": 10,
+          "mesh_instance_count": 2,
+          "skeleton_count": 1,
+          "skeleton_signatures": [
+            "ROOT|PELVIS|SPINE_01|SPINE_02|CHEST|NECK|HEAD|L_CLAVICLE|L_UPPER_ARM|L_FOREARM|L_HAND|R_CLAVICLE|R_UPPER_ARM|R_FOREARM|R_HAND|L_THIGH|L_CALF|L_FOOT|L_TOE|R_THIGH|R_CALF|R_FOOT|R_TOE"
+          ],
+          "surface_count": 17,
+          "triangle_count": 35665,
+          "vertex_count": 18368
+        },
+        "LOD2": {
+          "blend_names": [
+            "ARMS_FORWARD",
+            "ARMS_OVERHEAD",
+            "CROSS_BODY_REACH",
+            "DEEP_ELBOW_BEND",
+            "ELBOW_BEND",
+            "FORWARD_BEND",
+            "NEUTRAL_A",
+            "SEATED",
+            "SECONDARY_L_SLEEVE",
+            "SECONDARY_ROBE_HEM",
+            "SECONDARY_R_SLEEVE",
+            "SHOULDER_RAISE",
+            "SQUAT",
+            "TORSO_TWIST",
+            "UNDERARM_REACH",
+            "WALK_STRIDE"
+          ],
+          "max_blend_shape_count": 10,
+          "mesh_instance_count": 2,
+          "skeleton_count": 1,
+          "skeleton_signatures": [
+            "ROOT|PELVIS|SPINE_01|SPINE_02|CHEST|NECK|HEAD|L_CLAVICLE|L_UPPER_ARM|L_FOREARM|L_HAND|R_CLAVICLE|R_UPPER_ARM|R_FOREARM|R_HAND|L_THIGH|L_CALF|L_FOOT|L_TOE|R_THIGH|R_CALF|R_FOOT|R_TOE"
+          ],
+          "surface_count": 17,
+          "triangle_count": 18196,
+          "vertex_count": 9616
+        }
+      },
+      "maximum_secondary_weights": {
+        "SECONDARY_L_SLEEVE": 0.72,
+        "SECONDARY_ROBE_HEM": 0.508031771494388,
+        "SECONDARY_R_SLEEVE": 0.72
+      },
+      "product_id": "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B",
+      "secondary_motion_bounded": true,
+      "secondary_state_transfer_pass": true,
+      "skeleton_signature_preserved": true
+    }
+  ],
+  "read_only_consumer": true,
+  "runtime_acceptance": true,
+  "secondary_motion_runtime": "BOUNDED_SPRING",
+  "state_transfer": "NAME_BASED_ACROSS_LODS"
+}

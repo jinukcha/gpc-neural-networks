@@ -1,0 +1,48 @@
+{
+  "atomic_variant_swap": true,
+  "contract": "RuntimeGarmentLODRegistry/1",
+  "corrective_state_transfer": "REQUIRED",
+  "distance_policy": {
+    "far": {
+      "lod": "LOD2",
+      "maximum_distance_m": null
+    },
+    "hysteresis_m": 0.75,
+    "mid": {
+      "lod": "LOD1",
+      "maximum_distance_m": 14.0
+    },
+    "near": {
+      "lod": "LOD0",
+      "maximum_distance_m": 5.0
+    }
+  },
+  "immutable_cp5_registry_sha256": "e42a634cc127a5a900056e8a81629db286b95239cc3045da212d0dcdc3e30041",
+  "products": [
+    {
+      "package_path": "build/rig_cp6/products/sleeved_tunic/runtime_garment_lod_set.json",
+      "package_sha256": "50a0ae60e4d1238744b2de352f05f70fed862a250629b6d92b5b9b4285966eb6",
+      "product_id": "SLEEVED_TUNIC_RIGGED_R1B",
+      "product_kind": "SLEEVED_TUNIC",
+      "variants": {
+        "LOD0": "build/rig_cp6/products/sleeved_tunic/lod0.glb",
+        "LOD1": "build/rig_cp6/products/sleeved_tunic/lod1.glb",
+        "LOD2": "build/rig_cp6/products/sleeved_tunic/lod2.glb"
+      }
+    },
+    {
+      "package_path": "build/rig_cp6/products/straight_robe/runtime_garment_lod_set.json",
+      "package_sha256": "5c12d98f31615fdbf443dd58f0a2eb96aa7323b6b7497227acd13ebbce9b5a41",
+      "product_id": "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B",
+      "product_kind": "STRAIGHT_SLEEVE_ROBE",
+      "variants": {
+        "LOD0": "build/rig_cp6/products/straight_robe/lod0.glb",
+        "LOD1": "build/rig_cp6/products/straight_robe/lod1.glb",
+        "LOD2": "build/rig_cp6/products/straight_robe/lod2.glb"
+      }
+    }
+  ],
+  "registry_id": "GARMENT_RUNTIME_R1B_CP6",
+  "registry_sha256": "e88ca870b5ee72a2ccc2cfa1ff3f995e2725d5dded1924bd7269e8a1350a5119",
+  "secondary_state_transfer": "REQUIRED"
+}

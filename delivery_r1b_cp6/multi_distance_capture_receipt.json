@@ -1,0 +1,59 @@
+{
+  "all_captures_accepted": true,
+  "capture_count": 6,
+  "capture_root": "captures",
+  "captures": [
+    {
+      "accepted": true,
+      "centre_luminance_variance": 9344.675905018834,
+      "height": 1024,
+      "luminance_variance": 9885.517074969512,
+      "path": "sleeved_tunic_near.png",
+      "width": 1024
+    },
+    {
+      "accepted": true,
+      "centre_luminance_variance": 9629.934729995888,
+      "height": 1024,
+      "luminance_variance": 8303.993817284054,
+      "path": "sleeved_tunic_mid.png",
+      "width": 1024
+    },
+    {
+      "accepted": true,
+      "centre_luminance_variance": 9242.945976419334,
+      "height": 1024,
+      "luminance_variance": 8236.111582171085,
+      "path": "sleeved_tunic_far.png",
+      "width": 1024
+    },
+    {
+      "accepted": true,
+      "centre_luminance_variance": 8644.66488515397,
+      "height": 1024,
+      "luminance_variance": 9434.006515099409,
+      "path": "straight_robe_near.png",
+      "width": 1024
+    },
+    {
+      "accepted": true,
+      "centre_luminance_variance": 9429.94637030355,
+      "height": 1024,
+      "luminance_variance": 8255.27333242336,
+      "path": "straight_robe_mid.png",
+      "width": 1024
+    },
+    {
+      "accepted": true,
+      "centre_luminance_variance": 9200.67389972301,
+      "height": 1024,
+      "luminance_variance": 8228.6646157225,
+      "path": "straight_robe_far.png",
+      "width": 1024
+    }
+  ],
+  "contact_sheet_height": 1280,
+  "contact_sheet_path": "cp6_multi_distance_contact_sheet.png",
+  "contact_sheet_width": 1920,
+  "contract": "MultiDistanceCaptureBoard/1"
+}

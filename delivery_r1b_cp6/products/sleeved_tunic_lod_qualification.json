@@ -1,0 +1,107 @@
+{
+  "accepted": true,
+  "active_morph_targets_preserved": true,
+  "active_target_names": [
+    "SHOULDER_RAISE",
+    "UNDERARM_REACH",
+    "ELBOW_BEND",
+    "SECONDARY_L_SLEEVE",
+    "SECONDARY_R_SLEEVE"
+  ],
+  "contract": "RigAwareLODQualification/1",
+  "counts_descend": true,
+  "lod_metrics": [
+    {
+      "bone_count": 23,
+      "cp5_target_maximum_displacement_m": {
+        "ELBOW_BEND": 0.017834765882554754,
+        "SECONDARY_L_SLEEVE": 0.04044749595587192,
+        "SECONDARY_ROBE_HEM": 0.0,
+        "SECONDARY_R_SLEEVE": 0.04044749595587192,
+        "SHOULDER_RAISE": 0.027202941641937328,
+        "UNDERARM_REACH": 0.024982701855337706
+      },
+      "cp5_target_names": [
+        "SHOULDER_RAISE",
+        "UNDERARM_REACH",
+        "ELBOW_BEND",
+        "SECONDARY_L_SLEEVE",
+        "SECONDARY_R_SLEEVE",
+        "SECONDARY_ROBE_HEM"
+      ],
+      "file_size_bytes": 6058056,
+      "maximum_weight_sum_error": 2.9802322387695312e-08,
+      "mesh_count": 2,
+      "negative_weight_count": 0,
+      "path": "/home/runner/work/_temp/work/GARMENT_R1B_CP6_FINAL/build/rig_cp6/products/sleeved_tunic/lod0.glb",
+      "primitive_count": 16,
+      "sha256": "8611b4f922acaa281aab7141b9efc54a732f8a6537ad610616246453b893dd4a",
+      "skin_count": 1,
+      "triangle_count": 58090,
+      "vertex_count": 30375,
+      "zero_weight_vertex_count": 0
+    },
+    {
+      "bone_count": 23,
+      "cp5_target_maximum_displacement_m": {
+        "ELBOW_BEND": 0.017834765882554754,
+        "SECONDARY_L_SLEEVE": 0.040413614163009266,
+        "SECONDARY_ROBE_HEM": 0.0,
+        "SECONDARY_R_SLEEVE": 0.04044749595587192,
+        "SHOULDER_RAISE": 0.027202941641937328,
+        "UNDERARM_REACH": 0.024982701855337706
+      },
+      "cp5_target_names": [
+        "SHOULDER_RAISE",
+        "UNDERARM_REACH",
+        "ELBOW_BEND",
+        "SECONDARY_L_SLEEVE",
+        "SECONDARY_R_SLEEVE",
+        "SECONDARY_ROBE_HEM"
+      ],
+      "file_size_bytes": 9630532,
+      "maximum_weight_sum_error": 2.9802322387695312e-08,
+      "mesh_count": 2,
+      "negative_weight_count": 0,
+      "path": "/home/runner/work/_temp/work/GARMENT_R1B_CP6_FINAL/build/rig_cp6/products/sleeved_tunic/lod1.glb",
+      "primitive_count": 16,
+      "sha256": "34b7e2aa5522ab64fcc9db0955bdbc0301c0aff0e964b17e81bbb9aac10311b7",
+      "skin_count": 1,
+      "triangle_count": 35195,
+      "vertex_count": 18100,
+      "zero_weight_vertex_count": 0
+    },
+    {
+      "bone_count": 23,
+      "cp5_target_maximum_displacement_m": {
+        "ELBOW_BEND": 0.017834765882554754,
+        "SECONDARY_L_SLEEVE": 0.03542581150906935,
+        "SECONDARY_ROBE_HEM": 0.0,
+        "SECONDARY_R_SLEEVE": 0.04044749595587192,
+        "SHOULDER_RAISE": 0.027202941641937328,
+        "UNDERARM_REACH": 0.023852459661460435
+      },
+      "cp5_target_names": [
+        "SHOULDER_RAISE",
+        "UNDERARM_REACH",
+        "ELBOW_BEND",
+        "SECONDARY_L_SLEEVE",
+        "SECONDARY_R_SLEEVE",
+        "SECONDARY_ROBE_HEM"
+      ],
+      "file_size_bytes": 7922872,
+      "maximum_weight_sum_error": 2.9802322387695312e-08,
+      "mesh_count": 2,
+      "negative_weight_count": 0,
+      "path": "/home/runner/work/_temp/work/GARMENT_R1B_CP6_FINAL/build/rig_cp6/products/sleeved_tunic/lod2.glb",
+      "primitive_count": 16,
+      "sha256": "7a73ae380c73c2f266a9b50e67b4b5181df94e0b642f52e82d69038094e215a4",
+      "skin_count": 1,
+      "triangle_count": 17964,
+      "vertex_count": 9478,
+      "zero_weight_vertex_count": 0
+    }
+  ],
+  "skin_preserved": true,
+  "target_names_preserved": true
+}
