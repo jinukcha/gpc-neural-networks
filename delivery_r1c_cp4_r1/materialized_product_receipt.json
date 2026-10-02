@@ -1,0 +1,17 @@
+{
+  "blend_path": "product/r1c_cp4_r1_sleeved_tunic.blend",
+  "blend_sha256": "4dee71b58ede538fdf05746d739abbc73852895b092f2059515fd835b8e7834e",
+  "body_triangle_count": 3128,
+  "body_vertex_count": 1688,
+  "component_count": 7,
+  "contract": "MaterializedProductReceipt/1",
+  "glb_path": "product/r1c_cp4_r1_sleeved_tunic.glb",
+  "glb_pending_blender_export": false,
+  "glb_sha256": "7ff61b2e4cc04f5fa8218187a024eb09a3134942b240047b136bba29194d864e",
+  "product_id": "R1C_CP4_R1_SET_IN_SLEEVE_TUNIC",
+  "product_sha256": "d97aa19d9cfd675a2988df0152e60b98dff4ea64c88afa8b9566e7a86cf7e405",
+  "receipt_sha256": "1cedaf94d910fa44054a9e8239273f2e10a5f030b4b37cc46979490dfa554e28",
+  "seam_line_count": 16,
+  "triangle_count": 2517,
+  "vertex_count": 1574
+}

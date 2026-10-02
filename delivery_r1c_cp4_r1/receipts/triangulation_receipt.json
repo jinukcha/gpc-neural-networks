@@ -1,0 +1,181 @@
+{
+  "cloth_simulation_executed": false,
+  "component_count": 7,
+  "components": [
+    {
+      "boundary_vertex_counts": {
+        "armhole_left_back": 13,
+        "armhole_right_back": 13,
+        "hem_back": 26,
+        "neckline_back": 9,
+        "shoulder_left": 7,
+        "shoulder_right": 7,
+        "side_left": 16,
+        "side_right": 16
+      },
+      "component_id": "BODICE_BACK_BASIC",
+      "instance_id": "bodice_back",
+      "metadata": {
+        "arrangement_owner": "BODICE_SECTION_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "body_clearance_m": 0.014,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 99,
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "5da695956b810546cea6ae7d00ac1d331d4bceef36bd410a80992835e25909ad",
+      "summary_sha256": "d0e988a0813a88aa2ee4371de92b6876f6dda0d4a932c0d3b0ee55c801cf8ba0",
+      "triangle_count": 879,
+      "vertex_count": 497
+    },
+    {
+      "boundary_vertex_counts": {
+        "armhole_left_front": 12,
+        "armhole_right_front": 12,
+        "hem_front": 26,
+        "neckline_front": 12,
+        "shoulder_left": 7,
+        "shoulder_right": 7,
+        "side_left": 16,
+        "side_right": 16
+      },
+      "component_id": "BODICE_FRONT_BASIC",
+      "instance_id": "bodice_front",
+      "metadata": {
+        "arrangement_owner": "BODICE_SECTION_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "body_clearance_m": 0.014,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 100,
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "ce22739f5e66a346b2eb469a6d0b93b7542f3ebf9cb8642f7f9abb887effbb75",
+      "summary_sha256": "ce8369838cef84b8cc4279b498ee2d57b831b543ceb5b738bc365c1cb0e673d3",
+      "triangle_count": 874,
+      "vertex_count": 488
+    },
+    {
+      "boundary_vertex_counts": {
+        "back_attach": 9,
+        "back_end": 3,
+        "front_attach": 12,
+        "front_end": 3,
+        "outer": 17
+      },
+      "component_id": "COLLAR_STAND_BASIC",
+      "instance_id": "collar",
+      "metadata": {
+        "arrangement_owner": "COLLAR_NECK_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 39,
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "452a99f1a0bef9dcc31532e68e559bd7695a137f7c28597953795240280c7529",
+      "summary_sha256": "919ec671551309190faeeafb7be98f4387ba601dece2065e1714cc7117eb4f96",
+      "triangle_count": 34,
+      "vertex_count": 39
+    },
+    {
+      "boundary_vertex_counts": {
+        "end_left": 7,
+        "end_right": 7,
+        "outer": 11,
+        "sleeve_attach": 12
+      },
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "instance_id": "cuff_left",
+      "metadata": {
+        "arrangement_owner": "CUFF_WRIST_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 33,
+        "side": "LEFT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "bb28466e8654005f351434be40fe4de2a63aa66fc40be397ef3cf86c0b57fdb1",
+      "summary_sha256": "7166eeee74ac150b74ce30c725568d53afc24688a254c618597e351863a9962d",
+      "triangle_count": 32,
+      "vertex_count": 43
+    },
+    {
+      "boundary_vertex_counts": {
+        "end_left": 7,
+        "end_right": 7,
+        "outer": 11,
+        "sleeve_attach": 12
+      },
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "instance_id": "cuff_right",
+      "metadata": {
+        "arrangement_owner": "CUFF_WRIST_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 33,
+        "side": "RIGHT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "c47186d8ab0a315a168cab70a6872b1e6b3951e52ea827c4f2e4e8447aca55dc",
+      "summary_sha256": "225bf198df2bb7f11064afa12923a547be85101a0a69c73904de36da7cc99eb3",
+      "triangle_count": 32,
+      "vertex_count": 43
+    },
+    {
+      "boundary_vertex_counts": {
+        "cap_back": 13,
+        "cap_front": 12,
+        "underarm_back": 22,
+        "underarm_front": 22,
+        "wrist": 12
+      },
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "instance_id": "sleeve_left",
+      "metadata": {
+        "arrangement_owner": "SLEEVE_TUBE_CAP_PATCH_PRESEED",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 76,
+        "side": "LEFT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "5593e55021e0766b5a3c9866a29e3ef20b3d86fd547e860c97dfaee62dd84f6b",
+      "summary_sha256": "65c9b67895647ad631fee6e61beb7d2c921e15b79a665ee269b95a5ddeceff3f",
+      "triangle_count": 330,
+      "vertex_count": 230
+    },
+    {
+      "boundary_vertex_counts": {
+        "cap_back": 13,
+        "cap_front": 12,
+        "underarm_back": 22,
+        "underarm_front": 22,
+        "wrist": 12
+      },
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "instance_id": "sleeve_right",
+      "metadata": {
+        "arrangement_owner": "SLEEVE_TUBE_CAP_PATCH_PRESEED",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 76,
+        "side": "RIGHT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "8f607b80db35762da1472f39c9c38d58ca895653634f46582050e791f195ab8b",
+      "summary_sha256": "a59e93377b308afb3b2ac1177608fc244638ba6e35d469e6d84b0c83acdf4e4d",
+      "triangle_count": 336,
+      "vertex_count": 234
+    }
+  ],
+  "contract": "ComponentTriangulationReceipt/1",
+  "triangle_count": 2517,
+  "triangulation_executed": true,
+  "vertex_count": 1574
+}

@@ -1,0 +1,26 @@
+{
+  "clearance_m": 0.01,
+  "contract": "CompiledBodyClearRestReceipt/1",
+  "maximum_seam_junction_size": 4,
+  "penetration_after": {
+    "maximum_m": 0.0,
+    "mean_m": 0.0,
+    "p95_m": 0.0,
+    "p99_m": 0.0,
+    "penetrating_vertex_count": 0
+  },
+  "penetration_before": {
+    "maximum_m": 0.11032267531123428,
+    "mean_m": 0.0024636430864577877,
+    "p95_m": 0.01390145340479691,
+    "p99_m": 0.06866455383786091,
+    "penetrating_vertex_count": 150
+  },
+  "post_settle_vertex_repair": false,
+  "projected_vertex_operation_count": 1465,
+  "receipt_sha256": "a227b7c61c4a699203bd1187eaa54da2297b4f3cd0af343e2545b60359208a32",
+  "rest_metric_compile_admitted": true,
+  "seam_equivalence_class_count": 179,
+  "seam_junction_projection_iterations": 14,
+  "source_pattern_changed": false
+}

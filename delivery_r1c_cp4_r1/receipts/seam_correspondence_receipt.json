@@ -1,0 +1,297 @@
+{
+  "contract": "SeamCorrespondenceReceipt/1",
+  "direct_count": 8,
+  "interface_count": 16,
+  "interfaces": [
+    {
+      "direct_mean_m": 0.22086517158197067,
+      "endpoint_a": [
+        "bodice_front",
+        "shoulder_left"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "shoulder_left"
+      ],
+      "initial_mean_m": 0.21215077031241278,
+      "initial_p95_m": 0.2614468952565044,
+      "interface_id": "shoulder_left",
+      "orientation": "REVERSED",
+      "pair_count": 7,
+      "receipt_sha256": "02812e1620eb131ed8e33c89befc8170c5e2ce4fa4c9c95c1c3e8e2097b19ad0",
+      "reversed_mean_m": 0.21215077031241278
+    },
+    {
+      "direct_mean_m": 0.22086517158197067,
+      "endpoint_a": [
+        "bodice_front",
+        "shoulder_right"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "shoulder_right"
+      ],
+      "initial_mean_m": 0.21215077031241278,
+      "initial_p95_m": 0.26144689525650444,
+      "interface_id": "shoulder_right",
+      "orientation": "REVERSED",
+      "pair_count": 7,
+      "receipt_sha256": "a304cebe69ddc2b5daddc5c9223e228ec9c40f04ca08c6004cc2e5240c334109",
+      "reversed_mean_m": 0.21215077031241278
+    },
+    {
+      "direct_mean_m": 0.21181708437260846,
+      "endpoint_a": [
+        "bodice_front",
+        "side_left"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "side_left"
+      ],
+      "initial_mean_m": 6.803368542133371e-17,
+      "initial_p95_m": 8.671983677391106e-17,
+      "interface_id": "side_left",
+      "orientation": "REVERSED",
+      "pair_count": 16,
+      "receipt_sha256": "f1f8a12a422479d1d084e064583909978a64632c53cddda527ea403cb4632019",
+      "reversed_mean_m": 6.803368542133371e-17
+    },
+    {
+      "direct_mean_m": 0.21181708437260846,
+      "endpoint_a": [
+        "bodice_front",
+        "side_right"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "side_right"
+      ],
+      "initial_mean_m": 6.803368542133371e-17,
+      "initial_p95_m": 8.671983677391106e-17,
+      "interface_id": "side_right",
+      "orientation": "REVERSED",
+      "pair_count": 16,
+      "receipt_sha256": "1b6c79c08fbae4bd2147124846218604ca3884e6d09d6b291bae2d2e8d562425",
+      "reversed_mean_m": 6.803368542133371e-17
+    },
+    {
+      "direct_mean_m": 0.093946856423761,
+      "endpoint_a": [
+        "sleeve_left",
+        "cap_front"
+      ],
+      "endpoint_b": [
+        "bodice_front",
+        "armhole_left_front"
+      ],
+      "initial_mean_m": 0.093946856423761,
+      "initial_p95_m": 0.17002648632158268,
+      "interface_id": "left_cap_front",
+      "orientation": "DIRECT",
+      "pair_count": 12,
+      "receipt_sha256": "97d07ee0f7cc529c12c18d72cad76c540e4a141cf298c6a85473d56ad3ca2c80",
+      "reversed_mean_m": 0.13405214016000605
+    },
+    {
+      "direct_mean_m": 0.14471803150975712,
+      "endpoint_a": [
+        "sleeve_left",
+        "cap_back"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "armhole_left_back"
+      ],
+      "initial_mean_m": 0.11924359435819909,
+      "initial_p95_m": 0.17248982008260536,
+      "interface_id": "left_cap_back",
+      "orientation": "REVERSED",
+      "pair_count": 13,
+      "receipt_sha256": "3284868be7e53a823bb0a8a50b0a81b4ea59eed62da6e283c860c753b6a1e2ff",
+      "reversed_mean_m": 0.11924359435819909
+    },
+    {
+      "direct_mean_m": 0.14275990380952372,
+      "endpoint_a": [
+        "sleeve_right",
+        "cap_front"
+      ],
+      "endpoint_b": [
+        "bodice_front",
+        "armhole_right_front"
+      ],
+      "initial_mean_m": 0.1151190668961223,
+      "initial_p95_m": 0.1822876322525547,
+      "interface_id": "right_cap_front",
+      "orientation": "REVERSED",
+      "pair_count": 12,
+      "receipt_sha256": "cbf1d9c3bf402a7917cfc2c993244b619fd747776bd1e77058ce715628c9ae55",
+      "reversed_mean_m": 0.1151190668961223
+    },
+    {
+      "direct_mean_m": 0.10767207928940614,
+      "endpoint_a": [
+        "sleeve_right",
+        "cap_back"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "armhole_right_back"
+      ],
+      "initial_mean_m": 0.10767207928940614,
+      "initial_p95_m": 0.17715185204499265,
+      "interface_id": "right_cap_back",
+      "orientation": "DIRECT",
+      "pair_count": 13,
+      "receipt_sha256": "662b3d4d594ccf7047a345838f3ac2f0962d635449990e9713a704940503d07d",
+      "reversed_mean_m": 0.14494723313896007
+    },
+    {
+      "direct_mean_m": 1.5669030387382448e-17,
+      "endpoint_a": [
+        "sleeve_left",
+        "underarm_front"
+      ],
+      "endpoint_b": [
+        "sleeve_left",
+        "underarm_back"
+      ],
+      "initial_mean_m": 1.5669030387382448e-17,
+      "initial_p95_m": 5.721958498152797e-17,
+      "interface_id": "left_underarm",
+      "orientation": "DIRECT",
+      "pair_count": 22,
+      "receipt_sha256": "569044a4a3d10cf7bd28cb331ae9ffc31536c88d060b472f7a3ad55312d89527",
+      "reversed_mean_m": 0.283973431462679
+    },
+    {
+      "direct_mean_m": 1.521706096080987e-17,
+      "endpoint_a": [
+        "sleeve_right",
+        "underarm_front"
+      ],
+      "endpoint_b": [
+        "sleeve_right",
+        "underarm_back"
+      ],
+      "initial_mean_m": 1.521706096080987e-17,
+      "initial_p95_m": 5.713416329401447e-17,
+      "interface_id": "right_underarm",
+      "orientation": "DIRECT",
+      "pair_count": 22,
+      "receipt_sha256": "11311d5e64f334676e7087cbb91e42b78313b071b6c717bda9cc7f23e69a6a98",
+      "reversed_mean_m": 0.28971386395965404
+    },
+    {
+      "direct_mean_m": 0.1648770310437548,
+      "endpoint_a": [
+        "collar",
+        "front_attach"
+      ],
+      "endpoint_b": [
+        "bodice_front",
+        "neckline_front"
+      ],
+      "initial_mean_m": 0.1648770310437548,
+      "initial_p95_m": 0.2135982514185385,
+      "interface_id": "collar_front",
+      "orientation": "DIRECT",
+      "pair_count": 12,
+      "receipt_sha256": "c760f07e929a6b48a9e1dbcc9736d1bfa685519216f3eaa4fd0c464f7473ff0f",
+      "reversed_mean_m": 0.17371981380261145
+    },
+    {
+      "direct_mean_m": 0.1710773985527228,
+      "endpoint_a": [
+        "collar",
+        "back_attach"
+      ],
+      "endpoint_b": [
+        "bodice_back",
+        "neckline_back"
+      ],
+      "initial_mean_m": 0.1605052940847348,
+      "initial_p95_m": 0.2123855843321424,
+      "interface_id": "collar_back",
+      "orientation": "REVERSED",
+      "pair_count": 9,
+      "receipt_sha256": "67360048194610872c7e09f3baba14d19af7151b240f5c6f45d52b6da5d3a6b8",
+      "reversed_mean_m": 0.1605052940847348
+    },
+    {
+      "direct_mean_m": 0.05895253129744941,
+      "endpoint_a": [
+        "cuff_left",
+        "sleeve_attach"
+      ],
+      "endpoint_b": [
+        "sleeve_left",
+        "wrist"
+      ],
+      "initial_mean_m": 0.03369306160027613,
+      "initial_p95_m": 0.03369306160027618,
+      "interface_id": "cuff_left_attach",
+      "orientation": "REVERSED",
+      "pair_count": 12,
+      "receipt_sha256": "4a6a39e074cd57b6ac3a0f03557801d540abc2ed1c390ed42500efebf74484e2",
+      "reversed_mean_m": 0.03369306160027613
+    },
+    {
+      "direct_mean_m": 0.03369306160027608,
+      "endpoint_a": [
+        "cuff_right",
+        "sleeve_attach"
+      ],
+      "endpoint_b": [
+        "sleeve_right",
+        "wrist"
+      ],
+      "initial_mean_m": 0.03369306160027608,
+      "initial_p95_m": 0.03369306160027612,
+      "interface_id": "cuff_right_attach",
+      "orientation": "DIRECT",
+      "pair_count": 12,
+      "receipt_sha256": "35b769cfb830db5430b6cb818115b59fb8565c254d0f7057466b33809e99fc28",
+      "reversed_mean_m": 0.058952531297449394
+    },
+    {
+      "direct_mean_m": 0.0,
+      "endpoint_a": [
+        "cuff_left",
+        "end_left"
+      ],
+      "endpoint_b": [
+        "cuff_left",
+        "end_right"
+      ],
+      "initial_mean_m": 0.0,
+      "initial_p95_m": 0.0,
+      "interface_id": "cuff_left_end",
+      "orientation": "DIRECT",
+      "pair_count": 7,
+      "receipt_sha256": "879e2f686ec628ecf07bc75a5f6a7062cfeca3dbea8b5257c14fd6cfbeb847e4",
+      "reversed_mean_m": 0.03808
+    },
+    {
+      "direct_mean_m": 0.0,
+      "endpoint_a": [
+        "cuff_right",
+        "end_left"
+      ],
+      "endpoint_b": [
+        "cuff_right",
+        "end_right"
+      ],
+      "initial_mean_m": 0.0,
+      "initial_p95_m": 0.0,
+      "interface_id": "cuff_right_end",
+      "orientation": "DIRECT",
+      "pair_count": 7,
+      "receipt_sha256": "8af73498db200fc9a200d4144eac1fe811afcdf9dc60be4bde086bd609f06c4a",
+      "reversed_mean_m": 0.03808
+    }
+  ],
+  "maximum_initial_p95_m": 0.26144689525650444,
+  "reversed_count": 8
+}

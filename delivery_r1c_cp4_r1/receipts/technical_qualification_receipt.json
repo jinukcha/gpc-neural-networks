@@ -1,0 +1,145 @@
+{
+  "body_penetration": {
+    "maximum_m": 0.0,
+    "mean_m": 0.0,
+    "p95_m": 0.0,
+    "p99_m": 0.0,
+    "penetrating_vertex_count": 0
+  },
+  "contract": "CP4R1TechnicalQualificationReceipt/1",
+  "edge_strain": {
+    "maximum": 0.14098968592660044,
+    "mean": 0.008491169974785625,
+    "p95": 0.03730596854276498,
+    "p99": 0.05383334389587101
+  },
+  "gates": {
+    "body_penetration_p99": true,
+    "degenerate_triangle": true,
+    "edge_strain_p95": true,
+    "edge_strain_p99": true,
+    "non_finite_vertex": true,
+    "normal_inversion": true,
+    "post_settle_vertex_repair": true,
+    "seam_mean": true,
+    "seam_p95": true,
+    "stable_tail": true
+  },
+  "geometry": {
+    "degenerate_triangle_count": 0,
+    "minimum_triangle_area_m2": 3.2564776090082294e-06,
+    "non_finite_vertex_count": 0,
+    "normal_inversion_count": 0
+  },
+  "product_acceptance": false,
+  "receipt_sha256": "f95ce1a09aa9351d90895261ed2f3a246c8843a5dbaaed692e136bf847b5da71",
+  "seam": {
+    "interfaces": [
+      {
+        "interface_id": "shoulder_left",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "shoulder_right",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "side_left",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "side_right",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "left_cap_front",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "left_cap_back",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "right_cap_front",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "right_cap_back",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "left_underarm",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "right_underarm",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "collar_front",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "collar_back",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "cuff_left_attach",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "cuff_right_attach",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "cuff_left_end",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      },
+      {
+        "interface_id": "cuff_right_end",
+        "max_m": 0.0,
+        "mean_m": 0.0,
+        "p95_m": 0.0
+      }
+    ],
+    "max_m": 0.0,
+    "mean_m": 0.0,
+    "p95_m": 0.0
+  },
+  "settling_tail": {
+    "mean_m": 1.3303756713867187e-05,
+    "peak_m": 2.09808349609375e-05
+  },
+  "technical_pass": true,
+  "visual_review": "PENDING_BLENDER_REVIEW"
+}

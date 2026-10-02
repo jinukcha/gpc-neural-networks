@@ -1,0 +1,22 @@
+{
+  "avatar_arrangement_executed": true,
+  "blender_visual_review_executed": false,
+  "body_clear_rest_pass": true,
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP4_R1",
+  "component_count": 7,
+  "cp3_predecessor_mutated": false,
+  "cp3_snapshot_sha256": "1d30748e990d20c86bfa7a172aad3f8ad866f56264ac2b3889b0649fa1c27eb8",
+  "orientation_reversed_count": 8,
+  "phase": "MATERIALIZED_PENDING_BLENDER_VISUAL_REVIEW",
+  "post_settle_vertex_repair_count": 0,
+  "product_acceptance": false,
+  "receipt_sha256": "c90bf002ac43af8d67b91b353fc144ffb142745a79565befc97668f4d4c0f386",
+  "seam_interface_count": 16,
+  "technical_pass": true,
+  "terminal_decision": "PENDING_VISUAL_REVIEW",
+  "triangle_count": 2517,
+  "triangulation_executed": true,
+  "vertex_count": 1574,
+  "visual_review": "PENDING",
+  "warp_material_settling_executed": true
+}

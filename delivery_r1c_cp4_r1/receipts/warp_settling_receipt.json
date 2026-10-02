@@ -1,0 +1,21 @@
+{
+  "contact_projection_count": 0,
+  "contract": "WarpMaterialSettlingReceipt/1",
+  "device": "cpu",
+  "fixed_boundary_vertices": 456,
+  "frames": 48,
+  "material": {
+    "profile_id": "WOOL_TWILL_MEDIUM_REFERENCE",
+    "source_path": "build/material_calibration_cp4/checkpoint_phase_receipt.json",
+    "source_sha256": "e67a8a4ba1c020c65cb9d113e96813a8c0046283bf5e4c6c7b2b8c8b034fddac"
+  },
+  "maximum_displacement_m": 0.004744907290366525,
+  "mean_displacement_m": 0.0022022781935839295,
+  "post_settle_vertex_repair_count": 0,
+  "runtime": "warp-lang",
+  "runtime_version": "1.17.0",
+  "settling_rest_owner": "ARRANGEMENT_REST_METRIC",
+  "substeps": 2,
+  "tail_mean_frame_displacement_m": 1.3303756713867187e-05,
+  "tail_peak_frame_displacement_m": 2.09808349609375e-05
+}

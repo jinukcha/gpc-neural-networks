@@ -1,0 +1,191 @@
+{
+  "arrangement": "BODY_SECTION_WRAP_PLUS_SLEEVE_TUBE_CAP_PATCH_PRESEED",
+  "body_profile": {
+    "arm_length_m": 0.5829,
+    "chest_circumference_m": 0.989,
+    "contract": "ReferenceBodyProfile/1",
+    "elbow_circumference_m": 0.24725,
+    "hip_circumference_m": 1.02,
+    "neck_circumference_m": 0.3608,
+    "shoulder_width_m": 0.41,
+    "stature_m": 1.74,
+    "upper_arm_circumference_m": 0.30659,
+    "waist_circumference_m": 0.856,
+    "wrist_circumference_m": 0.16813
+  },
+  "component_count": 7,
+  "components": [
+    {
+      "boundary_vertex_counts": {
+        "armhole_left_back": 13,
+        "armhole_right_back": 13,
+        "hem_back": 26,
+        "neckline_back": 9,
+        "shoulder_left": 7,
+        "shoulder_right": 7,
+        "side_left": 16,
+        "side_right": 16
+      },
+      "component_id": "BODICE_BACK_BASIC",
+      "instance_id": "bodice_back",
+      "metadata": {
+        "arrangement_owner": "BODICE_SECTION_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "body_clearance_m": 0.014,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 99,
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "5da695956b810546cea6ae7d00ac1d331d4bceef36bd410a80992835e25909ad",
+      "summary_sha256": "6db66f21a00d7b7885e6751b5b2b21f35d997c23a6b624493d65b9d4d2c2c375",
+      "triangle_count": 879,
+      "vertex_count": 497
+    },
+    {
+      "boundary_vertex_counts": {
+        "armhole_left_front": 12,
+        "armhole_right_front": 12,
+        "hem_front": 26,
+        "neckline_front": 12,
+        "shoulder_left": 7,
+        "shoulder_right": 7,
+        "side_left": 16,
+        "side_right": 16
+      },
+      "component_id": "BODICE_FRONT_BASIC",
+      "instance_id": "bodice_front",
+      "metadata": {
+        "arrangement_owner": "BODICE_SECTION_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "body_clearance_m": 0.014,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 100,
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "ce22739f5e66a346b2eb469a6d0b93b7542f3ebf9cb8642f7f9abb887effbb75",
+      "summary_sha256": "4d877b8772df9fab8ba5f792d4439f331d84313ed6d44568394e3e8ba01e151d",
+      "triangle_count": 874,
+      "vertex_count": 488
+    },
+    {
+      "boundary_vertex_counts": {
+        "back_attach": 9,
+        "back_end": 3,
+        "front_attach": 12,
+        "front_end": 3,
+        "outer": 17
+      },
+      "component_id": "COLLAR_STAND_BASIC",
+      "instance_id": "collar",
+      "metadata": {
+        "arrangement_owner": "COLLAR_NECK_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 39,
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "452a99f1a0bef9dcc31532e68e559bd7695a137f7c28597953795240280c7529",
+      "summary_sha256": "f4bdf871220155fb6e8c0dd9596115b19c11931b2bb1cd7ac398302cb46f0c2a",
+      "triangle_count": 34,
+      "vertex_count": 39
+    },
+    {
+      "boundary_vertex_counts": {
+        "end_left": 7,
+        "end_right": 7,
+        "outer": 11,
+        "sleeve_attach": 12
+      },
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "instance_id": "cuff_left",
+      "metadata": {
+        "arrangement_owner": "CUFF_WRIST_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 33,
+        "side": "LEFT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "bb28466e8654005f351434be40fe4de2a63aa66fc40be397ef3cf86c0b57fdb1",
+      "summary_sha256": "74b3326e77bead8471f40574ff3cf7d5eaa36b3bdd202292fd811f98e7e80bc5",
+      "triangle_count": 32,
+      "vertex_count": 43
+    },
+    {
+      "boundary_vertex_counts": {
+        "end_left": 7,
+        "end_right": 7,
+        "outer": 11,
+        "sleeve_attach": 12
+      },
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "instance_id": "cuff_right",
+      "metadata": {
+        "arrangement_owner": "CUFF_WRIST_WRAP",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 33,
+        "side": "RIGHT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "c47186d8ab0a315a168cab70a6872b1e6b3951e52ea827c4f2e4e8447aca55dc",
+      "summary_sha256": "7bf633da92f44fde2fb19278438a790ed83420bcee0f46e54319e102a4c8daf2",
+      "triangle_count": 32,
+      "vertex_count": 43
+    },
+    {
+      "boundary_vertex_counts": {
+        "cap_back": 13,
+        "cap_front": 12,
+        "underarm_back": 22,
+        "underarm_front": 22,
+        "wrist": 12
+      },
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "instance_id": "sleeve_left",
+      "metadata": {
+        "arrangement_owner": "SLEEVE_TUBE_CAP_PATCH_PRESEED",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 76,
+        "side": "LEFT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "5593e55021e0766b5a3c9866a29e3ef20b3d86fd547e860c97dfaee62dd84f6b",
+      "summary_sha256": "1be071ec8302bc84fc6872ef9697a87025626a4de2c41a8e7347d4c728663b7d",
+      "triangle_count": 330,
+      "vertex_count": 230
+    },
+    {
+      "boundary_vertex_counts": {
+        "cap_back": 13,
+        "cap_front": 12,
+        "underarm_back": 22,
+        "underarm_front": 22,
+        "wrist": 12
+      },
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "instance_id": "sleeve_right",
+      "metadata": {
+        "arrangement_owner": "SLEEVE_TUBE_CAP_PATCH_PRESEED",
+        "body_clear_rest_relax_iterations": 55,
+        "cap_patch_relax_iterations": 70,
+        "interior_spacing_m": 0.03,
+        "outline_vertex_count": 76,
+        "side": "RIGHT",
+        "triangulation": "SCIPY_DELAUNAY_FILTERED_BY_EXACT_OUTLINE"
+      },
+      "source_geometry_sha256": "8f607b80db35762da1472f39c9c38d58ca895653634f46582050e791f195ab8b",
+      "summary_sha256": "2347029f20f953c05da6adc2e02565dff3dfd52ecc262254322ed4b7be8be0ac",
+      "triangle_count": 336,
+      "vertex_count": 234
+    }
+  ],
+  "contract": "AvatarArrangementReceipt/1"
+}

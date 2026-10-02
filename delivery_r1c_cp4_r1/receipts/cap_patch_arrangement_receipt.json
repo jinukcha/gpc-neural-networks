@@ -1,0 +1,11 @@
+{
+  "compiled_rest_metric_pending": true,
+  "component_relaxation": "BOUNDARY_FIXED_LAPLACIAN_WITH_INITIAL_SHAPE_REGULARIZATION",
+  "contract": "CapPatchArrangementReceipt/1",
+  "maximum_seam_junction_size": 4,
+  "post_alignment_seam_max_m": 0.0,
+  "post_alignment_seam_mean_m": 0.0,
+  "post_alignment_seam_p95_m": 0.0,
+  "seam_equivalence_class_count": 179,
+  "source_pattern_changed": false
+}

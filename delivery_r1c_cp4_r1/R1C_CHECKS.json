@@ -1,0 +1,85 @@
+{
+  "body_penetration_p99_m": 0.0,
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP4_R1",
+  "edge_strain_p95": 0.03730596854276498,
+  "orientation_reversed_count": 8,
+  "post_settle_vertex_repair_count": 0,
+  "product_acceptance": true,
+  "seam_p95_m": 0.0,
+  "source_budget": {
+    "files_checked": 22,
+    "files_over_500": [],
+    "functions_over_80": [],
+    "maximum_file": [
+      "source/wuxia_garment_oss/materialization/settle.py",
+      215
+    ],
+    "maximum_function": [
+      "source/wuxia_garment_oss/materialization/export.py",
+      "publish_materialized_product",
+      74
+    ]
+  },
+  "tail_peak_m": 2.09808349609375e-05,
+  "technical_pass": true,
+  "triangulation_executed": true,
+  "validation": "PASS",
+  "views": {
+    "contact_sheet": [
+      4096,
+      3216
+    ],
+    "views": {
+      "back": [
+        2048,
+        2048
+      ],
+      "back_three_quarter": [
+        2048,
+        2048
+      ],
+      "front": [
+        2048,
+        2048
+      ],
+      "front_three_quarter": [
+        2048,
+        2048
+      ],
+      "garment_only": [
+        2048,
+        2048
+      ],
+      "left": [
+        2048,
+        2048
+      ],
+      "neck_collar_detail": [
+        2048,
+        2048
+      ],
+      "right": [
+        2048,
+        2048
+      ],
+      "seam_notch_overlay": [
+        2048,
+        2048
+      ],
+      "shoulder_cap_detail": [
+        2048,
+        2048
+      ],
+      "underarm_detail": [
+        2048,
+        2048
+      ],
+      "wireframe_front": [
+        2048,
+        2048
+      ]
+    }
+  },
+  "visual_review": "PASS",
+  "warp_settling_executed": true
+}

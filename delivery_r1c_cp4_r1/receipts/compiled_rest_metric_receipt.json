@@ -1,0 +1,14 @@
+{
+  "contract": "CompiledArrangementRestMetric/1",
+  "edge_count": 4014,
+  "pattern_metric_preserved_as_diagnostic": true,
+  "pattern_to_arrangement_ratio_p50": 0.9166309014631877,
+  "pattern_to_arrangement_ratio_p95": 1.890964237239709,
+  "pattern_to_arrangement_ratio_p99": 5.435521832829351,
+  "receipt_sha256": "4568408c2bd9e6944c079a42ac97783881a6e7987cce71d7faf1781fd756c466",
+  "seam_pair_count": 199,
+  "settling_rest_owner": "ARRANGEMENT_REST_METRIC",
+  "source_pattern_changed": false,
+  "triangle_count": 2517,
+  "vertex_count": 1574
+}

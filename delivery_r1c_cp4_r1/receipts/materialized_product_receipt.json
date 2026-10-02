@@ -1,0 +1,13 @@
+{
+  "body_triangle_count": 3128,
+  "body_vertex_count": 1688,
+  "component_count": 7,
+  "contract": "MaterializedProductReceipt/1",
+  "glb_pending_blender_export": true,
+  "product_id": "R1C_CP4_R1_SET_IN_SLEEVE_TUNIC",
+  "product_sha256": "d97aa19d9cfd675a2988df0152e60b98dff4ea64c88afa8b9566e7a86cf7e405",
+  "receipt_sha256": "1cedaf94d910fa44054a9e8239273f2e10a5f030b4b37cc46979490dfa554e28",
+  "seam_line_count": 16,
+  "triangle_count": 2517,
+  "vertex_count": 1574
+}

@@ -1,0 +1,123 @@
+{
+  "all_view_metrics_pass": true,
+  "contact_sheet": {
+    "height": 3216,
+    "path": "cp4_r1_body_visible_contact_sheet.png",
+    "width": 4096
+  },
+  "contract": "CP4R1VisualEvidenceReceipt/1",
+  "required_views": [
+    "front",
+    "left",
+    "right",
+    "back",
+    "front_three_quarter",
+    "back_three_quarter",
+    "garment_only",
+    "shoulder_cap_detail",
+    "underarm_detail",
+    "neck_collar_detail",
+    "wireframe_front",
+    "seam_notch_overlay"
+  ],
+  "view_count": 12,
+  "views": {
+    "back": {
+      "centre_foreground_fraction": 0.3409996032714844,
+      "foreground_fraction": 0.10172820091247559,
+      "height": 2048,
+      "luminance_variance": 574.5817690171741,
+      "pass": true,
+      "width": 2048
+    },
+    "back_three_quarter": {
+      "centre_foreground_fraction": 0.2679901123046875,
+      "foreground_fraction": 0.07369780540466309,
+      "height": 2048,
+      "luminance_variance": 227.19863262737653,
+      "pass": true,
+      "width": 2048
+    },
+    "front": {
+      "centre_foreground_fraction": 0.3357419967651367,
+      "foreground_fraction": 0.10131120681762695,
+      "height": 2048,
+      "luminance_variance": 380.248572631719,
+      "pass": true,
+      "width": 2048
+    },
+    "front_three_quarter": {
+      "centre_foreground_fraction": 0.27533912658691406,
+      "foreground_fraction": 0.07492589950561523,
+      "height": 2048,
+      "luminance_variance": 257.27329092531795,
+      "pass": true,
+      "width": 2048
+    },
+    "garment_only": {
+      "centre_foreground_fraction": 0.2900514602661133,
+      "foreground_fraction": 0.08565402030944824,
+      "height": 2048,
+      "luminance_variance": 401.50341030200946,
+      "pass": true,
+      "width": 2048
+    },
+    "left": {
+      "centre_foreground_fraction": 0.1776103973388672,
+      "foreground_fraction": 0.05020785331726074,
+      "height": 2048,
+      "luminance_variance": 115.20773327395847,
+      "pass": true,
+      "width": 2048
+    },
+    "neck_collar_detail": {
+      "centre_foreground_fraction": 0.6575422286987305,
+      "foreground_fraction": 0.5438909530639648,
+      "height": 2048,
+      "luminance_variance": 1034.3511328762124,
+      "pass": true,
+      "width": 2048
+    },
+    "right": {
+      "centre_foreground_fraction": 0.20418834686279297,
+      "foreground_fraction": 0.05717134475708008,
+      "height": 2048,
+      "luminance_variance": 367.18066853082576,
+      "pass": true,
+      "width": 2048
+    },
+    "seam_notch_overlay": {
+      "centre_foreground_fraction": 0.28983116149902344,
+      "foreground_fraction": 0.08552956581115723,
+      "height": 2048,
+      "luminance_variance": 394.06964476693156,
+      "pass": true,
+      "width": 2048
+    },
+    "shoulder_cap_detail": {
+      "centre_foreground_fraction": 0.6335296630859375,
+      "foreground_fraction": 0.4825317859649658,
+      "height": 2048,
+      "luminance_variance": 1020.8457577429776,
+      "pass": true,
+      "width": 2048
+    },
+    "underarm_detail": {
+      "centre_foreground_fraction": 0.6574859619140625,
+      "foreground_fraction": 0.5657498836517334,
+      "height": 2048,
+      "luminance_variance": 1071.9285897986488,
+      "pass": true,
+      "width": 2048
+    },
+    "wireframe_front": {
+      "centre_foreground_fraction": 0.2900514602661133,
+      "foreground_fraction": 0.08565402030944824,
+      "height": 2048,
+      "luminance_variance": 401.50341030200946,
+      "pass": true,
+      "width": 2048
+    }
+  },
+  "visual_review": "PASS"
+}
