@@ -1,0 +1,8 @@
+{
+  "all_predecessors_unchanged": true,
+  "changed_predecessor_source_files": [],
+  "contract": "R1CCP4R2R1PredecessorPreservationReceipt/1",
+  "cp4_r1_tree_after": "fbc08592f8409093ce6968862b1c99514211268c0dd1a63671860b88b96e1a8e",
+  "cp4_r1_tree_before": "fbc08592f8409093ce6968862b1c99514211268c0dd1a63671860b88b96e1a8e",
+  "receipt_sha256": "f3d7c410bd3e594bc8e0c06fd85d5af7c8c7741f210118fc6b0ecd7fb965deda"
+}

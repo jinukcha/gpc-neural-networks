@@ -1,0 +1,86 @@
+{
+  "contact_sheet": {
+    "height": 3288,
+    "path": "build/r1c_cp4_r2_r1/cp4_r2_r1_before_after_contact_sheet.png",
+    "width": 2048
+  },
+  "contract": "CP4R2R1BeforeAfterEvidenceReceipt/1",
+  "direct_art_audit": "PENDING_MODEL_REVIEW",
+  "minimum_silhouette_iou": 0.957653214666876,
+  "same_camera_definition": true,
+  "view_count": 12,
+  "views": {
+    "back": {
+      "foreground_fraction_after": 0.10377311706542969,
+      "foreground_fraction_before": 0.10291719436645508,
+      "mean_absolute_rgb_delta": 0.2511102259159088,
+      "silhouette_iou": 0.9790164293687807
+    },
+    "back_three_quarter": {
+      "foreground_fraction_after": 0.07706356048583984,
+      "foreground_fraction_before": 0.07643651962280273,
+      "mean_absolute_rgb_delta": 0.1568349152803421,
+      "silhouette_iou": 0.9612039685513325
+    },
+    "front": {
+      "foreground_fraction_after": 0.10421609878540039,
+      "foreground_fraction_before": 0.10346150398254395,
+      "mean_absolute_rgb_delta": 0.21279096603393555,
+      "silhouette_iou": 0.9795581654845477
+    },
+    "front_three_quarter": {
+      "foreground_fraction_after": 0.07852363586425781,
+      "foreground_fraction_before": 0.07777738571166992,
+      "mean_absolute_rgb_delta": 0.1626451015472412,
+      "silhouette_iou": 0.9742815239552246
+    },
+    "garment_only": {
+      "foreground_fraction_after": 0.08875513076782227,
+      "foreground_fraction_before": 0.08667993545532227,
+      "mean_absolute_rgb_delta": 0.32763656973838806,
+      "silhouette_iou": 0.9577964320398037
+    },
+    "left": {
+      "foreground_fraction_after": 0.05292010307312012,
+      "foreground_fraction_before": 0.05282306671142578,
+      "mean_absolute_rgb_delta": 0.11631464958190918,
+      "silhouette_iou": 0.9852600198741305
+    },
+    "neck_collar_detail": {
+      "foreground_fraction_after": 0.8845570087432861,
+      "foreground_fraction_before": 0.8873355388641357,
+      "mean_absolute_rgb_delta": 0.5840627551078796,
+      "silhouette_iou": 0.9927004402687731
+    },
+    "right": {
+      "foreground_fraction_after": 0.05845975875854492,
+      "foreground_fraction_before": 0.058402299880981445,
+      "mean_absolute_rgb_delta": 0.1192018985748291,
+      "silhouette_iou": 0.9902750989747234
+    },
+    "seam_notch_overlay": {
+      "foreground_fraction_after": 0.08871769905090332,
+      "foreground_fraction_before": 0.08665132522583008,
+      "mean_absolute_rgb_delta": 0.3231826722621918,
+      "silhouette_iou": 0.957653214666876
+    },
+    "shoulder_cap_detail": {
+      "foreground_fraction_after": 0.49403858184814453,
+      "foreground_fraction_before": 0.4932560920715332,
+      "mean_absolute_rgb_delta": 1.2161184549331665,
+      "silhouette_iou": 0.9867772528447378
+    },
+    "underarm_detail": {
+      "foreground_fraction_after": 0.5753865242004395,
+      "foreground_fraction_before": 0.5754125118255615,
+      "mean_absolute_rgb_delta": 1.6676832437515259,
+      "silhouette_iou": 0.9870108271237542
+    },
+    "wireframe_front": {
+      "foreground_fraction_after": 0.08875513076782227,
+      "foreground_fraction_before": 0.08667993545532227,
+      "mean_absolute_rgb_delta": 0.32763656973838806,
+      "silhouette_iou": 0.9577964320398037
+    }
+  }
+}

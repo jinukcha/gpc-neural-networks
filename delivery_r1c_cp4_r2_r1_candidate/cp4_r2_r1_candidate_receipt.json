@@ -1,0 +1,17 @@
+{
+  "after_ratio_p95": 1.7607425984594343,
+  "after_ratio_p99": 5.144150446835461,
+  "before_ratio_p95": 1.8909641944071627,
+  "before_ratio_p99": 5.435521704938975,
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP4_R2_R1",
+  "cp4_r1_predecessor_mutated": false,
+  "direct_art_audit": "PENDING",
+  "edge_count": 4014,
+  "metric_improved": true,
+  "phase": "CANDIDATE_PENDING_DIRECT_ART_AUDIT",
+  "product_acceptance": false,
+  "receipt_sha256": "4d7a3448cb4d4033ede6812cc4074e73fa6f46f0c264d8ad676a084d34d5b170",
+  "source_cp4_r1_product_sha256": "d97aa19d9cfd675a2988df0152e60b98dff4ea64c88afa8b9566e7a86cf7e405",
+  "technical_pass": true,
+  "terminal_decision": "PENDING_DIRECT_ART_AUDIT"
+}

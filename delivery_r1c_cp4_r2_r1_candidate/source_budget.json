@@ -1,0 +1,14 @@
+{
+  "files_checked": 10,
+  "maximum_file": [
+    "source/wuxia_garment_oss/materialization/metric_fidelity/pipeline.py",
+    145
+  ],
+  "maximum_function": [
+    "source/wuxia_garment_oss/materialization/metric_fidelity/pipeline.py",
+    "run_metric_fidelity",
+    43
+  ],
+  "files_over_500": [],
+  "functions_over_80": []
+}

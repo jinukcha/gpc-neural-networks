@@ -1,0 +1,12 @@
+{
+  "component_count": 7,
+  "contract": "MetricFidelityMaterializedProductReceipt/1",
+  "glb_pending_blender_export": true,
+  "product_id": "R1C_CP4_R2_R1_METRIC_FIDELITY_TUNIC",
+  "product_sha256": "6161eb5f104e9c3dbf7c61c57e36c9dd4cf51bfc6297b8e1e8faf06cb87c22df",
+  "receipt_sha256": "db3eaee3e3e34daec4b8e189843bdf9aafbdd2ed2888e8253886881efbd0afc0",
+  "seam_line_count": 16,
+  "source_cp4_r1_product_sha256": "d97aa19d9cfd675a2988df0152e60b98dff4ea64c88afa8b9566e7a86cf7e405",
+  "triangle_count": 2517,
+  "vertex_count": 1574
+}

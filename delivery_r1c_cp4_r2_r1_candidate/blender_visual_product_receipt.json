@@ -1,0 +1,85 @@
+{
+  "blend_path": "product/r1c_cp4_r2_r1_sleeved_tunic.blend",
+  "blender_version": "5.2.2",
+  "body_visible": true,
+  "contract": "CP4R2R1BlenderVisualProductReceipt/1",
+  "glb_path": "product/r1c_cp4_r2_r1_sleeved_tunic.glb",
+  "neutral_gray": true,
+  "render_engine": "BLENDER_WORKBENCH",
+  "same_camera_source": "scripts/blender_render_garment_r1c_cp4_r1.py",
+  "view_count": 12,
+  "views": [
+    {
+      "height": 2048,
+      "path": "front.png",
+      "view_id": "front",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "left.png",
+      "view_id": "left",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "right.png",
+      "view_id": "right",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "back.png",
+      "view_id": "back",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "front_three_quarter.png",
+      "view_id": "front_three_quarter",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "back_three_quarter.png",
+      "view_id": "back_three_quarter",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "garment_only.png",
+      "view_id": "garment_only",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "shoulder_cap_detail.png",
+      "view_id": "shoulder_cap_detail",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "underarm_detail.png",
+      "view_id": "underarm_detail",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "neck_collar_detail.png",
+      "view_id": "neck_collar_detail",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "wireframe_front.png",
+      "view_id": "wireframe_front",
+      "width": 2048
+    },
+    {
+      "height": 2048,
+      "path": "seam_notch_overlay.png",
+      "view_id": "seam_notch_overlay",
+      "width": 2048
+    }
+  ]
+}

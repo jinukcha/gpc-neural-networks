@@ -1,0 +1,3324 @@
+{
+  "by_component": {
+    "bodice_back": {
+      "arrangement_over_pattern": {
+        "count": 1369,
+        "maximum": 11.146461298600562,
+        "p50": 0.9130147800275014,
+        "p95": 1.7177665617562803,
+        "p99": 4.7812222898001
+      },
+      "symmetric_distortion": {
+        "count": 1369,
+        "maximum": 11.146461298600562,
+        "p50": 1.212657021765692,
+        "p95": 2.3310958774323765,
+        "p99": 5.442230536883597
+      }
+    },
+    "bodice_front": {
+      "arrangement_over_pattern": {
+        "count": 1361,
+        "maximum": 11.060948958654587,
+        "p50": 0.9206595725961927,
+        "p95": 1.8048683034323176,
+        "p99": 4.699195391053714
+      },
+      "symmetric_distortion": {
+        "count": 1361,
+        "maximum": 11.060948958654587,
+        "p50": 1.2150398355054532,
+        "p95": 2.148459862727234,
+        "p99": 6.251306336257918
+      }
+    },
+    "collar": {
+      "arrangement_over_pattern": {
+        "count": 71,
+        "maximum": 11.723725196345834,
+        "p50": 3.224021423585731,
+        "p95": 7.972998022674087,
+        "p99": 10.77349089465212
+      },
+      "symmetric_distortion": {
+        "count": 71,
+        "maximum": 11.723725196345834,
+        "p50": 3.4114520471734333,
+        "p95": 7.972998022674087,
+        "p99": 10.77349089465212
+      }
+    },
+    "cuff_left": {
+      "arrangement_over_pattern": {
+        "count": 61,
+        "maximum": 2.1655730478368915,
+        "p50": 0.8707799029841243,
+        "p95": 1.46250632672691,
+        "p99": 2.0008077357790537
+      },
+      "symmetric_distortion": {
+        "count": 61,
+        "maximum": 2.1655730478368915,
+        "p50": 1.2122361425815098,
+        "p95": 1.8836053123636667,
+        "p99": 2.003784150076954
+      }
+    },
+    "cuff_right": {
+      "arrangement_over_pattern": {
+        "count": 61,
+        "maximum": 2.1655730478368915,
+        "p50": 0.8707799029841243,
+        "p95": 1.46250632672691,
+        "p99": 2.0008077357790537
+      },
+      "symmetric_distortion": {
+        "count": 61,
+        "maximum": 2.1655730478368915,
+        "p50": 1.2122361425815098,
+        "p95": 1.8836053123636667,
+        "p99": 2.003784150076954
+      }
+    },
+    "sleeve_left": {
+      "arrangement_over_pattern": {
+        "count": 540,
+        "maximum": 4.846077924769707,
+        "p50": 0.9343385232462681,
+        "p95": 1.674095013655361,
+        "p99": 2.872061934752983
+      },
+      "symmetric_distortion": {
+        "count": 540,
+        "maximum": 6.097955170338124,
+        "p50": 1.2146518553907186,
+        "p95": 2.2619807120949944,
+        "p99": 3.4202995068438318
+      }
+    },
+    "sleeve_right": {
+      "arrangement_over_pattern": {
+        "count": 551,
+        "maximum": 9.376509594250345,
+        "p50": 0.894807009238257,
+        "p95": 1.5743385847271005,
+        "p99": 3.0218249665897865
+      },
+      "symmetric_distortion": {
+        "count": 551,
+        "maximum": 9.376509594250345,
+        "p50": 1.2109877707309933,
+        "p95": 2.0779209491209096,
+        "p99": 3.9409399582490066
+      }
+    }
+  },
+  "by_component_region": {
+    "bodice_back::BOUNDARY:armhole_left_back": {
+      "arrangement_over_pattern": {
+        "count": 12,
+        "maximum": 1.980138108231757,
+        "p50": 0.8853042774885502,
+        "p95": 1.5495212175028106,
+        "p99": 1.8940147300859682
+      },
+      "symmetric_distortion": {
+        "count": 12,
+        "maximum": 3.0776459751525422,
+        "p50": 1.1549182122267654,
+        "p95": 2.4740166483461095,
+        "p99": 2.9569201097912563
+      }
+    },
+    "bodice_back::BOUNDARY:armhole_right_back": {
+      "arrangement_over_pattern": {
+        "count": 12,
+        "maximum": 2.5009709650011436,
+        "p50": 0.8222324514577535,
+        "p95": 1.7996320088587352,
+        "p99": 2.360703173772663
+      },
+      "symmetric_distortion": {
+        "count": 12,
+        "maximum": 2.5009709650011436,
+        "p50": 1.2452332084002085,
+        "p95": 2.1183153507342394,
+        "p99": 2.424439842147763
+      }
+    },
+    "bodice_back::BOUNDARY:hem_back": {
+      "arrangement_over_pattern": {
+        "count": 24,
+        "maximum": 0.9150211304078255,
+        "p50": 0.8304871727779346,
+        "p95": 0.9123142687724326,
+        "p99": 0.9143985522316851
+      },
+      "symmetric_distortion": {
+        "count": 24,
+        "maximum": 1.381943222076737,
+        "p50": 1.204112517060383,
+        "p95": 1.369171238653246,
+        "p99": 1.379005665889334
+      }
+    },
+    "bodice_back::BOUNDARY:neckline_back": {
+      "arrangement_over_pattern": {
+        "count": 7,
+        "maximum": 11.146461298600562,
+        "p50": 1.728472452395003,
+        "p95": 9.541909761612748,
+        "p99": 10.825550991202997
+      },
+      "symmetric_distortion": {
+        "count": 7,
+        "maximum": 11.146461298600562,
+        "p50": 2.6422852669670247,
+        "p95": 9.541909761612748,
+        "p99": 10.825550991202997
+      }
+    },
+    "bodice_back::BOUNDARY:shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 6,
+        "maximum": 2.561995262641835,
+        "p50": 0.11437027156226263,
+        "p95": 2.1252431325740138,
+        "p99": 2.474644836628271
+      },
+      "symmetric_distortion": {
+        "count": 6,
+        "maximum": 8.74353086986949,
+        "p50": 8.74353086986949,
+        "p95": 8.74353086986949,
+        "p99": 8.74353086986949
+      }
+    },
+    "bodice_back::BOUNDARY:shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 6,
+        "maximum": 5.442007117442361,
+        "p50": 0.11437027156226263,
+        "p95": 4.20906350497377,
+        "p99": 5.195418394948644
+      },
+      "symmetric_distortion": {
+        "count": 6,
+        "maximum": 8.74353086986949,
+        "p50": 8.74353086986949,
+        "p95": 8.74353086986949,
+        "p99": 8.74353086986949
+      }
+    },
+    "bodice_back::BOUNDARY:side_left": {
+      "arrangement_over_pattern": {
+        "count": 5,
+        "maximum": 4.739461256745577,
+        "p50": 1.122914764887625,
+        "p95": 4.01615228986167,
+        "p99": 4.594799463368796
+      },
+      "symmetric_distortion": {
+        "count": 5,
+        "maximum": 4.739461256745577,
+        "p50": 1.122914764887625,
+        "p95": 4.01615228986167,
+        "p99": 4.594799463368796
+      }
+    },
+    "bodice_back::BOUNDARY:side_right": {
+      "arrangement_over_pattern": {
+        "count": 15,
+        "maximum": 4.8699644850409864,
+        "p50": 1.128079658700281,
+        "p95": 2.2514805660609927,
+        "p99": 4.346267701244987
+      },
+      "symmetric_distortion": {
+        "count": 15,
+        "maximum": 4.8699644850409864,
+        "p50": 1.128079658700281,
+        "p95": 2.2514805660609927,
+        "p99": 4.346267701244987
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:armhole_left_back": {
+      "arrangement_over_pattern": {
+        "count": 21,
+        "maximum": 4.046445184899958,
+        "p50": 1.5478068519036665,
+        "p95": 2.7244120574487374,
+        "p99": 3.7820385594097146
+      },
+      "symmetric_distortion": {
+        "count": 21,
+        "maximum": 4.046445184899958,
+        "p50": 1.5478068519036665,
+        "p95": 2.7244120574487374,
+        "p99": 3.7820385594097146
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:armhole_left_back+shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 5.362486936141677,
+        "p50": 5.362486936141677,
+        "p95": 5.362486936141677,
+        "p99": 5.362486936141677
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 5.362486936141677,
+        "p50": 5.362486936141677,
+        "p95": 5.362486936141677,
+        "p99": 5.362486936141677
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:armhole_left_back+side_left": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 2.426646761601648,
+        "p50": 1.9913808796568424,
+        "p95": 2.383120173407167,
+        "p99": 2.417941443962752
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 2.426646761601648,
+        "p50": 1.9913808796568424,
+        "p95": 2.383120173407167,
+        "p99": 2.417941443962752
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:armhole_right_back": {
+      "arrangement_over_pattern": {
+        "count": 21,
+        "maximum": 5.054620734654588,
+        "p50": 1.2452157388777108,
+        "p95": 4.142847212562517,
+        "p99": 4.872266030236174
+      },
+      "symmetric_distortion": {
+        "count": 21,
+        "maximum": 5.054620734654588,
+        "p50": 1.6012013372188725,
+        "p95": 4.142847212562517,
+        "p99": 4.872266030236174
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:armhole_right_back+shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 4.06267668889265,
+        "p50": 2.87435426767561,
+        "p95": 3.943844446770946,
+        "p99": 4.03891024046831
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 4.06267668889265,
+        "p50": 2.87435426767561,
+        "p95": 3.943844446770946,
+        "p99": 4.03891024046831
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:armhole_right_back+side_right": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 3.198295197527984,
+        "p50": 3.1704069364703686,
+        "p95": 3.1955063714222227,
+        "p99": 3.1977374323068317
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 3.198295197527984,
+        "p50": 3.1704069364703686,
+        "p95": 3.1955063714222227,
+        "p99": 3.1977374323068317
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:hem_back": {
+      "arrangement_over_pattern": {
+        "count": 45,
+        "maximum": 1.264159493023811,
+        "p50": 1.0281129095590753,
+        "p95": 1.255105515665092,
+        "p99": 1.2621523434161064
+      },
+      "symmetric_distortion": {
+        "count": 45,
+        "maximum": 1.4040173761955534,
+        "p50": 1.1068137978818915,
+        "p95": 1.2591231090982,
+        "p99": 1.3424799075999871
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:hem_back+side_right": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.915680174504966,
+        "p50": 0.915680174504966,
+        "p95": 0.915680174504966,
+        "p99": 0.915680174504966
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0920843629060975,
+        "p50": 1.0920843629060975,
+        "p95": 1.0920843629060975,
+        "p99": 1.0920843629060975
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:neckline_back": {
+      "arrangement_over_pattern": {
+        "count": 16,
+        "maximum": 5.9090291015718215,
+        "p50": 2.1995623442249785,
+        "p95": 4.267275311761076,
+        "p99": 5.580678343609671
+      },
+      "symmetric_distortion": {
+        "count": 16,
+        "maximum": 5.9090291015718215,
+        "p50": 2.1995623442249785,
+        "p95": 4.267275311761076,
+        "p99": 5.580678343609671
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:neckline_back+shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 3.8434958679711353,
+        "p50": 3.0974680894354245,
+        "p95": 3.7688930901175643,
+        "p99": 3.828575312400421
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 3.8434958679711353,
+        "p50": 3.0974680894354245,
+        "p95": 3.7688930901175643,
+        "p99": 3.828575312400421
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:neckline_back+shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 11.058995596508481,
+        "p50": 8.871944410927911,
+        "p95": 10.840290477950424,
+        "p99": 11.01525457279687
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 11.058995596508481,
+        "p50": 8.871944410927911,
+        "p95": 10.840290477950424,
+        "p99": 11.01525457279687
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 9,
+        "maximum": 5.356460735830033,
+        "p50": 3.198474542563104,
+        "p95": 5.271769678300629,
+        "p99": 5.339522524324152
+      },
+      "symmetric_distortion": {
+        "count": 9,
+        "maximum": 5.356460735830033,
+        "p50": 3.198474542563104,
+        "p95": 5.271769678300629,
+        "p99": 5.339522524324152
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 8,
+        "maximum": 5.442705303196223,
+        "p50": 3.6663554817382256,
+        "p95": 5.305782615897559,
+        "p99": 5.415320765736491
+      },
+      "symmetric_distortion": {
+        "count": 8,
+        "maximum": 5.442705303196223,
+        "p50": 3.6663554817382256,
+        "p95": 5.305782615897559,
+        "p99": 5.415320765736491
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:side_left": {
+      "arrangement_over_pattern": {
+        "count": 17,
+        "maximum": 1.228904748461275,
+        "p50": 0.7352433561944818,
+        "p95": 0.9724584152347107,
+        "p99": 1.177615481815962
+      },
+      "symmetric_distortion": {
+        "count": 17,
+        "maximum": 1.898679076598086,
+        "p50": 1.3600938948647725,
+        "p95": 1.761138235395639,
+        "p99": 1.8711709083575967
+      }
+    },
+    "bodice_back::BOUNDARY_ADJACENT:side_right": {
+      "arrangement_over_pattern": {
+        "count": 24,
+        "maximum": 1.3423089725866044,
+        "p50": 0.829690799288361,
+        "p95": 1.012993409969237,
+        "p99": 1.2670750343120685
+      },
+      "symmetric_distortion": {
+        "count": 24,
+        "maximum": 1.7481087066698069,
+        "p50": 1.2180024043124855,
+        "p95": 1.5055494715151145,
+        "p99": 1.6939379110664208
+      }
+    },
+    "bodice_back::INTERIOR": {
+      "arrangement_over_pattern": {
+        "count": 1109,
+        "maximum": 2.364486757120442,
+        "p50": 0.9025716735004015,
+        "p95": 1.3617694682278363,
+        "p99": 1.694529168930557
+      },
+      "symmetric_distortion": {
+        "count": 1109,
+        "maximum": 3.4843129812566596,
+        "p50": 1.2017016336999666,
+        "p95": 1.6931393872654794,
+        "p99": 2.192534408067282
+      }
+    },
+    "bodice_front::BOUNDARY:armhole_left_front": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 2.533852724275544,
+        "p50": 0.7900818957135697,
+        "p95": 2.302340928907787,
+        "p99": 2.487550365201993
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 3.3189342988771386,
+        "p50": 1.6822432936972584,
+        "p95": 2.9263935115763413,
+        "p99": 3.2404261414169793
+      }
+    },
+    "bodice_front::BOUNDARY:armhole_right_front": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 1.752744318118503,
+        "p50": 0.944936672640688,
+        "p95": 1.6780590658665253,
+        "p99": 1.7378072676681076
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 1.752744318118503,
+        "p50": 1.1304875727645616,
+        "p95": 1.6780590658665253,
+        "p99": 1.7378072676681076
+      }
+    },
+    "bodice_front::BOUNDARY:hem_front": {
+      "arrangement_over_pattern": {
+        "count": 25,
+        "maximum": 0.9150211304078255,
+        "p50": 0.8304871727779346,
+        "p95": 0.9123142687724326,
+        "p99": 0.9143714836153312
+      },
+      "symmetric_distortion": {
+        "count": 25,
+        "maximum": 1.381943222076737,
+        "p50": 1.204112517060383,
+        "p95": 1.3793888253920388,
+        "p99": 1.381943222076737
+      }
+    },
+    "bodice_front::BOUNDARY:neckline_front": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 11.060948958654587,
+        "p50": 1.145735874611279,
+        "p95": 7.835604240889037,
+        "p99": 10.415880015101479
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 11.060948958654587,
+        "p50": 2.1314718568736994,
+        "p95": 7.835604240889037,
+        "p99": 10.415880015101479
+      }
+    },
+    "bodice_front::BOUNDARY:shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 6,
+        "maximum": 2.561995262641835,
+        "p50": 0.11437027156226263,
+        "p95": 2.1252431325740138,
+        "p99": 2.474644836628271
+      },
+      "symmetric_distortion": {
+        "count": 6,
+        "maximum": 8.74353086986949,
+        "p50": 8.74353086986949,
+        "p95": 8.74353086986949,
+        "p99": 8.74353086986949
+      }
+    },
+    "bodice_front::BOUNDARY:shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 6,
+        "maximum": 5.442007117442361,
+        "p50": 0.11437027156226263,
+        "p95": 4.20906350497377,
+        "p99": 5.195418394948644
+      },
+      "symmetric_distortion": {
+        "count": 6,
+        "maximum": 8.74353086986949,
+        "p50": 8.74353086986949,
+        "p95": 8.74353086986949,
+        "p99": 8.74353086986949
+      }
+    },
+    "bodice_front::BOUNDARY:side_left": {
+      "arrangement_over_pattern": {
+        "count": 15,
+        "maximum": 4.739461256745577,
+        "p50": 1.128079658700281,
+        "p95": 2.21232959757237,
+        "p99": 4.234034924910935
+      },
+      "symmetric_distortion": {
+        "count": 15,
+        "maximum": 4.739461256745577,
+        "p50": 1.128079658700281,
+        "p95": 2.21232959757237,
+        "p99": 4.234034924910935
+      }
+    },
+    "bodice_front::BOUNDARY:side_right": {
+      "arrangement_over_pattern": {
+        "count": 15,
+        "maximum": 4.8699644850409864,
+        "p50": 1.128079658700281,
+        "p95": 2.2514805660609927,
+        "p99": 4.346267701244987
+      },
+      "symmetric_distortion": {
+        "count": 15,
+        "maximum": 4.8699644850409864,
+        "p50": 1.128079658700281,
+        "p95": 2.2514805660609927,
+        "p99": 4.346267701244987
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:armhole_left_front": {
+      "arrangement_over_pattern": {
+        "count": 20,
+        "maximum": 2.2368938174275996,
+        "p50": 1.3902898798390386,
+        "p95": 2.089361465088647,
+        "p99": 2.2073873469598086
+      },
+      "symmetric_distortion": {
+        "count": 20,
+        "maximum": 3.106409603396978,
+        "p50": 1.491049313391001,
+        "p95": 2.852893592112159,
+        "p99": 3.055706401140014
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:armhole_left_front+shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 6.550614000904861,
+        "p50": 6.550614000904861,
+        "p95": 6.550614000904861,
+        "p99": 6.550614000904861
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 6.550614000904861,
+        "p50": 6.550614000904861,
+        "p95": 6.550614000904861,
+        "p99": 6.550614000904861
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:armhole_left_front+side_left": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 2.6195271131362667,
+        "p50": 2.1525269943619674,
+        "p95": 2.5728271012588366,
+        "p99": 2.610187110760781
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 2.6195271131362667,
+        "p50": 2.1525269943619674,
+        "p95": 2.5728271012588366,
+        "p99": 2.610187110760781
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:armhole_right_front": {
+      "arrangement_over_pattern": {
+        "count": 19,
+        "maximum": 7.466008626780842,
+        "p50": 1.6126211162932653,
+        "p95": 4.802746436170372,
+        "p99": 6.93335618865875
+      },
+      "symmetric_distortion": {
+        "count": 19,
+        "maximum": 7.466008626780842,
+        "p50": 1.6126211162932653,
+        "p95": 4.802746436170372,
+        "p99": 6.93335618865875
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:armhole_right_front+shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 3,
+        "maximum": 2.1082388992701886,
+        "p50": 2.0243093044547504,
+        "p95": 2.099845939788645,
+        "p99": 2.1065603073738797
+      },
+      "symmetric_distortion": {
+        "count": 3,
+        "maximum": 2.1082388992701886,
+        "p50": 2.0243093044547504,
+        "p95": 2.099845939788645,
+        "p99": 2.1065603073738797
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:armhole_right_front+side_right": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 3.139230722312983,
+        "p50": 2.798781154362211,
+        "p95": 3.105185765517906,
+        "p99": 3.132421730953968
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 3.139230722312983,
+        "p50": 2.798781154362211,
+        "p95": 3.105185765517906,
+        "p99": 3.132421730953968
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:hem_front": {
+      "arrangement_over_pattern": {
+        "count": 45,
+        "maximum": 1.288741825063517,
+        "p50": 1.0401657942656697,
+        "p95": 1.2499332726233354,
+        "p99": 1.2781844508341593
+      },
+      "symmetric_distortion": {
+        "count": 45,
+        "maximum": 1.288741825063517,
+        "p50": 1.1000632529591257,
+        "p95": 1.2522869824913136,
+        "p99": 1.2781844508341593
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:hem_front+side_left": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.915680174504966,
+        "p50": 0.915680174504966,
+        "p95": 0.915680174504966,
+        "p99": 0.915680174504966
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0920843629060975,
+        "p50": 1.0920843629060975,
+        "p95": 1.0920843629060975,
+        "p99": 1.0920843629060975
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:hem_front+side_right": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.915680174504966,
+        "p50": 0.915680174504966,
+        "p95": 0.915680174504966,
+        "p99": 0.915680174504966
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0920843629060975,
+        "p50": 1.0920843629060975,
+        "p95": 1.0920843629060975,
+        "p99": 1.0920843629060975
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:neckline_front": {
+      "arrangement_over_pattern": {
+        "count": 22,
+        "maximum": 3.2194399404756453,
+        "p50": 2.090069784427514,
+        "p95": 2.91545185962951,
+        "p99": 3.1582289535261867
+      },
+      "symmetric_distortion": {
+        "count": 22,
+        "maximum": 3.2194399404756453,
+        "p50": 2.090069784427514,
+        "p95": 2.91545185962951,
+        "p99": 3.1582289535261867
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:neckline_front+shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 7.340413465292454,
+        "p50": 7.340413465292454,
+        "p95": 7.340413465292454,
+        "p99": 7.340413465292454
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 7.340413465292454,
+        "p50": 7.340413465292454,
+        "p95": 7.340413465292454,
+        "p99": 7.340413465292454
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:neckline_front+shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 2.3260118741486573,
+        "p50": 1.7058056368221135,
+        "p95": 2.263991250416003,
+        "p99": 2.3136077494021263
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 2.3260118741486573,
+        "p50": 1.7058056368221135,
+        "p95": 2.263991250416003,
+        "p99": 2.3136077494021263
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:shoulder_left": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 6.05176789315988,
+        "p50": 3.099551255462781,
+        "p95": 5.942311128745539,
+        "p99": 6.029876540277012
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 6.05176789315988,
+        "p50": 3.099551255462781,
+        "p95": 5.942311128745539,
+        "p99": 6.029876540277012
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:shoulder_right": {
+      "arrangement_over_pattern": {
+        "count": 8,
+        "maximum": 10.57793946629047,
+        "p50": 4.587384581854645,
+        "p95": 9.187054424399346,
+        "p99": 10.299762457912244
+      },
+      "symmetric_distortion": {
+        "count": 8,
+        "maximum": 10.57793946629047,
+        "p50": 4.587384581854645,
+        "p95": 9.187054424399346,
+        "p99": 10.299762457912244
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:side_left": {
+      "arrangement_over_pattern": {
+        "count": 24,
+        "maximum": 1.1032638709209717,
+        "p50": 0.6870295471553542,
+        "p95": 0.8475558083437533,
+        "p99": 1.044487333752617
+      },
+      "symmetric_distortion": {
+        "count": 24,
+        "maximum": 1.9915205357126704,
+        "p50": 1.4558426906761606,
+        "p95": 1.8248282206369189,
+        "p99": 1.9536882303736403
+      }
+    },
+    "bodice_front::BOUNDARY_ADJACENT:side_right": {
+      "arrangement_over_pattern": {
+        "count": 24,
+        "maximum": 1.3407074872722173,
+        "p50": 0.8574052970372541,
+        "p95": 1.1418118153008288,
+        "p99": 1.3003386170926912
+      },
+      "symmetric_distortion": {
+        "count": 24,
+        "maximum": 1.4965635413078733,
+        "p50": 1.1907078105575133,
+        "p95": 1.467959383059504,
+        "p99": 1.490226166223921
+      }
+    },
+    "bodice_front::INTERIOR": {
+      "arrangement_over_pattern": {
+        "count": 1075,
+        "maximum": 2.2445204858995584,
+        "p50": 0.9056583249343557,
+        "p95": 1.414033976014221,
+        "p99": 1.6808373810136192
+      },
+      "symmetric_distortion": {
+        "count": 1075,
+        "maximum": 4.824648649814479,
+        "p50": 1.2052120289378074,
+        "p95": 1.644539355081259,
+        "p99": 2.0676530410211105
+      }
+    },
+    "collar::BOUNDARY:back_attach": {
+      "arrangement_over_pattern": {
+        "count": 8,
+        "maximum": 10.366247622497678,
+        "p50": 1.3656779542175195,
+        "p95": 8.625302719757673,
+        "p99": 10.018058641949676
+      },
+      "symmetric_distortion": {
+        "count": 8,
+        "maximum": 10.366247622497678,
+        "p50": 3.1233088168472563,
+        "p95": 8.625302719757673,
+        "p99": 10.018058641949676
+      }
+    },
+    "collar::BOUNDARY:back_end": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 11.723725196345834,
+        "p50": 6.361862598172917,
+        "p95": 11.187538936528542,
+        "p99": 11.616487944382376
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 11.723725196345834,
+        "p50": 6.361862598172917,
+        "p95": 11.187538936528542,
+        "p99": 11.616487944382376
+      }
+    },
+    "collar::BOUNDARY:front_attach": {
+      "arrangement_over_pattern": {
+        "count": 8,
+        "maximum": 7.9682370630704185,
+        "p50": 1.5071982574121345,
+        "p95": 6.082330414392667,
+        "p99": 7.591055733334867
+      },
+      "symmetric_distortion": {
+        "count": 8,
+        "maximum": 7.9682370630704185,
+        "p50": 2.2487222227390617,
+        "p95": 6.201938806622804,
+        "p99": 7.614977411780894
+      }
+    },
+    "collar::BOUNDARY:front_end": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 1.0,
+        "p50": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0,
+        "p50": 1.0,
+        "p95": 1.0,
+        "p99": 1.0
+      }
+    },
+    "collar::BOUNDARY:outer": {
+      "arrangement_over_pattern": {
+        "count": 16,
+        "maximum": 0.9507246935147236,
+        "p50": 0.95056779903003,
+        "p95": 0.9506997976512376,
+        "p99": 0.9507197143420264
+      },
+      "symmetric_distortion": {
+        "count": 16,
+        "maximum": 1.0520639506207636,
+        "p50": 1.0520028146255782,
+        "p95": 1.0520629825247614,
+        "p99": 1.0520637570015632
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:back_attach+back_end": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 7.977758982277756,
+        "p50": 7.977758982277756,
+        "p95": 7.977758982277756,
+        "p99": 7.977758982277756
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 7.977758982277756,
+        "p50": 7.977758982277756,
+        "p95": 7.977758982277756,
+        "p99": 7.977758982277756
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:back_attach+front_attach+outer": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 5.718079752647467,
+        "p50": 4.702781678298876,
+        "p95": 5.616549945212608,
+        "p99": 5.697773791160495
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 5.718079752647467,
+        "p50": 4.702781678298876,
+        "p95": 5.616549945212608,
+        "p99": 5.697773791160495
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:back_attach+outer": {
+      "arrangement_over_pattern": {
+        "count": 12,
+        "maximum": 8.96610549666671,
+        "p50": 5.4295206098946025,
+        "p95": 8.250676548830388,
+        "p99": 8.823019707099446
+      },
+      "symmetric_distortion": {
+        "count": 12,
+        "maximum": 8.96610549666671,
+        "p50": 5.4295206098946025,
+        "p95": 8.250676548830388,
+        "p99": 8.823019707099446
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:back_end+outer": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.9591718507255846,
+        "p50": 0.9591718507255846,
+        "p95": 0.9591718507255846,
+        "p99": 0.9591718507255846
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0425660419908382,
+        "p50": 1.0425660419908382,
+        "p95": 1.0425660419908382,
+        "p99": 1.0425660419908382
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:front_attach+front_end": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 3.434537996234073,
+        "p50": 3.434537996234073,
+        "p95": 3.434537996234073,
+        "p99": 3.434537996234073
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 3.434537996234073,
+        "p50": 3.434537996234073,
+        "p95": 3.434537996234073,
+        "p99": 3.434537996234073
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:front_attach+outer": {
+      "arrangement_over_pattern": {
+        "count": 18,
+        "maximum": 7.665732420389289,
+        "p50": 5.297786867118783,
+        "p95": 7.415889682816576,
+        "p99": 7.615763872874746
+      },
+      "symmetric_distortion": {
+        "count": 18,
+        "maximum": 7.665732420389289,
+        "p50": 5.297786867118783,
+        "p95": 7.415889682816576,
+        "p99": 7.615763872874746
+      }
+    },
+    "collar::BOUNDARY_ADJACENT:front_end+outer": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.9599131732421806,
+        "p50": 0.9599131732421806,
+        "p95": 0.9599131732421806,
+        "p99": 0.9599131732421806
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0417608882503644,
+        "p50": 1.0417608882503644,
+        "p95": 1.0417608882503644,
+        "p99": 1.0417608882503644
+      }
+    },
+    "cuff_left::BOUNDARY:end_left": {
+      "arrangement_over_pattern": {
+        "count": 5,
+        "maximum": 1.004045047948157,
+        "p50": 1.000692286813018,
+        "p95": 1.0033744957211292,
+        "p99": 1.0039109375027515
+      },
+      "symmetric_distortion": {
+        "count": 5,
+        "maximum": 1.004045047948157,
+        "p50": 1.000692286813018,
+        "p95": 1.0033744957211292,
+        "p99": 1.0039109375027515
+      }
+    },
+    "cuff_left::BOUNDARY:outer": {
+      "arrangement_over_pattern": {
+        "count": 9,
+        "maximum": 0.8707799029841243,
+        "p50": 0.8707799029841243,
+        "p95": 0.8707799029841243,
+        "p99": 0.8707799029841243
+      },
+      "symmetric_distortion": {
+        "count": 9,
+        "maximum": 1.1483958191651462,
+        "p50": 1.1483958191651462,
+        "p95": 1.1483958191651462,
+        "p99": 1.1483958191651462
+      }
+    },
+    "cuff_left::BOUNDARY:sleeve_attach": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.9343385232462681,
+        "p50": 0.9343385232462681,
+        "p95": 0.9343385232462681,
+        "p99": 0.9343385232462681
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0702758958558163,
+        "p50": 1.0702758958558163,
+        "p95": 1.0702758958558163,
+        "p99": 1.0702758958558163
+      }
+    },
+    "cuff_left::BOUNDARY_ADJACENT:end_left": {
+      "arrangement_over_pattern": {
+        "count": 5,
+        "maximum": 0.8288061290111854,
+        "p50": 0.7645402241223873,
+        "p95": 0.8161829725323578,
+        "p99": 0.8262814977154199
+      },
+      "symmetric_distortion": {
+        "count": 5,
+        "maximum": 1.4200751866754937,
+        "p50": 1.3079756544502235,
+        "p95": 1.4147648069215335,
+        "p99": 1.4190131107247017
+      }
+    },
+    "cuff_left::BOUNDARY_ADJACENT:end_left+outer": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.8928118385132364,
+        "p50": 0.8928118385132364,
+        "p95": 0.8928118385132364,
+        "p99": 0.8928118385132364
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.1200568326527343,
+        "p50": 1.1200568326527343,
+        "p95": 1.1200568326527343,
+        "p99": 1.1200568326527343
+      }
+    },
+    "cuff_left::BOUNDARY_ADJACENT:end_left+sleeve_attach": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 0.8625558159844846,
+        "p50": 0.7745698708305631,
+        "p95": 0.8537572214690925,
+        "p99": 0.8607960970814061
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 1.4564861812261056,
+        "p50": 1.3079157224987021,
+        "p95": 1.4416291353533652,
+        "p99": 1.4535147720515575
+      }
+    },
+    "cuff_left::BOUNDARY_ADJACENT:outer": {
+      "arrangement_over_pattern": {
+        "count": 15,
+        "maximum": 2.1655730478368915,
+        "p50": 1.1526930497416923,
+        "p95": 1.973346850436081,
+        "p99": 2.1271278083567293
+      },
+      "symmetric_distortion": {
+        "count": 15,
+        "maximum": 2.1655730478368915,
+        "p50": 1.275493958626193,
+        "p95": 1.973346850436081,
+        "p99": 2.1271278083567293
+      }
+    },
+    "cuff_left::BOUNDARY_ADJACENT:sleeve_attach": {
+      "arrangement_over_pattern": {
+        "count": 9,
+        "maximum": 0.8418133727520888,
+        "p50": 0.5916171588172243,
+        "p95": 0.79802159173153,
+        "p99": 0.833055016547977
+      },
+      "symmetric_distortion": {
+        "count": 9,
+        "maximum": 1.895924884903663,
+        "p50": 1.6902822798433108,
+        "p95": 1.8909970558876645,
+        "p99": 1.8949393191004633
+      }
+    },
+    "cuff_left::INTERIOR": {
+      "arrangement_over_pattern": {
+        "count": 14,
+        "maximum": 0.9503406995362697,
+        "p50": 0.7535147959531178,
+        "p95": 0.9051399445689209,
+        "p99": 0.9413005485427999
+      },
+      "symmetric_distortion": {
+        "count": 14,
+        "maximum": 1.818717853545924,
+        "p50": 1.3271431119983017,
+        "p95": 1.6318857398285356,
+        "p99": 1.7813514308024463
+      }
+    },
+    "cuff_right::BOUNDARY:end_left": {
+      "arrangement_over_pattern": {
+        "count": 5,
+        "maximum": 1.004045047948157,
+        "p50": 1.000692286813018,
+        "p95": 1.0033744957211292,
+        "p99": 1.0039109375027515
+      },
+      "symmetric_distortion": {
+        "count": 5,
+        "maximum": 1.004045047948157,
+        "p50": 1.000692286813018,
+        "p95": 1.0033744957211292,
+        "p99": 1.0039109375027515
+      }
+    },
+    "cuff_right::BOUNDARY:outer": {
+      "arrangement_over_pattern": {
+        "count": 9,
+        "maximum": 0.8707799029841243,
+        "p50": 0.8707799029841243,
+        "p95": 0.8707799029841243,
+        "p99": 0.8707799029841243
+      },
+      "symmetric_distortion": {
+        "count": 9,
+        "maximum": 1.1483958191651462,
+        "p50": 1.1483958191651462,
+        "p95": 1.1483958191651462,
+        "p99": 1.1483958191651462
+      }
+    },
+    "cuff_right::BOUNDARY:sleeve_attach": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.9343385232462681,
+        "p50": 0.9343385232462681,
+        "p95": 0.9343385232462681,
+        "p99": 0.9343385232462681
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.0702758958558163,
+        "p50": 1.0702758958558163,
+        "p95": 1.0702758958558163,
+        "p99": 1.0702758958558163
+      }
+    },
+    "cuff_right::BOUNDARY_ADJACENT:end_left": {
+      "arrangement_over_pattern": {
+        "count": 5,
+        "maximum": 0.8288061290111854,
+        "p50": 0.7645402241223873,
+        "p95": 0.8161829725323578,
+        "p99": 0.8262814977154199
+      },
+      "symmetric_distortion": {
+        "count": 5,
+        "maximum": 1.4200751866754937,
+        "p50": 1.3079756544502235,
+        "p95": 1.4147648069215335,
+        "p99": 1.4190131107247017
+      }
+    },
+    "cuff_right::BOUNDARY_ADJACENT:end_left+outer": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.8928118385132364,
+        "p50": 0.8928118385132364,
+        "p95": 0.8928118385132364,
+        "p99": 0.8928118385132364
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.1200568326527343,
+        "p50": 1.1200568326527343,
+        "p95": 1.1200568326527343,
+        "p99": 1.1200568326527343
+      }
+    },
+    "cuff_right::BOUNDARY_ADJACENT:end_left+sleeve_attach": {
+      "arrangement_over_pattern": {
+        "count": 2,
+        "maximum": 0.8625558159844846,
+        "p50": 0.7745698708305631,
+        "p95": 0.8537572214690925,
+        "p99": 0.8607960970814061
+      },
+      "symmetric_distortion": {
+        "count": 2,
+        "maximum": 1.4564861812261056,
+        "p50": 1.3079157224987021,
+        "p95": 1.4416291353533652,
+        "p99": 1.4535147720515575
+      }
+    },
+    "cuff_right::BOUNDARY_ADJACENT:outer": {
+      "arrangement_over_pattern": {
+        "count": 15,
+        "maximum": 2.1655730478368915,
+        "p50": 1.1526930497416923,
+        "p95": 1.973346850436081,
+        "p99": 2.1271278083567293
+      },
+      "symmetric_distortion": {
+        "count": 15,
+        "maximum": 2.1655730478368915,
+        "p50": 1.275493958626193,
+        "p95": 1.973346850436081,
+        "p99": 2.1271278083567293
+      }
+    },
+    "cuff_right::BOUNDARY_ADJACENT:sleeve_attach": {
+      "arrangement_over_pattern": {
+        "count": 9,
+        "maximum": 0.8418133727520888,
+        "p50": 0.5916171588172243,
+        "p95": 0.79802159173153,
+        "p99": 0.833055016547977
+      },
+      "symmetric_distortion": {
+        "count": 9,
+        "maximum": 1.895924884903663,
+        "p50": 1.6902822798433108,
+        "p95": 1.8909970558876645,
+        "p99": 1.8949393191004633
+      }
+    },
+    "cuff_right::INTERIOR": {
+      "arrangement_over_pattern": {
+        "count": 14,
+        "maximum": 0.9503406995362697,
+        "p50": 0.7535147959531178,
+        "p95": 0.9051399445689209,
+        "p99": 0.9413005485427999
+      },
+      "symmetric_distortion": {
+        "count": 14,
+        "maximum": 1.818717853545924,
+        "p50": 1.3271431119983017,
+        "p95": 1.6318857398285356,
+        "p99": 1.7813514308024463
+      }
+    },
+    "sleeve_left::BOUNDARY:cap_back": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 1.8702018327068348,
+        "p50": 0.7463329788152882,
+        "p95": 1.5041907915454356,
+        "p99": 1.7969996244745552
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 3.5386596011921876,
+        "p50": 1.3401413973902836,
+        "p95": 2.704430716949511,
+        "p99": 3.371813824343653
+      }
+    },
+    "sleeve_left::BOUNDARY:cap_front": {
+      "arrangement_over_pattern": {
+        "count": 8,
+        "maximum": 1.7361445075229538,
+        "p50": 0.7108598377671933,
+        "p95": 1.6834300120648564,
+        "p99": 1.7256016084313344
+      },
+      "symmetric_distortion": {
+        "count": 8,
+        "maximum": 4.03916219274955,
+        "p50": 1.6836715021650592,
+        "p95": 3.3418006494367227,
+        "p99": 3.899689884086984
+      }
+    },
+    "sleeve_left::BOUNDARY:underarm_back": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.42695965871300084,
+        "p50": 0.42695965871300084,
+        "p95": 0.42695965871300084,
+        "p99": 0.42695965871300084
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 2.342141651073861,
+        "p50": 2.342141651073861,
+        "p95": 2.342141651073861,
+        "p99": 2.342141651073861
+      }
+    },
+    "sleeve_left::BOUNDARY:underarm_front": {
+      "arrangement_over_pattern": {
+        "count": 21,
+        "maximum": 4.278797141990336,
+        "p50": 1.1062603247405514,
+        "p95": 1.1062603247405514,
+        "p99": 3.644289778540381
+      },
+      "symmetric_distortion": {
+        "count": 21,
+        "maximum": 4.278797141990336,
+        "p50": 1.1062603247405514,
+        "p95": 2.3434635734680875,
+        "p99": 3.8917304282858876
+      }
+    },
+    "sleeve_left::BOUNDARY:wrist": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 0.9343385232462681,
+        "p50": 0.9343385232462681,
+        "p95": 0.9343385232462681,
+        "p99": 0.9343385232462681
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 1.0702758958558163,
+        "p50": 1.0702758958558163,
+        "p95": 1.0702758958558163,
+        "p99": 1.0702758958558163
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:cap_back": {
+      "arrangement_over_pattern": {
+        "count": 19,
+        "maximum": 3.3922205533943774,
+        "p50": 1.9378868267559115,
+        "p95": 3.2494257651501313,
+        "p99": 3.3636615957455285
+      },
+      "symmetric_distortion": {
+        "count": 19,
+        "maximum": 3.3922205533943774,
+        "p50": 1.9378868267559115,
+        "p95": 3.2494257651501313,
+        "p99": 3.3636615957455285
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:cap_back+cap_front": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 1.5336608079298282,
+        "p50": 1.5336608079298282,
+        "p95": 1.5336608079298282,
+        "p99": 1.5336608079298282
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.5336608079298282,
+        "p50": 1.5336608079298282,
+        "p95": 1.5336608079298282,
+        "p99": 1.5336608079298282
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:cap_front": {
+      "arrangement_over_pattern": {
+        "count": 14,
+        "maximum": 2.308905783271833,
+        "p50": 1.1173462962237453,
+        "p95": 2.1301116223108494,
+        "p99": 2.273146951079636
+      },
+      "symmetric_distortion": {
+        "count": 14,
+        "maximum": 6.097955170338124,
+        "p50": 1.8963799183580485,
+        "p95": 4.108996163189351,
+        "p99": 5.700163368908367
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:cap_front+underarm_front": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 1.6393100433660535,
+        "p50": 1.6393100433660535,
+        "p95": 1.6393100433660535,
+        "p99": 1.6393100433660535
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.6393100433660535,
+        "p50": 1.6393100433660535,
+        "p95": 1.6393100433660535,
+        "p99": 1.6393100433660535
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:underarm_back": {
+      "arrangement_over_pattern": {
+        "count": 3,
+        "maximum": 1.1657481311331181,
+        "p50": 0.8804004965897972,
+        "p95": 1.1372133676787861,
+        "p99": 1.1600411784422517
+      },
+      "symmetric_distortion": {
+        "count": 3,
+        "maximum": 1.279785672796694,
+        "p50": 1.1657481311331181,
+        "p95": 1.2683819186303364,
+        "p99": 1.2775049219634225
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:underarm_back+wrist": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.6803058114088352,
+        "p50": 0.6803058114088352,
+        "p95": 0.6803058114088352,
+        "p99": 0.6803058114088352
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.469927175734564,
+        "p50": 1.469927175734564,
+        "p95": 1.469927175734564,
+        "p99": 1.469927175734564
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:underarm_front": {
+      "arrangement_over_pattern": {
+        "count": 42,
+        "maximum": 4.846077924769707,
+        "p50": 1.014102826311165,
+        "p95": 1.665561410564788,
+        "p99": 3.883010345685462
+      },
+      "symmetric_distortion": {
+        "count": 42,
+        "maximum": 4.846077924769707,
+        "p50": 1.224991891441593,
+        "p95": 1.6682359270862892,
+        "p99": 3.883010345685462
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:underarm_front+wrist": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.886728269234987,
+        "p50": 0.886728269234987,
+        "p95": 0.886728269234987,
+        "p99": 0.886728269234987
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.1277411972697529,
+        "p50": 1.1277411972697529,
+        "p95": 1.1277411972697529,
+        "p99": 1.1277411972697529
+      }
+    },
+    "sleeve_left::BOUNDARY_ADJACENT:wrist": {
+      "arrangement_over_pattern": {
+        "count": 17,
+        "maximum": 0.9620125530719134,
+        "p50": 0.7431360216280295,
+        "p95": 0.8998739866824133,
+        "p99": 0.9495848397940133
+      },
+      "symmetric_distortion": {
+        "count": 17,
+        "maximum": 1.757245705470232,
+        "p50": 1.3456486711668805,
+        "p95": 1.6538073391273038,
+        "p99": 1.7365580322016463
+      }
+    },
+    "sleeve_left::INTERIOR": {
+      "arrangement_over_pattern": {
+        "count": 389,
+        "maximum": 2.018173332421879,
+        "p50": 0.9010813476314173,
+        "p95": 1.360938852649057,
+        "p99": 1.6760788586852693
+      },
+      "symmetric_distortion": {
+        "count": 389,
+        "maximum": 3.43825162462299,
+        "p50": 1.2108547999120698,
+        "p95": 1.935389024272293,
+        "p99": 2.3872274329726157
+      }
+    },
+    "sleeve_right::BOUNDARY:cap_back": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 2.362118310256914,
+        "p50": 0.8823023853532763,
+        "p95": 1.6925717209776132,
+        "p99": 2.228208992401054
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 2.362118310256914,
+        "p50": 1.343386923620802,
+        "p95": 2.218882682257673,
+        "p99": 2.333471184657066
+      }
+    },
+    "sleeve_right::BOUNDARY:cap_front": {
+      "arrangement_over_pattern": {
+        "count": 10,
+        "maximum": 1.344238689193243,
+        "p50": 0.8550703335087959,
+        "p95": 1.3289554075233025,
+        "p99": 1.341182032859255
+      },
+      "symmetric_distortion": {
+        "count": 10,
+        "maximum": 1.4876853372681518,
+        "p50": 1.257472642212813,
+        "p95": 1.4348674497516967,
+        "p99": 1.4771217597648607
+      }
+    },
+    "sleeve_right::BOUNDARY:underarm_back": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.42695965871300084,
+        "p50": 0.42695965871300084,
+        "p95": 0.42695965871300084,
+        "p99": 0.42695965871300084
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 2.342141651073861,
+        "p50": 2.342141651073861,
+        "p95": 2.342141651073861,
+        "p99": 2.342141651073861
+      }
+    },
+    "sleeve_right::BOUNDARY:underarm_front": {
+      "arrangement_over_pattern": {
+        "count": 21,
+        "maximum": 4.423570928117956,
+        "p50": 1.1062603247405514,
+        "p95": 1.2600921947761763,
+        "p99": 3.790875181449602
+      },
+      "symmetric_distortion": {
+        "count": 21,
+        "maximum": 4.423570928117956,
+        "p50": 1.1062603247405514,
+        "p95": 2.3434635734680875,
+        "p99": 4.0075494571879835
+      }
+    },
+    "sleeve_right::BOUNDARY:wrist": {
+      "arrangement_over_pattern": {
+        "count": 11,
+        "maximum": 0.9343385232462681,
+        "p50": 0.9343385232462681,
+        "p95": 0.9343385232462681,
+        "p99": 0.9343385232462681
+      },
+      "symmetric_distortion": {
+        "count": 11,
+        "maximum": 1.0702758958558163,
+        "p50": 1.0702758958558163,
+        "p95": 1.0702758958558163,
+        "p99": 1.0702758958558163
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:cap_back": {
+      "arrangement_over_pattern": {
+        "count": 19,
+        "maximum": 6.263572214888795,
+        "p50": 0.9956463516924201,
+        "p95": 2.3033720660873738,
+        "p99": 5.471532185128513
+      },
+      "symmetric_distortion": {
+        "count": 19,
+        "maximum": 6.263572214888795,
+        "p50": 1.5393957712914452,
+        "p95": 4.026445021164659,
+        "p99": 5.816146776143969
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:cap_back+cap_front": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 1.79282026440747,
+        "p50": 1.79282026440747,
+        "p95": 1.79282026440747,
+        "p99": 1.79282026440747
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.79282026440747,
+        "p50": 1.79282026440747,
+        "p95": 1.79282026440747,
+        "p99": 1.79282026440747
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:cap_front": {
+      "arrangement_over_pattern": {
+        "count": 17,
+        "maximum": 5.984825052318629,
+        "p50": 1.5636209273064008,
+        "p95": 3.578067653684661,
+        "p99": 5.503473572591836
+      },
+      "symmetric_distortion": {
+        "count": 17,
+        "maximum": 5.984825052318629,
+        "p50": 1.6379409071723727,
+        "p95": 3.578067653684661,
+        "p99": 5.503473572591836
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:cap_front+underarm_front": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 5.037991789693771,
+        "p50": 5.037991789693771,
+        "p95": 5.037991789693771,
+        "p99": 5.037991789693771
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 5.037991789693771,
+        "p50": 5.037991789693771,
+        "p95": 5.037991789693771,
+        "p99": 5.037991789693771
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:underarm_back": {
+      "arrangement_over_pattern": {
+        "count": 3,
+        "maximum": 0.978317564491549,
+        "p50": 0.8356629341981189,
+        "p95": 0.964052101462206,
+        "p99": 0.9754644718856804
+      },
+      "symmetric_distortion": {
+        "count": 3,
+        "maximum": 1.2069391249858197,
+        "p50": 1.1966547265370515,
+        "p95": 1.205910685140943,
+        "p99": 1.2067334370168443
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:underarm_back+wrist": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.7322500726411949,
+        "p50": 0.7322500726411949,
+        "p95": 0.7322500726411949,
+        "p99": 0.7322500726411949
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.3656536712834217,
+        "p50": 1.3656536712834217,
+        "p95": 1.3656536712834217,
+        "p99": 1.3656536712834217
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:underarm_front": {
+      "arrangement_over_pattern": {
+        "count": 39,
+        "maximum": 9.376509594250345,
+        "p50": 0.9823051697847726,
+        "p95": 2.389840030400694,
+        "p99": 6.978999167513491
+      },
+      "symmetric_distortion": {
+        "count": 39,
+        "maximum": 9.376509594250345,
+        "p50": 1.167217743618425,
+        "p95": 2.389840030400694,
+        "p99": 6.978999167513491
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:underarm_front+wrist": {
+      "arrangement_over_pattern": {
+        "count": 1,
+        "maximum": 0.6793860083651729,
+        "p50": 0.6793860083651729,
+        "p95": 0.6793860083651729,
+        "p99": 0.6793860083651729
+      },
+      "symmetric_distortion": {
+        "count": 1,
+        "maximum": 1.4719172719001532,
+        "p50": 1.4719172719001532,
+        "p95": 1.4719172719001532,
+        "p99": 1.4719172719001532
+      }
+    },
+    "sleeve_right::BOUNDARY_ADJACENT:wrist": {
+      "arrangement_over_pattern": {
+        "count": 17,
+        "maximum": 0.9530831948938974,
+        "p50": 0.7546593806103972,
+        "p95": 0.9109905037128101,
+        "p99": 0.94466465665768
+      },
+      "symmetric_distortion": {
+        "count": 17,
+        "maximum": 2.082419178042289,
+        "p50": 1.325101132634384,
+        "p95": 1.9425405107478533,
+        "p99": 2.054443444583402
+      }
+    },
+    "sleeve_right::INTERIOR": {
+      "arrangement_over_pattern": {
+        "count": 398,
+        "maximum": 1.813783412983146,
+        "p50": 0.8711905723827957,
+        "p95": 1.3701241459228528,
+        "p99": 1.6106343145065227
+      },
+      "symmetric_distortion": {
+        "count": 398,
+        "maximum": 4.104004583524919,
+        "p50": 1.2160902920140888,
+        "p95": 1.846332404916848,
+        "p99": 2.9899760857979865
+      }
+    }
+  },
+  "contract": "PatternArrangementMetricDecomposition/1",
+  "edge_count": 4014,
+  "global": {
+    "arrangement_over_pattern": {
+      "count": 4014,
+      "maximum": 11.723725196345834,
+      "p50": 0.9166308988121219,
+      "p95": 1.8909641944071627,
+      "p99": 5.435521704938975
+    },
+    "symmetric_distortion": {
+      "count": 4014,
+      "maximum": 11.723725196345834,
+      "p50": 1.2154871094121467,
+      "p95": 2.366701766288311,
+      "p99": 6.268478283502208
+    }
+  },
+  "receipt_sha256": "0f386e39e885b340a1d1dd0b12fe3d15b59a73b0439cda9b769ffd0f8fd25162",
+  "stage": "CP4_R1_BEFORE",
+  "top_distortion_edges": [
+    {
+      "absolute_delta_m": 0.12317484896630049,
+      "absolute_log_ratio": 2.4616145831629725,
+      "arrangement_length_m": 0.13466104865074158,
+      "arrangement_over_pattern": 11.723725196345834,
+      "component_id": "collar",
+      "edge_index": 2761,
+      "pattern_length_m": 0.01148619968444109,
+      "region": "BOUNDARY:back_end",
+      "symmetric_distortion": 11.723725196345834,
+      "vertices": [
+        997,
+        1005
+      ]
+    },
+    {
+      "absolute_delta_m": 0.22435268200933933,
+      "absolute_log_ratio": 2.4111220752100544,
+      "arrangement_length_m": 0.2464641034603119,
+      "arrangement_over_pattern": 11.146461298600562,
+      "component_id": "bodice_back",
+      "edge_index": 95,
+      "pattern_length_m": 0.022111421450972557,
+      "region": "BOUNDARY:neckline_back",
+      "symmetric_distortion": 11.146461298600562,
+      "vertices": [
+        40,
+        41
+      ]
+    },
+    {
+      "absolute_delta_m": 0.16643444634974003,
+      "absolute_log_ratio": 2.403420793376841,
+      "arrangement_length_m": 0.18297706544399261,
+      "arrangement_over_pattern": 11.060948958654587,
+      "component_id": "bodice_front",
+      "edge_index": 1461,
+      "pattern_length_m": 0.016542619094252586,
+      "region": "BOUNDARY:neckline_front",
+      "symmetric_distortion": 11.060948958654587,
+      "vertices": [
+        529,
+        530
+      ]
+    },
+    {
+      "absolute_delta_m": 0.20896579325199127,
+      "absolute_log_ratio": 2.403244177911435,
+      "arrangement_length_m": 0.22973981499671936,
+      "arrangement_over_pattern": 11.058995596508481,
+      "component_id": "bodice_back",
+      "edge_index": 99,
+      "pattern_length_m": 0.02077402174472809,
+      "region": "BOUNDARY_ADJACENT:neckline_back+shoulder_right",
+      "symmetric_distortion": 11.058995596508481,
+      "vertices": [
+        41,
+        491
+      ]
+    },
+    {
+      "absolute_delta_m": 0.041754153091460466,
+      "absolute_log_ratio": 2.3587706500229966,
+      "arrangement_length_m": 0.04611356183886528,
+      "arrangement_over_pattern": 10.57793946629047,
+      "component_id": "bodice_front",
+      "edge_index": 1510,
+      "pattern_length_m": 0.004359408747404814,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 10.57793946629047,
+      "vertices": [
+        545,
+        984
+      ]
+    },
+    {
+      "absolute_delta_m": 0.2226884700357914,
+      "absolute_log_ratio": 2.338555107432972,
+      "arrangement_length_m": 0.2464641034603119,
+      "arrangement_over_pattern": 10.366247622497678,
+      "component_id": "collar",
+      "edge_index": 2760,
+      "pattern_length_m": 0.023775633424520493,
+      "region": "BOUNDARY:back_attach",
+      "symmetric_distortion": 10.366247622497678,
+      "vertices": [
+        997,
+        998
+      ]
+    },
+    {
+      "absolute_delta_m": 0.012868872145190835,
+      "absolute_log_ratio": 2.238207582280304,
+      "arrangement_length_m": 0.014405176974833012,
+      "arrangement_over_pattern": 9.376509594250345,
+      "component_id": "sleeve_right",
+      "edge_index": 3516,
+      "pattern_length_m": 0.0015363048296421766,
+      "region": "BOUNDARY_ADJACENT:underarm_front",
+      "symmetric_distortion": 9.376509594250345,
+      "vertices": [
+        1359,
+        1500
+      ]
+    },
+    {
+      "absolute_delta_m": 0.19223659113049507,
+      "absolute_log_ratio": 2.1934514119663575,
+      "arrangement_length_m": 0.2163684070110321,
+      "arrangement_over_pattern": 8.96610549666671,
+      "component_id": "collar",
+      "edge_index": 2764,
+      "pattern_length_m": 0.024131815880537033,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 8.96610549666671,
+      "vertices": [
+        998,
+        1007
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 63,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        29,
+        30
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 66,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        30,
+        31
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 68,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        31,
+        32
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 71,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        32,
+        33
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 105,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        43,
+        44
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 107,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        44,
+        45
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 110,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        45,
+        46
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_back",
+      "edge_index": 113,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        46,
+        47
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1445,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        524,
+        525
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1450,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        525,
+        526
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1453,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        526,
+        527
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1456,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_left",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        527,
+        528
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1498,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        541,
+        542
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1500,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        542,
+        543
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1503,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        543,
+        544
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020249334163963795,
+      "absolute_log_ratio": 2.1683140977731665,
+      "arrangement_length_m": 0.002615000121295452,
+      "arrangement_over_pattern": 0.11437027156226263,
+      "component_id": "bodice_front",
+      "edge_index": 1506,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 8.74353086986949,
+      "vertices": [
+        544,
+        545
+      ]
+    },
+    {
+      "absolute_delta_m": 0.18424634262919426,
+      "absolute_log_ratio": 2.0766575427332867,
+      "arrangement_length_m": 0.21065114438533783,
+      "arrangement_over_pattern": 7.977758982277756,
+      "component_id": "collar",
+      "edge_index": 2763,
+      "pattern_length_m": 0.02640480175614357,
+      "region": "BOUNDARY_ADJACENT:back_attach+back_end",
+      "symmetric_distortion": 7.977758982277756,
+      "vertices": [
+        998,
+        1005
+      ]
+    },
+    {
+      "absolute_delta_m": 0.16001375950872898,
+      "absolute_log_ratio": 2.075463271731086,
+      "arrangement_length_m": 0.18297706544399261,
+      "arrangement_over_pattern": 7.9682370630704185,
+      "component_id": "collar",
+      "edge_index": 2730,
+      "pattern_length_m": 0.022963305935263634,
+      "region": "BOUNDARY:front_attach",
+      "symmetric_distortion": 7.9682370630704185,
+      "vertices": [
+        985,
+        986
+      ]
+    },
+    {
+      "absolute_delta_m": 0.18794799409806728,
+      "absolute_log_ratio": 2.0367600616256323,
+      "arrangement_length_m": 0.2161441445350647,
+      "arrangement_over_pattern": 7.665732420389289,
+      "component_id": "collar",
+      "edge_index": 2736,
+      "pattern_length_m": 0.028196150436997414,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 7.665732420389289,
+      "vertices": [
+        986,
+        1014
+      ]
+    },
+    {
+      "absolute_delta_m": 0.17138902097940445,
+      "absolute_log_ratio": 2.0367069891137017,
+      "arrangement_length_m": 0.19710254669189453,
+      "arrangement_over_pattern": 7.665325591509763,
+      "component_id": "collar",
+      "edge_index": 2767,
+      "pattern_length_m": 0.025713525712490082,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 7.665325591509763,
+      "vertices": [
+        999,
+        1008
+      ]
+    },
+    {
+      "absolute_delta_m": 0.028022591024637222,
+      "absolute_log_ratio": 2.010360535967326,
+      "arrangement_length_m": 0.032356422394514084,
+      "arrangement_over_pattern": 7.466008626780842,
+      "component_id": "bodice_front",
+      "edge_index": 1538,
+      "pattern_length_m": 0.004333831369876862,
+      "region": "BOUNDARY_ADJACENT:armhole_right_front",
+      "symmetric_distortion": 7.466008626780842,
+      "vertices": [
+        554,
+        904
+      ]
+    },
+    {
+      "absolute_delta_m": 0.18329068645834923,
+      "absolute_log_ratio": 1.9976618809947757,
+      "arrangement_length_m": 0.21205660700798035,
+      "arrangement_over_pattern": 7.3717997879508035,
+      "component_id": "collar",
+      "edge_index": 2741,
+      "pattern_length_m": 0.02876592054963112,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 7.3717997879508035,
+      "vertices": [
+        988,
+        1015
+      ]
+    },
+    {
+      "absolute_delta_m": 0.14114506170153618,
+      "absolute_log_ratio": 1.9933951714612408,
+      "arrangement_length_m": 0.16340623795986176,
+      "arrangement_over_pattern": 7.340413465292454,
+      "component_id": "bodice_front",
+      "edge_index": 1462,
+      "pattern_length_m": 0.022261176258325577,
+      "region": "BOUNDARY_ADJACENT:neckline_front+shoulder_left",
+      "symmetric_distortion": 7.340413465292454,
+      "vertices": [
+        529,
+        978
+      ]
+    },
+    {
+      "absolute_delta_m": 0.18866478092968464,
+      "absolute_log_ratio": 1.9859110776028523,
+      "arrangement_length_m": 0.2186797857284546,
+      "arrangement_over_pattern": 7.285682184445839,
+      "component_id": "collar",
+      "edge_index": 2739,
+      "pattern_length_m": 0.03001500479876995,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 7.285682184445839,
+      "vertices": [
+        987,
+        1015
+      ]
+    },
+    {
+      "absolute_delta_m": 0.1695704162120819,
+      "absolute_log_ratio": 1.9712605142269763,
+      "arrangement_length_m": 0.19701023399829865,
+      "arrangement_over_pattern": 7.179720927201588,
+      "component_id": "collar",
+      "edge_index": 2744,
+      "pattern_length_m": 0.027439817786216736,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 7.179720927201588,
+      "vertices": [
+        989,
+        1016
+      ]
+    },
+    {
+      "absolute_delta_m": 0.18319656141102314,
+      "absolute_log_ratio": 1.9404297508343098,
+      "arrangement_length_m": 0.21392525732517242,
+      "arrangement_over_pattern": 6.961742142355893,
+      "component_id": "collar",
+      "edge_index": 2738,
+      "pattern_length_m": 0.030728695914149284,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 6.961742142355893,
+      "vertices": [
+        987,
+        1014
+      ]
+    },
+    {
+      "absolute_delta_m": 0.16353926621377468,
+      "absolute_log_ratio": 1.8998502381522036,
+      "arrangement_length_m": 0.19230660796165466,
+      "arrangement_over_pattern": 6.684893225347342,
+      "component_id": "bodice_back",
+      "edge_index": 100,
+      "pattern_length_m": 0.028767341747879982,
+      "region": "BOUNDARY_ADJACENT:neckline_back+shoulder_right",
+      "symmetric_distortion": 6.684893225347342,
+      "vertices": [
+        41,
+        492
+      ]
+    },
+    {
+      "absolute_delta_m": 0.1757732853293419,
+      "absolute_log_ratio": 1.8923651560895172,
+      "arrangement_length_m": 0.20696617662906647,
+      "arrangement_over_pattern": 6.635043050045633,
+      "component_id": "collar",
+      "edge_index": 2766,
+      "pattern_length_m": 0.03119289129972458,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 6.635043050045633,
+      "vertices": [
+        999,
+        1007
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08986274525523186,
+      "absolute_log_ratio": 1.8876728312850815,
+      "arrangement_length_m": 0.10589826107025146,
+      "arrangement_over_pattern": 6.6039822037444065,
+      "component_id": "bodice_front",
+      "edge_index": 1499,
+      "pattern_length_m": 0.016035515815019608,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 6.6039822037444065,
+      "vertices": [
+        541,
+        981
+      ]
+    },
+    {
+      "absolute_delta_m": 0.02504551224410534,
+      "absolute_log_ratio": 1.8795587858499474,
+      "arrangement_length_m": 0.029557717964053154,
+      "arrangement_over_pattern": 6.550614000904861,
+      "component_id": "bodice_front",
+      "edge_index": 1444,
+      "pattern_length_m": 0.004512205719947815,
+      "region": "BOUNDARY_ADJACENT:armhole_left_front+shoulder_left",
+      "symmetric_distortion": 6.550614000904861,
+      "vertices": [
+        523,
+        974
+      ]
+    },
+    {
+      "absolute_delta_m": 0.14815565757453442,
+      "absolute_log_ratio": 1.8748245047041951,
+      "arrangement_length_m": 0.17499703168869019,
+      "arrangement_over_pattern": 6.519674847659873,
+      "component_id": "collar",
+      "edge_index": 2747,
+      "pattern_length_m": 0.02684137411415577,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 6.519674847659873,
+      "vertices": [
+        990,
+        1017
+      ]
+    },
+    {
+      "absolute_delta_m": 0.15956353396177292,
+      "absolute_log_ratio": 1.8564146167122806,
+      "arrangement_length_m": 0.1891082525253296,
+      "arrangement_over_pattern": 6.400746452145735,
+      "component_id": "collar",
+      "edge_index": 2769,
+      "pattern_length_m": 0.02954471856355667,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 6.400746452145735,
+      "vertices": [
+        1000,
+        1008
+      ]
+    },
+    {
+      "absolute_delta_m": 0.1706136278808117,
+      "absolute_log_ratio": 1.8356505690969274,
+      "arrangement_length_m": 0.2029929757118225,
+      "arrangement_over_pattern": 6.269211374214558,
+      "component_id": "collar",
+      "edge_index": 2742,
+      "pattern_length_m": 0.03237934783101082,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 6.269211374214558,
+      "vertices": [
+        988,
+        1016
+      ]
+    },
+    {
+      "absolute_delta_m": 0.01230147248134017,
+      "absolute_log_ratio": 1.834750663714179,
+      "arrangement_length_m": 0.0146385682746768,
+      "arrangement_over_pattern": 6.263572214888795,
+      "component_id": "sleeve_right",
+      "edge_index": 3599,
+      "pattern_length_m": 0.00233709579333663,
+      "region": "BOUNDARY_ADJACENT:cap_back",
+      "symmetric_distortion": 6.263572214888795,
+      "vertices": [
+        1409,
+        1568
+      ]
+    },
+    {
+      "absolute_delta_m": 0.141465425491333,
+      "absolute_log_ratio": 1.8103470008527758,
+      "arrangement_length_m": 0.16913555562496185,
+      "arrangement_over_pattern": 6.112568130621231,
+      "component_id": "collar",
+      "edge_index": 2770,
+      "pattern_length_m": 0.027670130133628845,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 6.112568130621231,
+      "vertices": [
+        1000,
+        1009
+      ]
+    },
+    {
+      "absolute_delta_m": 0.014203437371179461,
+      "absolute_log_ratio": 1.8079534970038031,
+      "arrangement_length_m": 0.0027861048001796007,
+      "arrangement_over_pattern": 0.16398939842395582,
+      "component_id": "sleeve_left",
+      "edge_index": 2938,
+      "pattern_length_m": 0.016989542171359062,
+      "region": "BOUNDARY_ADJACENT:cap_front",
+      "symmetric_distortion": 6.097955170338124,
+      "vertices": [
+        1115,
+        1328
+      ]
+    },
+    {
+      "absolute_delta_m": 0.09827877953648567,
+      "absolute_log_ratio": 1.8003504431020638,
+      "arrangement_length_m": 0.11773311346769333,
+      "arrangement_over_pattern": 6.05176789315988,
+      "component_id": "bodice_front",
+      "edge_index": 1460,
+      "pattern_length_m": 0.019454333931207657,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 6.05176789315988,
+      "vertices": [
+        528,
+        978
+      ]
+    },
+    {
+      "absolute_delta_m": 0.1659371629357338,
+      "absolute_log_ratio": 1.7911548472212404,
+      "arrangement_length_m": 0.19914868474006653,
+      "arrangement_over_pattern": 5.996373364441428,
+      "component_id": "collar",
+      "edge_index": 2735,
+      "pattern_length_m": 0.03321152180433273,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 5.996373364441428,
+      "vertices": [
+        986,
+        1013
+      ]
+    },
+    {
+      "absolute_delta_m": 0.02211602544412017,
+      "absolute_log_ratio": 1.7892271075582455,
+      "arrangement_length_m": 0.026552695780992508,
+      "arrangement_over_pattern": 5.984825052318629,
+      "component_id": "sleeve_right",
+      "edge_index": 3483,
+      "pattern_length_m": 0.004436670336872339,
+      "region": "BOUNDARY_ADJACENT:cap_front",
+      "symmetric_distortion": 5.984825052318629,
+      "vertices": [
+        1347,
+        1573
+      ]
+    },
+    {
+      "absolute_delta_m": 0.028928915038704872,
+      "absolute_log_ratio": 1.7764815373085636,
+      "arrangement_length_m": 0.03482191637158394,
+      "arrangement_over_pattern": 5.9090291015718215,
+      "component_id": "bodice_back",
+      "edge_index": 94,
+      "pattern_length_m": 0.0058930013328790665,
+      "region": "BOUNDARY_ADJACENT:neckline_back",
+      "symmetric_distortion": 5.9090291015718215,
+      "vertices": [
+        39,
+        490
+      ]
+    },
+    {
+      "absolute_delta_m": 0.05583665240556002,
+      "absolute_log_ratio": 1.7706496541409993,
+      "arrangement_length_m": 0.06729110330343246,
+      "arrangement_over_pattern": 5.874668624746659,
+      "component_id": "bodice_front",
+      "edge_index": 1507,
+      "pattern_length_m": 0.011454450897872448,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 5.874668624746659,
+      "vertices": [
+        544,
+        983
+      ]
+    },
+    {
+      "absolute_delta_m": 0.05136485397815704,
+      "absolute_log_ratio": 1.763506479918438,
+      "arrangement_length_m": 0.06199311837553978,
+      "arrangement_over_pattern": 5.832854364331197,
+      "component_id": "bodice_front",
+      "edge_index": 1454,
+      "pattern_length_m": 0.010628264397382736,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 5.832854364331197,
+      "vertices": [
+        526,
+        976
+      ]
+    },
+    {
+      "absolute_delta_m": 0.13623805530369282,
+      "absolute_log_ratio": 1.7634970567333683,
+      "arrangement_length_m": 0.16442835330963135,
+      "arrangement_over_pattern": 5.8327994005240065,
+      "component_id": "collar",
+      "edge_index": 2772,
+      "pattern_length_m": 0.02819029800593853,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 5.8327994005240065,
+      "vertices": [
+        1001,
+        1009
+      ]
+    },
+    {
+      "absolute_delta_m": 0.1060896310955286,
+      "absolute_log_ratio": 1.7575054718830856,
+      "arrangement_length_m": 0.12820105254650116,
+      "arrangement_over_pattern": 5.797956175307866,
+      "component_id": "bodice_back",
+      "edge_index": 60,
+      "pattern_length_m": 0.022111421450972557,
+      "region": "BOUNDARY:neckline_back",
+      "symmetric_distortion": 5.797956175307866,
+      "vertices": [
+        28,
+        34
+      ]
+    },
+    {
+      "absolute_delta_m": 0.1275735329836607,
+      "absolute_log_ratio": 1.7436330414501886,
+      "arrangement_length_m": 0.15461282432079315,
+      "arrangement_over_pattern": 5.718079752647467,
+      "component_id": "collar",
+      "edge_index": 2733,
+      "pattern_length_m": 0.027039291337132454,
+      "region": "BOUNDARY_ADJACENT:back_attach+front_attach+outer",
+      "symmetric_distortion": 5.718079752647467,
+      "vertices": [
+        985,
+        1013
+      ]
+    },
+    {
+      "absolute_delta_m": 0.06255410518497229,
+      "absolute_log_ratio": 1.7272064956561706,
+      "arrangement_length_m": 0.07607955485582352,
+      "arrangement_over_pattern": 5.62491870564444,
+      "component_id": "bodice_front",
+      "edge_index": 1457,
+      "pattern_length_m": 0.01352544967085123,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 5.62491870564444,
+      "vertices": [
+        527,
+        977
+      ]
+    },
+    {
+      "absolute_delta_m": 0.12239561229944229,
+      "absolute_log_ratio": 1.7105453167644227,
+      "arrangement_length_m": 0.14940272271633148,
+      "arrangement_over_pattern": 5.53197733523172,
+      "component_id": "collar",
+      "edge_index": 2750,
+      "pattern_length_m": 0.02700711041688919,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 5.53197733523172,
+      "vertices": [
+        991,
+        1018
+      ]
+    },
+    {
+      "absolute_delta_m": 0.07719229348003864,
+      "absolute_log_ratio": 1.6942762356376493,
+      "arrangement_length_m": 0.09456735849380493,
+      "arrangement_over_pattern": 5.442705303196223,
+      "component_id": "bodice_back",
+      "edge_index": 116,
+      "pattern_length_m": 0.01737506501376629,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 5.442705303196223,
+      "vertices": [
+        47,
+        492
+      ]
+    },
+    {
+      "absolute_delta_m": 0.10156353563070297,
+      "absolute_log_ratio": 1.694147948232739,
+      "arrangement_length_m": 0.12442786991596222,
+      "arrangement_over_pattern": 5.442007117442361,
+      "component_id": "bodice_back",
+      "edge_index": 98,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 5.442007117442361,
+      "vertices": [
+        41,
+        47
+      ]
+    },
+    {
+      "absolute_delta_m": 0.10156353563070297,
+      "absolute_log_ratio": 1.694147948232739,
+      "arrangement_length_m": 0.12442786991596222,
+      "arrangement_over_pattern": 5.442007117442361,
+      "component_id": "bodice_front",
+      "edge_index": 1495,
+      "pattern_length_m": 0.022864334285259247,
+      "region": "BOUNDARY:shoulder_right",
+      "symmetric_distortion": 5.442007117442361,
+      "vertices": [
+        540,
+        541
+      ]
+    },
+    {
+      "absolute_delta_m": 0.10442541912198067,
+      "absolute_log_ratio": 1.6849385041060032,
+      "arrangement_length_m": 0.12820105254650116,
+      "arrangement_over_pattern": 5.392119328954817,
+      "component_id": "collar",
+      "edge_index": 2731,
+      "pattern_length_m": 0.023775633424520493,
+      "region": "BOUNDARY:back_attach",
+      "symmetric_distortion": 5.392119328954817,
+      "vertices": [
+        985,
+        1004
+      ]
+    },
+    {
+      "absolute_delta_m": 0.04539070278406143,
+      "absolute_log_ratio": 1.6794278481004317,
+      "arrangement_length_m": 0.05579547956585884,
+      "arrangement_over_pattern": 5.362486936141677,
+      "component_id": "bodice_back",
+      "edge_index": 58,
+      "pattern_length_m": 0.010404776781797409,
+      "region": "BOUNDARY_ADJACENT:armhole_left_back+shoulder_left",
+      "symmetric_distortion": 5.362486936141677,
+      "vertices": [
+        27,
+        483
+      ]
+    },
+    {
+      "absolute_delta_m": 0.06255318690091372,
+      "absolute_log_ratio": 1.6783034465022595,
+      "arrangement_length_m": 0.07691190391778946,
+      "arrangement_over_pattern": 5.356460735830033,
+      "component_id": "bodice_back",
+      "edge_index": 69,
+      "pattern_length_m": 0.014358717016875744,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 5.356460735830033,
+      "vertices": [
+        31,
+        485
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08554261550307274,
+      "absolute_log_ratio": 1.6379734907793209,
+      "arrangement_length_m": 0.10618148744106293,
+      "arrangement_over_pattern": 5.144733092006523,
+      "component_id": "bodice_back",
+      "edge_index": 65,
+      "pattern_length_m": 0.02063887193799019,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 5.144733092006523,
+      "vertices": [
+        29,
+        487
+      ]
+    },
+    {
+      "absolute_delta_m": 0.059750424697995186,
+      "absolute_log_ratio": 1.6371015417387416,
+      "arrangement_length_m": 0.07418202608823776,
+      "arrangement_over_pattern": 5.140249102112351,
+      "component_id": "bodice_front",
+      "edge_index": 1502,
+      "pattern_length_m": 0.014431601390242577,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 5.140249102112351,
+      "vertices": [
+        542,
+        982
+      ]
+    },
+    {
+      "absolute_delta_m": 0.14290938898921013,
+      "absolute_log_ratio": 1.6220769816273184,
+      "arrangement_length_m": 0.1780775934457779,
+      "arrangement_over_pattern": 5.063596399005847,
+      "component_id": "collar",
+      "edge_index": 2745,
+      "pattern_length_m": 0.035168204456567764,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 5.063596399005847,
+      "vertices": [
+        989,
+        1017
+      ]
+    },
+    {
+      "absolute_delta_m": 0.02435293048620224,
+      "absolute_log_ratio": 1.6203028218940294,
+      "arrangement_length_m": 0.030359147116541862,
+      "arrangement_over_pattern": 5.054620734654588,
+      "component_id": "bodice_back",
+      "edge_index": 142,
+      "pattern_length_m": 0.0060062166303396225,
+      "region": "BOUNDARY_ADJACENT:armhole_right_back",
+      "symmetric_distortion": 5.054620734654588,
+      "vertices": [
+        56,
+        406
+      ]
+    },
+    {
+      "absolute_delta_m": 0.04431202821433544,
+      "absolute_log_ratio": 1.6196847587677612,
+      "arrangement_length_m": 0.05524922534823418,
+      "arrangement_over_pattern": 5.051497625200043,
+      "component_id": "bodice_back",
+      "edge_index": 106,
+      "pattern_length_m": 0.010937197133898735,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 5.051497625200043,
+      "vertices": [
+        43,
+        495
+      ]
+    },
+    {
+      "absolute_delta_m": 0.049556583166122437,
+      "absolute_log_ratio": 1.6170075482533801,
+      "arrangement_length_m": 0.06182916462421417,
+      "arrangement_over_pattern": 5.037991789693771,
+      "component_id": "sleeve_right",
+      "edge_index": 3465,
+      "pattern_length_m": 0.012272581458091736,
+      "region": "BOUNDARY_ADJACENT:cap_front+underarm_front",
+      "symmetric_distortion": 5.037991789693771,
+      "vertices": [
+        1340,
+        1551
+      ]
+    },
+    {
+      "absolute_delta_m": 0.10953567735850811,
+      "absolute_log_ratio": 1.6146725516259726,
+      "arrangement_length_m": 0.13674111664295197,
+      "arrangement_over_pattern": 5.026241819265198,
+      "component_id": "collar",
+      "edge_index": 2775,
+      "pattern_length_m": 0.027205439284443855,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 5.026241819265198,
+      "vertices": [
+        1002,
+        1010
+      ]
+    },
+    {
+      "absolute_delta_m": 0.06497865729033947,
+      "absolute_log_ratio": 1.6130765262758555,
+      "arrangement_length_m": 0.0811496376991272,
+      "arrangement_over_pattern": 5.018226208166599,
+      "component_id": "bodice_back",
+      "edge_index": 67,
+      "pattern_length_m": 0.016170980408787727,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 5.018226208166599,
+      "vertices": [
+        30,
+        486
+      ]
+    },
+    {
+      "absolute_delta_m": 0.13731709495186806,
+      "absolute_log_ratio": 1.583176504010856,
+      "arrangement_length_m": 0.1727958619594574,
+      "arrangement_over_pattern": 4.870402117483233,
+      "component_id": "collar",
+      "edge_index": 2749,
+      "pattern_length_m": 0.03547876700758934,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 4.870402117483233,
+      "vertices": [
+        991,
+        1017
+      ]
+    },
+    {
+      "absolute_delta_m": 0.09133116528391838,
+      "absolute_log_ratio": 1.5830866444685205,
+      "arrangement_length_m": 0.11493116617202759,
+      "arrangement_over_pattern": 4.8699644850409864,
+      "component_id": "bodice_back",
+      "edge_index": 149,
+      "pattern_length_m": 0.023600000888109207,
+      "region": "BOUNDARY:side_right",
+      "symmetric_distortion": 4.8699644850409864,
+      "vertices": [
+        59,
+        74
+      ]
+    },
+    {
+      "absolute_delta_m": 0.09133116528391838,
+      "absolute_log_ratio": 1.5830866444685205,
+      "arrangement_length_m": 0.11493116617202759,
+      "arrangement_over_pattern": 4.8699644850409864,
+      "component_id": "bodice_front",
+      "edge_index": 1544,
+      "pattern_length_m": 0.023600000888109207,
+      "region": "BOUNDARY:side_right",
+      "symmetric_distortion": 4.8699644850409864,
+      "vertices": [
+        557,
+        558
+      ]
+    },
+    {
+      "absolute_delta_m": 0.008744554128497839,
+      "absolute_log_ratio": 1.578169702489916,
+      "arrangement_length_m": 0.011018183082342148,
+      "arrangement_over_pattern": 4.846077924769707,
+      "component_id": "sleeve_left",
+      "edge_index": 2986,
+      "pattern_length_m": 0.002273628953844309,
+      "region": "BOUNDARY_ADJACENT:underarm_front",
+      "symmetric_distortion": 4.846077924769707,
+      "vertices": [
+        1133,
+        1236
+      ]
+    },
+    {
+      "absolute_delta_m": 0.023781930096447468,
+      "absolute_log_ratio": 1.5737379134482399,
+      "arrangement_length_m": 0.0062180692330002785,
+      "arrangement_over_pattern": 0.20726897906616532,
+      "component_id": "bodice_front",
+      "edge_index": 2722,
+      "pattern_length_m": 0.029999999329447746,
+      "region": "INTERIOR",
+      "symmetric_distortion": 4.824648649814479,
+      "vertices": [
+        975,
+        976
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08825128898024559,
+      "absolute_log_ratio": 1.5559234703328861,
+      "arrangement_length_m": 0.1118512898683548,
+      "arrangement_over_pattern": 4.739461256745577,
+      "component_id": "bodice_back",
+      "edge_index": 0,
+      "pattern_length_m": 0.023600000888109207,
+      "region": "BOUNDARY:side_left",
+      "symmetric_distortion": 4.739461256745577,
+      "vertices": [
+        0,
+        1
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08825128898024559,
+      "absolute_log_ratio": 1.5559234703328861,
+      "arrangement_length_m": 0.1118512898683548,
+      "arrangement_over_pattern": 4.739461256745577,
+      "component_id": "bodice_front",
+      "edge_index": 1408,
+      "pattern_length_m": 0.023600000888109207,
+      "region": "BOUNDARY:side_left",
+      "symmetric_distortion": 4.739461256745577,
+      "vertices": [
+        511,
+        512
+      ]
+    },
+    {
+      "absolute_delta_m": 0.04552399553358555,
+      "absolute_log_ratio": 1.5416624739873892,
+      "arrangement_length_m": 0.057920411229133606,
+      "arrangement_over_pattern": 4.672351480592463,
+      "component_id": "bodice_front",
+      "edge_index": 1449,
+      "pattern_length_m": 0.012396415695548058,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 4.672351480592463,
+      "vertices": [
+        524,
+        975
+      ]
+    },
+    {
+      "absolute_delta_m": 0.10988878086209297,
+      "absolute_log_ratio": 1.5410444364513227,
+      "arrangement_length_m": 0.13983559608459473,
+      "arrangement_over_pattern": 4.669464684161927,
+      "component_id": "collar",
+      "edge_index": 2773,
+      "pattern_length_m": 0.029946815222501755,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 4.669464684161927,
+      "vertices": [
+        1001,
+        1010
+      ]
+    },
+    {
+      "absolute_delta_m": 0.06149619072675705,
+      "absolute_log_ratio": 1.5403462378071846,
+      "arrangement_length_m": 0.07826998829841614,
+      "arrangement_over_pattern": 4.6662056081242245,
+      "component_id": "bodice_back",
+      "edge_index": 115,
+      "pattern_length_m": 0.016773797571659088,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 4.6662056081242245,
+      "vertices": [
+        46,
+        493
+      ]
+    },
+    {
+      "absolute_delta_m": 0.05972314812242985,
+      "absolute_log_ratio": 1.5282841511124066,
+      "arrangement_length_m": 0.07626576721668243,
+      "arrangement_over_pattern": 4.610259523123488,
+      "component_id": "bodice_front",
+      "edge_index": 1493,
+      "pattern_length_m": 0.016542619094252586,
+      "region": "BOUNDARY:neckline_front",
+      "symmetric_distortion": 4.610259523123488,
+      "vertices": [
+        539,
+        540
+      ]
+    },
+    {
+      "absolute_delta_m": 0.04578179679811001,
+      "absolute_log_ratio": 1.5099495708029813,
+      "arrangement_length_m": 0.058764006942510605,
+      "arrangement_over_pattern": 4.526502520671052,
+      "component_id": "bodice_front",
+      "edge_index": 1451,
+      "pattern_length_m": 0.012982210144400597,
+      "region": "BOUNDARY_ADJACENT:shoulder_left",
+      "symmetric_distortion": 4.526502520671052,
+      "vertices": [
+        525,
+        975
+      ]
+    },
+    {
+      "absolute_delta_m": 0.026558936573565006,
+      "absolute_log_ratio": 1.5055936722031125,
+      "arrangement_length_m": 0.03413242846727371,
+      "arrangement_over_pattern": 4.506828414991438,
+      "component_id": "bodice_front",
+      "edge_index": 1522,
+      "pattern_length_m": 0.007573491893708706,
+      "region": "BOUNDARY_ADJACENT:armhole_right_front",
+      "symmetric_distortion": 4.506828414991438,
+      "vertices": [
+        549,
+        960
+      ]
+    },
+    {
+      "absolute_delta_m": 0.11311434954404831,
+      "absolute_log_ratio": 1.502549620252389,
+      "arrangement_length_m": 0.14549629390239716,
+      "arrangement_over_pattern": 4.49313025469654,
+      "component_id": "collar",
+      "edge_index": 2752,
+      "pattern_length_m": 0.032381944358348846,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 4.49313025469654,
+      "vertices": [
+        992,
+        1018
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08084040507674217,
+      "absolute_log_ratio": 1.4869472722013504,
+      "arrangement_length_m": 0.10445329546928406,
+      "arrangement_over_pattern": 4.423570928117956,
+      "component_id": "sleeve_right",
+      "edge_index": 3464,
+      "pattern_length_m": 0.023612890392541885,
+      "region": "BOUNDARY:underarm_front",
+      "symmetric_distortion": 4.423570928117956,
+      "vertices": [
+        1340,
+        1352
+      ]
+    },
+    {
+      "absolute_delta_m": 0.09490607678890228,
+      "absolute_log_ratio": 1.4818718050681132,
+      "arrangement_length_m": 0.12280997633934021,
+      "arrangement_over_pattern": 4.401176119393421,
+      "component_id": "collar",
+      "edge_index": 2753,
+      "pattern_length_m": 0.027903899550437927,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 4.401176119393421,
+      "vertices": [
+        992,
+        1019
+      ]
+    },
+    {
+      "absolute_delta_m": 0.0774218775331974,
+      "absolute_log_ratio": 1.4536719285030737,
+      "arrangement_length_m": 0.10103476792573929,
+      "arrangement_over_pattern": 4.278797141990336,
+      "component_id": "sleeve_left",
+      "edge_index": 2923,
+      "pattern_length_m": 0.023612890392541885,
+      "region": "BOUNDARY:underarm_front",
+      "symmetric_distortion": 4.278797141990336,
+      "vertices": [
+        1110,
+        1122
+      ]
+    },
+    {
+      "absolute_delta_m": 0.019348564092069864,
+      "absolute_log_ratio": 1.4213832839606195,
+      "arrangement_length_m": 0.02550494484603405,
+      "arrangement_over_pattern": 4.142847212562517,
+      "component_id": "bodice_back",
+      "edge_index": 134,
+      "pattern_length_m": 0.006156380753964186,
+      "region": "BOUNDARY_ADJACENT:armhole_right_back",
+      "symmetric_distortion": 4.142847212562517,
+      "vertices": [
+        53,
+        447
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08350290358066559,
+      "absolute_log_ratio": 1.4188470845054857,
+      "arrangement_length_m": 0.11016110330820084,
+      "arrangement_over_pattern": 4.132353438496279,
+      "component_id": "collar",
+      "edge_index": 2778,
+      "pattern_length_m": 0.026658199727535248,
+      "region": "BOUNDARY_ADJACENT:back_attach+outer",
+      "symmetric_distortion": 4.132353438496279,
+      "vertices": [
+        1003,
+        1011
+      ]
+    },
+    {
+      "absolute_delta_m": 0.022690066136419773,
+      "absolute_log_ratio": 1.4119632247111487,
+      "arrangement_length_m": 0.007309933193027973,
+      "arrangement_over_pattern": 0.24366444521392386,
+      "component_id": "sleeve_right",
+      "edge_index": 3979,
+      "pattern_length_m": 0.029999999329447746,
+      "region": "INTERIOR",
+      "symmetric_distortion": 4.104004583524919,
+      "vertices": [
+        1553,
+        1554
+      ]
+    },
+    {
+      "absolute_delta_m": 0.031209014356136322,
+      "absolute_log_ratio": 1.4018420393605764,
+      "arrangement_length_m": 0.04139912500977516,
+      "arrangement_over_pattern": 4.06267668889265,
+      "component_id": "bodice_back",
+      "edge_index": 104,
+      "pattern_length_m": 0.01019011065363884,
+      "region": "BOUNDARY_ADJACENT:armhole_right_back+shoulder_right",
+      "symmetric_distortion": 4.06267668889265,
+      "vertices": [
+        42,
+        496
+      ]
+    },
+    {
+      "absolute_delta_m": 0.027380667626857758,
+      "absolute_log_ratio": 1.3978387635625862,
+      "arrangement_length_m": 0.03636841103434563,
+      "arrangement_over_pattern": 4.046445184899958,
+      "component_id": "bodice_back",
+      "edge_index": 52,
+      "pattern_length_m": 0.00898774340748787,
+      "region": "BOUNDARY_ADJACENT:armhole_left_back",
+      "symmetric_distortion": 4.046445184899958,
+      "vertices": [
+        25,
+        466
+      ]
+    },
+    {
+      "absolute_delta_m": 0.020928185433149338,
+      "absolute_log_ratio": 1.3960372924349715,
+      "arrangement_length_m": 0.0068861693143844604,
+      "arrangement_over_pattern": 0.24757609431852928,
+      "component_id": "sleeve_left",
+      "edge_index": 2939,
+      "pattern_length_m": 0.027814354747533798,
+      "region": "BOUNDARY:cap_front",
+      "symmetric_distortion": 4.03916219274955,
+      "vertices": [
+        1116,
+        1117
+      ]
+    },
+    {
+      "absolute_delta_m": 0.051224999129772186,
+      "absolute_log_ratio": 1.3948873508053858,
+      "arrangement_length_m": 0.06810575723648071,
+      "arrangement_over_pattern": 4.034520061596939,
+      "component_id": "bodice_front",
+      "edge_index": 1505,
+      "pattern_length_m": 0.016880758106708527,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 4.034520061596939,
+      "vertices": [
+        543,
+        983
+      ]
+    },
+    {
+      "absolute_delta_m": 0.08785048313438892,
+      "absolute_log_ratio": 1.3761236379270714,
+      "arrangement_length_m": 0.11753448098897934,
+      "arrangement_over_pattern": 3.9595232948315107,
+      "component_id": "collar",
+      "edge_index": 2754,
+      "pattern_length_m": 0.029683997854590416,
+      "region": "BOUNDARY_ADJACENT:front_attach+outer",
+      "symmetric_distortion": 3.9595232948315107,
+      "vertices": [
+        993,
+        1019
+      ]
+    },
+    {
+      "absolute_delta_m": 0.018417098559439182,
+      "absolute_log_ratio": 1.372536428466293,
+      "arrangement_length_m": 0.006252950988709927,
+      "arrangement_over_pattern": 0.2534632521311275,
+      "component_id": "bodice_back",
+      "edge_index": 76,
+      "pattern_length_m": 0.02467004954814911,
+      "region": "BOUNDARY:neckline_back",
+      "symmetric_distortion": 3.9453451006880345,
+      "vertices": [
+        34,
+        35
+      ]
+    },
+    {
+      "absolute_delta_m": 0.07830194383859634,
+      "absolute_log_ratio": 1.3593309125643585,
+      "arrangement_length_m": 0.10536245256662369,
+      "arrangement_over_pattern": 3.8935872797356827,
+      "component_id": "bodice_front",
+      "edge_index": 1501,
+      "pattern_length_m": 0.027060508728027344,
+      "region": "BOUNDARY_ADJACENT:shoulder_right",
+      "symmetric_distortion": 3.8935872797356827,
+      "vertices": [
+        542,
+        981
+      ]
+    }
+  ]
+}
