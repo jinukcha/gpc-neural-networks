@@ -1,0 +1,465 @@
+{
+  "assembled_package_sha256": "477cdf83907afa4fd7662268725a7189f1b6800ca6996b8abd6c874a44b73790",
+  "assembly_id": "R1C_CP2_SLEEVED_TUNIC_EXACT_ASSEMBLY",
+  "completion_modes": [
+    "STRICT",
+    "GUIDED",
+    "SAFE_AUTO"
+  ],
+  "component_instance_count": 7,
+  "component_instances": [
+    {
+      "boundary_count": 9,
+      "component_id": "BODICE_FRONT_BASIC",
+      "component_revision": 2,
+      "geometry_sha256": "ce22739f5e66a346b2eb469a6d0b93b7542f3ebf9cb8642f7f9abb887effbb75",
+      "instance_id": "bodice_front",
+      "internal_line_count": 2,
+      "mirror_source_instance_id": null,
+      "notch_count": 4
+    },
+    {
+      "boundary_count": 9,
+      "component_id": "BODICE_BACK_BASIC",
+      "component_revision": 2,
+      "geometry_sha256": "5da695956b810546cea6ae7d00ac1d331d4bceef36bd410a80992835e25909ad",
+      "instance_id": "bodice_back",
+      "internal_line_count": 2,
+      "mirror_source_instance_id": null,
+      "notch_count": 4
+    },
+    {
+      "boundary_count": 5,
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "component_revision": 2,
+      "geometry_sha256": "5593e55021e0766b5a3c9866a29e3ef20b3d86fd547e860c97dfaee62dd84f6b",
+      "instance_id": "sleeve_left",
+      "internal_line_count": 3,
+      "mirror_source_instance_id": null,
+      "notch_count": 4
+    },
+    {
+      "boundary_count": 5,
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "component_revision": 2,
+      "geometry_sha256": "8f607b80db35762da1472f39c9c38d58ca895653634f46582050e791f195ab8b",
+      "instance_id": "sleeve_right",
+      "internal_line_count": 3,
+      "mirror_source_instance_id": "sleeve_left",
+      "notch_count": 4
+    },
+    {
+      "boundary_count": 5,
+      "component_id": "COLLAR_STAND_BASIC",
+      "component_revision": 1,
+      "geometry_sha256": "452a99f1a0bef9dcc31532e68e559bd7695a137f7c28597953795240280c7529",
+      "instance_id": "collar",
+      "internal_line_count": 1,
+      "mirror_source_instance_id": null,
+      "notch_count": 2
+    },
+    {
+      "boundary_count": 4,
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "component_revision": 1,
+      "geometry_sha256": "bb28466e8654005f351434be40fe4de2a63aa66fc40be397ef3cf86c0b57fdb1",
+      "instance_id": "cuff_left",
+      "internal_line_count": 1,
+      "mirror_source_instance_id": null,
+      "notch_count": 0
+    },
+    {
+      "boundary_count": 4,
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "component_revision": 1,
+      "geometry_sha256": "c47186d8ab0a315a168cab70a6872b1e6b3951e52ea827c4f2e4e8447aca55dc",
+      "instance_id": "cuff_right",
+      "internal_line_count": 1,
+      "mirror_source_instance_id": "cuff_left",
+      "notch_count": 0
+    }
+  ],
+  "component_registry_sha256": "358521ef9ac5d90ae2811a70713fc9a22e14123c3ca6e724fd06fb8818f19777",
+  "contract": "AssembledPatternPackage/1",
+  "garment_family": "SLEEVED_TUNIC",
+  "geometry_authority": "EXACT_2D_COMPONENTS",
+  "interface_solver_receipt_sha256": "4a0a116b293a584c2bc9a183b5aacf30cbd1aa06601df40763fd1e481a75e2ab",
+  "notch_pair_count": 8,
+  "recipe_id": "R1C_CP2_SLEEVED_TUNIC_ASSEMBLY",
+  "recipe_sha256": "3e6b668ae7819202e772bcfc73ebde29fdb8f0b8c2e650d3406090c8bed490b9",
+  "required_layers": [
+    "SHELL"
+  ],
+  "resolved_parameter_set_sha256": "ae616e97c2e7b7bdf6f6771589148da2c88b3843dd6b535437024e76bde84b45",
+  "seam_count": 16,
+  "seams": [
+    {
+      "endpoint_a": {
+        "boundary_id": "shoulder_left",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "shoulder_left",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "shoulder_left",
+      "length_a_m": 0.13718600511714016,
+      "length_b_m": 0.1371860051171402,
+      "length_ratio": 1.0000000000000002,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SHOULDER",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "shoulder_right",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "shoulder_right",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "shoulder_right",
+      "length_a_m": 0.13718600511714016,
+      "length_b_m": 0.1371860051171402,
+      "length_ratio": 1.0000000000000002,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SHOULDER",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "side_left",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "side_left",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "side_left",
+      "length_a_m": 0.354,
+      "length_b_m": 0.354,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SIDE_SEAM",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "side_right",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "side_right",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "side_right",
+      "length_a_m": 0.354,
+      "length_b_m": 0.354,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SIDE_SEAM",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "cap_front",
+        "component_instance_id": "sleeve_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_left_front",
+        "component_instance_id": "bodice_front"
+      },
+      "interface_id": "left_cap_front",
+      "length_a_m": 0.2613969030034353,
+      "length_b_m": 0.2487969030034354,
+      "length_ratio": 1.050643717216311,
+      "notch_correspondence": [
+        {
+          "delta": 7.579840669569293e-07,
+          "endpoint_a_normalized": 0.5568681251238905,
+          "endpoint_b_aligned_normalized": 0.5568673671398235,
+          "passed": true,
+          "semantic_role": "FRONT_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SLEEVE_CAP",
+      "turn_of_cloth_m": 0.00117
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "cap_back",
+        "component_instance_id": "sleeve_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_left_back",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "left_cap_back",
+      "length_a_m": 0.27201291180464293,
+      "length_b_m": 0.25661291180464296,
+      "length_ratio": 1.0600125687039623,
+      "notch_correspondence": [
+        {
+          "delta": 1.1632245661141738e-06,
+          "endpoint_a_normalized": 0.5800009952626478,
+          "endpoint_b_aligned_normalized": 0.5799998320380817,
+          "passed": true,
+          "semantic_role": "BACK_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SLEEVE_CAP",
+      "turn_of_cloth_m": 0.00117
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "cap_front",
+        "component_instance_id": "sleeve_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_right_front",
+        "component_instance_id": "bodice_front"
+      },
+      "interface_id": "right_cap_front",
+      "length_a_m": 0.2613969030034353,
+      "length_b_m": 0.2487969030034354,
+      "length_ratio": 1.050643717216311,
+      "notch_correspondence": [
+        {
+          "delta": 7.579840669569293e-07,
+          "endpoint_a_normalized": 0.5568681251238905,
+          "endpoint_b_aligned_normalized": 0.5568673671398235,
+          "passed": true,
+          "semantic_role": "FRONT_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SLEEVE_CAP",
+      "turn_of_cloth_m": 0.00117
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "cap_back",
+        "component_instance_id": "sleeve_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_right_back",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "right_cap_back",
+      "length_a_m": 0.27201291180464293,
+      "length_b_m": 0.25661291180464296,
+      "length_ratio": 1.0600125687039623,
+      "notch_correspondence": [
+        {
+          "delta": 1.1632245661141738e-06,
+          "endpoint_a_normalized": 0.5800009952626478,
+          "endpoint_b_aligned_normalized": 0.5799998320380817,
+          "passed": true,
+          "semantic_role": "BACK_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "SLEEVE_CAP",
+      "turn_of_cloth_m": 0.00117
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "underarm_front",
+        "component_instance_id": "sleeve_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "underarm_back",
+        "component_instance_id": "sleeve_left"
+      },
+      "interface_id": "left_underarm",
+      "length_a_m": 0.4958706887301312,
+      "length_b_m": 0.4955909931165829,
+      "length_ratio": 1.0005643678303946,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "UNDERARM_SEAM",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "underarm_front",
+        "component_instance_id": "sleeve_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "underarm_back",
+        "component_instance_id": "sleeve_right"
+      },
+      "interface_id": "right_underarm",
+      "length_a_m": 0.4958706887301312,
+      "length_b_m": 0.4955909931165829,
+      "length_ratio": 1.0005643678303946,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "UNDERARM_SEAM",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "front_attach",
+        "component_instance_id": "collar"
+      },
+      "endpoint_b": {
+        "boundary_id": "neckline_front",
+        "component_instance_id": "bodice_front"
+      },
+      "interface_id": "collar_front",
+      "length_a_m": 0.2525963751672473,
+      "length_b_m": 0.2525963751672473,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "COLLAR_ATTACH",
+      "turn_of_cloth_m": 0.00117
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "back_attach",
+        "component_instance_id": "collar"
+      },
+      "endpoint_b": {
+        "boundary_id": "neckline_back",
+        "component_instance_id": "bodice_back"
+      },
+      "interface_id": "collar_back",
+      "length_a_m": 0.1902050735105243,
+      "length_b_m": 0.1902050735105243,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "COLLAR_ATTACH",
+      "turn_of_cloth_m": 0.00117
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "sleeve_attach",
+        "component_instance_id": "cuff_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "wrist",
+        "component_instance_id": "sleeve_left"
+      },
+      "interface_id": "cuff_left_attach",
+      "length_a_m": 0.2537966654596548,
+      "length_b_m": 0.2537966654596548,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "CUFF_ATTACH",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "sleeve_attach",
+        "component_instance_id": "cuff_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "wrist",
+        "component_instance_id": "sleeve_right"
+      },
+      "interface_id": "cuff_right_attach",
+      "length_a_m": 0.2537966654596548,
+      "length_b_m": 0.2537966654596548,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "CUFF_ATTACH",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "end_left",
+        "component_instance_id": "cuff_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "end_right",
+        "component_instance_id": "cuff_left"
+      },
+      "interface_id": "cuff_left_end",
+      "length_a_m": 0.06664,
+      "length_b_m": 0.06664,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "CUFF_END_SEAM",
+      "turn_of_cloth_m": 0.0
+    },
+    {
+      "endpoint_a": {
+        "boundary_id": "end_left",
+        "component_instance_id": "cuff_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "end_right",
+        "component_instance_id": "cuff_right"
+      },
+      "interface_id": "cuff_right_end",
+      "length_a_m": 0.06664,
+      "length_b_m": 0.06664,
+      "length_ratio": 1.0,
+      "notch_correspondence": [],
+      "seam_allowance_a_m": 0.012,
+      "seam_allowance_b_m": 0.012,
+      "semantic_role": "CUFF_END_SEAM",
+      "turn_of_cloth_m": 0.0
+    }
+  ],
+  "simulation_executed": false,
+  "three_dimensional_primitive_fallback": false,
+  "topology_change_policy": "HOLD",
+  "triangulation_executed": false
+}

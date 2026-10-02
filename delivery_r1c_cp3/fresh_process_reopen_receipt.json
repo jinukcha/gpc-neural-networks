@@ -1,0 +1,12 @@
+{
+  "contract": "CompletionFreshProcessReopenReceipt/1",
+  "deterministic_rerun_pass": true,
+  "fresh_process_reopen_pass": true,
+  "guided_state_preserved": true,
+  "hold_state_preserved": true,
+  "receipt_sha256": "cfe0318f66c1a3786c006dbd7c38ee739ccf8793f4a60313db745ea455290687",
+  "reopen_process_id": 2159,
+  "rollback_state_preserved": true,
+  "safe_state_matches_canonical": true,
+  "writer_process_id": 2151
+}

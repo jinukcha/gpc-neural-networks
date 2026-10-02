@@ -1,0 +1,20 @@
+{
+  "atomic_commit_required": true,
+  "candidate_state_sha256": "69ec27b823e6ea1cb7495ac9427b32c5b3288166cfdcec5b6cb980dc2b8928c9",
+  "canonical_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "contract": "RepairPlan/1",
+  "diagnosis_report_sha256": "7bc0eec9280855380a1d4f5387bddc806305fe40c4b86b0e1ffa586fe3d5a957",
+  "guided_issue_ids": [],
+  "hold_issue_ids": [
+    "ISSUE_MISSING_COMPONENT_3bd6b5790532",
+    "ISSUE_MISSING_INTERFACE_47490239b6f4",
+    "ISSUE_MISSING_INTERFACE_4a69a5f33e74"
+  ],
+  "operation_count": 0,
+  "operations": [],
+  "plan_id": "R1C_CP3_HOLD_PLAN",
+  "plan_sha256": "c0e17fb90740837eea47acc17ca25ac69f0345be938e5c7ca3b4e887096d6e05",
+  "status": "HOLD_TOPOLOGY_CHANGE_REQUIRED",
+  "strongest_disposition": "HOLD",
+  "topology_change_auto_commit": false
+}

@@ -1,0 +1,15 @@
+{
+  "after_state_sha256": "018fb820c254c300792f341a6bf4e269aba66ad387d1e0d4070b37916012eebb",
+  "before_state_sha256": "018fb820c254c300792f341a6bf4e269aba66ad387d1e0d4070b37916012eebb",
+  "committed_operation_count": 0,
+  "contract": "CompletionTransactionReceipt/1",
+  "error": "INJECTED_TRANSACTION_FAILURE",
+  "partial_publication_count": 0,
+  "plan_sha256": "74b2e9756f9e577ead681e7776059de5c9e04f086dca5ebdb9aeb8d2a32545d8",
+  "receipt_sha256": "48089254c31a7b763c28322fbc8093dca41d367d8d3369b2efb0d3c5916c36b1",
+  "rollback_performed": true,
+  "state_preserved": true,
+  "status": "ROLLED_BACK_ATOMIC",
+  "transaction_id": "R1C_CP3_FORCED_ROLLBACK",
+  "working_operation_count_before_failure": 2
+}

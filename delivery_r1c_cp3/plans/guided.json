@@ -1,0 +1,34 @@
+{
+  "atomic_commit_required": true,
+  "candidate_state_sha256": "c03960de19d7d36fed3f8d0212937089bb431b20f733b2435a26f2a3a8483570",
+  "canonical_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "contract": "RepairPlan/1",
+  "diagnosis_report_sha256": "ac3a98c82e8045ed66e70f4ec951015c96cabe178c477ad26335cc946597f254",
+  "guided_issue_ids": [
+    "ISSUE_TANGENT_DRIFT_60b59bd8c12e"
+  ],
+  "hold_issue_ids": [],
+  "operation_count": 1,
+  "operations": [
+    {
+      "budget": 0.012,
+      "disposition": "GUIDED",
+      "issue_ids": [
+        "ISSUE_SEAM_LENGTH_MISMATCH_5122af9202de",
+        "ISSUE_SEAM_LENGTH_MISMATCH_a1ba91ea87db",
+        "ISSUE_SEAM_LENGTH_MISMATCH_b668d2c471a9",
+        "ISSUE_TANGENT_DRIFT_60b59bd8c12e"
+      ],
+      "maximum_delta": 0.008000000000000007,
+      "operation_id": "OP_RESTORE_SEGMENT_1bbfb0e85f89",
+      "operation_kind": "RESTORE_SEGMENT",
+      "source_path": "canonical/geometry/bodice_front/segment/armhole_left_curve",
+      "target_path": "geometry/bodice_front/segment/armhole_left_curve"
+    }
+  ],
+  "plan_id": "R1C_CP3_GUIDED_PLAN",
+  "plan_sha256": "76169f3a5bfe9b1b66115b8358cfa05b26cbd6ecdcedd340992c88429657224c",
+  "status": "GUIDED_DECISION_REQUIRED",
+  "strongest_disposition": "GUIDED",
+  "topology_change_auto_commit": false
+}

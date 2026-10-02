@@ -1,0 +1,14 @@
+{
+  "after_state_sha256": "69ec27b823e6ea1cb7495ac9427b32c5b3288166cfdcec5b6cb980dc2b8928c9",
+  "before_state_sha256": "69ec27b823e6ea1cb7495ac9427b32c5b3288166cfdcec5b6cb980dc2b8928c9",
+  "committed_operation_count": 0,
+  "contract": "CompletionTransactionReceipt/1",
+  "partial_publication_count": 0,
+  "plan_sha256": "c0e17fb90740837eea47acc17ca25ac69f0345be938e5c7ca3b4e887096d6e05",
+  "receipt_sha256": "5ba8384329ca10cc072d93aa173cf3803e9517d5f26e2f63fa10c9c1f08f673b",
+  "rollback_performed": false,
+  "state_preserved": true,
+  "status": "REJECTED_HOLD",
+  "transaction_id": "R1C_CP3_HOLD_REJECT",
+  "working_operation_count_before_failure": 0
+}

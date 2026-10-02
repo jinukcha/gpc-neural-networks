@@ -1,0 +1,26 @@
+{
+  "bounded_repair": [
+    "TANGENT_DRIFT",
+    "ENDPOINT_DRIFT",
+    "SEAM_LENGTH_MISMATCH"
+  ],
+  "contract": "CompletionRepairPolicy/1",
+  "final_mesh_repair": "FORBIDDEN",
+  "guided_geometry_budget_m": 0.012,
+  "guided_seam_ratio_delta": 0.04,
+  "modes": [
+    "STRICT",
+    "GUIDED",
+    "SAFE_AUTO"
+  ],
+  "policy_sha256": "c0c110ac5e8ddd33dffc5cc946b54a4d29c8e05bee43e2e876f198f7d492cb11",
+  "safe_completion": [
+    "MIRROR_COMPONENT",
+    "MISSING_INTERFACE",
+    "MISSING_PARAMETER",
+    "MISSING_NOTCH"
+  ],
+  "safe_geometry_budget_m": 0.003,
+  "safe_seam_ratio_delta": 0.015,
+  "topology_auto_commit": false
+}

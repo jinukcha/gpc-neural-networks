@@ -1,0 +1,18 @@
+{
+  "before_snapshot_sha256": "816bfd8cfb51c7cf22d82b79fb8c5c3fd14288c06161ba88bfdaba749cc83366",
+  "before_state_sha256": "c03960de19d7d36fed3f8d0212937089bb431b20f733b2435a26f2a3a8483570",
+  "blocked_by_topology_change": false,
+  "changed_owner_paths": [
+    "geometry/bodice_front/segment/armhole_left_curve"
+  ],
+  "contract": "RepairPreview/1",
+  "operation_count": 1,
+  "plan_sha256": "76169f3a5bfe9b1b66115b8358cfa05b26cbd6ecdcedd340992c88429657224c",
+  "preview_id": "R1C_CP3_GUIDED_PREVIEW",
+  "preview_sha256": "13f8ed01ed026586a2c0c4c9c713c27ed27383365aba8c4305c8359db033a689",
+  "projected_after_snapshot_sha256": "35f22f8ff33200be3c52f28fae8d70869e4a62b13b20795a782ad499244de438",
+  "projected_after_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "projected_matches_canonical": true,
+  "requires_user_approval": true,
+  "source_state_mutated": false
+}

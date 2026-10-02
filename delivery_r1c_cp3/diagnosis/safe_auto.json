@@ -1,0 +1,333 @@
+{
+  "candidate_state_sha256": "018fb820c254c300792f341a6bf4e269aba66ad387d1e0d4070b37916012eebb",
+  "canonical_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "contract": "CompletionDiagnosisReport/1",
+  "diagnosis_id": "R1C_CP3_SAFE_AUTO_DIAGNOSIS",
+  "disposition_counts": {
+    "GUIDED": 0,
+    "HOLD": 0,
+    "SAFE_AUTO": 14
+  },
+  "issue_count": 14,
+  "issues": [
+    {
+      "budget": null,
+      "category": "MISSING_COMPONENT",
+      "delta": null,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "boundary_count": 4,
+        "component_id": "CUFF_STRAIGHT_BASIC",
+        "component_revision": 1,
+        "geometry_sha256": "c47186d8ab0a315a168cab70a6872b1e6b3951e52ea827c4f2e4e8447aca55dc",
+        "instance_id": "cuff_right",
+        "internal_line_count": 1,
+        "mirror_source_instance_id": "cuff_left",
+        "notch_count": 0
+      },
+      "issue_id": "ISSUE_MISSING_COMPONENT_fb249ce14675",
+      "issue_sha256": "1ecae5048b4f4086f3f4f0c935c6c7a97a0dcb3caff0788095b6e669da6d153f",
+      "message": "required component instance is absent",
+      "observed": null,
+      "owner_path": "component/cuff_right",
+      "repair_targets": [
+        "component/cuff_right"
+      ]
+    },
+    {
+      "budget": 0.003,
+      "category": "TANGENT_DRIFT",
+      "delta": 0.0015000000000000013,
+      "disposition": "SAFE_AUTO",
+      "expected": 0.0,
+      "issue_id": "ISSUE_TANGENT_DRIFT_60b59bd8c12e",
+      "issue_sha256": "f51b62d815807fe409d12c2a8c7121eae70141932750834ae23cabecd6e1c507",
+      "message": "source pattern curve differs from immutable authority",
+      "observed": 0.0015000000000000013,
+      "owner_path": "geometry/bodice_front/segment/armhole_left_curve",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    },
+    {
+      "budget": 0.003,
+      "category": "ENDPOINT_DRIFT",
+      "delta": 0.0011999999999999789,
+      "disposition": "SAFE_AUTO",
+      "expected": 0.0,
+      "issue_id": "ISSUE_ENDPOINT_DRIFT_6fd88ccd98ca",
+      "issue_sha256": "a90f9916344e83b17d55e6627ea98138e8bf41432d6b44fb772a87e9ec27d78e",
+      "message": "source pattern curve differs from immutable authority",
+      "observed": 0.0011999999999999789,
+      "owner_path": "geometry/cuff_left/segment/sleeve_attach_line",
+      "repair_targets": [
+        "geometry/cuff_left/segment/sleeve_attach_line"
+      ]
+    },
+    {
+      "budget": null,
+      "category": "MISSING_NOTCH",
+      "delta": null,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "arc_length_m": 0.14556343318033707,
+        "boundary_id": "cap_front",
+        "normalized_arc": 0.5568681251238905,
+        "notch_id": "FRONT_PITCH",
+        "point_m": [
+          0.13945346806754227,
+          0.5563896164341798
+        ],
+        "semantic_role": "FRONT_PITCH"
+      },
+      "issue_id": "ISSUE_MISSING_NOTCH_e7fd75c82ce8",
+      "issue_sha256": "87f27e34c16b9a9c27443e35f88fa3f2f769bbbb7fa45f530ad9354169523e51",
+      "message": "semantic notch is absent",
+      "observed": null,
+      "owner_path": "geometry/sleeve_right/notch/FRONT_PITCH",
+      "repair_targets": [
+        "geometry/sleeve_right/notch/FRONT_PITCH"
+      ]
+    },
+    {
+      "budget": null,
+      "category": "MISSING_INTERFACE",
+      "delta": null,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "endpoint_a": {
+          "boundary_id": "back_attach",
+          "component_instance_id": "collar"
+        },
+        "endpoint_b": {
+          "boundary_id": "neckline_back",
+          "component_instance_id": "bodice_back"
+        },
+        "interface_id": "collar_back",
+        "length_a_m": 0.1902050735105243,
+        "length_b_m": 0.1902050735105243,
+        "length_ratio": 1.0,
+        "notch_correspondence": [],
+        "seam_allowance_a_m": 0.012,
+        "seam_allowance_b_m": 0.012,
+        "semantic_role": "COLLAR_ATTACH",
+        "turn_of_cloth_m": 0.00117
+      },
+      "issue_id": "ISSUE_MISSING_INTERFACE_4a69a5f33e74",
+      "issue_sha256": "48f71d589b2dc0ec3f9f401c38edd1e9ed96990da7a897a938edc682d9b9114f",
+      "message": "assembly interface is absent",
+      "observed": null,
+      "owner_path": "seam/collar_back",
+      "repair_targets": [
+        "seam/collar_back"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 8.145580418437011e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2525963751672473,
+        "length_b_m": 0.2525963751672473
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_b668d2c471a9",
+      "issue_sha256": "da132c748504defa479e39fca0b959a8ea59ccfb469af815cb5ece4534c3a18a",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.2525963751672473,
+        "length_b_m": 0.2525961694128386
+      },
+      "owner_path": "seam/collar_front/length",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 0.004728194508886244,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2537966654596548,
+        "length_b_m": 0.2537966654596548
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_5160bcc52565",
+      "issue_sha256": "6a9d9ff0e16a3184034666f5a926e95feef28e4547fa7a167ae14551968c2726",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.25499666545965477,
+        "length_b_m": 0.25379666545965485
+      },
+      "owner_path": "seam/cuff_left_attach/length",
+      "repair_targets": [
+        "geometry/cuff_left/segment/sleeve_attach_line"
+      ]
+    },
+    {
+      "budget": null,
+      "category": "MISSING_INTERFACE",
+      "delta": null,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "endpoint_a": {
+          "boundary_id": "sleeve_attach",
+          "component_instance_id": "cuff_right"
+        },
+        "endpoint_b": {
+          "boundary_id": "wrist",
+          "component_instance_id": "sleeve_right"
+        },
+        "interface_id": "cuff_right_attach",
+        "length_a_m": 0.2537966654596548,
+        "length_b_m": 0.2537966654596548,
+        "length_ratio": 1.0,
+        "notch_correspondence": [],
+        "seam_allowance_a_m": 0.012,
+        "seam_allowance_b_m": 0.012,
+        "semantic_role": "CUFF_ATTACH",
+        "turn_of_cloth_m": 0.0
+      },
+      "issue_id": "ISSUE_MISSING_INTERFACE_3a6e0f788d9c",
+      "issue_sha256": "32b6557b7b530525c1bf4b93d7b0133a3330ac977914ef623db96ed9ddd27192",
+      "message": "assembly interface is absent",
+      "observed": null,
+      "owner_path": "seam/cuff_right_attach",
+      "repair_targets": [
+        "seam/cuff_right_attach"
+      ]
+    },
+    {
+      "budget": null,
+      "category": "MISSING_INTERFACE",
+      "delta": null,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "endpoint_a": {
+          "boundary_id": "end_left",
+          "component_instance_id": "cuff_right"
+        },
+        "endpoint_b": {
+          "boundary_id": "end_right",
+          "component_instance_id": "cuff_right"
+        },
+        "interface_id": "cuff_right_end",
+        "length_a_m": 0.06664,
+        "length_b_m": 0.06664,
+        "length_ratio": 1.0,
+        "notch_correspondence": [],
+        "seam_allowance_a_m": 0.012,
+        "seam_allowance_b_m": 0.012,
+        "semantic_role": "CUFF_END_SEAM",
+        "turn_of_cloth_m": 0.0
+      },
+      "issue_id": "ISSUE_MISSING_INTERFACE_2bde6ada9772",
+      "issue_sha256": "91cada11f9568c46c6f337fdc4de3d3ba4705ba52f45fb95cf56409d47e6fc65",
+      "message": "assembly interface is absent",
+      "observed": null,
+      "owner_path": "seam/cuff_right_end",
+      "repair_targets": [
+        "seam/cuff_right_end"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 4.289941124268597e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.27201291180464293,
+        "length_b_m": 0.25661291180464296
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_42d467065cdb",
+      "issue_sha256": "6285595bdb7c94cc0263c3e107cfab96ff24ee2dfbf8b0fbb9f2a4bbd9db22d2",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.27201279511270526,
+        "length_b_m": 0.2566128861712434
+      },
+      "owner_path": "seam/left_cap_back/length",
+      "repair_targets": []
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 0.0008545301477143602,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2613969030034353,
+        "length_b_m": 0.2487969030034354
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_5122af9202de",
+      "issue_sha256": "f69d18213cd2ba63ea7dd2a51a0e83c72ba5dd7cd45543958b0c2828215561f7",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.2613968266337707,
+        "length_b_m": 0.248584298549161
+      },
+      "owner_path": "seam/left_cap_front/length",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    },
+    {
+      "budget": null,
+      "category": "MISSING_PARAMETER",
+      "delta": null,
+      "disposition": "SAFE_AUTO",
+      "expected": 0.012,
+      "issue_id": "ISSUE_MISSING_PARAMETER_557358b2007e",
+      "issue_sha256": "4e9d2a49d896fa686c39d73e25fe1ba43c242366f448a758a8e22d740c75d5b2",
+      "message": "required seam parameter is absent",
+      "observed": null,
+      "owner_path": "seam/left_underarm/field/seam_allowance_b_m",
+      "repair_targets": [
+        "seam/left_underarm/field/seam_allowance_b_m"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 4.289941124268597e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.27201291180464293,
+        "length_b_m": 0.25661291180464296
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_c52c7e99cf12",
+      "issue_sha256": "28d138299facbaa49cf7cf11dd5e3a5045263c3ee5ae9aeb6aed21be91398c01",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.27201279511270526,
+        "length_b_m": 0.2566128861712434
+      },
+      "owner_path": "seam/right_cap_back/length",
+      "repair_targets": []
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 2.921597913757327e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2613969030034353,
+        "length_b_m": 0.2487969030034354
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_a1ba91ea87db",
+      "issue_sha256": "6b366f662c8b3b5271ef9029a41ceacb13ce64970feb2bad9f17707e974ed8f9",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.2613968266337707,
+        "length_b_m": 0.24879688795412488
+      },
+      "owner_path": "seam/right_cap_front/length",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    }
+  ],
+  "report_sha256": "503c9eb7d26bf4d6ff7a513d4ba721f31db576201b80fa722d00898f1365cc94",
+  "simulation_executed": false,
+  "strongest_disposition": "SAFE_AUTO",
+  "triangulation_executed": false
+}

@@ -1,0 +1,15 @@
+{
+  "after_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "before_state_sha256": "018fb820c254c300792f341a6bf4e269aba66ad387d1e0d4070b37916012eebb",
+  "committed_operation_count": 8,
+  "contract": "CompletionTransactionReceipt/1",
+  "matches_canonical_authority": true,
+  "partial_publication_count": 0,
+  "plan_sha256": "74b2e9756f9e577ead681e7776059de5c9e04f086dca5ebdb9aeb8d2a32545d8",
+  "receipt_sha256": "f220e50b1579053c71d38f032dcc7f366b34c2d272a9b433b0c51366999b8876",
+  "rollback_performed": false,
+  "state_preserved": false,
+  "status": "COMMITTED_SAFE_AUTO",
+  "transaction_id": "R1C_CP3_SAFE_COMMIT",
+  "working_operation_count_before_failure": 0
+}

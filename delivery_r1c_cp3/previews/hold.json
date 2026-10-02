@@ -1,0 +1,16 @@
+{
+  "before_snapshot_sha256": "6fc141ce2ea80bd5dde9801628fd90528fb8cb54890ffb5fcbbbda5ab59e15fb",
+  "before_state_sha256": "69ec27b823e6ea1cb7495ac9427b32c5b3288166cfdcec5b6cb980dc2b8928c9",
+  "blocked_by_topology_change": true,
+  "changed_owner_paths": [],
+  "contract": "RepairPreview/1",
+  "operation_count": 0,
+  "plan_sha256": "c0e17fb90740837eea47acc17ca25ac69f0345be938e5c7ca3b4e887096d6e05",
+  "preview_id": "R1C_CP3_HOLD_PREVIEW",
+  "preview_sha256": "270824429ec64cc68f1539e2f176d3648949f7783b231d1ed205eafc67878087",
+  "projected_after_snapshot_sha256": null,
+  "projected_after_state_sha256": null,
+  "projected_matches_canonical": false,
+  "requires_user_approval": false,
+  "source_state_mutated": false
+}

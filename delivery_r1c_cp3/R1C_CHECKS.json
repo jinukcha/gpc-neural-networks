@@ -1,0 +1,40 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP3",
+  "evidence": {
+    "height": 1680,
+    "path": "build/r1c_cp3/cp3_completion_repair_evidence.png",
+    "width": 2400
+  },
+  "issues": {
+    "guided": 7,
+    "hold": 7,
+    "safe": 14
+  },
+  "partial_publication_count": 0,
+  "predecessor_preservation": true,
+  "safe_repaired_matches_canonical": true,
+  "schema_count": 5,
+  "simulation_executed": false,
+  "source_budget": {
+    "files_checked": 16,
+    "files_over_500": [],
+    "functions_over_80": [],
+    "maximum_file": [
+      "source/wuxia_garment_oss/completion/diagnosis.py",
+      233
+    ],
+    "maximum_function": [
+      "source/wuxia_garment_oss/completion/contracts.py",
+      "cp3_schemas",
+      71
+    ]
+  },
+  "transactions": {
+    "forced_rollback": "ROLLED_BACK_ATOMIC",
+    "guided_wait": "AWAITING_GUIDED_APPROVAL",
+    "safe_commit": "COMMITTED_SAFE_AUTO",
+    "topology_hold": "REJECTED_HOLD"
+  },
+  "triangulation_executed": false,
+  "validation": "PASS"
+}

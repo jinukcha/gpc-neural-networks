@@ -1,0 +1,25 @@
+{
+  "before_snapshot_sha256": "f5cfd67ca9e0dc70488ba8f795f38f67f4b58fe234cb509b0e8d95562da51fab",
+  "before_state_sha256": "018fb820c254c300792f341a6bf4e269aba66ad387d1e0d4070b37916012eebb",
+  "blocked_by_topology_change": false,
+  "changed_owner_paths": [
+    "component/cuff_right",
+    "geometry/bodice_front/segment/armhole_left_curve",
+    "geometry/cuff_left/segment/sleeve_attach_line",
+    "geometry/sleeve_right/notch/FRONT_PITCH",
+    "seam/collar_back",
+    "seam/cuff_right_attach",
+    "seam/cuff_right_end",
+    "seam/left_underarm/field/seam_allowance_b_m"
+  ],
+  "contract": "RepairPreview/1",
+  "operation_count": 8,
+  "plan_sha256": "74b2e9756f9e577ead681e7776059de5c9e04f086dca5ebdb9aeb8d2a32545d8",
+  "preview_id": "R1C_CP3_SAFE_AUTO_PREVIEW",
+  "preview_sha256": "3da39471d660bcd505c51e7496e8ebd1a498772359719cc2c0d0c4ee09057be0",
+  "projected_after_snapshot_sha256": "8cb5aef37a1a615662e3654d2b73211facb308c3fb88590a1ba66d8bab6e68a0",
+  "projected_after_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "projected_matches_canonical": true,
+  "requires_user_approval": false,
+  "source_state_mutated": false
+}

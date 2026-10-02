@@ -1,0 +1,153 @@
+{
+  "candidate_state_sha256": "c03960de19d7d36fed3f8d0212937089bb431b20f733b2435a26f2a3a8483570",
+  "canonical_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "contract": "CompletionDiagnosisReport/1",
+  "diagnosis_id": "R1C_CP3_GUIDED_DIAGNOSIS",
+  "disposition_counts": {
+    "GUIDED": 1,
+    "HOLD": 0,
+    "SAFE_AUTO": 6
+  },
+  "issue_count": 7,
+  "issues": [
+    {
+      "budget": 0.012,
+      "category": "TANGENT_DRIFT",
+      "delta": 0.008000000000000007,
+      "disposition": "GUIDED",
+      "expected": 0.0,
+      "issue_id": "ISSUE_TANGENT_DRIFT_60b59bd8c12e",
+      "issue_sha256": "ace512951613fb7dc2c032399502b0e18eee341dd71692e8ad4202ca42d3908c",
+      "message": "source pattern curve differs from immutable authority",
+      "observed": 0.008000000000000007,
+      "owner_path": "geometry/bodice_front/segment/armhole_left_curve",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 2.1436108079120992e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.1902050735105243,
+        "length_b_m": 0.1902050735105243
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_80dc74c00b00",
+      "issue_sha256": "c19ea2ac155cfe34f5788fa7e9d5fa62f4ebe2b083f18e6e99e75d8b9090ba60",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.1902050735105243,
+        "length_b_m": 0.19020503273795916
+      },
+      "owner_path": "seam/collar_back/length",
+      "repair_targets": []
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 8.145580418437011e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2525963751672473,
+        "length_b_m": 0.2525963751672473
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_b668d2c471a9",
+      "issue_sha256": "da132c748504defa479e39fca0b959a8ea59ccfb469af815cb5ece4534c3a18a",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.2525963751672473,
+        "length_b_m": 0.2525961694128386
+      },
+      "owner_path": "seam/collar_front/length",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 4.289941124268597e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.27201291180464293,
+        "length_b_m": 0.25661291180464296
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_42d467065cdb",
+      "issue_sha256": "6285595bdb7c94cc0263c3e107cfab96ff24ee2dfbf8b0fbb9f2a4bbd9db22d2",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.27201279511270526,
+        "length_b_m": 0.2566128861712434
+      },
+      "owner_path": "seam/left_cap_back/length",
+      "repair_targets": []
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 0.004109423676976483,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2613969030034353,
+        "length_b_m": 0.2487969030034354
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_5122af9202de",
+      "issue_sha256": "aae86dca131ce66bfb2072680ad282a11d470a81c3ac7076aae1bfee059b516a",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.2613968266337707,
+        "length_b_m": 0.24777449111947467
+      },
+      "owner_path": "seam/left_cap_front/length",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 4.289941124268597e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.27201291180464293,
+        "length_b_m": 0.25661291180464296
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_c52c7e99cf12",
+      "issue_sha256": "28d138299facbaa49cf7cf11dd5e3a5045263c3ee5ae9aeb6aed21be91398c01",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.27201279511270526,
+        "length_b_m": 0.2566128861712434
+      },
+      "owner_path": "seam/right_cap_back/length",
+      "repair_targets": []
+    },
+    {
+      "budget": 0.015,
+      "category": "SEAM_LENGTH_MISMATCH",
+      "delta": 2.921597913757327e-07,
+      "disposition": "SAFE_AUTO",
+      "expected": {
+        "length_a_m": 0.2613969030034353,
+        "length_b_m": 0.2487969030034354
+      },
+      "issue_id": "ISSUE_SEAM_LENGTH_MISMATCH_a1ba91ea87db",
+      "issue_sha256": "6b366f662c8b3b5271ef9029a41ceacb13ce64970feb2bad9f17707e974ed8f9",
+      "message": "physical boundary length differs from accepted source pattern",
+      "observed": {
+        "length_a_m": 0.2613968266337707,
+        "length_b_m": 0.24879688795412488
+      },
+      "owner_path": "seam/right_cap_front/length",
+      "repair_targets": [
+        "geometry/bodice_front/segment/armhole_left_curve"
+      ]
+    }
+  ],
+  "report_sha256": "ac3a98c82e8045ed66e70f4ec951015c96cabe178c477ad26335cc946597f254",
+  "simulation_executed": false,
+  "strongest_disposition": "GUIDED",
+  "triangulation_executed": false
+}

@@ -1,0 +1,117 @@
+{
+  "atomic_commit_required": true,
+  "candidate_state_sha256": "018fb820c254c300792f341a6bf4e269aba66ad387d1e0d4070b37916012eebb",
+  "canonical_state_sha256": "88664d02082e0a49b5f8df9dcc276faf5c44dd755c789158e54fe885bbcc9579",
+  "contract": "RepairPlan/1",
+  "diagnosis_report_sha256": "503c9eb7d26bf4d6ff7a513d4ba721f31db576201b80fa722d00898f1365cc94",
+  "guided_issue_ids": [],
+  "hold_issue_ids": [],
+  "operation_count": 8,
+  "operations": [
+    {
+      "budget": null,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_MISSING_COMPONENT_fb249ce14675"
+      ],
+      "maximum_delta": null,
+      "operation_id": "OP_RESTORE_COMPONENT_4e9c32a00b26",
+      "operation_kind": "RESTORE_COMPONENT",
+      "source_path": "canonical/component/cuff_right",
+      "target_path": "component/cuff_right"
+    },
+    {
+      "budget": 0.003,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_SEAM_LENGTH_MISMATCH_5122af9202de",
+        "ISSUE_SEAM_LENGTH_MISMATCH_a1ba91ea87db",
+        "ISSUE_SEAM_LENGTH_MISMATCH_b668d2c471a9",
+        "ISSUE_TANGENT_DRIFT_60b59bd8c12e"
+      ],
+      "maximum_delta": 0.0015000000000000013,
+      "operation_id": "OP_RESTORE_SEGMENT_1bbfb0e85f89",
+      "operation_kind": "RESTORE_SEGMENT",
+      "source_path": "canonical/geometry/bodice_front/segment/armhole_left_curve",
+      "target_path": "geometry/bodice_front/segment/armhole_left_curve"
+    },
+    {
+      "budget": 0.003,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_ENDPOINT_DRIFT_6fd88ccd98ca",
+        "ISSUE_SEAM_LENGTH_MISMATCH_5160bcc52565"
+      ],
+      "maximum_delta": 0.004728194508886244,
+      "operation_id": "OP_RESTORE_SEGMENT_77fb5211bed8",
+      "operation_kind": "RESTORE_SEGMENT",
+      "source_path": "canonical/geometry/cuff_left/segment/sleeve_attach_line",
+      "target_path": "geometry/cuff_left/segment/sleeve_attach_line"
+    },
+    {
+      "budget": null,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_MISSING_NOTCH_e7fd75c82ce8"
+      ],
+      "maximum_delta": null,
+      "operation_id": "OP_RESTORE_NOTCH_199d3083734d",
+      "operation_kind": "RESTORE_NOTCH",
+      "source_path": "canonical/geometry/sleeve_right/notch/FRONT_PITCH",
+      "target_path": "geometry/sleeve_right/notch/FRONT_PITCH"
+    },
+    {
+      "budget": null,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_MISSING_INTERFACE_4a69a5f33e74"
+      ],
+      "maximum_delta": null,
+      "operation_id": "OP_RESTORE_SEAM_744a08d5dea1",
+      "operation_kind": "RESTORE_SEAM",
+      "source_path": "canonical/seam/collar_back",
+      "target_path": "seam/collar_back"
+    },
+    {
+      "budget": null,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_MISSING_INTERFACE_3a6e0f788d9c"
+      ],
+      "maximum_delta": null,
+      "operation_id": "OP_RESTORE_SEAM_0060a2d08cd3",
+      "operation_kind": "RESTORE_SEAM",
+      "source_path": "canonical/seam/cuff_right_attach",
+      "target_path": "seam/cuff_right_attach"
+    },
+    {
+      "budget": null,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_MISSING_INTERFACE_2bde6ada9772"
+      ],
+      "maximum_delta": null,
+      "operation_id": "OP_RESTORE_SEAM_d6fc5a6ac812",
+      "operation_kind": "RESTORE_SEAM",
+      "source_path": "canonical/seam/cuff_right_end",
+      "target_path": "seam/cuff_right_end"
+    },
+    {
+      "budget": null,
+      "disposition": "SAFE_AUTO",
+      "issue_ids": [
+        "ISSUE_MISSING_PARAMETER_557358b2007e"
+      ],
+      "maximum_delta": null,
+      "operation_id": "OP_RESTORE_SEAM_FIELD_ec8dfab05c7a",
+      "operation_kind": "RESTORE_SEAM_FIELD",
+      "source_path": "canonical/seam/left_underarm/field/seam_allowance_b_m",
+      "target_path": "seam/left_underarm/field/seam_allowance_b_m"
+    }
+  ],
+  "plan_id": "R1C_CP3_SAFE_AUTO_PLAN",
+  "plan_sha256": "74b2e9756f9e577ead681e7776059de5c9e04f086dca5ebdb9aeb8d2a32545d8",
+  "status": "READY_SAFE_AUTO",
+  "strongest_disposition": "SAFE_AUTO",
+  "topology_change_auto_commit": false
+}

@@ -1,0 +1,14 @@
+{
+  "after_state_sha256": "c03960de19d7d36fed3f8d0212937089bb431b20f733b2435a26f2a3a8483570",
+  "before_state_sha256": "c03960de19d7d36fed3f8d0212937089bb431b20f733b2435a26f2a3a8483570",
+  "committed_operation_count": 0,
+  "contract": "CompletionTransactionReceipt/1",
+  "partial_publication_count": 0,
+  "plan_sha256": "76169f3a5bfe9b1b66115b8358cfa05b26cbd6ecdcedd340992c88429657224c",
+  "receipt_sha256": "25bf3f5e98897620f7dc0637590c2e9472baf3843539bf8345e24cdb068d658c",
+  "rollback_performed": false,
+  "state_preserved": true,
+  "status": "AWAITING_GUIDED_APPROVAL",
+  "transaction_id": "R1C_CP3_GUIDED_WAIT",
+  "working_operation_count_before_failure": 0
+}
