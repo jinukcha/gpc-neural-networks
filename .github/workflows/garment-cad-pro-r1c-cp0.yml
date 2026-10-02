@@ -80,34 +80,6 @@ jobs:
           set -euo pipefail
           env MPLBACKEND=Agg PYTHONPATH="$ROOT/source" \
             python "$ROOT/scripts/run_garment_r1c_cp0.py" --root "$ROOT"
-          python - "$ROOT" <<'PY'
-          import json,pathlib,sys
-          root=pathlib.Path(sys.argv[1])
-          receipt=json.loads((root/'build/r1c_cp0/cp0_receipt.json').read_text())
-          report=f'''# GARMENT-CAD-PRO-R1C / CP0 실행 보고서
-
-## Terminal decision
-
-```text
-terminal decision              {receipt['terminal_decision']}
-CP0 acceptance                 {receipt['cp0_acceptance']}
-component definitions          {receipt['component_definition_count']}
-component instances            {receipt['component_instance_count']}
-interfaces                     {receipt['interface_count']}
-visual gates                   {receipt['visual_gate_count']}
-required views                 {receipt['required_view_count']}
-geometry executed              false
-simulation executed            false
-Godot executed                 false
-```
-
-CP0는 exact 2D pattern component, boundary interface, garment recipe와 visual acceptance authority만 발행한다.
-R1B CP6의 rigged products와 runtime build는 immutable predecessor로 유지한다.
-'''
-          path=root/'docs/cp2b/GARMENT_CAD_PRO_R1C_CP0_EXECUTION_REPORT_KO.md'
-          path.parent.mkdir(parents=True,exist_ok=True)
-          path.write_text(report,encoding='utf-8')
-          PY
 
       - name: Test and validate CP0
         shell: bash
