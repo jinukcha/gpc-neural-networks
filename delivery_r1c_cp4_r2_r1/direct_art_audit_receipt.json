@@ -1,0 +1,43 @@
+{
+  "audit_evidence_path": "build/r1c_cp4_r2_r1/direct_art_audit/cp4_r2_r1_direct_art_audit.pdf",
+  "blocking_defects": [],
+  "contract": "CP4R2R1DirectArtAuditReceipt/1",
+  "critical_detail_iou": {
+    "neck_collar_detail": 0.9927004402687731,
+    "shoulder_cap_detail": 0.9867772528447378,
+    "underarm_detail": 0.9870108271237542
+  },
+  "decision": "PASS",
+  "minimum_silhouette_iou": 0.957653214666876,
+  "model_direct_review": true,
+  "observations": [
+    "Front, back and three-quarter silhouettes remain coherent after repair; no new detached garment mass is visible.",
+    "Sleeve-cap contour remains continuous at both shoulders and shows no collapse, floating cap or open armhole gap.",
+    "Underarm detail remains connected and readable; the local repair does not introduce a seam opening or body intersection.",
+    "Collar remains seated on the neckline with no visible floating strip or closure separation.",
+    "Left and right side silhouettes remain stable with unchanged bounding-box dimensions in the side views.",
+    "The garment-only silhouette changes are bounded: width increases by four pixels and height decreases by four pixels in the 2048-square evidence.",
+    "The repair changes local surface flow while preserving the accepted CP4-R1 overall design identity."
+  ],
+  "receipt_sha256": "59426a030e4c3e36540a016b15de5a9796e272005808b7187ee6b93677eac4c0",
+  "residual_risks": [
+    "Global p99 arrangement-over-pattern ratio remains 5.144150446835461; the current stage proves a bounded reduction rather than full isometry.",
+    "Future garment families should use the decomposition report to avoid concentrating distortion in equivalent sleeve-cap, collar and cuff regions."
+  ],
+  "review_disposition": "ACCEPT_CP4_R2_R1",
+  "reviewed_views": [
+    "front",
+    "left",
+    "right",
+    "back",
+    "front_three_quarter",
+    "back_three_quarter",
+    "garment_only",
+    "shoulder_cap_detail",
+    "underarm_detail",
+    "neck_collar_detail",
+    "wireframe_front",
+    "seam_notch_overlay"
+  ],
+  "same_camera_definition": true
+}

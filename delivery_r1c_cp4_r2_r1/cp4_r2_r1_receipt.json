@@ -1,0 +1,42 @@
+{
+  "after_ratio_p95": 1.7607425984594343,
+  "after_ratio_p99": 5.144150446835461,
+  "assertions": {
+    "all_views": true,
+    "bodice_unchanged": true,
+    "direct_art_pass": true,
+    "metric_improved": true,
+    "no_post_repair_edit": true,
+    "predecessor_preserved": true,
+    "same_camera": true,
+    "silhouette_continuity": true,
+    "source_pattern_unchanged": true,
+    "technical_pass": true
+  },
+  "before_ratio_p95": 1.8909641944071627,
+  "before_ratio_p99": 5.435521704938975,
+  "bodice_arrangement_changed": false,
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP4_R2_R1",
+  "cp4_r1_predecessor_mutated": false,
+  "cp4_r2_acceptance": true,
+  "direct_art_audit": "PASS",
+  "edge_count": 4014,
+  "maximum_local_displacement_m": 0.018000000000000044,
+  "minimum_silhouette_iou": 0.957653214666876,
+  "next_checkpoint": "GARMENT_CAD_PRO_R1C_CP5",
+  "phase": "CLOSED",
+  "post_repair_vertex_edit_count": 0,
+  "product_acceptance": true,
+  "ratio_p95_reduction_percent": 6.886518334555471,
+  "ratio_p99_reduction_percent": 5.3605021545357925,
+  "receipt_sha256": "f42dbb1b1318e57fb0bd4b030980af739ca9843280345cf2904295e742a05b70",
+  "residual_metric_risk": [
+    "Global p99 arrangement-over-pattern ratio remains 5.144150446835461; the current stage proves a bounded reduction rather than full isometry.",
+    "Future garment families should use the decomposition report to avoid concentrating distortion in equivalent sleeve-cap, collar and cuff regions."
+  ],
+  "selected_ratio_p95_reduction_percent": 19.925057620688925,
+  "selected_ratio_p99_reduction_percent": 10.334085843894023,
+  "source_pattern_changed": false,
+  "technical_pass": true,
+  "terminal_decision": "CP4_R2_ACCEPTED_METRIC_FIDELITY_AND_ART_AUDIT"
+}

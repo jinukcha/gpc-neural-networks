@@ -1,0 +1,44 @@
+{
+  "body_penetration": {
+    "maximum_m": 0.0,
+    "mean_m": 0.0,
+    "p95_m": 0.0,
+    "p99_m": 0.0,
+    "penetrating_vertex_count": 0
+  },
+  "contract": "CP4R2R1TechnicalQualificationReceipt/1",
+  "edge_strain": {
+    "maximum": 0.23096943258743619,
+    "mean": 0.00857486163123072,
+    "p95": 0.03712163659828461,
+    "p99": 0.053075207380951686
+  },
+  "gates": {
+    "body_penetration_p99": true,
+    "degenerate_triangle": true,
+    "edge_strain_p95": true,
+    "edge_strain_p99": true,
+    "non_finite_vertex": true,
+    "normal_inversion": true,
+    "post_settle_vertex_repair": true,
+    "seam_p95": true,
+    "stable_tail": true
+  },
+  "geometry": {
+    "degenerate_triangle_count": 0,
+    "minimum_triangle_area_m2": 6.768697863833364e-06,
+    "non_finite_vertex_count": 0,
+    "normal_inversion_count": 0
+  },
+  "receipt_sha256": "38af5177a62f62162778e0be604f529d7aa8d3e351bcad20acc71025645aabf3",
+  "seam": {
+    "maximum_m": 0.0,
+    "mean_m": 0.0,
+    "p95_m": 0.0
+  },
+  "settling_tail": {
+    "mean_m": 1.3303756713867187e-05,
+    "peak_m": 2.09808349609375e-05
+  },
+  "technical_pass": true
+}

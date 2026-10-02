@@ -1,0 +1,35 @@
+{
+  "after": {
+    "global_p95": 1.7607425984594343,
+    "global_p99": 5.144150446835461,
+    "selected_p95": 1.7340787553261292,
+    "selected_p99": 5.8635119763714725
+  },
+  "anchor": 0.018,
+  "before": {
+    "global_p95": 1.890965223312378,
+    "global_p99": 5.435522079467773,
+    "selected_p95": 2.16556978225708,
+    "selected_p99": 6.539287567138672
+  },
+  "bodice_arrangement_changed": false,
+  "body_clearance_projection_count": 14,
+  "contract": "IsometricArrangementRepairReceipt/1",
+  "global_metric_improved": true,
+  "iterations": 240,
+  "maximum_displacement_m": 0.018000000000000044,
+  "movable_vertex_count": 369,
+  "p95_displacement_m": 0.01763662798246494,
+  "post_repair_vertex_edit_count": 0,
+  "protected_seam_vertex_count": 371,
+  "receipt_sha256": "888a63ae5a61dfb5f0746ef1508ee1439db00feda9296148b8163e89e8db79f6",
+  "relaxation": 0.16,
+  "source_pattern_changed": false,
+  "target_components": [
+    "collar",
+    "cuff_left",
+    "cuff_right",
+    "sleeve_left",
+    "sleeve_right"
+  ]
+}
