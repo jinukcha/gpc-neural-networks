@@ -1,6 +1,8 @@
 """Exact full-front and full-back bodice pattern geometry."""
 from __future__ import annotations
 
+import math
+
 from wuxia_garment_oss.pattern_geometry.curve import boundary_length, point_at_arc
 from wuxia_garment_oss.pattern_geometry.inputs import GeometryInputs
 from wuxia_garment_oss.pattern_geometry.model import (
@@ -12,13 +14,21 @@ from wuxia_garment_oss.pattern_geometry.model import (
 )
 
 
-def _segment(segment_id: str, kind: str, *points: tuple[float, float]) -> CurveSegment:
-    return CurveSegment(segment_id, kind, tuple(Point2(x, y) for x, y in points))
-
-
 def _notch(notch_id: str, role: str, boundary: BoundaryGeometry, segments, arc: float) -> NotchPlacement:
     point, normalized = point_at_arc(boundary, segments, arc)
     return NotchPlacement(notch_id, role, boundary.boundary_id, arc, normalized, point)
+
+
+def _shoulder_x(half: float, front: bool) -> float:
+    neck_half = half * 0.26
+    front_drop = 0.018
+    front_x = half * 0.66
+    if front:
+        return front_x
+    front_length = math.hypot(front_x - neck_half, front_drop)
+    back_drop = 0.010
+    horizontal = math.sqrt(max(front_length * front_length - back_drop * back_drop, 0.0))
+    return neck_half + horizontal
 
 
 def _bodice_datums(inputs: GeometryInputs, front: bool) -> dict[str, Point2]:
@@ -27,7 +37,7 @@ def _bodice_datums(inputs: GeometryInputs, front: bool) -> dict[str, Point2]:
     underarm_y = length - inputs.armscye_depth_m
     shoulder_y = length - (0.018 if front else 0.010)
     neck_half = half * 0.26
-    shoulder_x = half * (0.66 if front else 0.68)
+    shoulder_x = _shoulder_x(half, front)
     neck_depth = inputs.neckline_depth_m if front else inputs.neckline_depth_m * 0.38
     return {
         "LEFT_HEM": Point2(-half, 0.0),
