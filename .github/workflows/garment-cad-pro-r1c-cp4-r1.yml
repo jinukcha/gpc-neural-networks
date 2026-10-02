@@ -1,0 +1,210 @@
+name: Garment CAD Pro R1C CP4-R1
+
+on:
+  push:
+    branches:
+      - garment-cad-pro-r1c-cp4-r1-20261002
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: garment-cad-pro-r1c-cp4-r1-20261002
+  cancel-in-progress: true
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: garment-cad-pro-r1c-cp4-r1-20261002
+          persist-credentials: true
+
+      - name: Download immutable R1C CP3 predecessor
+        uses: actions/download-artifact@v4
+        with:
+          name: GARMENT_R1C_CP3_FINAL
+          path: ${{ runner.temp }}/base
+          repository: jinukcha/gpc-neural-networks
+          run-id: 36971667451
+          github-token: ${{ github.token }}
+
+      - name: Restore CP3 and overlay CP4-R1 kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/work/GARMENT_R1C_CP4_R1_FINAL"
+          mkdir -p "$root/source" "$root/scripts" "$root/tests"
+          cp -a "$RUNNER_TEMP/base/." "$root/"
+          python - "$RUNNER_TEMP/base" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          base=pathlib.Path(sys.argv[1]); target=pathlib.Path(sys.argv[2])
+          def tree_hash(path):
+              digest=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  digest.update(item.relative_to(path).as_posix().encode())
+                  digest.update(hashlib.sha256(item.read_bytes()).digest())
+              return digest.hexdigest()
+          roots=tuple(f'build/rig_cp{index}' for index in range(7)) + tuple(f'build/r1c_cp{index}' for index in range(4))
+          payload={'build_roots':{name:tree_hash(base/name) for name in roots}}
+          payload['source_files']={
+              path.relative_to(base/'source').as_posix():hashlib.sha256(path.read_bytes()).hexdigest()
+              for path in (base/'source').rglob('*')
+              if path.is_file() and '__pycache__' not in path.parts and path.suffix in {'.py','.gd'}
+          }
+          target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          PY
+          cp -a r1c_cp4_r1_overlay/source/. "$root/source/"
+          cp -a r1c_cp4_r1_overlay/scripts/. "$root/scripts/"
+          cp -a r1c_cp4_r1_overlay/tests/. "$root/tests/"
+          chmod +x "$root/scripts/"*cp4_r1.py
+          echo "ROOT=$root" >> "$GITHUB_ENV"
+
+      - name: Install bounded materialization tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --no-cache-dir \
+            numpy==2.5.3 scipy==1.16.3 matplotlib==3.9.4 pillow==11.1.0 \
+            pytest==8.3.5 jsonschema==4.25.1 warp-lang==1.17.0
+
+      - name: Run orientation-aware CP4-R1 materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          env MPLBACKEND=Agg PYTHONPATH="$ROOT/source" \
+            python "$ROOT/scripts/run_garment_r1c_cp4_r1.py" --root "$ROOT"
+
+      - name: Render exact Blender 5.2.2 visual products
+        shell: bash
+        run: |
+          set -euo pipefail
+          blender_archive="$RUNNER_TEMP/blender-5.2.2-linux-x64.tar.xz"
+          curl -L --fail --retry 3 -o "$blender_archive" \
+            https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          curl -L --fail --retry 3 -o "$RUNNER_TEMP/blender-5.2.2.sha256" \
+            https://download.blender.org/release/Blender5.2/blender-5.2.2.sha256
+          expected=$(grep 'blender-5.2.2-linux-x64.tar.xz' "$RUNNER_TEMP/blender-5.2.2.sha256" | awk '{print $1}')
+          test -n "$expected"
+          echo "$expected  $blender_archive" | sha256sum -c -
+          tar -xf "$blender_archive" -C "$RUNNER_TEMP"
+          blender="$RUNNER_TEMP/blender-5.2.2-linux-x64/blender"
+          xvfb-run -a "$blender" --background --factory-startup \
+            --python "$ROOT/scripts/blender_render_garment_r1c_cp4_r1.py" -- --root "$ROOT"
+          rm -rf "$RUNNER_TEMP/blender-5.2.2-linux-x64" "$blender_archive" "$RUNNER_TEMP/blender-5.2.2.sha256"
+
+      - name: Compose visual evidence and close terminal receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/compose_garment_r1c_cp4_r1_evidence.py" --root "$ROOT"
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/finalize_garment_r1c_cp4_r1.py" --root "$ROOT"
+
+      - name: Test schemas and CP4-R1 products
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" pytest -q "$ROOT/tests/test_garment_r1c_cp4_r1.py"
+          python - "$ROOT" <<'PY'
+          import json,pathlib,sys
+          from jsonschema import Draft202012Validator
+          root=pathlib.Path(sys.argv[1])
+          paths=sorted((root/'contracts/r1c_cp4_r1').glob('*.schema.json'))
+          assert len(paths)==6
+          for path in paths:
+              Draft202012Validator.check_schema(json.loads(path.read_text()))
+          print({'schemas':len(paths),'status':'PASS'})
+          PY
+
+      - name: Verify immutable R1B and R1C CP0-CP3 owners
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT/source" -type d -name __pycache__ -prune -exec rm -rf {} +
+          find "$ROOT/source" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+          python - "$ROOT" "$RUNNER_TEMP/predecessor.json" <<'PY'
+          import hashlib,json,pathlib,sys
+          root=pathlib.Path(sys.argv[1]); before=json.loads(pathlib.Path(sys.argv[2]).read_text())
+          def tree_hash(path):
+              digest=hashlib.sha256()
+              for item in sorted(x for x in path.rglob('*') if x.is_file()):
+                  if '__pycache__' in item.parts or item.suffix in {'.pyc','.pyo'}: continue
+                  digest.update(item.relative_to(path).as_posix().encode())
+                  digest.update(hashlib.sha256(item.read_bytes()).digest())
+              return digest.hexdigest()
+          after={name:tree_hash(root/name) for name in before['build_roots']}
+          changed=[]
+          for rel,expected in before['source_files'].items():
+              path=root/'source'/rel
+              actual=hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else None
+              if actual!=expected: changed.append(rel)
+          payload={
+              'contract':'R1CCP4R1PredecessorPreservationReceipt/1',
+              'build_roots_before':before['build_roots'],
+              'build_roots_after':after,
+              'changed_predecessor_source_files':changed,
+              'all_predecessors_unchanged':after==before['build_roots'] and not changed,
+          }
+          payload['receipt_sha256']=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          target=root/'build/r1c_cp4_r1/predecessor_preservation.json'
+          target.write_text(json.dumps(payload,indent=2,sort_keys=True)+'\n')
+          assert payload['all_predecessors_unchanged'],payload
+          PY
+
+      - name: Validate terminal CP4-R1 closeout
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH="$ROOT/source" python "$ROOT/scripts/validate_garment_r1c_cp4_r1.py" --root "$ROOT"
+          python - "$ROOT" <<'PY'
+          import pathlib,sys
+          root=pathlib.Path(sys.argv[1])
+          path=root/'docs/roadmap/GARMENT_CAD_PRO_R1C_ROADMAP_KO.md'
+          marker='## CP4-R1 구현 결과'
+          if path.is_file() and marker not in path.read_text(encoding='utf-8'):
+              text=path.read_text(encoding='utf-8')
+              text += '\n\n## CP4-R1 구현 결과\n\n- orientation-aware seam correspondence: 구현\n- sleeve cap patch arrangement: 구현\n- arrangement-space compiled rest metric: 구현\n- exact wool-twill Warp settling: 구현\n- Blender 5.2.2 body-visible neutral-gray visual acceptance: 구현\n- 다음 단계: CP5 full-length straight robe panel and side-gore materialization\n'
+              path.write_text(text,encoding='utf-8')
+          PY
+
+      - name: Diet and manifest integrated bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          find "$ROOT" -type d \( -name __pycache__ -o -name .pytest_cache -o -name kernel_cache_bin -o -name .godot \) -prune -exec rm -rf {} +
+          find "$ROOT" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.blend1' -o -name '*.whl' \) -delete
+          python "$ROOT/scripts/write_manifest.py" --root "$ROOT"
+          (cd "$ROOT" && sha256sum -c MANIFEST.sha256 >/dev/null)
+
+      - name: Publish CP4-R1 evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf delivery_r1c_cp4_r1
+          mkdir -p delivery_r1c_cp4_r1/visual delivery_r1c_cp4_r1/receipts
+          cp "$ROOT/build/r1c_cp4_r1/cp4_r1_body_visible_contact_sheet.png" delivery_r1c_cp4_r1/
+          cp "$ROOT/build/r1c_cp4_r1/cp4_r1_receipt.json" delivery_r1c_cp4_r1/
+          cp "$ROOT/build/r1c_cp4_r1/product/materialized_product_receipt.json" delivery_r1c_cp4_r1/
+          cp "$ROOT/build/r1c_cp4_r1/visual/"*.png delivery_r1c_cp4_r1/visual/
+          cp "$ROOT/build/r1c_cp4_r1/"*receipt.json delivery_r1c_cp4_r1/receipts/
+          cp "$ROOT/R1C_CHECKS.json" delivery_r1c_cp4_r1/
+          git config user.name 'chatgpt-garment-cad'
+          git config user.email 'chatgpt-garment-cad@users.noreply.github.com'
+          git add delivery_r1c_cp4_r1
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish GARMENT-CAD-PRO-R1C CP4-R1 evidence [skip ci]'
+            git push origin HEAD:garment-cad-pro-r1c-cp4-r1-20261002
+          fi
+
+      - name: Upload single integrated CP4-R1 bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: GARMENT_R1C_CP4_R1_FINAL
+          path: ${{ env.ROOT }}
+          compression-level: 6
+          retention-days: 2
+          if-no-files-found: error
