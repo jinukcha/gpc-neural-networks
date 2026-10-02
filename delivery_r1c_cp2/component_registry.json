@@ -1,0 +1,598 @@
+{
+  "component_count": 6,
+  "components": [
+    {
+      "boundaries": [
+        {
+          "boundary_id": "hem_front",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "HEM_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "FRONT_HEM"
+        },
+        {
+          "boundary_id": "side_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_LEFT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SIDE_FRONT"
+        },
+        {
+          "boundary_id": "side_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_RIGHT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SIDE_FRONT"
+        },
+        {
+          "boundary_id": "armhole_left_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_FRONT",
+          "notch_ids": [
+            "PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_ARMHOLE_FRONT"
+        },
+        {
+          "boundary_id": "armhole_right_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_FRONT",
+          "notch_ids": [
+            "PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_ARMHOLE_FRONT"
+        },
+        {
+          "boundary_id": "shoulder_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_LEFT",
+          "notch_ids": [
+            "SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SHOULDER_FRONT"
+        },
+        {
+          "boundary_id": "shoulder_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_RIGHT",
+          "notch_ids": [
+            "SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SHOULDER_FRONT"
+        },
+        {
+          "boundary_id": "neckline_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "NECKLINE_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "FRONT_NECKLINE"
+        },
+        {
+          "boundary_id": "center_front_fold",
+          "curve_kind": "LINE",
+          "disposition": "FOLD",
+          "interface_family": "CENTER_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "CENTER_FRONT_FOLD"
+        }
+      ],
+      "category": "BODICE",
+      "component_id": "BODICE_FRONT_BASIC",
+      "component_sha256": "110f0ba8fb84e5f040ab30a2caa194fa022027534e4b53c566c81abc064d75c2",
+      "construction_features": [
+        "GRAINLINE",
+        "WAIST_REFERENCE",
+        "CENTER_FOLD"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "BASIC_TUNIC_BLOCK",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "side_left",
+        "side_right",
+        "armhole_left_front",
+        "armhole_right_front",
+        "shoulder_left",
+        "shoulder_right",
+        "neckline_front"
+      ],
+      "landmarks": [
+        "FRONT_CENTER_NECK",
+        "FRONT_LEFT_UNDERARM",
+        "FRONT_RIGHT_UNDERARM"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "NONE",
+      "parameter_ports": [
+        "block.front_panel_width",
+        "block.armscye_depth",
+        "component.neckline_depth"
+      ],
+      "revision": 2,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "hem_back",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "HEM_BACK",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "BACK_HEM"
+        },
+        {
+          "boundary_id": "side_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_LEFT",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SIDE_BACK"
+        },
+        {
+          "boundary_id": "side_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SIDE_RIGHT",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SIDE_BACK"
+        },
+        {
+          "boundary_id": "armhole_left_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_BACK",
+          "notch_ids": [
+            "PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_ARMHOLE_BACK"
+        },
+        {
+          "boundary_id": "armhole_right_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_BACK",
+          "notch_ids": [
+            "PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_ARMHOLE_BACK"
+        },
+        {
+          "boundary_id": "shoulder_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_LEFT",
+          "notch_ids": [
+            "SHOULDER_POINT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "LEFT_SHOULDER_BACK"
+        },
+        {
+          "boundary_id": "shoulder_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SHOULDER_RIGHT",
+          "notch_ids": [
+            "SHOULDER_POINT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "RIGHT_SHOULDER_BACK"
+        },
+        {
+          "boundary_id": "neckline_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "NECKLINE_BACK",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "BACK_NECKLINE"
+        },
+        {
+          "boundary_id": "center_back_fold",
+          "curve_kind": "LINE",
+          "disposition": "FOLD",
+          "interface_family": "CENTER_BACK",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "CENTER_BACK_FOLD"
+        }
+      ],
+      "category": "BODICE",
+      "component_id": "BODICE_BACK_BASIC",
+      "component_sha256": "239a79306e1de26017826896ce202ccff74d728ce21562c1a772caa74ac4736a",
+      "construction_features": [
+        "GRAINLINE",
+        "WAIST_REFERENCE",
+        "CENTER_FOLD"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "BASIC_TUNIC_BLOCK",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "side_left",
+        "side_right",
+        "armhole_left_back",
+        "armhole_right_back",
+        "shoulder_left",
+        "shoulder_right",
+        "neckline_back"
+      ],
+      "landmarks": [
+        "BACK_CENTER_NECK",
+        "BACK_LEFT_UNDERARM",
+        "BACK_RIGHT_UNDERARM"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "NONE",
+      "parameter_ports": [
+        "block.front_panel_width",
+        "block.armscye_depth",
+        "component.neckline_depth"
+      ],
+      "revision": 2,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "cap_front",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_FRONT",
+          "notch_ids": [
+            "FRONT_PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_CAP_FRONT"
+        },
+        {
+          "boundary_id": "cap_back",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "SEWN",
+          "interface_family": "ARMHOLE_BACK",
+          "notch_ids": [
+            "BACK_PITCH",
+            "SHOULDER_POINT"
+          ],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_CAP_BACK"
+        },
+        {
+          "boundary_id": "underarm_front",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SLEEVE_UNDERARM",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_UNDERARM_FRONT"
+        },
+        {
+          "boundary_id": "underarm_back",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "SLEEVE_UNDERARM",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_UNDERARM_BACK"
+        },
+        {
+          "boundary_id": "wrist",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "WRIST_ATTACH",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "SLEEVE_WRIST"
+        }
+      ],
+      "category": "SLEEVE",
+      "component_id": "SET_IN_SLEEVE_BASIC",
+      "component_sha256": "d1feff193bd3c05307860873e981ffa10e9d96dda8e38cb53888034dda0c86b8",
+      "construction_features": [
+        "GRAINLINE",
+        "BICEPS_LINE",
+        "ELBOW_LINE",
+        "UNDERARM_SEAM"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "SET_IN_ONE_PIECE",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "cap_front",
+        "cap_back",
+        "underarm_front",
+        "underarm_back",
+        "wrist"
+      ],
+      "landmarks": [
+        "SHOULDER_POINT",
+        "FRONT_PITCH",
+        "BACK_PITCH",
+        "FRONT_ELBOW",
+        "BACK_ELBOW"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "MIRROR_ALLOWED",
+      "parameter_ports": [
+        "sleeve_length",
+        "cap_height",
+        "cap_ease",
+        "front_pitch_notch",
+        "arm_rest_pitch"
+      ],
+      "revision": 2,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "front_attach",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "NECKLINE_FRONT",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "COLLAR_FRONT_NECK_ATTACH"
+        },
+        {
+          "boundary_id": "back_attach",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "NECKLINE_BACK",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "COLLAR_BACK_NECK_ATTACH"
+        },
+        {
+          "boundary_id": "outer",
+          "curve_kind": "CUBIC_BEZIER",
+          "disposition": "FINISHED",
+          "interface_family": "COLLAR_OUTER",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "COLLAR_OUTER_EDGE"
+        },
+        {
+          "boundary_id": "front_end",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "COLLAR_END",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "COLLAR_FRONT_END"
+        },
+        {
+          "boundary_id": "back_end",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "COLLAR_END",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "COLLAR_BACK_END"
+        }
+      ],
+      "category": "COLLAR",
+      "component_id": "COLLAR_STAND_BASIC",
+      "component_sha256": "4d6f85b6aebdbd1fe715b76397de4ef52bf80b2c621e400550efa34b09b0f3ed",
+      "construction_features": [
+        "ROLL_LINE"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "STAND_COLLAR",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "front_attach",
+        "back_attach"
+      ],
+      "landmarks": [
+        "FRONT_END_LOWER",
+        "FRONT_BACK_JUNCTION_LOWER",
+        "BACK_END_LOWER"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "NONE",
+      "parameter_ports": [
+        "collar_depth",
+        "turn_of_cloth"
+      ],
+      "revision": 1,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "sleeve_attach",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "WRIST_ATTACH",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "CUFF_SLEEVE_ATTACH"
+        },
+        {
+          "boundary_id": "end_left",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "CUFF_END",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "CUFF_END_LEFT"
+        },
+        {
+          "boundary_id": "end_right",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "CUFF_END",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "CUFF_END_RIGHT"
+        },
+        {
+          "boundary_id": "outer",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "CUFF_OUTER",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "CUFF_OUTER_EDGE"
+        }
+      ],
+      "category": "CUFF",
+      "component_id": "CUFF_STRAIGHT_BASIC",
+      "component_sha256": "23a796e9909302c26191b7a6de86d3c3cfb636cedd261f00cd79358d8a179c1b",
+      "construction_features": [
+        "FOLD_LINE"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "STRAIGHT_CUFF",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "sleeve_attach",
+        "end_left",
+        "end_right"
+      ],
+      "landmarks": [
+        "ATTACH_LEFT",
+        "ATTACH_RIGHT",
+        "OUTER_LEFT",
+        "OUTER_RIGHT"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "MIRROR_ALLOWED",
+      "parameter_ports": [
+        "seam_allowance"
+      ],
+      "revision": 1,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    },
+    {
+      "boundaries": [
+        {
+          "boundary_id": "front_attach",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "GORE_FRONT",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "GORE_FRONT_ATTACH"
+        },
+        {
+          "boundary_id": "back_attach",
+          "curve_kind": "LINE",
+          "disposition": "SEWN",
+          "interface_family": "GORE_BACK",
+          "notch_ids": [],
+          "orientation": "REVERSE",
+          "parameter_bindings": [],
+          "semantic_role": "GORE_BACK_ATTACH"
+        },
+        {
+          "boundary_id": "hem",
+          "curve_kind": "LINE",
+          "disposition": "FINISHED",
+          "interface_family": "GORE_HEM",
+          "notch_ids": [],
+          "orientation": "FORWARD",
+          "parameter_bindings": [],
+          "semantic_role": "GORE_HEM"
+        }
+      ],
+      "category": "GORE",
+      "component_id": "SIDE_GORE_BASIC",
+      "component_sha256": "e27a1f11f13566c1c9967183384cc63c49919b05ffd0780e2b89101cae63eedf",
+      "construction_features": [
+        "GRAINLINE"
+      ],
+      "contract": "PatternComponentDefinition/1",
+      "family": "TRIANGULAR_SIDE_GORE",
+      "geometry_authority": "EXACT_2D_PATTERN",
+      "interface_ports": [
+        "front_attach",
+        "back_attach"
+      ],
+      "landmarks": [
+        "APEX",
+        "FRONT_HEM",
+        "BACK_HEM"
+      ],
+      "layer_role": "SHELL",
+      "mirror_policy": "MIRROR_ALLOWED",
+      "parameter_ports": [
+        "block.front_panel_width",
+        "body.arm_length"
+      ],
+      "revision": 1,
+      "three_dimensional_primitive_authority": false,
+      "topology_change_policy": "GUIDED_ONLY"
+    }
+  ],
+  "contract": "PatternComponentRegistry/1",
+  "registry_id": "R1C_CP2_COMPONENT_LIBRARY",
+  "registry_sha256": "358521ef9ac5d90ae2811a70713fc9a22e14123c3ca6e724fd06fb8818f19777"
+}

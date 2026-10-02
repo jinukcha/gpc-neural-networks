@@ -1,0 +1,15 @@
+{
+  "accepted": true,
+  "assembled_package_sha256": "477cdf83907afa4fd7662268725a7189f1b6800ca6996b8abd6c874a44b73790",
+  "component_instance_count": 7,
+  "contract": "AssemblyCompilationReceipt/1",
+  "errors": [],
+  "notch_pair_count": 8,
+  "partial_publication_count": 0,
+  "receipt_sha256": "4741a155d3127d764f2dde1da7ff2003f59dd4bf8fef3f6d8b8c09897215ff08",
+  "recipe_id": "R1C_CP2_SLEEVED_TUNIC_ASSEMBLY",
+  "seam_count": 16,
+  "simulation_executed": false,
+  "status": "COMPILED",
+  "triangulation_executed": false
+}

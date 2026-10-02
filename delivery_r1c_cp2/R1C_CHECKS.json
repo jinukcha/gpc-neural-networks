@@ -1,0 +1,55 @@
+{
+  "assembly": {
+    "instances": 7,
+    "notch_pairs": 8,
+    "seams": 16
+  },
+  "checkpoint": "GARMENT_CAD_PRO_R1C_CP2",
+  "deterministic_rebuild": true,
+  "evidence": {
+    "height": 1680,
+    "path": "build/r1c_cp2/cp2_exact_component_assembly_evidence.png",
+    "width": 2400
+  },
+  "fresh_process_reopen": true,
+  "interfaces": {
+    "cap_ratios": [
+      1.050643717216311,
+      1.0600125687039623,
+      1.050643717216311,
+      1.0600125687039623
+    ],
+    "interfaces": 16,
+    "maximum_notch_delta": 1.1632245661141738e-06
+  },
+  "library": {
+    "authorities": 9,
+    "categories": [
+      "BODICE",
+      "COLLAR",
+      "CUFF",
+      "GORE",
+      "SLEEVE"
+    ],
+    "definitions": 6
+  },
+  "predecessor_preservation": true,
+  "schema_count": 5,
+  "simulation_executed": false,
+  "source_budget": {
+    "files_checked": 17,
+    "files_over_500": [],
+    "functions_over_80": [],
+    "maximum_file": [
+      "source/wuxia_garment_oss/pattern_geometry/library.py",
+      216
+    ],
+    "maximum_function": [
+      "source/wuxia_garment_oss/pattern_geometry/assembler.py",
+      "compile_assembly",
+      76
+    ]
+  },
+  "triangulation_executed": false,
+  "validation": "PASS"
+}

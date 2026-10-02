@@ -1,0 +1,17 @@
+{
+  "contract": "CP2FreshProcessReopenReceipt/1",
+  "deterministic_compilation_pass": true,
+  "deterministic_interface_pass": true,
+  "deterministic_library_pass": true,
+  "deterministic_package_pass": true,
+  "fresh_process_reopen_pass": true,
+  "receipt_sha256": "c34c33ecc880ee32d691b4f5333c8a23eedbd4685979feaf3c6a520a132a052d",
+  "recipe_hash": "3e6b668ae7819202e772bcfc73ebde29fdb8f0b8c2e650d3406090c8bed490b9",
+  "registry_hash": "358521ef9ac5d90ae2811a70713fc9a22e14123c3ca6e724fd06fb8818f19777",
+  "reopen_process_id": 2365,
+  "stored_compilation_hash_pass": true,
+  "stored_interface_hash_pass": true,
+  "stored_library_hash_pass": true,
+  "stored_package_hash_pass": true,
+  "writer_process_id": 2357
+}

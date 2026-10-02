@@ -1,0 +1,14 @@
+{
+  "accepted": false,
+  "assembled_package_sha256": null,
+  "contract": "AssemblyCompilationReceipt/1",
+  "errors": [
+    "INTERFACE_SOLVER_REJECTED"
+  ],
+  "partial_publication_count": 0,
+  "receipt_sha256": "f497ba54b9ad3680881b49f6a6bd118acf282bac879c1e97cd3216bb1eb1606b",
+  "recipe_id": "R1C_CP2_SLEEVED_TUNIC_ASSEMBLY",
+  "simulation_executed": false,
+  "status": "REJECTED_ATOMIC",
+  "triangulation_executed": false
+}

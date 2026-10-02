@@ -1,0 +1,495 @@
+{
+  "accepted": false,
+  "accepted_interface_count": 15,
+  "contract": "InterfaceSolverReceipt/1",
+  "contract_admission_receipt_sha256": "1b12f8c29fb2ae9cb751e8db7ed3accee438d0fbafa162b3179aadae6b88c6b6",
+  "errors": [
+    "left_cap_front:NOTCH_CORRESPONDENCE_MISMATCH:FRONT_PITCH"
+  ],
+  "interface_count": 16,
+  "interface_receipts": [
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0000000000000002,
+      "endpoint_a": {
+        "boundary_id": "shoulder_left",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "shoulder_left",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "shoulder_left",
+      "length_a_m": 0.13718600511714016,
+      "length_b_m": 0.1371860051171402,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.04,
+      "ratio_min": 1.0,
+      "receipt_sha256": "6adbd88219c331b717b85c4ebc0fb7f58f75278931dc1bf938054259ac97dc1d",
+      "semantic_role": "SHOULDER"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0000000000000002,
+      "endpoint_a": {
+        "boundary_id": "shoulder_right",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "shoulder_right",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "shoulder_right",
+      "length_a_m": 0.13718600511714016,
+      "length_b_m": 0.1371860051171402,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.04,
+      "ratio_min": 1.0,
+      "receipt_sha256": "5c6987c371fa59e9f01e712fa9d6a55c0283757dc337392580ee636fc73cb0d2",
+      "semantic_role": "SHOULDER"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "side_left",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "side_left",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "side_left",
+      "length_a_m": 0.354,
+      "length_b_m": 0.354,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.03,
+      "ratio_min": 1.0,
+      "receipt_sha256": "1499a3fcf2a41415f1e4007f8b4a9e74832071f857125e2058092335e9d90420",
+      "semantic_role": "SIDE_SEAM"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "side_right",
+        "component_instance_id": "bodice_front"
+      },
+      "endpoint_b": {
+        "boundary_id": "side_right",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "side_right",
+      "length_a_m": 0.354,
+      "length_b_m": 0.354,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.03,
+      "ratio_min": 1.0,
+      "receipt_sha256": "47a2656702edc2f8d3553899923f45688ed5d6a75b5337ce4c25e0b17ac0f8b3",
+      "semantic_role": "SIDE_SEAM"
+    },
+    {
+      "accepted": false,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.050643717216311,
+      "endpoint_a": {
+        "boundary_id": "cap_front",
+        "component_instance_id": "sleeve_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_left_front",
+        "component_instance_id": "bodice_front"
+      },
+      "errors": [
+        "NOTCH_CORRESPONDENCE_MISMATCH:FRONT_PITCH"
+      ],
+      "interface_id": "left_cap_front",
+      "length_a_m": 0.2613969030034353,
+      "length_b_m": 0.2487969030034354,
+      "length_pass": true,
+      "length_policy": "BOUNDED_EASE",
+      "notch_correspondence": [
+        {
+          "delta": 0.12000154898587256,
+          "endpoint_a_normalized": 0.6768689161256961,
+          "endpoint_b_aligned_normalized": 0.5568673671398235,
+          "passed": false,
+          "semantic_role": "FRONT_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "notch_pass": false,
+      "notch_policy": "NORMALIZED_ARC",
+      "ratio_max": 1.08,
+      "ratio_min": 1.0,
+      "receipt_sha256": "71201f29fa7a6d96f0b74367c176eb445c25259ffce869c8fc30255a6dd41a5b",
+      "semantic_role": "SLEEVE_CAP"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0600125687039623,
+      "endpoint_a": {
+        "boundary_id": "cap_back",
+        "component_instance_id": "sleeve_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_left_back",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "left_cap_back",
+      "length_a_m": 0.27201291180464293,
+      "length_b_m": 0.25661291180464296,
+      "length_pass": true,
+      "length_policy": "BOUNDED_EASE",
+      "notch_correspondence": [
+        {
+          "delta": 1.1632245661141738e-06,
+          "endpoint_a_normalized": 0.5800009952626478,
+          "endpoint_b_aligned_normalized": 0.5799998320380817,
+          "passed": true,
+          "semantic_role": "BACK_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "notch_pass": true,
+      "notch_policy": "NORMALIZED_ARC",
+      "ratio_max": 1.08,
+      "ratio_min": 1.0,
+      "receipt_sha256": "2a10055291c82543997d2e250dcd46bb2625307c4f24246fed24966c46a6d777",
+      "semantic_role": "SLEEVE_CAP"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.050643717216311,
+      "endpoint_a": {
+        "boundary_id": "cap_front",
+        "component_instance_id": "sleeve_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_right_front",
+        "component_instance_id": "bodice_front"
+      },
+      "errors": [],
+      "interface_id": "right_cap_front",
+      "length_a_m": 0.2613969030034353,
+      "length_b_m": 0.2487969030034354,
+      "length_pass": true,
+      "length_policy": "BOUNDED_EASE",
+      "notch_correspondence": [
+        {
+          "delta": 7.579840669569293e-07,
+          "endpoint_a_normalized": 0.5568681251238905,
+          "endpoint_b_aligned_normalized": 0.5568673671398235,
+          "passed": true,
+          "semantic_role": "FRONT_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "notch_pass": true,
+      "notch_policy": "NORMALIZED_ARC",
+      "ratio_max": 1.08,
+      "ratio_min": 1.0,
+      "receipt_sha256": "e00ff4bfa03055ed56e362c23162fd74badf6ea57b92f628330e4626ee43c671",
+      "semantic_role": "SLEEVE_CAP"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0600125687039623,
+      "endpoint_a": {
+        "boundary_id": "cap_back",
+        "component_instance_id": "sleeve_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "armhole_right_back",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "right_cap_back",
+      "length_a_m": 0.27201291180464293,
+      "length_b_m": 0.25661291180464296,
+      "length_pass": true,
+      "length_policy": "BOUNDED_EASE",
+      "notch_correspondence": [
+        {
+          "delta": 1.1632245661141738e-06,
+          "endpoint_a_normalized": 0.5800009952626478,
+          "endpoint_b_aligned_normalized": 0.5799998320380817,
+          "passed": true,
+          "semantic_role": "BACK_PITCH"
+        },
+        {
+          "delta": 0.0,
+          "endpoint_a_normalized": 0.0,
+          "endpoint_b_aligned_normalized": 0.0,
+          "passed": true,
+          "semantic_role": "SHOULDER_POINT"
+        }
+      ],
+      "notch_pass": true,
+      "notch_policy": "NORMALIZED_ARC",
+      "ratio_max": 1.08,
+      "ratio_min": 1.0,
+      "receipt_sha256": "ad36dbf7b88c087b6b3d2d88d77a8099537fb5fa018031818cfa984e3a3b0c4f",
+      "semantic_role": "SLEEVE_CAP"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0005643678303946,
+      "endpoint_a": {
+        "boundary_id": "underarm_front",
+        "component_instance_id": "sleeve_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "underarm_back",
+        "component_instance_id": "sleeve_left"
+      },
+      "errors": [],
+      "interface_id": "left_underarm",
+      "length_a_m": 0.4958706887301312,
+      "length_b_m": 0.4955909931165829,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.03,
+      "ratio_min": 1.0,
+      "receipt_sha256": "f13205ffb0a0dc6d65ee975ca85218aaa5f68059b82f6fc84517a18340e0fbcb",
+      "semantic_role": "UNDERARM_SEAM"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0005643678303946,
+      "endpoint_a": {
+        "boundary_id": "underarm_front",
+        "component_instance_id": "sleeve_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "underarm_back",
+        "component_instance_id": "sleeve_right"
+      },
+      "errors": [],
+      "interface_id": "right_underarm",
+      "length_a_m": 0.4958706887301312,
+      "length_b_m": 0.4955909931165829,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.03,
+      "ratio_min": 1.0,
+      "receipt_sha256": "67f1c8b20cb3d8a438e8e8ded7a8d52abeb2a4b9ddf84db075d73dd33c8ec7ac",
+      "semantic_role": "UNDERARM_SEAM"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "front_attach",
+        "component_instance_id": "collar"
+      },
+      "endpoint_b": {
+        "boundary_id": "neckline_front",
+        "component_instance_id": "bodice_front"
+      },
+      "errors": [],
+      "interface_id": "collar_front",
+      "length_a_m": 0.2525963751672473,
+      "length_b_m": 0.2525963751672473,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.002,
+      "ratio_min": 1.0,
+      "receipt_sha256": "04f116444b604cce77ac34cb7b36cec949d793897a15243a9c5cb529cb37a8de",
+      "semantic_role": "COLLAR_ATTACH"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "back_attach",
+        "component_instance_id": "collar"
+      },
+      "endpoint_b": {
+        "boundary_id": "neckline_back",
+        "component_instance_id": "bodice_back"
+      },
+      "errors": [],
+      "interface_id": "collar_back",
+      "length_a_m": 0.1902050735105243,
+      "length_b_m": 0.1902050735105243,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.002,
+      "ratio_min": 1.0,
+      "receipt_sha256": "d060d359de9d8c8b8655bae878ff95be5889413154f0e226f00f942e2c4e66c6",
+      "semantic_role": "COLLAR_ATTACH"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "sleeve_attach",
+        "component_instance_id": "cuff_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "wrist",
+        "component_instance_id": "sleeve_left"
+      },
+      "errors": [],
+      "interface_id": "cuff_left_attach",
+      "length_a_m": 0.2537966654596548,
+      "length_b_m": 0.2537966654596548,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.002,
+      "ratio_min": 1.0,
+      "receipt_sha256": "a2c19c8627337a48d6576f8df95fc3e7b8f04b6e47083911487fa93690c41951",
+      "semantic_role": "CUFF_ATTACH"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "sleeve_attach",
+        "component_instance_id": "cuff_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "wrist",
+        "component_instance_id": "sleeve_right"
+      },
+      "errors": [],
+      "interface_id": "cuff_right_attach",
+      "length_a_m": 0.2537966654596548,
+      "length_b_m": 0.2537966654596548,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.002,
+      "ratio_min": 1.0,
+      "receipt_sha256": "d926befd1d0d5c66a2a43734bbf33cc2f4d86f323ddc837d52d95be9b0597d5b",
+      "semantic_role": "CUFF_ATTACH"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "end_left",
+        "component_instance_id": "cuff_left"
+      },
+      "endpoint_b": {
+        "boundary_id": "end_right",
+        "component_instance_id": "cuff_left"
+      },
+      "errors": [],
+      "interface_id": "cuff_left_end",
+      "length_a_m": 0.06664,
+      "length_b_m": 0.06664,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.002,
+      "ratio_min": 1.0,
+      "receipt_sha256": "a5230166fc94e3981eea5a70554aeed64721a1e3b910321a28c698fa99670b18",
+      "semantic_role": "CUFF_END_SEAM"
+    },
+    {
+      "accepted": true,
+      "contract": "InterfaceCompatibilityReceipt/1",
+      "directed_or_symmetric_ratio": 1.0,
+      "endpoint_a": {
+        "boundary_id": "end_left",
+        "component_instance_id": "cuff_right"
+      },
+      "endpoint_b": {
+        "boundary_id": "end_right",
+        "component_instance_id": "cuff_right"
+      },
+      "errors": [],
+      "interface_id": "cuff_right_end",
+      "length_a_m": 0.06664,
+      "length_b_m": 0.06664,
+      "length_pass": true,
+      "length_policy": "EQUAL",
+      "notch_correspondence": [],
+      "notch_pass": true,
+      "notch_policy": "NONE",
+      "ratio_max": 1.002,
+      "ratio_min": 1.0,
+      "receipt_sha256": "b70c3fcf4ad2d1e275779b59ccd4806d0056dc3487af24d8d60d33c87b71dfbe",
+      "semantic_role": "CUFF_END_SEAM"
+    }
+  ],
+  "partial_publication_count": 0,
+  "receipt_sha256": "8a7f669363b0c1b0bcbc15faf4e098ce635c57f777237db529c5ffc057a1f2ac",
+  "recipe_id": "R1C_CP2_SLEEVED_TUNIC_ASSEMBLY",
+  "simulation_executed": false,
+  "triangulation_executed": false
+}
