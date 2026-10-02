@@ -1,0 +1,45 @@
+{
+  "contract": "OutfitAssemblyPlan/1",
+  "garment_ids": [
+    "SLEEVED_TUNIC_RIGGED_R1B",
+    "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B"
+  ],
+  "hidden_body_regions": [
+    "TORSO"
+  ],
+  "layer_order": [
+    "SLEEVED_TUNIC_RIGGED_R1B",
+    "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B"
+  ],
+  "outfit_id": "INVALID_DOUBLE_UPPER",
+  "plan_sha256": "c15beb410e097ee3284ef95f8fe74651609ae773f4f7e0b35e35294fed513539",
+  "preserved_safety_regions": [
+    "CHEST",
+    "LEFT_ARM",
+    "LEFT_FOREARM",
+    "LEFT_THIGH",
+    "PELVIS",
+    "RIGHT_ARM",
+    "RIGHT_FOREARM",
+    "RIGHT_THIGH",
+    "WAIST"
+  ],
+  "region_thickness_m": {
+    "CHEST": 0.0098,
+    "LEFT_ARM": 0.008799999999999999,
+    "LEFT_FOREARM": 0.008,
+    "LEFT_THIGH": 0.004,
+    "PELVIS": 0.0055,
+    "RIGHT_ARM": 0.008799999999999999,
+    "RIGHT_FOREARM": 0.008,
+    "RIGHT_THIGH": 0.004,
+    "TORSO": 0.0098,
+    "WAIST": 0.0103
+  },
+  "rejection_reasons": [
+    "EXCLUSIVE_SLOT_CONFLICT:UPPER_BODY_PRIMARY:SLEEVED_TUNIC_RIGGED_R1B,STRAIGHT_SLEEVE_ROBE_RIGGED_R1B",
+    "INCOMPATIBLE_FAMILY:SLEEVED_TUNIC:STRAIGHT_SLEEVE_ROBE"
+  ],
+  "status": "REJECTED_ATOMIC",
+  "target_rig_id": "CANONICAL_EXACT_FIXTURE"
+}

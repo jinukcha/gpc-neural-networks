@@ -1,0 +1,39 @@
+{
+  "consumer_pass": true,
+  "contract": "GodotSleeveFamilyRuntimeReceipt/1",
+  "godot_version": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "mesh_scaling": "FORBIDDEN",
+  "read_only_consumer": true,
+  "rig_aware_lod_executed": false,
+  "secondary_motion_executed": false,
+  "sleeved_tunic": {
+    "cp5_component_mesh_count": 1,
+    "max_blend_shape_count": 10,
+    "mesh_instance_count": 2,
+    "product_pass": true,
+    "skeleton_count": 1,
+    "surface_count": 16,
+    "triangle_count": 58090,
+    "vertex_count": 30375
+  },
+  "straight_robe": {
+    "cp5_component_mesh_count": 1,
+    "max_blend_shape_count": 10,
+    "mesh_instance_count": 2,
+    "product_pass": true,
+    "skeleton_count": 1,
+    "surface_count": 17,
+    "triangle_count": 58970,
+    "vertex_count": 30855
+  }
+}

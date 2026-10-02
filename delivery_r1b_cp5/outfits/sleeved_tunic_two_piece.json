@@ -1,0 +1,50 @@
+{
+  "contract": "OutfitAssemblyPlan/1",
+  "garment_ids": [
+    "TROUSERS_RIGGED_R1B",
+    "SLEEVED_TUNIC_RIGGED_R1B"
+  ],
+  "hidden_body_regions": [
+    "LEFT_CALF",
+    "RIGHT_CALF",
+    "TORSO"
+  ],
+  "layer_order": [
+    "TROUSERS_RIGGED_R1B",
+    "SLEEVED_TUNIC_RIGGED_R1B"
+  ],
+  "outfit_id": "SLEEVED_TUNIC_TWO_PIECE",
+  "plan_sha256": "b9df7344be385a2935f853eb8d920c8fc4f95c6235a5989253dc486765e6d6cf",
+  "preserved_safety_regions": [
+    "CHEST",
+    "LEFT_ARM",
+    "LEFT_FOREARM",
+    "LEFT_KNEE",
+    "LEFT_THIGH",
+    "PELVIS",
+    "RIGHT_ARM",
+    "RIGHT_FOREARM",
+    "RIGHT_KNEE",
+    "RIGHT_THIGH",
+    "WAIST"
+  ],
+  "region_thickness_m": {
+    "CHEST": 0.0046,
+    "LEFT_ARM": 0.0042,
+    "LEFT_CALF": 0.003,
+    "LEFT_FOREARM": 0.0038,
+    "LEFT_KNEE": 0.0032,
+    "LEFT_THIGH": 0.0038,
+    "PELVIS": 0.004,
+    "RIGHT_ARM": 0.0042,
+    "RIGHT_CALF": 0.003,
+    "RIGHT_FOREARM": 0.0038,
+    "RIGHT_KNEE": 0.0032,
+    "RIGHT_THIGH": 0.0038,
+    "TORSO": 0.0046,
+    "WAIST": 0.0084
+  },
+  "rejection_reasons": [],
+  "status": "ACCEPTED",
+  "target_rig_id": "CANONICAL_EXACT_FIXTURE"
+}

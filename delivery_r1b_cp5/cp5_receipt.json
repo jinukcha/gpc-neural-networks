@@ -1,0 +1,25 @@
+{
+  "checkpoint": "GARMENT_CAD_PRO_R1B_CP5",
+  "compatible_outfit_count": 2,
+  "corrective_generalization_pass": true,
+  "cp5_acceptance": true,
+  "direct_arm_measurement_pass": true,
+  "godot_consumer_pass": true,
+  "godot_version": "4.7.2",
+  "incompatible_atomic_rejection_pass": true,
+  "mesh_scaling": "FORBIDDEN",
+  "next_checkpoint": "GARMENT_CAD_PRO_R1B_CP6",
+  "phase": "CLOSED",
+  "predecessor_mutated": false,
+  "product_count": 2,
+  "product_ids": [
+    "SLEEVED_TUNIC_RIGGED_R1B",
+    "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B"
+  ],
+  "receipt_sha256": "961242353a8fecabeec25fd14796e2256d623202811c5aac2684a3ffb49e1b58",
+  "rig_aware_lod_executed": false,
+  "secondary_motion_executed": false,
+  "sleeve_cap_armhole_pass": true,
+  "terminal_decision": "CP5_COMPLETE_SLEEVE_RIG_GENERALIZATION",
+  "upper_arm_forearm_transfer_pass": true
+}

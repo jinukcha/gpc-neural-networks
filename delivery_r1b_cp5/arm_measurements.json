@@ -1,0 +1,52 @@
+{
+  "contract": "ArmMeasurementSet/1",
+  "joint_datums": {
+    "L_FOREARM": [
+      -0.32334419667720793,
+      1.2560062470287083,
+      0.0
+    ],
+    "L_HAND": [
+      -0.44310130655765534,
+      1.2290644907206296,
+      0.0
+    ],
+    "L_UPPER_ARM": [
+      -0.16765995383262636,
+      1.2964188814908264,
+      0.0
+    ],
+    "R_FOREARM": [
+      0.32334419667720793,
+      1.2560062470287083,
+      0.0
+    ],
+    "R_HAND": [
+      0.44310130655765534,
+      1.2290644907206296,
+      0.0
+    ],
+    "R_UPPER_ARM": [
+      0.16765995383262636,
+      1.2964188814908264,
+      0.0
+    ]
+  },
+  "measurement_mode": "DIRECT_SEMANTIC_DATUM",
+  "measurement_sha256": "9103cfa0ff829fa7db44e8e7cfbdb8f1005f9f1f8bc7f7b29501f6aefaa4954b",
+  "measurements": {
+    "armscye_circumference_m": 0.315,
+    "canonical_height_m": 1.572571883648634,
+    "cap_ease_ratio": 1.055,
+    "elbow_circumference_m": 0.205,
+    "elbow_to_wrist_m": 0.12275024887910188,
+    "shoulder_to_elbow_m": 0.16084391345108282,
+    "sleeve_cap_height_m": 0.105,
+    "sleeve_length_m": 0.2835941623301847,
+    "upper_arm_circumference_m": 0.245,
+    "wrist_circumference_m": 0.16
+  },
+  "mesh_scaling": "FORBIDDEN",
+  "source": "CP0_CANONICAL_SKELETON_AND_CP4_SEMANTIC_BODY_PROXY",
+  "units": "m"
+}

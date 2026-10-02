@@ -1,0 +1,481 @@
+{
+  "contract": "GarmentLibraryRegistry/1",
+  "entries": [
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "CHEST",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "TORSO",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0045
+        },
+        {
+          "occludes_body": false,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0038
+        }
+      ],
+      "exclusive_slots": [
+        "UPPER_BODY_PRIMARY"
+      ],
+      "family_id": "SLEEVELESS_TUNIC",
+      "garment_id": "SLEEVELESS_TUNIC_RIGGED_R1B",
+      "incompatible_families": [],
+      "layer_class": "MID",
+      "metadata": {
+        "rigged_product": true,
+        "source_checkpoint": "GARMENT_CAD_PRO_R1B_CP3"
+      },
+      "product_path": "build/rig_cp3/products/feature_complete_tunic_rigged.glb",
+      "product_sha256": "a96041d6a522d06fc459804baf09d47dab5c1b07951da4099abd18120ff1bef9",
+      "required_bones": [
+        "ROOT",
+        "PELVIS",
+        "SPINE_01",
+        "SPINE_02",
+        "CHEST",
+        "NECK",
+        "HEAD",
+        "L_CLAVICLE",
+        "L_UPPER_ARM",
+        "L_FOREARM",
+        "L_HAND",
+        "R_CLAVICLE",
+        "R_UPPER_ARM",
+        "R_FOREARM",
+        "R_HAND",
+        "L_THIGH",
+        "L_CALF",
+        "L_FOOT",
+        "L_TOE",
+        "R_THIGH",
+        "R_CALF",
+        "R_FOOT",
+        "R_TOE"
+      ],
+      "slots": [
+        "UPPER_BODY",
+        "LONG_TOP"
+      ]
+    },
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0036
+        },
+        {
+          "occludes_body": true,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.004
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_THIGH",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0038
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_THIGH",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0038
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_KNEE",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0032
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_KNEE",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0032
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_CALF",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.003
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_CALF",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.003
+        }
+      ],
+      "exclusive_slots": [
+        "LOWER_BODY_PRIMARY"
+      ],
+      "family_id": "TROUSERS",
+      "garment_id": "TROUSERS_RIGGED_R1B",
+      "incompatible_families": [],
+      "layer_class": "BASE",
+      "metadata": {
+        "rigged_product": true,
+        "source_checkpoint": "GARMENT_CAD_PRO_R1B_CP3"
+      },
+      "product_path": "build/rig_cp3/products/trousers_rigged.glb",
+      "product_sha256": "8e50bb162dce35735622f0efe970d3763578935d402a38ca99995ea96d58d877",
+      "required_bones": [
+        "ROOT",
+        "PELVIS",
+        "SPINE_01",
+        "SPINE_02",
+        "CHEST",
+        "NECK",
+        "HEAD",
+        "L_CLAVICLE",
+        "L_UPPER_ARM",
+        "L_FOREARM",
+        "L_HAND",
+        "R_CLAVICLE",
+        "R_UPPER_ARM",
+        "R_FOREARM",
+        "R_HAND",
+        "L_THIGH",
+        "L_CALF",
+        "L_FOOT",
+        "L_TOE",
+        "R_THIGH",
+        "R_CALF",
+        "R_FOOT",
+        "R_TOE"
+      ],
+      "slots": [
+        "LOWER_BODY",
+        "LEGS"
+      ]
+    },
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "CHEST",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.010079999999999999
+        },
+        {
+          "occludes_body": true,
+          "region_id": "TORSO",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.010079999999999999
+        },
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.010799999999999999
+        },
+        {
+          "occludes_body": false,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.00912
+        }
+      ],
+      "exclusive_slots": [
+        "UPPER_BODY_PRIMARY"
+      ],
+      "family_id": "SLEEVELESS_TUNIC_BLOCKER",
+      "garment_id": "SLEEVELESS_TUNIC_DUPLICATE_BLOCKER",
+      "incompatible_families": [
+        "SLEEVELESS_TUNIC"
+      ],
+      "layer_class": "MID",
+      "metadata": {
+        "expected_admission": "REJECTED_ATOMIC",
+        "fixture_only": true
+      },
+      "product_path": "build/rig_cp3/products/feature_complete_tunic_rigged.glb",
+      "product_sha256": "a96041d6a522d06fc459804baf09d47dab5c1b07951da4099abd18120ff1bef9",
+      "required_bones": [
+        "ROOT",
+        "PELVIS",
+        "SPINE_01",
+        "SPINE_02",
+        "CHEST",
+        "NECK",
+        "HEAD",
+        "L_CLAVICLE",
+        "L_UPPER_ARM",
+        "L_FOREARM",
+        "L_HAND",
+        "R_CLAVICLE",
+        "R_UPPER_ARM",
+        "R_FOREARM",
+        "R_HAND",
+        "L_THIGH",
+        "L_CALF",
+        "L_FOOT",
+        "L_TOE",
+        "R_THIGH",
+        "R_CALF",
+        "R_FOOT",
+        "R_TOE"
+      ],
+      "slots": [
+        "UPPER_BODY",
+        "LONG_TOP"
+      ]
+    },
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "CHEST",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.0046
+        },
+        {
+          "occludes_body": true,
+          "region_id": "TORSO",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.0046
+        },
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0048
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_ARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_ARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_FOREARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0038
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_FOREARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0038
+        }
+      ],
+      "exclusive_slots": [
+        "UPPER_BODY_PRIMARY"
+      ],
+      "family_id": "SLEEVED_TUNIC",
+      "garment_id": "SLEEVED_TUNIC_RIGGED_R1B",
+      "incompatible_families": [
+        "SLEEVELESS_TUNIC",
+        "STRAIGHT_SLEEVE_ROBE"
+      ],
+      "layer_class": "MID",
+      "metadata": {
+        "corrective_target_names": [
+          "SHOULDER_RAISE",
+          "UNDERARM_REACH",
+          "ELBOW_BEND"
+        ],
+        "direct_arm_measurement": true,
+        "rigged_product": true,
+        "source_checkpoint": "GARMENT_CAD_PRO_R1B_CP5"
+      },
+      "product_path": "build/rig_cp5/products/sleeved_tunic_rigged.glb",
+      "product_sha256": "d827a17a85f31ca70688bdded517ee913729737afbcade58cc2d9ad659516d7f",
+      "required_bones": [
+        "ROOT",
+        "PELVIS",
+        "SPINE_01",
+        "SPINE_02",
+        "CHEST",
+        "NECK",
+        "HEAD",
+        "L_CLAVICLE",
+        "L_UPPER_ARM",
+        "L_FOREARM",
+        "L_HAND",
+        "R_CLAVICLE",
+        "R_UPPER_ARM",
+        "R_FOREARM",
+        "R_HAND",
+        "L_THIGH",
+        "L_CALF",
+        "L_FOOT",
+        "L_TOE",
+        "R_THIGH",
+        "R_CALF",
+        "R_FOOT",
+        "R_TOE"
+      ],
+      "slots": [
+        "UPPER_BODY",
+        "LONG_TOP",
+        "ARMS"
+      ]
+    },
+    {
+      "coverage": [
+        {
+          "occludes_body": true,
+          "region_id": "CHEST",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.0052
+        },
+        {
+          "occludes_body": true,
+          "region_id": "TORSO",
+          "safety_band_m": 0.0,
+          "thickness_m": 0.0052
+        },
+        {
+          "occludes_body": true,
+          "region_id": "WAIST",
+          "safety_band_m": 0.01,
+          "thickness_m": 0.0055
+        },
+        {
+          "occludes_body": true,
+          "region_id": "PELVIS",
+          "safety_band_m": 0.012,
+          "thickness_m": 0.0055
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_THIGH",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.004
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_THIGH",
+          "safety_band_m": 0.008,
+          "thickness_m": 0.004
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_ARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0046
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_ARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0046
+        },
+        {
+          "occludes_body": true,
+          "region_id": "LEFT_FOREARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0042
+        },
+        {
+          "occludes_body": true,
+          "region_id": "RIGHT_FOREARM",
+          "safety_band_m": 0.006,
+          "thickness_m": 0.0042
+        }
+      ],
+      "exclusive_slots": [
+        "UPPER_BODY_PRIMARY"
+      ],
+      "family_id": "STRAIGHT_SLEEVE_ROBE",
+      "garment_id": "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B",
+      "incompatible_families": [
+        "SLEEVELESS_TUNIC",
+        "SLEEVED_TUNIC"
+      ],
+      "layer_class": "OUTER",
+      "metadata": {
+        "corrective_target_names": [
+          "SHOULDER_RAISE",
+          "UNDERARM_REACH",
+          "ELBOW_BEND"
+        ],
+        "direct_arm_measurement": true,
+        "rigged_product": true,
+        "source_checkpoint": "GARMENT_CAD_PRO_R1B_CP5"
+      },
+      "product_path": "build/rig_cp5/products/straight_sleeve_robe_rigged.glb",
+      "product_sha256": "3181d65013606fb2150865369cbcdf8ac42d001394ae53db6f00a515cd50456e",
+      "required_bones": [
+        "ROOT",
+        "PELVIS",
+        "SPINE_01",
+        "SPINE_02",
+        "CHEST",
+        "NECK",
+        "HEAD",
+        "L_CLAVICLE",
+        "L_UPPER_ARM",
+        "L_FOREARM",
+        "L_HAND",
+        "R_CLAVICLE",
+        "R_UPPER_ARM",
+        "R_FOREARM",
+        "R_HAND",
+        "L_THIGH",
+        "L_CALF",
+        "L_FOOT",
+        "L_TOE",
+        "R_THIGH",
+        "R_CALF",
+        "R_FOOT",
+        "R_TOE"
+      ],
+      "slots": [
+        "UPPER_BODY",
+        "FULL_LENGTH_ROBE",
+        "ARMS"
+      ]
+    }
+  ],
+  "layer_order": [
+    "BASE",
+    "INNER",
+    "MID",
+    "OUTER",
+    "ARMOR",
+    "ACCESSORY"
+  ],
+  "regional_thickness_limits_m": {
+    "CHEST": 0.01,
+    "LEFT_ARM": 0.012,
+    "LEFT_CALF": 0.007,
+    "LEFT_FOREARM": 0.01,
+    "LEFT_KNEE": 0.008,
+    "LEFT_THIGH": 0.009,
+    "PELVIS": 0.012,
+    "RIGHT_ARM": 0.012,
+    "RIGHT_CALF": 0.007,
+    "RIGHT_FOREARM": 0.01,
+    "RIGHT_KNEE": 0.008,
+    "RIGHT_THIGH": 0.009,
+    "TORSO": 0.01,
+    "WAIST": 0.012
+  },
+  "registry_id": "GARMENT_LIBRARY_R1B_CP5",
+  "registry_sha256": "e42a634cc127a5a900056e8a81629db286b95239cc3045da212d0dcdc3e30041"
+}

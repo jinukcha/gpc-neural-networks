@@ -1,0 +1,212 @@
+{
+  "base_product_path": "build/rig_cp3/products/feature_complete_tunic_rigged.glb",
+  "base_product_sha256": "a96041d6a522d06fc459804baf09d47dab5c1b07951da4099abd18120ff1bef9",
+  "bone_count": 23,
+  "canonical_skeleton_sha256": "70b73941a98e05711f9e6607ae63730eb1234832078a8a193d5c766eb57b04a7",
+  "component_count": 3,
+  "components": [
+    {
+      "component_id": "LEFT_STRAIGHT_ROBE_SLEEVE",
+      "construction": {
+        "armhole_boundary_open": true,
+        "armhole_curve_length_m": 0.315,
+        "cap_ease_ratio": 1.055,
+        "ring_count": 21,
+        "ring_vertex_count": 28,
+        "side": "LEFT",
+        "sleeve_cap_curve_length_m": 0.332325,
+        "style": "STRAIGHT_ROBE",
+        "underarm_seam_vertex_modulo": 21,
+        "wrist_boundary_open": true
+      },
+      "corrective_deformation_set": {
+        "composition_rule": "ADDITIVE_SPARSE_LOCAL",
+        "contract": "CorrectiveDeformationSet/1",
+        "full_pose_replacement": false,
+        "lod_transfer": "NOT_EXECUTED",
+        "owner_component": "LEFT_STRAIGHT_ROBE_SLEEVE",
+        "secondary_motion": "NOT_EXECUTED",
+        "targets": [
+          {
+            "affected_vertex_count": 504,
+            "driver_id": "SHOULDER_RAISE",
+            "maximum_displacement_m": 0.027202941641937328,
+            "mean_active_displacement_m": 0.006916564693599282
+          },
+          {
+            "affected_vertex_count": 219,
+            "driver_id": "UNDERARM_REACH",
+            "maximum_displacement_m": 0.024982701855337706,
+            "mean_active_displacement_m": 0.0058582889495667635
+          },
+          {
+            "affected_vertex_count": 503,
+            "driver_id": "ELBOW_BEND",
+            "maximum_displacement_m": 0.017834765882554754,
+            "mean_active_displacement_m": 0.0031841340415213687
+          }
+        ]
+      },
+      "skin_weight_field": {
+        "contract": "SkinWeightField/1",
+        "maximum_influences": 3,
+        "maximum_weight_sum_error": 2.9802322387695312e-08,
+        "negative_weight_count": 0,
+        "owner": "L",
+        "semantic_bones": [
+          "CHEST",
+          "L_CLAVICLE",
+          "L_FOREARM",
+          "L_HAND",
+          "L_UPPER_ARM"
+        ],
+        "transfer_mode": "COMPONENT_LOCAL_SEMANTIC_CHAIN",
+        "vertex_count": 588,
+        "zero_weight_vertex_count": 0
+      },
+      "triangle_count": 1120,
+      "vertex_count": 588
+    },
+    {
+      "component_id": "RIGHT_STRAIGHT_ROBE_SLEEVE",
+      "construction": {
+        "armhole_boundary_open": true,
+        "armhole_curve_length_m": 0.315,
+        "cap_ease_ratio": 1.055,
+        "ring_count": 21,
+        "ring_vertex_count": 28,
+        "side": "RIGHT",
+        "sleeve_cap_curve_length_m": 0.332325,
+        "style": "STRAIGHT_ROBE",
+        "underarm_seam_vertex_modulo": 21,
+        "wrist_boundary_open": true
+      },
+      "corrective_deformation_set": {
+        "composition_rule": "ADDITIVE_SPARSE_LOCAL",
+        "contract": "CorrectiveDeformationSet/1",
+        "full_pose_replacement": false,
+        "lod_transfer": "NOT_EXECUTED",
+        "owner_component": "RIGHT_STRAIGHT_ROBE_SLEEVE",
+        "secondary_motion": "NOT_EXECUTED",
+        "targets": [
+          {
+            "affected_vertex_count": 504,
+            "driver_id": "SHOULDER_RAISE",
+            "maximum_displacement_m": 0.027202941641937328,
+            "mean_active_displacement_m": 0.006916564693599282
+          },
+          {
+            "affected_vertex_count": 219,
+            "driver_id": "UNDERARM_REACH",
+            "maximum_displacement_m": 0.024982701855337706,
+            "mean_active_displacement_m": 0.0058582889495667635
+          },
+          {
+            "affected_vertex_count": 503,
+            "driver_id": "ELBOW_BEND",
+            "maximum_displacement_m": 0.017834765882554754,
+            "mean_active_displacement_m": 0.0031841340415213687
+          }
+        ]
+      },
+      "skin_weight_field": {
+        "contract": "SkinWeightField/1",
+        "maximum_influences": 3,
+        "maximum_weight_sum_error": 2.9802322387695312e-08,
+        "negative_weight_count": 0,
+        "owner": "R",
+        "semantic_bones": [
+          "CHEST",
+          "R_CLAVICLE",
+          "R_FOREARM",
+          "R_HAND",
+          "R_UPPER_ARM"
+        ],
+        "transfer_mode": "COMPONENT_LOCAL_SEMANTIC_CHAIN",
+        "vertex_count": 588,
+        "zero_weight_vertex_count": 0
+      },
+      "triangle_count": 1120,
+      "vertex_count": 588
+    },
+    {
+      "component_id": "STRAIGHT_ROBE_SKIRT",
+      "construction": {
+        "construction": "STRAIGHT_FLARED_ROBE_EXTENSION",
+        "hem_boundary_open": true,
+        "ring_count": 12,
+        "ring_vertex_count": 40,
+        "waist_boundary_open": true
+      },
+      "corrective_deformation_set": {
+        "composition_rule": "ADDITIVE_SPARSE_LOCAL",
+        "contract": "CorrectiveDeformationSet/1",
+        "full_pose_replacement": false,
+        "lod_transfer": "NOT_EXECUTED",
+        "owner_component": "STRAIGHT_ROBE_SKIRT",
+        "secondary_motion": "NOT_EXECUTED",
+        "targets": [
+          {
+            "affected_vertex_count": 0,
+            "driver_id": "SHOULDER_RAISE",
+            "maximum_displacement_m": 0.0,
+            "mean_active_displacement_m": 0.0
+          },
+          {
+            "affected_vertex_count": 0,
+            "driver_id": "UNDERARM_REACH",
+            "maximum_displacement_m": 0.0,
+            "mean_active_displacement_m": 0.0
+          },
+          {
+            "affected_vertex_count": 0,
+            "driver_id": "ELBOW_BEND",
+            "maximum_displacement_m": 0.0,
+            "mean_active_displacement_m": 0.0
+          }
+        ]
+      },
+      "skin_weight_field": {
+        "contract": "SkinWeightField/1",
+        "maximum_influences": 4,
+        "maximum_weight_sum_error": 2.9802322387695312e-08,
+        "negative_weight_count": 0,
+        "owner": "SKIRT",
+        "semantic_bones": [
+          "L_THIGH",
+          "PELVIS",
+          "R_THIGH",
+          "SPINE_01"
+        ],
+        "transfer_mode": "COMPONENT_LOCAL_SEMANTIC_CHAIN",
+        "vertex_count": 480,
+        "zero_weight_vertex_count": 0
+      },
+      "triangle_count": 880,
+      "vertex_count": 480
+    }
+  ],
+  "contract": "RiggedGarmentProduct/1",
+  "corrective_affected_vertices": {
+    "ELBOW_BEND": 1006,
+    "SHOULDER_RAISE": 1008,
+    "UNDERARM_REACH": 438
+  },
+  "corrective_target_names": [
+    "SHOULDER_RAISE",
+    "UNDERARM_REACH",
+    "ELBOW_BEND"
+  ],
+  "glb_sha256": "3181d65013606fb2150865369cbcdf8ac42d001394ae53db6f00a515cd50456e",
+  "maximum_weight_sum_error": 2.9802322387695312e-08,
+  "mesh_scaling": "FORBIDDEN",
+  "path": "build/rig_cp5/products/straight_sleeve_robe_rigged.glb",
+  "product_id": "STRAIGHT_SLEEVE_ROBE_RIGGED_R1B",
+  "product_kind": "STRAIGHT_SLEEVE_ROBE",
+  "receipt_sha256": "d8284eccec09d801a9f902a27800f7c4a5ab2718793e331ba4e927bd21a35a9f",
+  "rig_aware_lod": "NOT_EXECUTED",
+  "secondary_motion": "NOT_EXECUTED",
+  "triangle_count": 3120,
+  "vertex_count": 1656,
+  "zero_weight_vertex_count": 0
+}
