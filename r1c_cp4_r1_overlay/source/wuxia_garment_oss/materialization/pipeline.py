@@ -12,6 +12,7 @@ from .contracts import cp4_r1_schemas
 from .export import publish_materialized_product
 from .model import canonical_sha256, write_json
 from .qualification import qualify_product
+from .rest_clearance import compile_body_clear_rest
 from .rest_metric import compile_rest_metric
 from .seams import align_and_relax, compile_seam_maps
 from .settle import settle_material
@@ -28,6 +29,7 @@ def run_materialization(root: Path) -> dict:
     arrangement = arrange_components(meshes, profile)
     seam_maps, seam_receipt = compile_seam_maps(meshes, snapshot["assembled_package"])
     cap_patch = align_and_relax(meshes, seam_maps)
+    body_clear_rest = compile_body_clear_rest(meshes, seam_maps, profile)
     arrays, rest_metric = compile_rest_metric(meshes, seam_maps)
     final_positions, settling = settle_material(root, arrays, profile)
     qualification = qualify_product(meshes, seam_maps, arrays, final_positions, settling, profile)
@@ -38,6 +40,7 @@ def run_materialization(root: Path) -> dict:
         "avatar_arrangement_receipt.json": arrangement,
         "seam_correspondence_receipt.json": seam_receipt,
         "cap_patch_arrangement_receipt.json": cap_patch,
+        "body_clear_rest_receipt.json": body_clear_rest,
         "compiled_rest_metric_receipt.json": rest_metric,
         "warp_settling_receipt.json": settling,
         "technical_qualification_receipt.json": qualification,
@@ -98,6 +101,7 @@ def _preliminary_receipt(snapshot: dict, receipts: dict) -> dict:
         "triangle_count": receipts["triangulation_receipt.json"]["triangle_count"],
         "seam_interface_count": receipts["seam_correspondence_receipt.json"]["interface_count"],
         "orientation_reversed_count": receipts["seam_correspondence_receipt.json"]["reversed_count"],
+        "body_clear_rest_pass": receipts["body_clear_rest_receipt.json"]["rest_metric_compile_admitted"],
         "technical_pass": technical["technical_pass"],
         "visual_review": "PENDING",
         "product_acceptance": False,
